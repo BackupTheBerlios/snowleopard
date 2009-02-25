@@ -28,86 +28,39 @@
  */
 
 /* Standard C++ headers */
-#include <cstdlib>
 #include <iostream>
 
-/* Lynx headers */
-#include "lynx/driver.hpp"
-
 /*
- * Function prototypes
- */
-static void copyright ();
-static void license ();
-static void usage ();
-static void warrantee ();
-
-/*
- * This program is the main driver for the Lynx typesetting system. This program
- * first checks the input files and parameters and call the appropriate programs
- * to typeset a TROFF document.
+ * This program calculates the area of 3 user entered circle radiusses.
  */
 int
-main (int argc, char** argv)
+main ()
 {
-	using lynx::driver;
-
-	driver d_ (argc, argv);
-	
-	return EXIT_SUCCESS;
-}
-
-/*
- * Print copyright information.
- */
-static void
-copyright ()
-{
+	using std::cin;
 	using std::cout;
 	using std::endl;
-	
-}
 
-/*
- * Print licensing information and exit. Exit as failed to avoid that dependent
- * programs continue.
- */
-static void
-license ()
-{
-	using std::cout;
-	using std::endl;
-	using std::exit;
-	
-	exit (EXIT_SUCCESS);
-}
+	float pi = 3.1415f;
+	float radius = 0.0f;
 
-/*
- * Print usage information and exit. Exit as failed to avoid that dependent
- * programs will continue.
- */
-static void
-usage ()
-{
-	using std::cout;
-	using std::endl;
-	using std::exit;
+	cout << "Enter a radius of a circle: ";
+	cin >> radius;
+	cout << "Area = " << pi * radius * radius << endl;
 
-	exit (EXIT_FAILURE);
-}
+	cout << "Do some work ..." << endl;
 
-/*
- * Print warrantee information and exit. Exit as failed to avoid that dependent
- * programs continue.
- */
-static void
-warrantee ()
-{
-	using std::cout;
-	using std::endl;
-	using std::exit;
+	cout << "Enter a radius of a circle: ";
+	cin >> radius;
+	cout << "Area = " << pi * radius * radius << endl;
 
-	exit (EXIT_FAILURE);
+	cout << "Do some work ..." << endl;
+
+	cout << "Enter a radius of a circle: ";
+	cin >> radius;
+	cout << "Area = " << pi * radius * radius << endl;
+
+	cout << "Do some work ..." << endl;
+
 }
 
 /*>- EOF -<*/

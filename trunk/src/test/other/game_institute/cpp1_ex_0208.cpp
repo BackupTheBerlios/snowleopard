@@ -28,86 +28,78 @@
  */
 
 /* Standard C++ headers */
-#include <cstdlib>
 #include <iostream>
-
-/* Lynx headers */
-#include "lynx/driver.hpp"
 
 /*
  * Function prototypes
  */
-static void copyright ();
-static void license ();
-static void usage ();
-static void warrantee ();
+void print_array (int*, int);
+void selection_sort (int*, int);
+void swap (int*, int*);
 
 /*
- * This program is the main driver for the Lynx typesetting system. This program
- * first checks the input files and parameters and call the appropriate programs
- * to typeset a TROFF document.
+ * This program sorts an array using a selection sort.
  */
 int
-main (int argc, char** argv)
-{
-	using lynx::driver;
-
-	driver d_ (argc, argv);
-	
-	return EXIT_SUCCESS;
-}
-
-/*
- * Print copyright information.
- */
-static void
-copyright ()
+main ()
 {
 	using std::cout;
 	using std::endl;
-	
+
+	int a[] = {7, 3, 32, 2, 55, 34, 6, 13, 29, 22, 11, 9, 1, 5, 42, 39, 8};
+	int size = 17;
+
+	cout << "Unsorted: ";
+	print_array (a, size);
+
+	selection_sort (a, size);
+
+	cout << "Sorted: ";
+	print_array (a, size);
 }
 
 /*
- * Print licensing information and exit. Exit as failed to avoid that dependent
- * programs continue.
+ * Selection sort function.
  */
-static void
-license ()
+void
+selection_sort (int* a, int size)
 {
-	using std::cout;
-	using std::endl;
-	using std::exit;
-	
-	exit (EXIT_SUCCESS);
+	for (int i = 0; i != size - 1; ++i)
+	{
+		int pos_smallest = i;
+		for (int j = i+1; j != size; ++j)
+			if (a[j] < a[pos_smallest])
+				pos_smallest = j;
+		if (pos_smallest != i)
+			swap (&a[i], &a[pos_smallest]);
+	}
 }
 
 /*
- * Print usage information and exit. Exit as failed to avoid that dependent
- * programs will continue.
+ * Function to swap two items using pointers.
  */
-static void
-usage ()
+void
+swap (int* a, int* b)
 {
-	using std::cout;
-	using std::endl;
-	using std::exit;
-
-	exit (EXIT_FAILURE);
+	int tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
 
 /*
- * Print warrantee information and exit. Exit as failed to avoid that dependent
- * programs continue.
+ * Print an array of size items.
  */
-static void
-warrantee ()
+void
+print_array (int* a, int size)
 {
 	using std::cout;
 	using std::endl;
-	using std::exit;
 
-	exit (EXIT_FAILURE);
+	cout << "Array = ";
+	for (int i = 0; i != size - 1; ++i)
+		cout << a[i] << ", ";
+	cout << a[size - 1] << endl;
+
 }
 
 /*>- EOF -<*/

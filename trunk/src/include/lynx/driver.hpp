@@ -27,87 +27,24 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* Standard C++ headers */
-#include <cstdlib>
-#include <iostream>
+#ifndef _LYNX_DRIVER_HPP_
+#define _LYNX_DRIVER_HPP_
 
-/* Lynx headers */
-#include "lynx/driver.hpp"
+namespace lynx {
 
-/*
- * Function prototypes
- */
-static void copyright ();
-static void license ();
-static void usage ();
-static void warrantee ();
+	/*
+	 * Driver class, takes care of command line arguments and starts the
+	 * typesetting process.
+	 */
+	class driver
+	{
+	public:
+		driver (int argc, char** argv);
 
-/*
- * This program is the main driver for the Lynx typesetting system. This program
- * first checks the input files and parameters and call the appropriate programs
- * to typeset a TROFF document.
- */
-int
-main (int argc, char** argv)
-{
-	using lynx::driver;
+	};
 
-	driver d_ (argc, argv);
-	
-	return EXIT_SUCCESS;
 }
 
-/*
- * Print copyright information.
- */
-static void
-copyright ()
-{
-	using std::cout;
-	using std::endl;
-	
-}
-
-/*
- * Print licensing information and exit. Exit as failed to avoid that dependent
- * programs continue.
- */
-static void
-license ()
-{
-	using std::cout;
-	using std::endl;
-	using std::exit;
-	
-	exit (EXIT_SUCCESS);
-}
-
-/*
- * Print usage information and exit. Exit as failed to avoid that dependent
- * programs will continue.
- */
-static void
-usage ()
-{
-	using std::cout;
-	using std::endl;
-	using std::exit;
-
-	exit (EXIT_FAILURE);
-}
-
-/*
- * Print warrantee information and exit. Exit as failed to avoid that dependent
- * programs continue.
- */
-static void
-warrantee ()
-{
-	using std::cout;
-	using std::endl;
-	using std::exit;
-
-	exit (EXIT_FAILURE);
-}
+#endif /* !_LYNX_DRIVER_HPP_ */
 
 /*>- EOF -<*/

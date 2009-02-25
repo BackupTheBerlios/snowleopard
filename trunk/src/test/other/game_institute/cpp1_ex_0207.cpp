@@ -28,86 +28,66 @@
  */
 
 /* Standard C++ headers */
-#include <cstdlib>
 #include <iostream>
-
-/* Lynx headers */
-#include "lynx/driver.hpp"
 
 /*
  * Function prototypes
  */
-static void copyright ();
-static void license ();
-static void usage ();
-static void warrantee ();
+int linear_search (int*, int, int);
 
 /*
- * This program is the main driver for the Lynx typesetting system. This program
- * first checks the input files and parameters and call the appropriate programs
- * to typeset a TROFF document.
+ * This program uses linear search to search some items in an unsorted
+ * array.
  */
 int
-main (int argc, char** argv)
-{
-	using lynx::driver;
-
-	driver d_ (argc, argv);
-	
-	return EXIT_SUCCESS;
-}
-
-/*
- * Print copyright information.
- */
-static void
-copyright ()
+main ()
 {
 	using std::cout;
 	using std::endl;
-	
+
+	int a[] = {7, 3, 32, 2, 55, 34, 6, 13, 29, 22, 11, 9, 1, 5, 42, 39, 8};
+
+	/* Search for 7 */
+	int position = linear_search (a, 17, 7);
+	if (position >= 0)
+		cout << "Element 7 is at position: " << position << endl;
+	else
+		cout << "Element 7 is not in the array!" << endl;
+
+	/* Search for 8 */
+	position = linear_search (a, 17, 8);
+	if (position >= 0)
+		cout << "Element 8 is at position: " << position << endl;
+	else
+		cout << "Element 8 is not in the array!" << endl;
+
+	/* Search for 4 */
+	position = linear_search (a, 17, 4);
+	if (position >= 0)
+		cout << "Element 4 is at position: " << position << endl;
+	else
+		cout << "Element 4 is not in the array!" << endl;
+
+	/* Search for 29 */
+	position = linear_search (a, 17, 29);
+	if (position >= 0)
+		cout << "Element 29 is at position: " << position << endl;
+	else
+		cout << "Element 29 is not in the array!" << endl;
+
 }
 
 /*
- * Print licensing information and exit. Exit as failed to avoid that dependent
- * programs continue.
+ * Linear search function
  */
-static void
-license ()
+int
+linear_search (int* a, int size, int item)
 {
-	using std::cout;
-	using std::endl;
-	using std::exit;
-	
-	exit (EXIT_SUCCESS);
-}
+	for (int i = 0; i != size; ++i)
+		if (a[i] == item)
+			return i;
 
-/*
- * Print usage information and exit. Exit as failed to avoid that dependent
- * programs will continue.
- */
-static void
-usage ()
-{
-	using std::cout;
-	using std::endl;
-	using std::exit;
-
-	exit (EXIT_FAILURE);
-}
-
-/*
- * Print warrantee information and exit. Exit as failed to avoid that dependent
- * programs continue.
- */
-static void
-warrantee ()
-{
-	using std::cout;
-	using std::endl;
-	using std::exit;
-
-	exit (EXIT_FAILURE);
+	return -1;
 }
 
 /*>- EOF -<*/
