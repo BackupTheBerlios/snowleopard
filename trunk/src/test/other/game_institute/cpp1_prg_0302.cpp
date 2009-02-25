@@ -23,7 +23,7 @@
  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
@@ -33,12 +33,11 @@
 /*
  * Function prototypes.
  */
-void print_array (int*, int);
-void selection_sort (int*, int);
-void swap (int*, int*);
+float area ();
 
 /*
- * This program sorts an array using a selection sort.
+ * This program uses a function to ask for a radius and calculate the circle
+ * area.
  */
 int
 main ()
@@ -46,60 +45,34 @@ main ()
 	using std::cout;
 	using std::endl;
 
-	int a[] = {7, 3, 32, 2, 55, 34, 6, 13, 29, 22, 11, 9, 1, 5, 42, 39, 8};
-	int size = 17;
+	cout << "Area = " << area () << endl;
 
-	cout << "Unsorted: ";
-	print_array (a, size);
+	cout << "Do some work ..." << endl;
 
-	selection_sort (a, size);
+	cout << "Area = " << area () << endl;
 
-	cout << "Sorted: ";
-	print_array (a, size);
+	cout << "Do some work ..." << endl;
+
+	cout << "Area = " << area () << endl;
+
+	cout << "Do some work ..." << endl;
 }
 
 /*
- * Selection sort function.
+ * Function asks for radius and return circle area.
  */
-void
-selection_sort (int* a, int size)
+float
+area ()
 {
-	for (int i = 0; i != size - 1; ++i)
-	{
-		int pos_smallest = i;
-		for (int j = i+1; j != size; ++j)
-			if (a[j] < a[pos_smallest])
-				pos_smallest = j;
-		if (pos_smallest != i)
-			swap (&a[i], &a[pos_smallest]);
-	}
-}
-
-/*
- * Function to swap two items using pointers.
- */
-void
-swap (int* a, int* b)
-{
-	int tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-/*
- * Print an array of size items.
- */
-void
-print_array (int* a, int size)
-{
+	using std::cin;
 	using std::cout;
-	using std::endl;
 
-	cout << "Array = ";
-	for (int i = 0; i != size - 1; ++i)
-		cout << a[i] << ", ";
-	cout << a[size - 1] << endl;
+	float pi = 3.1415f;
+	float radius = 0.0f;
 
+	cout << "Enter a radius of a circle: ";
+	cin >> radius;
+	return pi * radius * radius;
 }
 
 /*>- EOF -<*/

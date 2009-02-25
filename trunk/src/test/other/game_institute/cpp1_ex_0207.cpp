@@ -31,7 +31,7 @@
 #include <iostream>
 
 /*
- * Function prototypes
+ * Function prototypes.
  */
 int linear_search (int*, int, int);
 

@@ -23,7 +23,7 @@
  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
@@ -33,72 +33,38 @@
 /*
  * Function prototypes.
  */
-void print_array (int*, int);
-void selection_sort (int*, int);
-void swap (int*, int*);
+float cube (float);
 
 /*
- * This program sorts an array using a selection sort.
+ * This program asks for a real number and calculated the cubed number.
  */
 int
 main ()
 {
+	using std::cin;
 	using std::cout;
 	using std::endl;
 
-	int a[] = {7, 3, 32, 2, 55, 34, 6, 13, 29, 22, 11, 9, 1, 5, 42, 39, 8};
-	int size = 17;
+	float input = 0.0f;
+	cout << "Enter a real number: ";
+	cin >> input;
 
-	cout << "Unsorted: ";
-	print_array (a, size);
+	cout << input << "^3 = " << cube (input) << endl;
 
-	selection_sort (a, size);
+	cout << "Enter a real number: ";
+	cin >> input;
 
-	cout << "Sorted: ";
-	print_array (a, size);
+	cout << input << "^3 = " << cube (input) << endl;
+
 }
 
 /*
- * Selection sort function.
+ * Calculate the cube of the given number.
  */
-void
-selection_sort (int* a, int size)
+float
+cube (float x)
 {
-	for (int i = 0; i != size - 1; ++i)
-	{
-		int pos_smallest = i;
-		for (int j = i+1; j != size; ++j)
-			if (a[j] < a[pos_smallest])
-				pos_smallest = j;
-		if (pos_smallest != i)
-			swap (&a[i], &a[pos_smallest]);
-	}
-}
-
-/*
- * Function to swap two items using pointers.
- */
-void
-swap (int* a, int* b)
-{
-	int tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-/*
- * Print an array of size items.
- */
-void
-print_array (int* a, int size)
-{
-	using std::cout;
-	using std::endl;
-
-	cout << "Array = ";
-	for (int i = 0; i != size - 1; ++i)
-		cout << a[i] << ", ";
-	cout << a[size - 1] << endl;
+	return x * x * x;
 
 }
 

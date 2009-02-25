@@ -23,7 +23,7 @@
  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
@@ -31,74 +31,43 @@
 #include <iostream>
 
 /*
- * Function prototypes.
+ * Constants.
  */
-void print_array (int*, int);
-void selection_sort (int*, int);
-void swap (int*, int*);
+const float pi = 3.1415f;
 
 /*
- * This program sorts an array using a selection sort.
+ * Function prototypes.
+ */
+float sphere_volume (float);
+
+/*
+ * This programs calculates the volume of a sphere.
  */
 int
 main ()
 {
+	using std::cin;
 	using std::cout;
 	using std::endl;
 
-	int a[] = {7, 3, 32, 2, 55, 34, 6, 13, 29, 22, 11, 9, 1, 5, 42, 39, 8};
-	int size = 17;
+	cout << "pi = " << pi << endl << endl;
 
-	cout << "Unsorted: ";
-	print_array (a, size);
+	float input = 0.0f;
 
-	selection_sort (a, size);
+	cout << "Enter a sphere radius: ";
+	cin >> input;
 
-	cout << "Sorted: ";
-	print_array (a, size);
+	cout << "Volume = " << sphere_volume (input) << endl;
+
 }
 
 /*
- * Selection sort function.
+ * Calculate volume of a sphere with the parameter as radius.
  */
-void
-selection_sort (int* a, int size)
+float
+sphere_volume (float radius)
 {
-	for (int i = 0; i != size - 1; ++i)
-	{
-		int pos_smallest = i;
-		for (int j = i+1; j != size; ++j)
-			if (a[j] < a[pos_smallest])
-				pos_smallest = j;
-		if (pos_smallest != i)
-			swap (&a[i], &a[pos_smallest]);
-	}
-}
-
-/*
- * Function to swap two items using pointers.
- */
-void
-swap (int* a, int* b)
-{
-	int tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-/*
- * Print an array of size items.
- */
-void
-print_array (int* a, int size)
-{
-	using std::cout;
-	using std::endl;
-
-	cout << "Array = ";
-	for (int i = 0; i != size - 1; ++i)
-		cout << a[i] << ", ";
-	cout << a[size - 1] << endl;
+	return (4.0f / 3.0f) * pi * radius * radius * radius;
 
 }
 

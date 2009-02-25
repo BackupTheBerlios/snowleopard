@@ -31,7 +31,7 @@
 #include <iostream>
 
 /*
- * Function prototypes.
+ * Function prototypes
  */
 void print_array (int*, int);
 void selection_sort (int*, int);

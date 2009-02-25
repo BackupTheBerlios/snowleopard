@@ -50,7 +50,8 @@ ALL_OBJECTS = *.o
 # All programs
 PROGRAMS_LESSON1 =
 PROGRAMS_LESSON2 = cpp1_ex_0207 cpp1_ex_0208
-PROGRAMS_LESSON3 = cpp1_prg_0301
+PROGRAMS_LESSON3 = cpp1_prg_0301 cpp1_prg_0302 cpp1_prg_0303 cpp1_prg_0304 \
+		   cpp1_prg_0305 cpp1_prg_0306
 
 ALL_PROGRAMS = $(PROGRAMS_LESSON1) $(PROGRAMS_LESSON2) $(PROGRAMS_LESSON3)
 
@@ -64,11 +65,23 @@ cpp1_ex_0208: cpp1_ex_0208.o
 # Lesson 3 programs
 cpp1_prg_0301: cpp1_prg_0301.o
 
+cpp1_prg_0302: cpp1_prg_0302.o
+
+cpp1_prg_0303: cpp1_prg_0303.o
+
+cpp1_prg_0304: cpp1_prg_0304.o
+
+cpp1_prg_0305: cpp1_prg_0305.o
+
+cpp1_prg_0306: cpp1_prg_0306.o
+
+# Suffix rule for compiling C++ sources
 .cpp.o:
 	$(CXX) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
 
 .SUFFIXES: .cpp .o
 
+# Clean rule
 clean:
 	rm $(ALL_PROGRAMS) ; \
 	rm $(ALL_OBJECTS)

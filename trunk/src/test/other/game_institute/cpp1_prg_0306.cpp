@@ -23,7 +23,7 @@
  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
@@ -31,14 +31,7 @@
 #include <iostream>
 
 /*
- * Function prototypes.
- */
-void print_array (int*, int);
-void selection_sort (int*, int);
-void swap (int*, int*);
-
-/*
- * This program sorts an array using a selection sort.
+ * This program is just for testing variables local to a block.
  */
 int
 main ()
@@ -46,59 +39,16 @@ main ()
 	using std::cout;
 	using std::endl;
 
-	int a[] = {7, 3, 32, 2, 55, 34, 6, 13, 29, 22, 11, 9, 1, 5, 42, 39, 8};
-	int size = 17;
+	float var = 5.0f;
 
-	cout << "Unsorted: ";
-	print_array (a, size);
-
-	selection_sort (a, size);
-
-	cout << "Sorted: ";
-	print_array (a, size);
-}
-
-/*
- * Selection sort function.
- */
-void
-selection_sort (int* a, int size)
-{
-	for (int i = 0; i != size - 1; ++i)
+	if (var > 0.0f)
 	{
-		int pos_smallest = i;
-		for (int j = i+1; j != size; ++j)
-			if (a[j] < a[pos_smallest])
-				pos_smallest = j;
-		if (pos_smallest != i)
-			swap (&a[i], &a[pos_smallest]);
+		float var = 2.0f;
+
+		cout << "var = " << var << endl;
 	}
-}
 
-/*
- * Function to swap two items using pointers.
- */
-void
-swap (int* a, int* b)
-{
-	int tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-/*
- * Print an array of size items.
- */
-void
-print_array (int* a, int size)
-{
-	using std::cout;
-	using std::endl;
-
-	cout << "Array = ";
-	for (int i = 0; i != size - 1; ++i)
-		cout << a[i] << ", ";
-	cout << a[size - 1] << endl;
+	cout << "var = " << var << endl;
 
 }
 
