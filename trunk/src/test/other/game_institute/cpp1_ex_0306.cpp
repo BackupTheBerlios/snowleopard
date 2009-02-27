@@ -171,5 +171,4 @@ random (const int low, const int high)
 	return low + rand () % ((high + 1) - low);
 }
 
-
 /*>- EOF -<*/
