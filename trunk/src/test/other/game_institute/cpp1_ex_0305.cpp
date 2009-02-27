@@ -190,9 +190,11 @@ get_menu_choice ()
 		if (input < 1 || input > 12)
 		{
 			cout << endl << "Incorrect choice! ";
-			cin.clear ();
-			string rest;
-			cin >> rest;
+		        cin.clear();
+			char c;
+			while((c = cin.get ()) != '\n' && c != EOF)
+			{ }
+			cin.clear();
 		}
 	}
 

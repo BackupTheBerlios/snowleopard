@@ -28,23 +28,17 @@
  */
 
 /* Standard C++ headers */
-#include <cmath>
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
 #include <string>
 
 /*
- * Constants.
- */
-const double pi = 3.14159;
-const double e = 2.71828;	
-
-/*
  * Function prototypes.
  */
-float atanf2 (float, float);
-int get_menu_choice ();
-void get_parameters (std::string, float&);
-void get_parameters (float&, float&);
+void do_bet (int&);
+int get_choice (const int);
+int random (const int, const int);
 
 /*
  * This program is a simple calculator with some build-in functions.
@@ -54,145 +48,114 @@ main ()
 {
 	using std::cout;
 	using std::endl;
-	using std::string;
-	
-	int choice = 1;
-	while ((choice = get_menu_choice ()) != 12)
+	using std::srand;
+	using std::time;
+
+	srand (time (0));
+
+	int chips = 1000;
+
+	int choice;
+
+	while ((choice = get_choice (chips)) == 1)
 	{
-		float x;
-		float y;
-
-		/*
-		 * Get required parameters
-		 */
-		if (choice == 12)
-			continue;
-		else if (choice == 4 || choice == 6)
-			get_parameters (x, y);
-		else
-			get_parameters ("x", x);
-		
-		/*
-		 * Perform requested calculation.
-		 */
-		float result = 0.0f;
-		string function;
-		
-		switch (choice)
+		do_bet (chips);
+		if (chips == 0)
 		{
-		case 1:
-			function = "cos(x)";
-			result = cosf (x);
-			break;
-
-		case 2:
-			function = "sin(x)";
-			result = sinf (x);
-			break;
-
-		case 3:
-			function = "tan(x)";
-			result = tanf (x);
-			break;
-
-		case 4:
-			function = "atan2(y,x)";
-			result = atanf2 (y, x);
-			break;
-
-		case 5:
-			function = "sqrt(x)";
-			result = sqrt (x);
-			break;
-
-		case 6:
-			function = "x^y";
-			result = powf (x, y);
-			break;
-
-		case 7:
-			function = "ln(x)";
-			result = log (x);
-			break;
-
-		case 8:
-			function = "e^x";
-			result = powf (e, x);
-			break;
-
-		case 9:
-			function = "|x|";
-			result = abs (static_cast<long> (x));
-			break;
-
-		case 10:
-			function = "floor(x)";
-			result = floorf (x);
-			break;
-
-		case 11:
-			function = "ceil(x)";
-			result = ceilf (x);
-			break;
-
-		default: /* Can't be reached. */
+			cout << "You lost all your chips!" << endl;
 			break;
 		}
-
-		/*
-		 * Display result.
-		 */
-		cout << function << " = " << result << endl;
 	}
 
-	cout << "Exiting calculator..." << endl;
+	cout << "Exiting slot machine..." << endl;
 }
 
 /*
- * Calculate the correct arc tangent.
+ * This function performs the bet.
  */
-float
-atanf2 (float y, float x)
+void
+do_bet (int& chips)
 {
-	/*
-	 * using std::atanf;
-	 */
+	using std::cin;
+	using std::cout;
+	using std::endl;
+	
+	int bet = 0;
 
-	if (x >= 0)
-		return atanf (y / x) * (180 / pi);
+	while (bet < 1 || bet > chips)
+	{
+		cout << "Enter your bet: ";
+		cin >> bet;
+
+		if (bet < 1 || bet > chips)
+		{
+			cout << "You did not enter a valid bet." << endl;
+		        cin.clear();
+			char c;
+			while((c = cin.get ()) != '\n' && c != EOF)
+			{ }
+			cin.clear();			
+		}
+	}
+
+	int r1 = random (2, 7);
+	int r2 = random (2, 7);
+	int r3 = random (2, 7);
+	cout << r1 << ' ' << r2 << ' ' << r3 << endl;
+
+	if (r1 == 7 && r2 == 7 && r3 == 7)
+	{
+		cout << "You win!" << endl;
+		chips -= bet;
+		chips += bet * 10;
+	}
+	else if (r1 == r2 && r1 == r3)
+	{
+		cout << "You win!" << endl;
+		chips -= bet;
+		chips += bet * 5;
+	}
+	else if ((r1 == r2) || (r1 == r3) || (r2 == r3))
+	{
+		cout << "You win!" << endl;
+		chips -= bet;
+		chips += bet * 3;
+	}
 	else
-		return atanf (y / x) * (180 / pi) + 180;
+	{
+		cout << "You lose!" << endl;
+		chips -= bet;
+	}
 }
 
 /*
- * Display the menu and get the function the user wants to perform.
+ * This function gets user input and checks that the input is correct.
  */
 int
-get_menu_choice ()
+get_choice (const int chips)
 {
 	using std::cin;
 	using std::cout;
 	using std::endl;
 	using std::string;
-
-	/* Display menu */
-	cout << "\t 1) cos(x)\t 2) sin(x)\t 3) tan(x)\t 4) atan2(y,x)\t 5) sqrt(x)" << endl;
-	cout << "\t 6) x^y\t\t 7) ln(x)\t 8) e^x\t\t 9) |x|\t\t10) floor(x)" << endl;
-	cout << "\t11) ceil(x)\t12) EXIT" << endl;
 	
-	/* Get user selection */
+	cout << "Player's chips: $" << chips << endl;
+
 	int input = 0;
-	while (input < 1 || input > 12)
+
+	while (input < 1 || input > 2)
 	{
-		cout << "Enter your choice: ";
+		cout << "1) Play slot. \t2) EXIT. ";
 		cin >> input;
 
-		if (input < 1 || input > 12)
+		if (input < 1 || input > 2)
 		{
-			cout << endl << "Incorrect choice! ";
-			cin.clear ();
-			string rest;
-			cin >> rest;
+			cout << endl << "Invalid input, please try again: ";
+		        cin.clear();
+			char c;
+			while((c = cin.get ()) != '\n' && c != EOF)
+			{ }
+			cin.clear();
 		}
 	}
 
@@ -200,26 +163,13 @@ get_menu_choice ()
 }
 
 /*
- * Get float parameter from user.
+ * This function generates a random number between the two intervals given.
  */
-void
-get_parameters (std::string name, float& var)
+int
+random (const int low, const int high)
 {
-	using std::cin;
-	using std::cout;
-
-	cout << "Enter " << name << ": ";
-	cin >> var;
+	return low + rand () % ((high + 1) - low);
 }
 
-/*
- * Get 2 float parameters from user.
- */
-void
-get_parameters (float& x, float& y)
-{
-	get_parameters ("x", x);
-	get_parameters ("y", y);
-}
 
 /*>- EOF -<*/
