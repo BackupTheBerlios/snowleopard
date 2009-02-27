@@ -41,7 +41,7 @@ int get_choice (const int);
 int random (const int, const int);
 
 /*
- * This program is a simple calculator with some build-in functions.
+ * This program is a simple slot machine implementation.
  */
 int
 main ()

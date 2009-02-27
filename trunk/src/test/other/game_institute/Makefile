@@ -53,6 +53,7 @@ ALL_OBJECTS = *.o
 # All programs
 #
 PROGRAMS_LESSON1 =
+
 PROGRAMS_LESSON2 = cpp1_prg_0201 cpp1_prg_0202 cpp1_prg_0203 cpp1_prg_0204 \
 		   cpp1_prg_0205 cpp1_prg_0206 cpp1_prg_0207 cpp1_prg_0208 \
 		   cpp1_prg_0209 cpp1_prg_0210 cpp1_prg_0211 cpp1_prg_0212 \
@@ -60,13 +61,17 @@ PROGRAMS_LESSON2 = cpp1_prg_0201 cpp1_prg_0202 cpp1_prg_0203 cpp1_prg_0204 \
 		   cpp1_prg_0217 cpp1_prg_0218 \
 		   cpp1_ex_0201 cpp1_ex_0202 cpp1_ex_0203 cpp1_ex_0204     \
 		   cpp1_ex_0205 cpp1_ex_0206 cpp1_ex_0207 cpp1_ex_0208
+
 PROGRAMS_LESSON3 = cpp1_prg_0301 cpp1_prg_0302 cpp1_prg_0303 cpp1_prg_0304 \
 		   cpp1_prg_0305 cpp1_prg_0306 cpp1_prg_0307 cpp1_prg_0308 \
 		   cpp1_prg_0309 \
 		   cpp1_ex_0303 cpp1_ex_0304 \
 		   cpp1_ex_0305 cpp1_ex_0306 cpp1_ex_0307 cpp1_ex_0308
 
-ALL_PROGRAMS = $(PROGRAMS_LESSON1) $(PROGRAMS_LESSON2) $(PROGRAMS_LESSON3)
+PROGRAMS_LESSON4 = cpp1_prg_0401 
+
+ALL_PROGRAMS = $(PROGRAMS_LESSON1) $(PROGRAMS_LESSON2) $(PROGRAMS_LESSON3) \
+	       $(PROGRAMS_LESSON4)
 
 #
 # Main targets
@@ -78,6 +83,8 @@ lesson1: $(PROGRAMS_LESSON1)
 lesson2: $(PROGRAMS_LESSON2)
 
 lesson3: $(PROGRAMS_LESSON3)
+
+lesson4: $(PROGRAMS_LESSON4)
 
 # 
 # Programs that require more than one source file.

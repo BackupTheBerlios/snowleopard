@@ -37,7 +37,8 @@
 int binary_search (int*, int, int);
 
 /*
- * This program is a simple calculator with some build-in functions.
+ * This program uses a binary search algorithm to look up numbers in an
+ * array.
  */
 int
 main ()

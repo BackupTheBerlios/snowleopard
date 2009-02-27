@@ -38,7 +38,8 @@ void print_array (const int[], const int);
 void swap (int&, int&);
 
 /*
- * This program is a simple calculator with some build-in functions.
+ * This program allows the user to enter numbers. It than prints them, sorts
+ * them and prints them again.
  */
 int
 main ()
