@@ -28,31 +28,53 @@
  */
 
 /* Standard C++ headers */
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
 
 /*
- * This program shows how to access a value using pointer dereferencing.
+ * Function prototypes.
+ */
+void get_mousepos (int&, int&);
+
+/*
+ * This program demonstrates pointer arithmetic.
  */
 int
 main ()
 {
 	using std::cout;
 	using std::endl;
+	using std::srand;
+	using std::time;
 
-	int value = 10;
+	srand (time (0));
 
-	int* value_ptr = &value;
+	int x = 0;
+	int y = 0;
 
-	cout << "value      = " << value << endl;
-	cout << "value_ptr  = " << value_ptr << endl;
-	cout << "*value_ptr = " << *value_ptr << endl;
+	cout << "Before get_mousepos..." << endl;
+	cout << "\tx = " << x << endl;
+	cout << "\ty = " << y << endl;
 
-	*value_ptr = 500;
+	get_mousepos (x, y);
 
-	cout << "value      = " << value << endl;
-	cout << "value_ptr  = " << value_ptr << endl;
-	cout << "*value_ptr = " << *value_ptr << endl;
+	cout << "After get_mousepos..." << endl;
+	cout << "\tx = " << x << endl;
+	cout << "\ty = " << y << endl;
+	
+}
 
+/*
+ * This function returns values as pointer parameters.
+ */
+void
+get_mousepos (int& out_x, int& out_y)
+{
+	using std::rand;
+	
+	out_x = rand () % 801;
+	out_y = rand () % 601;
 }
 
 /*>- EOF -<*/

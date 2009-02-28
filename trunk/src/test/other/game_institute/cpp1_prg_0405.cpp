@@ -31,7 +31,7 @@
 #include <iostream>
 
 /*
- * This program shows how to access a value using pointer dereferencing.
+ * This program demonstrates pointer arithmetic.
  */
 int
 main ()
@@ -39,20 +39,31 @@ main ()
 	using std::cout;
 	using std::endl;
 
-	int value = 10;
+	short array[8] = {
+		1, 2, 3, 4, 5, 6, 7, 8
+	};
+	short* first_ptr = array;
 
-	int* value_ptr = &value;
+	cout << "Style 1: Addition operator." << endl;
+	for (int i = 0; i != 8; ++i)
+		cout << *(first_ptr + i) << " ";
+	cout << endl;
 
-	cout << "value      = " << value << endl;
-	cout << "value_ptr  = " << value_ptr << endl;
-	cout << "*value_ptr = " << *value_ptr << endl;
+	cout << "Style 2: Increment operator." << endl;
+	for (int i = 0; i != 8; ++i)
+	{
+		cout << *first_ptr << " ";
+		++first_ptr;
+	}
+	cout << endl;
 
-	*value_ptr = 500;
-
-	cout << "value      = " << value << endl;
-	cout << "value_ptr  = " << value_ptr << endl;
-	cout << "*value_ptr = " << *value_ptr << endl;
-
+	cout << "Style 3: Pointers only." << endl;
+	first_ptr = array;
+	short* end_ptr = first_ptr + 8;
+	for (; first_ptr != end_ptr; ++first_ptr)
+		cout << *first_ptr << " ";
+	cout << endl;
+	
 }
 
 /*>- EOF -<*/

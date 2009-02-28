@@ -31,7 +31,8 @@
 #include <iostream>
 
 /*
- * This program shows how to access a value using pointer dereferencing.
+ * This program demonstrates that the a pointer to an array points to the first
+ * element.
  */
 int
 main ()
@@ -39,20 +40,14 @@ main ()
 	using std::cout;
 	using std::endl;
 
-	int value = 10;
+	short array[8] = {
+		1, 2, 3, 4, 5, 6, 7, 8
+	};
+	short* first_ptr = array;
 
-	int* value_ptr = &value;
-
-	cout << "value      = " << value << endl;
-	cout << "value_ptr  = " << value_ptr << endl;
-	cout << "*value_ptr = " << *value_ptr << endl;
-
-	*value_ptr = 500;
-
-	cout << "value      = " << value << endl;
-	cout << "value_ptr  = " << value_ptr << endl;
-	cout << "*value_ptr = " << *value_ptr << endl;
-
+	cout << "array[0]   = " << array[0] << endl;
+	cout << "*first_ptr = " << *first_ptr << endl;
+	
 }
 
 /*>- EOF -<*/

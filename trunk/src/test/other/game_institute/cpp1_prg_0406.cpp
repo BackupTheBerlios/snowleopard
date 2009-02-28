@@ -31,7 +31,12 @@
 #include <iostream>
 
 /*
- * This program shows how to access a value using pointer dereferencing.
+ * Function prototypes.
+ */
+void print_array (int*, int);
+
+/*
+ * This program demonstrates pointer arithmetic.
  */
 int
 main ()
@@ -39,20 +44,33 @@ main ()
 	using std::cout;
 	using std::endl;
 
-	int value = 10;
+	int array[] = {
+		2, 4, 6, 8, 10
+	};
 
-	int* value_ptr = &value;
+	cout << "main: sizeof(array) = " << sizeof (array) << endl;
+	print_array (array, sizeof (array) / sizeof (int));
+	
+}
 
-	cout << "value      = " << value << endl;
-	cout << "value_ptr  = " << value_ptr << endl;
-	cout << "*value_ptr = " << *value_ptr << endl;
+/*
+ * Print an array.
+ */
+void
+print_array (int* array, int size)
+{
+	using std::cout;
+	using std::endl;
+	
+	cout << "print_array: sizeof(array) = " << sizeof (array) << endl;
+	cout << "print_array: size          = " << size << endl;
 
-	*value_ptr = 500;
-
-	cout << "value      = " << value << endl;
-	cout << "value_ptr  = " << value_ptr << endl;
-	cout << "*value_ptr = " << *value_ptr << endl;
-
+	cout << "print_array: array ";
+	int* end_array = array + size;
+	for (; array != end_array; ++array)
+		cout << *array << " ";
+	cout << endl;
+	
 }
 
 /*>- EOF -<*/
