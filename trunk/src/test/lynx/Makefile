@@ -27,10 +27,46 @@
 #/
 
 #-
-# File: /src/Makefile
+# File: /src/test/libstdc/Makefile
 #
-# Makefile for building and testing the Snow Leopard C++ toolset.
+# This Makefile runs contains the testing of the Lynx typesetting system. It 
+# contains programs and input sources. These programs/input files are named
+# as follows:
+#
+#     type_sequence_subject
+#
+#       type     = Type of testing performed.
+#                 err - Test error reporting
+#                 lng - Test language features
+#                 out - Test output
+#       sequence = Sequence number of the test.
+#       subject  = Subject of the test.
 #/
 
+#
+# All temporaries
+#
+ALL_OBJECTS = 
+
+#
+# All programs
+#
+ALL_PROGRAMS = 
+
+#
+# Main targets
+#
+all: $(ALL_PROGRAMS)
+
+# 
+# Programs that require more than one source file.
+#
+
+#
+# Clean rule
+#
+clean:
+	rm -f $(ALL_PROGRAMS) ; \
+	rm -f $(ALL_TEMPORARIES)
 
 #>- EOF

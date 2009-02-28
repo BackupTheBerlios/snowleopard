@@ -27,9 +27,9 @@
 #/
 
 #-
-# File: /src/Makefile
+# File: /src/libs/Makefile
 #
-# Makefile for building and testing the Snow Leopard C++ toolset.
+# Makefile for building and testing the Snow Leopard C++ libraries.
 #/
 
 

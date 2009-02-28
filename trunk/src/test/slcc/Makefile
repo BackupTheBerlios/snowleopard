@@ -27,10 +27,55 @@
 #/
 
 #-
-# File: /src/Makefile
+# File: /src/test/slcc/Makefile
 #
-# Makefile for building and testing the Snow Leopard C++ toolset.
+# This Makefile is for testing the Snow Leopard C++ Compiler. It contains
+# programs that are run through the slci program. The programs are named as 
+# follows.
+#
+#     type_sequence_subject
+#
+#       type     = Type of test program.
+#                 err - Test error reporting
+#                 lng - Test language features
+#                 out - Test output of compiler
+#                 prg - Test interpreter program
+#       sequence = Sequence number of the test
+#       subject  = Subject of the test  
 #/
 
+#
+# All objects
+#
+ALL_OBJECTS = *.o
+
+#
+# All programs
+#
+ALL_PROGRAMS = 
+
+#
+# Main targets
+#
+all: $(ALL_PROGRAMS)
+
+# 
+# Programs that require more than one source file.
+#
+
+#
+# Suffix rule for compiling C++ sources
+#
+.c.o:
+	$(CC) -c $(CFLAGS) -o $@ $<
+
+.SUFFIXES: .c .o
+
+#
+# Clean rule
+#
+clean:
+	rm -f $(ALL_PROGRAMS) ; \
+	rm -f $(ALL_OBJECTS)
 
 #>- EOF

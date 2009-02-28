@@ -51,16 +51,16 @@ ALL_OBJECTS = *.o
 #
 # All programs
 #
-CWCHAR_PROGRAMS = cwchar_000
+WCHAR_PROGRAMS = wchar_000
 
-ALL_PROGRAMS = $(CWCHAR_PROGRAMS)
+ALL_PROGRAMS = $(WCHAR_PROGRAMS)
 
 #
 # Main targets
 #
 all: $(ALL_PROGRAMS)
 
-cwchar: $(CWCHAR_PROGRAMS)
+wchar: $(WCHAR_PROGRAMS)
 
 # 
 # Programs that require more than one source file.
@@ -69,10 +69,10 @@ cwchar: $(CWCHAR_PROGRAMS)
 #
 # Suffix rule for compiling C++ sources
 #
-.cpp.o:
-	$(CXX) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
+.c.o:
+	$(CC) -c $(CFLAGS) -o $@ $<
 
-.SUFFIXES: .cpp .o
+.SUFFIXES: .c .o
 
 #
 # Clean rule
