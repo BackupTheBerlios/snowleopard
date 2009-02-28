@@ -32,6 +32,22 @@
 # Makefile for testing the Snow Leopard C++ toolset.
 #/
 
+MODULES = libslstdc libslstdcpp other 
 
+all: 
+	for dir in $(MODULES); do   \
+	  (cd $$dir ; ${MAKE} all); \
+	done
+
+libslstdcpp: 
+	(cd libslstdcpp ; ${MAKE});
+
+other:
+	(cd other ; ${MAKE});
+
+clean:
+	for dir in $(MODULES); do     \
+	  (cd $$dir ; ${MAKE} clean); \
+        done
 
 #>- EOF

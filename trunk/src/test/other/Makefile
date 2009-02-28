@@ -35,13 +35,13 @@
 
 MODULES = game_institute
 
-all-tests: 
-	for dir in $(MODULES); do         \
-	  (cd $$dir ; ${MAKE} all-tests); \
+all: 
+	for dir in $(MODULES); do   \
+	  (cd $$dir ; ${MAKE} all); \
 	done
 
 game-institute:
-	(cd $$dir ; ${MAKE} game-institute);
+	(cd game_institute ; ${MAKE} all);
 
 clean:
 	for dir in $(MODULES); do     \
