@@ -32,5 +32,28 @@
 # Makefile for building and testing the Snow Leopard C++ toolset.
 #/
 
+MODULES = libs tools doc test
+
+all: 
+	for dir in $(MODULES); do   \
+	  (cd $$dir ; ${MAKE} all); \
+	done
+
+libs:
+	(cd libs ; ${MAKE} all);
+
+tools: 
+	(cd tools ; ${MAKE} all);
+
+doc:
+	(cd doc ; ${MAKE} all);
+
+test:
+	(cd test ; ${MAKE} all);
+
+clean:
+	for dir in $(MODULES); do     \
+	  (cd $$dir ; ${MAKE} clean); \
+        done
 
 #>- EOF

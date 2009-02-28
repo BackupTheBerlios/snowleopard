@@ -39,11 +39,14 @@ all:
 	  (cd $$dir ; ${MAKE} all); \
 	done
 
+libslstdc:
+	(cd libslstdc ; ${MAKE} all);
+
 libslstdcpp: 
-	(cd libslstdcpp ; ${MAKE});
+	(cd libslstdcpp ; ${MAKE} all);
 
 other:
-	(cd other ; ${MAKE});
+	(cd other ; ${MAKE} all);
 
 clean:
 	for dir in $(MODULES); do     \

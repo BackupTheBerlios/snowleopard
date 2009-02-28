@@ -33,6 +33,41 @@
 # toolset.
 #/
 
+MODULES = src include lib bin man share
 
+all: 
+	for dir in $(MODULES); do   \
+	  (cd $$dir ; ${MAKE} all); \
+	done
+
+lynx:
+	for dir in $(MODULES); do   \
+	  (cd $$dir ; ${MAKE} lynx); \
+	done
+
+slci:
+	for dir in $(MODULES); do    \
+	  (cd $$dir ; ${MAKE} slci); \
+	done
+
+slcc:
+	for dir in $(MODULES); do    \
+	  (cd $$dir ; ${MAKE} slcc); \
+	done
+
+sldb:
+	for dir in $(MODULES); do    \
+	  (cd $$dir ; ${MAKE} sldb); \
+	done
+
+sltst:
+	for dir in $(MODULES); do     \
+	  (cd $$dir ; ${MAKE} sltst); \
+	done
+
+clean:
+	for dir in $(MODULES); do     \
+	  (cd $$dir ; ${MAKE} clean); \
+        done
 
 #>- EOF
