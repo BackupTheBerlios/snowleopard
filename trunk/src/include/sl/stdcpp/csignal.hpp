@@ -27,22 +27,18 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/*******************************************************************************
- * NOTE: 
- *   If the compiler supports export, this is compiled into the standard 
- *   library. If not it is included in the <algorithm> header.
- ******************************************************************************/
+#ifndef _SL_STDCPP_CSIGNAL_HPP_
+#define _SL_STDCPP_CSIGNAL_HPP_
+
+namespace std {
 
 /*
- * swap function template
+ * Include Snow Leopard C header into std namespace.
  */
-template<typename T>
-void
-std::swap (T& a, T& b)
-{
-  T tmp (a);
-  a = b;
-  b = tmp;
-}
+# include <sl/stdc/signal.h>
+
+} //std
+
+#endif /* _SL_STDCPP_CSIGNAL_HPP_ */
 
 /*>- EOF -<*/

@@ -82,6 +82,6 @@ namespace std {
 /*******************************************************************************
  */
 
-#endif //_SL_STDCPP_ALGORITHM_HPP_
+#endif /* _SL_STDCPP_ALGORITHM_HPP_ */
 
 /*>- EOF -<*/

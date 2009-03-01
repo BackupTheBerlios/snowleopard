@@ -27,22 +27,12 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/*******************************************************************************
- * NOTE: 
- *   If the compiler supports export, this is compiled into the standard 
- *   library. If not it is included in the <algorithm> header.
- ******************************************************************************/
+#ifndef _SL_STDC_SIGNAL_H_
+#define _SL_STDC_SIGNAL_H_
 
-/*
- * swap function template
- */
-template<typename T>
-void
-std::swap (T& a, T& b)
-{
-  T tmp (a);
-  a = b;
-  b = tmp;
-}
+/* Snow Leopard C headers */
+#include <sl/stdc/signal.h>
+
+#endif /* _SL_STDC_SIGNAL_H_ */
 
 /*>- EOF -<*/

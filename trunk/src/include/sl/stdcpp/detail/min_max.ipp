@@ -37,7 +37,8 @@
  * min function template
  */
 template<typename T>
-const T& std::min (const T& a, const T& b)
+const T&
+std::min (const T& a, const T& b)
 {
 	return b < a ? b : a;
 }
@@ -49,7 +50,8 @@ template<
 	typename T, 
 	typename Compare
 	>
-const T& std::min (const T& a, const T& b, Compare c)
+const T&
+std::min (const T& a, const T& b, Compare c)
 {
 	return c (b, a) ? b : a;
 }
@@ -58,7 +60,8 @@ const T& std::min (const T& a, const T& b, Compare c)
  * max function template
  */
 template<typename T>
-const T& std::max (const T& a, const T& b)
+const T&
+std::max (const T& a, const T& b)
 {
 	return a < b ? b : a;
 }
@@ -70,7 +73,8 @@ template<
 	typename T, 
 	typename Compare
 	>
-const T& std::max (const T& a, const T& b, Compare c)
+const T&
+std::max (const T& a, const T& b, Compare c)
 {
 	return c (a, b) ? b : a;
 }

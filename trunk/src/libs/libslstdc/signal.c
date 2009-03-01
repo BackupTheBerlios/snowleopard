@@ -27,22 +27,46 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/*******************************************************************************
- * NOTE: 
- *   If the compiler supports export, this is compiled into the standard 
- *   library. If not it is included in the <algorithm> header.
- ******************************************************************************/
+/* Standard C headers */
+#include <signal.h>
+#include <stdlib.h>
+
+/* POSIX headers */
+#include <sys/types.h>
+#include <unistd.h>
 
 /*
- * swap function template
+ * Signal handling constants.
  */
-template<typename T>
-void
-std::swap (T& a, T& b)
+const int SIG_DFL = 0;
+const int SIG_IGN = 1;
+const int SIG_ERR = -1;
+
+/*
+ * kill function.
+ *
+ * NOTE: Private function.
+ */
+int
+kill (pid_t pid, signal_value signal)
 {
-  T tmp (a);
-  a = b;
-  b = tmp;
+	/* <TODO>: Implement kill
+	   return EXIT_FAILURE;
+}
+
+/*
+ * signal function
+ *
+ * <TODO>: signal function
+ */
+
+/*
+ * raise function
+ */
+int
+raise (signal_value signal)
+{
+  return kill (getpid (), signal);
 }
 
 /*>- EOF -<*/

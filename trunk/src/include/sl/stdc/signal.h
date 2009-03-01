@@ -27,22 +27,53 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/*******************************************************************************
- * NOTE: 
- *   If the compiler supports export, this is compiled into the standard 
- *   library. If not it is included in the <algorithm> header.
- ******************************************************************************/
+#ifndef _SL_STDC_IMPL_SIGNAL_H_
+#define _SL_STDC_IMPL_SIGNAL_H_
+
+/* Snow Leopard configuration header */
+#include <sl/config/config.h>
+
+/* Standard C headers */
+#include <stddef.h>
 
 /*
- * swap function template
+ * sig_atomic_t typedef
  */
-template<typename T>
-void
-std::swap (T& a, T& b)
-{
-  T tmp (a);
-  a = b;
-  b = tmp;
-}
+typedef SL_ARCHITECTURE_ATOMIC_INT_TYPE sig_atomic_t;
+//------------------------------------------------------------------------------
+
+/*
+ * signal_value enumeration
+ */
+enum signal_value {
+  SIGINT = 2, 
+  SIGILL = 4, 
+  SIGABRT = 6, 
+  SIGFPE = 8, 
+  SIGSEGV = 11, 
+  SIGTERM = 15
+};
+
+typedef enum signal_value signal_value;
+
+/*
+ * signal handling constants
+ */
+extern const int SIG_DFL;
+extern const int SIG_IGN;
+extern const int SIG_ERR;
+
+/*
+ * signal function
+ *
+ * <TODO>: Define signal function
+ */
+
+/*
+ * raise function
+ */
+int raise (signal_value signal);
+
+#endif /* _SL_STDC_IMPL_SIGNAL_H_ */
 
 /*>- EOF -<*/
