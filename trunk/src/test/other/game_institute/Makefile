@@ -52,7 +52,8 @@ ALL_OBJECTS = *.o
 #
 # All programs
 #
-PROGRAMS_LESSON1 =
+PROGRAMS_LESSON1 = cpp1_prg_0101 cpp1_prg_0102 cpp1_prg_0103 cpp1_prg_0104 \
+		   cpp1_prg_0105
 
 PROGRAMS_LESSON2 = cpp1_prg_0201 cpp1_prg_0202 cpp1_prg_0203 cpp1_prg_0204 \
 		   cpp1_prg_0205 cpp1_prg_0206 cpp1_prg_0207 cpp1_prg_0208 \
