@@ -28,69 +28,66 @@
  */
 
 /* Standard C++ headers */
-#include <cstdlib>
-#include <ctime>
+#include <cmath>
 #include <iostream>
 
 /*
  * Function prototypes.
  */
-void dice (int&, int&);
-void dice (int*, int*);
-int random (int low, int high);
+bool quadratic_formula (float, float, float, float&, float&, float&, float&);
 
 /*
- * This program shows two ways of having a function return multiple values.
+ * This program calculates the root of quadratic equations.
  */
 int
 main ()
 {
-	using std::cin;
-        using std::cout;
+	using std::cout;
 	using std::endl;
-	using std::srand;
-	using std::time;
-
-	srand (time (0));
 	
-	int die1;
-	int die2;
+	float r1 = 0.0f;
+	float i1 = 0.0f;
+	float r2 = 0.0f;
+	float i2 = 0.0f;
 
-	dice (die1, die2);
-	cout << "Die 1 = " << die1 << "; die2 = " << die2 << endl;
-
-	dice (&die1, &die2);
-	cout << "Die 1 = " << die1 << "; die2 = " << die2 << endl;
+	if (!quadratic_formula (1, 2, 5, r1, i1, r2, i2))
+		cout << "Coefficients a = 1, b = 2, c = 5 yield S1 = "
+		     << r1 << " + " << i1 << "i, and S2 = "
+		     << r2 << " + " << i2 << "i" << endl;
+	else
+		cout << "Coefficients a = 1, b = 2, c = 5 yield S1 = "
+		     << r1 << " and S2 = " << r2 << endl;
 	
 }
 
 /*
- * Dice function with references.
+ * Calculate the root of quadratic equations. Return true if the roots have a
+ * imaginary part.
  */
-void
-dice (int& die1, int& die2)
+bool
+quadratic_formula (
+	float a, float b, float c,
+	float& r1, float& i1, float& r2, float& i2
+	)
 {
-	die1 = random (1, 6);
-	die2 = random (1, 6);
-}
+	float discriminant = b * b  - 4 * a * c;
 
-/*
- * Dice function with pointers.
- */
-void
-dice (int* die1, int* die2)
-{
-	*die1 = random (1, 6);
-	*die2 = random (1, 6);
-}
-
-/*
- * Random within range.
- */
-int
-random (int low, int high)
-{
-	return low + rand () % ((high + 1) - low);	
+	if (discriminant < 0)
+	{
+		r1 = -b /2 * a;
+		i1 = sqrtf (discriminant * -1) / 2 * a;
+		r2 = r1;
+		i2 = -(sqrtf (discriminant * -1)) / 2 * a;
+		return false;
+	}
+	else
+	{
+		r1 = (-b + sqrtf (b * b - 4 * a * c))/ 2 * a;
+		i1 = 0;
+		r2 = (-b - sqrtf (b * b - 4 * a * c))/ 2 * a;
+		i2 = 0;
+		return true;
+	}
 }
 
 /*>- EOF -<*/

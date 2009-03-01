@@ -37,9 +37,9 @@
  */
 int random (int, int);
 void random_array_fill (int*, int);
+
 /*
- * This program allows the user to enter numbers. It than prints them, sorts
- * them and prints them again.
+ * This program show how to create an array filled with random numbers.
  */
 int
 main ()
