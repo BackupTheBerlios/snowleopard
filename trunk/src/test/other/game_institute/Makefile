@@ -70,7 +70,8 @@ PROGRAMS_LESSON3 = cpp1_prg_0301 cpp1_prg_0302 cpp1_prg_0303 cpp1_prg_0304 \
 
 PROGRAMS_LESSON4 = cpp1_prg_0401 cpp1_prg_0402 cpp1_prg_0403 cpp1_prg_0404 \
 		   cpp1_prg_0405 cpp1_prg_0406 cpp1_prg_0407 cpp1_prg_0408 \
-		   cpp1_prg_0409
+		   cpp1_prg_0409 cpp1_prg_0410 cpp1_prg_0411 cpp1_prg_0412 \
+		   cpp1_ex_0402  cpp1_ex_0403
 
 ALL_PROGRAMS = $(PROGRAMS_LESSON1) $(PROGRAMS_LESSON2) $(PROGRAMS_LESSON3) \
 	       $(PROGRAMS_LESSON4)

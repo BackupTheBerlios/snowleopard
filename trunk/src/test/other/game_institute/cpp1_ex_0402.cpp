@@ -23,7 +23,7 @@
  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
@@ -35,47 +35,63 @@
 /*
  * Function prototypes.
  */
-void get_mousepos (int*, int*);
+void dice (int&, int&);
+void dice (int*, int*);
+int random (int low, int high);
 
 /*
- * This program demonstrates passing argument as pointers and multiple return
- * values.
+ * This program allows the user to enter numbers. It than prints them, sorts
+ * them and prints them again.
  */
 int
 main ()
 {
-	using std::cout;
+	using std::cin;
+        using std::cout;
 	using std::endl;
 	using std::srand;
 	using std::time;
 
 	srand (time (0));
+	
+	int die1;
+	int die2;
 
-	int x = 0;
-	int y = 0;
+	dice (die1, die2);
+	cout << "Die 1 = " << die1 << "; die2 = " << die2 << endl;
 
-	cout << "Before get_mousepos..." << endl;
-	cout << "\tx = " << x << endl;
-	cout << "\ty = " << y << endl;
-
-	get_mousepos (&x, &y);
-
-	cout << "After get_mousepos..." << endl;
-	cout << "\tx = " << x << endl;
-	cout << "\ty = " << y << endl;
+	dice (&die1, &die2);
+	cout << "Die 1 = " << die1 << "; die2 = " << die2 << endl;
 	
 }
 
 /*
- * This function returns values as pointer parameters.
+ * Dice function with references.
  */
 void
-get_mousepos (int* out_x, int* out_y)
+dice (int& die1, int& die2)
 {
-	using std::rand;
-	
-	*out_x = rand () % 801;
-	*out_y = rand () % 601;
+	die1 = random (1, 6);
+	die2 = random (1, 6);
+}
+
+/*
+ * Dice function with pointers.
+ */
+void
+dice (int* die1, int* die2)
+{
+	*die1 = random (1, 6);
+	*die2 = random (1, 6);
+}
+
+/*
+ * Random within range.
+ */
+int
+random (int low, int high)
+{
+	return low + rand () % ((high + 1) - low);	
 }
 
 /*>- EOF -<*/

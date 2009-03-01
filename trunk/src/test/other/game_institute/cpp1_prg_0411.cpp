@@ -28,54 +28,101 @@
  */
 
 /* Standard C++ headers */
-#include <cstdlib>
-#include <ctime>
 #include <iostream>
-
+#include <vector>
 /*
  * Function prototypes.
  */
-void get_mousepos (int*, int*);
+void print_array (std::vector<int>&);
 
 /*
- * This program demonstrates passing argument as pointers and multiple return
- * values.
+ * This program demonstrates the use of std::vector.
  */
 int
 main ()
 {
+	using std::cin;
 	using std::cout;
 	using std::endl;
-	using std::srand;
-	using std::time;
-
-	srand (time (0));
-
-	int x = 0;
-	int y = 0;
-
-	cout << "Before get_mousepos..." << endl;
-	cout << "\tx = " << x << endl;
-	cout << "\ty = " << y << endl;
-
-	get_mousepos (&x, &y);
-
-	cout << "After get_mousepos..." << endl;
-	cout << "\tx = " << x << endl;
-	cout << "\ty = " << y << endl;
+	using std::vector;
 	
+	/* main array and array size */
+	vector<int> array;
+
+	bool done = false;
+
+	while (!done)
+	{
+		print_array (array);
+
+		/* Get user input */
+		cout <<
+		    "1) Get element "
+		    "2) Resize array "
+		    "3) Quit ";
+
+		int selection = 1;
+		cin >> selection;
+
+		/* Some variables */
+		int index = -1;
+		int value = 0;
+		int new_size = 0;
+
+		switch (selection)
+		{
+		case 1:
+			/*
+			 * Ask for the index of the element the user wants to
+			 * set.
+			 */
+			cout << "Index = ";
+			cin >> index;
+
+			if (index < 0 || index >= array.size ())
+				cout << "Bad index!" << endl;
+			else
+			{
+				cout << '[' << index << "] = ";
+				cin >> value;
+
+				array[index] = value;
+			}
+			break;
+
+		case 2:
+			cout << "Size = ";
+			cin >> new_size;
+
+			array.resize (new_size);
+			break;
+
+		default: /* Quit */
+			done = true;
+			break;
+			
+		}
+	}
 }
 
 /*
- * This function returns values as pointer parameters.
+ * This function prints an array.
  */
 void
-get_mousepos (int* out_x, int* out_y)
+print_array (std::vector<int>& array)
 {
-	using std::rand;
+	using std::cout;
+	using std::endl;
 	
-	*out_x = rand () % 801;
-	*out_y = rand () % 601;
+	if (array.size () == 0)
+		cout << "empty array" << endl;
+	else
+	{
+		cout << "{ ";
+		for (int i = 0; i != array.size (); ++i)
+			cout << array[i] << ' ';
+		cout << '}' << endl;
+	}
 }
 
 /*>- EOF -<*/

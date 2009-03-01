@@ -38,7 +38,8 @@
 void get_mousepos (int&, int&);
 
 /*
- * This program demonstrates pointer arithmetic.
+ * This program demonstrates passing argument by reference and multiple return
+ * values.
  */
 int
 main ()

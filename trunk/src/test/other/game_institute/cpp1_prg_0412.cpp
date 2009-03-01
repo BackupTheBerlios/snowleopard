@@ -28,54 +28,35 @@
  */
 
 /* Standard C++ headers */
-#include <cstdlib>
-#include <ctime>
 #include <iostream>
 
 /*
  * Function prototypes.
  */
-void get_mousepos (int*, int*);
+float square (float);
 
 /*
- * This program demonstrates passing argument as pointers and multiple return
- * values.
+ * This program demonstrates function pointers and their use.
  */
 int
 main ()
 {
 	using std::cout;
 	using std::endl;
-	using std::srand;
-	using std::time;
 
-	srand (time (0));
+	float (*square_ptr) (float) = square;
 
-	int x = 0;
-	int y = 0;
+	cout << "The square of 6 is " << square_ptr (6) << endl;
 
-	cout << "Before get_mousepos..." << endl;
-	cout << "\tx = " << x << endl;
-	cout << "\ty = " << y << endl;
-
-	get_mousepos (&x, &y);
-
-	cout << "After get_mousepos..." << endl;
-	cout << "\tx = " << x << endl;
-	cout << "\ty = " << y << endl;
-	
 }
 
 /*
- * This function returns values as pointer parameters.
+ * This function calculates the square of the input argument.
  */
-void
-get_mousepos (int* out_x, int* out_y)
+float
+square (float x)
 {
-	using std::rand;
-	
-	*out_x = rand () % 801;
-	*out_y = rand () % 601;
+	return x * x;
 }
 
 /*>- EOF -<*/

@@ -37,7 +37,7 @@ void print_array (int*, int);
 int* resize_array (int*, int, int);
 
 /*
- * This program demonstrates pointer arithmetic.
+ * This program demonstrates allocation and deallocation of dynamic variables.
  */
 int
 main ()

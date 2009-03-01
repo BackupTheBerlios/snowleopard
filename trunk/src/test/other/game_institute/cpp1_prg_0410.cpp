@@ -28,54 +28,31 @@
  */
 
 /* Standard C++ headers */
-#include <cstdlib>
-#include <ctime>
 #include <iostream>
+#include <vector>
 
 /*
- * Function prototypes.
- */
-void get_mousepos (int*, int*);
-
-/*
- * This program demonstrates passing argument as pointers and multiple return
- * values.
+ * This program demonstrates the use of std::vector.
  */
 int
 main ()
 {
 	using std::cout;
 	using std::endl;
-	using std::srand;
-	using std::time;
+	using std::vector;
 
-	srand (time (0));
+	vector<float> vec_float;
 
-	int x = 0;
-	int y = 0;
+	vec_float.resize (12);
 
-	cout << "Before get_mousepos..." << endl;
-	cout << "\tx = " << x << endl;
-	cout << "\ty = " << y << endl;
+	cout << "vector size = " << vec_float.size () << endl;
 
-	get_mousepos (&x, &y);
+	for (int i = 0; i != 12; ++i)
+		vec_float[i] = i;
 
-	cout << "After get_mousepos..." << endl;
-	cout << "\tx = " << x << endl;
-	cout << "\ty = " << y << endl;
+	for (int i = 0; i != 12; ++i)
+		cout << "vec_float[" << i << "] = " << vec_float[i] << endl;
 	
-}
-
-/*
- * This function returns values as pointer parameters.
- */
-void
-get_mousepos (int* out_x, int* out_y)
-{
-	using std::rand;
-	
-	*out_x = rand () % 801;
-	*out_y = rand () % 601;
 }
 
 /*>- EOF -<*/

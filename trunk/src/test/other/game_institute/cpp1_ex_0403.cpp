@@ -23,7 +23,7 @@
  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
@@ -35,47 +35,59 @@
 /*
  * Function prototypes.
  */
-void get_mousepos (int*, int*);
-
+int random (int, int);
+void random_array_fill (int*, int);
 /*
- * This program demonstrates passing argument as pointers and multiple return
- * values.
+ * This program allows the user to enter numbers. It than prints them, sorts
+ * them and prints them again.
  */
 int
 main ()
 {
-	using std::cout;
+	using std::cin;
+        using std::cout;
 	using std::endl;
 	using std::srand;
 	using std::time;
-
+	
 	srand (time (0));
 
-	int x = 0;
-	int y = 0;
+	int size;
 
-	cout << "Before get_mousepos..." << endl;
-	cout << "\tx = " << x << endl;
-	cout << "\ty = " << y << endl;
+	cout << "Enter the size of an array to create: ";
+	cin >> size;
 
-	get_mousepos (&x, &y);
+	cout << "Creating an array and filling it with random numbers..."
+	     << endl;
 
-	cout << "After get_mousepos..." << endl;
-	cout << "\tx = " << x << endl;
-	cout << "\ty = " << y << endl;
+	int* array = new int[size];
+
+	random_array_fill (array, size);
+
+	cout << "Array = { ";
+	for (int i = 0; i != size; ++i)
+		cout << array[i] << ' ';
+	cout << '}' << endl;
 	
 }
 
 /*
- * This function returns values as pointer parameters.
+ * Random within range.
+ */
+int
+random (int low, int high)
+{
+	return low + rand () % ((high + 1) - low);	
+}
+
+/*
+ * Fill array with random numbers.
  */
 void
-get_mousepos (int* out_x, int* out_y)
+random_array_fill (int* array, int size)
 {
-	using std::rand;
-	
-	*out_x = rand () % 801;
-	*out_y = rand () % 601;
+	for (int i = 0; i != size; ++i)
+		array[i] = random (0, 100);
 }
 
 /*>- EOF -<*/

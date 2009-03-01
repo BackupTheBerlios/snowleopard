@@ -36,7 +36,7 @@
 void print_array (int*, int);
 
 /*
- * This program demonstrates pointer arithmetic.
+ * This program demonstrates passing arrays as pointer to the first element.
  */
 int
 main ()
