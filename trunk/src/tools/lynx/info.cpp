@@ -32,21 +32,59 @@
 #include <iostream>
 
 /* Lynx headers */
-#include "lynx/driver.hpp"
+#include "lynx/info.hpp"
 
 /*
- * This program is the main driver for the Lynx typesetting system. This program
- * first checks the input files and parameters and call the appropriate programs
- * to typeset a TROFF document.
+ * Print copyright information.
  */
-int
-main (int argc, char** argv)
+static void
+lynx::copyright ()
 {
-	using lynx::driver;
+	using std::cout;
+	using std::endl;
+	
+}
 
-	driver d_ (argc, argv);
+/*
+ * Print licensing information and exit. Exit as failed to avoid that dependent
+ * programs continue.
+ */
+static void
+lynx::license ()
+{
+	using std::cout;
+	using std::endl;
+	using std::exit;
+	
+	exit (EXIT_SUCCESS);
+}
 
-	return EXIT_SUCCESS;
+/*
+ * Print usage information and exit. Exit as failed to avoid that dependent
+ * programs will continue.
+ */
+static void
+lynx::usage ()
+{
+	using std::cout;
+	using std::endl;
+	using std::exit;
+
+	exit (EXIT_FAILURE);
+}
+
+/*
+ * Print warrantee information and exit. Exit as failed to avoid that dependent
+ * programs continue.
+ */
+static void
+lynx::warrantee ()
+{
+	using std::cout;
+	using std::endl;
+	using std::exit;
+
+	exit (EXIT_FAILURE);
 }
 
 /*>- EOF -<*/

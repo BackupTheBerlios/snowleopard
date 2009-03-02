@@ -27,26 +27,21 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* Standard C++ headers */
-#include <cstdlib>
-#include <iostream>
+#ifndef _LYNX_INFO_HPP_
+#define _LYNX_INFO_HPP_
 
-/* Lynx headers */
-#include "lynx/driver.hpp"
+namespace lynx {
 
-/*
- * This program is the main driver for the Lynx typesetting system. This program
- * first checks the input files and parameters and call the appropriate programs
- * to typeset a TROFF document.
- */
-int
-main (int argc, char** argv)
-{
-	using lynx::driver;
+	/*
+	 * Program information functions.
+	 */
+	static void copyright ();
+	static void license ();
+	static void usage ();
+	static void warrantee ();
 
-	driver d_ (argc, argv);
-
-	return EXIT_SUCCESS;
 }
+
+#endif /* !_LYNX_INFO_HPP_ */
 
 /*>- EOF -<*/

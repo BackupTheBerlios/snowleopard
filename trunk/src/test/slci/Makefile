@@ -52,17 +52,47 @@ ALL_OBJECTS = *.o
 #
 # All programs
 #
+ALL_ERROR_REPORTING =
+
+ALL_LANGUAGE = 
+
+ALL_INTERPRETER = 
 
 ALL_PROGRAMS = 
+
+ALL_TESTS = $(ALL_ERROR_REPORTING) $(ALL_LANGUAGE) $(ALL_INTERPRETER) \
+	    $(ALL_PROGRAMS)
+
+#
+# Required tools
+#
+REQUIRED_TOOLS = slci sltst
 
 #
 # Main targets
 #
-all: $(ALL_PROGRAMS)
+all: $(REQUIRED_TOOLS) $(ALL_TESTS)
+
+error_reporting: $(REQUIRED_TOOLS) $(ALL_ERROR_REPORTING)
+
+language: $(REQUIRED_TOOLS) $(ALL_LANGUAGE)
+
+interpreter: $(REQUIRED_TOOLS) $(ALL_INTERPRETER)
+
+programs: $(REQUIRED_TOOLS) $(ALL_PROGRAMS)
 
 # 
 # Programs that require more than one source file.
 #
+
+#
+# Build required tools.
+#
+sltst:
+	(cd ../../tools/sltst ; ${MAKE} all);
+
+slci: 
+	(cd ../../tools/slci ; ${MAKE} all);
 
 #
 # Suffix rule for compiling C++ sources

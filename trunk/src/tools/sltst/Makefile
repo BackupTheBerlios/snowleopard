@@ -27,48 +27,15 @@
 #/
 
 #-
-# File: /src/tools/lynx/Makefile
+# File: /src/tools/sltst/Makefile
 #
-# Makefile for building the Lynx typesetting system.
+# Makefile for building the Snow Leopard C++ Test Tool.
 #/
 
 #
-# All objects
-#
-ALL_OBJECTS = *.o
-
-ALL_PROGRAMS = lynx lroff leqn lpic lrefer ltbl lsoelim
-
-#
-# All sources
-#
-LYNX_SOURCES = info.cpp main.cpp
-
-#
 # Main targets
-# 
-all: lynx
-	(echo Building the Lynx Typesetting System);
-
-lynx: ${LYNX_SOURCES)
-
-info.cpp: info.cpp info.hpp
-
-main.cpp: main.cpp driver.hpp
-
 #
-# Suffix rule for building C++ sources
-#
-.cpp.o:
-	$(CXX) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
-
-.SUFFIXES: .cpp .o
-
-#
-# Clean rule
-#
-clean:
-	rm -f $(ALL_PROGRAMS) ; \
-	rm -f $(ALL_OBJECTS)
+all:
+	(echo Building the Snow Leopard C++ Test Tool);
 
 #>- EOF

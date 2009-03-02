@@ -32,6 +32,26 @@
 # Makefile for building the Snow Leopard C++ toolset.
 #/
 
+#
+# All tools
+#
+ALL_TOOLS = slci sltst lynx
 
+#
+# Main targets
+#
+all: $(ALL_TOOLS)
+	for dir in $(ALL_TOOLS) ; do \
+	  (cd $$dir ; ${MAKE} all);  \
+	done
+
+slci:
+	(cd slci ; ${MAKE} all);
+
+sltst:
+	(cd sltst ; ${MAKE} all);
+
+lynx:
+	(cd lynx ; ${MAKE} all);
 
 #>- EOF

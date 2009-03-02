@@ -27,48 +27,35 @@
 #/
 
 #-
-# File: /src/tools/lynx/Makefile
+# File: /src/libs/Makefile
 #
-# Makefile for building the Lynx typesetting system.
+# Makefile for building and testing the Snow Leopard C++ libraries.
 #/
 
 #
 # All objects
 #
-ALL_OBJECTS = *.o
-
-ALL_PROGRAMS = lynx lroff leqn lpic lrefer ltbl lsoelim
+ALL_OBJECTS = signal.o stddef.o stdlib.o string.o
 
 #
-# All sources
+# Libraries
 #
-LYNX_SOURCES = info.cpp main.cpp
+DYNAMIC_LIBRARY = libslstdc.so
+STATIC_LIBRARY = libslstdc.a
+
+ALL_LIBRARIES = $(STATIC_LIBRARY) $(DYNAMIC_LIBRARY)
 
 #
 # Main targets
-# 
-all: lynx
-	(echo Building the Lynx Typesetting System);
-
-lynx: ${LYNX_SOURCES)
-
-info.cpp: info.cpp info.hpp
-
-main.cpp: main.cpp driver.hpp
-
 #
-# Suffix rule for building C++ sources
-#
-.cpp.o:
-	$(CXX) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
+all: $(ALL_LIBRARIES)
 
-.SUFFIXES: .cpp .o
 
 #
 # Clean rule
 #
 clean:
-	rm -f $(ALL_PROGRAMS) ; \
-	rm -f $(ALL_OBJECTS)
+	rm -f $(ALL_OBJECTS)   \
+	rm -f $(ALL_LIBRARIES) 
 
 #>- EOF

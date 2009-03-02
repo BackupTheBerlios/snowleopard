@@ -77,8 +77,10 @@ PROGRAMS_LESSON4 = cpp1_prg_0401 cpp1_prg_0402 cpp1_prg_0403 cpp1_prg_0404 \
 		   cpp1_prg_0409 cpp1_prg_0410 cpp1_prg_0411 cpp1_prg_0412 \
 		   cpp1_ex_0402  cpp1_ex_0403 cpp1_ex_0404
 
+PROGRAMS_LESSON5 = 
+
 ALL_PROGRAMS = $(PROGRAMS_LESSON1) $(PROGRAMS_LESSON2) $(PROGRAMS_LESSON3) \
-	       $(PROGRAMS_LESSON4)
+	       $(PROGRAMS_LESSON4) $(PROGRAMS_LESSON5)
 
 #
 # Main targets
@@ -92,6 +94,8 @@ lesson2: $(PROGRAMS_LESSON2)
 lesson3: $(PROGRAMS_LESSON3)
 
 lesson4: $(PROGRAMS_LESSON4)
+
+lesson5: $(PROGRAMS_LESSON5)
 
 # 
 # Programs that require more than one source file.
