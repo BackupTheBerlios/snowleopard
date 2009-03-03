@@ -33,6 +33,6 @@
 /* Snow Leopard C headers */
 #include <sl/stdc/signal.h>
 
-#endif /* _SL_STDC_SIGNAL_H_ */
+#endif /* !_SL_STDC_SIGNAL_H_ */
 
 /*>- EOF -<*/

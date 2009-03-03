@@ -74,6 +74,6 @@ extern const int SIG_ERR;
  */
 int raise (signal_value signal);
 
-#endif /* _SL_STDC_IMPL_SIGNAL_H_ */
+#endif /* !_SL_STDC_IMPL_SIGNAL_H_ */
 
 /*>- EOF -<*/

@@ -70,7 +70,7 @@ namespace std {
 	void swap (T& a, T& b);
 
 	
-} //std
+} /* std */
 
 /*******************************************************************************
  * If compiler uses export, don't include source for templates
@@ -82,6 +82,6 @@ namespace std {
 /*******************************************************************************
  */
 
-#endif /* _SL_STDCPP_ALGORITHM_HPP_ */
+#endif /* !_SL_STDCPP_ALGORITHM_HPP_ */
 
 /*>- EOF -<*/

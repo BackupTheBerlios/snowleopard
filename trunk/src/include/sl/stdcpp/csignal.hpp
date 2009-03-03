@@ -37,8 +37,8 @@ namespace std {
  */
 # include <sl/stdc/signal.h>
 
-} //std
+} /* std */
 
-#endif /* _SL_STDCPP_CSIGNAL_HPP_ */
+#endif /* !_SL_STDCPP_CSIGNAL_HPP_ */
 
 /*>- EOF -<*/

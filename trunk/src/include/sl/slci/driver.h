@@ -23,16 +23,38 @@
  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_STDCPP_CSIGNAL_
-#define _SL_STDCPP_CSIGNAL_
+#ifndef _SL_SLCI_DRIVER_HPP_
+#define _SL_SLCI_DRIVER_HPP_
 
-/* Snow Leopard C++ header */
-#include <sl/stdcpp/csignal.hpp>
+/* Standard C++ headers */
 
-#endif /* !_SL_STDCPP_CSIGNAL_ */
+namespace sl {
+
+namespace slci {
+
+/*
+ * driver class
+ */
+	
+	/*
+	 * class responsible for handling setup and executing. Also
+	 * responsible for error reporting when the interpreter finishes.
+	 */
+	class driver
+	{
+	public:
+		driver (int argc, char** argv);
+
+	};
+	
+} /* sl::slci */
+
+} /* sl */
+
+#endif /* !_SL_SLCI_DRIVER_HPP_ */
 
 /*>- EOF -<*/

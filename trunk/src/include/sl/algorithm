@@ -33,6 +33,6 @@
 /* Standard C++ header */
 #include <sl/stdcpp/algorithm.hpp>
 
-#endif /* _SL_STDCPP_ALGORITHM_ */
+#endif /* !_SL_STDCPP_ALGORITHM_ */
 
 /*>- EOF -<*/
