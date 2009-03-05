@@ -58,7 +58,7 @@ ALL_LANGUAGE =
 
 ALL_INTERPRETER = 
 
-ALL_PROGRAMS = 
+ALL_PROGRAMS = run_1_main_return_success run_2_main_return_failure
 
 ALL_TESTS = $(ALL_ERROR_REPORTING) $(ALL_LANGUAGE) $(ALL_INTERPRETER) \
 	    $(ALL_PROGRAMS)

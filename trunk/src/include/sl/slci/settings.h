@@ -27,34 +27,28 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLTST_DRIVER_HPP_
-#define _SL_SLTST_DRIVER_HPP_
+#ifndef _SL_SLCI_SETTINGS_H_
+#define _SL_SLCI_SETTINGS_H_
 
-/* Standard C++ headers */
-
-namespace sl {
-
-namespace sltst {
+/* Standard C headers */
+#include <stdbool.h>
 
 /*
- * driver class
+ * Settings structure
  */
+struct slci_settings
+{
+	bool interactive;
+	bool verbose;
+	bool warrantee;
+	bool license;
+	char* source_file;
+	char** source_paths;
+	char** include_paths;
+};
 
-	/*
-	 * This class is responsible for handling command line argument,
-	 * configuration and starting the testing process.
-	 */
-	class driver
-	{
-	public:
-		driver (int argc, char** argv);
+typedef struct slci_settings slci_settings;
 
-	};
-
-} /* sl::sltst */
-
-} /* sl */
-
-#endif /* !_SL_SLTST_DRIVER_HPP_ */
+#endif /* !_SL_SLCI_SETTINGS_H_ */
 
 /*>- EOF -<*/

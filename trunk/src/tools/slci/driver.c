@@ -27,31 +27,98 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_DRIVER_H_
-#define _SL_SLCI_DRIVER_H_
-
 /* Standard C headers */
 #include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 /* Snow Leopard headers */
+#include "sl/slci/driver.h"
 #include "sl/slci/settings.h"
 
 /*
  * Global settings object.
  */
-extern slci_settings* settings;
+slci_settings* settings;
 
 /*
- * Initialization.
+ * Function parses the command-line arguments provided by the user.
  */
-bool parse_command_line (int, char**);
+bool
+parse_command_line (int argc, char** argv)
+{
+	bool ok = true;
+	int i;
+	settings = malloc (sizeof (slci_settings));
+
+	if (argc == 1)
+		/* At least one parameter is required. */
+		return false;
+	
+	for (i = 1; i != argc; ++i)
+	{
+		if (strcmp (argv[i], "-i"))
+			/* Interactive [-i] */
+			settings->interactive = true;
+		else if (strcmp (argv[i], "-l"))
+			/* License [-l] */
+			settings->license = true;
+		else if (strcmp (argv[i], "-v"))
+			/* Verbose [-v] */
+			settings->verbose = true;
+		else if (strcmp (argv[i], "-w"))
+			/* Warrantee [-w] */
+			settings->warrantee = true;
+		else
+		{
+			/* Path variables */
+			char* paths = argv[i];
+
+			if (paths[0] == '-')
+			{
+				if (paths[1] == 'I')
+				{
+					/* Source paths [-Ipaths] */
+					
+				}
+				else if (paths[1] == 'S')
+				{
+					/* Source paths [-Spaths] */
+					
+				}
+				else
+					/* Invalid option */
+					ok = false;
+			}
+			else
+			{
+				/* Source file */
+				settings->source_file = argv[i];
+			}
+		}
+	}
+	
+	return ok;
+}
 
 /*
- * Interpreter functions.
+ * Starts the interpretion process and returns true is finished. It returns false
+ * when a fatal error is encountered.
  */
-bool start ();
-int get_return_value ();
+bool
+start ()
+{
+	return false;
+}
 
-#endif /* !_SL_SLCI_DRIVER_H_ */
+/*
+ * This function returns the return value of the interpreted program, if there is
+ * none zero is returned.
+ */
+int
+get_return_value ()
+{
+	return 0;
+}
 
 /*>- EOF -<*/

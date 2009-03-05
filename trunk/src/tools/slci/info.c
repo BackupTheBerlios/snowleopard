@@ -27,31 +27,58 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_DRIVER_H_
-#define _SL_SLCI_DRIVER_H_
-
 /* Standard C headers */
-#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 /* Snow Leopard headers */
-#include "sl/slci/settings.h"
+#include "sl/slci/info.h"
+#include "sl/slci/version.h"
 
 /*
- * Global settings object.
+ * Prints program name and version number.
  */
-extern slci_settings* settings;
+void
+print_program_info ()
+{
+	char* buffer = malloc (sizeof (char[50]));
+
+	get_version_string (buffer);
+	
+	printf (
+		"%s - Snow Leopard C++ Interpreter - %s\n",
+	        getprogname (), buffer
+		);
+	printf ("Copyright (c) 2009 Roel Sergeant. All rights reserved.\n\n");
+
+	free (buffer);
+}
 
 /*
- * Initialization.
+ * Prints program usage information.
  */
-bool parse_command_line (int, char**);
+void
+print_program_usage ()
+{
+	fprintf (
+		stderr,
+		"usage: %s [-ivlw] [-Ipaths] [-Spaths] source-file\n",
+		getprogname ()
+		);
+}
 
 /*
- * Interpreter functions.
+ * Prints information on how to contact the developer.
  */
-bool start ();
-int get_return_value ();
-
-#endif /* !_SL_SLCI_DRIVER_H_ */
+void
+print_contact_developer ()
+{
+	fprintf (
+		stderr,
+		"Please report the problem encountered to the developers. "
+		"For more information, please check the file REPORTING_BUGS "
+		"which was included in your distribution.\n"
+		);
+}
 
 /*>- EOF -<*/

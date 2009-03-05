@@ -27,31 +27,31 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_DRIVER_H_
-#define _SL_SLCI_DRIVER_H_
-
-/* Standard C headers */
-#include <stdbool.h>
+#ifndef _SL_SLCI_ERROR_REPORTING_H_
+#define _SL_SLCI_ERROR_REPORTING_H_
 
 /* Snow Leopard headers */
-#include "sl/slci/settings.h"
+#include "sl/slci/source_position.h"
 
 /*
- * Global settings object.
+ * Error structure.
  */
-extern slci_settings* settings;
+struct error {
+	int error_code;
+	char* error_description;
+	source_position position;
+} error;
 
 /*
- * Initialization.
+ * Error reporting functions.
  */
-bool parse_command_line (int, char**);
+int get_first_error ();
+int get_first_fatal_error ();
 
 /*
- * Interpreter functions.
+ * Error logging functions.
  */
-bool start ();
-int get_return_value ();
 
-#endif /* !_SL_SLCI_DRIVER_H_ */
+#endif /* !_SL_SLCI_ERROR_REPORTING_H_ */
 
 /*>- EOF -<*/

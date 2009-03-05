@@ -27,31 +27,33 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_DRIVER_H_
-#define _SL_SLCI_DRIVER_H_
-
 /* Standard C headers */
-#include <stdbool.h>
+#include <stdio.h>
 
 /* Snow Leopard headers */
-#include "sl/slci/settings.h"
+#include "sl/slci/version.h"
 
 /*
- * Global settings object.
+ * Version numbers.
  */
-extern slci_settings* settings;
+const unsigned short MajorVersion = 0;
+const unsigned short MinorVersion = 0;
+const unsigned short Release = 1;
+const unsigned int Build = 1;
+const char * VersionLabel = "Initial Test Version";
 
 /*
- * Initialization.
+ * Prints program usage information.
  */
-bool parse_command_line (int, char**);
+char *
+get_version_string (char* buffer)
+{
+	sprintf (
+		buffer, "version %i.%i.%i build %i (%s)",
+		MajorVersion, MinorVersion, Release, Build, VersionLabel
+		);
 
-/*
- * Interpreter functions.
- */
-bool start ();
-int get_return_value ();
-
-#endif /* !_SL_SLCI_DRIVER_H_ */
+	return buffer;
+}
 
 /*>- EOF -<*/

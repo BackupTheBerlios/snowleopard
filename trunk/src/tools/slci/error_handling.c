@@ -27,31 +27,20 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_DRIVER_H_
-#define _SL_SLCI_DRIVER_H_
-
 /* Standard C headers */
-#include <stdbool.h>
+#include <stdio.h>
 
 /* Snow Leopard headers */
-#include "sl/slci/settings.h"
+#include "sl/slci/error_handling.h"
 
 /*
- * Global settings object.
+ * Return the error code for the first fatal error encountered. It return 0 if
+ * no fatal errors where encountered.
  */
-extern slci_settings* settings;
-
-/*
- * Initialization.
- */
-bool parse_command_line (int, char**);
-
-/*
- * Interpreter functions.
- */
-bool start ();
-int get_return_value ();
-
-#endif /* !_SL_SLCI_DRIVER_H_ */
+int
+get_first_fatal_error ()
+{
+	return 0;
+}
 
 /*>- EOF -<*/

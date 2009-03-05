@@ -27,31 +27,21 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_DRIVER_H_
-#define _SL_SLCI_DRIVER_H_
-
-/* Standard C headers */
-#include <stdbool.h>
-
-/* Snow Leopard headers */
-#include "sl/slci/settings.h"
+#ifndef _SL_SLCI_SOURCE_POSITION_H_
+#define _SL_SLCI_SOURCE_POSITION_H_
 
 /*
- * Global settings object.
+ * source_position structure
  */
-extern slci_settings* settings;
+struct source_position
+{
+	char * file;
+	unsigned long line;
+	unsigned long position;
+};
 
-/*
- * Initialization.
- */
-bool parse_command_line (int, char**);
+typedef struct source_position source_position;
 
-/*
- * Interpreter functions.
- */
-bool start ();
-int get_return_value ();
-
-#endif /* !_SL_SLCI_DRIVER_H_ */
+#endif /* !_SL_SLCI_SOURCE_POSITION_H_ */
 
 /*>- EOF -<*/

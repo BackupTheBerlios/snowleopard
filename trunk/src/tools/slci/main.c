@@ -27,31 +27,52 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_DRIVER_H_
-#define _SL_SLCI_DRIVER_H_
-
 /* Standard C headers */
-#include <stdbool.h>
+#include <stdlib.h>
 
 /* Snow Leopard headers */
-#include "sl/slci/settings.h"
+#include "sl/slci/driver.h"
+#include "sl/slci/error_handling.h"
+#include "sl/slci/info.h"
 
 /*
- * Global settings object.
+ * This program is a C++ interpreter, mainly used for bootstrapping the Snow
+ * Leopard C++ compiler. Initially it will only implement the C++ subset
+ * needed to interpret the compiler source code, including the standard
+ * C++ library.
  */
-extern slci_settings* settings;
+int
+main (int argc, char** argv)
+{
+	print_program_info ();
 
-/*
- * Initialization.
- */
-bool parse_command_line (int, char**);
+	if (!parse_command_line (argc, argv))
+	{
+		/*
+		 * An incorrect parameter was specified.
+		 */
+		print_program_usage ();
+		return get_first_fatal_error ();
+	}
 
-/*
- * Interpreter functions.
- */
-bool start ();
-int get_return_value ();
+	if (start ())
+	{
+		/*
+		 * When start_program returns, the program has finished. All that
+		 * remains is returning it's return value to the shell.
+		 */
+		return get_return_value ();
+	}
+	else
+	{
+		/*
+		 * A fatal error occured. Print contact information.
+		 */
+		print_contact_developer ();
+		return get_first_fatal_error ();
+	}
 
-#endif /* !_SL_SLCI_DRIVER_H_ */
+	return (EXIT_SUCCESS);
+}
 
 /*>- EOF -<*/

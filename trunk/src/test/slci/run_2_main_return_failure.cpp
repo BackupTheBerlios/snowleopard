@@ -27,31 +27,17 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_DRIVER_H_
-#define _SL_SLCI_DRIVER_H_
-
-/* Standard C headers */
-#include <stdbool.h>
-
-/* Snow Leopard headers */
-#include "sl/slci/settings.h"
+/* Standard C++ headers */
 
 /*
- * Global settings object.
+ * This program is the first program of the Snow Leaopard C++ interpreter test
+ * suite. It just contains a main function that returns -1 (failure)  and some
+ * comments.
  */
-extern slci_settings* settings;
-
-/*
- * Initialization.
- */
-bool parse_command_line (int, char**);
-
-/*
- * Interpreter functions.
- */
-bool start ();
-int get_return_value ();
-
-#endif /* !_SL_SLCI_DRIVER_H_ */
+int
+main ()
+{
+	return -1;
+}
 
 /*>- EOF -<*/

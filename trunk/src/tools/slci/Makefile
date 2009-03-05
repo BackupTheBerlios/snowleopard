@@ -33,9 +33,60 @@
 #/
 
 #
+# Variables
+#
+PROGRAM = slci
+
+SLCI_INCLUDE = ../../include/sl/slci
+
+SL_INCLUDE_PATH = ../../include
+
+ALL_OBJECTS = driver.o error_handling.o info.o main.o version.o
+
+DRIVER_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/settings.h
+
+ERROR_HANDLING_DEPENDS = $(SLCI_INCLUDE)/error_handling.h \
+                         $(SLCI_INCLUDE)/source_position.h
+
+INFO_DEPENDS = $(SLCI_INCLUDE)/info.h $(SLCI_INCLUDE)/version.h
+
+MAIN_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/error_handling.h \
+               $(SLCI_INCLUDE)/info.h $(SLCI_INCLUDE)/settings.h \
+	       $(SLCI_INCLUDE)/source_position.h 
+
+VERSION_DEPENDS = $(SLCI_INCLUDE)/version.h
+
+#
 # Main targets
 #
-all:
-	(echo Building the Snow Leopard C++ Interpreter);
+all: what $(PROGRAM)
+
+$(PROGRAM) : $(ALL_OBJECTS)
+	$(CC) $(CFLAGS) -I$(SL_INCLUDE_PATH) -o slci $(ALL_OBJECTS)
+
+driver.o: driver.c $(DRIVER_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+
+error_handling.o: error_handling.c $(ERROR_HANDLING_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+
+info.o: info.c $(INFO_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+
+main.o: main.c $(MAIN_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+
+version.o: version.c $(VERSION_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+
+what:
+	(echo Building the Snow Leopard C++ Interpreter); 
+
+#
+# Clean rule
+#
+clean:
+	rm -f $(PROGRAM) ; \
+	rm -f $(ALL_OBJECTS)
 
 #>- EOF
