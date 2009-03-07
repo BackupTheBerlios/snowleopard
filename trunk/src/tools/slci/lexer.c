@@ -33,93 +33,72 @@
 #include <stdlib.h>
 
 /* Snow Leopard headers */
-#include "sl/slci/driver.h"
-#include "sl/slci/parser.h"
-#include "sl/slci/settings.h"
+#include "sl/slci/lexer.h"
+#include "sl/slci/preprocessor.h"
+#include "sl/slci/token.h"
 
 /*
- * Global settings object.
+ * Private function prototypes.
  */
-slci_settings* settings;
+char* preprocess_token (slci_token);
 
 /*
- * Function parses the command-line arguments provided by the user.
+ * Global variables.
  */
-bool
-parse_command_line (int argc, char** argv)
+slci_token current_token;
+slci_token previous_token;
+source_position* current_source_position;
+
+/*
+ * Function initializes the lexer by giving it the first filename.
+ */
+bool initialze (char* filename)
 {
-	bool ok = true;
-	int i;
-	settings = malloc (sizeof (slci_settings));
 
-	if (argc == 1)
-		/* At least one parameter is required. */
-		return false;
-	
-	for (i = 1; i != argc; ++i)
-	{
-		if (strcmp (argv[i], "-i"))
-			/* Interactive [-i] */
-			settings->interactive = true;
-		else if (strcmp (argv[i], "-l"))
-			/* License [-l] */
-			settings->license = true;
-		else if (strcmp (argv[i], "-v"))
-			/* Verbose [-v] */
-			settings->verbose = true;
-		else if (strcmp (argv[i], "-w"))
-			/* Warrantee [-w] */
-			settings->warrantee = true;
-		else
-		{
-			/* Path variables */
-			char* paths = argv[i];
-
-			if (paths[0] == '-')
-			{
-				if (paths[1] == 'I')
-				{
-					/* Source paths [-Ipaths] */
-					
-				}
-				else if (paths[1] == 'S')
-				{
-					/* Source paths [-Spaths] */
-					
-				}
-				else
-					/* Invalid option */
-					ok = false;
-			}
-			else
-			{
-				/* Source file */
-				settings->source_file = argv[i];
-			}
-		}
-	}
-	
-	return ok;
-}
-
-/*
- * Starts the interpretion process and returns true is finished. It returns false
- * when a fatal error is encountered.
- */
-bool
-start ()
-{
 	return false;
 }
 
 /*
- * This function returns the return value of the interpreted program, if there is
- * none zero is returned.
+ * Function terminates the lexer and cleans up open files and buffers.
  */
-int
-get_return_value ()
+bool terminate ()
 {
-	return 0;
+
+}
+
+/*
+ * Function gets the next token from the stream.
+ */
+slci_token get_next_token ()
+{
+
+}
+
+/*
+ * Function gets the previous token. This is not relexed, it is just a variable
+ * return to the caller.
+ */
+slci_token get_prev_token ()
+{
+
+}
+
+/*
+ * Function puts the current token (the one returned by get_next_token) back so
+ * the next call to get_next_token will return the previous token.
+ */
+bool put_back_token ()
+{
+
+}
+
+/*
+ * Function preprocesses the preprocessor token given as parameter and returns a
+ * string containing the preprocessed token.
+ */
+char* preprocess_token (slci_token token)
+{
+
 }
 
 /*>- EOF -<*/

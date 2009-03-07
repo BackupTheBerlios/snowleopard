@@ -41,18 +41,30 @@ SLCI_INCLUDE = ../../include/sl/slci
 
 SL_INCLUDE_PATH = ../../include
 
-ALL_OBJECTS = driver.o error_handling.o info.o main.o version.o
+ALL_OBJECTS = driver.o error_handling.o info.o lexer.o main.o parser.o reader.o \
+	      token.o version.o
 
-DRIVER_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/settings.h
+DRIVER_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/parser.h \
+		 $(SLCI_INCLUDE)/settings.h
 
 ERROR_HANDLING_DEPENDS = $(SLCI_INCLUDE)/error_handling.h \
                          $(SLCI_INCLUDE)/source_position.h
 
 INFO_DEPENDS = $(SLCI_INCLUDE)/info.h $(SLCI_INCLUDE)/version.h
 
+LEXER_DEPENDS = $(SLCI_INCLUDE)/lexer.h $(SLCI_INCLUDE)/literal.h \
+		$(SLCI_INCLUDE)/preprocessor.h $(SLCI_INCLUDE)/reader.h \
+		$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/token.h
+
 MAIN_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/error_handling.h \
                $(SLCI_INCLUDE)/info.h $(SLCI_INCLUDE)/settings.h \
 	       $(SLCI_INCLUDE)/source_position.h 
+
+PARSER_DEPENDS = $(SLCI_INCLUDE)/lexer.h $(SLCI_INCLUDE)/parser.h
+
+READER_DEPENDS = $(SLCI_INCLUDE)/reader.h
+
+TOKEN_DEPENDS = $(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/token.h
 
 VERSION_DEPENDS = $(SLCI_INCLUDE)/version.h
 
@@ -73,7 +85,19 @@ error_handling.o: error_handling.c $(ERROR_HANDLING_DEPENDS)
 info.o: info.c $(INFO_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
 
+lexer.o: lexer.c $(LEXER_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+
 main.o: main.c $(MAIN_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+
+parser.o: parser.c $(PARSER_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+
+reader.o: reader.c $(READER_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+
+token.o: token.c $(TOKEN_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
 
 version.o: version.c $(VERSION_DEPENDS)
