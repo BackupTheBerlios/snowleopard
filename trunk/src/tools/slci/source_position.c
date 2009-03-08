@@ -27,30 +27,36 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_SOURCE_POSITION_H_
-#define _SL_SLCI_SOURCE_POSITION_H_
-
 /* Standard C headers */
-#include <stddef.h>
+#include <stdlib.h>
+
+/* Snow Leopard headers */
+#include "sl/slci/source_position.h"
 
 /*
- * source_position structure
+ * Initialize a source position object.
  */
-struct slci_source_position
+slci_source_position*
+initialize_source_position (char* file, size_t line, size_t position)
 {
-	char * file;
-	size_t line;
-	size_t position;
-};
+	slci_source_position* pos = malloc (sizeof (slci_source_position));
 
-typedef struct slci_source_position slci_source_position;
+	pos->file = file;
+	pos->line = line;
+	pos->position = position;
+
+	return pos;
+}
 
 /*
- * Initializer functions.
+ * Destroy a source position object.
  */
-slci_source_position* initialize_source_position (char*, size_t, size_t);
-void destroy_source_position (slci_source_position*);
+void
+destroy_source_position (slci_source_position* position)
+{
+	free (position->file);
 
-#endif /* !_SL_SLCI_SOURCE_POSITION_H_ */
+	free (position);
+}
 
 /*>- EOF -<*/

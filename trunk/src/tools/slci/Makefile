@@ -42,7 +42,7 @@ SLCI_INCLUDE = ../../include/sl/slci
 SL_INCLUDE_PATH = ../../include
 
 ALL_OBJECTS = binary_search.o driver.o error_handling.o info.o lexer.o main.o \
-	      parser.o reader.o settings.o token.o version.o
+	      parser.o reader.o settings.o source_position.o token.o version.o
 
 BINARY_SEARCH_DEPENDS = $(SLCI_INCLUDE)/binary_search.h
 
@@ -70,6 +70,8 @@ PARSER_DEPENDS = $(SLCI_INCLUDE)/lexer.h $(SLCI_INCLUDE)/literal.h \
 READER_DEPENDS = $(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_position.h
 
 SETTINGS_DEPENDS = $(SLCI_INCLUDE)/settings.h
+
+SOURCE_POSITION_DEPENDS = $(SLCI_INCLUDE)/source_position.h
 
 TOKEN_DEPENDS = $(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/token.h \
 		$(SLCI_INCLUDE)/source_position.h
@@ -109,6 +111,9 @@ reader.o: reader.c $(READER_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
 
 settings.o: settings.c $(SETTINGS_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+
+source_position.o: source_position.c $(SOURCE_POSITION_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
 
 token.o: token.c $(TOKEN_DEPENDS)
