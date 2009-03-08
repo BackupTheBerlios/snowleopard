@@ -43,7 +43,7 @@
  */
 extern slci_token current_token;
 extern slci_token previous_token;
-extern source_position* current_source_position;
+extern slci_source_position* current_source_position;
 
 /*
  * Initialize functions.

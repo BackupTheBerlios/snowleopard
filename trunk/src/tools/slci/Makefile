@@ -41,8 +41,10 @@ SLCI_INCLUDE = ../../include/sl/slci
 
 SL_INCLUDE_PATH = ../../include
 
-ALL_OBJECTS = driver.o error_handling.o info.o lexer.o main.o parser.o reader.o \
-	      settings.o token.o version.o
+ALL_OBJECTS = binary_search.o driver.o error_handling.o info.o lexer.o main.o \
+	      parser.o reader.o settings.o token.o version.o
+
+BINARY_SEARCH_DEPENDS = $(SLCI_INCLUDE)/binary_search.h
 
 DRIVER_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/parser.h \
 		 $(SLCI_INCLUDE)/settings.h
@@ -52,23 +54,25 @@ ERROR_HANDLING_DEPENDS = $(SLCI_INCLUDE)/error_handling.h \
 
 INFO_DEPENDS = $(SLCI_INCLUDE)/info.h $(SLCI_INCLUDE)/version.h
 
-LEXER_DEPENDS = $(SLCI_INCLUDE)/lexer.h $(SLCI_INCLUDE)/literal.h \
-		$(SLCI_INCLUDE)/preprocessor.h $(SLCI_INCLUDE)/reader.h \
-		$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/token.h
+LEXER_DEPENDS = $(SLCI_INCLUDE)/binary_search.h $(SLCI_INCLUDE)/lexer.h \
+		$(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/preprocessor.h \
+		$(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_position.h \
+		$(SLCI_INCLUDE)/token.h
 
 MAIN_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/error_handling.h \
                $(SLCI_INCLUDE)/info.h $(SLCI_INCLUDE)/settings.h \
 	       $(SLCI_INCLUDE)/source_position.h 
 
-PARSER_DEPENDS = $(SLCI_INCLUDE)/lexer.h $(SLCI_INCLUDE)/parser.h \
-		 $(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_position.h \
-		 $(SLCI_INCLUDE)/token.h
+PARSER_DEPENDS = $(SLCI_INCLUDE)/lexer.h $(SLCI_INCLUDE)/literal.h \
+		 $(SLCI_INCLUDE)/parser.h $(SLCI_INCLUDE)/reader.h  \
+		 $(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/token.h
 
-READER_DEPENDS = $(SLCI_INCLUDE)/reader.h
+READER_DEPENDS = $(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_position.h
 
 SETTINGS_DEPENDS = $(SLCI_INCLUDE)/settings.h
 
-TOKEN_DEPENDS = $(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/token.h
+TOKEN_DEPENDS = $(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/token.h \
+		$(SLCI_INCLUDE)/source_position.h
 
 VERSION_DEPENDS = $(SLCI_INCLUDE)/version.h
 
@@ -79,6 +83,9 @@ all: what $(PROGRAM)
 
 $(PROGRAM) : $(ALL_OBJECTS)
 	$(CC) $(CFLAGS) -I$(SL_INCLUDE_PATH) -o slci $(ALL_OBJECTS)
+
+binary_search.o: binary_search.c $(BINARY_SEARCH_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
 
 driver.o: driver.c $(DRIVER_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<

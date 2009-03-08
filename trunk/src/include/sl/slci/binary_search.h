@@ -27,89 +27,22 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#ifndef _SL_SLCI_BINARY_SEARCH_H_
+#define _SL_SLCI_BINARY_SEARCH_H_
+
 /* Standard C headers */
-#include <stdbool.h>
 #include <stddef.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-/* Snow Leopard headers */
-#include "sl/slci/binary_search.h"
-#include "sl/slci/lexer.h"
-#include "sl/slci/preprocessor.h"
-#include "sl/slci/token.h"
-
-/*
- * Private function prototypes.
- */
-char* lex_comment ();
-char* lex_literal ();
-char* lex_reserved ();
-size_t keyword_position ();
-size_t punctuation_position ();
-char* preprocess_token (slci_token);
 
 /*
  * Global variables.
  */
-slci_token current_token;
-slci_token previous_token;
-slci_source_position* current_source_position;
+extern const size_t MaxSizeT;
 
 /*
- * Function initializes the lexer by giving it the first filename.
+ * Binary search function.
  */
-bool initialze (char* filename)
-{
+size_t binary_search (char**, size_t, char*); 
 
-	return false;
-}
-
-/*
- * Function terminates the lexer and cleans up open files and buffers.
- */
-bool terminate ()
-{
-
-}
-
-/*
- * Function gets the next token from the stream.
- */
-slci_token get_next_token ()
-{
-
-}
-
-/*
- * Function gets the previous token. This is not relexed, it is just a variable
- * return to the caller.
- */
-slci_token get_prev_token ()
-{
-
-}
-
-/*
- * Function puts the current token (the one returned by get_next_token) back so
- * the next call to get_next_token will return the previous token.
- */
-bool put_back_token ()
-{
-
-}
-
-/*
- *
- */
-
-/*
- * Function preprocesses the preprocessor token given as parameter and returns a
- * string containing the preprocessed token.
- */
-char* preprocess_token (slci_token token)
-{
-
-}
+#endif /* !_SL_SLCI_BINARY_SEARCH_H_ */
 
 /*>- EOF -<*/

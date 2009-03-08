@@ -30,17 +30,26 @@
 #ifndef _SL_SLCI_SOURCE_POSITION_H_
 #define _SL_SLCI_SOURCE_POSITION_H_
 
+/* Standard C headers */
+#include <stddef.h>
+
 /*
  * source_position structure
  */
-struct source_position
+struct slci_source_position
 {
 	char * file;
-	unsigned long line;
-	unsigned long position;
+	size_t line;
+	size_t position;
 };
 
-typedef struct source_position source_position;
+typedef struct slci_source_position slci_source_position;
+
+/*
+ * Initializer functions.
+ */
+slci_source_position* initialize_source_position (char*, size_t, size_t);
+void destroy_source_position (slci_source_position);
 
 #endif /* !_SL_SLCI_SOURCE_POSITION_H_ */
 

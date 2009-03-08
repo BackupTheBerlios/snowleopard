@@ -32,6 +32,7 @@
 
 /* Snow Leopard headers */
 #include "sl/slci/literal.h"
+#include "sl/slci/source_position.h"
 
 /*
  * Token type enum.
@@ -40,6 +41,7 @@ enum slci_token_type
 	{
 		TT_EOF,          /* EOF token */         
 	        TT_EMPTY,        /* Empty token */
+		TT_COMMENT,      /* Comment token */
 		TT_PREPROCESSOR, /* Preprocessor token */
 		TT_KEYWORD,      /* Keyword token */
 		TT_PUNCTUATION,  /* Punctuation token */
@@ -229,12 +231,14 @@ extern char* punctuation_list[];
 struct slci_token
 {
 	slci_token_type type;
-
+	slci_source_position pos;
+	
 	union {
-		slci_keyword keyword;
-		slci_punctuation punctuation;
-		slci_literal literal;
+		char* comment;
 		unsigned int identifier_position;
+		slci_keyword keyword;
+		slci_literal literal;
+		slci_punctuation punctuation;
 	};
 };
 

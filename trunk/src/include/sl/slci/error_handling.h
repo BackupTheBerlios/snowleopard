@@ -36,11 +36,13 @@
 /*
  * Error structure.
  */
-struct error {
+struct slci_error {
 	int error_code;
 	char* error_description;
-	source_position position;
-} error;
+	slci_source_position position;
+};
+
+typedef struct slci_error slci_error;
 
 /*
  * Error reporting functions.
