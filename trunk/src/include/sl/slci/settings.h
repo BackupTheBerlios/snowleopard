@@ -40,9 +40,9 @@
 struct slci_settings
 {
 	bool interactive;
+	bool license;
 	bool verbose;
 	bool warrantee;
-	bool license;
 	char* source_file;
 	char** source_paths;
 	size_t size_source_paths;
@@ -66,8 +66,8 @@ void destroy_settings ();
 /*
  * Additional functions.
  */
-bool add_include_path (const char*);
-bool add_source_path (const char*);
+void add_include_path (const char*);
+void add_source_path (const char*);
 
 #endif /* !_SL_SLCI_SETTINGS_H_ */
 

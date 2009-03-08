@@ -36,6 +36,11 @@
 #include "sl/slci/settings.h"
 
 /*
+ * Private function prototypes.
+ */
+size_t add_path (char**, size_t, const char*);
+
+/*
  * Global variables.
  */
 slci_settings* settings;
@@ -49,9 +54,9 @@ initialize_settings ()
 	settings = malloc (sizeof (slci_settings));
 
 	settings->interactive = false;
+	settings->license = false;
 	settings->verbose = false;
 	settings->warrantee = false;
-	settings->license = false;
 
 	settings->source_file = 0;
 	settings->source_paths = 0;
@@ -101,19 +106,58 @@ destroy_settings ()
 /*
  * Add a new include path to the settings object.
  */
-bool
+void
 add_include_path (const char* path)
 {
-
+	settings->size_include_paths = 
+	    add_path (
+		    settings->include_paths,
+		    settings->size_include_paths,
+		    path);
 }
 
 /*
  * Add a new source path to the settings object.
  */
-bool
+void
 add_source_path (const char* path)
 {
+	settings->size_source_paths =
+	    add_path (
+		    settings->source_paths,
+		    settings->size_source_paths,
+		    path);
+}
 
+/*
+ * Add path to array and returns the new size of the array.
+ */
+size_t
+add_path (char** array, size_t size, const char* path)
+{
+	size_t i;
+	
+	/* Copy new path */
+	char* new_path = malloc (strlen (path) + 1);
+	strcpy (new_path, path);
+
+	/* Copy old array */
+	char** old = array;
+	
+	/* Create new array */
+	char** new = malloc (sizeof (char* [size + 1]));
+	for (i = 0; i != size; ++i)
+		new[i] = array[i];
+
+	/* Add new path */
+	new[size] = new_path;
+	size++;
+
+	/* Set new array */
+	array = new;
+
+	/* Delete old array */
+	free (old);
 }
 
 /*>- EOF -<*/

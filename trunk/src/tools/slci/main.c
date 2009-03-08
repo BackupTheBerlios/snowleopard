@@ -28,6 +28,7 @@
  */
 
 /* Standard C headers */
+#include <stdio.h>
 #include <stdlib.h>
 
 /* Snow Leopard headers */
@@ -55,7 +56,13 @@ main (int argc, char** argv)
 		return get_first_fatal_error ();
 	}
 
-	if (start ())
+	if (settings->license == true)
+		/* Print license info. */
+		print_license ();
+	else if (settings->warrantee == true)
+		/* Print warrantee info. */
+		print_warrantee ();
+	else if (start ())
 	{
 		/*
 		 * When start_program returns, the program has finished. All that

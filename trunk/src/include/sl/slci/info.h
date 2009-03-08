@@ -34,8 +34,10 @@
  * Program information functions.
  */
 void print_info ();
+void print_license ();
 void print_usage ();
 void print_contact_developer ();
+void print_warrantee ();
 
 #endif /* !_SL_SLCI_INFO_H_ */
 
