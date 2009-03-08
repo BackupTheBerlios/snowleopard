@@ -37,7 +37,7 @@
  * Initialize functions.
  */
 bool initialize_reader (char*);
-void terminate_reader ();
+void destroy_reader ();
 
 /*
  * Reader functions.

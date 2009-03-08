@@ -27,8 +27,61 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/* Standard C headers */
+#include <stdbool.h>
+#include <stdlib.h>
+
 /* Snow Leopard headers */
 #include "sl/slci/reader.h"
+#include "sl/slci/source_position.h"
+
+/*
+ * Private function prototypes.
+ */
+void push_file_stack (slci_source_position*);
+slci_source_position* pop_file_stack ();
+slci_source_position* top_file_stack ();
+
+/*
+ * Private global variables.
+ */
+slci_source_position** file_stack;
+size_t file_stack_reserved;
+size_t file_stack_depth;
+
+/*
+ * Initialize reader.
+ */
+bool
+initialize_reader (char* file)
+{
+	/* Initialize file stack */
+	file_stack_reserved = 10;
+	file_stack =
+	    malloc (sizeof (slci_source_position* [file_stack_reserved]));
+	file_stack_depth = (size_t)-1;
+
+	/* Add first file */
+	push_file_stack (initialize_source_position (file, 0, 0));
+	
+	return true;
+}
+
+/*
+ * Destroy reader.
+ */
+void
+destroy_reader ()
+{
+	size_t i;
+	
+	for (i = file_stack_depth; i != 0; --i)
+	{
+		destroy_source_position (file_stack[i - 1]);
+		file_stack[i - 1] = 0;
+	}
+	free (file_stack);
+}
 
 /*
  * Returns the next character in the current file.
@@ -46,6 +99,63 @@ bool
 put_back_char (char c)
 {
 
+}
+
+/*
+ * Push new element on file stack.
+ */
+void
+push_file_stack (slci_source_position* file)
+{
+	size_t i;
+	
+	if (file_stack_depth == (size_t)-1)
+		file_stack_depth = 0;
+	else
+		file_stack_depth++;
+
+	if (file_stack_depth >= file_stack_reserved)
+	{
+		/* Expand stack */
+		file_stack_reserved += 10;
+		slci_source_position** old = file_stack;
+		file_stack =
+		    malloc (sizeof (slci_source_position* [file_stack_reserved]));
+
+		for (i = 0; i != file_stack_depth - 1; ++i)
+			file_stack[i] = old[i];
+
+		free (old);
+	}
+	file_stack[file_stack_depth] = file;
+}
+
+/*
+ * Pop file from file stack.
+ */
+slci_source_position*
+pop_file_stack ()
+{
+	if (file_stack_depth == 0)
+		return 0;
+
+	slci_source_position* file = file_stack[file_stack_depth];
+	file_stack[file_stack_depth] = 0;
+	file_stack_depth--;
+
+	return file;
+}
+
+/*
+ * Return current file from file stack.
+ */
+slci_source_position*
+top_file_stack ()
+{
+	if (file_stack_depth == 0)
+		return 0;
+	else
+		return file_stack[file_stack_depth];
 }
 
 /*>- EOF -<*/
