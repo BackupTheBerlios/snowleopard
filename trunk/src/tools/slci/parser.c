@@ -28,6 +28,7 @@
  */
 
 /* Snow Leopard headers */
+#include "sl/slci/lexer.h"
 #include "sl/slci/parser.h"
 
 /*

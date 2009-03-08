@@ -45,6 +45,9 @@ libslstdc:
 libslstdcpp:
 	(cd libslstdcpp ; ${MAKE} all);
 
+#
+# Clean rule
+#
 clean:
 	for dir in $(MODULES); do     \
 	  (cd $$dir ; ${MAKE} clean); \

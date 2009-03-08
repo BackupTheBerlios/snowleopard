@@ -29,18 +29,11 @@
 
 /* Standard C headers */
 #include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 /* Snow Leopard headers */
 #include "sl/slci/driver.h"
 #include "sl/slci/parser.h"
 #include "sl/slci/settings.h"
-
-/*
- * Global settings object.
- */
-slci_settings* settings;
 
 /*
  * Function parses the command-line arguments provided by the user.
@@ -50,8 +43,8 @@ parse_command_line (int argc, char** argv)
 {
 	bool ok = true;
 	int i;
-	settings = malloc (sizeof (slci_settings));
-
+	slci_settings* settings = initialize_settings ();
+	
 	if (argc == 1)
 		/* At least one parameter is required. */
 		return false;
@@ -80,12 +73,12 @@ parse_command_line (int argc, char** argv)
 				if (paths[1] == 'I')
 				{
 					/* Source paths [-Ipaths] */
-					
+					add_include_path (argv[i] + 2);
 				}
 				else if (paths[1] == 'S')
 				{
 					/* Source paths [-Spaths] */
-					
+					add_source_path (argv[i] + 2);
 				}
 				else
 					/* Invalid option */
@@ -103,12 +96,22 @@ parse_command_line (int argc, char** argv)
 }
 
 /*
+ * Destroy driver object.
+ */
+void
+destroy_driver ()
+{
+	destroy_settings ();
+}
+
+/*
  * Starts the interpretion process and returns true is finished. It returns false
  * when a fatal error is encountered.
  */
 bool
 start ()
 {
+	
 	return false;
 }
 

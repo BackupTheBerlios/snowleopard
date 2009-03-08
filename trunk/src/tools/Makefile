@@ -54,4 +54,12 @@ sltst:
 lynx:
 	(cd lynx ; ${MAKE} all);
 
+#
+# Clean rule
+#
+clean: $(ALL_TOOLS)
+	for dir in $(ALL_TOOLS) ; do  \
+	  (cd $$dir ; ${MAKE} clean); \
+	done
+
 #>- EOF

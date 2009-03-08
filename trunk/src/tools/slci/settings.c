@@ -27,27 +27,93 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_DRIVER_H_
-#define _SL_SLCI_DRIVER_H_
-
 /* Standard C headers */
 #include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
 
 /* Snow Leopard headers */
 #include "sl/slci/settings.h"
 
 /*
- * Initialization.
+ * Global variables.
  */
-bool parse_command_line (int, char**);
-void destroy_driver ();
+slci_settings* settings;
 
 /*
- * Interpreter functions.
+ * Initialize a settings object.
  */
-bool start ();
-int get_return_value ();
+slci_settings*
+initialize_settings ()
+{
+	settings = malloc (sizeof (slci_settings));
 
-#endif /* !_SL_SLCI_DRIVER_H_ */
+	settings->interactive = false;
+	settings->verbose = false;
+	settings->warrantee = false;
+	settings->license = false;
+
+	settings->source_file = 0;
+	settings->source_paths = 0;
+	settings->size_source_paths = 0;
+	settings->include_paths = 0;
+	settings->size_include_paths = 0;
+	
+	return settings;
+}
+
+/*
+ * Destroy a setting object.
+ */
+void
+destroy_settings ()
+{
+	size_t i;
+	
+	if (settings == 0)
+		/* There is nothing to do */
+		return;
+	
+	/* Free memory for source_file */
+	if (settings->source_file != 0)
+		free (settings->source_file);
+
+	/* Free source_paths */
+	if (settings->source_paths != 0)
+	{
+		for (i = settings->size_source_paths; i != 0; --i)
+			free (settings->source_paths[i - 1]);
+		free (settings->source_paths);
+	}
+	
+	/* Free include_paths */
+	if (settings->include_paths != 0)
+	{
+		for (i = settings->size_include_paths; i != 0; --i)
+			free (settings->include_paths[i - 1]);
+		free (settings->include_paths);
+	}
+	
+	/* Free object */
+	free (settings);
+}
+
+/*
+ * Add a new include path to the settings object.
+ */
+bool
+add_include_path (const char* path)
+{
+
+}
+
+/*
+ * Add a new source path to the settings object.
+ */
+bool
+add_source_path (const char* path)
+{
+
+}
 
 /*>- EOF -<*/

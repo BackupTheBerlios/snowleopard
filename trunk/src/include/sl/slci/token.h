@@ -144,9 +144,76 @@ extern char* keyword_list[];
  */
 enum slci_punctuation
 	{
-		PU_SQUARE_OPEN,  /* { */
-		PU_SQUARE_CLOSE, /* ) */
-
+		PU_XOR,                   /* ^ */
+		PU_XOR_EQ,                /* ^= */
+		PU_MINUS,                 /* - */
+		PU_MINUS_MINUS,           /* -- */
+		PU_INDIRECT,              /* -> */
+	        PU_MINUS_EQ,              /* -= */
+		PU_INDIRECT_PTR,          /* ->* */
+		PU_COMMA,                 /* , */
+		PU_SEMICOLON,             /* ; */
+		PU_DOUBLE_POINT,          /* : */
+		PU_SCOPE_RESOLUTION,      /* :: */
+		PU_ALT_SQUARE_CLOSE,      /* :> */
+		PU_NOT,                   /* ! */
+		PU_NOT_EQ,                /* != */
+		PU_CONDITION,             /* ? */
+		PU_PERIOD,                /* . */
+		PU_TRIPLE_PERIOD,         /* ... */
+		PU_MEMBER_PTR,            /* .* */
+		PU_BRACKET_OPEN,          /* ( */
+		PU_BRACKET_CLOSE,         /* ) */
+		PU_SQUARE_OPEN,           /* [ */
+		PU_SQUARE_CLOSE,          /* ] */
+		PU_CURLY_BRACE_OPEN,      /* { */
+		PU_CURLY_BRACE_CLOSE,     /* } */
+		PU_STAR,                  /* * */
+		PU_MULTIPLY_EQ,           /* *= */
+		PU_DIVIDE,                /* / */
+		PU_DIVIDE_EQ,             /* /= */
+		PU_BITAND,                /* & */
+		PU_AND,                   /* && */
+		PU_AND_EQ,                /* &= */
+		PU_CROSS,                 /* # */
+		PU_CROSS_CROSS,           /* ## */
+		PU_MODULUS,               /* % */
+		PU_ALT_CROSS,             /* %: */
+		PU_ALT_CROSS_CROSS,       /* %:%: */
+		PU_MODULUS_EQ,            /* %= */
+		PU_ALT_CURLY_BRACE_CLOSE, /* %> */
+		PU_PLUS,                  /* + */
+		PU_PLUS_PLUS,             /* ++ */
+		PU_PLUS_EQ,               /* += */
+		PU_LESS_THAN,             /* < */
+		PU_ALT_SQUARE_OPEN,       /* <: */
+		PU_ALT_CURLY_BRACE_OPEN,  /* <% */
+		PU_SHIFT_LEFT,            /* << */
+		PU_SHIFT_LEFT_EQ,         /* <<= */
+		PU_LESS_THAN_EQ,          /* <= */
+		PU_EQ,                    /* = */
+		PU_EQ_EQ,                 /* == */
+		PU_GREATER,               /* > */
+		PU_GREATER_EQ,            /* >= */
+		PU_SHIFT_RIGHT,           /* >> */
+		PU_SHIFT_RIGHT_EQ,        /* >>= */
+		PU_BITOR,                 /* | */
+		PU_OR_EQ,                 /* |= */
+		PU_OR,                    /* || */
+		PU_COMPL,                 /* ~ */
+		PU_ALT_AND,               /* and */
+		PU_ALT_AND_EQ,            /* and_eq */
+		PU_ALT_BITAND,            /* bitand */
+		PU_ALT_BITOR,             /* bitor */
+		PU_ALT_COMPL,             /* compl */
+		PU_DELETE,                /* delete */
+		PU_NEW,                   /* new */
+		PU_ALT_NOT,               /* not */
+		PU_ALT_NOT_EQ,            /* not_eq */
+		PU_ALT_OR,                /* or */
+		PU_ALT_OR_EQ,             /* or_eq */
+		PU_ALT_XOR,               /* xor */
+		PU_ALT_XOR_EQ             /* xor_eq */
 	};
 
 typedef enum slci_punctuation slci_punctuation;
@@ -173,6 +240,6 @@ struct slci_token
 
 typedef struct slci_token slci_token;
 
-#endif /* !_SL_SLCI_INFO_H_ */
+#endif /* !_SL_SLCI_TOKEN_H_ */
 
 /*>- EOF -<*/

@@ -34,19 +34,25 @@
 # Script for configuring the Snow Leopard C++ toolset.
 #/
 
-################################################################################
+#-
+# variables
+#/
+build_path=.
+compiler=gcc
+prefix_path=/usr
+
+#-
 # function process_args: Parses command line options
 #-------------------------------------------------------------------------------
 # Following options are accepted by this configuration script.
 #
-#   --prefix-path <path> Installation directory, defaults to /usr
-#   --build-path  <path> Build directory, defaults to ./build
-#
-################################################################################
+#   --prefix-path <path>     Installation directory, defaults to /usr
+#   --build-path  <path>     Build directory, defaults to .
+#   --with-cc     <compiler> Compiler used for bootstrapping, defaults to gcc.
+#/
 sub process_args ()
 {
     return 0
 }
-
 
 #>- EOF

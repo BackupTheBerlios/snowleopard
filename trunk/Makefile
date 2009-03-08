@@ -35,6 +35,9 @@
 
 MODULES = src include lib bin man share
 
+#
+# Main targets
+#
 all: 
 	for dir in $(MODULES); do   \
 	  (cd $$dir ; ${MAKE} all); \
@@ -65,6 +68,9 @@ sltst:
 	  (cd $$dir ; ${MAKE} sltst); \
 	done
 
+#
+# Clean rule
+#
 clean:
 	for dir in $(MODULES); do     \
 	  (cd $$dir ; ${MAKE} clean); \

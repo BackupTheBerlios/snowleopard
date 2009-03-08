@@ -38,4 +38,9 @@
 all:
 	(echo Building the Snow Leopard C++ Test Tool);
 
+#
+# Clean rule
+#
+clean:
+
 #>- EOF

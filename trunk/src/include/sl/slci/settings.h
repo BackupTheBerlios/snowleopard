@@ -32,6 +32,7 @@
 
 /* Standard C headers */
 #include <stdbool.h>
+#include <stddef.h>
 
 /*
  * Settings structure
@@ -44,10 +45,29 @@ struct slci_settings
 	bool license;
 	char* source_file;
 	char** source_paths;
+	size_t size_source_paths;
 	char** include_paths;
+	size_t size_include_paths;
 };
 
 typedef struct slci_settings slci_settings;
+
+/*
+ * Global variables.
+ */
+extern slci_settings* settings;
+
+/*
+ * Initialize settings.
+ */
+slci_settings* initialize_settings ();
+void destroy_settings ();
+
+/*
+ * Additional functions.
+ */
+bool add_include_path (const char*);
+bool add_source_path (const char*);
 
 #endif /* !_SL_SLCI_SETTINGS_H_ */
 
