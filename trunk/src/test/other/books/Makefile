@@ -73,7 +73,11 @@ TCPL_C4 =
 
 ALL_TCPL = $(TCPL_C1) $(TCPL_C2) $(TCPL_C3) $(TCPL_C4)
 
-ALL_PROGRAMS = $(ALL_TC_L) $(ALL_TCPL)
+TCSL_C2 = tcsl_prg_0201 tcsl_prg_0202 tcsl_prg_0203
+
+ALL_TCSL = $(TCSL_C2)
+
+ALL_PROGRAMS = $(ALL_TC_L) $(ALL_TCPL) $(ALL_TCSL)
 
 #
 # Main targets
@@ -83,6 +87,8 @@ all: $(ALL_PROGRAMS)
 all_tc_l: $(ALL_TC_P)
 
 all_tcpl: $(ALL_TCPL)
+
+all_tcsl: $(ALL_TCSL)
 
 # 
 # Programs that require more than one source file.
