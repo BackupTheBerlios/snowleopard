@@ -45,7 +45,7 @@
 int
 main (int argc, char** argv)
 {
-	print_program_info ();
+	print_info ();
 
 	initialize_driver ();
 	
@@ -54,7 +54,7 @@ main (int argc, char** argv)
 		/*
 		 * An incorrect parameter was specified.
 		 */
-		print_program_usage ();
+		print_usage ();
 		return get_first_fatal_error ();
 	}
 

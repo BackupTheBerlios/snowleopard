@@ -29,6 +29,7 @@
 
 /* Standard C headers */
 #include <stdbool.h>
+#include <string.h>
 
 /* Snow Leopard headers */
 #include "sl/slci/driver.h"
@@ -130,10 +131,12 @@ bool
 start ()
 {
 	if (!parser_is_initialized)
+	{
 		if (initialize_parser (settings->source_file))
 			parser_is_initialized = true;
 		else
 			return false;
+	}
 	
 	return true;
 }

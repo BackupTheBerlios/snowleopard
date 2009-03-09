@@ -33,14 +33,19 @@
 #/
 
 #
-# Variables
+# Variables.
 #
 PROGRAM = slci
+
+CFLAGS = -Wall
 
 SLCI_INCLUDE = ../../include/sl/slci
 
 SL_INCLUDE_PATH = ../../include
 
+#
+# All objects.
+#
 ALL_OBJECTS = binary_search.o driver.o error_handling.o info.o lexer.o main.o \
 	      parser.o reader.o settings.o source_position.o token.o version.o
 

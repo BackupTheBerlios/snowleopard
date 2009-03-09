@@ -30,6 +30,36 @@
 #ifndef _SL_SLCI_SYMBOL_TABLE_H_
 #define _SL_SLCI_SYMBOL_TABLE_H_
 
+/* Snow Leopard headers */
+#include "sl/slci/source_position.h"
+#include "sl/slci/token.h"
+
+/*
+ * Symbol table node.
+ */
+struct slci_symbol_table_node;
+
+typedef struct slci_symbol_table_node slci_symbol_table_node;
+
+struct slci_symbol_table_node
+{
+	char* key;
+	slci_token info;
+	slci_source_position position;
+};
+	
+/*
+ * Symbol table list.
+ */
+struct slci_symbol_table
+{
+	slci_symbol_table_node* first;
+	slci_symbol_table_node* last;
+	slci_symbol_table_node* current;
+};
+
+typedef struct slci_symbol_table slci_symbol_table;
+
 /*
  * Initialize functions.
  */

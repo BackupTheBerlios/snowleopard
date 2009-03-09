@@ -158,6 +158,8 @@ add_path (char** array, size_t size, const char* path)
 
 	/* Delete old array */
 	free (old);
+
+	return size;
 }
 
 /*>- EOF -<*/

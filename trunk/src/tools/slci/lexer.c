@@ -66,6 +66,7 @@ initialize_lexer (char* file)
 	if (!initialize_reader (file))
 		return false;
 
+	return true;
 }
 
 /*
@@ -83,7 +84,7 @@ destroy_lexer ()
 slci_token
 get_next_token ()
 {
-
+	return current_token;
 }
 
 /*
@@ -93,7 +94,7 @@ get_next_token ()
 slci_token
 get_prev_token ()
 {
-
+	return previous_token;
 }
 
 /*
@@ -103,7 +104,7 @@ get_prev_token ()
 bool
 put_back_token ()
 {
-
+	return false;
 }
 
 /*
@@ -112,7 +113,7 @@ put_back_token ()
 char*
 lex_comment ()
 {
-
+	
 }
 
 /*

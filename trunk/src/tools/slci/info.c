@@ -39,7 +39,7 @@
  * Prints program name and version number.
  */
 void
-print_program_info ()
+print_info ()
 {
 	char* buffer = malloc (sizeof (char[50]));
 
@@ -88,7 +88,7 @@ print_license ()
  * Prints program usage information.
  */
 void
-print_program_usage ()
+print_usage ()
 {
 	fprintf (
 		stderr,
