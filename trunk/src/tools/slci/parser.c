@@ -34,12 +34,12 @@
 /*
  * Private function prototypes.
  */
-void parse_class ();
-void parse_definition ();
-void parse_function ();
-void parse_statement ();
-void parse_template ();
-void parse_translation_unit ();
+static void parse_class ();
+static void parse_definition ();
+static void parse_function ();
+static void parse_statement ();
+static void parse_template ();
+static void parse_translation_unit ();
 
 /*
  * Parse the translation unit.

@@ -38,7 +38,7 @@
 /*
  * Private function prototypes.
  */
-size_t add_path (char**, size_t, const char*);
+static size_t add_path (char**, size_t, const char*);
 
 /*
  * Global variables.

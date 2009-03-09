@@ -42,12 +42,12 @@
 /*
  * Private function prototypes.
  */
-char* lex_comment ();
-char* lex_literal ();
-char* lex_reserved ();
-size_t keyword_position ();
-size_t punctuation_position ();
-char* preprocess_token (slci_token);
+static char* lex_comment ();
+static char* lex_literal ();
+static char* lex_reserved ();
+static size_t keyword_position ();
+static size_t punctuation_position ();
+static char* preprocess_token (slci_token);
 
 /*
  * Global variables.
@@ -98,10 +98,6 @@ bool put_back_token ()
 {
 
 }
-
-/*
- *
- */
 
 /*
  * Function preprocesses the preprocessor token given as parameter and returns a

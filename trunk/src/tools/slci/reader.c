@@ -38,9 +38,9 @@
 /*
  * Private function prototypes.
  */
-void push_file_stack (slci_source_position*);
-slci_source_position* pop_file_stack ();
-slci_source_position* top_file_stack ();
+static void push_file_stack (slci_source_position*);
+static slci_source_position* pop_file_stack ();
+static slci_source_position* top_file_stack ();
 
 /*
  * Private global variables.
