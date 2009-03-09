@@ -39,8 +39,9 @@
 /*
  * Initialization.
  */
-bool parse_command_line (int, char**);
+bool initialize_driver ();
 void destroy_driver ();
+bool parse_command_line (int, char**);
 
 /*
  * Interpreter functions.

@@ -47,6 +47,8 @@ main (int argc, char** argv)
 {
 	print_program_info ();
 
+	initialize_driver ();
+	
 	if (!parse_command_line (argc, argv))
 	{
 		/*

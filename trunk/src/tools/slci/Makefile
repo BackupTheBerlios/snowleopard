@@ -57,7 +57,7 @@ INFO_DEPENDS = $(SLCI_INCLUDE)/info.h $(SLCI_INCLUDE)/version.h
 LEXER_DEPENDS = $(SLCI_INCLUDE)/binary_search.h $(SLCI_INCLUDE)/lexer.h \
 		$(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/preprocessor.h \
 		$(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_position.h \
-		$(SLCI_INCLUDE)/token.h
+		$(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h
 
 MAIN_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/error_handling.h \
                $(SLCI_INCLUDE)/info.h $(SLCI_INCLUDE)/settings.h \

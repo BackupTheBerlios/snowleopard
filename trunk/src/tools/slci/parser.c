@@ -42,6 +42,25 @@ static void parse_template ();
 static void parse_translation_unit ();
 
 /*
+ * Initialize parser. It initializes the lexer using the file.
+ */
+bool
+initialize_parser (char* file)
+{
+	if (!initialize_lexer (file))
+		return false;
+}
+
+/*
+ * Destroy the parser.
+ */
+void
+destroy_parser ()
+{
+	destroy_lexer ();
+}
+
+/*
  * Parse the translation unit.
  */
 bool

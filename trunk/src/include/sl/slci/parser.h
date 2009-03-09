@@ -37,7 +37,7 @@
  * Initialize parser.
  */
 bool initialize_parser (char*);
-void terminate_parser ();
+void destroy_parser ();
 
 /*
  * Parse source file.

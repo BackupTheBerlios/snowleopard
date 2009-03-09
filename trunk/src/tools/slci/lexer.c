@@ -37,6 +37,7 @@
 #include "sl/slci/binary_search.h"
 #include "sl/slci/lexer.h"
 #include "sl/slci/preprocessor.h"
+#include "sl/slci/symbol_table.h"
 #include "sl/slci/token.h"
 
 /*
@@ -47,7 +48,7 @@ static char* lex_literal ();
 static char* lex_reserved ();
 static size_t keyword_position ();
 static size_t punctuation_position ();
-static char* preprocess_token (slci_token);
+static char* preprocess_token ();
 
 /*
  * Global variables.
@@ -59,24 +60,28 @@ slci_source_position* current_source_position;
 /*
  * Function initializes the lexer by giving it the first filename.
  */
-bool initialze (char* filename)
+bool
+initialize_lexer (char* file)
 {
+	if (!initialize_reader (file))
+		return false;
 
-	return false;
 }
 
 /*
  * Function terminates the lexer and cleans up open files and buffers.
  */
-bool terminate ()
+void
+destroy_lexer ()
 {
-
+	destroy_reader ();
 }
 
 /*
  * Function gets the next token from the stream.
  */
-slci_token get_next_token ()
+slci_token
+get_next_token ()
 {
 
 }
@@ -85,7 +90,8 @@ slci_token get_next_token ()
  * Function gets the previous token. This is not relexed, it is just a variable
  * return to the caller.
  */
-slci_token get_prev_token ()
+slci_token
+get_prev_token ()
 {
 
 }
@@ -94,7 +100,58 @@ slci_token get_prev_token ()
  * Function puts the current token (the one returned by get_next_token) back so
  * the next call to get_next_token will return the previous token.
  */
-bool put_back_token ()
+bool
+put_back_token ()
+{
+
+}
+
+/*
+ * Lex a comment. Comments start with // or /*. 
+ */
+char*
+lex_comment ()
+{
+
+}
+
+/*
+ * Lex a literal. Literals either start with a number, a single quote or
+ * a double quote.
+ */
+char*
+lex_literal ()
+{
+
+}
+
+/*
+ * Lex a reserved token. It searches the list of keywords and punctuations and
+ * if no match is found it searches the symbol table. If still no match, this
+ * is a new identifier that needs to be entered in the symbol table.
+ */
+char*
+lex_reserved ()
+{
+
+}
+
+/*
+ * Function returns position of the keyword. It searches the current token in
+ * the keywords array.
+ */
+size_t
+keyword_position ()
+{
+
+}
+
+/*
+ * Function returns position of the punctuation. It searches the current token
+ * in the punctuation array.
+ */
+size_t
+punctuation_position ()
 {
 
 }
@@ -103,7 +160,8 @@ bool put_back_token ()
  * Function preprocesses the preprocessor token given as parameter and returns a
  * string containing the preprocessed token.
  */
-char* preprocess_token (slci_token token)
+char*
+preprocess_token (slci_token token)
 {
 
 }

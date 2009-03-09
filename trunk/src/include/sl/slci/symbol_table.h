@@ -27,37 +27,15 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_LEXER_H_
-#define _SL_SLCI_LEXER_H_
-
-/* Standard C headers */
-#include <stdbool.h>
-
-/* Snow Leopard headers */
-#include "sl/slci/reader.h"
-#include "sl/slci/source_position.h"
-#include "sl/slci/token.h"
-
-/*
- * Global variables.
- */
-extern slci_token current_token;
-extern slci_token previous_token;
-extern slci_source_position* current_source_position;
+#ifndef _SL_SLCI_SYMBOL_TABLE_H_
+#define _SL_SLCI_SYMBOL_TABLE_H_
 
 /*
  * Initialize functions.
  */
-bool initialize_lexer (char*);
-void destroy_lexer ();
+bool initialize_symbol_table (char*);
+void destroy_symbol_table ();
 
-/*
- * Lexer functions.
- */
-slci_token get_next_token ();
-slci_token get_prev_token ();
-bool put_back_token ();
-
-#endif /* !_SL_SLCI_LEXER_H_ */
+#endif /* !_SL_SLCI_SYMBOL_TABLE_H_ */
 
 /*>- EOF -<*/

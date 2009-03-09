@@ -36,6 +36,33 @@
 #include "sl/slci/settings.h"
 
 /*
+ * Private global variables.
+ */
+bool parser_is_initialized;
+
+/*
+ * Initialize driver.
+ */
+bool
+initialize_driver ()
+{
+	parser_is_initialized = false;
+
+	return true;
+}
+
+/*
+ * Destroy driver object.
+ */
+void
+destroy_driver ()
+{
+	destroy_settings ();
+	if (parser_is_initialized)
+		destroy_parser ();
+}
+
+/*
  * Function parses the command-line arguments provided by the user.
  */
 bool
@@ -96,23 +123,19 @@ parse_command_line (int argc, char** argv)
 }
 
 /*
- * Destroy driver object.
- */
-void
-destroy_driver ()
-{
-	destroy_settings ();
-}
-
-/*
  * Starts the interpretion process and returns true is finished. It returns false
  * when a fatal error is encountered.
  */
 bool
 start ()
 {
+	if (!parser_is_initialized)
+		if (initialize_parser (settings->source_file))
+			parser_is_initialized = true;
+		else
+			return false;
 	
-	return false;
+	return true;
 }
 
 /*
