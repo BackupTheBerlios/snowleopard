@@ -33,12 +33,15 @@
 # C/C++ books and articles.
 #/
 
-MODULES = game_institute
+MODULES = books game_institute
 
 all: 
 	for dir in $(MODULES); do   \
 	  (cd $$dir ; ${MAKE} all); \
 	done
+
+books:
+	(cd books ; ${MAKE} all);
 
 game-institute:
 	(cd game_institute ; ${MAKE} all);
