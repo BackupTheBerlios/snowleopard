@@ -27,7 +27,7 @@
 #/
 
 #-
-# File: /src/libs/libslstdc/Makefile
+# File: /src/libs/libslstdcpp/Makefile
 #
 # Makefile for building and testing the Snow Leopard C++ libraries.
 #/
@@ -35,13 +35,13 @@
 #
 # All objects
 #
-ALL_OBJECTS = signal.o stddef.o stdlib.o string.o
+ALL_OBJECTS = csignal.o cstddef.o cstdlib.o cstring.o
 
 #
 # Libraries
 #
-DYNAMIC_LIBRARY = libslstdc.so
-STATIC_LIBRARY = libslstdc.a
+DYNAMIC_LIBRARY = libslstdcpp.so
+STATIC_LIBRARY = libslstdcpp.a
 
 ALL_LIBRARIES = $(STATIC_LIBRARY) $(DYNAMIC_LIBRARY)
 
