@@ -32,13 +32,15 @@
 # Makefile for other the programs of the game institute C++ courses. The name
 # of each program is constructed as follows:
 #
-#     CCCC_[prg|ex]_CHEN
+#     BOOK_[prg|ex]_CHEN
 #
-#       CCCC     = Course 
-#                 cpp1 = C++ Course 1
-#                 cpp2 = C++ Course 2
-#                 gp_1 = Graphics Programming 1 (OpenGL/SDL instead of DirectX)
-#                 gp_2 = Graphics Programming 2 (OpenGL/SDL instead of DirectX)
+#       BOOK     = Book from which the program comes 
+#		  ctmp = Template Metaprogramming (Abrahams, Gurtovoy)
+#		  mcpd = Modern C++ design (Alexandrescu)
+#                 tc_l = The C++ programming language (Stroustrup)
+#                 tcio = The C++ standard IOStream library (Lanker, Kreft)
+#                 tcpl = The C programming language (Richie, Kerninghan)
+#                 tcsl = The C++ standard library (Jossitus)
 #       [prg|ex] = prg = Sample program | ex = Exercise
 #       CH       = Chapter number
 #       EN       = Exercise number
@@ -52,50 +54,35 @@ ALL_OBJECTS = *.o
 #
 # All programs
 #
-PROGRAMS_LESSON1 = cpp1_prg_0101 cpp1_prg_0102 cpp1_prg_0103 cpp1_prg_0104 \
-		   cpp1_prg_0105 cpp1_prg_0106 cpp1_prg_0107 cpp1_prg_0108 \
-		   cpp1_prg_0109 cpp1_prg_0110 cpp1_prg_0111 \
-		   cpp1_ex_0101 cpp1_ex_0102 cpp1_ex_0103 cpp1_ex_0104     \
-		   cpp1_ex_0105 cpp1_ex_0106
+TC_L_C1 = 
 
-PROGRAMS_LESSON2 = cpp1_prg_0201 cpp1_prg_0202 cpp1_prg_0203 cpp1_prg_0204 \
-		   cpp1_prg_0205 cpp1_prg_0206 cpp1_prg_0207 cpp1_prg_0208 \
-		   cpp1_prg_0209 cpp1_prg_0210 cpp1_prg_0211 cpp1_prg_0212 \
-		   cpp1_prg_0213 cpp1_prg_0214 cpp1_prg_0215 cpp1_prg_0216 \
-		   cpp1_prg_0217 cpp1_prg_0218 \
-		   cpp1_ex_0201 cpp1_ex_0202 cpp1_ex_0203 cpp1_ex_0204     \
-		   cpp1_ex_0205 cpp1_ex_0206 cpp1_ex_0207 cpp1_ex_0208
+TC_L_C4 = tc_l_ex_0401
 
-PROGRAMS_LESSON3 = cpp1_prg_0301 cpp1_prg_0302 cpp1_prg_0303 cpp1_prg_0304 \
-		   cpp1_prg_0305 cpp1_prg_0306 cpp1_prg_0307 cpp1_prg_0308 \
-		   cpp1_prg_0309 \
-		   cpp1_ex_0301 cpp1_ex_0302 cpp1_ex_0303 cpp1_ex_0304     \
-		   cpp1_ex_0305 cpp1_ex_0306 cpp1_ex_0307 cpp1_ex_0308
+TC_L_C7 = tc_l_prg_0701 \
+	  tc_l_ex_0701 tc_l_ex_0702 tc_l_ex_0703 tc_l_ex_0704
 
-PROGRAMS_LESSON4 = cpp1_prg_0401 cpp1_prg_0402 cpp1_prg_0403 cpp1_prg_0404 \
-		   cpp1_prg_0405 cpp1_prg_0406 cpp1_prg_0407 cpp1_prg_0408 \
-		   cpp1_prg_0409 cpp1_prg_0410 cpp1_prg_0411 cpp1_prg_0412 \
-		   cpp1_ex_0402  cpp1_ex_0403 cpp1_ex_0404
+ALL_TC_L = $(TC_L_C1) $(TC_L_C4) $(TC_L_C7)
 
-PROGRAMS_LESSON5 = 
+TCPL_C1 = tcpl_prg_0101
 
-ALL_PROGRAMS = $(PROGRAMS_LESSON1) $(PROGRAMS_LESSON2) $(PROGRAMS_LESSON3) \
-	       $(PROGRAMS_LESSON4) $(PROGRAMS_LESSON5)
+TCPL_C2 = 
+
+TCPL_C3 = 
+
+TCPL_C4 = 
+
+ALL_TCPL = $(TCPL_C1) $(TCPL_C2) $(TCPL_C3) $(TCPL_C4)
+
+ALL_PROGRAMS = $(ALL_TC_L) $(ALL_TCPL)
 
 #
 # Main targets
 #
 all: $(ALL_PROGRAMS)
 
-lesson1: $(PROGRAMS_LESSON1)
+all_tc_l: $(ALL_TC_P)
 
-lesson2: $(PROGRAMS_LESSON2)
-
-lesson3: $(PROGRAMS_LESSON3)
-
-lesson4: $(PROGRAMS_LESSON4)
-
-lesson5: $(PROGRAMS_LESSON5)
+all_tcpl: $(ALL_TCPL)
 
 # 
 # Programs that require more than one source file.
@@ -108,6 +95,14 @@ lesson5: $(PROGRAMS_LESSON5)
 	$(CXX) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
 
 .SUFFIXES: .cpp .o
+
+#
+# Suffix rule for compiling C sources
+#
+.c.o:
+	$(CXX) -c $(CLFAGS) $(CPPFLAGS) -o $@ $<
+
+.SUFFIXES: .c .o
 
 #
 # Clean rule
