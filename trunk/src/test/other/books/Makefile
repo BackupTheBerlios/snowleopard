@@ -73,7 +73,9 @@ TCPL_C4 =
 
 ALL_TCPL = $(TCPL_C1) $(TCPL_C2) $(TCPL_C3) $(TCPL_C4)
 
-TCSL_C2 = tcsl_prg_0201 tcsl_prg_0202 tcsl_prg_0203
+TCSL_C2 = tcsl_prg_0201 tcsl_prg_0202 tcsl_prg_0203 tcsl_prg_0204 tcsl_prg_0205 \
+	  tcsl_prg_0206 tcsl_prg_0207 tcsl_prg_0208 tcsl_prg_0209 tcsl_prg_0210 \
+	  tcsl_prg_0211 tcsl_prg_0212 tcsl_prg_0213 tcsl_prg_0214 tcsl_prg_0215
 
 ALL_TCSL = $(TCSL_C2)
 
