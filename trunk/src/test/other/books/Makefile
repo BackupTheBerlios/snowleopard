@@ -77,7 +77,9 @@ TCSL_C2 = tcsl_prg_0201 tcsl_prg_0202 tcsl_prg_0203 tcsl_prg_0204 tcsl_prg_0205 
 	  tcsl_prg_0206 tcsl_prg_0207 tcsl_prg_0208 tcsl_prg_0209 tcsl_prg_0210 \
 	  tcsl_prg_0211 tcsl_prg_0212 tcsl_prg_0213 tcsl_prg_0214 tcsl_prg_0215
 
-ALL_TCSL = $(TCSL_C2)
+TCSL_C3 = tcsl_prg_0301 tcsl_prg_0302 tcsl_prg_0303
+
+ALL_TCSL = $(TCSL_C2) $(TCSL_C3)
 
 ALL_PROGRAMS = $(ALL_TC_L) $(ALL_TCPL) $(ALL_TCSL)
 
@@ -117,6 +119,7 @@ all_tcsl: $(ALL_TCSL)
 #
 clean:
 	rm -f $(ALL_PROGRAMS) ; \
-	rm -f $(ALL_OBJECTS)
+	rm -f $(ALL_OBJECTS) ;  \
+	rm -f *.core
 
 #>- EOF
