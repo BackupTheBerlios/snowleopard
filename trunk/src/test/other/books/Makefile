@@ -27,7 +27,7 @@
 #/
 
 #-
-# File: /src/test/other/game_institute/Makefile
+# File: /src/test/other/books/Makefile
 #
 # Makefile for other the programs of the game institute C++ courses. The name
 # of each program is constructed as follows:

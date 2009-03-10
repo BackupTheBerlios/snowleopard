@@ -29,11 +29,17 @@
 
 /* Standard C headers */
 #include <stdbool.h>
+#include <stddef.h>
 #include <stdlib.h>
 
 /* Snow Leopard headers */
 #include "sl/slci/reader.h"
 #include "sl/slci/source_position.h"
+
+/*
+ * Initial reader stack size.
+ */
+const size_t InitialStackSize = 10;
 
 /*
  * Private function prototypes.
@@ -56,7 +62,7 @@ bool
 initialize_reader (char* file)
 {
 	/* Initialize file stack */
-	file_stack_reserved = 10;
+	file_stack_reserved = InitialStackSize;
 	file_stack =
 	    malloc (sizeof (slci_source_position* [file_stack_reserved]));
 	file_stack_depth = (size_t)-1;

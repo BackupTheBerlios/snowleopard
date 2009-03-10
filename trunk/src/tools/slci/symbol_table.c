@@ -27,46 +27,19 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_SYMBOL_TABLE_H_
-#define _SL_SLCI_SYMBOL_TABLE_H_
-
-/* Standard C headers */
-#include <stdbool.h>
-#include <stddef.h>
-
 /* Snow Leopard headers */
-#include "sl/slci/source_position.h"
-#include "sl/slci/token.h"
+#include "sl/slci/symbol_table.h"
 
 /*
- * Symbol table entry.
+ * Initial symbol table size.
  */
-struct slci_symtab_entry
-{
-	char* key;
-	slci_token info;
-	slci_source_position position;
-};
-
-typedef struct slci_symtab_entry slci_symtab_entry;
+const size_t InitialSymtabSize = 10;
 
 /*
- * Initialize functions.
+ * Private global variables.
  */
-bool initialize_symtab ();
-void destroy_symtab ();
-void clear_symtab ();
-
-/*
- * Get symbol table entry.
- */
-slci_symtab_entry* get_symtab_entry (char*);
-
-/*
- * Set symbol table entry.
- */
-bool set_symtab_entry (char*, slci_token, slci_source_position);
-
-#endif /* !_SL_SLCI_SYMBOL_TABLE_H_ */
+slci_symtab_entry** symtab;
+char** symtab_keys;
+size_t symtab_size;
 
 /*>- EOF -<*/
