@@ -46,9 +46,9 @@ SL_INCLUDE_PATH = ../../include
 #
 # All objects.
 #
-ALL_OBJECTS = binary_search.o driver.o error_handling.o info.o lexer.o main.o \
-	      parser.o reader.o settings.o source_position.o symbol_table.o \
-	      token.o version.o
+ALL_OBJECTS = binary_search.o driver.o error_handling.o hash_function.o info.o \
+	      lexer.o main.o parser.o reader.o settings.o source_position.o \
+	      symbol_table.o token.o version.o
 
 BINARY_SEARCH_DEPENDS = $(SLCI_INCLUDE)/binary_search.h
 
@@ -57,6 +57,8 @@ DRIVER_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/parser.h \
 
 ERROR_HANDLING_DEPENDS = $(SLCI_INCLUDE)/error_handling.h \
                          $(SLCI_INCLUDE)/source_position.h
+
+HASH_FUNCTION_DEPENDS = $(SLCI_INCLUDE)/hash_function.h
 
 INFO_DEPENDS = $(SLCI_INCLUDE)/info.h $(SLCI_INCLUDE)/version.h
 
@@ -103,6 +105,9 @@ driver.o: driver.c $(DRIVER_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
 
 error_handling.o: error_handling.c $(ERROR_HANDLING_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+
+hash_function.o: hash_function.c $(HASH_FUNCTION_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
 
 info.o: info.c $(INFO_DEPENDS)

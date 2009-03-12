@@ -95,7 +95,7 @@ destroy_reader ()
 char
 get_char ()
 {
-
+	return '\0';
 }
 
 /*
@@ -104,7 +104,7 @@ get_char ()
 bool
 put_back_char (char c)
 {
-
+	return false;
 }
 
 /*
