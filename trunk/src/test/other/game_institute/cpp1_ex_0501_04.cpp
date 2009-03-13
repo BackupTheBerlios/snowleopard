@@ -32,11 +32,11 @@
 #include <string>
 
 /* Snow Leopard headers */
-#include "cpp1_prg_0504_01.hpp"
-#include "cpp1_prg_0504_02.hpp"
-#include "cpp1_prg_0504_03.hpp"
-#include "cpp1_prg_0504_04.hpp"
-#include "cpp1_prg_0504_05.hpp"
+#include "cpp1_ex_0501_01.hpp"
+#include "cpp1_ex_0501_02.hpp"
+#include "cpp1_ex_0501_03.hpp"
+#include "cpp1_ex_0501_04.hpp"
+#include "cpp1_ex_0501_05.hpp"
 
 /*
  * Monster contructor.
@@ -46,8 +46,8 @@ monster::monster (
 	int armor, const std::string& weaponname, int low_damage,
 	  int high_damage
 	)
-  : name_ (name), hit_points_ (hp), accuracy_ (acc), exp_reward_ (xpreward),
-    armor_ (armor)
+		: name_ (name), hit_points_ (hp), accuracy_ (acc), exp_reward_ (xpreward),
+		  armor_ (armor)
 {
 	weapon_.name_ = weaponname;
 	weapon_.damage_range_.low_ = low_damage;

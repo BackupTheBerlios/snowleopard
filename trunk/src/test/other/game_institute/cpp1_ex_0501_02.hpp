@@ -27,11 +27,11 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_TEST_OTHER_GAME_INSTITUTE_CPP1_PRG_0504_02_HPP_
-#define _SL_TEST_OTHER_GAME_INSTITUTE_CPP1_PRG_0504_02_HPP_
+#ifndef _SL_TEST_OTHER_GAME_INSTITUTE_CPP1_EX_0501_02_HPP_
+#define _SL_TEST_OTHER_GAME_INSTITUTE_CPP1_EX_0501_02_HPP_
 
 /* Snow Leopard headers */
-#include "cpp1_prg_0504_01.hpp"
+#include "cpp1_ex_0501_01.hpp"
 
 /*
  * Random function prototypes.
@@ -39,6 +39,6 @@
 int random (range);
 int random (int, int);
 
-#endif /* !_SL_TEST_OTHER_GAME_INSTITUTE_CPP1_PRG_0504_02_HPP_ */
+#endif /* !_SL_TEST_OTHER_GAME_INSTITUTE_CPP1_EX_0501_02_HPP_ */
 
 /*>- EOF -<*/

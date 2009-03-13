@@ -31,10 +31,10 @@
 #include <iostream>
 
 /* Snow Leopard headers */
-#include "cpp1_prg_0504_02.hpp"
-#include "cpp1_prg_0504_03.hpp"
-#include "cpp1_prg_0504_04.hpp"
-#include "cpp1_prg_0504_06.hpp"
+#include "cpp1_ex_0501_02.hpp"
+#include "cpp1_ex_0501_03.hpp"
+#include "cpp1_ex_0501_04.hpp"
+#include "cpp1_ex_0501_06.hpp"
 
 /*
  * map constructor.
@@ -74,7 +74,7 @@ map::move_player ()
 	using std::endl;
 
 	cout << "1)North 2)East 3)South 4)West: ";
-        int selection = 1;
+	int selection = 1;
 	cin >> selection;
 
 	/* Update coordinates based on selection. */
@@ -109,7 +109,7 @@ map::check_random_encounter ()
 	using std::cin;
 	using std::cout;
 	using std::endl;
-	
+
 	int roll = random (0, 20);
 
 	monster* opponent = 0;
@@ -148,7 +148,7 @@ map::check_random_encounter ()
 		cout << "You've encountered an Orc Lord!!!" << endl;
 		cout << "Prepare for battle!" <<  endl <<  endl;
 	}
-	
+
 	return opponent;
 }
 
@@ -160,7 +160,7 @@ map::print_player_pos ()
 {
 	using std::cout;
 	using std::endl;
-	
+
 	cout << "Player position = ("
 	     << player_x_pos_ << ", " << player_y_pos_
 	     << ")" << endl << endl;

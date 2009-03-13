@@ -31,8 +31,8 @@
 #include <cstdlib>
 
 /* Snow Leopard headers */
-#include "cpp1_prg_0504_01.hpp"
-#include "cpp1_prg_0504_02.hpp"
+#include "cpp1_ex_0501_01.hpp"
+#include "cpp1_ex_0501_02.hpp"
 
 /*
  * Random function with range.

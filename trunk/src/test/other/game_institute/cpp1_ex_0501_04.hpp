@@ -27,14 +27,14 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_TEST_OTHER_GAME_INSTITUTE_CPP1_PRG_0504_04_HPP_
-#define _SL_TEST_OTHER_GAME_INSTITUTE_CPP1_PRG_0504_04_HPP_
+#ifndef _SL_TEST_OTHER_GAME_INSTITUTE_CPP1_EX_0501_04_HPP_
+#define _SL_TEST_OTHER_GAME_INSTITUTE_CPP1_EX_0501_04_HPP_
 
 /* Standard C++ headers */
 #include <string>
 
 /* Snow Leopard headers */
-#include "cpp1_prg_0504_03.hpp"
+#include "cpp1_ex_0501_03.hpp"
 
 /* Forward declaration */
 class player;
@@ -70,6 +70,6 @@ private:
 
 };
 
-#endif /* !_SL_TEST_OTHER_GAME_INSTITUTE_CPP1_PRG_0504_04_HPP_ */
+#endif /* !_SL_TEST_OTHER_GAME_INSTITUTE_CPP1_EX_0501_04_HPP_ */
 
 /*>- EOF -<*/

@@ -32,19 +32,19 @@
 #include <string>
 
 /* Snow Leopard headers */
-#include "cpp1_prg_0504_01.hpp"
-#include "cpp1_prg_0504_02.hpp"
-#include "cpp1_prg_0504_03.hpp"
-#include "cpp1_prg_0504_04.hpp"
-#include "cpp1_prg_0504_05.hpp"
+#include "cpp1_ex_0501_01.hpp"
+#include "cpp1_ex_0501_02.hpp"
+#include "cpp1_ex_0501_03.hpp"
+#include "cpp1_ex_0501_04.hpp"
+#include "cpp1_ex_0501_05.hpp"
 
 /*
  * Player constructor, just initializes all members.
  */
 player::player ()
-  : name_ ("Default"), class_name_ ("Default"), accuracy_ (0), hit_points_ (0),
-    max_hit_points_ (0), exp_points_ (0), next_level_exp_ (0), level_ (0),
-    armor_ (0)
+		: name_ ("Default"), class_name_ ("Default"), accuracy_ (0), hit_points_ (0),
+		  max_hit_points_ (0), exp_points_ (0), next_level_exp_ (0), gold_ (0),
+		  level_ (0), armor_ (0)
 {
 	weapon_.name_ = "Default weapon name";
 	weapon_.damage_range_.low_ = 0;
@@ -112,6 +112,7 @@ player::create_class ()
 		max_hit_points_ = 20;
 		exp_points_ = 0;
 		next_level_exp_ = 1000;
+		gold_ = 0;
 		level_ = 1;
 		armor_ = 4;
 		weapon_.name_ = "Long Sword";
@@ -126,6 +127,7 @@ player::create_class ()
 		max_hit_points_ = 10;
 		exp_points_ = 0;
 		next_level_exp_ = 1000;
+		gold_ = 0;
 		level_ = 1;
 		armor_ = 1;
 		weapon_.name_ = "Staff";
@@ -140,6 +142,7 @@ player::create_class ()
 		max_hit_points_ = 15;
 		exp_points_ = 0;
 		next_level_exp_ = 1000;
+		gold_ = 0;
 		level_ = 1;
 		armor_ = 3;
 		weapon_.name_ = "Flail";
@@ -154,6 +157,7 @@ player::create_class ()
 		max_hit_points_ = 12;
 		exp_points_ = 0;
 		next_level_exp_ = 1000;
+		gold_ = 0;
 		level_ = 1;
 		armor_ = 2;
 		weapon_.name_ = "Short Sword";
@@ -174,7 +178,7 @@ player::attack (monster& opponent)
 	using std::cin;
 	using std::cout;
 	using std::endl;
-	
+
 	int selection = 1;
 	cout << "1)Attack 2)Run: ";
 	cin >> selection;
@@ -239,7 +243,7 @@ player::level_up ()
 {
 	using std::cout;
 	using std::endl;
-	
+
 	if (exp_points_ == next_level_exp_)
 	{
 		cout << "You gained a level!" << endl;
@@ -292,6 +296,7 @@ player::view_stats ()
 	cout << "Max Hitpoints    = " << max_hit_points_ << endl;
 	cout << "Experience       = " << exp_points_ << endl;
 	cout << "Exp for Next Lvl = " << next_level_exp_ << endl;
+	cout << "Gold             = " << gold_ << endl;
 	cout << "Level            = " << level_ << endl;
 	cout << "Armor            = " << armor_ << endl;
 	cout << "Weapon Name      = " << weapon_.name_ << endl;
@@ -312,12 +317,16 @@ player::victory (int experience)
 {
 	using std::cout;
 	using std::endl;
-	
+
+	int gold = random (1, experience);
 	cout << "You won the battle!" << endl;
-	cout << "You win " <<  experience << " experience points!"
+	cout << "You win " <<  experience
+	     << " experience points and " << gold
+	     << " gold coins!"
 	     << endl << endl;
 
 	exp_points_ += experience;
+	gold_ += gold;
 }
 
 /*

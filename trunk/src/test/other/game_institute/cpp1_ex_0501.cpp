@@ -33,8 +33,8 @@
 #include <iostream>
 
 /* Snow Leopard headers */
-#include "cpp1_prg_0504_05.hpp"
-#include "cpp1_prg_0504_06.hpp"
+#include "cpp1_ex_0501_05.hpp"
+#include "cpp1_ex_0501_06.hpp"
 
 /*
  * This program is a simple RPG game.
@@ -69,56 +69,56 @@ main ()
 		switch (selection)
 		{
 		case 1: /* Move */
- 		    {
-			    monster* opponent = 0;
-			    
-			    /* Move the player */
-			    game_map.move_player ();
-			    
-			    /* Check for random encounter */
-			    opponent = game_map.check_random_encounter ();
-			    
-			    if (opponent != 0)
-			    {
-				    /* Loop until a break statement */
-				    while (true)
-				    {
-					    main_player.display_hit_points ();
-					    opponent->display_hit_points ();
-					    cout << endl;
+		        {
+				monster* opponent = 0;
 
-					    /* Allow player to attack first */
-					    if (main_player.attack (*opponent))
-						    break;
+				/* Move the player */
+				game_map.move_player ();
 
-					    if (opponent->is_dead ())
-					    {
-						    main_player.victory (
-							    opponent->get_xpreward ()
-							    );
-						    main_player.level_up ();
-						    break;
-					    }
-					    
-					    opponent->attack (main_player);
-					    
-					    if (main_player.is_dead ())
-					    {
-						    main_player.gameover ();
-						    done = true;
-						    break;
-					    }
-				    }
-			    }
-			    delete opponent;
-			    opponent = 0;
-		    }
-		    break;
-			
+				/* Check for random encounter */
+				opponent = game_map.check_random_encounter ();
+
+				if (opponent != 0)
+				{
+					/* Loop until a break statement */
+					while (true)
+					{
+						main_player.display_hit_points ();
+						opponent->display_hit_points ();
+						cout << endl;
+
+						/* Allow player to attack first */
+						if (main_player.attack (*opponent))
+							break;
+
+						if (opponent->is_dead ())
+						{
+							main_player.victory (
+								opponent->get_xpreward ()
+								);
+							main_player.level_up ();
+							break;
+						}
+
+						opponent->attack (main_player);
+
+						if (main_player.is_dead ())
+						{
+							main_player.gameover ();
+							done = true;
+							break;
+						}
+					}
+				}
+				delete opponent;
+				opponent = 0;
+			}
+			break;
+
 		case 2: /* Rest */
 			main_player.rest ();
 			break;
-			
+
 		case 3: /* View Stats */
 			main_player.view_stats ();
 			break;
@@ -126,7 +126,7 @@ main ()
 		case 4: /* Quit */
 			done = true;
 			break;
-			
+
 		}
 	}
 }

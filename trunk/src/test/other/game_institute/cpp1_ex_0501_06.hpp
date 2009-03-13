@@ -27,12 +27,12 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_TEST_OTHER_GAME_INSTITUTE_CPP1_PRG_0504_06_HPP_
-#define _SL_TEST_OTHER_GAME_INSTITUTE_CPP1_PRG_0504_06_HPP_
+#ifndef _SL_TEST_OTHER_GAME_INSTITUTE_CPP1_EX_0501_06_HPP_
+#define _SL_TEST_OTHER_GAME_INSTITUTE_CPP1_EX_0501_06_HPP_
 
 /* Snow Leopard headers */
-#include "cpp1_prg_0504_03.hpp"
-#include "cpp1_prg_0504_04.hpp"
+#include "cpp1_ex_0501_03.hpp"
+#include "cpp1_ex_0501_04.hpp"
 
 /*
  * map class.
@@ -47,13 +47,13 @@ public:
 	void move_player ();
 	monster* check_random_encounter ();
 	void print_player_pos ();
-	
+
 private:
 	int player_x_pos_;
 	int player_y_pos_;
-	
+
 };
 
-#endif /* !_SL_TEST_OTHER_GAME_INSTITUTE_CPP1_PRG_0504_06_HPP_ */
+#endif /* !_SL_TEST_OTHER_GAME_INSTITUTE_CPP1_EX_0501_06_HPP_ */
 
 /*>- EOF -<*/
