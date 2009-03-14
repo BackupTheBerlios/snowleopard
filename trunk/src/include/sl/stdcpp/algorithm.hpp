@@ -100,6 +100,26 @@ namespace std {
 	requires CopyConstructible<Pred>
 	Iter find_if_not (Iter first, Iter last, Pred predicate);
 
+	/* find_end function template */
+	template<
+		ForwardIterator Iter1,
+		ForwardIterator Iter2
+		>
+	requires HasEqualTo<Iter1::value_type, Iter2::value_type>
+	Iter1 find_end (Iter1 first1, Iter1 last1, Iter2 first2, Iter2 last2);
+	
+	/* find_end function template with predicate */
+	template<
+		ForwardIterator Iter1,
+		ForwardIterator Iter2,
+		Predicate<auto, Iter1::value_type, Iter2::value_type> Pred
+		>
+	requires CopyConstructible<Pred>
+	Iter1 find_end (
+		Iter1 first1, Iter1 last1, Iter2 first2, Iter2 last2,
+		Pred predicate
+		);
+
 /*
  * min max
  *

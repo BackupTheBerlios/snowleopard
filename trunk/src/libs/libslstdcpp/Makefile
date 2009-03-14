@@ -47,7 +47,7 @@ STDCPP_INCLUDE = ../../include/sl/stdcpp
 #
 # All objects
 #
-ALL_OBJECTS = algorithm.o csignal.o cstddef.o cstdlib.o cstring.o
+ALL_OBJECTS = algorithm.o csignal.o cstddef.o cstdlib.o cstring.o utility.o
 
 CONFIG_HEADERS = $(SL_INCLUDE)/config/config.hpp $(SL_INCLUDE)/config/config.h
 
@@ -63,6 +63,11 @@ CSTDDEF_DEPENDS = $(STDCPP_INCLUDE)/cstddef.hpp
 CSTDLIB_DEPENDS = $(STDCPP_INCLUDE)/cstddef.hpp $(STDCPP_INCLUDE)/cstdlib.hpp
 
 CSTRING_DEPENDS = $(STDCPP_INCLUDE)/cstddef.hpp $(STDCPP_INCLUDE)/cstring.hpp
+
+UTILITY_DEPENDS = $(STDCPP_INCLUDE)/utility \
+		  $(STDCPP_INCLUDE)/detail/rel_ops.ipp \
+		  $(STDCPP_INCLUDE)/detail/forward_move.ipp \
+		  $(STDCPP_INCLUDE)/detail/pair.ipp
 
 #
 # Libraries
@@ -94,6 +99,9 @@ cstdlib.o: cstdlib.cpp $(CSTDLIB_DEPENDS) $(CONFIG_HEADERS)
 	$(CXX) -c $(CFLAGS) $(CPPFLAGS) $(INCLUDE_FLAGS) -o $@ $<
 
 cstring.o: cstring.cpp $(CSTRING_DEPENDS) $(CONFIG_HEADERS)
+	$(CXX) -c $(CFLAGS) $(CPPFLAGS) $(INCLUDE_FLAGS) -o $@ $<
+
+utility.o: utility.cpp $(UTILITY_DEPENDS) $(CONFIG_HEADERS)
 	$(CXX) -c $(CFLAGS) $(CPPFLAGS) $(INCLUDE_FLAGS) -o $@ $<
 
 #
