@@ -33,9 +33,29 @@
 #/
 
 #
+# Variables
+#
+SL_INCLUDE = ../../include
+
+SL_STDCPP_INCLUDE = ../../include/sl
+
+#
 # All objects
 #
-ALL_OBJECTS = csignal.o cstddef.o cstdlib.o cstring.o
+ALL_OBJECTS = algorithm.o csignal.o cstddef.o cstdlib.o cstring.o
+
+ALGORITHM_DEPENDS = $(SL_STDCPP_INCLUDE)/algorithm \
+		    $(SL_INCLUDE)/sl/stdcpp/detail/non_modifying_sequence.ipp \
+		    $(SL_INCLUDE)/sl/stdcpp/detail/min_max.ipp \
+		    $(SL_INCLUDE)/sl/stdcpp/detail/swap.ipp
+
+CSIGNAL_DEPENDS = $(SL_STDCPP_INCLUDE)/csignal
+
+CSTDDEF_DEPENDS = $(SL_STDCPP_INCLUDE)/cstddef
+
+CSTDLIB_DEPENDS = $(SL_STDCPP_INCLUDE)/cstddef $(SL_STDCPP_INCLUDE)/cstdlib
+
+CSTRING_DEPENDS = $(SL_STDCPP_INCLUDE)/cstddef $(SL_STDCPP_INCLUDE)/cstring
 
 #
 # Libraries
@@ -49,6 +69,25 @@ ALL_LIBRARIES = $(STATIC_LIBRARY) $(DYNAMIC_LIBRARY)
 # Main targets
 #
 all: $(ALL_LIBRARIES)
+
+libslstdcpp.a: $(ALL_OBJECTS)
+
+libslstdcpp.so: $(ALL_OBJECTS)
+
+algorithm.o: algorithm.cpp $(ALGORITHM_DEPENDS)
+	$(CXX) -c $(CFLAGS) $(CPPFLAGS) -I$(SL_INCLUDE) -I$(SL_STDCPP_INCLUDE) -o $@ $<
+
+csignal.o: csignal.cpp $(CSIGNAL_DEPENDS)
+	$(CXX) -c $(CFLAGS) $(CPPFLAGS) -I$(SL_INCLUDE) -I$(SL_STDCPP_INCLUDE) -o $@ $<
+
+cstddef.o: cstddef.cpp $(CSTDDEF_DEPENDS)
+	$(CXX) -c $(CFLAGS) $(CPPFLAGS) -I$(SL_INCLUDE) -I$(SL_STDCPP_INCLUDE) -o $@ $<
+
+cstdlib.o: cstdlib.cpp $(CSTDLIB_DEPENDS)
+	$(CXX) -c $(CFLAGS) $(CPPFLAGS) -I$(SL_INCLUDE) -I$(SL_STDCPP_INCLUDE) -o $@ $<
+
+cstring.o: cstring.cpp $(CSTRING_DEPENDS)
+	$(CXX) -c $(CFLAGS) $(CPPFLAGS) -I$(SL_INCLUDE) -I$(SL_STDCPP_INCLUDE) -o $@ $<
 
 #
 # Clean rule

@@ -68,10 +68,12 @@ ALL_TESTS = $(ALL_ERROR_REPORTING) $(ALL_LANGUAGE) $(ALL_INTERPRETER) \
 #
 REQUIRED_TOOLS = slci sltst
 
+OPTIONAL_TOOLS = technical_tools
+
 #
 # Main targets
 #
-all: $(REQUIRED_TOOLS) $(ALL_TESTS)
+all: $(REQUIRED_TOOLS) $(OPTIONAL_TOOLS) $(ALL_TESTS)
 
 error_reporting: $(REQUIRED_TOOLS) $(ALL_ERROR_REPORTING)
 
@@ -94,6 +96,9 @@ sltst:
 slci: 
 	(cd ../../tools/slci ; ${MAKE} all);
 
+technical_tools:
+	(cd technical ; ${MAKE} all);
+
 #
 # Suffix rule for compiling C++ sources
 #
@@ -106,7 +111,8 @@ slci:
 # Clean rule
 #
 clean:
-	rm -f $(ALL_PROGRAMS) ; \
-	rm -f $(ALL_OBJECTS)
+	rm -f $(ALL_PROGRAMS) ;        \
+	rm -f $(ALL_OBJECTS) ;         \
+	(cd technical ; ${MAKE} clean)
 
 #>- EOF

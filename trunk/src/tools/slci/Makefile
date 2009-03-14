@@ -41,7 +41,7 @@ CFLAGS = -Wall
 
 SLCI_INCLUDE = ../../include/sl/slci
 
-SL_INCLUDE_PATH = ../../include
+SL_INCLUDE = ../../include
 
 #
 # All objects.
@@ -96,49 +96,49 @@ VERSION_DEPENDS = $(SLCI_INCLUDE)/version.h
 all: what $(PROGRAM)
 
 $(PROGRAM) : $(ALL_OBJECTS)
-	$(CC) $(CFLAGS) -I$(SL_INCLUDE_PATH) -o slci $(ALL_OBJECTS)
+	$(CC) $(CFLAGS) -I$(SL_INCLUDE) -o slci $(ALL_OBJECTS)
 
 binary_search.o: binary_search.c $(BINARY_SEARCH_DEPENDS)
-	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 driver.o: driver.c $(DRIVER_DEPENDS)
-	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 error_handling.o: error_handling.c $(ERROR_HANDLING_DEPENDS)
-	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 hash_function.o: hash_function.c $(HASH_FUNCTION_DEPENDS)
-	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 info.o: info.c $(INFO_DEPENDS)
-	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 lexer.o: lexer.c $(LEXER_DEPENDS)
-	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 main.o: main.c $(MAIN_DEPENDS)
-	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 parser.o: parser.c $(PARSER_DEPENDS)
-	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 reader.o: reader.c $(READER_DEPENDS)
-	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 settings.o: settings.c $(SETTINGS_DEPENDS)
-	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 source_position.o: source_position.c $(SOURCE_POSITION_DEPENDS)
-	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 symbol_table.o: symbol_table.c $(SYMBOL_TABLE_DEPENDS)
-	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 token.o: token.c $(TOKEN_DEPENDS)
-	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 version.o: version.c $(VERSION_DEPENDS)
-	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE_PATH) -o $@ $<
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 what:
 	(echo Building the Snow Leopard C++ Interpreter); 
