@@ -33,6 +33,9 @@
 /* Snow Leopard configuration header */
 #include <sl/config/config.hpp>
 
+/* Standard C++ headers */
+#include <sl/stdcpp/concept.hpp>
+
 namespace std {
 
 /*
@@ -64,6 +67,38 @@ namespace std {
 		>
 	requires CopyConstructible<Pred>
 	bool none_of (Iter first, Iter last, Pred predicate);
+
+	/* for_each function template */
+	template<
+		InputIterator Iter,
+		Callable<auto, Iter::reference> Function
+		>
+	requires CopyConstructible<Function>
+	Function for_each (Iter first, Iter last, Function function);
+
+	/* find function template */
+	template<
+		InputIterator Iter,
+		typename Type
+		>
+	requires HasEqualTo<Iter::value_type, Type>
+	Iter find (Iter first, Iter last, const Type& value);
+
+	/* find_if function template */
+	template<
+		InputIterator Iter,
+		Predicate<auto, Iter::value_type> Pred
+		>
+	requires CopyContructible<Pred>
+	Iter find_if (Iter first, Iter last, Pred predicate);
+
+        /* find_if_not function template */
+        template<
+		InputIterator Iter,
+		Predicate<auto, Iter::value_type> Pred
+		>
+	requires CopyConstructible<Pred>
+	Iter find_if_not (Iter first, Iter last, Pred predicate);
 
 /*
  * min max

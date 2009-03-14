@@ -36,13 +36,119 @@
 /*
  * all_of function template
  */
+template<
+	InputIterator Iter,
+	Predicate<auto, Iter::value_type> Pred
+	>
+bool
+std::all_of (Iter first, Iter last, Pred predicate)
+{
+	for (Iter i = first; i != last; ++i)
+		if (!predicate (*i))
+			return false;
+
+	return true;
+}
 
 /*
  * any_of function template
  */
+template<
+	InputIterator Iter,
+	Predicate<auto, Iter::value_type> Pred
+	>
+bool
+std::any_of (Iter first, Iter last, Pred predicate)
+{
+	for (Iter i = first; i != last; ++i)
+		if (predicate (*i))
+			return true;
+
+	return false;
+}
 
 /*
  * none_of function template
  */
+template<
+	InputIterator Iter,
+	Predicate<auto, Iter::value_type> Pred
+	>
+bool
+std::none_of (Iter first, Iter last, Pred predicate)
+{
+	for (Iter i = first; i != last; ++i)
+		if (predicate (*i))
+			return false;
+
+	return true;
+}
+
+/*
+ * for_each function template
+ */
+template<
+	InputIterator Iter,
+	Callable<auto, Iter::reference> Function
+	>
+Function
+std::for_each (Iter first, Iter last, Function function)
+{
+	for (Iter i = first; i != last; ++i)
+		function (*i);
+
+	return function;
+}
+
+/*
+ * find function template
+ */
+template<
+	InputIterator Iter,
+	typename Type
+	>
+Iter
+std::find (Iter first, Iter last, const Type& value)
+{
+	for (Iter i = first; i != last; ++i)
+		if (*i == value)
+			return i;
+
+	return last;
+}
+
+/*
+ * find_if function template
+ */
+template<
+	InputIterator Iter,
+	Predicate<auto, Iter::value_type> Pred
+	>
+Iter
+std::find_if (Iter first, Iter last, Pred predicate)
+{
+	for (Iter i = first; i != last; ++i)
+		if (predicate (*i))
+			return i;
+
+	return last;
+}
+
+/*
+ * find_if_not function template
+ */
+template<
+	InputIterator Iter,
+	Predicate<auto, Iter::value_type> Pred
+	>
+Iter
+find_if_not (Iter first, Iter last, Pred predicate)
+{
+	for (Iter i = first, i != last; ++i)
+		if (!predicate (*i))
+			return i;
+
+	return last;
+}
 
 /*>- EOF -<*/
