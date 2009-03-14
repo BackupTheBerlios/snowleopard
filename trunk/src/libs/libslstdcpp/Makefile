@@ -36,26 +36,33 @@
 # Variables
 #
 SL_INCLUDE = ../../include
+SL_C_INCLUDE = ../../include/sl
+SL_CPP_INCLUDE = ../../include/sl
 
-SL_STDCPP_INCLUDE = ../../include/sl
+INCLUDE_FLAGS = -I$(SL_C_INCLUDE) -I$(SL_CPP_INCLUDE) -I$(SL_INCLUDE)
+
+STDC_INCLUDE = ../../include/sl/stdc
+STDCPP_INCLUDE = ../../include/sl/stdcpp
 
 #
 # All objects
 #
 ALL_OBJECTS = algorithm.o csignal.o cstddef.o cstdlib.o cstring.o
 
-ALGORITHM_DEPENDS = $(SL_STDCPP_INCLUDE)/algorithm \
-		    $(SL_INCLUDE)/sl/stdcpp/detail/non_modifying_sequence.ipp \
-		    $(SL_INCLUDE)/sl/stdcpp/detail/min_max.ipp \
-		    $(SL_INCLUDE)/sl/stdcpp/detail/swap.ipp
+CONFIG_HEADERS = $(SL_INCLUDE)/config/config.hpp $(SL_INCLUDE)/config/config.h
 
-CSIGNAL_DEPENDS = $(SL_STDCPP_INCLUDE)/csignal
+ALGORITHM_DEPENDS = $(STDCPP_INCLUDE)/algorithm \
+		    $(STDCPP_INCLUDE)/detail/non_modifying_sequence.ipp \
+		    $(STDCPP_INCLUDE)/detail/min_max.ipp \
+		    $(STDCPP_INCLUDE)/detail/swap.ipp
 
-CSTDDEF_DEPENDS = $(SL_STDCPP_INCLUDE)/cstddef
+CSIGNAL_DEPENDS = $(STDCPP_INCLUDE)/csignal.hpp
 
-CSTDLIB_DEPENDS = $(SL_STDCPP_INCLUDE)/cstddef $(SL_STDCPP_INCLUDE)/cstdlib
+CSTDDEF_DEPENDS = $(STDCPP_INCLUDE)/cstddef.hpp
 
-CSTRING_DEPENDS = $(SL_STDCPP_INCLUDE)/cstddef $(SL_STDCPP_INCLUDE)/cstring
+CSTDLIB_DEPENDS = $(STDCPP_INCLUDE)/cstddef.hpp $(STDCPP_INCLUDE)/cstdlib.hpp
+
+CSTRING_DEPENDS = $(STDCPP_INCLUDE)/cstddef.hpp $(STDCPP_INCLUDE)/cstring.hpp
 
 #
 # Libraries
@@ -74,20 +81,20 @@ libslstdcpp.a: $(ALL_OBJECTS)
 
 libslstdcpp.so: $(ALL_OBJECTS)
 
-algorithm.o: algorithm.cpp $(ALGORITHM_DEPENDS)
-	$(CXX) -c $(CFLAGS) $(CPPFLAGS) -I$(SL_INCLUDE) -I$(SL_STDCPP_INCLUDE) -o $@ $<
+algorithm.o: algorithm.cpp $(ALGORITHM_DEPENDS) $(CONFIG_HEADERS)
+	$(CXX) -c $(CFLAGS) $(CPPFLAGS) $(INCLUDE_FLAGS) -o $@ $<
 
-csignal.o: csignal.cpp $(CSIGNAL_DEPENDS)
-	$(CXX) -c $(CFLAGS) $(CPPFLAGS) -I$(SL_INCLUDE) -I$(SL_STDCPP_INCLUDE) -o $@ $<
+csignal.o: csignal.cpp $(CSIGNAL_DEPENDS) $(CONFIG_HEADERS)
+	$(CXX) -c $(CFLAGS) $(CPPFLAGS) $(INCLUDE_FLAGS) -o $@ $<
 
-cstddef.o: cstddef.cpp $(CSTDDEF_DEPENDS)
-	$(CXX) -c $(CFLAGS) $(CPPFLAGS) -I$(SL_INCLUDE) -I$(SL_STDCPP_INCLUDE) -o $@ $<
+cstddef.o: cstddef.cpp $(CSTDDEF_DEPENDS) $(CONFIG_HEADERS)
+	$(CXX) -c $(CFLAGS) $(CPPFLAGS) $(INCLUDE_FLAGS) -o $@ $<
 
-cstdlib.o: cstdlib.cpp $(CSTDLIB_DEPENDS)
-	$(CXX) -c $(CFLAGS) $(CPPFLAGS) -I$(SL_INCLUDE) -I$(SL_STDCPP_INCLUDE) -o $@ $<
+cstdlib.o: cstdlib.cpp $(CSTDLIB_DEPENDS) $(CONFIG_HEADERS)
+	$(CXX) -c $(CFLAGS) $(CPPFLAGS) $(INCLUDE_FLAGS) -o $@ $<
 
-cstring.o: cstring.cpp $(CSTRING_DEPENDS)
-	$(CXX) -c $(CFLAGS) $(CPPFLAGS) -I$(SL_INCLUDE) -I$(SL_STDCPP_INCLUDE) -o $@ $<
+cstring.o: cstring.cpp $(CSTRING_DEPENDS) $(CONFIG_HEADERS)
+	$(CXX) -c $(CFLAGS) $(CPPFLAGS) $(INCLUDE_FLAGS) -o $@ $<
 
 #
 # Clean rule

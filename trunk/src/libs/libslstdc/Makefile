@@ -33,9 +33,31 @@
 #/
 
 #
+# Variables
+#
+SL_INCLUDE = ../../include
+SL_C_INCLUDE = ../../include/sl
+
+INCLUDE_FLAGS = -I$(SL_C_INCLUDE) -I$(SL_INCLUDE)
+
+STDC_INCLUDE = ../../include/sl/stdc
+
+#
 # All objects
 #
 ALL_OBJECTS = signal.o stddef.o stdlib.o string.o
+
+CONFIG_HEADERS = $(SL_INCLUDE)/config/config.h
+
+SIGNAL_DEPENDS = $(STDC_INCLUDE)/stddef.h $(STDC_INCLUDE)/stdlib.h \
+		 $(STDC_INCLUDE)/signal.h
+
+STDDEF_DEPENDS = $(STDC_INCLUDE)/stddef.h
+
+STDLIB_DEPENDS = $(STDC_INCLUDE)/stddef.h $(STDC_INCLUDE)/stdlib.h \
+		 $(STDC_INCLUDE)/signal.h
+
+STRING_DEPENDS = $(STDC_INCLUDE)/string.h
 
 #
 # Libraries
@@ -49,6 +71,22 @@ ALL_LIBRARIES = $(STATIC_LIBRARY) $(DYNAMIC_LIBRARY)
 # Main targets
 #
 all: $(ALL_LIBRARIES)
+
+libslstdc.a: $(ALL_OBJECTS)
+
+libslstdc.so: $(ALL_OBJECTS)
+
+signal.o: signal.c $(SIGNAL_DEPENDS) $(CONFIG_HEADERS)
+	$(CC) -c $(CLFAGS) $(INCLUDE_FLAGS) -o $@ $<
+
+stddef.o: stddef.c $(STDDEF_DEPENDS) $(CONFIG_HEADERS)
+	$(CC) -c $(CLFAGS) $(INCLUDE_FLAGS) -o $@ $<
+
+stdlib.o: stdlib.c $(STDLIB_DEPENDS) $(CONFIG_HEADERS)
+	$(CC) -c $(CLFAGS) $(INCLUDE_FLAGS) -o $@ $<
+
+string.o: string.c $(STRING_DEPENDS) $(CONFIG_HEADERS)
+	$(CC) -c $(CLFAGS) $(INCLUDE_FLAGS) -o $@ $<
 
 #
 # Clean rule
