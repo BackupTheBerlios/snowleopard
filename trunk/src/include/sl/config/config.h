@@ -30,6 +30,12 @@
 #ifndef _SL_CONFIG_CONFIG_H_
 #define _SL_CONFIG_CONFIG_H_
 
+/*
+ * size and difference types
+ */
+typedef unsigned long size_type;
+typedef signed long difference_type;
+
 #endif /* !_SL_CONFIG_CONFIG_H_ */
 
 /*>- EOF -<*/

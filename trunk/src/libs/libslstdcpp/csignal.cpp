@@ -29,6 +29,7 @@
 
 /* Standard C++ headers */
 #include <csignal>
+#include <cstddef>
 #include <cstdlib>
 
 using std::size_t;
