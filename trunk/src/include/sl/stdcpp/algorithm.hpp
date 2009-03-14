@@ -120,6 +120,63 @@ namespace std {
 		Pred predicate
 		);
 
+	/* find_first_of function template */
+	template<
+		ForwardIterator Iter1,
+		ForwardIterator Iter2
+		>
+	requires HasEqualTo<Iter1::value_type, Iter2::value_type>
+	Iter1 find_first_of (
+		Iter1 first1, Iter1 last1, Iter2 first2, Iter2 last2
+		);
+
+	/* find_first_of function template with predicate */
+	template<
+		ForwardIterator Iter1,
+		ForwardIterator Iter2,
+		Predicate<auto, Iter1::value_type, Iter2::value_type> Pred
+		>
+	requires CopyConstructible<Pred>
+	Iter1 find_first_of (
+		Iter1 first1, Iter1 last1, Iter2 first2, Iter2 last2,
+		Pred predicate
+		);
+
+/*
+ * swap
+ *
+ * File: details/swap.ipp
+ */
+
+        /* swap function template */
+	template<typename T>
+	requires MoveAssignable<T> && MoveConstructible<T>
+	void swap (T& a, T& b);
+
+	/* swap function template for arrays */
+	template<
+		ValueType T,
+		size_t N
+		>
+	requires Swappable<T>
+	void swap (T (&a)[N], T (&b)[N]);
+
+	/* swap_ranges function template */
+	template<
+		ForwardIterator Iter1,
+		ForwardIterator Iter2
+		>
+	requires HasSwap<Iter1::reference, Iter2::reference>
+	Iter2 swap_ranges (Iter1 first1, Iter1 last1, Iter2 first2);
+
+	/* iter_swap function template */
+	template<
+		Iterator Iter1,
+		Iterator Iter2
+		>
+	requires HasSwap<Iter1::reference, Iter2::reference>
+	void iter_swap (Iter1 a, Iter2 b);
+
 /*
  * min max
  *
@@ -148,16 +205,6 @@ namespace std {
 		>
 	const T& max (const T& a, const T& b, Compare c);
 
-/*
- * swap
- *
- * File: details/swap.ipp
- */
-
-        /* swap function template */
-	template<typename T>
-	void swap (T& a, T& b);
-
 } /* std */
 
 /*******************************************************************************
@@ -166,8 +213,8 @@ namespace std {
  */
 #ifdef SL_COMPILER_USE_NO_EXPORT
 # include <sl/stdcpp/detail/non_modifying_sequence.ipp>
-# include <sl/stdcpp/detail/min_max.ipp>
 # include <sl/stdcpp/detail/swap.ipp>
+# include <sl/stdcpp/detail/min_max.ipp>
 #endif
 /*******************************************************************************
  */

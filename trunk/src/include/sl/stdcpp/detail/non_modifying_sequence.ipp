@@ -187,7 +187,9 @@ template<
 	Predicate<auto, Iter1::value_type, Iter2::value_type> Pred
 	>
 Iter1
-std::find_end (Iter1 first1, Iter1 last1, Iter2 first2, Iter2 last2, Pred predicate)
+std::find_end (
+	Iter1 first1, Iter1 last1, Iter2 first2, Iter2 last2, Pred predicate
+	)
 {
 	Iter1 i = first1;
 	for (; i != last1; ++i)
@@ -204,6 +206,46 @@ std::find_end (Iter1 first1, Iter1 last1, Iter2 first2, Iter2 last2, Pred predic
 			return last2;
 	
 	return result;
+}
+
+/*
+ * find_first_of function template
+ */
+template<
+	ForwardIterator Iter1,
+	ForwardIterator Iter2
+	>
+Iter1
+std::find_first_of (Iter1 first1, Iter1 last1, Iter2 first2, Iter2 last2)
+{
+	for (Iter1 i = first1; i != last1; ++i)
+		for (Iter2 j = first2; i != last2; ++j)
+			if (*i == *j)
+				return i;
+
+	return last1;
+}
+
+/*
+ * find_first_of function template with predicate
+ */
+template<
+	ForwardIterator Iter1,
+	ForwardIterator Iter2,
+	Predicate<auto, Iter1::value_type, Iter2::value_type> Pred
+	>
+Iter1
+std::find_first_of (
+	Iter1 first1, Iter1 last1, Iter2 first2, Iter2 last2, Pred predicate
+	)
+{
+	for (Iter1 i = first1; i != last1; ++i)
+		for (Iter2 j = first2; i != last2; ++j)
+			if (predicate (*i, *j))
+				return i;
+
+	return last1;
+
 }
 
 /*>- EOF -<*/

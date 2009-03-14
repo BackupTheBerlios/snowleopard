@@ -38,8 +38,8 @@
 
 /* Implementation files */
 #include <sl/stdcpp/detail/non_modifying_sequence.ipp>
-#include <sl/stdcpp/detail/min_max.ipp>
 #include <sl/stdcpp/detail/swap.ipp>
+#include <sl/stdcpp/detail/min_max.ipp>
 
 #endif
 /*******************************************************************************

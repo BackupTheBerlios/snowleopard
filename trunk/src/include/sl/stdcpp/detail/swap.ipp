@@ -45,4 +45,43 @@ std::swap (T& a, T& b)
   b = tmp;
 }
 
+/*
+ * swap function template for arrays
+ */
+template<
+	ValueType T,
+	size_t N
+	>
+void
+std::swap (T (&a)[N], T (&b)[N])
+{
+
+}
+
+/*
+ * swap_ranges function template
+ */
+template<
+	ForwardIterator Iter1,
+	ForwardIterator Iter2
+	>
+Iter2
+swap_ranges (Iter1 first1, Iter1 last1, Iter2 first2)
+{
+
+}
+
+/*
+ * iter_swap function template
+ */
+template<
+	Iterator Iter1,
+	Iterator Iter2
+	>
+void
+iter_swap (Iter1 a, Iter2 b)
+{
+
+}
+
 /*>- EOF -<*/
