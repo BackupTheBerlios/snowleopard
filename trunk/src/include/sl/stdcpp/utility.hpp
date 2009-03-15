@@ -33,6 +33,10 @@
 /* Snow Leopard configuration header */
 #include <sl/config/config.hpp>
 
+/* Snow Leopard C++ headers */
+#include <sl/stdcpp/concepts.hpp>
+#include <sl/stdcpp/cstddef.hpp>
+
 namespace std {
 
 /*
@@ -45,25 +49,25 @@ namespace std {
 	namespace rel_ops {
 
 		/* != operator */
-		template<typename T>
+		template<EqualityComparable T>
 		bool operator!= (const T&, const T&);
 
 		/* > operator */
-		template<typename T>
+		template<LessThanComparable T>
 		bool operator> (const T&, const T&);
 
 		/* <= operator */
-		template<typename T> 
+		template<LessThanComparable T> 
 		bool operator<= (const T&, const T&);
 
 		/* >= operator */
-		template<typename T> 
+		template<LessThanComparable T> 
 		bool operator>= (const T&, const T&);
 		
 	}
 
 /*
- * Forward / Move
+ * Forward and Move
  */
 	
 	/* Forward */
@@ -79,7 +83,10 @@ namespace std {
  */
 
 	/* pair class template */
-	template<VariableType T1, VariableType T2>
+	template<
+		VariableType T1,
+		VariableType T2
+		>
 	struct pair
 	{
 	public:
@@ -100,7 +107,79 @@ namespace std {
 		LessThanComparable T2
 		>
 	bool operator< (const pair<T1, T2>&, const pair<T1, T2>&);
+	
+	/* operator != for pairs */
+	template<
+		EqualityComparable T1,
+		EqualityComparable T2
+		>
+	bool operator!= (const pair<T1, T2>&, const pair<T1, T2>&);
 
+	/* operator > for pairs */
+	template<
+		LessThanComparable T1,
+		LessThanComparable T2
+		>
+	bool operator> (const pair<T1, T2>&, const pair<T1, T2>&);
+
+	/* operator >= for pairs */
+	template<
+		LessThanComparable T1,
+		LessThanComparable T2
+		>
+	bool operator>= (const pair<T1, T2>&, const pair<T1, T2>&);
+
+	/* operator <= for pairs */
+	template<
+		LessThanComparable T1,
+		LessThanComparable T2
+		>
+	bool operator<= (const pair<T1, T2>&, const pair<T1, T2>&);
+
+
+	/* swap for pairs */
+	template<
+		Swappable T1,
+		Swappable T2
+		>
+	void swap (pair<T1, T2>&, pair<T1, T2>&);
+
+	/* swap for pairs (move first) */
+	template<
+		Swappable T1,
+		Swappable T2
+		>
+	void swap (pair<T1, T2>&&, pair<T1, T2>&);
+
+	/* swap for pairs (move second) */
+	template<
+		Swappable T1,
+		Swappable T2
+		>
+	void swap (pair<T1, T2>&, pair<T1, T2>&&);
+
+	/* make_pair convenience function template */
+	template<
+		MoveConstructible T1,
+		MoveConstructible T2
+		>
+	pair<V1, V2> make_pair (T1&&, T2&&);
+
+/*
+ * Tuple-alike access to pair
+ */
+
+	/* tuple_size function template */
+	template<IdentityOf T>
+	class tuple_size;
+
+	/* tuple_element function template */
+	template<
+		size_t I,
+		IdentityOf T
+		>
+	class tuple_element;
+	
 } //std
 
 /*******************************************************************************
@@ -111,6 +190,7 @@ namespace std {
 # include <sl/stdcpp/detail/rel_ops.ipp>
 # include <sl/stdcpp/detail/forward_move.ipp>
 # include <sl/stdcpp/detail/pair.ipp>
+# include <sl/stdcpp/detail/tuple_access_pair.ipp>
 #endif /* !SL_COMPILER_USE_NO_EXPORT */
 /*******************************************************************************
  */
