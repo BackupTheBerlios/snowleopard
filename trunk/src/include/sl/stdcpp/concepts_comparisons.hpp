@@ -27,60 +27,19 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_STDCPP_CONCEPT_HPP_
-#define _SL_STDCPP_CONCEPT_HPP_
+#ifndef _SL_STDCPP_CONCEPTS_COMPARISONS_HPP_
+#define _SL_STDCPP_CONCEPTS_COMPARISONS_HPP_
 
-/* Snow Leopard configuration header */
-#include <sl/config/config.hpp>
+/*******************************************************************************
+ * Is concepts.hpp included?
+ */
+#ifndef _SL_STDCPP_CONCEPTS_HPP_
+# error <concepts_comparison.hpp> included without <concepts.hpp>
+#endif /* !_SL_STDCPP_CONCEPTS_HPP_ */
+/*******************************************************************************
+ */
 
 namespace std {
-
-/*
- * Type transformations
- */
-	
-	/* concept IdentityOf */
-	auto concept IdentityOf<typename T> 
-	{
-		typename Type = T;
-		requires SameType<Type, T>;
-	}
-
-	/* concept RvalueOf */
-	auto concept RvalueOf<typename T> 
-	{
-		typename Type = T;
-		requires Convertible<T&, Type> && Convertible<T&&, Type>;
-	}
-
-	/* concept_map RvalueOf */
-	template<typename T>
-	concept_map RvalueOf<T&> 
-	{
-		typedef T&& type;
-	}
-
-/*
- * True
- */
-
-	/* concept True */
-	concept True<bool>
-	{ }
-	
-        /* concept_map True */
-	concept_map True<true>
-	{ }
-
-/*
- * Operator Concepts
- */
-
-	/* concept HasEqualTo */
-	auto concept HasEqualTo<typename T, typename U>
-	{
-		bool operator== (const T& a, const T& b);
-	}
 
 /*
  * Comparisons
@@ -163,7 +122,7 @@ namespace std {
 
 	/* concept StrictWeakOrder */
 	auto concept StrictWeakOrder<typename F, typename T> 
-	  : Predicate < F, T, T >
+	  : Predicate <F, T, T>
 	{
 		axiom Irreflexivity (F f, T a)
 		{
@@ -213,6 +172,6 @@ namespace std {
 
 } /* std */
 
-#endif /* !_SL_STDCPP_CONCEPT_HPP_ */
+#endif /* !_SL_STDCPP_CONCEPTS_COMPARISONS_HPP_ */
 
 /*>- EOF -<*/

@@ -27,12 +27,12 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_STDCPP_CONCEPT_
-#define _SL_STDCPP_CONCEPT_
+#ifndef _SL_STDCPP_CONCEPTS_
+#define _SL_STDCPP_CONCEPTS_
 
 /* Standard C++ header */
-#include <sl/stdcpp/concept.hpp>
+#include <sl/stdcpp/concepts.hpp>
 
-#endif /* !_SL_STDCPP_CONCEPT_ */
+#endif /* !_SL_STDCPP_CONCEPTS_ */
 
 /*>- EOF -<*/
