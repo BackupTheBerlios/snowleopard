@@ -38,7 +38,7 @@
 #
 ALL_OBJECTS = *.o
 
-SLCI_INCLUDE = ../../../include
+SL_INCLUDE = ../../../include
 
 #
 # All programs
@@ -53,13 +53,13 @@ ALL_PROGRAMS = test_hash_spread
 all: $(ALL_PROGRAMS)
 
 test_hash_spread: $(TEST_HASH_SPREAD)
-	$(CC) $(CFLAGS) -I$(SLCI_INCLUDE) -o $@ $(TEST_HASH_SPREAD)
+	$(CC) $(CFLAGS) -I$(SL_INCLUDE) -o $@ $(TEST_HASH_SPREAD)
 
 #
 # Suffix rule for compiling C sources
 #
 .c.o:
-	$(CC) -c $(CFLAGS) -I$(SLCI_INCLUDE) -o $@ $<
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 .SUFFIXES: .c .o
 
