@@ -32,20 +32,23 @@
 #include <string>
 
 /*
- * This program demonstrates std::string and replace.
+ * This program demonstrates std::string and how to read an entire line of text.
  */
 int
 main ()
 {
+	using std::cin;
 	using std::cout;
 	using std::endl;
+	using std::getline;
 	using std::string;
 
-	string str = "The quick brown fox jumped over the lazy dog.";
+	string s;
 
-	str.replace (4, 11, "slow blue");
+	cout << "Enter a multiple word string: ";
+	getline (cin, s);
 
-	cout << "After replace: " << str << endl;
+	cout << "You entered: " << s << endl;
 
 }
 

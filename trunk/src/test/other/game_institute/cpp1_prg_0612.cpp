@@ -32,21 +32,51 @@
 #include <string>
 
 /*
- * This program demonstrates std::string and replace.
+ * function prototypes
+ */
+void print_point (float, float, float);
+
+/*
+ * point class
+ */
+class point
+{
+public:
+	point (float x, float y, float z)
+	  : x_ (x), y_ (y), z_ (z)
+	{ }
+
+private:
+	float x_;
+	float y_;
+	float z_;
+
+	friend void print_point (point &);
+
+};
+
+/*
+ * This program demonstrates the friend relation.
  */
 int
 main ()
 {
+	point p (1.0f, 2.0f, 3.0f);
+
+	print_point (p);
+}
+
+/*
+ * print_point function
+ */
+void
+print_point (point& p)
+{
 	using std::cout;
 	using std::endl;
-	using std::string;
 
-	string str = "The quick brown fox jumped over the lazy dog.";
-
-	str.replace (4, 11, "slow blue");
-
-	cout << "After replace: " << str << endl;
-
+	cout << '(' << p.x_ << ", " << p.y_
+	     << ", " << p.z_ << ')' << endl;
 }
 
 /*>- EOF -<*/

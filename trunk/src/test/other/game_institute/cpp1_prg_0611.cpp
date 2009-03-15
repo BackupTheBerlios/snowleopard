@@ -32,21 +32,72 @@
 #include <string>
 
 /*
- * This program demonstrates std::string and replace.
+ * person class
+ */
+class person
+{
+public:
+	person (std::string, int age);
+
+	std::string get_name ();
+	int get_age ();
+	void talk (person&);
+
+private:
+	std::string name_;
+	int age_;
+
+};
+
+/*
+ * This program demonstrates that the this pointer is almost always optional.
  */
 int
 main ()
 {
+	person alice ("Alice", 29);
+	person roel ("Roel", 33);
+	person vanessa ("Vanessa", 20);
+	
+	alice.talk (vanessa);
+	roel.talk (vanessa);
+}
+
+/*
+ * person constructor
+ */
+person::person (std::string name, int age)
+  : name_ (name), age_ (age)
+{ }
+
+/*
+ * get_name function
+ */
+std::string
+person::get_name ()
+{
+	return name_;
+}
+
+/*
+ * get_age function
+ */
+int
+person::get_age ()
+{
+	return age_;
+}
+
+/*
+ * talk function
+ */
+void
+person::talk (person& p)
+{
 	using std::cout;
 	using std::endl;
-	using std::string;
 
-	string str = "The quick brown fox jumped over the lazy dog.";
-
-	str.replace (4, 11, "slow blue");
-
-	cout << "After replace: " << str << endl;
-
+	cout << name_ << " is talking to " << p.name_ << endl;
 }
 
 /*>- EOF -<*/
