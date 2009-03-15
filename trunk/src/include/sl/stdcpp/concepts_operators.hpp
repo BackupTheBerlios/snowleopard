@@ -47,133 +47,289 @@ namespace std {
 
 	/* concept HasPlus */
 	auto concept HasPlus<typename T, typename U>
-
+	{
+		typename result_type;
+		result_type operator+ (const T&, const U&);
+	}
+	
 	/* concept HasMinus */
 	auto concept HasMinus<typename T, typename U>
+	{
+		typename result_type;
+		result_type operator- (const T&, const U&);
+	}
 
 	/* concept HasMultiply */
 	auto concept HasMultiply<typename T, typename U>
+	{
+		typename result_type;
+		result_type operator* (const T&, const U&);
+	}
 
 	/* concept HasDivide */
 	auto concept HasDivide<typename T, typename U>
+	{
+		typename result_type;
+		result_type operator/ (const T&, const U&);
+	}
 
 	/* concept HasModulus */
 	auto concept HasModules<typename T, typename U>
+	{
+		typename result_type;
+		result_type operator% (const T&, const U&);
+	}
 
 	/* concept HasUnaryPlus */
 	auto concept HasUnaryPlus<typename T>
-	
+	{
+		typename result_type;
+		result_type operator+ (const T&);
+	}
+
 	/* concept HasNegate */
 	auto concept HasNegate<typename T>
+	{
+		typename result_type;
+		result_type operator- (const T&);
+	}
 
 	/* concept HasLess */
 	auto concept HasLess<typename T, typename U>
+	{
+		bool operator< (const T&, const U&);
+	}
 
 	/* concept HasGreater */
 	auto concept HasGreater<typename T, typename U>
+	{
+		bool operator> (const T&, const U&);
+	}
 
 	/* concept HasLessEqual */
 	auto concept HasLessEqual<typename T, typename U>
+	{
+		bool operator<= (const T&, const U&);
+	}
 
 	/* concept HasGreaterEqual */
 	auto concept HasGreaterEqual<typename T, typename U>
+	{
+		bool operator>= (const T&, const U&);
+	}
 
 	/* concept HasEqualTo */
 	auto concept HasEqualTo<typename T, typename U>
 	{
-		bool operator== (const T& a, const T& b);
+		bool operator== (const T&, const U&);
 	}
 
 	/* concept HasNotEqualTo */
 	auto concept HasNotEqualTo<typename T, typename U>
+	{
+		bool operator!= (const T&, const U&);
+	}
 
 	/* concept HasLogicalAnd */
 	auto concept HasLogicalAnd<typename T, typename U>
+	{
+		bool operator&& (const T&, const U&);
+	}
 
 	/* concept HasLogicalOr */
 	auto concept HasLogicalOr<typename T, typename U>
+	{
+		bool operator|| (const T&, const U&);
+	}
 
 	/* concept HasLogicalNot */
 	auto concept HasLogicalNot<typename T>
+	{
+		bool operator! (const T&);
+	}
 
 	/* concept HasBitAnd */
 	auto concept HasBitAnd<typename T, typename U>
+	{
+		typename result_type;
+		result_type operator& (const T&, const U&);
+	}
 
 	/* concept HasBitOr */
 	auto concept HasBitOr<typename T, typename U>
+	{
+		typename result_type;
+		result_type operator| (const T&, const U&);
+	}
 
 	/* concept HasBitXor */
 	auto concept HasBitXor<typename T, typename U>
+	{
+		typename result_type;
+		result_type operator^ (const T&, const U&);
+	}
 
 	/* concept HasComplement */
 	auto concept HasComplement<typename T>
+	{
+		typename result_type;
+		result_type operator~ (const T&);
+	}
 
 	/* concept HasLeftShift */
 	auto concept HasLeftShift<typename T, typename U>
+	{
+		typename result_type;
+		result_type operator<< (const T&, const U&);
+	}
 
 	/* concept HasRightShift */
 	auto concept HasRightShift<typename T, typename U>
+	{
+		typename result_type;
+		result_type operator>> (const T&, const U&);
+	}
 
 	/* concept HasDereference */
 	auto concept HasDereference<typename T>
+	{
+		typename result_type;
+		result_type operator* (T&&);
+	}
 
 	/* concept HasAddressOf */
 	auto concept HasAddressOf<typename T>
+	{
+		typename result_type;
+		result_type operator& (T&);
+	}
 
 	/* concept HasSubscript */
 	auto concept HasSubscript<typename T, typename U>
+	{
+		typename result_type;
+		result_type operator[] (T&&, const U&);
+	}
 
 	/* concept Callable */
 	auto concept Callable<typename F, typename... Args>
+	{
+		typename result_type;
+		result_type operator() (F&&, Args...);
+	}
 
 	/* concept HasAssign */
 	auto concept HasAssign<typename T, typename U>
+	{
+		typename result_type;
+		result_type T::operator= (U);
+	}
 
 	/* concept HasPlusAssign */
 	auto concept HasPlusAssign<typename T, typename U>
+	{
+		typename result_type;
+		result_type operator+= (T&, U);
+	}
 
 	/* concept HasMinusAssign */
 	auto concept HasMinusAssign<typename T, typename U>
+	{
+		typename result_type;
+		result_type operator-= (T&, U);
+	}
 
 	/* concept HasMultiplyAssign */
 	auto concept HasMultiplyAssign<typename T, typename U>
+	{
+		typename result_type;
+		result_type operator*= (T&, U);
+	}
 
 	/* concept HasDivideAssign */
 	auto concept HasDivideAssign<typename T, typename U>
+	{
+		typename result_type;
+		result_type operator/= (T&, U);
+	}
 
 	/* concept HasModulusAssign */
 	auto concept HasModulusAssign<typename T, typename U>
+	{
+		typename result_type;
+		result_type operator%= (T&, U);
+	}
 
 	/* concept HasBitAndAssign */
 	auto concept HasBitAndAssign<typename T, typename U>
+	{
+		typename result_type;
+		result_type operator&= (T&, U);
+	}
 
 	/* concept HasBitOrAssign */
 	auto concept HasBitOrAssign<typename T, typename U>
+	{
+		typename result_type;
+		result_type operator|= (T&, U);
+	}
 
 	/* concept HasBitXorAssign */
 	auto concept HasBitXorAssign<typename T, typename U>
+	{
+		typename result_type;
+		result_type operator^= (T&, U);
+	}
 
 	/* concept HasLeftShiftAssign */
 	auto concept HasLeftShiftAssign<typename T, typename U>
+	{
+		typename result_type;
+		result_type operator<<= (T&, U);
+	}
 
 	/* concept HasRightShiftAssign */
 	auto concept HasRightShiftAssign<typename T, typename U>
+	{
+		typename result_type;
+		result_type operator>>= (T&, U);
+	}
 
 	/* concept HasPreincrement */
 	auto concept HasPreincrement<typename T>
+	{
+		typename result_type;
+		result_type operator++ (T&);
+	}
 
 	/* concept HasPostincrement */
 	auto concept HasPostincrement<typename T>
+	{
+		typename result_type;
+		result_type operator++ (T&, int);
+	}
 
 	/* concept HasPredecrement */
 	auto concept HasPredecrement<typename T>
+	{
+		typename result_type;
+		result_type operator-- (T&);
+	}
 
 	/* concept HasPostdecrement */
 	auto concept HasPostdecrement<typename T>
+	{
+		typename result_type;
+		result_type operator-- (T&, int);
+	}
 
 	/* concept HasComma */
 	auto concept HasComma<typename T, typename U>
-
+	{
+		typename result_type;
+		result_type operator, (const T&, const U&);
+	}
+	
 } /* std */
 
 #endif /* !_SL_STDCPP_CONCEPTS_OPERATORS_HPP_ */

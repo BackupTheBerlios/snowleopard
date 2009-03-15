@@ -45,6 +45,61 @@ namespace std {
  * Copy and Move 
  */
 
+	/* concept MoveConstructible */
+	auto concept MoveConstructible<typename T>
+	  : Constructible<T, T&&>
+	{
+		requires RvalueOf<T> && Constructible<T, RvalueOf<T>::type>;
+	}
+
+	/* concept CopyConstructible */
+	auto concept CopyConstructible<typename T>
+	  : MoveConstructible<T>, Constructible<T, const T&>
+	{
+		axiom CopyPreservation (T x)
+		{
+			T (x) == x;
+		}
+	}
+
+	/* concept TriviallyCopyConstructible */
+	concept TriviallyCopyConstructible<typename T>
+	  : CopyConstructible<T>
+	{ }
+
+	/* concept MoveAssignable */
+	auto concept MoveAssignable<typename T>
+	  : HasAssign<T, T&&>
+	{
+		requires RvalueOf<T> && HasAssign<T, RvalueOf<T>::type>;
+	}
+
+	/* concept CopyAssignable */
+	auto concept CopyAssignable<typename T>
+	  : HasAssign<T, const T&>, MoveAssignable<T>
+	{
+		axiom CopyPreservation (T& x, T y)
+		{
+			(x = y, x) == y;
+		}
+	}
+
+	/* concept TriviallyCopyAssignable */
+	concept TriviallyCopyAssignable<typename T>
+	  : CopyAssignable<T>
+	{ }
+
+	/* concept HasSwap */
+	auto concept HasSwap<typename T, typename U>
+	{
+		void swap (T, U);
+	}
+
+	/* concept Swappable */
+	auto concept Swappable<typename T>
+	  : HasSwap<T&, T&>
+	{ }
+	
 } /* std */
 
 #endif /* !_SL_STDCPP_CONCEPTS_COPY_MOVE_HPP_ */
