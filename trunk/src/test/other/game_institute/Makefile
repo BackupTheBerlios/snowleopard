@@ -101,8 +101,11 @@ CPP1_EX_0501_HEADERS = cpp1_ex_0501_01.hpp cpp1_ex_0501_02.hpp \
 PROGRAMS_CPP1_L5 = cpp1_prg_0501 cpp1_prg_0502 cpp1_prg_0503 cpp1_prg_0504 \
 		   cpp1_ex_0501
 
+PROGRAMS_CPP1_L6 = cpp1_prg_0601 cpp1_prg_0602 cpp1_prg_0603 cpp1_prg_0604 \
+		   cpp1_prg_0605 cpp1_prg_0606 cpp1_prg_0607 cpp1_prg_0608
+
 ALL_PROGRAMS = $(PROGRAMS_CPP1_L1) $(PROGRAMS_CPP1_L2) $(PROGRAMS_CPP1_L3) \
-	       $(PROGRAMS_CPP1_L4) $(PROGRAMS_CPP1_L5)
+	       $(PROGRAMS_CPP1_L4) $(PROGRAMS_CPP1_L5) $(PROGRAMS_CPP1_L6)
 
 #
 # Main targets
@@ -118,6 +121,8 @@ cpp1_l3: $(PROGRAMS_CPP1_L3)
 cpp1_l4: $(PROGRAMS_CPP1_L4)
 
 cpp1_l5: $(PROGRAMS_CPP1_L5)
+
+cpp1_l6: $(PROGRAMS_CPP1_L6)
 
 # 
 # Programs that require more than one source file.
