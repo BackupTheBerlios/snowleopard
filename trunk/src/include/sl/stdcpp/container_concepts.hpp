@@ -27,30 +27,20 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_STDCPP_CONCEPTS_HPP_
-#define _SL_STDCPP_CONCEPTS_HPP_
+#ifndef _SL_STDCPP_CONTAINER_CONCEPTS_HPP_
+#define _SL_STDCPP_CONTAINER_CONCEPTS_HPP_
 
 /* Snow Leopard configuration header */
 #include <sl/config/config.hpp>
 
-/* Snow Leopard C++ headers */
+/* Standard C++ headers */
 #include <sl/stdcpp/cstddef.hpp>
-#include <sl/stdcpp/new.hpp>
 
-/* Snow Leopard concept headers */
-#include <sl/stdcpp/concepts_type_transformations.hpp>
-#include <sl/stdcpp/concepts_true.hpp>
-#include <sl/stdcpp/concepts_operators.hpp>
-#include <sl/stdcpp/concepts_predicates.hpp>
-#include <sl/stdcpp/concepts_comparisons.hpp>
-#include <sl/stdcpp/concepts_construction.hpp>
-#include <sl/stdcpp/concepts_destruction.hpp>
-#include <sl/stdcpp/concepts_copy_move.hpp>
-#include <sl/stdcpp/concepts_memory_allocation.hpp>
-#include <sl/stdcpp/concepts_regular_types.hpp>
-#include <sl/stdcpp/concepts_convertibility.hpp>
-#include <sl/stdcpp/concepts_arithmetic.hpp>
+/* Snow Leopard container concept headers */
+#include <sl/stdcpp/container_concepts_container.hpp>
+#include <sl/stdcpp/container_concepts_member.hpp>
+#include <sl/stdcpp/container_concepts_concept_maps.hpp>
 
-#endif /* !_SL_STDCPP_CONCEPTS_HPP_ */
+#endif /* !_SL_STDCPP_CONTAINER_CONCEPTS_HPP_ */
 
 /*>- EOF -<*/

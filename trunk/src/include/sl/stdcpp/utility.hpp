@@ -169,16 +169,93 @@ namespace std {
  * Tuple-alike access to pair
  */
 
-	/* tuple_size function template */
+	/* tuple_size class template */
 	template<IdentityOf T>
 	class tuple_size;
 
-	/* tuple_element function template */
+	/* tuple_element class template */
 	template<
 		size_t I,
 		IdentityOf T
 		>
 	class tuple_element;
+
+	/* tuple_size class template specialization (std::pair) */
+	template<
+		VariableType T1,
+		VariableType T2
+		>
+	class tuple_size<std::pair<T1, T2>>;
+
+	/* tuple_element class template specialization (element 0) */
+	template<
+		VariableType T1,
+		VariableType T2
+		>
+	class tuple_element<0, pair<T1, T2>>;
+
+	/* tuple_element class template specialization (element 1) */
+	template<
+		VariableType T1,
+		VariableType T2
+		>
+	class tuple_element<1, pair<T1, T2>>;
+
+	/* get function template */
+	template<
+		size_t I,
+		typename T1,
+		typename T2
+		>
+	requires True<(I < 2)>
+	P& get (pair<T1, T2>&);
+
+	/* get function template (const) */
+	template<
+		size_t I,
+		typename T1,
+		typename T2
+		>
+	requires True<(I < 2)>
+	const P& get (const pair<T1, T2>&);
+
+/*
+ * Range concept maps for pair
+ */
+
+	/* Range concept map */
+	template<InputIterator Iter>
+	concept_map Range<pair<Iter, Iter>>
+	{
+		typedef Iter iterator;
+
+		Iter begin (pair<Iter, Iter>& p)
+		{
+			return p.first;
+		}
+
+		Iter end (pair<Iter, Iter>& p)
+		{
+			return p.second;
+		}
+	}
+
+	/* Range concept map (const) */
+	template<InputIterator Iter>
+	concept_map Range<const pair<Iter, Iter>>
+	{
+		typedef Iter iterator;
+
+		Iter begin (const pair<Iter, Iter>& p)
+		{
+			return p.first;
+		}
+
+		Iter end (const pair<Iter, Iter>& p)
+		{
+			return p.second;
+		}
+	}
 	
 } //std
 

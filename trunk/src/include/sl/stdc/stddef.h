@@ -34,9 +34,9 @@
 #include <sl/config/config.h>
 
 /*
- * NULL
+ * NULL macro
  */
-extern const int NULL;
+#define NULL ((void*) 0);
 
 /*
  * size types
@@ -45,10 +45,10 @@ typedef size_type size_t;
 typedef difference_type ptrdiff_t;
 
 /*
- * macro offsetof
+ * offsetof macro
  */
 #define offsetof(st, m) \
-   ((size_t) ((char *) &((st *) (0))->m - (char *) &((st *) (0))))
+	((size_t) ((char *) &((st *) (0))->m - (char *) &((st *) (0))))
 
 #endif /* !_SL_STDC_IMPL_STDDEF_H_ */
 

@@ -37,6 +37,16 @@ namespace std {
  */
 # include <sl/stdc/stddef.h>
 
+/*
+ * Additional types in C++
+ */
+
+	/* max_align_t type */
+	typedef size_type max_align_t;
+
+	/* nullptr_t type */
+	typedef decltype (nullptr) nullptr_t;
+
 } /* std */
 
 #endif /* !_SL_STDCPP_CSTDDEF_HPP_ */
