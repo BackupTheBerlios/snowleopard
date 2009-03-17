@@ -103,7 +103,8 @@ PROGRAMS_CPP1_L5 = cpp1_prg_0501 cpp1_prg_0502 cpp1_prg_0503 cpp1_prg_0504 \
 
 PROGRAMS_CPP1_L6 = cpp1_prg_0601 cpp1_prg_0602 cpp1_prg_0603 cpp1_prg_0604 \
 		   cpp1_prg_0605 cpp1_prg_0606 cpp1_prg_0607 cpp1_prg_0608 \
-		   cpp1_prg_0609 cpp1_prg_0610 cpp1_prg_0611 cpp1_prg_0612
+		   cpp1_prg_0609 cpp1_prg_0610 cpp1_prg_0611 cpp1_prg_0612 \
+		   cpp1_ex_0601 cpp1_ex_0602 cpp1_ex_0604
 
 ALL_PROGRAMS = $(PROGRAMS_CPP1_L1) $(PROGRAMS_CPP1_L2) $(PROGRAMS_CPP1_L3) \
 	       $(PROGRAMS_CPP1_L4) $(PROGRAMS_CPP1_L5) $(PROGRAMS_CPP1_L6)
