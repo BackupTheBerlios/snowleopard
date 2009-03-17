@@ -123,7 +123,7 @@ namespace std {
 	}
 	
 	/* concept MemberFrontInsertionContainer */
-	concept MemberFrontInsertionContainer<typename C>
+	auto concept MemberFrontInsertionContainer<typename C>
 	  : MemberContainer<C>
 	{
 		void C::push_front (value_type&&);
@@ -135,14 +135,14 @@ namespace std {
 	}
 	
 	/* concept MemberBackInsertionContainer */
-	concept MemberBackInsertionContainer<typename C>
+	auto concept MemberBackInsertionContainer<typename C>
 	  : MemberContainer<C>
 	{
 		void C::push_back (value_type&&);
 	}
 	
 	/* concept MemberStackLikeContainer */
-	concept MemberStackLikeContainer<typename C>
+	auto concept MemberStackLikeContainer<typename C>
 	  : MemberBackInsertionContainer<C>
 	{
 		reference C::back ();
@@ -169,14 +169,14 @@ namespace std {
 	}
 	
 	/* concept MemberQueueLikeContainer */
-	concept MemberQueueLikeContainer<typename C>
+	auto concept MemberQueueLikeContainer<typename C>
 	  : MemberBackInsertionContainer<C>
 	{
 		void C::pop_front ();
 	}
 	
 	/* concept MemberInsertionContainer */
-	concept MemberInsertionContainer<typename C>
+	auto concept MemberInsertionContainer<typename C>
 	  : MemberContainer<C>
 	{
 		iterator C::insert (const_iterator, value_type&&);
@@ -192,7 +192,7 @@ namespace std {
 	}
 	
 	/* concept MemberRangeInsertionContainer */
-	concept MemberRangeInsertionContainer<typename C, typename Iter>
+	auto concept MemberRangeInsertionContainer<typename C, typename Iter>
 	  : MemberInsertionContainer<C>
 	{
 		requires InputIterator<Iter>;
@@ -205,7 +205,10 @@ namespace std {
 	}
 	
 	/* concept MemberFrontEmplacementContainer */
-	concept MemberFrontEmplacementContainer<typename C, typename... Args>
+	auto concept MemberFrontEmplacementContainer<
+		typename C,
+		typename... Args
+		>
 	  : MemberContainer<C>
 	{
 		void C::emplace_front (Args&&... args);
@@ -219,7 +222,10 @@ namespace std {
 
 		requires MemberFrontInsertionContainer<C>
 		    && Constructible<value_type, Args...>
-		    axiom MemberFrontEmplacementPushEquivalence(C c, Args... args)
+		    axiom MemberFrontEmplacementPushEquivalence(
+			    C c,
+			    Args... args
+			    )
 		{
 			(c.emplace_front (args...), c.front ())
 			    == (c.push_front (value_type (args...)), c.front ());
@@ -227,11 +233,57 @@ namespace std {
 	}
 	
 	/* concept MemberBackEmplacementContainer */
-	concept MemberBackEmplacementContainer<typename C, typename... Args>
+	auto concept MemberBackEmplacementContainer<typename C, typename... Args>
+	  : MemberBackInsertionContainer<C>
+	{
+		void C::emplace_back (Args&&... args);
 
+		requires MemberStackLikeContainer<C>
+		    && Constructible<value_type, Args...>
+		    axiom MemberBackEmplacement (C c, Args... args)
+		{
+			value_type (args...)
+			    == (c.emplace_back (args...), c.back ());
+		}
+
+		requires MemberStackLikeContainer<C>
+		    && Constructible<value_type, Args...>
+		    axiom MemberBackEmplacementPushEquivalence (C c, Args... args)
+		{
+			(c.emplace_back (args...), c.back ())
+			    == (c.push_back (value_type (args...)), c.back ());
+		}
+	}
+	
 	/* concept MemberEmplacementContainer */
-	concept MemberEmplacementContainer<typename C, typename... Args>
+	auto concept MemberEmplacementContainer<typename C, typename... Args>
+	: MemberInsertionContainer<C>
+	{
+		void C::emplace (const_iterator position, Args&&... args);
 
+		requires Constructible<value_type, Args...>
+		    axiom MemberEmplacement (
+			    C c,
+			    const_iterator position,
+			    Args... args
+			    )
+		{
+			value_type (args...) == *c.emplace (position, args...);
+		}
+
+		requires MemeberInsertionContainer<C>
+		    && Constructible<value_type, Args&&...>
+		    axiom MemberEmplacementPushEquivalence (
+			    C c,
+			    const_iterator position,
+			    Args... args
+			    )
+		{
+			*c.emplace (position, args...)
+			    == *c.insert (position, value_type (args...));
+		}
+	}
+	
 } /* std */
 
 #endif /* !_SL_STDCPP_CONTAINER_CONCEPTS_MEMBER_HPP_ */
