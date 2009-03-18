@@ -27,64 +27,16 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* Standard C++ headers */
-#include <cstdlib>
-#include <iostream>
-
 /* Lynx headers */
-#include <lynx/info.hpp>
+#include <lynx/driver.hpp>
 
 /*
- * Print copyright information.
+ * driver constructor, accepts the command line arguments and starts
+ * the typesetting process.
  */
-static void
-lynx::copyright ()
+driver::driver (int argc, char** argv)
 {
-	using std::cout;
-	using std::endl;
-	
-}
 
-/*
- * Print licensing information and exit. Exit as failed to avoid that dependent
- * programs continue.
- */
-static void
-lynx::license ()
-{
-	using std::cout;
-	using std::endl;
-	using std::exit;
-	
-	exit (EXIT_SUCCESS);
-}
-
-/*
- * Print usage information and exit. Exit as failed to avoid that dependent
- * programs will continue.
- */
-static void
-lynx::usage ()
-{
-	using std::cout;
-	using std::endl;
-	using std::exit;
-
-	exit (EXIT_FAILURE);
-}
-
-/*
- * Print warrantee information and exit. Exit as failed to avoid that dependent
- * programs continue.
- */
-static void
-lynx::warrantee ()
-{
-	using std::cout;
-	using std::endl;
-	using std::exit;
-
-	exit (EXIT_FAILURE);
 }
 
 /*>- EOF -<*/

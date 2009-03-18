@@ -29,10 +29,9 @@
 
 /* Standard C++ headers */
 #include <cstdlib>
-#include <iostream>
 
 /* Lynx headers */
-#include "lynx/driver.hpp"
+#include <lynx/driver.hpp>
 
 /*
  * This program is the main driver for the Lynx typesetting system. This program

@@ -39,7 +39,7 @@ namespace lynx {
 	class driver
 	{
 	public:
-		driver (int argc, char** argv);
+		driver (int, char**);
 
 	};
 
