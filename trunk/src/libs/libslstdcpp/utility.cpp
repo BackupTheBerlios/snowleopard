@@ -40,6 +40,7 @@
 #include <sl/stdcpp/detail/rel_ops.ipp>
 #include <sl/stdcpp/detail/forward_move.ipp>
 #include <sl/stdcpp/detail/pair.ipp>
+#include <sl/stdcpp/detail/tuple_access_pair.ipp>
 
 #endif
 /*******************************************************************************

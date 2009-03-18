@@ -36,6 +36,7 @@
 /* Snow Leopard C++ headers */
 #include <sl/stdcpp/concepts.hpp>
 #include <sl/stdcpp/cstddef.hpp>
+#include <sl/stdcpp/memory_concepts.hpp>
 
 namespace std {
 
@@ -89,11 +90,78 @@ namespace std {
 		>
 	struct pair
 	{
-	public:
+		typedef T1 first_type;
+		typedef T2 second_type;
+		
 		T1 first;
 		T2 second;
+
+		/* Constructors */
+		requires DefaultConstructible<T1> && DefaultConstructible<T2>
+		pair ();
+
+		requires CopyConstructible<T1> && CopyConstructible<T2>
+		pair (const T1&, const T2&);
+
+		template<typename U, typename V>
+		requires Constructible<T1, const U&> && Constructible<T2, const V&>
+		pair (const pair<U, V>&);
+
+		templace<typename U, typename V>
+		requires Constructible<T1, RvalueOf<U>::type>
+		    && Constructible<T2, RvalueOf<V>::type>
+		pair (pair<U, V>&&);
+
+	        template<typename U, typename... Args>
+		requires Constructible<T1, U&&> && Constructible<T2, Args&&...>
+		pair (U&&, Args&&... args);
+
+		/* Allocator extended constructors */
+		template<Allocator Alloc>
+		requires ConstructibleWithAllocator<T1, Alloc>
+		    && ConstructibleWithAllocator<T2, Alloc>
+		pair (allocator_arg_t, const Alloc&);
+
+		template<typename U, typename V, Allocator Alloc>
+		requires ConstructibleWithAllocator<T1, Alloc, const U&>
+		    && ConstructibleWithAllocator<T2, Alloc, const V&>
+		pair (allocator_arg_t, const Alloc&, const pair<U, V>&);
+
+		template<typename U, typename V, Allocator Alloc>
+		requires ConstructibleWithAllocator<T1, Alloc, RvalueOf<U>::type>
+		    && ConstructibleWithAllocator<T2, Alloc, RvalueOf<V>::type>
+		pair (allocator_arg_t, const Alloc&, pair<U, V>&&);
+
+		template<typename U, typename... Args, Allocator Alloc>
+		requires ConstructibleWithAllocator<T1, Alloc, U&&>
+		    && ConstructibleWithAllocator<T2, Alloc, Args&&...>
+		pair (allocator_arg_t, const Alloc&, U&&, Args&&...);
+
+		/* Assignment operators */
+		template<typename U, typename v>
+		requires HasAssign<T1, const U&> && HasAssign<T2, const V&>
+		pair& operator= (const pair<U, V>&);
+
+		requires MoveAssignable<T1> && MoveAssignable<T2>
+		pair& operator= (pair&&);
+
+		template<typename U, typename V>
+		requires HasAssign<T1, RvalueOf<U>::type>
+		    && HasAssign<T2, RvalueOf<V>::type>
+		pair& operator= (pair<U, V>&&);
+
+		/* function swap */
+		requires Swappable<T1> && Swappable<T2>
+		void swap (pair&&);
 	};
 
+	/* concept_map UsesAllocator */
+	template<typename T1, typename T2, typename Alloc>
+	concept_map UsesAllocator<pair<T1, T2>, Alloc>
+	{
+		typedef Alloc allocator_type;
+	}
+	
 	/* operator == for pairs */
 	template<
 		EqualityComparable T1,
