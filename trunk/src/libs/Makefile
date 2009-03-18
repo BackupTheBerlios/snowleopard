@@ -32,7 +32,7 @@
 # Makefile for building and testing the Snow Leopard C++ libraries.
 #/
 
-MODULES = libslstdc libslstdcpp
+MODULES = libslstdc libslstdcpp libsltst
 
 all:
 	for dir in $(MODULES); do   \
@@ -44,6 +44,9 @@ libslstdc:
 
 libslstdcpp:
 	(cd libslstdcpp ; ${MAKE} all);
+
+libsltst:
+	(cd libsltst ; ${MAKE} all);
 
 #
 # Clean rule

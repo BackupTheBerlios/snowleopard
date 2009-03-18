@@ -27,7 +27,7 @@
 #/
 
 #-
-# File: /src/libs/libslstdcpp/Makefile
+# File: /src/libs/libsltst/Makefile
 #
 # Makefile for building and testing the Snow Leopard C++ libraries.
 #/
@@ -41,43 +41,18 @@ SL_CPP_INCLUDE = ../../include/sl
 
 INCLUDE_FLAGS = -I$(SL_C_INCLUDE) -I$(SL_CPP_INCLUDE) -I$(SL_INCLUDE)
 
-STDC_INCLUDE = ../../include/sl/stdc
-STDCPP_INCLUDE = ../../include/sl/stdcpp
-
 #
 # All objects
 #
-ALL_OBJECTS = algorithm.o csignal.o cstddef.o cstdlib.o cstring.o exception.o \
-	      utility.o
+ALL_OBJECTS =
 
 CONFIG_HEADERS = $(SL_INCLUDE)/config/config.hpp $(SL_INCLUDE)/config/config.h
-
-ALGORITHM_DEPENDS = $(STDCPP_INCLUDE)/algorithm \
-		    $(STDCPP_INCLUDE)/detail/non_modifying_sequence.ipp \
-		    $(STDCPP_INCLUDE)/detail/min_max.ipp \
-		    $(STDCPP_INCLUDE)/detail/swap.ipp
-
-CSIGNAL_DEPENDS = $(STDCPP_INCLUDE)/csignal.hpp
-
-CSTDDEF_DEPENDS = $(STDCPP_INCLUDE)/cstddef.hpp
-
-CSTDLIB_DEPENDS = $(STDCPP_INCLUDE)/cstddef.hpp $(STDCPP_INCLUDE)/cstdlib.hpp
-
-CSTRING_DEPENDS = $(STDCPP_INCLUDE)/cstddef.hpp $(STDCPP_INCLUDE)/cstring.hpp
-
-EXCEPTION_DEPENDS = $(STDCPP_INCLUDE)/exception.hpp \
-		    $(STDCPP_INCLUDE)/detail/exception.ipp
-
-UTILITY_DEPENDS = $(STDCPP_INCLUDE)/utility.hpp \
-		  $(STDCPP_INCLUDE)/detail/rel_ops.ipp \
-		  $(STDCPP_INCLUDE)/detail/forward_move.ipp \
-		  $(STDCPP_INCLUDE)/detail/pair.ipp
 
 #
 # Libraries
 #
-DYNAMIC_LIBRARY = libslstdcpp.so
-STATIC_LIBRARY = libslstdcpp.a
+DYNAMIC_LIBRARY = libsltst.so
+STATIC_LIBRARY = libsltst.a
 
 ALL_LIBRARIES = $(STATIC_LIBRARY) $(DYNAMIC_LIBRARY)
 
@@ -86,30 +61,9 @@ ALL_LIBRARIES = $(STATIC_LIBRARY) $(DYNAMIC_LIBRARY)
 #
 all: $(ALL_LIBRARIES)
 
-libslstdcpp.a: $(ALL_OBJECTS)
+libsltst.a: $(ALL_OBJECTS)
 
-libslstdcpp.so: $(ALL_OBJECTS)
-
-algorithm.o: algorithm.cpp $(ALGORITHM_DEPENDS) $(CONFIG_HEADERS)
-	$(CXX) -c $(CFLAGS) $(CPPFLAGS) $(INCLUDE_FLAGS) -o $@ $<
-
-csignal.o: csignal.cpp $(CSIGNAL_DEPENDS) $(CONFIG_HEADERS)
-	$(CXX) -c $(CFLAGS) $(CPPFLAGS) $(INCLUDE_FLAGS) -o $@ $<
-
-cstddef.o: cstddef.cpp $(CSTDDEF_DEPENDS) $(CONFIG_HEADERS)
-	$(CXX) -c $(CFLAGS) $(CPPFLAGS) $(INCLUDE_FLAGS) -o $@ $<
-
-cstdlib.o: cstdlib.cpp $(CSTDLIB_DEPENDS) $(CONFIG_HEADERS)
-	$(CXX) -c $(CFLAGS) $(CPPFLAGS) $(INCLUDE_FLAGS) -o $@ $<
-
-cstring.o: cstring.cpp $(CSTRING_DEPENDS) $(CONFIG_HEADERS)
-	$(CXX) -c $(CFLAGS) $(CPPFLAGS) $(INCLUDE_FLAGS) -o $@ $<
-
-exception.o: exception.cpp $(EXCEPTION_DEPENDS) $(CONFIG_HEADERS)
-	$(CXX) -c $(CFLAGS) $(CPPFLAGS) $(INCLUDE_FLAGS) -o $@ $<
-
-utility.o: utility.cpp $(UTILITY_DEPENDS) $(CONFIG_HEADERS)
-	$(CXX) -c $(CFLAGS) $(CPPFLAGS) $(INCLUDE_FLAGS) -o $@ $<
+libsltst.so: $(ALL_OBJECTS)
 
 #
 # Clean rule
