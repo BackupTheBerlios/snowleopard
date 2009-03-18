@@ -35,8 +35,10 @@
 #     BOOK_[prg|ex]_CHEN
 #
 #       BOOK     = Book from which the program comes 
-#		  ctmp = Template Metaprogramming (Abrahams, Gurtovoy)
+#		  ctmp = Template metaprogramming (Abrahams, Gurtovoy)
+#		  ecds = Expert C programming, deep C secrets (van der Linden)
 #		  mcpd = Modern C++ design (Alexandrescu)
+#		  ponc = Pointers on C (Reek)
 #                 tc_l = The C++ programming language (Stroustrup)
 #                 tcio = The C++ standard IOStream library (Lanker, Kreft)
 #                 tcpl = The C programming language (Richie, Kerninghan)

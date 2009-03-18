@@ -32,7 +32,7 @@
 # Makefile for testing the Snow Leopard C++ toolset.
 #/
 
-MODULES = libslstdc libslstdcpp other slci 3rd_party
+MODULES = 3rd_party libslstdc libslstdcpp lynx other slci
 
 #
 # Main targets
@@ -50,6 +50,9 @@ libslstdc:
 
 libslstdcpp: 
 	(cd libslstdcpp ; ${MAKE} all);
+
+lynx:
+	(cd lynx ; ${MAKE} all);
 
 other:
 	(cd other ; ${MAKE} all);
