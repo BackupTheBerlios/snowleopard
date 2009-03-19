@@ -33,34 +33,61 @@
 #/
 
 #
+# Variables
+#
+SL_INCLUDE = ../../include
+LYNX_INCLUDE = ../../include/lynx
+
+#
 # All objects
 #
 ALL_OBJECTS = *.o
 
 ALL_PROGRAMS = lynx lroff leqn lpic lrefer ltbl lsoelim
 
-#
-# All sources
-#
-LYNX_SOURCES = info.cpp main.cpp
+LYNX_OBJECTS = driver.o info.o main.o version.o
+driver_HEADERS = $(LYNX_INCLUDE)/driver.hpp
+
+LROFF_OBJECTS = 
+
+LEQN_OBJECTS = 
+
+LPIC_OBJECTS = 
+
+LREFER_OBJECTS = 
+
+LTBL_OBJECTS = 
+
+LSOELIM_OBJECTS = 
 
 #
 # Main targets
 # 
-all: lynx
+all: what $(ALL_PROGRAMS)
+
+lynx: $(LYNX_OBJECTS)
+	$(CXX) $(CFLAGS) $(CPPFLAGS) -o $@ $(LYNX_OBJECTS)
+
+lroff: $(LROFF_OBJECTS)
+
+leqn: $(LEQN_OBJECTS)
+
+lpic: $(LPIQ_OBJECTS)
+
+lrefer: $(LREFER_OBJECTS)
+
+ltbl: $(LTABL_OBJECTS)
+
+lsoelim: $(LSOELIM_OBJECTS)
+
+what:
 	(echo Building the Lynx Typesetting System);
-
-lynx: ${LYNX_SOURCES)
-
-info.cpp: info.cpp info.hpp
-
-main.cpp: main.cpp driver.hpp
 
 #
 # Suffix rule for building C++ sources
 #
-.cpp.o:
-	$(CXX) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
+.cpp.o: 
+	$(CXX) -c $(CFLAGS) $(CPPFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 .SUFFIXES: .cpp .o
 

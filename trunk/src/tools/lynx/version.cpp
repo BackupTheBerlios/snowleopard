@@ -27,43 +27,33 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _LYNX_DRIVER_HPP_
-#define _LYNX_DRIVER_HPP_
+/* Standard C headers */
+#include <cstdio>
 
-/* Standard C++ headers */
-#include <map>
-#include <string>
-#include <vector>
+/* Snow Leopard headers */
+#include <lynx/version.hpp>
 
-namespace lynx {
+/*
+ * Version numbers.
+ */
+const unsigned short lynx::MajorVersion = 0;
+const unsigned short lynx::MinorVersion = 0;
+const unsigned short lynx::Release = 1;
+const unsigned int lynx::Build = 1;
+const char * lynx::VersionLabel = "Initial Test Version";
 
-	/*
-	 * Driver class, takes care of command line arguments and starts the
-	 * typesetting process.
-	 */
-	class driver
-	{
-		/* typedefs */
-		typedef std::vector<std::string> element_type;
-		typedef std::map<std::string, element_type> settings_container;
-	     
-	public:
-		/* Constructor */
-		driver (int, char**);
+/*
+ * Prints program usage information.
+ */
+char *
+lynx::get_version_string (char* buffer)
+{
+	sprintf (
+		buffer, "version %i.%i.%i build %i (%s)",
+		MajorVersion, MinorVersion, Release, Build, VersionLabel
+		);
 
-		/* Program control functions */
-		bool start ();
-		
-	private:
-		settings_container settings_;
-		
-		/* Settings */
-		bool parse_command_line (int, char**);
-
-	};
-
-} /* lynx */
-
-#endif /* !_LYNX_DRIVER_HPP_ */
+	return buffer;
+}
 
 /*>- EOF -<*/

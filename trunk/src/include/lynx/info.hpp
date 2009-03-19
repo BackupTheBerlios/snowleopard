@@ -27,43 +27,29 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _LYNX_DRIVER_HPP_
-#define _LYNX_DRIVER_HPP_
-
-/* Standard C++ headers */
-#include <map>
-#include <string>
-#include <vector>
+#ifndef _LYNX_INFO_HPP_
+#define _LYNX_INFO_HPP_
 
 namespace lynx {
 
-	/*
-	 * Driver class, takes care of command line arguments and starts the
-	 * typesetting process.
-	 */
-	class driver
-	{
-		/* typedefs */
-		typedef std::vector<std::string> element_type;
-		typedef std::map<std::string, element_type> settings_container;
-	     
-	public:
-		/* Constructor */
-		driver (int, char**);
+/*
+ * Program information functions.
+ */
 
-		/* Program control functions */
-		bool start ();
-		
-	private:
-		settings_container settings_;
-		
-		/* Settings */
-		bool parse_command_line (int, char**);
+        /* Copyright function */
+	static void copyright ();
 
-	};
+	/* License function */
+	static void license ();
+
+	/* Usage function */
+	static void usage ();
+
+	/* Warrantee function */
+	static void warrantee ();
 
 } /* lynx */
 
-#endif /* !_LYNX_DRIVER_HPP_ */
+#endif /* !_LYNX_INFO_HPP_ */
 
 /*>- EOF -<*/

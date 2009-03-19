@@ -27,43 +27,31 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _LYNX_DRIVER_HPP_
-#define _LYNX_DRIVER_HPP_
-
-/* Standard C++ headers */
-#include <map>
-#include <string>
-#include <vector>
+#ifndef _LYNX_VERSION_HPP_
+#define _LYNX_VERSION_HPP_
 
 namespace lynx {
+	
+/*
+ * Version numbers.
+ */
 
-	/*
-	 * Driver class, takes care of command line arguments and starts the
-	 * typesetting process.
-	 */
-	class driver
-	{
-		/* typedefs */
-		typedef std::vector<std::string> element_type;
-		typedef std::map<std::string, element_type> settings_container;
-	     
-	public:
-		/* Constructor */
-		driver (int, char**);
+	/* Version constants */
+	extern const unsigned short MajorVersion;
+	extern const unsigned short MinorVersion;
+	extern const unsigned short Release;
+	extern const unsigned int Build;
+	extern const char * VersionLabel;
 
-		/* Program control functions */
-		bool start ();
-		
-	private:
-		settings_container settings_;
-		
-		/* Settings */
-		bool parse_command_line (int, char**);
+/*
+ * Version functions.
+ */
 
-	};
+	/* get_version_string function */
+	char* get_version_string (char*);
 
 } /* lynx */
 
-#endif /* !_LYNX_DRIVER_HPP_ */
+#endif /* !_LYNX_VERSION_HPP_ */
 
 /*>- EOF -<*/
