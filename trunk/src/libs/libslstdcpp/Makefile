@@ -48,7 +48,7 @@ STDCPP_INCLUDE = ../../include/sl/stdcpp
 # All objects
 #
 ALL_OBJECTS = algorithm.o csignal.o cstddef.o cstdlib.o cstring.o exception.o \
-	      utility.o
+	      new.o utility.o
 
 CONFIG_HEADERS = $(SL_INCLUDE)/config/config.hpp $(SL_INCLUDE)/config/config.h
 
@@ -67,6 +67,9 @@ CSTRING_DEPENDS = $(STDCPP_INCLUDE)/cstddef.hpp $(STDCPP_INCLUDE)/cstring.hpp
 
 EXCEPTION_DEPENDS = $(STDCPP_INCLUDE)/exception.hpp \
 		    $(STDCPP_INCLUDE)/detail/exception.ipp
+
+NEW_DEPENDS = $(STDCPP_INCLUDE)/cstddef.hpp $(STDCPP_INCLUDE)/new.hpp \
+	      $(STDCPP_INCLUDE)/exception.hpp
 
 UTILITY_DEPENDS = $(STDCPP_INCLUDE)/utility.hpp \
 		  $(STDCPP_INCLUDE)/detail/rel_ops.ipp \
@@ -106,6 +109,9 @@ cstring.o: cstring.cpp $(CSTRING_DEPENDS) $(CONFIG_HEADERS)
 	$(CXX) -c $(CFLAGS) $(CPPFLAGS) $(INCLUDE_FLAGS) -o $@ $<
 
 exception.o: exception.cpp $(EXCEPTION_DEPENDS) $(CONFIG_HEADERS)
+	$(CXX) -c $(CFLAGS) $(CPPFLAGS) $(INCLUDE_FLAGS) -o $@ $<
+
+new.o: new.cpp $(NEW_DEPENDS) $(CONFIG_HEADERS)
 	$(CXX) -c $(CFLAGS) $(CPPFLAGS) $(INCLUDE_FLAGS) -o $@ $<
 
 utility.o: utility.cpp $(UTILITY_DEPENDS) $(CONFIG_HEADERS)
