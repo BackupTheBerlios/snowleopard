@@ -30,6 +30,12 @@
 #ifndef _SL_STDCPP_CSTDBOOL_HPP_
 #define _SL_STDCPP_CSTDBOOL_HPP_
 
+/*******************************************************************************
+ * bool, true and false are keyword in C++, so they don't have to be defined in
+ * this header like they had to in C.
+ *******************************************************************************
+ */
+
 /*
  * __bool_true_false_are_defined macro
  */
