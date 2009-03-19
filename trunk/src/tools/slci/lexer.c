@@ -108,7 +108,7 @@ put_back_token ()
 }
 
 /*
- * Lex a comment. Comments start with // or /*. 
+ * Lex a comment. This function lexes both single and multi-line comments. 
  */
 char*
 lex_comment ()

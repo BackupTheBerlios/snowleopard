@@ -42,7 +42,7 @@ static void parse_template ();
 static void parse_translation_unit ();
 
 /*
- * Initialize parser. It initializes the lexer using the file.
+ * initialize_parser function. It initializes the lexer using the file.
  */
 bool
 initialize_parser (char* file)
@@ -52,7 +52,7 @@ initialize_parser (char* file)
 }
 
 /*
- * Destroy the parser.
+ * destroy_parser function. Destroys the parser.
  */
 void
 destroy_parser ()
@@ -61,10 +61,64 @@ destroy_parser ()
 }
 
 /*
- * Parse the translation unit.
+ * parse function. Parse the translation unit.
  */
 bool
 parse ()
+{
+
+}
+
+/*
+ * parse_class function. Parses a class definition.
+ */
+void
+parse_class ()
+{
+
+}
+
+/*
+ * parse_definition function. Parses a definition.
+ */
+void
+parse_definition ()
+{
+
+}
+
+/*
+ * parse_function function. Parses a function definition.
+ */
+void
+parse_function ()
+{
+
+}
+
+/*
+ * parse_statement function. Parses a statement.
+ */
+void
+parse_statement ()
+{
+
+}
+
+/*
+ * parse_template function. Parses a template defintion.
+ */
+void
+parse_template ()
+{
+
+}
+
+/*
+ * parse_translation_unit function. Parses a translation unit.
+ */
+void
+parse_translation_unit ()
 {
 
 }
