@@ -32,15 +32,17 @@
 
 /* Standard C headers */
 #include <stddef.h>
+#include <stdio.h>
 
 /*
  * source_position structure
  */
 struct slci_source_position
 {
-	char * file;
+	char* file;
 	size_t line;
 	size_t position;
+	FILE* stream;
 };
 
 typedef struct slci_source_position slci_source_position;

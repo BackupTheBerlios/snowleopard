@@ -250,6 +250,8 @@ typedef struct slci_token slci_token;
 /*
  * Function prototypes
  */
+slci_token empty_token ();
+slci_token eof_token ();
 void print_token (size_t, slci_token);
 
 #endif /* !_SL_SLCI_TOKEN_H_ */

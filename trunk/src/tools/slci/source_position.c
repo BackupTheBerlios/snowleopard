@@ -28,6 +28,7 @@
  */
 
 /* Standard C headers */
+#include <stdio.h>
 #include <stdlib.h>
 
 /* Snow Leopard headers */
@@ -44,7 +45,8 @@ initialize_source_position (char* file, size_t line, size_t position)
 	pos->file = file;
 	pos->line = line;
 	pos->position = position;
-
+	pos->stream = fopen (file, "r");
+	
 	return pos;
 }
 
@@ -55,7 +57,8 @@ void
 destroy_source_position (slci_source_position* position)
 {
 	free (position->file);
-
+	fclose (position->stream);
+	
 	free (position);
 }
 

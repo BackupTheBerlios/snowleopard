@@ -43,9 +43,12 @@
 /*
  * Private function prototypes.
  */
-static char* lex_comment ();
-static char* lex_literal ();
-static char* lex_reserved ();
+static slci_token lex_character ();
+static slci_token lex_comment ();
+static slci_token lex_number ();
+static slci_token lex_other ();
+static slci_token lex_reserved ();
+static slci_token lex_string ();
 static size_t keyword_position ();
 static size_t punctuation_position ();
 static char* preprocess_token ();
@@ -84,6 +87,25 @@ destroy_lexer ()
 slci_token
 get_next_token ()
 {
+	char c = get_next_char ();
+
+	if (c == '\0')
+		return empty_token ();
+
+	if (c == EOF)
+		return eof_token ();
+	
+        if (c >= '0' && c <= '9')
+		current_token = lex_number ();
+	else if (c == '\'')
+		current_token = lex_character ();
+	else if (c == '"')
+		current_token = lex_string ();
+	else if (c == '/')
+		current_token = lex_comment ();
+	else
+		current_token = lex_other ();
+	
 	return current_token;
 }
 
@@ -108,20 +130,39 @@ put_back_token ()
 }
 
 /*
+ * Lex a character. This function lexes a single character literal.
+ */
+slci_token
+lex_character ()
+{
+
+}
+
+/*
  * Lex a comment. This function lexes both single and multi-line comments. 
  */
-char*
+slci_token
 lex_comment ()
 {
 	
 }
 
 /*
- * Lex a literal. Literals either start with a number, a single quote or
- * a double quote.
+ * Lex a number. This function lexes a numeric literal of any of the
+ * supported numeric literals.
  */
-char*
-lex_literal ()
+slci_token
+lex_number ()
+{
+
+}
+
+/*
+ * Lex another token. This function lexes a token that is not a literal or a
+ * comment.
+ */
+slci_token
+lex_other ()
 {
 
 }
@@ -131,8 +172,17 @@ lex_literal ()
  * if no match is found it searches the symbol table. If still no match, this
  * is a new identifier that needs to be entered in the symbol table.
  */
-char*
+slci_token
 lex_reserved ()
+{
+
+}
+
+/*
+ * Lex a string. This function lexes a string literal.
+ */
+slci_token
+lex_string ()
 {
 
 }

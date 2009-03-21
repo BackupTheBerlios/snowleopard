@@ -193,9 +193,28 @@ char* punctuation_list[] = {
 };
 
 /*
+ * empty_token function. This function returns an empty token.
+ */
+slci_token
+empty_token ()
+{
+
+}
+
+/*
+ * eof_token function. This function return an eof token.
+ */
+slci_token
+eof_token ()
+{
+
+}
+
+/*
  * print_token function. This function prints a token.
  */
-void print_token (size_t i, slci_token token)
+void
+print_token (size_t i, slci_token token)
 {
 	switch (token.type)
 	{

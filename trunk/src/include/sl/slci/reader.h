@@ -42,7 +42,8 @@ void destroy_reader ();
 /*
  * Reader functions.
  */
-char get_char ();
+char get_next_char ();
+char get_current_char ();
 bool put_back_char (char);
 
 #endif /* !_SL_SLCI_READER_H_ */

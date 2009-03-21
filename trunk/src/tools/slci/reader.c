@@ -30,6 +30,7 @@
 /* Standard C headers */
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 /* Snow Leopard headers */
@@ -54,6 +55,7 @@ static slci_source_position* top_file_stack ();
 slci_source_position** file_stack;
 size_t file_stack_reserved;
 size_t file_stack_depth;
+int current_char;
 
 /*
  * Initialize reader.
@@ -69,6 +71,9 @@ initialize_reader (char* file)
 
 	/* Add first file */
 	push_file_stack (initialize_source_position (file, 0, 0));
+	
+        /* Set previous character */
+	current_char = 0;
 	
 	return true;
 }
@@ -93,9 +98,28 @@ destroy_reader ()
  * Returns the next character in the current file.
  */
 char
-get_char ()
+get_next_char ()
 {
-	return '\0';
+	if (current_char == EOF)
+		return '\0';
+	
+	slci_source_position* file = top_file_stack ();
+	
+	if (file == 0)
+		return '\0';
+
+	current_char = fgetc (file->stream);
+
+	return current_char;
+}
+
+/*
+ * Returns the last read character again.
+ */
+char
+get_current_char ()
+{
+	return current_char;
 }
 
 /*
