@@ -130,12 +130,31 @@ put_back_token ()
 }
 
 /*
- * Lex a character. This function lexes a single character literal.
+ * Lex a character. This function lexes a single character literal. We don't
+ * need to get the opening single quote, because we already got that.
  */
 slci_token
 lex_character ()
 {
+	slci_token token;
 
+	/* Get character */
+	char c = get_next_char ();
+
+	/* If character is escaped */
+	if (c == '\\')
+	{
+
+	}
+	token = character_token (c);
+	
+	/* Get ending quote */
+	c = get_next_char ();
+
+	if (c != '\'')
+		/* TODO - Report invalid character literal */ ;
+
+	return token;
 }
 
 /*

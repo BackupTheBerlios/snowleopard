@@ -193,6 +193,15 @@ char* punctuation_list[] = {
 };
 
 /*
+ * character_token function. This function returns a character token.
+ */
+slci_token
+character_token (char c)
+{
+
+}
+
+/*
  * empty_token function. This function returns an empty token.
  */
 slci_token
