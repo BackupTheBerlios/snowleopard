@@ -27,9 +27,13 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/* Standard C headers */
+#include <stddef.h>
+
 /* Snow Leopard headers */
 #include "sl/slci/lexer.h"
 #include "sl/slci/parser.h"
+#include "sl/slci/token.h"
 
 /*
  * Private function prototypes.
@@ -49,6 +53,8 @@ initialize_parser (char* file)
 {
 	if (!initialize_lexer (file))
 		return false;
+
+	return true;
 }
 
 /*
@@ -66,7 +72,22 @@ destroy_parser ()
 bool
 parse ()
 {
+	slci_token token = get_next_token ();
+	size_t i = 0;
+	
+	while (token.type != TT_EOF)
+	{
+		if (token.type != TT_EOF && token.type != TT_EMPTY
+		    && token.type != TT_COMMENT && token.type != TT_PREPROCESSOR
+		    && token.type != TT_KEYWORD && token.type != TT_PUNCTUATION
+		    && token.type != TT_LITERAL && token.type != TT_IDENTIFIER)
+			return false;
 
+		print_token (i, token);
+		++i;
+	}
+	
+	return true;
 }
 
 /*

@@ -140,6 +140,8 @@ struct slci_literal
 		slci_char32_string char32_string;
 		slci_wchar_string wstring;
 	};
+
+	char* lexeme;
 };
 
 typedef struct slci_literal slci_literal;

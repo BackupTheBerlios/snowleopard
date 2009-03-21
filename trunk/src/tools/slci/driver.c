@@ -79,16 +79,16 @@ parse_command_line (int argc, char** argv)
 	
 	for (i = 1; i != argc; ++i)
 	{
-		if (strcmp (argv[i], "-i"))
+		if (strcmp (argv[i], "-i") == 0)
 			/* Interactive [-i] */
 			settings->interactive = true;
-		else if (strcmp (argv[i], "-l"))
+		else if (strcmp (argv[i], "-l") == 0)
 			/* License [-l] */
 			settings->license = true;
-		else if (strcmp (argv[i], "-v"))
+		else if (strcmp (argv[i], "-v") == 0)
 			/* Verbose [-v] */
 			settings->verbose = true;
-		else if (strcmp (argv[i], "-w"))
+		else if (strcmp (argv[i], "-w") == 0)
 			/* Warrantee [-w] */
 			settings->warrantee = true;
 		else

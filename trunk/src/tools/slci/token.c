@@ -27,6 +27,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/* Standard C headers */
+#include <stddef.h>
+#include <stdlib.h>
+
 /* Snow Leopard headers */
 #include "sl/slci/token.h"
 
@@ -187,5 +191,63 @@ char* punctuation_list[] = {
 	"xor",
 	"xor_eq"
 };
+
+/*
+ * print_token function. This function prints a token.
+ */
+void print_token (size_t i, slci_token token)
+{
+	switch (token.type)
+	{
+	case TT_EMPTY:
+		printf ("%i: EMPTY token", i);
+		break;
+		
+	case TT_COMMENT:
+		printf ("%i: COMMENT <%s>\n", i, token.comment);
+		break;
+		
+	case TT_PREPROCESSOR:
+		printf ("%i: PREPROCESSOR\n", i);
+		break;
+		
+	case TT_KEYWORD:
+		printf (
+			"%i: KEYWORD <%s>\n",
+			i,
+			keyword_list[token.keyword]
+			);
+		break;
+		
+	case TT_PUNCTUATION:
+		printf (
+			"%i: PUNCTUATION <%s>\n",
+			i,
+			punctuation_list[token.punctuation]
+			);
+		break;
+		
+	case TT_LITERAL:
+		printf (
+			"%i: LITERAL <type: %i;lexeme: %s>\n",
+			i,
+			-1, 
+			"TODO"
+			);
+		break;
+		
+	case TT_IDENTIFIER:
+		printf (
+			"%i: IDENTIFIER <%s>\n",
+			i,
+			"TODO"
+			);
+		break;
+		
+	default:
+		printf ("%i: UNKNOWN TOKEN\n", i);
+		break;
+	}
+}
 
 /*>- EOF -<*/

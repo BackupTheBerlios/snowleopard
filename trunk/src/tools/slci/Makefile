@@ -37,7 +37,9 @@
 #
 PROGRAM = slci
 
-CFLAGS = -Wall
+CFLAGS = -Wall -g
+
+DEBUG_CFLAGS = -g
 
 SLCI_INCLUDE = ../../include/sl/slci
 
@@ -147,7 +149,8 @@ what:
 # Clean rule
 #
 clean:
-	rm -f $(PROGRAM) ; \
-	rm -f $(ALL_OBJECTS)
+	rm -f $(PROGRAM) ;     \
+	rm -f $(ALL_OBJECTS) ; \
+	rm -f *.core
 
 #>- EOF

@@ -30,6 +30,9 @@
 #ifndef _SL_SLCI_TOKEN_H_
 #define _SL_SLCI_TOKEN_H_
 
+/* Standard C headers */
+#include <stddef.h>
+
 /* Snow Leopard headers */
 #include "sl/slci/literal.h"
 #include "sl/slci/source_position.h"
@@ -243,6 +246,11 @@ struct slci_token
 };
 
 typedef struct slci_token slci_token;
+
+/*
+ * Function prototypes
+ */
+void print_token (size_t, slci_token);
 
 #endif /* !_SL_SLCI_TOKEN_H_ */
 

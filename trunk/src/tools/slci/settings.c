@@ -38,7 +38,7 @@
 /*
  * Private function prototypes.
  */
-static size_t add_path (char**, size_t, const char*);
+static size_t add_path (char***, size_t, const char*);
 
 /*
  * Global variables.
@@ -51,6 +51,9 @@ slci_settings* settings;
 slci_settings*
 initialize_settings ()
 {
+	char* current_include = ".";
+	char* current_source = ".";
+	
 	settings = malloc (sizeof (slci_settings));
 
 	settings->interactive = false;
@@ -59,10 +62,12 @@ initialize_settings ()
 	settings->warrantee = false;
 
 	settings->source_file = 0;
-	settings->source_paths = 0;
-	settings->size_source_paths = 0;
-	settings->include_paths = 0;
-	settings->size_include_paths = 0;
+	settings->source_paths = malloc (sizeof (char* [1]));
+	settings->source_paths[0] = current_source;
+	settings->size_source_paths = 1;
+	settings->include_paths = malloc (sizeof (char* [1]));
+	settings->include_paths[0] = current_include;
+	settings->size_include_paths = 1;
 	
 	return settings;
 }
@@ -111,7 +116,7 @@ add_include_path (const char* path)
 {
 	settings->size_include_paths = 
 	    add_path (
-		    settings->include_paths,
+		    &settings->include_paths,
 		    settings->size_include_paths,
 		    path);
 }
@@ -124,7 +129,7 @@ add_source_path (const char* path)
 {
 	settings->size_source_paths =
 	    add_path (
-		    settings->source_paths,
+		    &settings->source_paths,
 		    settings->size_source_paths,
 		    path);
 }
@@ -133,7 +138,7 @@ add_source_path (const char* path)
  * Add path to array and returns the new size of the array.
  */
 size_t
-add_path (char** array, size_t size, const char* path)
+add_path (char*** array, const size_t size, const char* path)
 {
 	size_t i;
 	
@@ -142,24 +147,24 @@ add_path (char** array, size_t size, const char* path)
 	strcpy (new_path, path);
 
 	/* Copy old array */
-	char** old = array;
+	char** old = *array;
 	
 	/* Create new array */
 	char** new = malloc (sizeof (char* [size + 1]));
 	for (i = 0; i != size; ++i)
-		new[i] = array[i];
+		new[i] = (*array)[i];
 
 	/* Add new path */
 	new[size] = new_path;
-	size++;
+	i = size + 1;
 
 	/* Set new array */
-	array = new;
+	*array = new;
 
 	/* Delete old array */
 	free (old);
 
-	return size;
+	return i;
 }
 
 /*>- EOF -<*/
