@@ -36,8 +36,10 @@
 /* Snow Leopard headers */
 #include "sl/slci/binary_search.h"
 #include "sl/slci/lexer.h"
+#include "sl/slci/lexer_functions.h"
 #include "sl/slci/preprocessor.h"
 #include "sl/slci/reader.h"
+#include "sl/slci/string.h"
 #include "sl/slci/symbol_table.h"
 #include "sl/slci/token.h"
 
@@ -90,6 +92,7 @@ get_next_token ()
 {
 	char c = get_next_char ();
 
+	previous_token = current_token;
 	if (c == '\0')
 		return empty_token (get_current_source_position ());
 
@@ -137,84 +140,19 @@ put_back_token ()
 slci_token
 lex_character ()
 {
-	slci_token token;
+	char c;
+	char d;
 
-	/* Get character */
-	char c = get_next_char ();
-
-	/* If character is escaped */
-	if (c == '\\')
-	{
-		char c = get_next_char ();
-
-		switch (c)
-		{
-		case 'a':
-			c = '\a';
-			break;
-
-		case 'b':
-			c = '\b';
-			break;
-
-		case 'f':
-			c = '\f';
-			break;
-
-		case 'n':
-			c = '\n';
-			break;
-
-		case 'r':
-			c = '\r';
-			break;
-
-		case 't':
-			c = '\t';
-			break;
-
-		case 'v':
-			c = '\v';
-			break;
-
-		case '\\':
-			c = '\\';
-			break;
-
-		case '\?':
-			c = '\?';
-			break;
-
-		case '\'':
-			c = '\'';
-			break;
-
-		case '\"':
-			c = '\"';
-			break;
-
-		case '0':
-			/* TODO - Octal constants */
-			break;
-
-		case 'x':
-			/* TODO - Hexadecimal constants */
-			break;
-
-		default:
-			/* TODO - Report invalid character literal */ ;
-			break;			
-		}
-	}
-	token = character_token (c, get_current_source_position ());
+        /* Lex character */
+	c = lex_single_character ();
 	
 	/* Get ending quote */
-	c = get_next_char ();
+	d = get_next_char ();
 
-	if (c != '\'')
+	if (d != '\'')
 		/* TODO - Report invalid character literal */ ;
 
-	return token;
+	return character_token (c, get_current_source_position ());
 }
 
 /*
@@ -263,7 +201,23 @@ lex_reserved ()
 slci_token
 lex_string ()
 {
+	bool done = false;
+	char c;
+	char prev_c = '"';
+	slci_string s = initialize_string ();
+	
+	/* Get second token delimiter */
+	c = lex_single_character ();
+	while (!done)
+	{
+		if (c == '"' && prev_c != '\\')
+			done = true;
+		else
+			append_string (s, c);
+		c = lex_single_character ();
+	}
 
+	return string_token (s, get_current_source_position ());
 }
 
 /*

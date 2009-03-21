@@ -49,8 +49,8 @@ SL_INCLUDE = ../../include
 # All objects.
 #
 ALL_OBJECTS = binary_search.o driver.o error_handling.o hash_function.o info.o \
-	      lexer.o main.o parser.o reader.o settings.o source_position.o \
-	      symbol_table.o token.o version.o
+	      lexer.o lexer_functions.o main.o parser.o reader.o settings.o \
+	      source_position.o string.o symbol_table.o token.o version.o
 
 BINARY_SEARCH_DEPENDS = $(SLCI_INCLUDE)/binary_search.h
 
@@ -65,9 +65,12 @@ HASH_FUNCTION_DEPENDS = $(SLCI_INCLUDE)/hash_function.h
 INFO_DEPENDS = $(SLCI_INCLUDE)/info.h $(SLCI_INCLUDE)/version.h
 
 LEXER_DEPENDS = $(SLCI_INCLUDE)/binary_search.h $(SLCI_INCLUDE)/lexer.h \
-		$(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/preprocessor.h \
-		$(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_position.h \
+		$(SLCI_INCLUDE)/lexer_functions.h $(SLCI_INCLUDE)/literal.h \
+		$(SLCI_INCLUDE)/preprocessor.h $(SLCI_INCLUDE)/reader.h \
+		$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
 		$(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h
+
+LEXER_FUNCTIONS_DEPENDS = $(SLCI_INCLUDE)/lexer_functions.h
 
 MAIN_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/error_handling.h \
                $(SLCI_INCLUDE)/info.h $(SLCI_INCLUDE)/settings.h \
@@ -75,7 +78,8 @@ MAIN_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/error_handling.h \
 
 PARSER_DEPENDS = $(SLCI_INCLUDE)/lexer.h $(SLCI_INCLUDE)/literal.h \
 		 $(SLCI_INCLUDE)/parser.h $(SLCI_INCLUDE)/reader.h  \
-		 $(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/token.h
+		 $(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
+		 $(SLCI_INCLUDE)/token.h
 
 READER_DEPENDS = $(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_position.h
 
@@ -83,12 +87,14 @@ SETTINGS_DEPENDS = $(SLCI_INCLUDE)/settings.h
 
 SOURCE_POSITION_DEPENDS = $(SLCI_INCLUDE)/source_position.h
 
+STRING_DEPENDS = $(SLCI_INCLUDE)/string.h
+
 SYMBOL_TABLE_DEPENDS = $(SLCI_INCLUDE)/literal.h \
-		       $(SLCI_INCLUDE)/source_position.h \
+		       $(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
 		       $(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h
 
-TOKEN_DEPENDS = $(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/token.h \
-		$(SLCI_INCLUDE)/source_position.h
+TOKEN_DEPENDS = $(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/source_position.h \
+		$(SLCI_INCLUDE)/string.h $(SLCI_INCLUDE)/token.h
 
 VERSION_DEPENDS = $(SLCI_INCLUDE)/version.h
 
@@ -118,6 +124,9 @@ info.o: info.c $(INFO_DEPENDS)
 lexer.o: lexer.c $(LEXER_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
+lexer_functions.o: lexer_functions.c $(LEXER_FUNCTIONS_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
+
 main.o: main.c $(MAIN_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
@@ -134,6 +143,9 @@ source_position.o: source_position.c $(SOURCE_POSITION_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 symbol_table.o: symbol_table.c $(SYMBOL_TABLE_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
+
+string.o: string.c $(STRING_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 token.o: token.c $(TOKEN_DEPENDS)
