@@ -53,6 +53,11 @@ typedef struct slci_source_position slci_source_position;
 slci_source_position* initialize_source_position (char*, size_t, size_t);
 void destroy_source_position (slci_source_position*);
 
+/*
+ * Source position functions.
+ */
+slci_source_position copy_source_position (const slci_source_position*);
+
 #endif /* !_SL_SLCI_SOURCE_POSITION_H_ */
 
 /*>- EOF -<*/

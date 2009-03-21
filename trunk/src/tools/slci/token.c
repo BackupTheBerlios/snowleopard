@@ -32,6 +32,7 @@
 #include <stdlib.h>
 
 /* Snow Leopard headers */
+#include "sl/slci/source_position.h"
 #include "sl/slci/token.h"
 
 /*
@@ -196,18 +197,31 @@ char* punctuation_list[] = {
  * character_token function. This function returns a character token.
  */
 slci_token
-character_token (char c)
+character_token (char c, slci_source_position pos)
 {
+	slci_token token;
 
+	token.type = TT_LITERAL;
+	token.pos = pos;
+
+	token.literal.type = LT_SIGNED_CHAR;
+	token.literal.schar_value = c;
+
+	return token;
 }
 
 /*
  * empty_token function. This function returns an empty token.
  */
 slci_token
-empty_token ()
+empty_token (slci_source_position pos)
 {
+	slci_token token;
 
+	token.type = TT_EMPTY;
+	token.pos = pos;
+	
+	return token;
 }
 
 /*
@@ -216,7 +230,11 @@ empty_token ()
 slci_token
 eof_token ()
 {
+	slci_token token;
 
+	token.type = TT_EOF;
+
+	return token;
 }
 
 /*

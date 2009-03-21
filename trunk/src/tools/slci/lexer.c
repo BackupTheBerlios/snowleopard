@@ -37,6 +37,7 @@
 #include "sl/slci/binary_search.h"
 #include "sl/slci/lexer.h"
 #include "sl/slci/preprocessor.h"
+#include "sl/slci/reader.h"
 #include "sl/slci/symbol_table.h"
 #include "sl/slci/token.h"
 
@@ -90,7 +91,7 @@ get_next_token ()
 	char c = get_next_char ();
 
 	if (c == '\0')
-		return empty_token ();
+		return empty_token (get_current_source_position ());
 
 	if (c == EOF)
 		return eof_token ();
@@ -144,9 +145,68 @@ lex_character ()
 	/* If character is escaped */
 	if (c == '\\')
 	{
+		char c = get_next_char ();
 
+		switch (c)
+		{
+		case 'a':
+			c = '\a';
+			break;
+
+		case 'b':
+			c = '\b';
+			break;
+
+		case 'f':
+			c = '\f';
+			break;
+
+		case 'n':
+			c = '\n';
+			break;
+
+		case 'r':
+			c = '\r';
+			break;
+
+		case 't':
+			c = '\t';
+			break;
+
+		case 'v':
+			c = '\v';
+			break;
+
+		case '\\':
+			c = '\\';
+			break;
+
+		case '\?':
+			c = '\?';
+			break;
+
+		case '\'':
+			c = '\'';
+			break;
+
+		case '\"':
+			c = '\"';
+			break;
+
+		case '0':
+			/* TODO - Octal constants */
+			break;
+
+		case 'x':
+			/* TODO - Hexadecimal constants */
+			break;
+
+		default:
+			/* TODO - Report invalid character literal */ ;
+			break;			
+		}
 	}
-	token = character_token (c);
+	token = character_token (c, get_current_source_position ());
 	
 	/* Get ending quote */
 	c = get_next_char ();

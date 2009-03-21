@@ -33,6 +33,9 @@
 /* Standard C headers */
 #include <stdbool.h>
 
+/* Snow Leopard headers */
+#include "sl/slci/source_position.h"
+
 /*
  * Initialize functions.
  */
@@ -44,6 +47,7 @@ void destroy_reader ();
  */
 char get_next_char ();
 char get_current_char ();
+slci_source_position get_current_source_position ();
 bool put_back_char (char);
 
 #endif /* !_SL_SLCI_READER_H_ */

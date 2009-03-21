@@ -55,7 +55,9 @@ static slci_source_position* top_file_stack ();
 slci_source_position** file_stack;
 size_t file_stack_reserved;
 size_t file_stack_depth;
+
 int current_char;
+slci_source_position current_pos;
 
 /*
  * Initialize reader.
@@ -107,8 +109,17 @@ get_next_char ()
 	
 	if (file == 0)
 		return '\0';
-
+	
 	current_char = fgetc (file->stream);
+	current_pos = copy_source_position (file);
+
+	if (current_char != '\n')
+		file->position++;
+	else
+	{
+		file->line++;
+		file->position = 0;
+	}
 
 	return current_char;
 }
@@ -120,6 +131,15 @@ char
 get_current_char ()
 {
 	return current_char;
+}
+
+/*
+ * Returns the last source position.
+ */
+slci_source_position
+get_current_source_position ()
+{
+	return current_pos;
 }
 
 /*

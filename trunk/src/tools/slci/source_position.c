@@ -62,4 +62,20 @@ destroy_source_position (slci_source_position* position)
 	free (position);
 }
 
+/*
+ * Copy a source position object.
+ */
+slci_source_position
+copy_source_position (const slci_source_position* pos)
+{
+	slci_source_position p;
+
+	p.file = pos->file;
+	p.line = pos->line;
+	p.position = pos->position;
+	p.stream = pos->stream;
+
+	return p;
+}
+
 /*>- EOF -<*/
