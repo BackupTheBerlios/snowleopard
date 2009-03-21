@@ -29,6 +29,7 @@
 
 /* Standard C headers */
 #include <stddef.h>
+#include <string.h>
 
 /* Snow Leopard headers */
 #include "sl/slci/binary_search.h"
@@ -45,7 +46,23 @@ const size_t MaxSizeT = (size_t)-1;
 size_t
 binary_search (char** array, size_t size, char* search_key)
 {
-	return MaxSizeT;
+	size_t low = 0;
+	size_t high = size;
+	size_t mid;
+	
+	while (low < high)
+	{
+		mid = low + ((high - low) / 2);
+		if (strcmp (array[mid], search_key) < 0)
+			low = mid + 1;
+		else
+			high = mid;
+	}
+
+	if ((low < size) && (strcmp (array[low], search_key) == 0))
+		return low;
+	else
+		return MaxSizeT;
 }
 
 /*>- EOF -<*/
