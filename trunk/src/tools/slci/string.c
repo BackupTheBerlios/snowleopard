@@ -52,7 +52,8 @@ initialize_string ()
 	s.reserved = InitialStringSize;
 	
 	s.value = malloc (sizeof (char[InitialStringSize]));
-
+	s.value[0] = '\0';
+	
 	return s;
 }
 
@@ -96,6 +97,18 @@ append_string (slci_string s, char c)
 
 	s.value[s.size] = c;
 	s.value[s.size + 1] = '\0';
+
+	return true;
+}
+
+/*
+ * reset_string function. Reset the string to an empty string.
+ */
+bool
+reset_string (slci_string s)
+{
+	s.value[0] = '\0';
+	s.size = 0;
 
 	return true;
 }

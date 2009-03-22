@@ -32,6 +32,22 @@
 
 /* Snow Leopard headers */
 #include "sl/slci/lexer_functions.h"
+#include "sl/slci/reader.h"
+#include "sl/slci/string.h"
+
+/*
+ * Private variables
+ */
+slci_string current_token_string;
+
+/*
+ * get_current_token_string function. Returns the current_token_string.
+ */
+char*
+get_current_token_string ()
+{
+	return get_c_string (current_token_string);
+}
 
 /*
  * is_whitespace function. Skip over all whitespace not inside a lexeme.
@@ -59,12 +75,12 @@ char
 lex_single_character ()
 {
 	/* Get character */
-	char c = get_next_char ();
+	char c = lex_get_next_char (false, true);
 
 	/* If character is escaped */
 	if (c == '\\')
 	{
-		char c = get_next_char ();
+		char c = lex_get_next_char (false, true);
 
 		switch (c)
 		{
@@ -127,6 +143,33 @@ lex_single_character ()
 	}
 
 	return c;
+}
+
+/*
+ * lex_get_next_char function. Gets the next character in the input stream and keep track of the current token.
+ */
+char
+lex_get_next_char (bool start, bool store)
+{
+	char c = get_next_char ();
+
+	if (start)
+		reset_string (current_token_string);
+
+	if (store)
+		append_string (current_token_string, c);
+	
+	return c;
+}
+
+/*
+ * skip_to_char function. This function skips until the character given is found.
+ */
+void
+skip_to_char (char c)
+{
+	while (lex_get_next_char (true, false) == c)
+		;
 }
 
 /*>- EOF -<*/

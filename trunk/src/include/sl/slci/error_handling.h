@@ -38,9 +38,9 @@
  * Error structure.
  */
 struct slci_error {
-	slci_error_type error_type;
-	slci_error_code error_code;
+	slci_error_code code;
 	slci_source_position position;
+	char* token;
 };
 
 typedef struct slci_error slci_error;
@@ -48,12 +48,19 @@ typedef struct slci_error slci_error;
 /*
  * Error reporting functions.
  */
-int get_first_error ();
-int get_first_fatal_error ();
+slci_error_code get_first_error ();
+slci_error_code get_first_fatal_error ();
+
+/*
+ * Display error messages.
+ */
+void display_error (slci_error*);
 
 /*
  * Error logging functions.
  */
+slci_error* raise_error (slci_error_code, slci_source_position, char*);
+void raise_and_display_error (slci_error_code, slci_source_position, char*);
 
 #endif /* !_SL_SLCI_ERROR_HANDLING_H_ */
 

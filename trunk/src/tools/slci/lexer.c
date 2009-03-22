@@ -96,7 +96,7 @@ get_next_token ()
 	previous_token = current_token;
 
 	/* Skip over whitespace */
-	while (is_whitespace (c = get_next_char ()))
+	while (is_whitespace (c = lex_get_next_char (true, true)))
 	{ }
 	
 	if (c == '\0')
@@ -157,10 +157,18 @@ lex_character ()
 	c = lex_single_character ();
 	
 	/* Get ending quote */
-	d = get_next_char ();
+	d = lex_get_next_char (false, true);
 
 	if (d != '\'')
-		/* TODO - Report invalid character literal */ ;
+	{
+		/* Skip to end of token and report error */
+		skip_to_char ('\'');
+		raise_and_display_error (
+			ERR_INVALID_CHARACTER_LITERAL,
+			begin_source_position,
+			get_current_token_string ()
+			);
+	}
 
 	return character_token (c, get_current_source_position ());
 }

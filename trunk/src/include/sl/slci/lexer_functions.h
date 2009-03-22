@@ -30,11 +30,17 @@
 #ifndef _SL_SLCI_LEXER_FUNCTIONS_H_
 #define _SL_SLCI_LEXER_FUNCTIONS_H_
 
+/* Standard C headers */
+#include <stdbool.h>
+
 /*
  * Function prototypes.
  */
+char* get_current_token_string ();
 bool is_whitespace (char);
 char lex_single_character ();
+char lex_get_next_char (bool, bool);
+void skip_to_char (char);
 
 #endif /* !_SL_SLCI_LEXER_FUNCTIONS_H_ */
 
