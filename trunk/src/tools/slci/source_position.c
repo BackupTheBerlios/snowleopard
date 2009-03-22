@@ -28,25 +28,24 @@
  */
 
 /* Standard C headers */
-#include <stdio.h>
 #include <stdlib.h>
 
 /* Snow Leopard headers */
+#include "sl/slci/source_file.h"
 #include "sl/slci/source_position.h"
 
 /*
  * Initialize a source position object.
  */
 slci_source_position*
-initialize_source_position (char* file, size_t line, size_t position)
+initialize_source_position (slci_source_file* file, size_t line, size_t position)
 {
 	slci_source_position* pos = malloc (sizeof (slci_source_position));
 
 	pos->file = file;
 	pos->line = line;
 	pos->position = position;
-	pos->stream = fopen (file, "r");
-	
+
 	return pos;
 }
 
@@ -56,8 +55,7 @@ initialize_source_position (char* file, size_t line, size_t position)
 void
 destroy_source_position (slci_source_position* position)
 {
-	free (position->file);
-	fclose (position->stream);
+	destroy_source_file (position->file);
 	
 	free (position);
 }
@@ -68,14 +66,13 @@ destroy_source_position (slci_source_position* position)
 slci_source_position
 copy_source_position (const slci_source_position* pos)
 {
-	slci_source_position p;
+	slci_source_position new_pos;
 
-	p.file = pos->file;
-	p.line = pos->line;
-	p.position = pos->position;
-	p.stream = pos->stream;
+	new_pos.file = pos->file;
+	new_pos.line = pos->line;
+	new_pos.position = pos->position;
 
-	return p;
+	return new_pos;
 }
 
 /*>- EOF -<*/

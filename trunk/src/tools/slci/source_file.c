@@ -27,31 +27,51 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_READER_H_
-#define _SL_SLCI_READER_H_
-
 /* Standard C headers */
-#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 /* Snow Leopard headers */
 #include "sl/slci/source_file.h"
-#include "sl/slci/source_position.h"
 
 /*
- * Initialize functions.
+ * initialize_source_file function. This function initializes a source_file object.
  */
-bool initialize_reader (char*);
-void destroy_reader ();
+slci_source_file*
+initialize_source_file (char* file)
+{
+	slci_source_file* new_file = malloc (sizeof (slci_source_file));
+
+	new_file->file = file;
+	new_file->stream = fopen (file, "r");
+
+	return new_file;
+}
 
 /*
- * Reader functions.
+ * destroy_source_file function. This function destroys a source_file object.
  */
-char get_next_char ();
-char get_current_char ();
-slci_source_file* get_current_source_file ();
-slci_source_position get_current_source_position ();
-bool put_back_char (char);
+void
+destroy_source_file (slci_source_file* file)
+{
+	free (file->file);
+	fclose (file->stream);
 
-#endif /* !_SL_SLCI_READER_H_ */
+	free (file);
+}
+
+/*
+ * copy_source_file function. This function copies a source_file object.
+ */
+slci_source_file
+copy_source_file (const slci_source_file* file)
+{
+	slci_source_file new_file;
+
+	new_file.file = file->file;
+	new_file.stream = file->stream;
+
+	return new_file;
+}
 
 /*>- EOF -<*/

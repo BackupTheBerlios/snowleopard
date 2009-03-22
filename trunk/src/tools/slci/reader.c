@@ -35,6 +35,7 @@
 
 /* Snow Leopard headers */
 #include "sl/slci/reader.h"
+#include "sl/slci/source_file.h"
 #include "sl/slci/source_position.h"
 
 /*
@@ -57,7 +58,7 @@ size_t file_stack_reserved;
 size_t file_stack_depth;
 
 int current_char;
-slci_source_position current_pos;
+slci_source_position current_position;
 
 /*
  * Initialize reader.
@@ -72,7 +73,13 @@ initialize_reader (char* file)
 	file_stack_depth = (size_t)-1;
 
 	/* Add first file */
-	push_file_stack (initialize_source_position (file, 0, 0));
+	push_file_stack (
+		initialize_source_position (
+			initialize_source_file (file),
+			0,
+			0
+			)
+		);
 	
         /* Set previous character */
 	current_char = 0;
@@ -110,8 +117,8 @@ get_next_char ()
 	if (file == 0)
 		return '\0';
 	
-	current_char = fgetc (file->stream);
-	current_pos = copy_source_position (file);
+	current_char = fgetc (file->file->stream);
+	current_position = copy_source_position (file);
 
 	if (current_char != '\n')
 		file->position++;
@@ -134,12 +141,21 @@ get_current_char ()
 }
 
 /*
- * Returns the last source position.
+ * Returns the currently read file.
+ */
+slci_source_file*
+get_current_source_file ()
+{
+	return current_position.file;
+}
+
+/*
+ * Returns the currently read source position.
  */
 slci_source_position
 get_current_source_position ()
 {
-	return current_pos;
+	return current_position;
 }
 
 /*

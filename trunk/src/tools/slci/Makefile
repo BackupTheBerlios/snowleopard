@@ -50,7 +50,8 @@ SL_INCLUDE = ../../include
 #
 ALL_OBJECTS = binary_search.o driver.o error_handling.o hash_function.o info.o \
 	      lexer.o lexer_functions.o main.o parser.o reader.o settings.o \
-	      source_position.o string.o symbol_table.o token.o version.o
+	      source_file.o source_position.o string.o symbol_table.o token.o \
+	      version.o
 
 BINARY_SEARCH_DEPENDS = $(SLCI_INCLUDE)/binary_search.h
 
@@ -81,11 +82,15 @@ PARSER_DEPENDS = $(SLCI_INCLUDE)/lexer.h $(SLCI_INCLUDE)/literal.h \
 		 $(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
 		 $(SLCI_INCLUDE)/token.h
 
-READER_DEPENDS = $(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_position.h
+READER_DEPENDS = $(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_file.h \
+		 $(SLCI_INCLUDE)/source_position.h
 
 SETTINGS_DEPENDS = $(SLCI_INCLUDE)/settings.h
 
-SOURCE_POSITION_DEPENDS = $(SLCI_INCLUDE)/source_position.h
+SOURCE_FILE_DEPENS = $(SLCI_INCLUDE)/source_file.h
+
+SOURCE_POSITION_DEPENDS = $(SLCI_INCLUDE)/source_position.h \
+			  $(SLCI_INCLUDE)/source_file.h
 
 STRING_DEPENDS = $(SLCI_INCLUDE)/string.h
 
@@ -137,6 +142,9 @@ reader.o: reader.c $(READER_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 settings.o: settings.c $(SETTINGS_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
+
+source_file.o: source_file.c $(SOURCE_FILE_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 source_position.o: source_position.c $(SOURCE_POSITION_DEPENDS)

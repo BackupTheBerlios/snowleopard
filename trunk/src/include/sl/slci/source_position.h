@@ -34,15 +34,17 @@
 #include <stddef.h>
 #include <stdio.h>
 
+/* Snow Leopard headers */
+#include "sl/slci/source_file.h"
+
 /*
  * source_position structure
  */
 struct slci_source_position
 {
-	char* file;
+	slci_source_file* file;
 	size_t line;
 	size_t position;
-	FILE* stream;
 };
 
 typedef struct slci_source_position slci_source_position;
@@ -50,7 +52,7 @@ typedef struct slci_source_position slci_source_position;
 /*
  * Initializer functions.
  */
-slci_source_position* initialize_source_position (char*, size_t, size_t);
+slci_source_position* initialize_source_position (slci_source_file*, size_t, size_t);
 void destroy_source_position (slci_source_position*);
 
 /*
