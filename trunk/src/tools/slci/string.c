@@ -27,7 +27,77 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/* Standard C headers */
+#include <stddef.h>
+#include <stdlib.h>
+#include <string.h>
+
 /* Snow Leopard headers */
 #include "sl/slci/string.h"
+
+/*
+ * Private variables
+ */
+const size_t InitialStringSize = 256;
+
+/*
+ * initialize_string function. Initialize a new string object.
+ */
+slci_string
+initialize_string ()
+{
+	slci_string s;
+
+	s.size = 0;
+	s.reserved = InitialStringSize;
+	
+	s.value = malloc (sizeof (char[InitialStringSize]));
+
+	return s;
+}
+
+/*
+ * destroy_string function. Destroy string object.
+ */
+void
+destroy_string (slci_string s)
+{
+	free (s.value);
+}
+
+/*
+ * get_c_string function. Returns a copy of the string as C string.
+ */
+char*
+get_c_string (slci_string str)
+{
+	char* cstr = malloc (str.reserved);
+
+	strcpy (cstr, str.value);
+
+	return cstr;
+}
+
+/*
+ * append_string function. Append character to the string.
+ */
+bool
+append_string (slci_string s, char c)
+{
+	/* Check if string needs to be extended */
+	if ((s.size + 1) > s.reserved)
+	{
+		char* old = s.value;
+		s.reserved += InitialStringSize;
+		s.value = malloc (sizeof (char[s.reserved]));
+		strcpy (s.value, old);
+		free (old);
+	}
+
+	s.value[s.size] = c;
+	s.value[s.size + 1] = '\0';
+
+	return true;
+}
 
 /*>- EOF -<*/
