@@ -33,6 +33,7 @@
 /*
  * Function prototypes.
  */
+bool is_whitespace (char);
 char lex_single_character ();
 
 #endif /* !_SL_SLCI_LEXER_FUNCTIONS_H_ */

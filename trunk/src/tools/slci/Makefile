@@ -59,15 +59,17 @@ DRIVER_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/parser.h \
 		 $(SLCI_INCLUDE)/settings.h
 
 ERROR_HANDLING_DEPENDS = $(SLCI_INCLUDE)/error_handling.h \
-                         $(SLCI_INCLUDE)/source_position.h
+                         $(SLCI_INCLUDE)/source_position.h \
+			 $(SLCI_INCLUDE)/source_file.h
 
 HASH_FUNCTION_DEPENDS = $(SLCI_INCLUDE)/hash_function.h
 
 INFO_DEPENDS = $(SLCI_INCLUDE)/info.h $(SLCI_INCLUDE)/version.h
 
-LEXER_DEPENDS = $(SLCI_INCLUDE)/binary_search.h $(SLCI_INCLUDE)/lexer.h \
-		$(SLCI_INCLUDE)/lexer_functions.h $(SLCI_INCLUDE)/literal.h \
-		$(SLCI_INCLUDE)/preprocessor.h $(SLCI_INCLUDE)/reader.h \
+LEXER_DEPENDS = $(SLCI_INCLUDE)/binary_search.h $(SLCI_INCLUDE)/error_handling.h \
+		$(SLCI_INCLUDE)/lexer.h $(SLCI_INCLUDE)/lexer_functions.h \
+		$(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/preprocessor.h \
+		$(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_file.h \
 		$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
 		$(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h
 
@@ -75,12 +77,12 @@ LEXER_FUNCTIONS_DEPENDS = $(SLCI_INCLUDE)/lexer_functions.h
 
 MAIN_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/error_handling.h \
                $(SLCI_INCLUDE)/info.h $(SLCI_INCLUDE)/settings.h \
-	       $(SLCI_INCLUDE)/source_position.h 
+	       $(SLCI_INCLUDE)/source_file.h $(SLCI_INCLUDE)/source_position.h 
 
 PARSER_DEPENDS = $(SLCI_INCLUDE)/lexer.h $(SLCI_INCLUDE)/literal.h \
 		 $(SLCI_INCLUDE)/parser.h $(SLCI_INCLUDE)/reader.h  \
-		 $(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
-		 $(SLCI_INCLUDE)/token.h
+		 $(SLCI_INCLUDE)/source_file.h $(SLCI_INCLUDE)/source_position.h \
+		 $(SLCI_INCLUDE)/string.h $(SLCI_INCLUDE)/token.h
 
 READER_DEPENDS = $(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_file.h \
 		 $(SLCI_INCLUDE)/source_position.h
@@ -94,12 +96,13 @@ SOURCE_POSITION_DEPENDS = $(SLCI_INCLUDE)/source_position.h \
 
 STRING_DEPENDS = $(SLCI_INCLUDE)/string.h
 
-SYMBOL_TABLE_DEPENDS = $(SLCI_INCLUDE)/literal.h \
+SYMBOL_TABLE_DEPENDS = $(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/source_file.h \
 		       $(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
 		       $(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h
 
-TOKEN_DEPENDS = $(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/source_position.h \
-		$(SLCI_INCLUDE)/string.h $(SLCI_INCLUDE)/token.h
+TOKEN_DEPENDS = $(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/source_file.h \
+		$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
+		$(SLCI_INCLUDE)/token.h
 
 VERSION_DEPENDS = $(SLCI_INCLUDE)/version.h
 

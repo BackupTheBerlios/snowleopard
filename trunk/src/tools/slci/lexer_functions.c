@@ -27,8 +27,30 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/* Standard C headers */
+#include <stdbool.h>
+
 /* Snow Leopard headers */
 #include "sl/slci/lexer_functions.h"
+
+/*
+ * is_whitespace function. Skip over all whitespace not inside a lexeme.
+ */
+bool
+is_whitespace (char c)
+{
+	switch (c)
+	{
+	case ' ':
+	case '\n':
+	case '\r':
+	case '\t':
+		return true;
+		
+	default:
+		return false;
+	}
+}
 
 /*
  * lex_single_character function. Lexes a single character and returns it.

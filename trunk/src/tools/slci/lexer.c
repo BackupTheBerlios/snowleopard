@@ -35,6 +35,7 @@
 
 /* Snow Leopard headers */
 #include "sl/slci/binary_search.h"
+#include "sl/slci/error_handling.h"
 #include "sl/slci/lexer.h"
 #include "sl/slci/lexer_functions.h"
 #include "sl/slci/preprocessor.h"
@@ -62,6 +63,7 @@ static char* preprocess_token ();
 slci_token current_token;
 slci_token previous_token;
 slci_source_position* current_source_position;
+slci_source_position begin_source_position;
 
 /*
  * Function initializes the lexer by giving it the first filename.
@@ -90,15 +92,23 @@ destroy_lexer ()
 slci_token
 get_next_token ()
 {
-	char c = get_next_char ();
-
+	char c;
 	previous_token = current_token;
+
+	/* Skip over whitespace */
+	while (is_whitespace (c = get_next_char ()))
+	{ }
+	
 	if (c == '\0')
 		return empty_token (get_current_source_position ());
 
 	if (c == EOF)
 		return eof_token ();
-	
+
+	/* Store the beginning of the source position */
+	begin_source_position = get_current_source_position ();
+
+	/* Lex next token */
         if (c >= '0' && c <= '9')
 		current_token = lex_number ();
 	else if (c == '\'')
