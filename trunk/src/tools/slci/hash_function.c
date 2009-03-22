@@ -72,43 +72,40 @@ generate_hash_key (const char* key_value)
 
 /*
  * This function calculates the character value to hash. Allowed characters are:
- *   a-z   = 45 + c - 'a'
- *   A-Z   = 19 + c - 'A'
- *   0-9   = 9  + c - '0'
- *   _     = 1
- *   :     = 2
- *   <     = 3
- *   >     = 4
- *   (     = 5
- *   )     = 6
- *   ,     = 7
  *   space = 0
+ *   @     = 1
+ *   (     = 2
+ *   #     = 3
+ *   <     = 4
+ *   >     = 5
+ *   0-9   = 8  + c - '0'
+ *   a-z   = 20 + c - 'a'
+ *   A-Z   = 50 + c - 'A'
+ *   _     = 83
  */
 size_t
 get_char_hash_value (char c)
 {
-	if (c == '_')
-		return 1;
-	else if (c == ':')
-		return 2;
-	else if (c == ',')
-		return 7;
-	else if (c >= '0' && c <= '9')
-		return 9 + c - '0';
-	else if (c >= 'a' && c <= 'z')
-		return 41 + c - 'a';
-	else if (c >= 'A' && c <= 'Z')
-		return 15 + c - 'A';
-	else if (c == '<')
-		return 3;
-	else if (c == '>')
-		return 4;
-	else if (c == '(')
-		return 5;
-	else if (c == ')')
-		return 6;
-	else if (c == ' ')
+	if (c == ' ')
 		return 0;
+	else if (c == '@')
+		return 1;
+	else if (c == '(')
+		return 2;
+	else if (c == '#')
+		return 3;
+	else if (c == '<')
+		return 4;
+	else if (c == '>')
+		return 5;
+	else if (c >= '0' && c <= '9')
+		return 8 + c - '0';
+	else if (c >= 'A' && c <= 'Z')
+		return 20 + c - 'A';
+	else if (c >= 'a' && c <= 'z')
+		return 50 + c - 'a';
+	else if (c == '_')
+		return 83;
 	else
 		return MaxHashTableEntries;
 }
