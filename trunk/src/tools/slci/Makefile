@@ -55,8 +55,9 @@ ALL_OBJECTS = binary_search.o driver.o error_codes.o error_handling.o \
 
 BINARY_SEARCH_DEPENDS = $(SLCI_INCLUDE)/binary_search.h
 
-DRIVER_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/parser.h \
-		 $(SLCI_INCLUDE)/settings.h $(SLCI_INCLUDE)/misc.h
+DRIVER_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/error_handling.h \
+		 $(SLCI_INCLUDE)/parser.h $(SLCI_INCLUDE)/settings.h \
+		 $(SLCI_INCLUDE)/misc.h
 
 ERROR_CODES_DEPENDS = $(SLCI_INCLUDE)/error_codes.h
 

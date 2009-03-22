@@ -33,6 +33,7 @@
 
 /* Snow Leopard headers */
 #include "sl/slci/driver.h"
+#include "sl/slci/error_handling.h"
 #include "sl/slci/parser.h"
 #include "sl/slci/settings.h"
 #include "sl/slci/misc.h"
@@ -76,6 +77,10 @@ parse_command_line (int argc, char** argv)
 	
 	if (argc == 1)
 		/* At least one parameter is required. */
+		raise_and_display_program_error (
+			ERR_INVALID_ARGUMENT,
+			0
+			);
 		return false;
 	
 	for (i = 1; i != argc; ++i)
@@ -111,6 +116,10 @@ parse_command_line (int argc, char** argv)
 				}
 				else
 					/* Invalid option */
+					raise_and_display_program_error (
+						ERR_INVALID_ARGUMENT,
+						argv[i]
+						);
 					ok = false;
 			}
 			else

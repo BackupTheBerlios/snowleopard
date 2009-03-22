@@ -38,9 +38,10 @@
  */
 enum slci_error_type
 	{
-		ET_FATAL,   /* Fatal errors */
-		ET_COMPILE, /* Compilation/Source analysis error */
-		ET_RUNTIME  /* Runtime error */	
+		ET_NO_ERROR, /* No error occured */
+		ET_FATAL,    /* Fatal errors */
+		ET_COMPILE,  /* Compilation/Source analysis error */
+		ET_RUNTIME   /* Runtime error */	
 	};
 
 typedef enum slci_error_type slci_error_type;
@@ -53,8 +54,9 @@ enum slci_error_code
 		ERR_NO_ERROR,
 			
 		/* Fatal errors */
-		ERR_FATAL_UNKNOWN, /* Unknown fatal error */
-		ERR_OUT_OF_MEMORY, /* Interpreter out of memory */
+		ERR_FATAL_UNKNOWN,    /* Unknown fatal error */
+		ERR_OUT_OF_MEMORY,    /* Interpreter out of memory */
+		ERR_INVALID_ARGUMENT, /* Invalid arguemts provided */
 			
 		/* Compile errors */
 		ERR_INVALID_CHARACTER_LITERAL,

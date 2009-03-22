@@ -34,11 +34,14 @@
  * Error descriptions list.
  */
 slci_error_description error_description_list[] = {
-	
+
+	{"No error occured", 0, ET_NO_ERROR},
+		
 	/*  Fatal errors */
 	{"An unknown fatal error occured", 0, ET_FATAL},
 	{"An out of memory error occured", 0, ET_FATAL},
-
+	{"Invalid arguments provided ", 0, ET_FATAL},
+		
 	/* Compile errors */
 	{"Invalid character literal \'%1\'", 1, ET_COMPILE},
 	{"Invalid string literal \"%1\"", 1, ET_COMPILE}

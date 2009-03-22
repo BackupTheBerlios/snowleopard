@@ -50,6 +50,11 @@ struct slci_source_position
 typedef struct slci_source_position slci_source_position;
 
 /*
+ * Global variables.
+ */
+extern const slci_source_position NoSourcePosition;
+
+/*
  * Initializer functions.
  */
 slci_source_position* initialize_source_position (slci_source_file*, size_t, size_t);

@@ -61,6 +61,7 @@ void display_error (slci_error*);
  */
 slci_error* raise_error (slci_error_code, slci_source_position, char*);
 void raise_and_display_error (slci_error_code, slci_source_position, char*);
+void raise_and_display_program_error (slci_error_code, char*);
 
 #endif /* !_SL_SLCI_ERROR_HANDLING_H_ */
 

@@ -100,6 +100,17 @@ raise_and_display_error (slci_error_code code, slci_source_position position, ch
 }
 
 /*
+ * raise_and_display_program_error function. Raise, store and display a program error.
+ */
+void
+raise_and_display_program_error (slci_error_code code, char* s)
+{
+	display_error (
+		raise_error (code, NoSourcePosition, s)
+		);
+}
+
+/*
  * get_first_error_of_type function. Returns the first error encountered of the given type.
  */
 slci_error_code

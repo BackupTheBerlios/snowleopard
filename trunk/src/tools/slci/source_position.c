@@ -35,6 +35,15 @@
 #include "sl/slci/source_position.h"
 
 /*
+ * NoSourcePosition constant
+ */
+const slci_source_position NoSourcePosition = {
+	0,
+	0,
+        0
+};
+
+/*
  * Initialize a source position object.
  */
 slci_source_position*
