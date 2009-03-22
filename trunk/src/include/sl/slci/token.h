@@ -144,6 +144,7 @@ typedef enum slci_keyword slci_keyword;
  * Keyword list (sorted alphabetically because it is searched with a binary search).
  */
 extern char* keyword_list[];
+extern const size_t keyword_list_length;
 
 /*
  * Punctuation enum.
@@ -228,6 +229,7 @@ typedef enum slci_punctuation slci_punctuation;
  * Punctuation list (sorted alphabetically because it is searched with a binary search).
  */
 extern char* punctuation_list[];
+extern const size_t punctuation_list_length;
 
 /*
  * Token structure.

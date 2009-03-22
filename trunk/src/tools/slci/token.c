@@ -119,6 +119,11 @@ char* keyword_list[] = {
 };
 
 /*
+ * Keyword list length.
+ */
+const size_t keyword_list_length = 72;
+
+/*
  * Punctuation list.
  */
 char* punctuation_list[] = {
@@ -193,6 +198,11 @@ char* punctuation_list[] = {
 	"xor",
 	"xor_eq"
 };
+
+/*
+ * Punctuation list length.
+ */
+const size_t punctuation_list_length = 68;
 
 /*
  * character_token function. This function returns a character token.

@@ -245,7 +245,11 @@ lex_string ()
 size_t
 keyword_position ()
 {
-
+	return binary_search (
+		keyword_list,
+		keyword_list_length,
+		get_current_token_string ()
+		);
 }
 
 /*
@@ -255,7 +259,11 @@ keyword_position ()
 size_t
 punctuation_position ()
 {
-
+	return binary_search (
+		punctuation_list,
+		punctuation_list_length,
+		get_current_token_string ()
+		);
 }
 
 /*
