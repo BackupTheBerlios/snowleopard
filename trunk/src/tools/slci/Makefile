@@ -49,14 +49,14 @@ SL_INCLUDE = ../../include
 # All objects.
 #
 ALL_OBJECTS = binary_search.o driver.o error_codes.o error_handling.o \
-	      hash_function.o info.o lexer.o lexer_functions.o main.o parser.o \
-	      reader.o settings.o source_file.o source_position.o string.o \
-	      symbol_table.o token.o version.o
+	      hash_function.o info.o lexer.o lexer_functions.o main.o misc.o \
+	      parser.o reader.o settings.o source_file.o source_position.o \
+	      string.o symbol_table.o token.o version.o
 
 BINARY_SEARCH_DEPENDS = $(SLCI_INCLUDE)/binary_search.h
 
 DRIVER_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/parser.h \
-		 $(SLCI_INCLUDE)/settings.h
+		 $(SLCI_INCLUDE)/settings.h $(SLCI_INCLUDE)/misc.h
 
 ERROR_CODES_DEPENDS = $(SLCI_INCLUDE)/error_codes.h
 
@@ -84,6 +84,8 @@ MAIN_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/error_codes.h \
 	       $(SLCI_INCLUDE)/error_handling.h $(SLCI_INCLUDE)/info.h \
 	       $(SLCI_INCLUDE)/settings.h $(SLCI_INCLUDE)/source_file.h \
 	       $(SLCI_INCLUDE)/source_position.h 
+
+MISC_DEPENDS = $(SLCI_INCLUDE)/misc.h
 
 PARSER_DEPENDS = $(SLCI_INCLUDE)/lexer.h $(SLCI_INCLUDE)/literal.h \
 		 $(SLCI_INCLUDE)/parser.h $(SLCI_INCLUDE)/reader.h  \
@@ -145,6 +147,9 @@ lexer_functions.o: lexer_functions.c $(LEXER_FUNCTIONS_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 main.o: main.c $(MAIN_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
+
+misc.o: misc.c $(MISC_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 parser.o: parser.c $(PARSER_DEPENDS)

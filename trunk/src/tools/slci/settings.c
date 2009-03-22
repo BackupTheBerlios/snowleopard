@@ -50,10 +50,10 @@ slci_settings* settings;
  */
 slci_settings*
 initialize_settings ()
-{
+{	
 	char* current_include = ".";
 	char* current_source = ".";
-	
+
 	settings = malloc (sizeof (slci_settings));
 
 	settings->interactive = false;
@@ -89,17 +89,17 @@ destroy_settings ()
 		free (settings->source_file);
 
 	/* Free source_paths */
-	if (settings->source_paths != 0)
+	if (settings->size_source_paths > 1)
 	{
-		for (i = settings->size_source_paths; i != 0; --i)
+		for (i = settings->size_source_paths; i != 1; --i)
 			free (settings->source_paths[i - 1]);
 		free (settings->source_paths);
 	}
 	
 	/* Free include_paths */
-	if (settings->include_paths != 0)
+	if (settings->size_include_paths > 1)
 	{
-		for (i = settings->size_include_paths; i != 0; --i)
+		for (i = settings->size_include_paths; i != 1; --i)
 			free (settings->include_paths[i - 1]);
 		free (settings->include_paths);
 	}

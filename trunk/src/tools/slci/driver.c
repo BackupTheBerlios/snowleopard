@@ -35,6 +35,7 @@
 #include "sl/slci/driver.h"
 #include "sl/slci/parser.h"
 #include "sl/slci/settings.h"
+#include "sl/slci/misc.h"
 
 /*
  * Private global variables.
@@ -115,7 +116,7 @@ parse_command_line (int argc, char** argv)
 			else
 			{
 				/* Source file */
-				settings->source_file = argv[i];
+				settings->source_file = copy_string (argv[i]);
 			}
 		}
 	}

@@ -28,52 +28,23 @@
  */
 
 /* Standard C headers */
-#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /* Snow Leopard headers */
-#include "sl/slci/source_file.h"
+#include "sl/slci/misc.h"
 
 /*
- * initialize_source_file function. This function initializes a source_file object.
+ * copy_string function. This function copies a C string.
  */
-slci_source_file*
-initialize_source_file (char* file)
+char*
+copy_string (char* str)
 {
-	slci_source_file* new_file = malloc (sizeof (slci_source_file));
+	char* new_str = malloc (strlen (str) + 1);
 
-	new_file->file = file;
-	new_file->stream = fopen (file, "r");
-	
-	return new_file;
-}
+	strcpy (new_str, str);
 
-/*
- * destroy_source_file function. This function destroys a source_file object.
- */
-void
-destroy_source_file (slci_source_file* file)
-{
-	free (file->file);
-	
-	if (file->stream != 0)
-		fclose (file->stream);
-
-	free (file);
-}
-
-/*
- * copy_source_file function. This function copies a source_file object.
- */
-slci_source_file
-copy_source_file (const slci_source_file* file)
-{
-	slci_source_file new_file;
-
-	new_file.file = file->file;
-	new_file.stream = file->stream;
-
-	return new_file;
+	return new_str;
 }
 
 /*>- EOF -<*/

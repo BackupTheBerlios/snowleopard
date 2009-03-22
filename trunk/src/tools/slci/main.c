@@ -45,6 +45,8 @@
 int
 main (int argc, char** argv)
 {
+	int result = EXIT_SUCCESS;
+	
 	print_info ();
 
 	initialize_driver ();
@@ -55,10 +57,9 @@ main (int argc, char** argv)
 		 * An incorrect parameter was specified.
 		 */
 		print_usage ();
-		return get_first_fatal_error ();
+		result = get_first_fatal_error ();
 	}
-
-	if (settings->license == true)
+	else if (settings->license == true)
 		/* Print license info. */
 		print_license ();
 	else if (settings->warrantee == true)
@@ -70,7 +71,7 @@ main (int argc, char** argv)
 		 * When start_program returns, the program has finished. All that
 		 * remains is returning it's return value to the shell.
 		 */
-		return get_return_value ();
+		result = get_return_value ();
 	}
 	else
 	{
@@ -78,10 +79,11 @@ main (int argc, char** argv)
 		 * A fatal error occured. Print contact information.
 		 */
 		print_contact_developer ();
-		return get_first_fatal_error ();
+		result = get_first_fatal_error ();
 	}
 
-	return (EXIT_SUCCESS);
+	destroy_driver ();
+	return result;
 }
 
 /*>- EOF -<*/
