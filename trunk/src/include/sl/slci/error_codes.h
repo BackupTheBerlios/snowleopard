@@ -27,34 +27,60 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_ERROR_HANDLING_H_
-#define _SL_SLCI_ERROR_HANDLING_H_
+#ifndef _SL_SLCI_ERROR_CODES_H_
+#define _SL_SLCI_ERROR_CODES_H_
 
-/* Snow Leopard headers */
-#include "sl/slci/error_codes.h"
-#include "sl/slci/source_position.h"
+/* Standard C headers */
+#include <stddef.h>
 
 /*
- * Error structure.
+ * Error type enum
  */
-struct slci_error {
-	slci_error_type error_type;
-	slci_error_code error_code;
-	slci_source_position position;
+enum slci_error_type
+	{
+		ET_FATAL,   /* Fatal errors */
+		ET_COMPILE, /* Compilation/Source analysis error */
+		ET_RUNTIME  /* Runtime error */	
+	};
+
+typedef enum slci_error_type slci_error_type;
+
+/*
+ * Error code enum
+ */
+enum slci_error_code
+	{
+		/* Fatal errors */
+		ERR_FATAL_UNKNOWN, /* Unknown fatal error */
+		ERR_OUT_OF_MEMORY, /* Interpreter out of memory */
+			
+		/* Compile errors */
+		ERR_INVALID_CHARACTER_LITERAL,
+		ERR_INVALID_STRING_LITERAL
+			
+		/* Runtime errors */
+
+	};
+
+typedef enum slci_error_code slci_error_code;
+
+/*
+ * Error description struct
+ */
+struct slci_error_description
+{
+	char* description;
+	size_t nbr_of_arguments;
+	slci_error_type type;
 };
 
-typedef struct slci_error slci_error;
+typedef struct slci_error_description slci_error_description;
 
 /*
- * Error reporting functions.
+ * Error description list (Sorted in the order of the slci_error_code enum).
  */
-int get_first_error ();
-int get_first_fatal_error ();
+extern slci_error_description error_description_list[];
 
-/*
- * Error logging functions.
- */
-
-#endif /* !_SL_SLCI_ERROR_HANDLING_H_ */
+#endif /* !_SL_SLCI_ERROR_CODES_H_ */
 
 /*>- EOF -<*/

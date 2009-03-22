@@ -27,34 +27,23 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_ERROR_HANDLING_H_
-#define _SL_SLCI_ERROR_HANDLING_H_
-
 /* Snow Leopard headers */
 #include "sl/slci/error_codes.h"
-#include "sl/slci/source_position.h"
 
 /*
- * Error structure.
+ * Error descriptions list.
  */
-struct slci_error {
-	slci_error_type error_type;
-	slci_error_code error_code;
-	slci_source_position position;
+slci_error_description error_description_list[] = {
+	
+	/*  Fatal errors */
+	{"An unknown fatal error occured", 0, ET_FATAL},
+	{"An out of memory error occured", 0, ET_FATAL},
+
+	/* Compile errors */
+	{"Invalid character literal \'%1\'", 1, ET_COMPILE},
+	{"Invalid string literal \"%1\"", 1, ET_COMPILE}
+
+	/* Runtime errors */
 };
-
-typedef struct slci_error slci_error;
-
-/*
- * Error reporting functions.
- */
-int get_first_error ();
-int get_first_fatal_error ();
-
-/*
- * Error logging functions.
- */
-
-#endif /* !_SL_SLCI_ERROR_HANDLING_H_ */
 
 /*>- EOF -<*/
