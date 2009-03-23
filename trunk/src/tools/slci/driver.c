@@ -76,12 +76,14 @@ parse_command_line (int argc, char** argv)
 	slci_settings* settings = initialize_settings ();
 	
 	if (argc == 1)
+	{
 		/* At least one parameter is required. */
 		raise_and_display_program_error (
 			ERR_INVALID_ARGUMENT,
 			0
 			);
 		return false;
+	}
 	
 	for (i = 1; i != argc; ++i)
 	{
@@ -115,18 +117,18 @@ parse_command_line (int argc, char** argv)
 					add_source_path (argv[i] + 2);
 				}
 				else
+				{
 					/* Invalid option */
 					raise_and_display_program_error (
 						ERR_INVALID_ARGUMENT,
 						argv[i]
 						);
 					ok = false;
+				}
 			}
 			else
-			{
 				/* Source file */
 				settings->source_file = copy_string (argv[i]);
-			}
 		}
 	}
 	
@@ -146,6 +148,12 @@ start ()
 			parser_is_initialized = true;
 		else
 			return false;
+	}
+
+	if (!parse ())
+	{
+		/* TODO - Display error */ ;
+		return false;
 	}
 	
 	return true;

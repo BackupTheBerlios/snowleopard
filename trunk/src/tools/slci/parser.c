@@ -85,6 +85,8 @@ parse ()
 
 		print_token (i, token);
 		++i;
+
+		token = get_next_token ();
 	}
 	
 	return true;

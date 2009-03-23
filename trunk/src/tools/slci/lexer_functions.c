@@ -38,7 +38,10 @@
 /*
  * Private variables
  */
-slci_string current_token_string;
+slci_string current_token_string = {
+	0,
+	0
+};
 
 /*
  * get_current_token_string function. Returns the current_token_string.
@@ -154,10 +157,10 @@ lex_get_next_char (bool start, bool store)
 	char c = get_next_char ();
 
 	if (start)
-		reset_string (current_token_string);
+		reset_string (&current_token_string);
 
 	if (store)
-		append_string (current_token_string, c);
+		append_string (&current_token_string, c);
 	
 	return c;
 }
@@ -168,7 +171,7 @@ lex_get_next_char (bool start, bool store)
 void
 skip_to_char (char c)
 {
-	while (lex_get_next_char (true, false) == c)
+	while (lex_get_next_char (true, false) != c)
 		;
 }
 

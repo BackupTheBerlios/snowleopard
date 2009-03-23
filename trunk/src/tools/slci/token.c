@@ -222,6 +222,21 @@ character_token (char c, slci_source_position pos)
 }
 
 /*
+ * comment_token function. This function returns a comment token.
+ */
+slci_token
+comment_token (slci_string s, slci_source_position pos)
+{
+	slci_token token;
+
+	token.type = TT_COMMENT;
+	token.pos = pos;
+	token.comment = get_c_string (s);
+
+	return token;
+}
+
+/*
  * empty_token function. This function returns an empty token.
  */
 slci_token

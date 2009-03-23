@@ -42,6 +42,7 @@
  * Initial reader stack size.
  */
 const size_t InitialStackSize = 10;
+const size_t InitialStackDepth = (size_t)-1;
 
 /*
  * Private function prototypes.
@@ -70,7 +71,7 @@ initialize_reader (char* file)
 	file_stack_reserved = InitialStackSize;
 	file_stack =
 	    malloc (sizeof (slci_source_position* [file_stack_reserved]));
-	file_stack_depth = (size_t)-1;
+	file_stack_depth = InitialStackDepth;
 
 	/* Add first file */
 	push_file_stack (
@@ -110,12 +111,12 @@ char
 get_next_char ()
 {
 	if (current_char == EOF)
-		return '\0';
+		return EOF;
 	
 	slci_source_position* file = top_file_stack ();
 	
 	if (file == 0)
-		return '\0';
+		return EOF;
 	
 	current_char = fgetc (file->file->stream);
 	current_position = copy_source_position (file);
@@ -202,7 +203,7 @@ push_file_stack (slci_source_position* file)
 slci_source_position*
 pop_file_stack ()
 {
-	if (file_stack_depth == 0)
+	if (file_stack_depth == InitialStackDepth)
 		return 0;
 
 	slci_source_position* file = file_stack[file_stack_depth];
@@ -218,7 +219,7 @@ pop_file_stack ()
 slci_source_position*
 top_file_stack ()
 {
-	if (file_stack_depth == 0)
+	if (file_stack_depth == InitialStackDepth)
 		return 0;
 	else
 		return file_stack[file_stack_depth];

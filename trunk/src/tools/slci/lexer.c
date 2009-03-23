@@ -219,19 +219,18 @@ lex_reserved ()
 slci_token
 lex_string ()
 {
-	bool done = false;
 	char c;
 	char prev_c = '"';
 	slci_string s = initialize_string ();
 	
 	/* Get second token delimiter */
 	c = lex_single_character ();
-	while (!done)
+	for (;;)
 	{
 		if (c == '"' && prev_c != '\\')
-			done = true;
+			break;
 		else
-			append_string (s, c);
+			append_string (&s, c);
 		c = lex_single_character ();
 	}
 

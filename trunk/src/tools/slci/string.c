@@ -83,20 +83,25 @@ get_c_string (slci_string str)
  * append_string function. Append character to the string.
  */
 bool
-append_string (slci_string s, char c)
+append_string (slci_string* s, char c)
 {
 	/* Check if string needs to be extended */
-	if ((s.size + 1) > s.reserved)
+	if ((s->size + 1) > s->reserved)
 	{
-		char* old = s.value;
-		s.reserved += InitialStringSize;
-		s.value = malloc (sizeof (char[s.reserved]));
-		strcpy (s.value, old);
-		free (old);
+		s->reserved += InitialStringSize;
+		s->value = malloc (sizeof (char[s->reserved]));
+		if (s->value != 0)
+		{
+			char* old = s->value;
+			strcpy (s->value, old);
+			free (old);
+		}
+		else
+			s->value[0] = '\0';
 	}
 
-	s.value[s.size] = c;
-	s.value[s.size + 1] = '\0';
+	s->value[s->size] = c;
+	s->value[s->size + 1] = '\0';
 
 	return true;
 }
@@ -105,10 +110,13 @@ append_string (slci_string s, char c)
  * reset_string function. Reset the string to an empty string.
  */
 bool
-reset_string (slci_string s)
+reset_string (slci_string* s)
 {
-	s.value[0] = '\0';
-	s.size = 0;
+	if (s->size != 0)
+	{
+		s->value[0] = '\0';
+		s->size = 0;
+	}
 
 	return true;
 }
