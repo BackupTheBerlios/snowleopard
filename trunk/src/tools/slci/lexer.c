@@ -144,6 +144,20 @@ put_back_token ()
 }
 
 /*
+ * keyword_position function. Function returns position of the keyword. It
+ * searches the current token in the keywords array.
+ */
+size_t
+keyword_position ()
+{
+	return binary_search (
+		keyword_list,
+		keyword_list_length,
+		get_current_token_string ()
+		);
+}
+
+/*
  * Lex a character. This function lexes a single character literal. We don't
  * need to get the opening single quote, because we already got that.
  */
@@ -238,22 +252,18 @@ lex_string ()
 }
 
 /*
- * Function returns position of the keyword. It searches the current token in
- * the keywords array.
+ * preprocess_token function. Function preprocesses the preprocessor token
+ * given as parameter and returns a string containing the preprocessed token.
  */
-size_t
-keyword_position ()
+char*
+preprocess_token (slci_token token)
 {
-	return binary_search (
-		keyword_list,
-		keyword_list_length,
-		get_current_token_string ()
-		);
+
 }
 
 /*
- * Function returns position of the punctuation. It searches the current token
- * in the punctuation array.
+ * punctuation_position function. Function returns position of the punctuation.
+ * It searches the current token in the punctuation array.
  */
 size_t
 punctuation_position ()
@@ -263,16 +273,6 @@ punctuation_position ()
 		punctuation_list_length,
 		get_current_token_string ()
 		);
-}
-
-/*
- * Function preprocesses the preprocessor token given as parameter and returns a
- * string containing the preprocessed token.
- */
-char*
-preprocess_token (slci_token token)
-{
-
 }
 
 /*>- EOF -<*/

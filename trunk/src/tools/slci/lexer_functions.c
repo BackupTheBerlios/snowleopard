@@ -40,6 +40,7 @@
  */
 slci_string current_token_string = {
 	0,
+	0,
 	0
 };
 

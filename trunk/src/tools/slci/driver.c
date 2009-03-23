@@ -79,7 +79,7 @@ parse_command_line (int argc, char** argv)
 	{
 		/* At least one parameter is required. */
 		raise_and_display_program_error (
-			ERR_INVALID_ARGUMENT,
+			ERR_NO_SOURCE_FILE,
 			0
 			);
 		return false;
@@ -130,6 +130,16 @@ parse_command_line (int argc, char** argv)
 				/* Source file */
 				settings->source_file = copy_string (argv[i]);
 		}
+	}
+
+	if (ok && settings->source_file == 0)
+	{
+		/* At least one parameter is required. */
+		raise_and_display_program_error (
+			ERR_NO_SOURCE_FILE,
+			0
+			);
+		return false;
 	}
 	
 	return ok;

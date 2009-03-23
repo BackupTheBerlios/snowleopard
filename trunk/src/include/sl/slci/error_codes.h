@@ -57,6 +57,7 @@ enum slci_error_code
 		ERR_FATAL_UNKNOWN,    /* Unknown fatal error */
 		ERR_OUT_OF_MEMORY,    /* Interpreter out of memory */
 		ERR_INVALID_ARGUMENT, /* Invalid arguemts provided */
+		ERR_NO_SOURCE_FILE,   /* No source file provided */
 			
 		/* Compile errors */
 		ERR_INVALID_CHARACTER_LITERAL,
