@@ -70,7 +70,17 @@ get_first_fatal_error ()
 void
 display_error (slci_error* error)
 {
-
+	slci_error_description* ed = &error_description_list[error->code];
+	
+	if (ed->nbr_of_arguments == 0)
+		fprintf (
+			stderr,
+			"%s: %s\n",
+			error_type_list[ed->type],
+			ed->description
+			);
+	else
+		;
 }
 
 /*

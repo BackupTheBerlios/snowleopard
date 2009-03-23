@@ -47,6 +47,11 @@ enum slci_error_type
 typedef enum slci_error_type slci_error_type;
 
 /*
+ * Error type descritpion list (Sorted in the order of the slci_error_type enum).
+ */
+extern char* error_type_list[];
+
+/*
  * Error code enum
  */
 enum slci_error_code

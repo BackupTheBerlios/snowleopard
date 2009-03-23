@@ -31,6 +31,16 @@
 #include "sl/slci/error_codes.h"
 
 /*
+ * Error type description list.
+ */
+char* error_type_list[] = {
+	"No error occured",
+        "FATAL",
+	"Source Error",
+	"RUNTIME ERROR"
+};
+
+/*
  * Error descriptions list.
  */
 slci_error_description error_description_list[] = {
