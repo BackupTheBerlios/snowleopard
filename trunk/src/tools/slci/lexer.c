@@ -49,6 +49,7 @@
  */
 static slci_token lex_character ();
 static slci_token lex_comment ();
+static slci_token lex_macro ();
 static slci_token lex_number ();
 static slci_token lex_other ();
 static slci_token lex_reserved ();
@@ -117,6 +118,8 @@ get_next_token ()
 		current_token = lex_string ();
 	else if (c == '/')
 		current_token = lex_comment ();
+	else if (c == '#' && get_previous_char () == '\n')
+		current_token = lex_macro ();
 	else
 		current_token = lex_other ();
 	
@@ -193,7 +196,7 @@ lex_character ()
 slci_token
 lex_comment ()
 {
-	char c = lex_get_next_char (true, false);
+	char c = lex_get_next_char (false, true);
 	bool single_line = c == '/' ? true : false;
 
 	for (;;)
@@ -202,18 +205,27 @@ lex_comment ()
 			break;
 		else if (!single_line && c == '*')
 		{
-			c = lex_get_next_char (true, false);
+			c = lex_get_next_char (false, true);
 			if (c == '/')
 				break;
 		}
 
-		c = lex_get_next_char (true, false);
+		c = lex_get_next_char (false, true);
 	}
 
 	return comment_token (
 		get_current_token_string (),
 		get_current_source_position ()
 		);
+}
+
+/*
+ * lex_macro function. This function lexes a macro.
+ */
+slci_token
+lex_macro ()
+{
+
 }
 
 /*

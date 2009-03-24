@@ -59,6 +59,7 @@ size_t file_stack_reserved;
 size_t file_stack_depth;
 
 int current_char;
+int previous_char;
 slci_source_position current_position;
 
 /*
@@ -105,11 +106,13 @@ destroy_reader ()
 }
 
 /*
- * Returns the next character in the current file.
+ * get_next_char function. Returns the next character in the current file.
  */
 char
 get_next_char ()
 {
+	previous_char = current_char;
+	
 	if (current_char == EOF)
 		return EOF;
 	
@@ -133,12 +136,21 @@ get_next_char ()
 }
 
 /*
- * Returns the last read character again.
+ * get_current_char function. Returns the last read character again.
  */
 char
 get_current_char ()
 {
 	return current_char;
+}
+
+/*
+ * get_previous_char function. Returns the previously read character.
+ */
+char
+get_previous_char ()
+{
+	return previous_char;
 }
 
 /*

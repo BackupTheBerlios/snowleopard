@@ -172,7 +172,7 @@ lex_get_next_char (bool start, bool store)
 void
 skip_to_char (char c)
 {
-	while (lex_get_next_char (true, false) != c)
+	while (lex_get_next_char (false, true) != c)
 		;
 }
 

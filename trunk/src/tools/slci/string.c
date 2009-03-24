@@ -88,12 +88,16 @@ append_string (slci_string* s, char c)
 	/* Check if string needs to be extended */
 	if ((s->size + 1) > s->reserved)
 	{
+		char* old = s->value;
 		s->reserved += InitialStringSize;
 		s->value = malloc (sizeof (char[s->reserved]));
 		if (s->value != 0)
 		{
-			char* old = s->value;
-			strcpy (s->value, old);
+			if (old != 0)
+				strcpy (s->value, old);
+			else
+				s->value[0] = '\0';
+			
 			free (old);
 		}
 		else
@@ -101,7 +105,7 @@ append_string (slci_string* s, char c)
 	}
 
 	s->value[s->size] = c;
-	s->value[s->size + 1] = '\0';
+	s->value[++s->size] = '\0';
 
 	return true;
 }

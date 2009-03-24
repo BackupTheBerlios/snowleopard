@@ -48,9 +48,14 @@ void destroy_reader ();
  */
 char get_next_char ();
 char get_current_char ();
+char get_previous_char ();
+bool put_back_char (char);
+
+/*
+ * Source position functions.
+ */
 slci_source_file* get_current_source_file ();
 slci_source_position get_current_source_position ();
-bool put_back_char (char);
 
 #endif /* !_SL_SLCI_READER_H_ */
 
