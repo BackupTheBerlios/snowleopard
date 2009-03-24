@@ -53,18 +53,19 @@ ALL_OBJECTS = binary_search.o driver.o error_codes.o error_handling.o \
 	      parser.o reader.o settings.o source_file.o source_position.o \
 	      string.o symbol_table.o token.o version.o
 
-BINARY_SEARCH_DEPENDS = $(SLCI_INCLUDE)/binary_search.h
+BINARY_SEARCH_DEPENDS = $(SLCI_INCLUDE)/binary_search.h $(SLCI_INCLUDE)/string.h
 
-DRIVER_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/error_handling.h \
+DRIVER_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/error_codes.h \
+		 $(SLCI_INCLUDE)/error_handling.h $(SLCI_INCLUDE)/misc.h \
 		 $(SLCI_INCLUDE)/parser.h $(SLCI_INCLUDE)/settings.h \
-		 $(SLCI_INCLUDE)/misc.h
+		 $(SLCI_INCLUDE)/source_file.h $(SLCI_INCLUDE)/source_position.h
 
 ERROR_CODES_DEPENDS = $(SLCI_INCLUDE)/error_codes.h
 
 ERROR_HANDLING_DEPENDS = $(SLCI_INCLUDE)/error_codes.h \
 			 $(SLCI_INCLUDE)/error_handling.h \
-                         $(SLCI_INCLUDE)/source_position.h \
-			 $(SLCI_INCLUDE)/source_file.h
+			 $(SLCI_INCLUDE)/source_file.h \
+                         $(SLCI_INCLUDE)/source_position.h
 
 HASH_FUNCTION_DEPENDS = $(SLCI_INCLUDE)/hash_function.h
 
@@ -79,6 +80,7 @@ LEXER_DEPENDS = $(SLCI_INCLUDE)/binary_search.h $(SLCI_INCLUDE)/error_codes.h \
 		$(SLCI_INCLUDE)/token.h
 
 LEXER_FUNCTIONS_DEPENDS = $(SLCI_INCLUDE)/lexer_functions.h $(SLCI_INCLUDE)/reader.h \
+			  $(SLCI_INCLUDE)/source_file.h $(SLCI_INCLUDE)/source_position.h \
 			  $(SLCI_INCLUDE)/string.h
 
 MAIN_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/error_codes.h \

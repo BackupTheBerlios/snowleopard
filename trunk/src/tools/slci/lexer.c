@@ -180,7 +180,7 @@ lex_character ()
 		raise_and_display_error (
 			ERR_INVALID_CHARACTER_LITERAL,
 			begin_source_position,
-			get_current_token_string ()
+			get_c_string (get_current_token_string ())
 			);
 	}
 
@@ -193,7 +193,27 @@ lex_character ()
 slci_token
 lex_comment ()
 {
-	
+	char c = lex_get_next_char (true, false);
+	bool single_line = c == '/' ? true : false;
+
+	for (;;)
+	{
+		if (single_line && c == '\n')
+			break;
+		else if (!single_line && c == '*')
+		{
+			c = lex_get_next_char (true, false);
+			if (c == '/')
+				break;
+		}
+
+		c = lex_get_next_char (true, false);
+	}
+
+	return comment_token (
+		get_current_token_string (),
+		get_current_source_position ()
+		);
 }
 
 /*
@@ -248,7 +268,7 @@ lex_string ()
 		c = lex_single_character ();
 	}
 
-	return string_token (s, get_current_source_position ());
+	return string_token (&s, get_current_source_position ());
 }
 
 /*

@@ -33,6 +33,9 @@
 /* Standard C headers */
 #include <stddef.h>
 
+/* Snow Leopard headers */
+#include "sl/slci/string.h"
+
 /*
  * Global variables.
  */
@@ -41,7 +44,7 @@ extern const size_t MaxSizeT;
 /*
  * Binary search function.
  */
-size_t binary_search (char**, size_t, char*); 
+size_t binary_search (char**, size_t, const slci_string*); 
 
 #endif /* !_SL_SLCI_BINARY_SEARCH_H_ */
 

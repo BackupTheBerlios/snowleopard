@@ -33,6 +33,7 @@
 
 /* Snow Leopard headers */
 #include "sl/slci/binary_search.h"
+#include "sl/slci/string.h"
 
 /*
  * Global variables.
@@ -44,7 +45,7 @@ const size_t MaxSizeT = (size_t)-1;
  * given as parameter.
  */
 size_t
-binary_search (char** array, size_t size, char* search_key)
+binary_search (char** array, size_t size, const slci_string* search_key)
 {
 	size_t low = 0;
 	size_t high = size;
@@ -53,13 +54,13 @@ binary_search (char** array, size_t size, char* search_key)
 	while (low < high)
 	{
 		mid = low + ((high - low) / 2);
-		if (strcmp (array[mid], search_key) < 0)
+		if (strcmp (array[mid], search_key->value) < 0)
 			low = mid + 1;
 		else
 			high = mid;
 	}
 
-	if ((low < size) && (strcmp (array[low], search_key) == 0))
+	if ((low < size) && (strcmp (array[low], search_key->value) == 0))
 		return low;
 	else
 		return MaxSizeT;

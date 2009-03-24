@@ -47,10 +47,10 @@ slci_string current_token_string = {
 /*
  * get_current_token_string function. Returns the current_token_string.
  */
-char*
+const slci_string*
 get_current_token_string ()
 {
-	return get_c_string (current_token_string);
+	return &current_token_string;
 }
 
 /*

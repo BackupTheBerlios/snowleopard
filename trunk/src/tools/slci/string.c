@@ -70,11 +70,11 @@ destroy_string (slci_string s)
  * get_c_string function. Returns a copy of the string as C string.
  */
 char*
-get_c_string (slci_string str)
+get_c_string (const slci_string* str)
 {
-	char* cstr = malloc (str.reserved);
+	char* cstr = malloc (str->size + 1);
 
-	strcpy (cstr, str.value);
+	strcpy (cstr, str->value);
 
 	return cstr;
 }

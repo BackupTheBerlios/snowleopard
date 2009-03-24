@@ -33,10 +33,13 @@
 /* Standard C headers */
 #include <stdbool.h>
 
+/* Snow Leopard headers */
+#include "sl/slci/string.h"
+
 /*
  * Function prototypes.
  */
-char* get_current_token_string ();
+const slci_string* get_current_token_string ();
 bool is_whitespace (char);
 char lex_single_character ();
 char lex_get_next_char (bool, bool);

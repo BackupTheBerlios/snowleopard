@@ -225,7 +225,7 @@ character_token (char c, slci_source_position pos)
  * comment_token function. This function returns a comment token.
  */
 slci_token
-comment_token (slci_string s, slci_source_position pos)
+comment_token (const slci_string* s, slci_source_position pos)
 {
 	slci_token token;
 
@@ -267,7 +267,7 @@ eof_token ()
  * string_token function. This function returns a string token.
  */
 slci_token
-string_token (slci_string s, slci_source_position pos)
+string_token (const slci_string* s, slci_source_position pos)
 {
 	slci_token token;
 
@@ -276,7 +276,7 @@ string_token (slci_string s, slci_source_position pos)
 
 	token.literal.type = LT_STRING;
 
-	token.literal.string.size = s.size;
+	token.literal.string.size = s->size;
 	token.literal.string.value = get_c_string (s);
 
 	return token;

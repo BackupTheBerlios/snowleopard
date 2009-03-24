@@ -51,7 +51,7 @@ typedef struct slci_string slci_string;
  */
 slci_string initialize_string ();
 void destroy_string (slci_string);
-char* get_c_string (slci_string);
+char* get_c_string (const slci_string*);
 bool append_string (slci_string*, char);
 bool reset_string (slci_string*);
 
