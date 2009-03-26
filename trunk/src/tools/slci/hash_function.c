@@ -40,10 +40,16 @@ static size_t get_cpp_char_hash_value (char);
 static size_t get_pre_char_hash_value (char);
 
 /*
- * MaxHashTableEntries constant. Contains the maxinum number of entries allowed
- * in the hash table.
+ * MaxCppHashTableEntries constant. Contains the maxinum number of entries allowed
+ * in the C++ hash table.
  */
-const size_t MaxHashTableEntries = 128000;
+const size_t MaxCppHashTableEntries = 128000;
+
+/*
+ * MaxPreHashTableEntries constant. Contains the maxinum number of entries allowed
+ * in the Preprocessor hash table.
+ */
+const size_t MaxPreHashTableEntries = 32000;
 
 /*
  * This function generates a hash key based on the C++ identifier given as input
@@ -69,7 +75,7 @@ generate_cpp_hash_key (const char* key_value)
 		key_value++;
 	}
 
-	return key % MaxHashTableEntries;
+	return key % MaxCppHashTableEntries;
 }
 
 /*
@@ -96,7 +102,7 @@ generate_pre_hash_key (const char* key_value)
 		key_value++;
 	}
 
-	return key % MaxHashTableEntries;
+	return key % MaxPreHashTableEntries;
 }
 
 /*
@@ -137,7 +143,7 @@ get_cpp_char_hash_value (char c)
 	else if (c == '_')
 		return 83;
 	else
-		return MaxHashTableEntries;
+		return MaxCppHashTableEntries;
 }
 
 /*
@@ -163,7 +169,7 @@ get_pre_char_hash_value (char c)
 	else if (c == '_')
 		return 83;
 	else
-		return MaxHashTableEntries;
+		return MaxPreHashTableEntries;
 }
 
 /*>- EOF -<*/

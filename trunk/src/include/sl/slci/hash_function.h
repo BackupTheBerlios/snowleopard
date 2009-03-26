@@ -34,9 +34,10 @@
 #include <stddef.h>
 
 /*
- * Maxinum number of values in hash table.
+ * Maxinum number of values in hash tables.
  */
-extern const size_t MaxHashTableEntries;
+extern const size_t MaxCppHashTableEntries;
+extern const size_t MaxPreHashTableEntries;
 
 /*
  * Hash function for C++ identifiers, used for hashing the keys for the

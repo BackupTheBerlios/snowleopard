@@ -46,13 +46,13 @@ main ()
 {
 	/* Initialize array to keep results */
 	bool next = true;
-	char* key_value = malloc (sizeof (char[MaxHashTableEntries]));
+	char* key_value = malloc (sizeof (char[MaxCppHashTableEntries]));
 	FILE* input_file;
 	size_t i;
-	size_t* array = malloc (sizeof (size_t[MaxHashTableEntries]));
+	size_t* array = malloc (sizeof (size_t[MaxCppHashTableEntries]));
 
 	printf ("==> Initialize array\n");
-	for (i = 0; i != MaxHashTableEntries; ++i)
+	for (i = 0; i != MaxCppHashTableEntries; ++i)
 		array[i] = 0;
 
 	/* Open file */
@@ -70,7 +70,7 @@ main ()
 	 */
 	
 	/* Read identifier */
-	fgets (key_value, MaxHashTableEntries, input_file);
+	fgets (key_value, MaxCppHashTableEntries, input_file);
 	key_value[strlen (key_value) - 1] = '\0';
 	
 	if (feof (input_file))
@@ -88,7 +88,7 @@ main ()
 		array[generate_cpp_hash_key (key_value)]++;
 
 		/* Read identifier */
-		fgets (key_value, MaxHashTableEntries, input_file);
+		fgets (key_value, MaxCppHashTableEntries, input_file);
 		key_value[strlen (key_value) - 1] = '\0';
 
 		if (feof (input_file))
@@ -97,7 +97,7 @@ main ()
 	}
 
 	/* Loop thru array and print hit count if <> 0 */
-	for (i = 0; i != MaxHashTableEntries; ++i)
+	for (i = 0; i != MaxCppHashTableEntries; ++i)
 		if (array[i] > 1)
 			printf ("%d appears %d times\n", i, array[i]);
 
