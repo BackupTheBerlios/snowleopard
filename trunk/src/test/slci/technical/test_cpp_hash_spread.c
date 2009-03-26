@@ -56,7 +56,7 @@ main ()
 		array[i] = 0;
 
 	/* Open file */
-	input_file = fopen ("identifiers.txt", "r");
+	input_file = fopen ("cpp_identifiers.txt", "r");
 
 	if (input_file == 0)
 	{
@@ -80,12 +80,12 @@ main ()
 	{
 		printf (
 			"%d is key for %s\n",
-			generate_hash_key (key_value),
+			generate_cpp_hash_key (key_value),
 			key_value
 			);
 		
 		/* Generate hash_key and add to table */
-		array[generate_hash_key (key_value)]++;
+		array[generate_cpp_hash_key (key_value)]++;
 
 		/* Read identifier */
 		fgets (key_value, MaxHashTableEntries, input_file);

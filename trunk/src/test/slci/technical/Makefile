@@ -43,17 +43,22 @@ SL_INCLUDE = ../../../include
 #
 # All programs
 #
-TEST_HASH_SPREAD = test_hash_spread.o ../../../tools/slci/hash_function.o
+TEST_CPP_HASH_SPREAD = test_cpp_hash_spread.o ../../../tools/slci/hash_function.o
 
-ALL_PROGRAMS = test_hash_spread
+TEST_PRE_HASH_SPREAD = test_pre_hash_spread.o ../../../tools/slci/hash_function.o
+
+ALL_PROGRAMS = test_cpp_hash_spread test_pre_hash_spread
 
 #
 # Main targets
 #
 all: $(ALL_PROGRAMS)
 
-test_hash_spread: $(TEST_HASH_SPREAD)
-	$(CC) $(CFLAGS) -I$(SL_INCLUDE) -o $@ $(TEST_HASH_SPREAD)
+test_cpp_hash_spread: $(TEST_CPP_HASH_SPREAD)
+	$(CC) $(CFLAGS) -I$(SL_INCLUDE) -o $@ $(TEST_CPP_HASH_SPREAD)
+
+test_pre_hash_spread: $(TEST_PRE_HASH_SPREAD)
+	$(CC) $(CFLAGS) -I$(SL_INCLUDE) -o $@ $(TEST_PRE_HASH_SPREAD)
 
 #
 # Suffix rule for compiling C sources

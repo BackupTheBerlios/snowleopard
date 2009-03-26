@@ -36,16 +36,18 @@
 /*
  * Private function prototypes.
  */
-static size_t get_char_hash_value (char);
+static size_t get_cpp_char_hash_value (char);
+static size_t get_pre_char_hash_value (char);
 
 /*
- * MaxHashTableEntries constant. Contains the maxinum number of entries allowed in
- * the hash table.
+ * MaxHashTableEntries constant. Contains the maxinum number of entries allowed
+ * in the hash table.
  */
 const size_t MaxHashTableEntries = 128000;
 
 /*
- * This function generates a hash key based on the string given as input value.
+ * This function generates a hash key based on the C++ identifier given as input
+ * value.
  *
  * Hashing is done as follows:
  *    1) For each character a number between 0 and 64 is generated (there are 63
@@ -55,7 +57,7 @@ const size_t MaxHashTableEntries = 128000;
  *    4) The remainder of the sum divided by MaxHashTableEntries is the hash_key.
  */
 size_t
-generate_hash_key (const char* key_value)
+generate_cpp_hash_key (const char* key_value)
 {
 	size_t key = 0;
 	size_t pos = 0;
@@ -63,7 +65,7 @@ generate_hash_key (const char* key_value)
 	while (*key_value != '\0')
 	{
 		pos++;
-		key += get_char_hash_value (*key_value) * pos;	
+		key += get_cpp_char_hash_value (*key_value) * pos;	
 		key_value++;
 	}
 
@@ -71,7 +73,35 @@ generate_hash_key (const char* key_value)
 }
 
 /*
- * This function calculates the character value to hash. Allowed characters are:
+ * This function generates a hash key based on the preprocessor identifier given
+ * as input value.
+ *
+ * Hashing is done as follows:
+ *    1) For each character a number between 0 and 64 is generated (there are 63
+ *       valid characters for C++ identifiers, a space = 0 and : = 1).
+ *    2) This value for each character is multiplied by the position in the string.
+ *    3) The obtained values are summed. If this sum overflows we ignore it.
+ *    4) The remainder of the sum divided by MaxHashTableEntries is the hash_key.
+ */
+size_t
+generate_pre_hash_key (const char* key_value)
+{
+	size_t key = 0;
+	size_t pos = 0;
+	
+	while (*key_value != '\0')
+	{
+		pos++;
+		key += get_pre_char_hash_value (*key_value) * pos;	
+		key_value++;
+	}
+
+	return key % MaxHashTableEntries;
+}
+
+/*
+ * This function calculates the character value for a valid C++ character to hash.
+ * Allowed characters are:
  *   space = 0
  *   @     = 1
  *   (     = 2
@@ -84,7 +114,7 @@ generate_hash_key (const char* key_value)
  *   _     = 83
  */
 size_t
-get_char_hash_value (char c)
+get_cpp_char_hash_value (char c)
 {
 	if (c == ' ')
 		return 0;
@@ -104,6 +134,32 @@ get_char_hash_value (char c)
 		return 20 + c - 'A';
 	else if (c >= 'a' && c <= 'z')
 		return 50 + c - 'a';
+	else if (c == '_')
+		return 83;
+	else
+		return MaxHashTableEntries;
+}
+
+/*
+ * This function calculates the character value for a valid C++ character to hash.
+ * Allowed characters are:
+ *   space = 0
+ *   0-9   = 1  + c - '0'
+ *   a-z   = 15 + c - 'a'
+ *   A-Z   = 45 + c - 'A'
+ *   _     = 83
+ */
+size_t
+get_pre_char_hash_value (char c)
+{
+	if (c == ' ')
+		return 0;
+	else if (c >= '0' && c <= '9')
+		return 1 + c - '0';
+	else if (c >= 'A' && c <= 'Z')
+		return 15 + c - 'A';
+	else if (c >= 'a' && c <= 'z')
+		return 45 + c - 'a';
 	else if (c == '_')
 		return 83;
 	else
