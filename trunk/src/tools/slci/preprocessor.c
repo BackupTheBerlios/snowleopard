@@ -33,6 +33,7 @@
 
 /* Snow Leopard headers */
 #include "sl/slci/preprocessor.h"
+#include "sl/slci/reader.h"
 #include "sl/slci/string.h"
 #include "sl/slci/token.h"
 
@@ -66,6 +67,10 @@ slci_token
 preprocess_macro_definition (slci_string* s)
 {
 
+	return preprocessor_token (
+		s,
+		get_current_source_position ()
+		);
 }
 
 /*>- EOF -<*/

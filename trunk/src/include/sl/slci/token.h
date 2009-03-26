@@ -258,7 +258,7 @@ slci_token character_token (char, slci_source_position);
 slci_token comment_token (const slci_string*, slci_source_position);
 slci_token empty_token (slci_source_position);
 slci_token eof_token ();
-slci_token macro_token (const slci_string*, slci_source_position);
+slci_token preprocessor_token (const slci_string*, slci_source_position);
 slci_token string_token (const slci_string*, slci_source_position);
 void print_token (size_t, slci_token);
 

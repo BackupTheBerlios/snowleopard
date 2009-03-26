@@ -267,7 +267,7 @@ eof_token ()
  * macro_token function. This function returns a macro token.
  */
 slci_token
-macro_token (const slci_string* s, slci_source_position pos)
+preprocessor_token (const slci_string* s, slci_source_position pos)
 {
 	slci_token token;
 
