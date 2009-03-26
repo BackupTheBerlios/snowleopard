@@ -75,6 +75,12 @@ initialize_lexer (char* file)
 	if (!initialize_reader (file))
 		return false;
 
+	if (!initialize_preprocessor ())
+	{
+		destroy_reader ();
+		return false;
+	}
+	
 	return true;
 }
 
@@ -84,6 +90,7 @@ initialize_lexer (char* file)
 void
 destroy_lexer ()
 {
+	destroy_preprocessor ();
 	destroy_reader ();
 }
 
@@ -225,7 +232,19 @@ lex_comment ()
 slci_token
 lex_macro ()
 {
+	char c;
+	
+	for (;;)
+	{
+		c = get_next_char (false, true);
 
+		if (c == '\n' && get_previous_char () != '\\')
+			break;
+	}
+
+	return preprocess_macro_definition (
+		get_current_token_string ()
+		);
 }
 
 /*

@@ -27,27 +27,45 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_PREPROCESSOR_H_
-#define _SL_SLCI_PREPROCESSOR_H_
-
 /* Standard C headers */
 #include <stdbool.h>
+#include <stddef.h>
 
 /* Snow Leopard headers */
+#include "sl/slci/preprocessor.h"
 #include "sl/slci/string.h"
 #include "sl/slci/token.h"
 
 /*
- * Initialization functions
+ * Private global variables
  */
-bool initialize_preprocessor ();
-void destroy_preprocessor ();
+size_t current_depth;
 
 /*
- * Preprocessor functions
+ * initialize_preprocessor function. Initializes the preprocessor.
  */
-slci_token preprocess_macro_definition (slci_string*);
+bool
+initialize_preprocessor ()
+{
+	return true;
+}
 
-#endif /* !_SL_SLCI_PREPROCESSOR_H_ */
+/*
+ * destroy_preprocessor function. Destroys the preprocessor.
+ */
+void
+destroy_preprocessor ()
+{
+
+}
+
+/*
+ * preprocess_macro_definition function. Processes a macro definition.
+ */
+slci_token
+preprocess_macro_definition (slci_string* s)
+{
+
+}
 
 /*>- EOF -<*/
