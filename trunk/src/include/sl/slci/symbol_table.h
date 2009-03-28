@@ -35,6 +35,7 @@
 #include <stddef.h>
 
 /* Snow Leopard headers */
+#include "sl/slci/hash_function.h"
 #include "sl/slci/source_position.h"
 #include "sl/slci/token.h"
 
@@ -51,21 +52,33 @@ struct slci_symtab_entry
 typedef struct slci_symtab_entry slci_symtab_entry;
 
 /*
+ * Symbol table.
+ */
+struct slci_symtab
+{
+	hash_function_ptr hash_function;
+	slci_symtab_entry* data;
+	size_t size;
+};
+
+typedef struct slci_symtab slci_symtab;
+
+/*
  * Initialize functions.
  */
-bool initialize_symtab ();
-void destroy_symtab ();
-void clear_symtab ();
+slci_symtab initialize_symtab (hash_function_ptr, size_t);
+void destroy_symtab (slci_symtab*);
+void clear_symtab (slci_symtab*);
 
 /*
  * Get symbol table entry.
  */
-slci_symtab_entry* get_symtab_entry (char*);
+slci_symtab_entry* get_symtab_entry (const slci_symtab*, char*);
 
 /*
  * Set symbol table entry.
  */
-bool set_symtab_entry (char*, slci_token, slci_source_position);
+bool set_symtab_entry (slci_symtab*, char*, slci_token, slci_source_position);
 
 #endif /* !_SL_SLCI_SYMBOL_TABLE_H_ */
 

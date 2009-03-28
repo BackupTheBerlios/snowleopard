@@ -34,12 +34,6 @@
 #include "sl/slci/hash_function.h"
 
 /*
- * Private function prototypes.
- */
-static size_t get_cpp_char_hash_value (char);
-static size_t get_pre_char_hash_value (char);
-
-/*
  * MaxCppHashTableEntries constant. Contains the maxinum number of entries allowed
  * in the C++ hash table.
  */

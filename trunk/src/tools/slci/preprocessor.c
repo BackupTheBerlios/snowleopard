@@ -32,6 +32,7 @@
 #include <stddef.h>
 
 /* Snow Leopard headers */
+#include "sl/slci/preprocessor_symtab.h"
 #include "sl/slci/preprocessor.h"
 #include "sl/slci/reader.h"
 #include "sl/slci/string.h"
@@ -48,6 +49,11 @@ size_t current_depth;
 bool
 initialize_preprocessor ()
 {
+	if (initialize_preprocessor_symtab ())
+	{
+		/* TODO - Display error */
+		return false;
+	}
 	return true;
 }
 
@@ -57,7 +63,7 @@ initialize_preprocessor ()
 void
 destroy_preprocessor ()
 {
-
+	destroy_preprocessor_symtab ();
 }
 
 /*

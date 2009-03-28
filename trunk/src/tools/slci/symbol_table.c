@@ -27,19 +27,57 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/* Standard C headers */
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdlib.h>
+
 /* Snow Leopard headers */
+#include "sl/slci/hash_function.h"
 #include "sl/slci/symbol_table.h"
 
 /*
- * Initial symbol table size.
+ * Private function prototypes.
  */
-const size_t InitialSymtabSize = 10;
+void destroy_symtab_entry ();
 
 /*
- * Private global variables.
+ * initialize_symtab function. This function initializes a symbol table.
  */
-slci_symtab_entry** symtab;
-char** symtab_keys;
-size_t symtab_size;
+slci_symtab
+initialize_symtab (hash_function_ptr hash_function, size_t size)
+{
+	slci_symtab symtab;
+
+	symtab.hash_function = hash_function;
+	symtab.data = malloc (sizeof (slci_symtab_entry[size]));
+	symtab.size = size;
+
+	return symtab;
+}
+
+/*
+ * destroy_symtab function. Destroys a symbol table.
+ */
+void
+destroy_symtab (slci_symtab* symtab)
+{
+	size_t i;
+
+	for (i = 0; i != symtab->size; ++i)
+		destroy_symtab_entry (symtab->data[i]);
+
+	free (symtab->data);
+	symtab->data = 0;
+}
+
+/*
+ * destroy_symtab_entry function. Destroys a symbol table entry.
+ */
+void
+destroy_symtab_entry ()
+{
+
+}
 
 /*>- EOF -<*/

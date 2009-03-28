@@ -27,41 +27,36 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_HASH_FUNCTION_H_
-#define _SL_SLCI_HASH_FUNCTION_H_
+/* Snow Leopard headers */
+#include "sl/slci/preprocessor_symtab.h"
+#include "sl/slci/hash_function.h"
 
-/* Standard C headers */
-#include <stddef.h>
-
-/*
- * Maxinum number of values in hash tables.
- */
-extern const size_t MaxCppHashTableEntries;
-extern const size_t MaxPreHashTableEntries;
+slci_symtab preprocessor_symtab;
 
 /*
- * Typdef for hash functions.
+ * initialize_preprocessor_symtab function. Initializes the C++ symbol table.
  */
-typedef size_t (*hash_function_ptr) (char);
+bool
+initialize_preprocessor_symtab ()
+{
+	preprocessor_symtab = initialize_symtab (
+		&get_pre_char_hash_value,
+		MaxPreHashTableEntries
+		);
+
+	if (preprocessor_symtab.size == 0)
+		return false;
+
+	return true;
+}
 
 /*
- * Hash function for C++ identifiers, used for hashing the keys for the
- * Snow Leopard interpreter's symbol table.
+ * destroy_preprocessor_symtab function. Destroys the C++ symbol table.
  */
-size_t generate_cpp_hash_key (const char*);
-size_t generate_pre_hash_key (const char*);
-
-/*
- * General hash function.
- */
-size_t generate_hash_key (hash_function_ptr, const size_t, const char*);
-
-/*
- * Char to hash_key functions.
- */
-size_t get_cpp_char_hash_value (char);
-size_t get_pre_char_hash_value (char);
-
-#endif /* !_SL_SLCI_HASH_FUNCTION_H_ */
+void
+destroy_preprocessor_symtab ()
+{
+	destroy_symtab (&preprocessor_symtab);
+}
 
 /*>- EOF -<*/

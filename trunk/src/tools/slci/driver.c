@@ -32,6 +32,7 @@
 #include <string.h>
 
 /* Snow Leopard headers */
+#include "sl/slci/cpp_symtab.h"
 #include "sl/slci/driver.h"
 #include "sl/slci/error_handling.h"
 #include "sl/slci/parser.h"
@@ -61,6 +62,7 @@ void
 destroy_driver ()
 {
 	destroy_settings ();
+	destroy_cpp_symtab ();
 	if (parser_is_initialized)
 		destroy_parser ();
 }
@@ -155,9 +157,21 @@ start ()
 	if (!parser_is_initialized)
 	{
 		if (initialize_parser (settings->source_file))
+		{
 			parser_is_initialized = true;
+
+			if (!initialize_cpp_symtab ())
+			{
+				/* TODO - Display error */
+				destroy_parser ();
+				return false;
+			}
+		}
 		else
+		{
+			/* TODO - Display error */
 			return false;
+		}
 	}
 
 	if (!parse ())

@@ -31,6 +31,7 @@
 #include <stddef.h>
 
 /* Snow Leopard headers */
+#include "sl/slci/cpp_symtab.h"
 #include "sl/slci/lexer.h"
 #include "sl/slci/parser.h"
 #include "sl/slci/token.h"
