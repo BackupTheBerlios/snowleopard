@@ -40,11 +40,21 @@ extern const size_t MaxCppHashTableEntries;
 extern const size_t MaxPreHashTableEntries;
 
 /*
+ * Typdef for hash functions.
+ */
+typedef size_t (*hash_function_ptr) (char);
+
+/*
  * Hash function for C++ identifiers, used for hashing the keys for the
  * Snow Leopard interpreter's symbol table.
  */
 size_t generate_cpp_hash_key (const char*);
 size_t generate_pre_hash_key (const char*);
+
+/*
+ * General hash function.
+ */
+size_t generate_hash_key (hash_function_ptr, const size_t, const char*);
 
 #endif /* !_SL_SLCI_HASH_FUNCTION_H_ */
 

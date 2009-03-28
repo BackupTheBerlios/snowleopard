@@ -52,57 +52,61 @@ const size_t MaxCppHashTableEntries = 128000;
 const size_t MaxPreHashTableEntries = 32000;
 
 /*
- * This function generates a hash key based on the C++ identifier given as input
- * value.
- *
- * Hashing is done as follows:
- *    1) For each character a number between 0 and 64 is generated (there are 63
- *       valid characters for C++ identifiers, a space = 0 and : = 1).
- *    2) This value for each character is multiplied by the position in the string.
- *    3) The obtained values are summed. If this sum overflows we ignore it.
- *    4) The remainder of the sum divided by MaxHashTableEntries is the hash_key.
+ * generate_cpp_hash_key function. Generates a hash key for a C++ identifier.
  */
 size_t
 generate_cpp_hash_key (const char* key_value)
 {
-	size_t key = 0;
-	size_t pos = 0;
-	
-	while (*key_value != '\0')
-	{
-		pos++;
-		key += get_cpp_char_hash_value (*key_value) * pos;	
-		key_value++;
-	}
-
-	return key % MaxCppHashTableEntries;
+	return generate_hash_key (
+		&get_cpp_char_hash_value,
+		MaxCppHashTableEntries,
+		key_value
+		);
 }
 
 /*
- * This function generates a hash key based on the preprocessor identifier given
- * as input value.
- *
- * Hashing is done as follows:
- *    1) For each character a number between 0 and 64 is generated (there are 63
- *       valid characters for C++ identifiers, a space = 0 and : = 1).
- *    2) This value for each character is multiplied by the position in the string.
- *    3) The obtained values are summed. If this sum overflows we ignore it.
- *    4) The remainder of the sum divided by MaxHashTableEntries is the hash_key.
+ * generate_pre_hash_key function. Generates a hash key for a preprocessor
+ * macro.
  */
 size_t
 generate_pre_hash_key (const char* key_value)
 {
+	return generate_hash_key (
+		&get_pre_char_hash_value,
+		MaxCppHashTableEntries,
+		key_value
+		);
+}
+
+/*
+ * generate_hash_key function. This function generates a hash key based on the string
+ * and the configuration parameters given.
+ *
+ * Hashing is done as follows:
+ *    1) For each character a number is generated using the supplied function pointer.
+ *    2) This value for each character is multiplied by the position in the string.
+ *    3) The obtained values are summed. If this sum overflows we ignore it.
+ *    4) The remainder of the sum divided by the hash_table_size parameter is the
+ *       hash_key.
+ */
+size_t
+generate_hash_key (
+	hash_function_ptr hash_function,
+	size_t hash_table_size,
+	const char* key_value
+	)
+{
 	size_t key = 0;
 	size_t pos = 0;
-	
+
 	while (*key_value != '\0')
 	{
 		pos++;
-		key += get_pre_char_hash_value (*key_value) * pos;	
+		key += hash_function (*key_value) * pos;
 		key_value++;
 	}
 
-	return key % MaxPreHashTableEntries;
+	return key % hash_table_size;
 }
 
 /*
