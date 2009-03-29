@@ -67,8 +67,8 @@ typedef struct slci_symtab slci_symtab;
  * Initialize functions.
  */
 slci_symtab initialize_symtab (hash_function_ptr, size_t);
-void destroy_symtab (slci_symtab*);
 void clear_symtab (slci_symtab*);
+void destroy_symtab (slci_symtab*);
 
 /*
  * Get symbol table entry.

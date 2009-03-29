@@ -47,13 +47,30 @@ void destroy_symtab_entry ();
 slci_symtab
 initialize_symtab (hash_function_ptr hash_function, size_t size)
 {
+	size_t i;
 	slci_symtab symtab;
 
 	symtab.hash_function = hash_function;
 	symtab.data = malloc (sizeof (slci_symtab_entry[size]));
 	symtab.size = size;
 
+	for (i = 0; i != symtab.size; ++i)
+		symtab.data[i].key = 0;
+	
 	return symtab;
+}
+
+/*
+ * clear_symtab function. Clear a symbol table.
+ */
+void
+clear_symtab (slci_symtab* symtab)
+{
+	size_t i;
+
+	for (i = 0; i != symtab->size; ++i)
+		if (symtab->data[i].key != 0)
+			destroy_symtab_entry (symtab->data[i]);
 }
 
 /*
@@ -65,10 +82,10 @@ destroy_symtab (slci_symtab* symtab)
 	size_t i;
 
 	for (i = 0; i != symtab->size; ++i)
-		destroy_symtab_entry (symtab->data[i]);
+		if (symtab->data[i].key != 0)
+			destroy_symtab_entry (symtab->data[i]);
 
 	free (symtab->data);
-	symtab->data = 0;
 }
 
 /*
@@ -78,7 +95,9 @@ void
 destroy_symtab_entry (slci_symtab_entry* entry)
 {
 	free (entry->key);
+	entry->key = 0;
 	free (entry);
 }
+
 
 /*>- EOF -<*/
