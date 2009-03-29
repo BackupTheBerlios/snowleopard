@@ -297,6 +297,42 @@ string_token (const slci_string* s, slci_source_position pos)
 }
 
 /*
+ * wcharacter_token function. This function returns a wcharacter token.
+ */
+slci_token
+wcharacter_token (wchar_t c, slci_source_position pos)
+{
+	slci_token token;
+
+	token.type = TT_LITERAL;
+	token.pos = pos;
+
+	token.literal.type = LT_WCHAR_T;
+	token.literal.wchar_t_value = c;
+
+	return token;
+}
+
+/*
+ * wstring_token function. This function returns a wstring token.
+ */
+slci_token
+wstring_token (const slci_wstring* s, slci_source_position pos)
+{
+	slci_token token;
+
+	token.type = TT_LITERAL;
+	token.pos = pos;
+
+	token.literal.type = LT_WSTRING;
+
+	token.literal.wstring.size = s->size;
+	token.literal.wstring.value = get_wc_string (s);
+
+	return token;
+}
+
+/*
  * print_token function. This function prints a token.
  */
 void

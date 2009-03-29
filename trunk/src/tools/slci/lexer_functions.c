@@ -73,10 +73,10 @@ is_whitespace (char c)
 }
 
 /*
- * lex_single_character function. Lexes a single character and returns it.
+ * lex_narrow_character function. Lexes a single character and returns it.
  */
 char
-lex_single_character ()
+lex_narrow_character ()
 {
 	/* Get character */
 	char c = lex_get_next_char (false, true);
@@ -145,6 +145,17 @@ lex_single_character ()
 			break;			
 		}
 	}
+
+	return c;
+}
+
+/*
+ * lex_wide_character function. Lexes a single character and returns it.
+ */
+wchar_t
+lex_wide_character ()
+{
+	wchar_t c;
 
 	return c;
 }

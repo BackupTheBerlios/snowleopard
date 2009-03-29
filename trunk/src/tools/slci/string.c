@@ -31,6 +31,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
+#include <wchar.h>
 
 /* Snow Leopard headers */
 #include "sl/slci/string.h"
@@ -58,10 +59,36 @@ initialize_string ()
 }
 
 /*
+ * initialize_wstring function. Initialize a new wstring object.
+ */
+slci_wstring
+initialize_wstring ()
+{
+	slci_wstring s;
+
+	s.size = 0;
+	s.reserved = InitialStringSize;
+	
+	s.value = malloc (sizeof (wchar_t[InitialStringSize]));
+	s.value[0] = '\0';
+	
+	return s;
+}
+
+/*
  * destroy_string function. Destroy string object.
  */
 void
 destroy_string (slci_string s)
+{
+	free (s.value);
+}
+
+/*
+ * destroy_wstring function. Destroy wstring object.
+ */
+void
+destroy_wstring (slci_wstring s)
 {
 	free (s.value);
 }
@@ -72,11 +99,24 @@ destroy_string (slci_string s)
 char*
 get_c_string (const slci_string* str)
 {
-	char* cstr = malloc (str->size + 1);
+	char* cstr = malloc (sizeof (char[str->size + 1]));
 
 	strcpy (cstr, str->value);
 
 	return cstr;
+}
+
+/*
+ * get_wc_string function. Returns a copy of the wstring as wide character string.
+ */
+wchar_t*
+get_wc_string (const slci_wstring* str)
+{
+	wchar_t* wcstr = malloc (sizeof (wchar_t[str->size + 1]));
+
+	wcscpy (wcstr, str->value);
+
+	return wcstr;
 }
 
 /*
@@ -111,10 +151,56 @@ append_string (slci_string* s, char c)
 }
 
 /*
+ * append_wstring function. Append wchar_t to the wstring.
+ */
+bool
+append_wstring (slci_wstring* s, wchar_t c)
+{
+	/* Check if wstring needs to be extended */
+	if ((s->size + 1) > s->reserved)
+	{
+		wchar_t* old = s->value;
+		s->reserved += InitialStringSize;
+		s->value = malloc (sizeof (wchar_t[s->reserved]));
+		if (s->value != 0)
+		{
+			if (old != 0)
+				wcscpy (s->value, old);
+			else
+				s->value[0] = '\0';
+			
+			free (old);
+		}
+		else
+			s->value[0] = '\0';
+	}
+
+	s->value[s->size] = c;
+	s->value[++s->size] = '\0';
+
+	return true;
+}
+
+/*
  * reset_string function. Reset the string to an empty string.
  */
 bool
 reset_string (slci_string* s)
+{
+	if (s->size != 0)
+	{
+		s->value[0] = '\0';
+		s->size = 0;
+	}
+
+	return true;
+}
+
+/*
+ * reset_wstring function. Reset the wstring to an empty wstring.
+ */
+bool
+reset_wstring (slci_wstring* s)
 {
 	if (s->size != 0)
 	{

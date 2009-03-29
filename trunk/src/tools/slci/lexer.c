@@ -177,27 +177,55 @@ keyword_position ()
 slci_token
 lex_character ()
 {
-	char c;
-	char d;
-
-        /* Lex character */
-	c = lex_single_character ();
-	
-	/* Get ending quote */
-	d = lex_get_next_char (false, true);
-
-	if (d != '\'')
+	/* Wide character literal */
+	if (get_previous_char () == 'L')
 	{
-		/* Skip to end of token and report error */
-		skip_to_char ('\'');
-		raise_and_display_error (
-			ERR_INVALID_CHARACTER_LITERAL,
-			begin_source_position,
-			get_c_string (get_current_token_string ())
-			);
-	}
+		wchar_t c;
+		char d;
 
-	return character_token (c, get_current_source_position ());
+		/* Lex character */
+		c = lex_wide_character ();
+	
+		/* Get ending quote */
+		d = lex_get_next_char (false, true);
+
+		if (d != '\'')
+		{
+			/* Skip to end of token and report error */
+			skip_to_char ('\'');
+			raise_and_display_error (
+				ERR_INVALID_WCHARACTER_LITERAL,
+				begin_source_position,
+				get_c_string (get_current_token_string ())
+				);
+		}
+		
+		return wcharacter_token (c, get_current_source_position ());
+	}
+	else
+	{
+		char c;
+		char d;
+
+		/* Lex character */
+		c = lex_narrow_character ();
+	
+		/* Get ending quote */
+		d = lex_get_next_char (false, true);
+
+		if (d != '\'')
+		{
+			/* Skip to end of token and report error */
+			skip_to_char ('\'');
+			raise_and_display_error (
+				ERR_INVALID_CHARACTER_LITERAL,
+				begin_source_position,
+				get_c_string (get_current_token_string ())
+				);
+		}
+		
+		return character_token (c, get_current_source_position ());
+	}
 }
 
 /*
@@ -288,22 +316,46 @@ lex_reserved ()
 slci_token
 lex_string ()
 {
-	char c;
-	char prev_c = '"';
-	slci_string s = initialize_string ();
-	
-	/* Get second token delimiter */
-	c = lex_single_character ();
-	for (;;)
+	/* Wide character string */
+	if (get_previous_char () == 'L')
 	{
-		if (c == '"' && prev_c != '\\')
-			break;
-		else
-			append_string (&s, c);
-		c = lex_single_character ();
+		wchar_t c;
+		wchar_t prev_c = '"';
+		slci_wstring s = initialize_wstring ();
+	
+		/* Get second token delimiter */
+		c = lex_wide_character ();
+		for (;;)
+		{
+			if (c == '"' && prev_c != '\\')
+				break;
+			else
+				append_wstring (&s, c);
+			c = lex_wide_character ();
+		}
+		
+		return wstring_token (&s, get_current_source_position ());
 	}
-
-	return string_token (&s, get_current_source_position ());
+	else
+	{
+		/* Narrow character string */
+		char c;
+		char prev_c = '"';
+		slci_string s = initialize_string ();
+	
+		/* Get second token delimiter */
+		c = lex_narrow_character ();
+		for (;;)
+		{
+			if (c == '"' && prev_c != '\\')
+				break;
+			else
+				append_string (&s, c);
+			c = lex_narrow_character ();
+		}
+		
+		return string_token (&s, get_current_source_position ());
+	}
 }
 
 /*

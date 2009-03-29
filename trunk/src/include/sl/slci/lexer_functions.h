@@ -41,7 +41,8 @@
  */
 const slci_string* get_current_token_string ();
 bool is_whitespace (char);
-char lex_single_character ();
+char lex_narrow_character ();
+wchar_t lex_wide_character ();
 char lex_get_next_char (bool, bool);
 void skip_to_char (char);
 

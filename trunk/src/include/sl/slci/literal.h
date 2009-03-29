@@ -32,6 +32,7 @@
 
 /* Standard C headers */
 #include <stdbool.h>
+#include <stddef.h>
 #include <wchar.h>
 
 /*
@@ -70,7 +71,7 @@ typedef enum slci_literal_type slci_literal_type;
  */
 struct slci_char_string
 {
-	unsigned int size;
+	size_t size;
 	char* value;
 };
 
@@ -81,7 +82,7 @@ typedef struct slci_char_string slci_char_string;
  */
 struct slci_char16_string
 {
-	unsigned int size;
+	size_t size;
 	unsigned short* value;
 };
 
@@ -92,7 +93,7 @@ typedef struct slci_char16_string slci_char16_string;
  */
 struct slci_char32_string
 {
-	unsigned int size;
+	size_t size;
 	unsigned int* value;
 };
 
@@ -103,8 +104,8 @@ typedef struct slci_char32_string slci_char32_string;
  */
 struct slci_wchar_string
 {
-	unsigned int size;
-	unsigned int* value;
+	size_t size;
+	wchar_t* value;
 };
 
 typedef struct slci_wchar_string slci_wchar_string;
@@ -124,6 +125,7 @@ struct slci_literal
 		signed short schar16_t_value;
 		unsigned int uchar32_t_value;
 		signed int schar32_t_value;
+		wchar_t wchar_t_value;
 		unsigned short ushort_value;
 		signed short sshort_value;
 		unsigned int uint_value;

@@ -55,6 +55,7 @@ slci_error_description error_description_list[] = {
 		
 	/* Compile errors */
 	{"Invalid character literal \'%1\'", 1, ET_COMPILE},
+	{"Invalid wchar_t literal \'%1\'", 1, ET_COMPILE}, 
 	{"Invalid string literal \"%1\"", 1, ET_COMPILE}
 
 	/* Runtime errors */

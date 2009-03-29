@@ -66,6 +66,7 @@ enum slci_error_code
 			
 		/* Compile errors */
 		ERR_INVALID_CHARACTER_LITERAL,
+		ERR_INVALID_WCHARACTER_LITERAL,
 		ERR_INVALID_STRING_LITERAL
 			
 		/* Runtime errors */
