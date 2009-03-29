@@ -63,6 +63,7 @@ enum slci_error_code
 		ERR_OUT_OF_MEMORY,    /* Interpreter out of memory */
 		ERR_INVALID_ARGUMENT, /* Invalid arguemts provided */
 		ERR_NO_SOURCE_FILE,   /* No source file provided */
+		ERR_SYMTAB_DUPLICATE, /* A duplicate symbol table key was encountered */
 			
 		/* Compile errors */
 		ERR_INVALID_CHARACTER_LITERAL,

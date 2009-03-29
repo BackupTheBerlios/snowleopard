@@ -99,10 +99,15 @@ raise_error (slci_error_code code, slci_source_position position, char* s)
 }
 
 /*
- * raise_and_display_error function. Raise and store an error and afterwards format and display it.
+ * raise_and_display_error function. Raise and store an error and afterwards
+ * format and display it.
  */
 void
-raise_and_display_error (slci_error_code code, slci_source_position position, char* s)
+raise_and_display_error (
+	slci_error_code code,
+	slci_source_position position,
+	char* s
+	)
 {
 	display_error (
 		raise_error (code, position, s)
@@ -110,7 +115,8 @@ raise_and_display_error (slci_error_code code, slci_source_position position, ch
 }
 
 /*
- * raise_and_display_program_error function. Raise, store and display a program error.
+ * raise_and_display_program_error function. Raise, store and display a program
+ * error.
  */
 void
 raise_and_display_program_error (slci_error_code code, char* s)
@@ -121,7 +127,8 @@ raise_and_display_program_error (slci_error_code code, char* s)
 }
 
 /*
- * get_first_error_of_type function. Returns the first error encountered of the given type.
+ * get_first_error_of_type function. Returns the first error encountered of the
+ * given type.
  */
 slci_error_code
 get_first_error_of_type (slci_error_type type)

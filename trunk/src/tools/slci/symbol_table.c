@@ -31,9 +31,12 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <string.h>
 
 /* Snow Leopard headers */
+#include "sl/slci/error_handling.h"
 #include "sl/slci/hash_function.h"
+#include "sl/slci/misc.h"
 #include "sl/slci/symbol_table.h"
 
 /*
@@ -99,5 +102,59 @@ destroy_symtab_entry (slci_symtab_entry* entry)
 	free (entry);
 }
 
+/*
+ * get_symtab_entry function. Get a symbol table entry from the table. The
+ * function returns 0 when the symbol is not found.
+ */
+slci_symtab_entry*
+get_symtab_entry (const slci_symtab* symtab, const char* key)
+{
+	size_t hash_key = generate_cpp_hash_key (key);
+
+	if (strcmp (symtab->data[hash_key].key, key))
+		return &symtab->data[hash_key];
+	
+	return 0;
+}
+
+/*
+ * set_symtab_entry function. Sets a symbol table entry.
+ */
+bool
+set_symtab_entry (
+	slci_symtab* symtab,
+	char* key,
+	slci_token token,
+	slci_source_position pos
+	)
+{
+	size_t hash_key = generate_cpp_hash_key (key);
+
+	/* Set entry key if it doesn't exist yet */
+	if (symtab->data[hash_key].key == 0)
+		symtab->data[hash_key].key = key;
+	else
+	{
+		/* Is the key the same as the given key */
+		if (strcmp (symtab->data[hash_key].key, key) != 0)
+		{
+			raise_and_display_program_error (
+				ERR_NO_SOURCE_FILE,
+				create_string_3 (
+					symtab->data[hash_key].key,
+					"!=",
+					key
+					)
+				);
+			return false;
+		}
+	}
+	    
+	/* Replace the symbol table entry with new data */
+	symtab->data[hash_key].token = token;
+	symtab->data[hash_key].position = pos;
+
+	return true;
+}
 
 /*>- EOF -<*/

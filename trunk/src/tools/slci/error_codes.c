@@ -52,6 +52,7 @@ slci_error_description error_description_list[] = {
 	{"An out of memory error occured", 0, ET_FATAL},
 	{"Invalid arguments provided ", 0, ET_FATAL},
 	{"No source-file given as parameter", 0, ET_FATAL},
+	{"Duplicate symbol table key \"%1\"", 1, ET_FATAL},
 		
 	/* Compile errors */
 	{"Invalid character literal \'%1\'", 1, ET_COMPILE},

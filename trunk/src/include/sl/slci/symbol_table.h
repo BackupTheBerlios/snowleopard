@@ -45,7 +45,7 @@
 struct slci_symtab_entry
 {
 	char* key;
-	slci_token info;
+	slci_token token;
 	slci_source_position position;
 };
 
@@ -73,7 +73,7 @@ void destroy_symtab (slci_symtab*);
 /*
  * Get symbol table entry.
  */
-slci_symtab_entry* get_symtab_entry (const slci_symtab*, char*);
+slci_symtab_entry* get_symtab_entry (const slci_symtab*, const char*);
 
 /*
  * Set symbol table entry.
