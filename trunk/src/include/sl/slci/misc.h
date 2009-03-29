@@ -34,6 +34,7 @@
  * Misc functions.
  */
 char* copy_string (char*);
+int get_hex_value (char);
 
 #endif /* !_SL_SLCI_MISC_H_ */
 

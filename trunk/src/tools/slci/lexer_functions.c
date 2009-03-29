@@ -31,7 +31,9 @@
 #include <stdbool.h>
 
 /* Snow Leopard headers */
+#include "sl/slci/error_handling.h"
 #include "sl/slci/lexer_functions.h"
+#include "sl/slci/misc.h"
 #include "sl/slci/reader.h"
 #include "sl/slci/string.h"
 
@@ -54,7 +56,46 @@ get_current_token_string ()
 }
 
 /*
- * is_whitespace function. Skip over all whitespace not inside a lexeme.
+ * is_hexadecimal function. If character is a hexadecimal return true.
+ */
+bool
+is_hexadecimal (char c)
+{
+	switch (c)
+	{
+	case '0':
+	case '1':
+	case '2':
+	case '3':
+	case '4':
+	case '5':
+	case '6':
+	case '7':
+	case '8':
+	case '9':
+	case 'A':
+	case 'B':
+	case 'C':
+	case 'D':
+	case 'E':
+	case 'F':
+	case 'a':
+	case 'b':
+	case 'c':
+	case 'd':
+	case 'e':
+	case 'f':
+		return true;
+		break;
+		
+	default:
+		return false;
+		break;
+	}
+}
+		
+/*
+ * is_whitespace function. If character is whitespace return true.
  */
 bool
 is_whitespace (char c)
@@ -66,9 +107,11 @@ is_whitespace (char c)
 	case '\r':
 	case '\t':
 		return true;
+		break;
 		
 	default:
 		return false;
+		break;
 	}
 }
 
@@ -137,8 +180,35 @@ lex_narrow_character ()
 			break;
 
 		case 'x':
-			/* TODO - Hexadecimal constants */
-			break;
+		{
+			int i = 0;
+			c = lex_get_next_char (false, true);
+			if (is_hexadecimal (c))
+				i = get_hex_value (c);
+			else
+			{
+				raise_and_display_error (
+					ERR_INVALID_CHARACTER_HEXADECIMAL_LITERAL,
+					get_current_source_position (),
+					get_c_string (get_current_token_string ())
+					);
+				return 0;
+			}
+			c = lex_get_next_char (false, true);
+			if (is_hexadecimal (c))
+				i = i * 16 + get_hex_value (c);
+			else
+			{
+				raise_and_display_error (
+					ERR_INVALID_CHARACTER_HEXADECIMAL_LITERAL,
+					get_current_source_position (),
+					get_c_string (get_current_token_string ())
+					);
+				return 0;
+			}
+			c = i;
+		}
+		break;
 
 		default:
 			/* TODO - Report invalid character literal */ ;

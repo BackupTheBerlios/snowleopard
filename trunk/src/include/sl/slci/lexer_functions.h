@@ -40,6 +40,7 @@
  * Function prototypes.
  */
 const slci_string* get_current_token_string ();
+bool is_hexadecimal (char);
 bool is_whitespace (char);
 char lex_narrow_character ();
 wchar_t lex_wide_character ();
