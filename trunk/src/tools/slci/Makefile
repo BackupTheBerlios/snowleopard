@@ -131,10 +131,11 @@ SOURCE_POSITION_DEPENDS = $(SLCI_INCLUDE)/source_position.h \
 
 STRING_DEPENDS = $(SLCI_INCLUDE)/string.h
 
-SYMBOL_TABLE_DEPENDS = $(SLCI_INCLUDE)/hash_function.h $(SLCI_INCLUDE)/literal.h \
-		       $(SLCI_INCLUDE)/source_file.h $(SLCI_INCLUDE)/source_position.h \
-		       $(SLCI_INCLUDE)/string.h $(SLCI_INCLUDE)/symbol_table.h \
-		       $(SLCI_INCLUDE)/token.h
+SYMBOL_TABLE_DEPENDS = $(SLCI_INCLUDE)/error_codes.h $(SLCI_INCLUDE)/error_handling.h \
+		       $(SLCI_INCLUDE)/hash_function.h $(SLCI_INCLUDE)/literal.h \
+		       $(SLCI_INCLUDE)/misc.h $(SLCI_INCLUDE)/source_file.h \
+		       $(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
+		       $(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h
 
 TOKEN_DEPENDS = $(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/source_file.h \
 		$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
