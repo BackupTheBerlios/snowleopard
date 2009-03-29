@@ -70,7 +70,7 @@ destroy_preprocessor ()
  * preprocess_macro_definition function. Processes a macro definition.
  */
 slci_token
-preprocess_macro_definition (slci_string* s)
+preprocess_macro_definition (const slci_string* s)
 {
 
 	return preprocessor_token (

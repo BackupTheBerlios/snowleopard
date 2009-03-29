@@ -67,7 +67,8 @@ slci_source_position* current_source_position;
 slci_source_position begin_source_position;
 
 /*
- * Function initializes the lexer by giving it the first filename.
+ * initialize_lexer function. Function initializes the lexer by giving it the
+ * first filename.
  */
 bool
 initialize_lexer (char* file)
@@ -85,7 +86,8 @@ initialize_lexer (char* file)
 }
 
 /*
- * Function terminates the lexer and cleans up open files and buffers.
+ * destroy_lexer function. Function terminates the lexer and cleans up open
+ * files and buffers.
  */
 void
 destroy_lexer ()
@@ -95,7 +97,7 @@ destroy_lexer ()
 }
 
 /*
- * Function gets the next token from the stream.
+ * get_next_token function. Function gets the next token from the stream.
  */
 slci_token
 get_next_token ()
@@ -134,8 +136,8 @@ get_next_token ()
 }
 
 /*
- * Function gets the previous token. This is not relexed, it is just a variable
- * return to the caller.
+ * get_prev_token function. Function gets the previous token. This is not
+ * relexed, it is just a variable return to the caller.
  */
 slci_token
 get_prev_token ()
@@ -144,8 +146,9 @@ get_prev_token ()
 }
 
 /*
- * Function puts the current token (the one returned by get_next_token) back so
- * the next call to get_next_token will return the previous token.
+ * put_back_token function. Function puts the current token (the one
+ * returned by get_next_token) back so the next call to get_next_token
+ * will return the previous token.
  */
 bool
 put_back_token ()
@@ -168,8 +171,8 @@ keyword_position ()
 }
 
 /*
- * Lex a character. This function lexes a single character literal. We don't
- * need to get the opening single quote, because we already got that.
+ * lex_character function. This function lexes a single character literal.
+ * We don't need to get the opening single quote, because we already got that.
  */
 slci_token
 lex_character ()
@@ -198,7 +201,8 @@ lex_character ()
 }
 
 /*
- * Lex a comment. This function lexes both single and multi-line comments. 
+ * lex_comment function. This function lexes both single and multi-line
+ * comments. 
  */
 slci_token
 lex_comment ()
@@ -248,7 +252,7 @@ lex_macro ()
 }
 
 /*
- * Lex a number. This function lexes a numeric literal of any of the
+ * lex_number function. This function lexes a numeric literal of any of the
  * supported numeric literals.
  */
 slci_token
@@ -258,8 +262,8 @@ lex_number ()
 }
 
 /*
- * Lex another token. This function lexes a token that is not a literal or a
- * comment.
+ * lex_other function. This function lexes a token that is not a literal or
+ * a comment.
  */
 slci_token
 lex_other ()
@@ -268,7 +272,7 @@ lex_other ()
 }
 
 /*
- * Lex a reserved token. It searches the list of keywords and punctuations and
+ * lex_reserved function. It searches the list of keywords and punctuations and
  * if no match is found it searches the symbol table. If still no match, this
  * is a new identifier that needs to be entered in the symbol table.
  */
@@ -279,7 +283,7 @@ lex_reserved ()
 }
 
 /*
- * Lex a string. This function lexes a string literal.
+ * lex_string function. This function lexes a string literal.
  */
 slci_token
 lex_string ()

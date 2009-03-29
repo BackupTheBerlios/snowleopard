@@ -75,9 +75,10 @@ destroy_symtab (slci_symtab* symtab)
  * destroy_symtab_entry function. Destroys a symbol table entry.
  */
 void
-destroy_symtab_entry ()
+destroy_symtab_entry (slci_symtab_entry* entry)
 {
-
+	free (entry->key);
+	free (entry);
 }
 
 /*>- EOF -<*/

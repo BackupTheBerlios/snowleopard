@@ -46,7 +46,7 @@ void destroy_preprocessor ();
 /*
  * Preprocessor functions
  */
-slci_token preprocess_macro_definition (slci_string*);
+slci_token preprocess_macro_definition (const slci_string*);
 
 #endif /* !_SL_SLCI_PREPROCESSOR_H_ */
 
