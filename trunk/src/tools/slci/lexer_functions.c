@@ -265,6 +265,8 @@ lex_wide_character ()
 {
 	wchar_t c;
 
+	/* TODO - Added lexing of wide characters */
+	
 	return c;
 }
 

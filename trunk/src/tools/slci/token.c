@@ -30,6 +30,7 @@
 /* Standard C headers */
 #include <stddef.h>
 #include <stdlib.h>
+#include <string.h>
 
 /* Snow Leopard headers */
 #include "sl/slci/source_position.h"
@@ -275,6 +276,7 @@ preprocessor_token (const slci_string* s, slci_source_position pos)
 	token.pos = pos;
 
 	token.preprocessor = get_c_string (s);
+	token.preprocessor[strlen (token.preprocessor) - 1] = '\0';
 
 	return token;
 }
