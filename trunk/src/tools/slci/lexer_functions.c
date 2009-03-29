@@ -175,43 +175,81 @@ lex_narrow_character ()
 			c = '\"';
 			break;
 
-		case '0':
-			/* TODO - Octal constants */
+		case '0': /* Octal character constant */
+		        {
+				int i = 0;
+				c = lex_get_next_char (false, true);
+				if (c >= '0' && c <= '3')
+					i = get_oct_value (c);
+				else
+				{
+					raise_and_display_error (
+						ERR_INVALID_CHARACTER_OCTAL_LITERAL,
+						get_current_source_position (),
+						get_c_string (get_current_token_string ())
+						);
+					return 0;
+				}
+				c = lex_get_next_char (false, true);
+				if (c >= '0' && c <= '7')
+					i = i * 8 + get_oct_value (c);
+				else
+				{
+					raise_and_display_error (
+						ERR_INVALID_CHARACTER_OCTAL_LITERAL,
+						get_current_source_position (),
+						get_c_string (get_current_token_string ())
+						);
+					return 0;
+				}
+				c = lex_get_next_char (false, true);
+				if (c >= '0' && c <= '7')
+					i = i * 8 + get_oct_value (c);
+				else
+				{
+					raise_and_display_error (
+						ERR_INVALID_CHARACTER_OCTAL_LITERAL,
+						get_current_source_position (),
+						get_c_string (get_current_token_string ())
+						);
+					return 0;
+				}
+				c = i;	
+			}
 			break;
 
-		case 'x':
-		{
-			int i = 0;
-			c = lex_get_next_char (false, true);
-			if (is_hexadecimal (c))
-				i = get_hex_value (c);
-			else
-			{
-				raise_and_display_error (
-					ERR_INVALID_CHARACTER_HEXADECIMAL_LITERAL,
-					get_current_source_position (),
-					get_c_string (get_current_token_string ())
-					);
-				return 0;
+		case 'x': /* Hexadecimal character constant */
+		        {
+				int i = 0;
+				c = lex_get_next_char (false, true);
+				if (is_hexadecimal (c))
+					i = get_hex_value (c);
+				else
+				{
+					raise_and_display_error (
+						ERR_INVALID_CHARACTER_HEXADECIMAL_LITERAL,
+						get_current_source_position (),
+						get_c_string (get_current_token_string ())
+						);
+					return 0;
+				}
+				c = lex_get_next_char (false, true);
+				if (is_hexadecimal (c))
+					i = i * 16 + get_hex_value (c);
+				else
+				{
+					raise_and_display_error (
+						ERR_INVALID_CHARACTER_HEXADECIMAL_LITERAL,
+						get_current_source_position (),
+						get_c_string (get_current_token_string ())
+						);
+					return 0;
+				}
+				c = i;
 			}
-			c = lex_get_next_char (false, true);
-			if (is_hexadecimal (c))
-				i = i * 16 + get_hex_value (c);
-			else
-			{
-				raise_and_display_error (
-					ERR_INVALID_CHARACTER_HEXADECIMAL_LITERAL,
-					get_current_source_position (),
-					get_c_string (get_current_token_string ())
-					);
-				return 0;
-			}
-			c = i;
-		}
-		break;
+			break;
 
 		default:
-			/* TODO - Report invalid character literal */ ;
 			break;			
 		}
 	}

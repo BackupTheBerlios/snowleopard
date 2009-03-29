@@ -36,6 +36,7 @@
 char* copy_string (char*);
 char* create_string_3 (const char*, const char*, const char*);
 int get_hex_value (char);
+int get_oct_value (char);
 
 #endif /* !_SL_SLCI_MISC_H_ */
 

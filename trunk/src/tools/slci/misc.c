@@ -28,6 +28,7 @@
  */
 
 /* Standard C headers */
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -48,7 +49,22 @@ copy_string (char* str)
 }
 
 /*
- * get_hex_value function. If character is a hexadecimal return true.
+ * create_string_3 function. Creates a string from the 3 given strings.
+ */
+char* create_string_3 (const char* first, const char* second, const char* third)
+{
+	char* buffer = malloc (sizeof (char[
+			strlen (first) + strlen (second) + strlen (third) + 3
+			]));
+	
+	sprintf (buffer, "%s %s %s", first, second, third);
+
+	return buffer;
+}
+
+/*
+ * get_hex_value function. If character is a hexadecimal return it, otherwise
+ * return -1.
  */
 int
 get_hex_value (char c)
@@ -132,17 +148,50 @@ get_hex_value (char c)
 }
 
 /*
- * create_string_3 function. Creates a string from the 3 given strings.
+ * get_oct_value function. If character is a octal return it, otherwise
+ * return -1.
  */
-char* create_string_3 (const char* first, const char* second, const char* third)
+int
+get_oct_value (char c)
 {
-	char* buffer = malloc (sizeof (char[
-			strlen (first) + strlen (second) + strlen (third) + 3
-			]));
-	
-	sprintf (buffer, "%s %s %s", first, second, third);
+	switch (c)
+	{
+	case '0':
+		return 0;
+		break;
 
-	return buffer;
+	case '1':
+		return 1;
+		break;
+
+	case '2':
+		return 2;
+		break;
+
+	case '3':
+		return 3;
+		break;
+
+	case '4':
+		return 4;
+		break;
+
+	case '5':
+		return 5;
+		break;
+
+	case '6':
+		return 6;
+		break;
+
+	case '7':
+		return 7;
+		break;
+
+	default:
+		return -1;
+		break;
+	}
 }
 
 /*>- EOF -<*/

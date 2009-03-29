@@ -275,6 +275,8 @@ preprocessor_token (const slci_string* s, slci_source_position pos)
 	token.pos = pos;
 
 	token.preprocessor = get_c_string (s);
+
+	return token;
 }
 
 /*
@@ -349,7 +351,7 @@ print_token (size_t i, slci_token token)
 		break;
 		
 	case TT_PREPROCESSOR:
-		printf ("%i: PREPROCESSOR\n", i);
+		printf ("%i: PREPROCESSOR <%s>\n", i, token.preprocessor);
 		break;
 		
 	case TT_KEYWORD:

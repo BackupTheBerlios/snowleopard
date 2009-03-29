@@ -268,7 +268,7 @@ lex_macro ()
 	
 	for (;;)
 	{
-		c = get_next_char (false, true);
+		c = lex_get_next_char (false, true);
 
 		if (c == '\n' && get_previous_char () != '\\')
 			break;

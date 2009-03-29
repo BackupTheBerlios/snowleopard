@@ -49,7 +49,7 @@ size_t current_depth;
 bool
 initialize_preprocessor ()
 {
-	if (initialize_preprocessor_symtab ())
+	if (!initialize_preprocessor_symtab ())
 	{
 		/* TODO - Display error */
 		return false;
@@ -72,7 +72,7 @@ destroy_preprocessor ()
 slci_token
 preprocess_macro_definition (const slci_string* s)
 {
-
+	
 	return preprocessor_token (
 		s,
 		get_current_source_position ()
