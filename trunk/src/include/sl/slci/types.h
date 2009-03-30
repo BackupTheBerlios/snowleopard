@@ -27,39 +27,17 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* Snow Leopard headers */
-#include "sl/slci/cpp_symtab.h"
-#include "sl/slci/hash_function.h"
+#ifndef _SL_SLCI_TYPES_H_
+#define _SL_SLCI_TYPES_H_
+
+/* Standard C headers */
+#include <stddef.h>
 
 /*
- * Global variables.
+ * Key type (used for hashing and referencing symbol table nodes).
  */
-slci_symtab cpp_symtab;
+typedef size_t symtab_key_t;
 
-/*
- * initialize_cpp_symtab function. Initializes the C++ symbol table.
- */
-bool
-initialize_cpp_symtab ()
-{
-	cpp_symtab = initialize_symtab (
-		&get_cpp_char_hash_value,
-		MaxCppHashTableEntries
-		);
-
-	if (cpp_symtab.size == 0)
-		return false;
-
-	return true;
-}
-
-/*
- * destroy_cpp_symtab function. Destroys the C++ symbol table.
- */
-void
-destroy_cpp_symtab ()
-{
-	destroy_symtab (&cpp_symtab);
-}
+#endif /* !_SL_SLCI_TYPES_H_ */
 
 /*>- EOF -<*/

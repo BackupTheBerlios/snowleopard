@@ -34,7 +34,8 @@
 #include <stdbool.h>
 
 /* Snow Leopard headers */
-#include "sl/slci/token.h"
+#include "sl/slci/parse_objects.h"
+#include "sl/slci/types.h"
 
 /* Forward definition */
 struct slci_parse_tree_node;
@@ -50,7 +51,7 @@ struct slci_parse_tree_node
 	slci_parse_tree_node* next;
 	slci_parse_tree_node* previous;
 	slci_parse_tree_node* child;
-	slci_token* token;
+	slci_object* object;
 };
 
 /*
@@ -76,7 +77,7 @@ slci_parse_tree_node* initialize_parse_tree_node (
 	slci_parse_tree_node*,
 	slci_parse_tree_node*,
 	slci_parse_tree_node*,
-	slci_token*
+	slci_object*
 	);
 void destroy_parse_tree ();
 

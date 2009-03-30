@@ -38,6 +38,7 @@
 #include "sl/slci/hash_function.h"
 #include "sl/slci/source_position.h"
 #include "sl/slci/token.h"
+#include "sl/slci/types.h"
 
 /*
  * Symbol table entry.

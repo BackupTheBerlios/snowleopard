@@ -32,23 +32,24 @@
 
 /* Snow Leopard headers */
 #include "sl/slci/hash_function.h"
+#include "sl/slci/types.h"
 
 /*
  * MaxCppHashTableEntries constant. Contains the maxinum number of entries allowed
  * in the C++ hash table.
  */
-const size_t MaxCppHashTableEntries = 128000;
+const symtab_key_t MaxCppHashTableEntries = 128000;
 
 /*
  * MaxPreHashTableEntries constant. Contains the maxinum number of entries allowed
  * in the Preprocessor hash table.
  */
-const size_t MaxPreHashTableEntries = 32000;
+const symtab_key_t MaxPreHashTableEntries = 32000;
 
 /*
  * generate_cpp_hash_key function. Generates a hash key for a C++ identifier.
  */
-size_t
+symtab_key_t
 generate_cpp_hash_key (const char* key_value)
 {
 	return generate_hash_key (
@@ -62,7 +63,7 @@ generate_cpp_hash_key (const char* key_value)
  * generate_pre_hash_key function. Generates a hash key for a preprocessor
  * macro.
  */
-size_t
+symtab_key_t
 generate_pre_hash_key (const char* key_value)
 {
 	return generate_hash_key (
@@ -83,15 +84,15 @@ generate_pre_hash_key (const char* key_value)
  *    4) The remainder of the sum divided by the hash_table_size parameter is the
  *       hash_key.
  */
-size_t
+symtab_key_t
 generate_hash_key (
 	hash_function_ptr hash_function,
-	size_t hash_table_size,
+	symtab_key_t hash_table_size,
 	const char* key_value
 	)
 {
-	size_t key = 0;
-	size_t pos = 0;
+	symtab_key_t key = 0;
+	symtab_key_t pos = 0;
 
 	while (*key_value != '\0')
 	{
@@ -117,7 +118,7 @@ generate_hash_key (
  *   A-Z   = 50 + c - 'A'
  *   _     = 83
  */
-size_t
+symtab_key_t
 get_cpp_char_hash_value (char c)
 {
 	if (c == ' ')
@@ -153,7 +154,7 @@ get_cpp_char_hash_value (char c)
  *   A-Z   = 45 + c - 'A'
  *   _     = 83
  */
-size_t
+symtab_key_t
 get_pre_char_hash_value (char c)
 {
 	if (c == ' ')

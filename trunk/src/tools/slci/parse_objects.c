@@ -28,38 +28,6 @@
  */
 
 /* Snow Leopard headers */
-#include "sl/slci/cpp_symtab.h"
-#include "sl/slci/hash_function.h"
-
-/*
- * Global variables.
- */
-slci_symtab cpp_symtab;
-
-/*
- * initialize_cpp_symtab function. Initializes the C++ symbol table.
- */
-bool
-initialize_cpp_symtab ()
-{
-	cpp_symtab = initialize_symtab (
-		&get_cpp_char_hash_value,
-		MaxCppHashTableEntries
-		);
-
-	if (cpp_symtab.size == 0)
-		return false;
-
-	return true;
-}
-
-/*
- * destroy_cpp_symtab function. Destroys the C++ symbol table.
- */
-void
-destroy_cpp_symtab ()
-{
-	destroy_symtab (&cpp_symtab);
-}
+#include "sl/slci/parse_objects.h"
 
 /*>- EOF -<*/

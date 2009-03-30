@@ -38,6 +38,7 @@
 #include "sl/slci/hash_function.h"
 #include "sl/slci/misc.h"
 #include "sl/slci/symbol_table.h"
+#include "sl/slci/types.h"
 
 /*
  * Private function prototypes.
@@ -109,7 +110,7 @@ destroy_symtab_entry (slci_symtab_entry* entry)
 slci_symtab_entry*
 get_symtab_entry (const slci_symtab* symtab, const char* key)
 {
-	size_t hash_key = generate_cpp_hash_key (key);
+	symtab_key_t hash_key = generate_cpp_hash_key (key);
 
 	if (strcmp (symtab->data[hash_key].key, key))
 		return &symtab->data[hash_key];
@@ -128,7 +129,7 @@ set_symtab_entry (
 	slci_source_position pos
 	)
 {
-	size_t hash_key = generate_cpp_hash_key (key);
+	symtab_key_t hash_key = generate_cpp_hash_key (key);
 
 	/* Set entry key if it doesn't exist yet */
 	if (symtab->data[hash_key].key == 0)

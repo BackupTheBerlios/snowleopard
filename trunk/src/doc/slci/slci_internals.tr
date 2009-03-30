@@ -1,0 +1,55 @@
+
+.\"-
+.\" Copyright (c) 2009 Roel Sergeant.
+.\" All rights reserved.
+.\"
+.\" This code is derived from software contributed to the Snow Leopard
+.\" project.
+.\"
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions
+.\" are met:
+.\" 1. Redistributions of source code must retain the above copyright
+.\"    notice, this list of conditions and the following disclaimer.
+.\" 2. Redistributions in binary form must reproduce the above copyright
+.\"    notice, this list of conditions and the following disclaimer in the
+.\"    documentation and/or other materials provided with the distribution.
+.\"
+.\" THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND ANY
+.\" EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+.\" WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+.\" DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR CONTRIBUTORS BE LIABLE FOR
+.\" ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+.\" DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+.\" SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+.\" CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+.\" OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+.\" OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+.\"/
+.Dd March 30, 2009
+
+Parse Tree
+
+C++ expressions, variable definitions and function calls are basically the same thing, since they all map to regular function calls due to operator-overloading. This means that the following expressions can all be translated, in the parse tree, to function calls. 
+
+int a;
+translates to slci_function_call (int, constructor, a)
+
+int a = 1;
+translates to slci_function_call (int, constructor, a, 1)
+
+a = 1;
+translates to slci_function_call (int&, operator=, a, 1)
+
+a += 1;
+translates to slci_function_call (int&, operator+=, a, 1)
+
+a = b + c;
+translates to slci_function_call (int&, operator=, a, slci_function_call (int, operator+, b, c))
+
+Because of this there is no slci_expression type used in the parse tree. This makes less code and code that is more generic. Operators will be translated in function calls with 1, 2 or 3 arguments, but are otherwise no different from other function calls. Constructors, which are function calls when used with class/struct types anyway, will also be transformed to constructor call semantics for built-in types. Initialization of array types will also be transformed in a constructor like call, but with array pointer and array size arguments. For example:
+
+int a [] = {1, 2, 3}
+translates into slci_function_call (int[], constructor, a, slci_array(int, 1, 2, 3), 3)
+
+.\"-<EOF>-

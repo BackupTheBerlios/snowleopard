@@ -31,6 +31,7 @@
 #include <stdlib.h>
 
 /* Snow Leopard headers */
+#include "sl/slci/parse_objects.h"
 #include "sl/slci/parse_tree.h"
 
 /*
@@ -46,7 +47,7 @@ initialize_parse_tree ()
 {
 	parse_tree.top = initialize_parse_tree_node (0, 0, 0, 0);
 	parse_tree.current_node = parse_tree.top;
-	
+
 	return true;
 }
 
@@ -58,7 +59,7 @@ initialize_parse_tree_node (
 	slci_parse_tree_node* parent,
 	slci_parse_tree_node* next,
 	slci_parse_tree_node* previous,
-	slci_token* token
+	slci_object* object
 	)
 {
 	slci_parse_tree_node* node = malloc (sizeof (slci_parse_tree_node));
@@ -70,7 +71,7 @@ initialize_parse_tree_node (
 	node->next = next;
 	node->previous = previous;
 	node->child = 0;
-	node->token = token;
+	node->object = object;
 
 	return node;
 }
