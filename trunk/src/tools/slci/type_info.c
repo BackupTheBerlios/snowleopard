@@ -27,63 +27,16 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_SYMBOL_TABLE_H_
-#define _SL_SLCI_SYMBOL_TABLE_H_
-
-/* Standard C headers */
-#include <stdbool.h>
-#include <stddef.h>
-
 /* Snow Leopard headers */
-#include "sl/slci/hash_function.h"
-#include "sl/slci/source_position.h"
-#include "sl/slci/token.h"
-#include "sl/slci/types.h"
 #include "sl/slci/type_info.h"
 
 /*
- * Symbol table entry.
+ * destroy_type_info function. Destroy a type_info object.
  */
-struct slci_symtab_entry
+void
+destroy_type_info (slci_type_info type_info)
 {
-	char* key;
-	slci_token token;
-	slci_source_position position;
-	slci_type_info type_info;
-};
 
-typedef struct slci_symtab_entry slci_symtab_entry;
-
-/*
- * Symbol table.
- */
-struct slci_symtab
-{
-	hash_function_ptr hash_function;
-	slci_symtab_entry* data;
-	size_t size;
-};
-
-typedef struct slci_symtab slci_symtab;
-
-/*
- * Initialize functions.
- */
-slci_symtab initialize_symtab (hash_function_ptr, size_t);
-void clear_symtab (slci_symtab*);
-void destroy_symtab (slci_symtab*);
-
-/*
- * Get symbol table entry.
- */
-slci_symtab_entry* get_symtab_entry (const slci_symtab*, const char*);
-
-/*
- * Set symbol table entry.
- */
-bool set_symtab_entry (slci_symtab*, char*, slci_token, slci_source_position);
-bool set_symtab_type_info (slci_symtab*, symtab_key_t, slci_type_info);
-
-#endif /* !_SL_SLCI_SYMBOL_TABLE_H_ */
+}
 
 /*>- EOF -<*/

@@ -39,6 +39,7 @@
 #include "sl/slci/misc.h"
 #include "sl/slci/symbol_table.h"
 #include "sl/slci/types.h"
+#include "sl/slci/type_info.h"
 
 /*
  * Private function prototypes.
@@ -100,6 +101,9 @@ destroy_symtab_entry (slci_symtab_entry* entry)
 {
 	free (entry->key);
 	entry->key = 0;
+	
+	destroy_type_info (entry->type_info);
+	
 	free (entry);
 }
 
@@ -154,6 +158,24 @@ set_symtab_entry (
 	/* Replace the symbol table entry with new data */
 	symtab->data[hash_key].token = token;
 	symtab->data[hash_key].position = pos;
+
+	return true;
+}
+
+/*
+ * set_symtab_type_info function. Sets the type info for a symbol table entry.
+ */
+bool
+set_symtab_type_info (
+	slci_symtab* symtab,
+	symtab_key_t hash_key,
+	slci_type_info type_info
+	)
+{
+	if (symtab->data[hash_key].key == 0)
+		return false;
+
+	symtab->data[hash_key].type_info = type_info;
 
 	return true;
 }

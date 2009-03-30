@@ -52,7 +52,8 @@ ALL_OBJECTS = binary_search.o cpp_symtab.o driver.o error_codes.o \
 	      error_handling.o hash_function.o info.o lexer.o lexer_functions.o \
 	      main.o misc.o parser.o parse_objects.o parse_tree.o preprocessor.o \
 	      preprocessor_symtab.o reader.o settings.o source_file.o \
-	      source_position.o string.o symbol_table.o token.o version.o
+	      source_position.o string.o symbol_table.o token.o type_info.o \
+	      version.o
 
 BINARY_SEARCH_DEPENDS = $(SLCI_INCLUDE)/binary_search.h $(SLCI_INCLUDE)/string.h
 
@@ -154,6 +155,9 @@ TOKEN_DEPENDS = $(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/source_file.h \
 		$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
 		$(SLCI_INCLUDE)/token.h
 
+TYPE_INFO_DEPENDS = $(SLCI_INCLUDE)/string.h $(SLCI_INCLUDE)/type_info.h \
+		    $(SLCI_INCLUDE)/types.h
+
 VERSION_DEPENDS = $(SLCI_INCLUDE)/version.h
 
 #
@@ -231,6 +235,9 @@ string.o: string.c $(STRING_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 token.o: token.c $(TOKEN_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
+
+type_info.o: type_info.c $(TYPE_INFO_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 version.o: version.c $(VERSION_DEPENDS)

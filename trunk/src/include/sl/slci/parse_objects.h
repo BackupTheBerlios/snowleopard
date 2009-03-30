@@ -30,7 +30,11 @@
 #ifndef _SL_SLCI_PARSE_OBJECTS_H_
 #define _SL_SLCI_PARSE_OBJECTS_H_
 
+/* Standard C headers */
+#include <stddef.h>
+
 /* Snow Leopard headers */
+#include "sl/slci/type_info.h"
 #include "sl/slci/types.h"
 
 /*
@@ -101,7 +105,8 @@ struct slci_function
  */
 struct slci_function_call
 {
-
+	size_t nr_params;
+	symtab_key_t* params;
 };
 
 /*
