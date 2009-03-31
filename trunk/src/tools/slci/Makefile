@@ -55,112 +55,147 @@ ALL_OBJECTS = binary_search.o cpp_symtab.o cpp_symtab_built_in.o driver.o \
 	      source_position.o string.o symbol_table.o token.o type_info.o \
 	      version.o
 
-BINARY_SEARCH_DEPENDS = $(SLCI_INCLUDE)/binary_search.h $(SLCI_INCLUDE)/string.h
+BINARY_SEARCH_DEPENDS = \
+	$(SLCI_INCLUDE)/binary_search.h $(SLCI_INCLUDE)/string.h
 
-CPP_SYMTAB_DEPENDS = $(SLCI_INCLUDE)/cpp_symtab.h $(SLCI_INCLUDE)/hash_function.h \
-		     $(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/source_file.h \
-		     $(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
-		     $(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h \
-		     $(SLCI_INCLUDE)/types.h
+CPP_SYMTAB_DEPENDS = \
+	$(SLCI_INCLUDE)/cpp_symtab.h $(SLCI_INCLUDE)/error_codes.h \
+	$(SLCI_INCLUDE)/error_handling.h $(SLCI_INCLUDE)/hash_function.h \
+	$(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/source_file.h	\
+	$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
+	$(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h \
+	$(SLCI_INCLUDE)/types.h $(SLCI_INCLUDE)/type_info.h
 
-CPP_SYMTAB_BUILT_IN_DEPENDS = 
+CPP_SYMTAB_BUILT_IN_DEPENDS = \
+	$(SLCI_INCLUDE)/built_in_types.h $(SLCI_INCLUDE)/cpp_symtab.h \
+	$(SLCI_INCLUDE)/hash_function.h $(SLCI_INCLUDE)/literal.h \
+	$(SLCI_INCLUDE)/source_file.h $(SLCI_INCLUDE)/source_position.h \
+	$(SLCI_INCLUDE)/string.h $(SLCI_INCLUDE)/symbol_table.h \
+	$(SLCI_INCLUDE)/token.h $(SLCI_INCLUDE)/types.h \
+	$(SLCI_INCLUDE)/type_info.h
 
-DRIVER_DEPENDS = $(SLCI_INCLUDE)/cpp_symtab.h $(SLCI_INCLUDE)/driver.h \
-		 $(SLCI_INCLUDE)/error_codes.h $(SLCI_INCLUDE)/error_handling.h \
-		 $(SLCI_INCLUDE)/hash_function.h $(SLCI_INCLUDE)/literal.h \
-		 $(SLCI_INCLUDE)/misc.h $(SLCI_INCLUDE)/parser.h \
-		 $(SLCI_INCLUDE)/settings.h $(SLCI_INCLUDE)/source_file.h \
-		 $(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
-		 $(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h \
-		 $(SLCI_INCLUDE)/types.h
+DRIVER_DEPENDS = \
+	$(SLCI_INCLUDE)/cpp_symtab.h $(SLCI_INCLUDE)/driver.h \
+	$(SLCI_INCLUDE)/error_codes.h $(SLCI_INCLUDE)/error_handling.h \
+	$(SLCI_INCLUDE)/hash_function.h $(SLCI_INCLUDE)/literal.h \
+	$(SLCI_INCLUDE)/misc.h $(SLCI_INCLUDE)/parser.h \
+	$(SLCI_INCLUDE)/settings.h $(SLCI_INCLUDE)/source_file.h \
+	$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
+	$(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h \
+	$(SLCI_INCLUDE)/types.h $(SLCI_INCLUDE)/type_info.h
 
-ERROR_CODES_DEPENDS = $(SLCI_INCLUDE)/error_codes.h
+ERROR_CODES_DEPENDS = \
+	$(SLCI_INCLUDE)/error_codes.h
 
-ERROR_HANDLING_DEPENDS = $(SLCI_INCLUDE)/error_codes.h \
-			 $(SLCI_INCLUDE)/error_handling.h \
-			 $(SLCI_INCLUDE)/source_file.h \
-                         $(SLCI_INCLUDE)/source_position.h
+ERROR_HANDLING_DEPENDS = \
+	$(SLCI_INCLUDE)/error_codes.h $(SLCI_INCLUDE)/error_handling.h \
+	$(SLCI_INCLUDE)/source_file.h $(SLCI_INCLUDE)/source_position.h
 
-HASH_FUNCTION_DEPENDS = $(SLCI_INCLUDE)/hash_function.h $(SLCI_INCLUDE)/types.h
+HASH_FUNCTION_DEPENDS = \
+	$(SLCI_INCLUDE)/hash_function.h $(SLCI_INCLUDE)/types.h
 
-INFO_DEPENDS = $(SLCI_INCLUDE)/info.h $(SLCI_INCLUDE)/version.h
+INFO_DEPENDS = \
+	$(SLCI_INCLUDE)/info.h $(SLCI_INCLUDE)/version.h
 
-LEXER_DEPENDS = $(SLCI_INCLUDE)/binary_search.h $(SLCI_INCLUDE)/error_codes.h \
-		$(SLCI_INCLUDE)/error_handling.h $(SLCI_INCLUDE)/hash_function.h \
-		$(SLCI_INCLUDE)/lexer.h $(SLCI_INCLUDE)/lexer_functions.h \
-		$(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/misc.h \
-		$(SLCI_INCLUDE)/preprocessor.h $(SLCI_INCLUDE)/reader.h \
-		$(SLCI_INCLUDE)/source_file.h $(SLCI_INCLUDE)/source_position.h \
-		$(SLCI_INCLUDE)/string.h $(SLCI_INCLUDE)/symbol_table.h \
-		$(SLCI_INCLUDE)/token.h $(SLCI_INCLUDE)/types.h
+LEXER_DEPENDS = \
+	$(SLCI_INCLUDE)/binary_search.h $(SLCI_INCLUDE)/error_codes.h \
+	$(SLCI_INCLUDE)/error_handling.h $(SLCI_INCLUDE)/hash_function.h \
+	$(SLCI_INCLUDE)/lexer.h $(SLCI_INCLUDE)/lexer_functions.h \
+	$(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/misc.h \
+	$(SLCI_INCLUDE)/preprocessor.h $(SLCI_INCLUDE)/reader.h \
+	$(SLCI_INCLUDE)/source_file.h $(SLCI_INCLUDE)/source_position.h \
+	$(SLCI_INCLUDE)/string.h $(SLCI_INCLUDE)/symbol_table.h \
+	$(SLCI_INCLUDE)/token.h $(SLCI_INCLUDE)/types.h \
+	$(SLCI_INCLUDE)/type_info.h
 
-LEXER_FUNCTIONS_DEPENDS = $(SLCI_INCLUDE)/lexer_functions.h $(SLCI_INCLUDE)/misc.h \
-			  $(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_file.h \
-			  $(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h
+LEXER_FUNCTIONS_DEPENDS = \
+	$(SLCI_INCLUDE)/error_codes.h $(SLCI_INCLUDE)/error_handling.h \
+	$(SLCI_INCLUDE)/lexer_functions.h $(SLCI_INCLUDE)/misc.h \
+	$(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_file.h \
+	$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h
 
-MAIN_DEPENDS = $(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/error_codes.h \
-	       $(SLCI_INCLUDE)/error_handling.h $(SLCI_INCLUDE)/info.h \
-	       $(SLCI_INCLUDE)/settings.h $(SLCI_INCLUDE)/source_file.h \
-	       $(SLCI_INCLUDE)/source_position.h 
+MAIN_DEPENDS = \
+	$(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/error_codes.h \
+	$(SLCI_INCLUDE)/error_handling.h $(SLCI_INCLUDE)/info.h \
+	$(SLCI_INCLUDE)/settings.h $(SLCI_INCLUDE)/source_file.h \
+	$(SLCI_INCLUDE)/source_position.h 
 
-MISC_DEPENDS = $(SLCI_INCLUDE)/misc.h
+MISC_DEPENDS = \
+	$(SLCI_INCLUDE)/misc.h
 
-PARSE_OBJECTS_DEPENDS = $(SLCI_INCLUDE)/parse_objects.h $(SLCI_INCLUDE)/types.h
+PARSE_OBJECTS_DEPENDS = \
+	$(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/parse_argument_object.h \
+	$(SLCI_INCLUDE)/parse_objects.h $(SLCI_INCLUDE)/source_file.h \
+	$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
+	$(SLCI_INCLUDE)/token.h $(SLCI_INCLUDE)/types.h
 
-PARSE_TREE_DEPENDS = $(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/parse_tree.h \
-		     $(SLCI_INCLUDE)/source_file.h $(SLCI_INCLUDE)/source_position.h \
-		     $(SLCI_INCLUDE)/string.h $(SLCI_INCLUDE)/token.h \
-		     $(SLCI_INCLUDE)/types.h
+PARSE_TREE_DEPENDS = \
+	$(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/parse_argument_object.h \
+	$(SLCI_INCLUDE)/parse_objects.h $(SLCI_INCLUDE)/parse_tree.h \
+	$(SLCI_INCLUDE)/source_file.h $(SLCI_INCLUDE)/source_position.h \
+	$(SLCI_INCLUDE)/string.h $(SLCI_INCLUDE)/token.h \
+	$(SLCI_INCLUDE)/types.h
 
-PARSER_DEPENDS = $(SLCI_INCLUDE)/cpp_symtab.h $(SLCI_INCLUDE)/hash_function.h \
-		 $(SLCI_INCLUDE)/lexer.h $(SLCI_INCLUDE)/literal.h \
-		 $(SLCI_INCLUDE)/parse_tree.h $(SLCI_INCLUDE)/parser.h \
-		 $(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_file.h \
-		 $(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
-		 $(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h \
-		 $(SLCI_INCLUDE)/types.h
+PARSER_DEPENDS = \
+	$(SLCI_INCLUDE)/cpp_symtab.h $(SLCI_INCLUDE)/hash_function.h \
+	$(SLCI_INCLUDE)/lexer.h $(SLCI_INCLUDE)/literal.h \
+	$(SLCI_INCLUDE)/parse_argument_object.h $(SLCI_INCLUDE)/parse_objects.h \
+	$(SLCI_INCLUDE)/parse_tree.h $(SLCI_INCLUDE)/parser.h \
+	$(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_file.h \
+	$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
+	$(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h \
+	$(SLCI_INCLUDE)/types.h
 
-PREPROCESSOR_DEPENDS = $(SLCI_INCLUDE)/hash_function.h $(SLCI_INCLUDE)/literal.h \
-		       $(SLCI_INCLUDE)/preprocessor.h $(SLCI_INCLUDE)/preprocessor_symtab.h \
-		       $(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_file.h \
-		       $(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
-		       $(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h \
-		       $(SLCI_INCLUDE)/types.h
+PREPROCESSOR_DEPENDS = \
+	$(SLCI_INCLUDE)/hash_function.h $(SLCI_INCLUDE)/literal.h \
+	$(SLCI_INCLUDE)/preprocessor.h $(SLCI_INCLUDE)/preprocessor_symtab.h \
+	$(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_file.h \
+	$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
+	$(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h \
+	$(SLCI_INCLUDE)/types.h $(SLCI_INCLUDE)/type_info.h
 
-PREPROCESSOR_SYMTAB_DEPENDS = $(SLCI_INCLUDE)/hash_function.h $(SLCI_INCLUDE)/literal.h \
-			      $(SLCI_INCLUDE)/preprocessor_symtab.h \
-			      $(SLCI_INCLUDE)/source_file.h \
-			      $(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
-			      $(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h \
-			      $(SLCI_INCLUDE)/types.h
+PREPROCESSOR_SYMTAB_DEPENDS = \
+	$(SLCI_INCLUDE)/hash_function.h $(SLCI_INCLUDE)/literal.h \
+	$(SLCI_INCLUDE)/preprocessor_symtab.h $(SLCI_INCLUDE)/source_file.h \
+	$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
+	$(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h \
+	$(SLCI_INCLUDE)/types.h $(SLCI_INCLUDE)/type_info.h
 
-READER_DEPENDS = $(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_file.h \
-		 $(SLCI_INCLUDE)/source_position.h
+READER_DEPENDS = \
+	$(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_file.h \
+	$(SLCI_INCLUDE)/source_position.h
 
-SETTINGS_DEPENDS = $(SLCI_INCLUDE)/settings.h
+SETTINGS_DEPENDS = \
+	$(SLCI_INCLUDE)/settings.h
 
-SOURCE_FILE_DEPENS = $(SLCI_INCLUDE)/source_file.h
+SOURCE_FILE_DEPENS = \
+	$(SLCI_INCLUDE)/source_file.h
 
-SOURCE_POSITION_DEPENDS = $(SLCI_INCLUDE)/source_position.h \
-			  $(SLCI_INCLUDE)/source_file.h
+SOURCE_POSITION_DEPENDS = \
+	$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/source_file.h
 
-STRING_DEPENDS = $(SLCI_INCLUDE)/string.h
+STRING_DEPENDS = \
+	$(SLCI_INCLUDE)/string.h
 
-SYMBOL_TABLE_DEPENDS = $(SLCI_INCLUDE)/error_codes.h $(SLCI_INCLUDE)/error_handling.h \
-		       $(SLCI_INCLUDE)/hash_function.h $(SLCI_INCLUDE)/literal.h \
-		       $(SLCI_INCLUDE)/misc.h $(SLCI_INCLUDE)/source_file.h \
-		       $(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
-		       $(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h \
-		       $(SLCI_INCLUDE)/types.h
+SYMBOL_TABLE_DEPENDS = \
+	$(SLCI_INCLUDE)/error_codes.h $(SLCI_INCLUDE)/error_handling.h \
+	$(SLCI_INCLUDE)/hash_function.h $(SLCI_INCLUDE)/literal.h \
+	$(SLCI_INCLUDE)/misc.h $(SLCI_INCLUDE)/source_file.h \
+	$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
+	$(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h \
+	$(SLCI_INCLUDE)/types.h
 
-TOKEN_DEPENDS = $(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/source_file.h \
-		$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
-		$(SLCI_INCLUDE)/token.h
+TOKEN_DEPENDS = \
+	$(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/source_file.h \
+	$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
+	$(SLCI_INCLUDE)/token.h $(SLCI_INCLUDE)/types.h
 
-TYPE_INFO_DEPENDS = $(SLCI_INCLUDE)/string.h $(SLCI_INCLUDE)/type_info.h \
-		    $(SLCI_INCLUDE)/types.h
+TYPE_INFO_DEPENDS = \
+	$(SLCI_INCLUDE)/string.h $(SLCI_INCLUDE)/types.h \
+	$(SLCI_INCLUDE)/type_info.h
 
-VERSION_DEPENDS = $(SLCI_INCLUDE)/version.h
+VERSION_DEPENDS = \
+	$(SLCI_INCLUDE)/version.h
 
 #
 # Main targets
