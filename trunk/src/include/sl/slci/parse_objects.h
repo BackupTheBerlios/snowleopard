@@ -34,7 +34,7 @@
 #include <stddef.h>
 
 /* Snow Leopard headers */
-#include "sl/slci/type_info.h"
+#include "sl/slci/parse_argument_object.h"
 #include "sl/slci/types.h"
 
 /*
@@ -42,12 +42,12 @@
  */
 enum slci_object_type
 	{
+		OT_CLASS,             /* Definition of a class/struct */
+		OT_CLASS_TEMPLATE,    /* Definition of a class/struct template */
 		OT_FUNCTION,          /* Definition of a function */
 		OT_FUNCTION_CALL,     /* Expression or function call */
 	        OT_FUNCTION_TEMPLATE, /* Definition of a function template */
 		OT_VARIABLE,          /* Definition of a variable */
-		OT_CLASS,             /* Definition of a class/struct */
-		OT_CLASS_TEMPLATE,    /* Definition of a class/struct template */
 		OT_UNION,             /* Definition of a union */
 		OT_UNION_TEMPLATE,    /* Definition of a union template */
 		OT_ENUM,              /* Definition of an enumeration */
@@ -106,7 +106,7 @@ struct slci_function
 struct slci_function_call
 {
 	size_t nr_params;
-	symtab_key_t* params;
+	slci_argument* params;
 };
 
 /*
