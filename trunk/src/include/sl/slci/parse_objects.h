@@ -31,11 +31,25 @@
 #define _SL_SLCI_PARSE_OBJECTS_H_
 
 /* Standard C headers */
+#include <stdbool.h>
 #include <stddef.h>
 
 /* Snow Leopard headers */
 #include "sl/slci/parse_argument_object.h"
 #include "sl/slci/types.h"
+
+/*
+ * Forward definitions.
+ */
+struct slci_enumeration;
+struct slci_function;
+struct slci_function_call;
+struct slci_function_template;
+
+typedef struct slci_enumeration slci_enumeration;
+typedef struct slci_function slci_function;
+typedef struct slci_function_call slci_function_call;
+typedef struct slci_function_template slci_function_template;
 
 /*
  * slci_object_type enumeration.
@@ -44,78 +58,86 @@ enum slci_object_type
 	{
 		OT_CLASS,             /* Definition of a class/struct */
 		OT_CLASS_TEMPLATE,    /* Definition of a class/struct template */
+		OT_ENUM,              /* Definition of an enumeration */
 		OT_FUNCTION,          /* Definition of a function */
 		OT_FUNCTION_CALL,     /* Expression or function call */
 	        OT_FUNCTION_TEMPLATE, /* Definition of a function template */
-		OT_VARIABLE,          /* Definition of a variable */
+		OT_LABEL,             /* Label */
+		OT_LOOP,              /* Do While/For/While statement */
+	        OT_NAMESPACE,         /* Namespace */
+		OT_NESTED_BLOCK,      /* Definition of nested block */
+		OT_THROW,             /* Throw statement */
+		OT_TRY,               /* Try - Catch statement */
 		OT_UNION,             /* Definition of a union */
 		OT_UNION_TEMPLATE,    /* Definition of a union template */
-		OT_ENUM,              /* Definition of an enumeration */
-	        OT_NAMESPACE,         /* Namespace */
-		OT_IF,                /* If statement */
-		OT_LOOP,              /* Do While/For/While statement */
-		OT_BREAK,             /* Break statement */
-		OT_CONTINUE,          /* Continue statement */
-		OT_GOTO,              /* Goto statement */
-		OT_LABEL,             /* Label */
-		OT_TRY,               /* Try - Catch statement */
-		OT_THROW              /* Throw statement */
+		OT_VARIABLE           /* Definition of a variable/member */
 	};
 
 typedef enum slci_object_type slci_object_type;
 
 /*
- * Forward definitions.
+ * slci_enumeration structure. Store an enumeration in the parse tree.
  */
-struct slci_function;
-struct slci_function_call;
-struct slci_function_template;
+struct slci_enumeration
+{
 
-typedef struct slci_function slci_function;
-typedef struct slci_function_call slci_function_call;
-typedef struct slci_function_template slci_function_template;
+};
+
+/*
+ * slci_function structure. Stores function or function template instantiation in parse tree.
+ */
+struct slci_function
+{
+	/* Return type */
+	symtab_key_t return_type;
+
+	/* Parameter types */
+	size_t nr_params;
+	symtab_key_t* param_types;
+
+	/* If template instantiation, with which arguments */
+	bool is_template_instantiation;
+	symtab_key_t* template_argument_types;
+};
+
+/*
+ * slci_function_call structure. Store function call in parse tree.
+ */
+struct slci_function_call
+{
+	/* Called with arguments */
+	size_t nr_args;
+	slci_argument* args;
+};
+
+/*
+ * slci_function_template structure. Stores function template in parse tree.
+ */
+struct slci_function_template
+{
+	/* Template argument types */
+	size_t nr_template_arguments;
+	symtab_key_t template_arguments;
+};
 
 /*
  * slci_object structure.
  */
 struct slci_object
 {
-	symtab_key_t symbol_table_entry;
+	symtab_key_t symtab_entry;
+	symtab_key_t scope;
 	slci_object_type type;
 
 	union {
-		slci_function* function;
-		slci_function_call* function_call;
-		slci_function_template* function_template;
+		slci_enumeration enumeration;
+		slci_function function;
+		slci_function_call function_call;
+		slci_function_template function_template;
 	};
 };
 
 typedef struct slci_object slci_object;
-
-/*
- * slci_function structure.
- */
-struct slci_function
-{
-
-};
-
-/*
- * slci_function_call structure.
- */
-struct slci_function_call
-{
-	size_t nr_params;
-	slci_argument* params;
-};
-
-/*
- * slci_function_template structure.
- */
-struct slci_function_template
-{
-
-};
 
 #endif /* !_SL_SLCI_PARSE_OBJECTS_H_ */
 

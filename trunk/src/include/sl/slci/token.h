@@ -37,20 +37,22 @@
 #include "sl/slci/literal.h"
 #include "sl/slci/source_position.h"
 #include "sl/slci/string.h"
+#include "sl/slci/types.h"
 
 /*
  * Token type enum.
  */
 enum slci_token_type
 	{
-		TT_EOF,          /* EOF token */         
-	        TT_EMPTY,        /* Empty token */
+		TT_BUILT_IN,     /* Built in type token */
 		TT_COMMENT,      /* Comment token */
-		TT_PREPROCESSOR, /* Preprocessor token */
+	        TT_EMPTY,        /* Empty token */
+		TT_EOF,          /* EOF token */         
+		TT_IDENTIFIER,    /* Identifier token */
 		TT_KEYWORD,      /* Keyword token */
-		TT_PUNCTUATION,  /* Punctuation token */
 		TT_LITERAL,      /* Literal token */
-		TT_IDENTIFIER    /* Identifier token */
+		TT_PREPROCESSOR, /* Preprocessor token */
+		TT_PUNCTUATION   /* Punctuation token */
 	};
 
 typedef enum slci_token_type slci_token_type;
@@ -240,11 +242,12 @@ struct slci_token
 	slci_source_position pos;
 	
 	union {
+		char* built_in;
 		char* comment;
-		char* preprocessor;
-		unsigned int identifier_position;
+		symtab_key_t identifier_position;
 		slci_keyword keyword;
 		slci_literal literal;
+		char* preprocessor;
 		slci_punctuation punctuation;
 	};
 };
@@ -254,6 +257,7 @@ typedef struct slci_token slci_token;
 /*
  * Function prototypes
  */
+slci_token built_in_token (char*, slci_source_position);
 slci_token character_token (char, slci_source_position);
 slci_token comment_token (const slci_string*, slci_source_position);
 slci_token empty_token (slci_source_position);

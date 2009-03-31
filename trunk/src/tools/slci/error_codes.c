@@ -53,6 +53,7 @@ slci_error_description error_description_list[] = {
 	{"Invalid arguments provided ", 0, ET_FATAL},
 	{"No source-file given as parameter", 0, ET_FATAL},
 	{"Duplicate symbol table key \"%1\"", 1, ET_FATAL},
+	{"Duplicate symbol table key while loading built-in types", 0, ET_FATAL},
 		
 	/* Compile errors */
 	{"Invalid character literal \'%1\'", 1, ET_COMPILE},
@@ -62,6 +63,7 @@ slci_error_description error_description_list[] = {
 	{"Invalid string literal \"%1\"", 1, ET_COMPILE}
 
 	/* Runtime errors */
+		
 };
 
 /*>- EOF -<*/

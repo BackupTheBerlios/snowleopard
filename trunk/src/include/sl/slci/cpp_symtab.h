@@ -47,6 +47,11 @@ extern slci_symtab cpp_symtab;
 bool initialize_cpp_symtab ();
 void destroy_cpp_symtab ();
 
+/*
+ * Load built in types.
+ */
+bool load_built_in_types ();
+
 #endif /* !_SL_SLCI_CPP_SYMBOL_TABLE_H_ */
 
 /*>- EOF -<*/

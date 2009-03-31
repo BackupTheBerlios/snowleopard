@@ -48,10 +48,10 @@ SL_INCLUDE = ../../include
 #
 # All objects.
 #
-ALL_OBJECTS = binary_search.o cpp_symtab.o driver.o error_codes.o \
-	      error_handling.o hash_function.o info.o lexer.o lexer_functions.o \
-	      main.o misc.o parser.o parse_objects.o parse_tree.o preprocessor.o \
-	      preprocessor_symtab.o reader.o settings.o source_file.o \
+ALL_OBJECTS = binary_search.o cpp_symtab.o cpp_symtab_built_in.o driver.o \
+	      error_codes.o error_handling.o hash_function.o info.o lexer.o \
+	      lexer_functions.o main.o misc.o parser.o parse_objects.o parse_tree.o \
+	      preprocessor.o preprocessor_symtab.o reader.o settings.o source_file.o \
 	      source_position.o string.o symbol_table.o token.o type_info.o \
 	      version.o
 
@@ -62,6 +62,8 @@ CPP_SYMTAB_DEPENDS = $(SLCI_INCLUDE)/cpp_symtab.h $(SLCI_INCLUDE)/hash_function.
 		     $(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
 		     $(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h \
 		     $(SLCI_INCLUDE)/types.h
+
+CPP_SYMTAB_BUILT_IN_DEPENDS = 
 
 DRIVER_DEPENDS = $(SLCI_INCLUDE)/cpp_symtab.h $(SLCI_INCLUDE)/driver.h \
 		 $(SLCI_INCLUDE)/error_codes.h $(SLCI_INCLUDE)/error_handling.h \
@@ -172,6 +174,9 @@ binary_search.o: binary_search.c $(BINARY_SEARCH_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 cpp_symtab.o: cpp_symtab.c $(CPP_SYMTAB_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
+
+cpp_symtab_built_in.o: cpp_symtab_built_in.c $(CPP_SYMTAB_BUILT_IN_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 driver.o: driver.c $(DRIVER_DEPENDS)

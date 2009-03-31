@@ -27,9 +27,14 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/* Standard C headers */
+#include <stdbool.h>
+
 /* Snow Leopard headers */
 #include "sl/slci/cpp_symtab.h"
-#include "sl/slci/hash_function.h"
+#include "sl/slci/error_codes.h"
+#include "sl/slci/error_handling.h"
+#include "sl/slci/symbol_table.h"
 
 /*
  * Global variables.
@@ -50,6 +55,15 @@ initialize_cpp_symtab ()
 	if (cpp_symtab.size == 0)
 		return false;
 
+	if (!load_built_in_types ())
+	{
+		raise_and_display_program_error (
+			ERR_SYMTAB_DUPLICATE_BUILT_IN,
+			0
+			);
+		return false;
+	}
+	
 	return true;
 }
 

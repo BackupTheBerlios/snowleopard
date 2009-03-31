@@ -54,6 +54,7 @@ typedef struct slci_type_info slci_type_info;
  */
 enum slci_type
 	{
+		T_EMPTY,       /* Empty */
 		T_ARRAY,       /* Array type */
 		T_BUILT_IN,    /* Built in type */
 		T_CLASS,       /* Class type */

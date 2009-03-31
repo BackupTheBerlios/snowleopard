@@ -34,6 +34,7 @@
 #include <string.h>
 
 /* Snow Leopard headers */
+#include "sl/slci/error_codes.h"
 #include "sl/slci/error_handling.h"
 #include "sl/slci/hash_function.h"
 #include "sl/slci/misc.h"
@@ -61,7 +62,7 @@ initialize_symtab (hash_function_ptr hash_function, size_t size)
 
 	for (i = 0; i != symtab.size; ++i)
 		symtab.data[i].key = 0;
-	
+
 	return symtab;
 }
 
@@ -75,7 +76,7 @@ clear_symtab (slci_symtab* symtab)
 
 	for (i = 0; i != symtab->size; ++i)
 		if (symtab->data[i].key != 0)
-			destroy_symtab_entry (symtab->data[i]);
+			destroy_symtab_entry (&symtab->data[i]);
 }
 
 /*
@@ -88,7 +89,7 @@ destroy_symtab (slci_symtab* symtab)
 
 	for (i = 0; i != symtab->size; ++i)
 		if (symtab->data[i].key != 0)
-			destroy_symtab_entry (symtab->data[i]);
+			destroy_symtab_entry (&symtab->data[i]);
 
 	free (symtab->data);
 }
@@ -99,12 +100,13 @@ destroy_symtab (slci_symtab* symtab)
 void
 destroy_symtab_entry (slci_symtab_entry* entry)
 {
-	free (entry->key);
+	/* Do not free memory for built-in types */
+	if (entry->token.type != TT_BUILT_IN)
+		free (entry->key);
+	
 	entry->key = 0;
 	
 	destroy_type_info (entry->type_info);
-	
-	free (entry);
 }
 
 /*

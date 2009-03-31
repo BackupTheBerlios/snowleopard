@@ -206,6 +206,22 @@ char* punctuation_list[] = {
 const size_t punctuation_list_length = 68;
 
 /*
+ * built_in_token function. This function returns a token for a built-in.
+ */
+slci_token
+built_in_token (char* s, slci_source_position pos)
+{
+	slci_token token;
+
+	token.type = TT_BUILT_IN;
+	token.pos = pos;
+
+	token.built_in = s;
+
+	return token;
+}
+
+/*
  * character_token function. This function returns a character token.
  */
 slci_token
