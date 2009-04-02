@@ -262,6 +262,7 @@ slci_token character_token (char, slci_source_position);
 slci_token comment_token (const slci_string*, slci_source_position);
 slci_token empty_token (slci_source_position);
 slci_token eof_token ();
+slci_token identifier_token (char*, symtab_key_t, slci_source_position);
 slci_token preprocessor_token (const slci_string*, slci_source_position);
 slci_token string_token (const slci_string*, slci_source_position);
 slci_token wcharacter_token (wchar_t, slci_source_position);

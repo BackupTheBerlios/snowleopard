@@ -281,6 +281,23 @@ eof_token ()
 }
 
 /*
+ * identifier_token function. This function returns an identifier token.
+ */
+slci_token
+identifier_token (char* identifier, symtab_key_t hash_key, slci_source_position pos)
+{
+	slci_token token;
+
+	token.type = TT_IDENTIFIER;
+
+	token.pos = pos;
+
+	token.identifier_position = hash_key;
+
+	return token;
+}
+
+/*
  * macro_token function. This function returns a macro token.
  */
 slci_token

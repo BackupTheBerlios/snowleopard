@@ -35,6 +35,7 @@
 
 /* Snow Leopard headers */
 #include "sl/slci/binary_search.h"
+#include "sl/slci/cpp_symtab.h"
 #include "sl/slci/error_handling.h"
 #include "sl/slci/lexer.h"
 #include "sl/slci/lexer_functions.h"
@@ -47,16 +48,17 @@
 /*
  * Private function prototypes.
  */
+static size_t keyword_position ();
 static slci_token lex_character ();
 static slci_token lex_comment ();
 static slci_token lex_macro ();
 static slci_token lex_number ();
 static slci_token lex_other ();
-static slci_token lex_reserved ();
+static slci_token lex_punctuation ();
 static slci_token lex_string ();
-static size_t keyword_position ();
-static size_t punctuation_position ();
 static char* preprocess_token ();
+static size_t punctuation_position ();
+static slci_token store_identifier (char*);
 
 /*
  * Global variables.
@@ -296,16 +298,19 @@ lex_number ()
 slci_token
 lex_other ()
 {
-
+	if (is_first_char_of_identifier (get_current_char ()))
+	{
+		/* lex keyword, preprocessor or identifier */
+	}
+	else
+		return lex_punctuation ();
 }
 
 /*
- * lex_reserved function. It searches the list of keywords and punctuations and
- * if no match is found it searches the symbol table. If still no match, this
- * is a new identifier that needs to be entered in the symbol table.
+ * lex_punctuation function. This function lexes a punctuation literal.
  */
 slci_token
-lex_reserved ()
+lex_punctuation ()
 {
 
 }
@@ -380,6 +385,30 @@ punctuation_position ()
 		punctuation_list_length,
 		get_current_token_string ()
 		);
+}
+
+/*
+ * store_identifier function. Function stores an identifier in the symbol table.
+ */
+slci_token
+store_identifier (char* identifier)
+{
+	symtab_key_t hash_key = generate_cpp_hash_key (identifier);
+	
+	slci_token token = identifier_token (
+		identifier,
+		hash_key,
+		begin_source_position
+		);
+
+	if (set_symtab_entry (
+		    &cpp_symtab,
+		    identifier,
+		    token,
+		    begin_source_position))
+		/* TODO - Report error */ ;
+
+	return token;
 }
 
 /*>- EOF -<*/
