@@ -106,7 +106,7 @@ destroy_symtab_entry (slci_symtab_entry* entry)
 	
 	entry->key = 0;
 	
-	destroy_type_info (entry->type_info);
+	destroy_type_info (&entry->type_info);
 }
 
 /*
@@ -145,8 +145,8 @@ set_symtab_entry (
 		/* Is the key the same as the given key */
 		if (strcmp (symtab->data[hash_key].key, key) != 0)
 		{
-			raise_and_display_program_error (
-				ERR_NO_SOURCE_FILE,
+			raise_and_display_program_error_1 (
+				ERR_SYMTAB_DUPLICATE,
 				create_string_3 (
 					symtab->data[hash_key].key,
 					"!=",

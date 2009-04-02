@@ -57,9 +57,8 @@ initialize_cpp_symtab ()
 
 	if (!load_built_in_types ())
 	{
-		raise_and_display_program_error (
-			ERR_SYMTAB_DUPLICATE_BUILT_IN,
-			0
+		raise_and_display_program_error_0 (
+			ERR_SYMTAB_DUPLICATE_BUILT_IN
 			);
 		return false;
 	}

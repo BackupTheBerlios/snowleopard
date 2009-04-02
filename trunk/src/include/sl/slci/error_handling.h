@@ -41,6 +41,10 @@ struct slci_error {
 	slci_error_code code;
 	slci_source_position position;
 	char* token;
+	char* param1;
+	char* param2;
+	char* param3;
+	char* param4;
 };
 
 typedef struct slci_error slci_error;
@@ -59,9 +63,18 @@ void display_error (slci_error*);
 /*
  * Error logging functions.
  */
-slci_error* raise_error (slci_error_code, slci_source_position, char*);
-void raise_and_display_error (slci_error_code, slci_source_position, char*);
-void raise_and_display_program_error (slci_error_code, char*);
+slci_error* raise_error (
+	slci_error_code,
+	slci_source_position,
+	char*,
+	char*,
+	char*,
+	char*,
+	char*
+	);
+void raise_and_display_error_0 (slci_error_code, slci_source_position, char*);
+void raise_and_display_program_error_0 (slci_error_code);
+void raise_and_display_program_error_1 (slci_error_code, char*);
 
 #endif /* !_SL_SLCI_ERROR_HANDLING_H_ */
 

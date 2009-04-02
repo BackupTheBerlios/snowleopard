@@ -183,7 +183,7 @@ SYMBOL_TABLE_DEPENDS = \
 	$(SLCI_INCLUDE)/misc.h $(SLCI_INCLUDE)/source_file.h \
 	$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h \
 	$(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h \
-	$(SLCI_INCLUDE)/types.h
+	$(SLCI_INCLUDE)/types.h $(SLCI_INCLUDE)/type_info.h
 
 TOKEN_DEPENDS = \
 	$(SLCI_INCLUDE)/literal.h $(SLCI_INCLUDE)/source_file.h \

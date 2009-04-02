@@ -68,6 +68,8 @@ enum slci_error_code
 		ERR_SYMTAB_DUPLICATE_BUILT_IN,
                                       /* Duplicate symbol table key when
 					 loading built-in */
+		ERR_INVALID_TYPE_INFO,
+                                      /* Invalid type in type info object */
 			
 		/* Compile errors */
 		ERR_INVALID_CHARACTER_LITERAL,
@@ -88,7 +90,7 @@ typedef enum slci_error_code slci_error_code;
 struct slci_error_description
 {
 	char* description;
-	size_t nbr_of_arguments;
+	size_t nr_of_arguments;
 	slci_error_type type;
 };
 

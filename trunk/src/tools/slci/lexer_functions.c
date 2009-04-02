@@ -183,7 +183,7 @@ lex_narrow_character ()
 					i = get_oct_value (c);
 				else
 				{
-					raise_and_display_error (
+					raise_and_display_error_0 (
 						ERR_INVALID_CHARACTER_OCTAL_LITERAL,
 						get_current_source_position (),
 						get_c_string (get_current_token_string ())
@@ -195,7 +195,7 @@ lex_narrow_character ()
 					i = i * 8 + get_oct_value (c);
 				else
 				{
-					raise_and_display_error (
+					raise_and_display_error_0 (
 						ERR_INVALID_CHARACTER_OCTAL_LITERAL,
 						get_current_source_position (),
 						get_c_string (get_current_token_string ())
@@ -207,7 +207,7 @@ lex_narrow_character ()
 					i = i * 8 + get_oct_value (c);
 				else
 				{
-					raise_and_display_error (
+					raise_and_display_error_0 (
 						ERR_INVALID_CHARACTER_OCTAL_LITERAL,
 						get_current_source_position (),
 						get_c_string (get_current_token_string ())
@@ -226,7 +226,7 @@ lex_narrow_character ()
 					i = get_hex_value (c);
 				else
 				{
-					raise_and_display_error (
+					raise_and_display_error_0 (
 						ERR_INVALID_CHARACTER_HEXADECIMAL_LITERAL,
 						get_current_source_position (),
 						get_c_string (get_current_token_string ())
@@ -238,7 +238,7 @@ lex_narrow_character ()
 					i = i * 16 + get_hex_value (c);
 				else
 				{
-					raise_and_display_error (
+					raise_and_display_error_0 (
 						ERR_INVALID_CHARACTER_HEXADECIMAL_LITERAL,
 						get_current_source_position (),
 						get_c_string (get_current_token_string ())

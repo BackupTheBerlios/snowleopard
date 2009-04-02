@@ -193,7 +193,7 @@ lex_character ()
 		{
 			/* Skip to end of token and report error */
 			skip_to_char ('\'');
-			raise_and_display_error (
+			raise_and_display_error_0 (
 				ERR_INVALID_WCHARACTER_LITERAL,
 				begin_source_position,
 				get_c_string (get_current_token_string ())
@@ -217,7 +217,7 @@ lex_character ()
 		{
 			/* Skip to end of token and report error */
 			skip_to_char ('\'');
-			raise_and_display_error (
+			raise_and_display_error_0 (
 				ERR_INVALID_CHARACTER_LITERAL,
 				begin_source_position,
 				get_c_string (get_current_token_string ())

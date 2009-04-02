@@ -49,7 +49,8 @@ bool
 load_built_in_types ()
 {
 	bool ok = true;
-	
+
+	ok = create_built_in_type (BT_VOID, "void");
 	ok = create_built_in_type (BT_BOOL, "bool");
 	ok = create_built_in_type (BT_UNSIGNED_CHAR, "unsigned char");
 	ok = create_built_in_type (BT_SIGNED_CHAR, "signed char");

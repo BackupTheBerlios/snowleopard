@@ -35,6 +35,7 @@
  */
 char* copy_string (char*);
 char* create_string_3 (const char*, const char*, const char*);
+char* create_string_from_format_1 (const char*, const char*);
 int get_hex_value (char);
 int get_oct_value (char);
 

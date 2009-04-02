@@ -70,7 +70,7 @@ typedef enum slci_type slci_type;
 struct slci_array_type
 {
 	size_t size;
-	slci_type_info* type;
+	symtab_key_t type;
 };
 
 /*
@@ -86,10 +86,10 @@ struct slci_built_in_type
  */
 struct slci_class_type
 {
-	slci_string class_name;
+	slci_string name;
 	bool is_class;
 	size_t nr_ancestors;
-	slci_type_info* ancestors;
+	symtab_key_t* ancestors;
 };
 
 /*
@@ -97,15 +97,10 @@ struct slci_class_type
  */
 struct slci_enumeration_type
 {
-	slci_string enumeration_type;
+	slci_string name;
 	symtab_key_t type;
 	size_t nr_values;
-
-	union {
-		signed short* short_values;
-		signed int* int_values;
-		signed long* long_values;
-	};
+	signed long* values;
 };
 
 /*
@@ -113,7 +108,7 @@ struct slci_enumeration_type
  */
 struct slci_pointer_type
 {
-	slci_type_info* type;
+	symtab_key_t type;
 };
 
 /*
@@ -135,7 +130,7 @@ struct slci_type_info
 /*
  * Initializer functions.
  */
-void destroy_type_info (slci_type_info type_info);
+void destroy_type_info (slci_type_info* type_info);
 
 #endif /* !_SL_SLCI_TYPE_INFO_H_ */
 

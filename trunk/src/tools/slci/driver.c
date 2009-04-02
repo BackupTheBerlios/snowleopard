@@ -80,9 +80,8 @@ parse_command_line (int argc, char** argv)
 	if (argc == 1)
 	{
 		/* At least one parameter is required. */
-		raise_and_display_program_error (
-			ERR_NO_SOURCE_FILE,
-			0
+		raise_and_display_program_error_0 (
+			ERR_NO_SOURCE_FILE
 			);
 		return false;
 	}
@@ -121,7 +120,7 @@ parse_command_line (int argc, char** argv)
 				else
 				{
 					/* Invalid option */
-					raise_and_display_program_error (
+					raise_and_display_program_error_1 (
 						ERR_INVALID_ARGUMENT,
 						argv[i]
 						);
@@ -137,9 +136,8 @@ parse_command_line (int argc, char** argv)
 	if (ok && settings->source_file == 0)
 	{
 		/* At least one parameter is required. */
-		raise_and_display_program_error (
-			ERR_NO_SOURCE_FILE,
-			0
+		raise_and_display_program_error_0 (
+			ERR_NO_SOURCE_FILE
 			);
 		return false;
 	}

@@ -35,6 +35,7 @@
  */
 enum slci_cpp_built_in_type
 	{
+		BT_VOID,               /* Void */
 		BT_BOOL,               /* Boolean value */
 		BT_UNSIGNED_CHAR,      /* Unsigned character */
 		BT_SIGNED_CHAR,        /* Signed character */

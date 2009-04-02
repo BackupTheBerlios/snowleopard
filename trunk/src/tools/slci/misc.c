@@ -51,13 +51,30 @@ copy_string (char* str)
 /*
  * create_string_3 function. Creates a string from the 3 given strings.
  */
-char* create_string_3 (const char* first, const char* second, const char* third)
+char*
+create_string_3 (const char* first, const char* second, const char* third)
 {
 	char* buffer = malloc (sizeof (char[
 			strlen (first) + strlen (second) + strlen (third) + 3
 			]));
 	
 	sprintf (buffer, "%s %s %s", first, second, third);
+
+	return buffer;
+}
+
+/*
+ * create_string_from_format_1 function. Create a string from a format with 1
+ * parameter.
+ */
+char*
+create_string_from_format_1 (const char* fmt, const char* param1)
+{
+	char* buffer = malloc (sizeof (char[
+			strlen (fmt) + strlen (param1) + 1
+			]));
+	
+	sprintf (buffer, fmt, param1);
 
 	return buffer;
 }
