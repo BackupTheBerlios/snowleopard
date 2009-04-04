@@ -164,6 +164,25 @@ struct slci_object
 
 typedef struct slci_object slci_object;
 
+/*
+ * Initialize functions
+ */
+slci_object initialize_object (
+	symtab_key_t,
+	symtab_key_t,
+	slci_object_type,
+	bool,
+	bool,
+	bool
+	);
+slci_class initialize_class_object ();
+slci_class_template initialize_class_template_object ();
+slci_enumeration initialize_enumeration ();
+slci_function initialize_function_object ();
+slci_function_call initialize_function_call_object ();
+slci_function_template initialize_function_template_object ();
+void destroy_object (slci_object*);
+
 #endif /* !_SL_SLCI_PARSE_OBJECTS_H_ */
 
 /*>- EOF -<*/

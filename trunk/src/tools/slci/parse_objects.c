@@ -27,7 +27,35 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/* Standard C headers */
+#include <stdbool.h>
+
 /* Snow Leopard headers */
 #include "sl/slci/parse_objects.h"
+#include "sl/slci/types.h"
+/*
+ * initialize_object function. Returns a new slci_object object.
+ */
+slci_object
+initialize_object (
+	symtab_key_t symtab_entry,
+	symtab_key_t scope,
+	slci_object_type object_type,
+	bool is_constant,
+	bool is_static,
+	bool is_volatile
+	)
+{
+	slci_object object;
+
+	object.symtab_entry = symtab_entry;
+	object.scope = scope;
+	object.object_type = object_type;
+	object.is_constant = is_constant;
+	object.is_static = is_static;
+	object.is_volatile = is_volatile;
+
+	return object;
+};
 
 /*>- EOF -<*/
