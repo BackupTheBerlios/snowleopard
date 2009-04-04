@@ -41,11 +41,15 @@
 /*
  * Forward definitions.
  */
+struct slci_class;
+struct slci_class_template;
 struct slci_enumeration;
 struct slci_function;
 struct slci_function_call;
 struct slci_function_template;
 
+typedef struct slci_class slci_class;
+typedef struct slci_class_template slci_class_template;
 typedef struct slci_enumeration slci_enumeration;
 typedef struct slci_function slci_function;
 typedef struct slci_function_call slci_function_call;
@@ -74,6 +78,22 @@ enum slci_object_type
 	};
 
 typedef enum slci_object_type slci_object_type;
+
+/*
+ * slci_class structure. Store a class in the parse tree.
+ */
+struct slci_class
+{
+
+};
+
+/*
+ * slci_class_template structure. Store a class template in the parse tree.
+ */
+struct slci_class_template
+{
+
+};
 
 /*
  * slci_enumeration structure. Store an enumeration in the parse tree.
@@ -128,8 +148,13 @@ struct slci_object
 	symtab_key_t symtab_entry;
 	symtab_key_t scope;
 	slci_object_type type;
-
+	bool is_constant;
+	bool is_static;
+	bool is_volatile;
+	
 	union {
+		slci_class class;
+		slci_class_template class_template;
 		slci_enumeration enumeration;
 		slci_function function;
 		slci_function_call function_call;
