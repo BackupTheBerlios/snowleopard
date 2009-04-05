@@ -48,7 +48,7 @@
 /*
  * Private function prototypes.
  */
-static size_t keyword_position ();
+static size_t keyword_position (const slci_string*);
 static slci_token lex_character ();
 static slci_token lex_comment ();
 static slci_token lex_macro ();
@@ -57,8 +57,8 @@ static slci_token lex_other ();
 static slci_token lex_punctuation ();
 static slci_token lex_string ();
 static char* preprocess_token ();
-static size_t punctuation_position ();
-static slci_token store_identifier (char*);
+static size_t punctuation_position (const slci_string*);
+static slci_token store_identifier (const slci_string*);
 
 /*
  * Global variables.
@@ -163,12 +163,12 @@ put_back_token ()
  * searches the current token in the keywords array.
  */
 size_t
-keyword_position ()
+keyword_position (const slci_string* token)
 {
 	return binary_search (
 		keyword_list,
 		keyword_list_length,
-		get_current_token_string ()
+	        token
 		);
 }
 
@@ -300,7 +300,24 @@ lex_other ()
 {
 	if (is_first_char_of_identifier (get_current_char ()))
 	{
-		/* lex keyword, preprocessor or identifier */
+		size_t pos = 0;
+		slci_string lexeme = initialize_string ();
+		slci_token token;
+		append_string (&lexeme, get_current_char ());
+
+		while (is_other_char_of_identifier (
+			    lex_get_next_char (false, true)))
+			append_string (&lexeme, get_current_char ());	
+
+		pos = keyword_position (&lexeme);
+		if (pos != MaxSizeT)
+			token = keyword_token (pos, begin_source_position);
+		else
+			token = store_identifier (&lexeme);
+
+		destroy_string (&lexeme);
+		
+		return token;
 	}
 	else
 		return lex_punctuation ();
@@ -378,12 +395,12 @@ preprocess_token (slci_token token)
  * It searches the current token in the punctuation array.
  */
 size_t
-punctuation_position ()
+punctuation_position (const slci_string* token)
 {
 	return binary_search (
 		punctuation_list,
 		punctuation_list_length,
-		get_current_token_string ()
+	        token
 		);
 }
 
@@ -391,19 +408,18 @@ punctuation_position ()
  * store_identifier function. Function stores an identifier in the symbol table.
  */
 slci_token
-store_identifier (char* identifier)
+store_identifier (const slci_string* identifier)
 {
-	symtab_key_t hash_key = generate_cpp_hash_key (identifier);
+	symtab_key_t hash_key = generate_cpp_hash_key (get_c_string (identifier));
 	
 	slci_token token = identifier_token (
-		identifier,
 		hash_key,
 		begin_source_position
 		);
 
 	if (set_symtab_entry (
 		    &cpp_symtab,
-		    identifier,
+		    get_c_string (identifier),
 		    token,
 		    begin_source_position))
 		/* TODO - Report error */ ;

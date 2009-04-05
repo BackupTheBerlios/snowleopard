@@ -63,8 +63,8 @@ typedef struct slci_wstring slci_wstring;
  */
 slci_string initialize_string ();
 slci_wstring initialize_wstring ();
-void destroy_string (slci_string);
-void destroy_wstring (slci_wstring);
+void destroy_string (slci_string*);
+void destroy_wstring (slci_wstring*);
 char* get_c_string (const slci_string*);
 wchar_t* get_wc_string (const slci_wstring*);
 bool append_string (slci_string*, char);

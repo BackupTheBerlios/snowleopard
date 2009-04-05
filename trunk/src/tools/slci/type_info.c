@@ -52,12 +52,12 @@ destroy_type_info (slci_type_info* type_info)
 		break;
 
 	case T_CLASS:
-		destroy_string (type_info->class.name);
+		destroy_string (&type_info->class.name);
 		free (type_info->class.ancestors);
 		break;
 
 	case T_ENUMERATION:
-		destroy_string (type_info->enumeration.name);
+		destroy_string (&type_info->enumeration.name);
 		free (type_info->enumeration.values);
 		break;
 

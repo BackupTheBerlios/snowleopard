@@ -110,18 +110,27 @@ destroy_symtab_entry (slci_symtab_entry* entry)
 }
 
 /*
- * get_symtab_entry function. Get a symbol table entry from the table. The
- * function returns 0 when the symbol is not found.
+ * get_symtab_entry_by_lexeme function. Get a symbol table entry from the table.
+ * The function returns 0 when the symbol is not found.
  */
 slci_symtab_entry*
-get_symtab_entry (const slci_symtab* symtab, const char* key)
+get_symtab_entry_by_lexeme (const slci_symtab* symtab, const char* lexeme)
 {
-	symtab_key_t hash_key = generate_cpp_hash_key (key);
+	symtab_key_t hash_key = generate_cpp_hash_key (lexeme);
 
-	if (strcmp (symtab->data[hash_key].key, key))
+	if (strcmp (symtab->data[hash_key].key, lexeme))
 		return &symtab->data[hash_key];
 	
 	return 0;
+}
+
+/*
+ *
+ */
+slci_symtab_entry*
+get_symtab_entry_by_key (const slci_symtab* symtab, const symtab_key_t key)
+{
+	return &symtab->data[key];
 }
 
 /*

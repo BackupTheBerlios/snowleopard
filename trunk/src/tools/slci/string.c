@@ -79,18 +79,18 @@ initialize_wstring ()
  * destroy_string function. Destroy string object.
  */
 void
-destroy_string (slci_string s)
+destroy_string (slci_string* s)
 {
-	free (s.value);
+	free (s->value);
 }
 
 /*
  * destroy_wstring function. Destroy wstring object.
  */
 void
-destroy_wstring (slci_wstring s)
+destroy_wstring (slci_wstring* s)
 {
-	free (s.value);
+	free (s->value);
 }
 
 /*

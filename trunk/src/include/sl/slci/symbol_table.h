@@ -76,7 +76,8 @@ void destroy_symtab (slci_symtab*);
 /*
  * Get symbol table entry.
  */
-slci_symtab_entry* get_symtab_entry (const slci_symtab*, const char*);
+slci_symtab_entry* get_symtab_entry_by_lexeme (const slci_symtab*, const char*);
+slci_symtab_entry* get_symtab_entry_by_key (const slci_symtab*, const symtab_key_t);
 
 /*
  * Set symbol table entry.

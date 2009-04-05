@@ -33,8 +33,10 @@
 #include <string.h>
 
 /* Snow Leopard headers */
+#include "sl/slci/cpp_symtab.h"
 #include "sl/slci/source_position.h"
 #include "sl/slci/string.h"
+#include "sl/slci/symbol_table.h"
 #include "sl/slci/token.h"
 
 /*
@@ -284,7 +286,7 @@ eof_token ()
  * identifier_token function. This function returns an identifier token.
  */
 slci_token
-identifier_token (char* identifier, symtab_key_t hash_key, slci_source_position pos)
+identifier_token (symtab_key_t hash_key, slci_source_position pos)
 {
 	slci_token token;
 
@@ -293,6 +295,23 @@ identifier_token (char* identifier, symtab_key_t hash_key, slci_source_position 
 	token.pos = pos;
 
 	token.identifier_position = hash_key;
+
+	return token;
+}
+
+/*
+ * keyword_token function. This function returns a keyword token.
+ */
+slci_token
+keyword_token (slci_keyword keyword, slci_source_position pos)
+{
+	slci_token token;
+
+	token.type = TT_KEYWORD;
+
+	token.pos = pos;
+
+	token.keyword = keyword;
 
 	return token;
 }
@@ -418,7 +437,7 @@ print_token (size_t i, slci_token token)
 		printf (
 			"%i: IDENTIFIER <%s>\n",
 			i,
-			"TODO"
+			get_symtab_entry_by_key (&cpp_symtab, token.keyword)->key
 			);
 		break;
 		

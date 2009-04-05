@@ -35,7 +35,7 @@
 #
 # All tools
 #
-ALL_TOOLS = slci sltst lynx
+ALL_TOOLS = slci sltst clc cls lynx
 
 #
 # Main targets
@@ -50,6 +50,12 @@ slci:
 
 sltst:
 	(cd sltst ; ${MAKE} all);
+
+clc:
+	(cd clc ; ${MAKE} all);
+
+cls:
+	(cd cls ; ${MAKE} all);
 
 lynx:
 	(cd lynx ; ${MAKE} all);

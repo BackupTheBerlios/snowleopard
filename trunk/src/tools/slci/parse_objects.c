@@ -40,7 +40,7 @@ slci_object
 initialize_object (
 	symtab_key_t symtab_entry,
 	symtab_key_t scope,
-	slci_object_type object_type,
+	slci_object_type type,
 	bool is_constant,
 	bool is_static,
 	bool is_volatile
@@ -50,7 +50,7 @@ initialize_object (
 
 	object.symtab_entry = symtab_entry;
 	object.scope = scope;
-	object.object_type = object_type;
+	object.type = type;
 	object.is_constant = is_constant;
 	object.is_static = is_static;
 	object.is_volatile = is_volatile;

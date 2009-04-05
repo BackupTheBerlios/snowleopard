@@ -32,5 +32,4 @@
 # Makefile for building the Snow Leopard C++ documentation.
 #/
 
-
 #>- EOF

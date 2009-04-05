@@ -53,8 +53,13 @@ binary_search (char** array, size_t size, const slci_string* search_key)
 	
 	while (low < high)
 	{
+		int r;
 		mid = low + ((high - low) / 2);
-		if (strcmp (array[mid], search_key->value) < 0)
+
+		r = strcmp (array[mid], search_key->value);
+		if (r == 0)
+			return mid;
+		else if (r < 0)
 			low = mid + 1;
 		else
 			high = mid;
