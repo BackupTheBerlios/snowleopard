@@ -58,6 +58,8 @@ initialize_settings ()
 
 	settings->interactive = false;
 	settings->license = false;
+	settings->make_rules_only = false;
+	settings->preprocess_only = false;
 	settings->verbose = false;
 	settings->warrantee = false;
 

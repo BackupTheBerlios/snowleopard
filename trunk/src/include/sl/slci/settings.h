@@ -41,6 +41,8 @@ struct slci_settings
 {
 	bool interactive;
 	bool license;
+	bool make_rules_only;
+	bool preprocess_only;
 	bool verbose;
 	bool warrantee;
 	char* source_file;

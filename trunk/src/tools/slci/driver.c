@@ -94,6 +94,12 @@ parse_command_line (int argc, char** argv)
 		else if (strcmp (argv[i], "-l") == 0)
 			/* License [-l] */
 			settings->license = true;
+		else if (strcmp (argv[i], "-M") == 0)
+			/* Produce make rules [-M] */
+			settings->make_rules_only = true;
+		else if (strcmp (argv[i], "-P") == 0)
+			/* Preprocess only [-P] */
+			settings->preprocess_only = true;
 		else if (strcmp (argv[i], "-v") == 0)
 			/* Verbose [-v] */
 			settings->verbose = true;
