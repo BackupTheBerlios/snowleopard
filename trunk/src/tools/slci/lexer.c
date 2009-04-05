@@ -329,7 +329,24 @@ lex_other ()
 slci_token
 lex_punctuation ()
 {
+	size_t pos = 0;
+	slci_string lexeme = initialize_string ();
+	slci_token token;
 
+	append_string (&lexeme, get_current_char ());
+
+	while (is_punctuation_char (lex_get_next_char (false, true)))
+		append_string (&lexeme, get_current_char ());	
+
+	pos = punctuation_position (&lexeme);
+	if (pos != MaxSizeT)
+		token = punctuation_token (pos, begin_source_position);
+	else
+		/* TODO - Report error */ ;
+	
+	destroy_string (&lexeme);
+		
+	return token;
 }
 
 /*

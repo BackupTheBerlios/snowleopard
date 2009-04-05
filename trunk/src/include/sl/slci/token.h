@@ -153,37 +153,8 @@ extern const size_t keyword_list_length;
  */
 enum slci_punctuation
 	{
-		PU_XOR,                   /* ^ */
-		PU_XOR_EQ,                /* ^= */
-		PU_MINUS,                 /* - */
-		PU_MINUS_MINUS,           /* -- */
-		PU_INDIRECT,              /* -> */
-	        PU_MINUS_EQ,              /* -= */
-		PU_INDIRECT_PTR,          /* ->* */
-		PU_COMMA,                 /* , */
-		PU_SEMICOLON,             /* ; */
-		PU_DOUBLE_POINT,          /* : */
-		PU_SCOPE_RESOLUTION,      /* :: */
-		PU_ALT_SQUARE_CLOSE,      /* :> */
 		PU_NOT,                   /* ! */
 		PU_NOT_EQ,                /* != */
-		PU_CONDITION,             /* ? */
-		PU_PERIOD,                /* . */
-		PU_TRIPLE_PERIOD,         /* ... */
-		PU_MEMBER_PTR,            /* .* */
-		PU_BRACKET_OPEN,          /* ( */
-		PU_BRACKET_CLOSE,         /* ) */
-		PU_SQUARE_OPEN,           /* [ */
-		PU_SQUARE_CLOSE,          /* ] */
-		PU_CURLY_BRACE_OPEN,      /* { */
-		PU_CURLY_BRACE_CLOSE,     /* } */
-		PU_STAR,                  /* * */
-		PU_MULTIPLY_EQ,           /* *= */
-		PU_DIVIDE,                /* / */
-		PU_DIVIDE_EQ,             /* /= */
-		PU_BITAND,                /* & */
-		PU_AND,                   /* && */
-		PU_AND_EQ,                /* &= */
 		PU_CROSS,                 /* # */
 		PU_CROSS_CROSS,           /* ## */
 		PU_MODULUS,               /* % */
@@ -191,12 +162,34 @@ enum slci_punctuation
 		PU_ALT_CROSS_CROSS,       /* %:%: */
 		PU_MODULUS_EQ,            /* %= */
 		PU_ALT_CURLY_BRACE_CLOSE, /* %> */
+		PU_BITAND,                /* & */
+		PU_AND,                   /* && */
+		PU_AND_EQ,                /* &= */
+		PU_BRACKET_OPEN,          /* ( */
+		PU_BRACKET_CLOSE,         /* ) */
+		PU_STAR,                  /* * */
+		PU_MULTIPLY_EQ,           /* *= */
 		PU_PLUS,                  /* + */
 		PU_PLUS_PLUS,             /* ++ */
 		PU_PLUS_EQ,               /* += */
+		PU_COMMA,                 /* , */
+		PU_MINUS,                 /* - */
+		PU_MINUS_MINUS,           /* -- */
+	        PU_MINUS_EQ,              /* -= */
+		PU_INDIRECT,              /* -> */
+		PU_INDIRECT_PTR,          /* ->* */
+		PU_PERIOD,                /* . */
+		PU_MEMBER_PTR,            /* .* */
+		PU_TRIPLE_PERIOD,         /* ... */
+		PU_DIVIDE,                /* / */
+		PU_DIVIDE_EQ,             /* /= */
+		PU_DOUBLE_POINT,          /* : */
+		PU_SCOPE_RESOLUTION,      /* :: */
+		PU_ALT_SQUARE_CLOSE,      /* :> */
+		PU_SEMICOLON,             /* ; */
 		PU_LESS_THAN,             /* < */
-		PU_ALT_SQUARE_OPEN,       /* <: */
 		PU_ALT_CURLY_BRACE_OPEN,  /* <% */
+		PU_ALT_SQUARE_OPEN,       /* <: */
 		PU_SHIFT_LEFT,            /* << */
 		PU_SHIFT_LEFT_EQ,         /* <<= */
 		PU_LESS_THAN_EQ,          /* <= */
@@ -206,10 +199,11 @@ enum slci_punctuation
 		PU_GREATER_EQ,            /* >= */
 		PU_SHIFT_RIGHT,           /* >> */
 		PU_SHIFT_RIGHT_EQ,        /* >>= */
-		PU_BITOR,                 /* | */
-		PU_OR_EQ,                 /* |= */
-		PU_OR,                    /* || */
-		PU_COMPL,                 /* ~ */
+		PU_CONDITION,             /* ? */
+		PU_SQUARE_OPEN,           /* [ */
+		PU_SQUARE_CLOSE,          /* ] */
+		PU_XOR,                   /* ^ */
+		PU_XOR_EQ,                /* ^= */
 		PU_ALT_AND,               /* and */
 		PU_ALT_AND_EQ,            /* and_eq */
 		PU_ALT_BITAND,            /* bitand */
@@ -222,7 +216,13 @@ enum slci_punctuation
 		PU_ALT_OR,                /* or */
 		PU_ALT_OR_EQ,             /* or_eq */
 		PU_ALT_XOR,               /* xor */
-		PU_ALT_XOR_EQ             /* xor_eq */
+		PU_ALT_XOR_EQ,            /* xor_eq */
+		PU_CURLY_BRACE_OPEN,      /* { */
+		PU_BITOR,                 /* | */
+		PU_OR_EQ,                 /* |= */
+		PU_OR,                    /* || */			
+		PU_CURLY_BRACE_CLOSE,     /* } */
+		PU_COMPL                  /* ~ */
 	};
 
 typedef enum slci_punctuation slci_punctuation;
@@ -265,6 +265,7 @@ slci_token eof_token ();
 slci_token identifier_token (symtab_key_t, slci_source_position);
 slci_token keyword_token (slci_keyword, slci_source_position);
 slci_token preprocessor_token (const slci_string*, slci_source_position);
+slci_token punctuation_token (slci_punctuation, slci_source_position);
 slci_token string_token (const slci_string*, slci_source_position);
 slci_token wcharacter_token (wchar_t, slci_source_position);
 slci_token wstring_token (const slci_wstring*, slci_source_position);

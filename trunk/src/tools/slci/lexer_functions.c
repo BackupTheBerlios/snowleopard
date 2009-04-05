@@ -164,7 +164,7 @@ is_hexadecimal (char c)
 		break;
 	}
 }
-		
+
 /*
  * is_other_char_of_identifier function. If character is other identifier character return true.
  */
@@ -189,6 +189,47 @@ is_other_char_of_identifier (char c)
 		return true;
 		break;
 
+	default:
+		return false;
+		break;
+	}
+}
+
+/*
+ * is_punctuation_char function. Returns true for an punctuation character.
+ */
+bool
+is_punctuation_char (char c)
+{
+	switch (c)
+	{
+	case '^':
+	case '-':
+	case ',':
+	case '=':
+	case '>':
+	case '*':
+	case ';':
+	case ':':
+	case '!':
+	case '?':
+	case '.':
+	case '(':
+	case ')':
+	case '[':
+	case ']':
+	case '{':
+	case '}':
+	case '/':
+	case '&':
+	case '#':
+	case '%':
+	case '<':
+	case '|':
+	case '~':
+		return true;
+		break;
+		
 	default:
 		return false;
 		break;

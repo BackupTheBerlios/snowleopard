@@ -130,37 +130,8 @@ const size_t keyword_list_length = 72;
  * Punctuation list.
  */
 char* punctuation_list[] = {
-	"^",
-	"^=",
-	"-",
-	"--",
-	"->",
-	"-=",
-	"->*",
-	",",
-	";",
-	":",
-	"::",
-	":>",
 	"!",
 	"!=",
-	"?",
-	".",
-	"...",
-	".*",
-	"(",
-	")",
-	"[",
-	"]",
-	"{",
-	"}",
-	"*",
-	"*=",
-	"/",
-	"/=",
-	"&",
-	"&&",
-	"&=",
 	"#",
 	"##",
 	"%",
@@ -168,12 +139,34 @@ char* punctuation_list[] = {
 	"%:%:",
 	"%=",
 	"%>",
+	"&",
+	"&&",
+	"&=",
+	"(",
+	")",
+	"*",
+	"*=",
 	"+",
 	"++",
 	"+=",
+	",",
+	"-",
+	"--",
+	"-=",
+	"->",
+	"->*",
+	".",
+	".*",
+	"...",
+	"/",
+	"/=",
+	":",
+	"::",
+	":>",
+	";",
 	"<",
-	"<:",
 	"<%",
+	"<:",
 	"<<",
 	"<<=",
 	"<=",
@@ -183,10 +176,11 @@ char* punctuation_list[] = {
 	">=",
 	">>",
 	">>=",
-	"|",
-	"|=",
-	"||",
-	"~",
+	"?",
+	"[",
+	"]",
+	"^",
+	"^=",
 	"and",
 	"and_eq",
 	"bitand",
@@ -199,7 +193,13 @@ char* punctuation_list[] = {
 	"or",
 	"or_eq",
 	"xor",
-	"xor_eq"
+	"xor_eq",
+	"{",
+	"|",
+	"|=",
+	"||",
+	"}",
+	"~"
 };
 
 /*
@@ -317,7 +317,7 @@ keyword_token (slci_keyword keyword, slci_source_position pos)
 }
 
 /*
- * macro_token function. This function returns a macro token.
+ * preprocessor_token function. This function returns a preprocessor token.
  */
 slci_token
 preprocessor_token (const slci_string* s, slci_source_position pos)
@@ -329,6 +329,23 @@ preprocessor_token (const slci_string* s, slci_source_position pos)
 
 	token.preprocessor = get_c_string (s);
 	token.preprocessor[strlen (token.preprocessor) - 1] = '\0';
+
+	return token;
+}
+
+/*
+ * punctuation_token function. This function returns a punctuation token.
+ */
+slci_token
+punctuation_token (slci_punctuation punctuation, slci_source_position pos)
+{
+	slci_token token;
+
+	token.type = TT_PUNCTUATION;
+
+	token.pos = pos;
+
+	token.punctuation = punctuation;
 
 	return token;
 }
