@@ -166,7 +166,8 @@ is_hexadecimal (char c)
 }
 
 /*
- * is_other_char_of_identifier function. If character is other identifier character return true.
+ * is_other_char_of_identifier function. If character is other identifier
+ * character return true.
  */
 bool
 is_other_char_of_identifier (char c)
@@ -201,6 +202,19 @@ is_other_char_of_identifier (char c)
 bool
 is_punctuation_char (char c)
 {
+	switch (get_previous_char ())
+	{
+	/* These tokens always appear alone */
+	case '(':
+	case ')':
+	case '[':
+	case ']':
+	case '{':
+	case '}':
+		return false;
+		break;
+	}
+	
 	switch (c)
 	{
 	case '^':
@@ -208,18 +222,11 @@ is_punctuation_char (char c)
 	case ',':
 	case '=':
 	case '>':
-	case '*':
 	case ';':
 	case ':':
 	case '!':
 	case '?':
 	case '.':
-	case '(':
-	case ')':
-	case '[':
-	case ']':
-	case '{':
-	case '}':
 	case '/':
 	case '&':
 	case '#':
@@ -229,7 +236,12 @@ is_punctuation_char (char c)
 	case '~':
 		return true;
 		break;
-		
+
+	/* Special handling for double pointers */
+	case '*':
+		return get_previous_char () != '*';
+		break;
+
 	default:
 		return false;
 		break;
@@ -245,6 +257,7 @@ is_whitespace (char c)
 	switch (c)
 	{
 	case ' ':
+	case '\0':
 	case '\n':
 	case '\r':
 	case '\t':

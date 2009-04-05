@@ -104,12 +104,12 @@ destroy_lexer ()
 slci_token
 get_next_token ()
 {
-	char c;
+	char c = get_current_char ();
 	previous_token = current_token;
 
 	/* Skip over whitespace */
-	while (is_whitespace (c = lex_get_next_char (true, true)))
-	{ }
+	while (is_whitespace (c))
+		c = lex_get_next_char (true, true);
 	
 	if (c == '\0')
 		return empty_token (get_current_source_position ());
@@ -254,10 +254,15 @@ lex_comment ()
 		c = lex_get_next_char (false, true);
 	}
 
-	return comment_token (
+	slci_token token = comment_token (
 		get_current_token_string (),
 		get_current_source_position ()
 		);
+	
+	/* Read the next character */
+	c = lex_get_next_char (true, true);
+	
+	return token;
 }
 
 /*

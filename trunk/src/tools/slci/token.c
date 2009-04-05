@@ -205,7 +205,7 @@ char* punctuation_list[] = {
 /*
  * Punctuation list length.
  */
-const size_t punctuation_list_length = 68;
+const size_t punctuation_list_length = 69;
 
 /*
  * built_in_token function. This function returns a token for a built-in.
