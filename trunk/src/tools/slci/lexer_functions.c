@@ -127,45 +127,6 @@ is_first_char_of_identifier (char c)
 }
 
 /*
- * is_hexadecimal function. If character is a hexadecimal return true.
- */
-bool
-is_hexadecimal (char c)
-{
-	switch (c)
-	{
-	case '0':
-	case '1':
-	case '2':
-	case '3':
-	case '4':
-	case '5':
-	case '6':
-	case '7':
-	case '8':
-	case '9':
-	case 'A':
-	case 'B':
-	case 'C':
-	case 'D':
-	case 'E':
-	case 'F':
-	case 'a':
-	case 'b':
-	case 'c':
-	case 'd':
-	case 'e':
-	case 'f':
-		return true;
-		break;
-		
-	default:
-		return false;
-		break;
-	}
-}
-
-/*
  * is_other_char_of_identifier function. If character is other identifier
  * character return true.
  */
@@ -242,28 +203,6 @@ is_punctuation_char (char c)
 		return get_previous_char () != '*';
 		break;
 
-	default:
-		return false;
-		break;
-	}
-}
-
-/*
- * is_whitespace function. If character is whitespace return true.
- */
-bool
-is_whitespace (char c)
-{
-	switch (c)
-	{
-	case ' ':
-	case '\0':
-	case '\n':
-	case '\r':
-	case '\t':
-		return true;
-		break;
-		
 	default:
 		return false;
 		break;

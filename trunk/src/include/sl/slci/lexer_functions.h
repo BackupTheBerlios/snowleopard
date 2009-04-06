@@ -41,10 +41,8 @@
  */
 const slci_string* get_current_token_string ();
 bool is_first_char_of_identifier (char);
-bool is_hexadecimal (char);
 bool is_other_char_of_identifier (char);
 bool is_punctuation_char (char);
-bool is_whitespace (char);
 char lex_narrow_character ();
 wchar_t lex_wide_character ();
 char lex_get_next_char (bool, bool);

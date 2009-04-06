@@ -65,10 +65,16 @@ slci_string initialize_string ();
 slci_wstring initialize_wstring ();
 void destroy_string (slci_string*);
 void destroy_wstring (slci_wstring*);
-char* get_c_string (const slci_string*);
-wchar_t* get_wc_string (const slci_wstring*);
+
+/*
+ * String functions.
+ */
 bool append_string (slci_string*, char);
 bool append_wstring (slci_wstring*, wchar_t);
+size_t first_none_whitespace (const slci_string*, size_t);
+char get_char_from_string (const slci_string*, size_t);
+char* get_c_string (const slci_string*);
+wchar_t* get_wc_string (const slci_wstring*);
 bool reset_string (slci_string*);
 bool reset_wstring (slci_wstring*);
 

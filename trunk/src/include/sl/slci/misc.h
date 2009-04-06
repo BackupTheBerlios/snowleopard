@@ -30,6 +30,9 @@
 #ifndef _SL_SLCI_MISC_H_
 #define _SL_SLCI_MISC_H_
 
+/* Standard C headers */
+#include <stdbool.h>
+
 /*
  * Misc functions.
  */
@@ -38,6 +41,8 @@ char* create_string_3 (const char*, const char*, const char*);
 char* create_string_from_format_1 (const char*, const char*);
 int get_hex_value (char);
 int get_oct_value (char);
+bool is_hexadecimal (char);
+bool is_whitespace (char);
 
 #endif /* !_SL_SLCI_MISC_H_ */
 

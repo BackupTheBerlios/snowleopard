@@ -36,8 +36,9 @@
 char* error_type_list[] = {
 	"No error occured",
         "FATAL",
+	"Preprocessor Error",
 	"Source Error",
-	"RUNTIME ERROR"
+	"Runtime Error"
 };
 
 /*
@@ -55,6 +56,9 @@ slci_error_description error_description_list[] = {
 	{"Duplicate symbol table key \"%s\"", 1, ET_FATAL},
 	{"Duplicate symbol table key while loading built-in types", 0, ET_FATAL},
 	{"Invalid type in type info boject \"%s\"", 1, ET_FATAL},
+		
+	/* Preprocesoor errors */
+	{"Invalid preprocessor line \"%s\"", 1, ET_PREPROCESS},
 		
 	/* Compile errors */
 	{"Invalid character literal \'%1\'", 1, ET_COMPILE},

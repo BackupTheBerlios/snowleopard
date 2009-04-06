@@ -32,6 +32,8 @@
 #include <stddef.h>
 
 /* Snow Leopard headers */
+#include "sl/slci/error_codes.h"
+#include "sl/slci/error_handling.h"
 #include "sl/slci/preprocessor_symtab.h"
 #include "sl/slci/preprocessor.h"
 #include "sl/slci/reader.h"
@@ -42,6 +44,18 @@
  * Private global variables
  */
 size_t current_depth;
+slci_error_code last_error;
+
+/*
+ * Private functions.
+ */
+static bool process_define (const slci_string*);
+static bool process_error (const slci_string*);
+static bool process_include (const slci_string*);
+static bool process_if (const slci_string*);
+static bool process_pragma (const slci_string*);
+static bool process_undef (const slci_string*);
+static bool process_warning (const slci_string*);
 
 /*
  * initialize_preprocessor function. Initializes the preprocessor.
@@ -72,11 +86,109 @@ destroy_preprocessor ()
 slci_token
 preprocess_macro_definition (const slci_string* s)
 {
+	bool ok = false;
+	size_t pos = first_none_whitespace (s, 1);
+	char c = get_char_from_string (s, pos);
+	
+	switch (c)
+	{
+	case 'd':
+		ok = process_define (s);
+		break;
+		
+	case 'e':
+		ok = process_error (s);
+		break;
+
+	case 'i':
+	        if (get_char_from_string(s, pos + 1) == 'f')
+			ok = process_if (s);
+		else
+			ok = process_include (s);
+		break;
+		
+	case 'p':
+		ok = process_pragma (s);
+		break;
+		
+	case 'u':
+		ok = process_undef (s);
+		break;
+		
+	case 'w':
+		ok = process_warning (s);
+		break;
+
+	default:
+	        last_error = ERR_INVALID_PREPROCESSOR_LINE;
+		break;
+		
+	}
+
+	if (!ok)
+		/* TODO - Report last error */ ;
 	
 	return preprocessor_token (
 		s,
 		get_current_source_position ()
 		);
+}
+
+/*
+ * process_define function. Processes a #define preprocessor line.
+ */
+bool
+process_define (const slci_string* s)
+{
+	return false;
+}
+
+/*
+ * process_error function. Processes an #error preprocessor line.
+ */
+bool process_error (const slci_string* s)
+{
+	return false;
+}
+
+/*
+ * process_include function. Processes an #include preprocessor line.
+ */
+bool process_include (const slci_string* s)
+{
+	return false;
+}
+
+/*
+ * process_if function. Processes an #if preprocessor line.
+ */
+bool process_if (const slci_string* s)
+{
+	return false;
+}
+
+/*
+ * process_pragma function. Processes an #pragma preprocessor line.
+ */
+bool process_pragma (const slci_string* s)
+{
+	return false;
+}
+
+/*
+ * process_undef function. Processes an #undef preprocessor line.
+ */
+bool process_undef (const slci_string* s)
+{
+	return false;
+}
+
+/*
+ * process_warning function. Processes an #warning preprocessor line.
+ */
+bool process_warning (const slci_string* s)
+{
+	return false;
 }
 
 /*>- EOF -<*/

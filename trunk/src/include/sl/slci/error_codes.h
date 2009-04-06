@@ -38,10 +38,11 @@
  */
 enum slci_error_type
 	{
-		ET_NO_ERROR, /* No error occured */
-		ET_FATAL,    /* Fatal errors */
-		ET_COMPILE,  /* Compilation/Source analysis error */
-		ET_RUNTIME   /* Runtime error */	
+		ET_NO_ERROR,   /* No error occured */
+		ET_FATAL,      /* Fatal errors */
+		ET_PREPROCESS, /* Preprocessor error */
+		ET_COMPILE,    /* Compilation/Source analysis error */
+		ET_RUNTIME     /* Runtime error */	
 	};
 
 typedef enum slci_error_type slci_error_type;
@@ -70,6 +71,9 @@ enum slci_error_code
 					 loading built-in */
 		ERR_INVALID_TYPE_INFO,
                                       /* Invalid type in type info object */
+			
+		/* Preprocessor errors */
+		ERR_INVALID_PREPROCESSOR_LINE,
 			
 		/* Compile errors */
 		ERR_INVALID_CHARACTER_LITERAL,

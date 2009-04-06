@@ -39,6 +39,7 @@
 #include "sl/slci/error_handling.h"
 #include "sl/slci/lexer.h"
 #include "sl/slci/lexer_functions.h"
+#include "sl/slci/misc.h"
 #include "sl/slci/preprocessor.h"
 #include "sl/slci/preprocessor_symtab.h"
 #include "sl/slci/reader.h"

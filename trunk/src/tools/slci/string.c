@@ -34,7 +34,9 @@
 #include <wchar.h>
 
 /* Snow Leopard headers */
+#include "sl/slci/misc.h"
 #include "sl/slci/string.h"
+#include "sl/slci/types.h"
 
 /*
  * Private variables
@@ -94,29 +96,29 @@ destroy_wstring (slci_wstring* s)
 }
 
 /*
- * get_c_string function. Returns a copy of the string as C string.
+ * first_none_whitespace function. Returns position of the first none whitespace
+ * character after the given position.
  */
-char*
-get_c_string (const slci_string* str)
+size_t
+first_none_whitespace (const slci_string* s, size_t after_pos)
 {
-	char* cstr = malloc (sizeof (char[str->size + 1]));
-
-	strcpy (cstr, str->value);
-
-	return cstr;
+	for (/* No initializer needed */ ; after_pos != s->size; ++after_pos)
+		if (!is_whitespace (s->value[after_pos]))
+			return after_pos;
+	
+	return MaxSizeT;
 }
 
 /*
- * get_wc_string function. Returns a copy of the wstring as wide character string.
+ * get_char_from_string function. Get the character at position from the string.
  */
-wchar_t*
-get_wc_string (const slci_wstring* str)
+char
+get_char_from_string (const slci_string* s, size_t pos)
 {
-	wchar_t* wcstr = malloc (sizeof (wchar_t[str->size + 1]));
+	if (pos > s->size)
+		return '\0';
 
-	wcscpy (wcstr, str->value);
-
-	return wcstr;
+	return s->value[pos];
 }
 
 /*
@@ -179,6 +181,32 @@ append_wstring (slci_wstring* s, wchar_t c)
 	s->value[++s->size] = '\0';
 
 	return true;
+}
+
+/*
+ * get_c_string function. Returns a copy of the string as C string.
+ */
+char*
+get_c_string (const slci_string* str)
+{
+	char* cstr = malloc (sizeof (char[str->size + 1]));
+
+	strcpy (cstr, str->value);
+
+	return cstr;
+}
+
+/*
+ * get_wc_string function. Returns a copy of the wstring as wide character string.
+ */
+wchar_t*
+get_wc_string (const slci_wstring* str)
+{
+	wchar_t* wcstr = malloc (sizeof (wchar_t[str->size + 1]));
+
+	wcscpy (wcstr, str->value);
+
+	return wcstr;
 }
 
 /*
