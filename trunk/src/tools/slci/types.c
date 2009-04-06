@@ -27,28 +27,13 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_PREPROCESSOR_SYMBOL_TABLE_H_
-#define _SL_SLCI_PREPROCESSOR_SYMBOL_TABLE_H_
-
 /* Snow Leopard headers */
-#include "sl/slci/symbol_table.h"
+#include "sl/slci/types.h"
 
 /*
  * Global variables.
  */
-slci_symtab preprocessor_symtab;
-
-/*
- * Initializer functions.
- */
-bool initialize_preprocessor_symtab ();
-void destroy_preprocessor_symtab ();
-
-/*
- * Get functions.
- */
-symtab_key_t get_macro_position (const slci_string*);
-
-#endif /* !_SL_SLCI_PREPROCESSOR_SYMBOL_TABLE_H_ */
+const size_t MaxSizeT = (size_t)-1;
+const symtab_key_t MaxSymtabKeyT = (size_t)-1;
 
 /*>- EOF -<*/

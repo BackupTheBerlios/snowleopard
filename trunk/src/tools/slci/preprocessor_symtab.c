@@ -28,8 +28,9 @@
  */
 
 /* Snow Leopard headers */
-#include "sl/slci/preprocessor_symtab.h"
 #include "sl/slci/hash_function.h"
+#include "sl/slci/preprocessor_symtab.h"
+#include "sl/slci/types.h"
 
 slci_symtab preprocessor_symtab;
 
@@ -57,6 +58,21 @@ void
 destroy_preprocessor_symtab ()
 {
 	destroy_symtab (&preprocessor_symtab);
+}
+
+/*
+ * get_macro_position function. This function returns the position of a macro
+ * in the symbol table.
+ */
+symtab_key_t
+get_macro_position (const slci_string* token)
+{
+	symtab_key_t macro = generate_pre_hash_key (get_c_string (token));
+
+	if (preprocessor_symtab.data[macro].key == 0)
+		return MaxSymtabKeyT;
+
+	return macro;
 }
 
 /*>- EOF -<*/

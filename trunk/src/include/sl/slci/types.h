@@ -38,6 +38,12 @@
  */
 typedef size_t symtab_key_t;
 
+/*
+ * Global variables.
+ */
+extern const size_t MaxSizeT;
+extern const symtab_key_t MaxSymtabKeyT;
+
 #endif /* !_SL_SLCI_TYPES_H_ */
 
 /*>- EOF -<*/

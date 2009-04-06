@@ -34,11 +34,7 @@
 /* Snow Leopard headers */
 #include "sl/slci/binary_search.h"
 #include "sl/slci/string.h"
-
-/*
- * Global variables.
- */
-const size_t MaxSizeT = (size_t)-1;
+#include "sl/slci/types.h"
 
 /*
  * This function performs a binary search for the string search_key in the array

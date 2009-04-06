@@ -40,10 +40,12 @@
 #include "sl/slci/lexer.h"
 #include "sl/slci/lexer_functions.h"
 #include "sl/slci/preprocessor.h"
+#include "sl/slci/preprocessor_symtab.h"
 #include "sl/slci/reader.h"
 #include "sl/slci/string.h"
 #include "sl/slci/symbol_table.h"
 #include "sl/slci/token.h"
+#include "sl/slci/types.h"
 
 /*
  * Private function prototypes.
@@ -56,7 +58,7 @@ static slci_token lex_number ();
 static slci_token lex_other ();
 static slci_token lex_punctuation ();
 static slci_token lex_string ();
-static char* preprocess_token ();
+static slci_token preprocess_token (slci_string*);
 static size_t punctuation_position (const slci_string*);
 static slci_token store_identifier (const slci_string*);
 
@@ -306,6 +308,7 @@ lex_other ()
 	if (is_first_char_of_identifier (get_current_char ()))
 	{
 		size_t pos = 0;
+		symtab_key_t macro_pos = 0;
 		slci_string lexeme = initialize_string ();
 		slci_token token;
 		append_string (&lexeme, get_current_char ());
@@ -314,12 +317,17 @@ lex_other ()
 			    lex_get_next_char (false, true)))
 			append_string (&lexeme, get_current_char ());	
 
-		pos = keyword_position (&lexeme);
-		if (pos != MaxSizeT)
-			token = keyword_token (pos, begin_source_position);
-		else
-			token = store_identifier (&lexeme);
-
+		macro_pos = get_macro_position (&lexeme);
+		if (macro_pos != MaxSizeT)
+			token = preprocess_token (&lexeme);
+		else {
+			pos = keyword_position (&lexeme);
+			if (pos != MaxSizeT)
+				token = keyword_token (pos, begin_source_position);
+			else
+				token = store_identifier (&lexeme);
+		}
+		
 		destroy_string (&lexeme);
 		
 		return token;
@@ -406,10 +414,12 @@ lex_string ()
  * preprocess_token function. Function preprocesses the preprocessor token
  * given as parameter and returns a string containing the preprocessed token.
  */
-char*
-preprocess_token (slci_token token)
+slci_token
+preprocess_token (slci_string* lexeme)
 {
+	slci_token token;
 
+	return token;
 }
 
 /*
