@@ -61,8 +61,11 @@ initialize_symtab (hash_function_ptr hash_function, size_t size)
 	symtab.size = size;
 
 	for (i = 0; i != symtab.size; ++i)
+	{
 		symtab.data[i].key = 0;
-
+		symtab.data[i].value = 0;
+	}
+	
 	return symtab;
 }
 
@@ -103,10 +106,15 @@ destroy_symtab_entry (slci_symtab_entry* entry)
 	/* Do not free memory for built-in types */
 	if (entry->token.type != TT_BUILT_IN
 	    && entry->token.type != TT_PREPROCESSOR_BUILT_IN)
+	{
 		free (entry->key);
+		if (entry->value != 0)
+			free (entry->value);
+	}
 	
 	entry->key = 0;
-	
+	entry->value = 0;
+	    
 	destroy_type_info (&entry->type_info);
 }
 
@@ -126,7 +134,7 @@ get_symtab_entry_by_lexeme (const slci_symtab* symtab, const char* lexeme)
 }
 
 /*
- *
+ * get_symtab_entry_by_key function. Returns the symtab entry for the key.
  */
 slci_symtab_entry*
 get_symtab_entry_by_key (const slci_symtab* symtab, const symtab_key_t key)
@@ -142,7 +150,8 @@ set_symtab_entry (
 	slci_symtab* symtab,
 	char* key,
 	slci_token token,
-	slci_source_position pos
+	slci_source_position pos,
+	char* value
 	)
 {
 	symtab_key_t hash_key = generate_cpp_hash_key (key);
@@ -170,7 +179,8 @@ set_symtab_entry (
 	/* Replace the symbol table entry with new data */
 	symtab->data[hash_key].token = token;
 	symtab->data[hash_key].position = pos;
-
+	symtab->data[hash_key].value = value;
+	
 	return true;
 }
 

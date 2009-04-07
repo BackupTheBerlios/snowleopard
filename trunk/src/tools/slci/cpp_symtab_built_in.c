@@ -87,7 +87,8 @@ create_built_in_type (slci_cpp_built_in_type type, char* token)
 		    &cpp_symtab,
 		    token,
 		    built_in_token (token, NoSourcePosition),
-		    NoSourcePosition
+		    NoSourcePosition,
+		    0
 		    ))
 		return false;
 	

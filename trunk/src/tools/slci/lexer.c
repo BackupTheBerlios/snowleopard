@@ -450,11 +450,13 @@ store_identifier (const slci_string* identifier)
 		begin_source_position
 		);
 
-	if (set_symtab_entry (
+	if (!set_symtab_entry (
 		    &cpp_symtab,
 		    get_c_string (identifier),
 		    token,
-		    begin_source_position))
+		    begin_source_position,
+		    0
+		    ))
 		/* TODO - Report error */ ;
 
 	return token;

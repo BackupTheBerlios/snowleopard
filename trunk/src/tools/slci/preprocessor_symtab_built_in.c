@@ -80,7 +80,8 @@ create_built_in_macro (char* token, char* value)
 			    token,
 			    NoSourcePosition
 			    ),
-		    NoSourcePosition
+		    NoSourcePosition,
+		    value
 		    ))
 		return false;
 	

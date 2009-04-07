@@ -50,6 +50,7 @@ struct slci_symtab_entry
 	slci_token token;
 	slci_source_position position;
 	slci_type_info type_info;
+	char* value;
 };
 
 typedef struct slci_symtab_entry slci_symtab_entry;
@@ -82,7 +83,7 @@ slci_symtab_entry* get_symtab_entry_by_key (const slci_symtab*, const symtab_key
 /*
  * Set symbol table entry.
  */
-bool set_symtab_entry (slci_symtab*, char*, slci_token, slci_source_position);
+bool set_symtab_entry (slci_symtab*, char*, slci_token, slci_source_position, char*);
 bool set_symtab_type_info (slci_symtab*, symtab_key_t, slci_type_info);
 
 #endif /* !_SL_SLCI_SYMBOL_TABLE_H_ */
