@@ -28,96 +28,51 @@
  */
 
 /* Standard C headers */
+#include <stddef.h>
 #include <stdlib.h>
 
 /* Snow Leopard headers */
-#include "sl/slci/source_file.h"
-#include "sl/slci/source_position.h"
 #include "sl/slci/source_string.h"
 
 /*
- * NoSourcePosition constant
+ * initialize_source_string function. This function initializes a source_string object.
  */
-const slci_source_position NoSourcePosition = {
-	ST_SOURCE_FILE,
-	{0},
-	0,
-	0
-};
-
-/*
- * Initialize a source position object with a file.
- */
-slci_source_position*
-initialize_source_position_with_file (
-	slci_source_file* file,
-	size_t line,
-	      size_t position
-	)
+slci_source_string*
+initialize_source_string (char* original_source, char* preprocessed_source)
 {
-	slci_source_position* pos = malloc (sizeof (slci_source_position));
+	slci_source_string* new_string = malloc (sizeof (slci_source_string));
 
-	pos->source_type = ST_SOURCE_FILE;
-	pos->file = file;
-	pos->line = line;
-	pos->position = position;
-
-	return pos;
+	new_string->original_source = original_source;
+	new_string->preprocessed_source = preprocessed_source;
+	new_string->current_pos = 0;
+	
+	return new_string;
 }
 
 /*
- * Initialize a source position object with a source string.
- */
-slci_source_position*
-initialize_source_position_with_string (
-	slci_source_string* string,
-	size_t line,
-	size_t position
-	)
-{
-	slci_source_position* pos = malloc (sizeof (slci_source_position));
-
-	pos->source_type = ST_SOURCE_STRING;
-	pos->string = string;
-	pos->line = line;
-	pos->position = position;
-
-	return pos;
-}
-
-/*
- * Destroy a source position object.
+ * destroy_source_string function. This function destroys a source_string object.
  */
 void
-destroy_source_position (slci_source_position* position)
+destroy_source_string (slci_source_string* string)
 {
-	if (position->source_type == ST_SOURCE_FILE)
-		destroy_source_file (position->file);
-	else
-		destroy_source_string (position->string);
+	free (string->original_source);
+	free (string->preprocessed_source);
 
-	free (position);
+	free (string);
 }
 
 /*
- * Copy a source position object.
+ * copy_source_string function. This function copies a source_string object.
  */
-slci_source_position
-copy_source_position (const slci_source_position* pos)
+slci_source_string
+copy_source_string (const slci_source_string* string)
 {
-	slci_source_position new_pos;
+	slci_source_string new_string;
 
-	new_pos.source_type = pos->source_type;
+	new_string.original_source = string->original_source;
+	new_string.preprocessed_source = string->preprocessed_source;
 
-	if (pos->source_type == ST_SOURCE_FILE)
-		new_pos.file = pos->file;
-	else
-		new_pos.string = pos->string;
-
-	new_pos.line = pos->line;
-	new_pos.position = pos->position;
-
-	return new_pos;
+	return new_string;
 }
 
 /*>- EOF -<*/

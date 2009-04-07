@@ -27,39 +27,43 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_READER_H_
-#define _SL_SLCI_READER_H_
-
-/* Standard C headers */
-#include <stdbool.h>
-
-/* Snow Leopard headers */
-#include "sl/slci/source_file.h"
-#include "sl/slci/source_position.h"
-#include "sl/slci/source_string.h"
+#ifndef _SL_TEST_OTHER_GAME_INSTITUTE_CPP1_PRG_0702_01_HPP_
+#define _SL_TEST_OTHER_GAME_INSTITUTE_CPP1_PRG_0702_01_HPP_
 
 /*
- * Initialize functions.
+ * Range structure.
  */
-bool initialize_reader_with_file (char*);
-bool initialize_reader_with_string (char*, char*);
-void destroy_reader ();
+class vector3
+{
+public:
+	vector3 ();
+	vector3 (float[3]);
+	vector3 (float, float, float);
 
-/*
- * Reader functions.
- */
-char get_next_char ();
-char get_current_char ();
-char get_previous_char ();
-bool put_back_char (char);
+	bool equals (const vector3&) const;
 
-/*
- * Source position functions.
- */
-slci_source_file* get_current_source_file ();
-slci_source_position get_current_source_position ();
-slci_source_string* get_current_source_string ();
+	vector3 add (const vector3&);
+	vector3 sub (const vector3&);
+	vector3 mul (float);
 
-#endif /* !_SL_SLCI_READER_H_ */
+	float length ();
+
+	void normalize ();
+
+	float dot (const vector3&);
+
+	float* to_array ();
+
+	void print ();
+
+	void input ();
+
+	float x_;
+	float y_;
+	float z_;
+
+};
+
+#endif /* !_SL_TEST_OTHER_GAME_INSTITUTE_CPP1_PRG_0702_01_HPP_ */
 
 /*>- EOF -<*/

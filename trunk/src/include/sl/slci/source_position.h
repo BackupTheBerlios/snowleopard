@@ -36,13 +36,30 @@
 
 /* Snow Leopard headers */
 #include "sl/slci/source_file.h"
+#include "sl/slci/source_string.h"
+
+/*
+ * source_type enumeration
+ */
+enum slci_source_type {
+	ST_SOURCE_FILE,
+        ST_SOURCE_STRING
+};
+
+typedef enum slci_source_type slci_source_type;
 
 /*
  * source_position structure
  */
 struct slci_source_position
 {
-	slci_source_file* file;
+	slci_source_type source_type;
+
+	union {
+		slci_source_file* file;
+		slci_source_string* string;
+	};
+
 	size_t line;
 	size_t position;
 };
@@ -57,7 +74,16 @@ extern const slci_source_position NoSourcePosition;
 /*
  * Initializer functions.
  */
-slci_source_position* initialize_source_position (slci_source_file*, size_t, size_t);
+slci_source_position* initialize_source_position_with_file (
+	slci_source_file*,
+	size_t,
+	size_t
+	);
+slci_source_position* initialize_source_position_with_string (
+	slci_source_string*,
+	size_t,
+	size_t
+	);
 void destroy_source_position (slci_source_position*);
 
 /*

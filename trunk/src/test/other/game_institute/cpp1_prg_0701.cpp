@@ -27,39 +27,71 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_READER_H_
-#define _SL_SLCI_READER_H_
-
-/* Standard C headers */
-#include <stdbool.h>
+/* Standard C++ headers */
+#include <iostream>
 
 /* Snow Leopard headers */
-#include "sl/slci/source_file.h"
-#include "sl/slci/source_position.h"
-#include "sl/slci/source_string.h"
+#include "cpp1_prg_0701_01.hpp"
 
 /*
- * Initialize functions.
+ * This program uses the vector class and exercises most of its methods.
  */
-bool initialize_reader_with_file (char*);
-bool initialize_reader_with_string (char*, char*);
-void destroy_reader ();
+int
+main ()
+{
+	using std::cout;
+	using std::endl;
+	
+	/* 1: Construct 3 vectors */
+	float coords[3] = {1.0f, 2.0f, 3.0f};
 
-/*
- * Reader functions.
- */
-char get_next_char ();
-char get_current_char ();
-char get_previous_char ();
-bool put_back_char (char);
+	vector3 u;
+	vector3 v(coords);
+	vector3 w(-5.0f, 2.0f, 0.0f);
 
-/*
- * Source position functions.
- */
-slci_source_file* get_current_source_file ();
-slci_source_position get_current_source_position ();
-slci_source_string* get_current_source_string ();
+	/* 2: Print the 3 vectors */
+	cout << "u = ";
+	u.print ();
+	cout << "v = ";
+	v.print ();
+	cout << "w = ";
+	w.print ();
+	cout << endl;
+	
+	/* 3: u = v + w */
+	u = v.add (w);
+	cout << "u = ";
+	u.print ();
+	cout <<  endl;
 
-#endif /* !_SL_SLCI_READER_H_ */
+	/* 4: v = v / ||v|| */
+	v.normalize ();
+	cout << "unit v = ";
+	v.print ();
+	cout << "length v = " << v.length () << endl;
+	cout << endl;
+
+	/* 5: dotP = u * w */
+	float dotP = u.dot (w);
+	cout << "dot product u w = " << dotP << endl;
+	cout << endl;
+
+	/* 6: convert to array representation */
+	float* array = v.to_array ();
+
+	/* 7: print out each element and verify with v */
+	cout << "[0] = " << array[0] << ", "
+	     << "[1] = " << array[1] << ", "
+	     << "[2] = " << array[2] << endl;
+	cout << endl;
+
+	/* 8: create a new vector from user input */
+	cout << "Input vector..." << endl;
+	vector3 m;
+	m.input ();
+	cout << "m = ";
+	m.print ();
+	cout << endl;
+}
 
 /*>- EOF -<*/

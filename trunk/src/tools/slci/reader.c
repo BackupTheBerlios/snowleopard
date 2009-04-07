@@ -37,6 +37,7 @@
 #include "sl/slci/reader.h"
 #include "sl/slci/source_file.h"
 #include "sl/slci/source_position.h"
+#include "sl/slci/source_string.h"
 
 /*
  * Initial reader stack size.
@@ -63,10 +64,10 @@ int previous_char;
 slci_source_position current_position;
 
 /*
- * Initialize reader.
+ * Initialize reader with file.
  */
 bool
-initialize_reader (char* file)
+initialize_reader_with_file (char* file)
 {
 	/* Initialize file stack */
 	file_stack_reserved = InitialStackSize;
@@ -76,16 +77,43 @@ initialize_reader (char* file)
 
 	/* Add first file */
 	push_file_stack (
-		initialize_source_position (
+		initialize_source_position_with_file (
 			initialize_source_file (file),
 			0,
 			0
 			)
 		);
-	
-        /* Set previous character */
+
+	/* Set previous character */
 	current_char = 0;
-	
+
+	return true;
+}
+
+/*
+ * Initialize reader with file.
+ */
+bool
+initialize_reader_with_string (char* original_source, char* preprocessed_source)
+{
+	/* Initialize file stack */
+	file_stack_reserved = InitialStackSize;
+	file_stack =
+	    malloc (sizeof (slci_source_position* [file_stack_reserved]));
+	file_stack_depth = InitialStackDepth;
+
+	/* Add first file */
+	push_file_stack (
+		initialize_source_position_with_string (
+			initialize_source_string (original_source, preprocessed_source),
+			0,
+			0
+			)
+		);
+
+	/* Set previous character */
+	current_char = 0;
+
 	return true;
 }
 
@@ -96,7 +124,7 @@ void
 destroy_reader ()
 {
 	size_t i;
-	
+
 	for (i = file_stack_depth; i != 0; --i)
 	{
 		destroy_source_position (file_stack[i - 1]);
@@ -112,16 +140,20 @@ char
 get_next_char ()
 {
 	previous_char = current_char;
-	
+
 	if (current_char == EOF)
 		return EOF;
-	
+
 	slci_source_position* file = top_file_stack ();
-	
+
 	if (file == 0)
 		return EOF;
-	
-	current_char = fgetc (file->file->stream);
+
+	if (file->source_type == ST_SOURCE_FILE)
+		current_char = fgetc (file->file->stream);
+	else
+		current_char = file->string->preprocessed_source[file->string->current_pos++];
+
 	current_position = copy_source_position (file);
 
 	if (current_char != '\n')
@@ -154,7 +186,7 @@ get_previous_char ()
 }
 
 /*
- * Returns the currently read file.
+ * get_current_source_file function. Returns the currently read file.
  */
 slci_source_file*
 get_current_source_file ()
@@ -163,12 +195,21 @@ get_current_source_file ()
 }
 
 /*
- * Returns the currently read source position.
+ * get_current_source_position function. Returns the currently read source position.
  */
 slci_source_position
 get_current_source_position ()
 {
 	return current_position;
+}
+
+/*
+ * get_current_source_string function. Returns the currently read string.
+ */
+slci_source_string*
+get_current_source_string ()
+{
+	return current_position.string;
 }
 
 /*
@@ -187,7 +228,7 @@ void
 push_file_stack (slci_source_position* file)
 {
 	size_t i;
-	
+
 	if (file_stack_depth == (size_t)-1)
 		file_stack_depth = 0;
 	else

@@ -78,7 +78,7 @@ slci_source_position begin_source_position;
 bool
 initialize_lexer (char* file)
 {
-	if (!initialize_reader (file))
+	if (!initialize_reader_with_file (file))
 		return false;
 
 	if (!initialize_preprocessor ())

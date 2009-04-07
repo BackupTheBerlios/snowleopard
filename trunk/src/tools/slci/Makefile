@@ -52,8 +52,8 @@ ALL_OBJECTS = binary_search.o cpp_symtab.o cpp_symtab_built_in.o driver.o \
 	      error_codes.o error_handling.o hash_function.o info.o lexer.o \
 	      lexer_functions.o main.o misc.o parser.o parse_objects.o parse_tree.o \
 	      preprocessor.o preprocessor_symtab.o reader.o settings.o source_file.o \
-	      source_position.o string.o symbol_table.o token.o type_info.o \
-	      types.o version.o
+	      source_position.o source_string.o string.o symbol_table.o token.o \
+	      type_info.o types.o version.o
 
 BINARY_SEARCH_DEPENDS = \
 	$(SLCI_INCLUDE)/binary_search.h $(SLCI_INCLUDE)/string.h
@@ -163,7 +163,7 @@ PREPROCESSOR_SYMTAB_DEPENDS = \
 
 READER_DEPENDS = \
 	$(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_file.h \
-	$(SLCI_INCLUDE)/source_position.h
+	$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/source_string.h
 
 SETTINGS_DEPENDS = \
 	$(SLCI_INCLUDE)/settings.h
@@ -172,7 +172,11 @@ SOURCE_FILE_DEPENS = \
 	$(SLCI_INCLUDE)/source_file.h
 
 SOURCE_POSITION_DEPENDS = \
-	$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/source_file.h
+	$(SLCI_INCLUDE)/source_file.h $(SLCI_INCLUDE)/source_position.h \
+	$(SLCI_INCLUDE)/source_string.h
+
+SOURCE_STRING_DEPENDS = \
+	$(SLCI_INCLUDE)/source_string.h
 
 STRING_DEPENDS = \
 	$(SLCI_INCLUDE)/string.h
@@ -269,6 +273,9 @@ source_file.o: source_file.c $(SOURCE_FILE_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 source_position.o: source_position.c $(SOURCE_POSITION_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
+
+source_string.o: source_string.c $(SOURCE_STRING_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 symbol_table.o: symbol_table.c $(SYMBOL_TABLE_DEPENDS)

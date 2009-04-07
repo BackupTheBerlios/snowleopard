@@ -27,39 +27,32 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_READER_H_
-#define _SL_SLCI_READER_H_
-
-/* Standard C headers */
-#include <stdbool.h>
-
-/* Snow Leopard headers */
-#include "sl/slci/source_file.h"
-#include "sl/slci/source_position.h"
-#include "sl/slci/source_string.h"
+#ifndef _SL_SLCI_SOURCE_STRING_H_
+#define _SL_SLCI_SOURCE_STRING_H_
 
 /*
- * Initialize functions.
+ * source_string structure
  */
-bool initialize_reader_with_file (char*);
-bool initialize_reader_with_string (char*, char*);
-void destroy_reader ();
+struct slci_source_string
+{
+	char* original_source;
+	char* preprocessed_source;
+	size_t current_pos;
+};
+
+typedef struct slci_source_string slci_source_string;
 
 /*
- * Reader functions.
+ * Initializer functions.
  */
-char get_next_char ();
-char get_current_char ();
-char get_previous_char ();
-bool put_back_char (char);
+slci_source_string* initialize_source_string (char*, char*);
+void destroy_source_string (slci_source_string*);
 
 /*
  * Source position functions.
  */
-slci_source_file* get_current_source_file ();
-slci_source_position get_current_source_position ();
-slci_source_string* get_current_source_string ();
+slci_source_string copy_source_string (const slci_source_string*);
 
-#endif /* !_SL_SLCI_READER_H_ */
+#endif /* !_SL_SLCI_SOURCE_STRING_H_ */
 
 /*>- EOF -<*/
