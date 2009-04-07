@@ -101,7 +101,8 @@ void
 destroy_symtab_entry (slci_symtab_entry* entry)
 {
 	/* Do not free memory for built-in types */
-	if (entry->token.type != TT_BUILT_IN)
+	if (entry->token.type != TT_BUILT_IN
+	    && entry->token.type != TT_PREPROCESSOR_BUILT_IN)
 		free (entry->key);
 	
 	entry->key = 0;

@@ -44,15 +44,16 @@
  */
 enum slci_token_type
 	{
-		TT_BUILT_IN,     /* Built in type token */
-		TT_COMMENT,      /* Comment token */
-	        TT_EMPTY,        /* Empty token */
-		TT_EOF,          /* EOF token */         
-		TT_IDENTIFIER,    /* Identifier token */
-		TT_KEYWORD,      /* Keyword token */
-		TT_LITERAL,      /* Literal token */
-		TT_PREPROCESSOR, /* Preprocessor token */
-		TT_PUNCTUATION   /* Punctuation token */
+		TT_BUILT_IN,              /* Built in type token */
+		TT_COMMENT,               /* Comment token */
+	        TT_EMPTY,                 /* Empty token */
+		TT_EOF,                   /* EOF token */         
+		TT_IDENTIFIER,            /* Identifier token */
+		TT_KEYWORD,               /* Keyword token */
+		TT_LITERAL,               /* Literal token */
+		TT_PREPROCESSOR,          /* Preprocessor token */
+		TT_PREPROCESSOR_BUILT_IN, /* Preprocessor built in token */
+		TT_PUNCTUATION            /* Punctuation token */
 	};
 
 typedef enum slci_token_type slci_token_type;
@@ -265,6 +266,7 @@ slci_token eof_token ();
 slci_token identifier_token (symtab_key_t, slci_source_position);
 slci_token keyword_token (slci_keyword, slci_source_position);
 slci_token preprocessor_token (const slci_string*, slci_source_position);
+slci_token preprocessor_built_in_token (char*, slci_source_position);
 slci_token punctuation_token (slci_punctuation, slci_source_position);
 slci_token string_token (const slci_string*, slci_source_position);
 slci_token wcharacter_token (wchar_t, slci_source_position);

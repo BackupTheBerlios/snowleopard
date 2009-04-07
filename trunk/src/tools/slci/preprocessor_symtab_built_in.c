@@ -29,8 +29,10 @@
 
 /* Standard C headers */
 #include <stdbool.h>
+#include <stdlib.h>
 
 /* Snow Leopard headers */
+#include "sl/slci/preprocessor_symtab.h"
 #include "sl/slci/source_position.h"
 #include "sl/slci/symbol_table.h"
 #include "sl/slci/token.h"
@@ -45,13 +47,13 @@ bool create_built_in_macro (char*, char*);
  * load_built_in_types function. Loads the built in types into the symbol table.
  */
 bool
-load_built_macros ()
+load_built_in_macros ()
 {
 	bool ok = true;
 	char* buffer;
 	
 	/* Snow Leopard macros */
-	char* buffer = malloc (sizeof (char[MaxVersionLabelSize]));
+        buffer = malloc (sizeof (char[MaxVersionLabelSize]));
 	buffer = get_version_string (buffer);
 	ok = create_built_in_macro ("__SLCC__", buffer);
 	free (buffer);
@@ -74,7 +76,10 @@ create_built_in_macro (char* token, char* value)
 	if (!set_symtab_entry (
 		    &preprocessor_symtab,
 		    token,
-		    preprocessor_token (token, NoSourcePosition),
+		    preprocessor_built_in_token (
+			    token,
+			    NoSourcePosition
+			    ),
 		    NoSourcePosition
 		    ))
 		return false;

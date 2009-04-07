@@ -328,7 +328,25 @@ preprocessor_token (const slci_string* s, slci_source_position pos)
 	token.pos = pos;
 
 	token.preprocessor = get_c_string (s);
+	
+	/* Cut last character from string (it's \n) */
 	token.preprocessor[strlen (token.preprocessor) - 1] = '\0';
+
+	return token;
+}
+
+/*
+ * preprocessor_built_in_token function. This function returns a preprocessor built in token.
+ */
+slci_token
+preprocessor_built_in_token (char* s, slci_source_position pos)
+{
+	slci_token token;
+
+	token.type = TT_PREPROCESSOR_BUILT_IN;
+	token.pos = pos;
+
+	token.preprocessor = s;
 
 	return token;
 }

@@ -48,12 +48,13 @@ SL_INCLUDE = ../../include
 #
 # All objects.
 #
-ALL_OBJECTS = binary_search.o cpp_symtab.o cpp_symtab_built_in.o driver.o \
-	      error_codes.o error_handling.o hash_function.o info.o lexer.o \
-	      lexer_functions.o main.o misc.o parser.o parse_objects.o parse_tree.o \
-	      preprocessor.o preprocessor_symtab.o reader.o settings.o source_file.o \
-	      source_position.o source_string.o string.o symbol_table.o token.o \
-	      type_info.o types.o version.o
+ALL_OBJECTS = \
+	binary_search.o cpp_symtab.o cpp_symtab_built_in.o driver.o error_codes.o \
+	error_handling.o hash_function.o info.o lexer.o lexer_functions.o main.o \
+	misc.o parser.o parse_objects.o parse_tree.o preprocessor.o \
+	preprocessor_symtab.o preprocessor_symtab_built_in.o reader.o settings.o \
+	source_file.o source_position.o source_string.o string.o symbol_table.o \
+	token.o type_info.o types.o version.o
 
 BINARY_SEARCH_DEPENDS = \
 	$(SLCI_INCLUDE)/binary_search.h $(SLCI_INCLUDE)/string.h
@@ -161,6 +162,13 @@ PREPROCESSOR_SYMTAB_DEPENDS = \
 	$(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h \
 	$(SLCI_INCLUDE)/types.h $(SLCI_INCLUDE)/type_info.h
 
+PREPROCESSOR_SYMTAB_BUILT_IN_DEPENDS = \
+	$(SLCI_INCLUDE)/hash_function.h $(SLCI_INCLUDE)/literal.h \
+	$(SLCI_INCLUDE)/preprocessor_symtab.h $(SLCI_INCLUDE)/source_file.h \
+	$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/source_string.h \
+	$(SLCI_INCLUDE)/symbol_table.h $(SLCI_INCLUDE)/token.h \
+	$(SLCI_INCLUDE)/types.h $(SLCI_INCLUDE)/type_info.h
+
 READER_DEPENDS = \
 	$(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_file.h \
 	$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/source_string.h
@@ -261,6 +269,10 @@ preprocessor.o: preprocessor.c $(PREPROCESSOR_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 preprocessor_symtab.o: preprocessor_symtab.c $(PREPROCESSOR_SYMTAB_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
+
+preprocessor_symtab_built_in.o: \
+	preprocessor_symtab_built_in.c $(PREPROCESSOR_SYMTAB_BUILT_IN_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 reader.o: reader.c $(READER_DEPENDS)

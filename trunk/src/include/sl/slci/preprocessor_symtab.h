@@ -49,6 +49,11 @@ void destroy_preprocessor_symtab ();
  */
 symtab_key_t get_macro_position (const slci_string*);
 
+/*
+ * Load built in macros.
+ */
+bool load_built_in_macros ();
+
 #endif /* !_SL_SLCI_PREPROCESSOR_SYMBOL_TABLE_H_ */
 
 /*>- EOF -<*/

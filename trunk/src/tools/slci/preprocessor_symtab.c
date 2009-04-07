@@ -28,9 +28,11 @@
  */
 
 /* Snow Leopard headers */
+#include "sl/slci/error_codes.h"
+#include "sl/slci/error_handling.h"
 #include "sl/slci/hash_function.h"
 #include "sl/slci/preprocessor_symtab.h"
-#include "sl/slci/types.h"
+#include "sl/slci/symbol_table.h"
 
 slci_symtab preprocessor_symtab;
 
@@ -48,6 +50,14 @@ initialize_preprocessor_symtab ()
 	if (preprocessor_symtab.size == 0)
 		return false;
 
+	if (!load_built_in_macros ())
+	{
+		raise_and_display_program_error_0 (
+			ERR_SYMTAB_DUPLICATE_BUILT_IN
+			);
+		return false;
+	}
+	
 	return true;
 }
 

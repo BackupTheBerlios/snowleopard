@@ -61,6 +61,23 @@ initialize_string ()
 }
 
 /*
+ * initialize_string_with_data function. Initialize a string object
+ * with data.
+ */
+slci_string
+initialize_string_with_data (const char* data)
+{
+	size_t i;
+	slci_string string  = initialize_string ();
+
+	for (i = 0; data[i] != '\0'; ++i)
+		append_string (&string, data[i]);
+
+	return string;
+
+}
+
+/*
  * initialize_wstring function. Initialize a new wstring object.
  */
 slci_wstring

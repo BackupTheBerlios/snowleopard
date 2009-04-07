@@ -34,6 +34,7 @@
 #include "sl/slci/cpp_symtab.h"
 #include "sl/slci/error_codes.h"
 #include "sl/slci/error_handling.h"
+#include "sl/slci/hash_function.h"
 #include "sl/slci/symbol_table.h"
 
 /*

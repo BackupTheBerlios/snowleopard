@@ -62,6 +62,7 @@ typedef struct slci_wstring slci_wstring;
  * Function prototypes.
  */
 slci_string initialize_string ();
+slci_string initialize_string_with_data (const char*);
 slci_wstring initialize_wstring ();
 void destroy_string (slci_string*);
 void destroy_wstring (slci_wstring*);

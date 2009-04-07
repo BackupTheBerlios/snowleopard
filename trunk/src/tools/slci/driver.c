@@ -68,7 +68,8 @@ destroy_driver ()
 }
 
 /*
- * Function parses the command-line arguments provided by the user.
+ * parse_command_line function. Function parses the command-line arguments
+ * provided by the user.
  */
 bool
 parse_command_line (int argc, char** argv)
