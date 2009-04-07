@@ -27,28 +27,59 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_VERSION_H_
-#define _SL_SLCI_VERSION_H_
+/* Standard C headers */
+#include <stdbool.h>
+
+/* Snow Leopard headers */
+#include "sl/slci/source_position.h"
+#include "sl/slci/symbol_table.h"
+#include "sl/slci/token.h"
+#include "sl/slci/version.h"
 
 /*
- * Version numbers.
+ * Private functions.
  */
-extern const unsigned short MajorVersion;
-extern const unsigned short MinorVersion;
-extern const unsigned short Release;
-extern const unsigned int Build;
-extern const char * VersionLabel;
+bool create_built_in_macro (char*, char*);
 
 /*
- * Global variables.
+ * load_built_in_types function. Loads the built in types into the symbol table.
  */
-extern const size_t MaxVersionLabelSize;
+bool
+load_built_macros ()
+{
+	bool ok = true;
+	char* buffer;
+	
+	/* Snow Leopard macros */
+	char* buffer = malloc (sizeof (char[MaxVersionLabelSize]));
+	buffer = get_version_string (buffer);
+	ok = create_built_in_macro ("__SLCC__", buffer);
+	free (buffer);
+	
+	/* Standard C macros */
+	ok = create_built_in_macro ("__STDC__", "");
+
+	/* Standard C++ macros */
+	ok = create_built_in_macro ("__STDCPP__", "");
+	
+	return ok;
+}
 
 /*
- * Version functions.
+ * create_built_in_type function. Create a built-in type symbol table entry.
  */
-char* get_version_string (char*);
-
-#endif /* !_SL_SLCI_VERSION_H_ */
+bool
+create_built_in_macro (char* token, char* value)
+{
+	if (!set_symtab_entry (
+		    &preprocessor_symtab,
+		    token,
+		    preprocessor_token (token, NoSourcePosition),
+		    NoSourcePosition
+		    ))
+		return false;
+	
+	return true;
+}
 
 /*>- EOF -<*/

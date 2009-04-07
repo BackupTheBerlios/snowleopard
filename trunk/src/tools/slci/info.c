@@ -41,7 +41,7 @@
 void
 print_info ()
 {
-	char* buffer = malloc (sizeof (char[50]));
+	char* buffer = malloc (sizeof (char[MaxVersionLabelSize]));
 
 	get_version_string (buffer);
 	

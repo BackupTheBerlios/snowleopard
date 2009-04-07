@@ -41,6 +41,7 @@ const unsigned short MinorVersion = 0;
 const unsigned short Release = 1;
 const unsigned int Build = 1;
 const char * VersionLabel = "Initial Test Version";
+const size_t MaxVersionLabelSize = 512;
 
 /*
  * Prints program usage information.
