@@ -51,8 +51,8 @@ slci_settings* settings;
 slci_settings*
 initialize_settings ()
 {
-	char* current_include = ".";
-	char* current_source = ".";
+	char* current_include = "./";
+	char* current_source = "./";
 
 	settings = malloc (sizeof (slci_settings));
 
@@ -146,12 +146,12 @@ add_path (char*** array, const size_t size, const char* path)
 	size_t path_size = strlen(path);
 
 	/* Copy new path (add ending / if neccessary) */
-	char* new_path = malloc (path_size + 2);
+	char* new_path = malloc (path_size + 1);
 	strcpy (new_path, path);
-	if (new_path[path_size] != '/')
+	if (new_path[path_size - 1] != '/')
 	{
-		new_path[path_size + 1] = '/';
-		new_path[path_size + 2] = '\0';
+		new_path[path_size] = '/';
+		new_path[path_size + 1] = '\0';
 	}
 
 	/* Copy old array */

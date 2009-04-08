@@ -148,9 +148,6 @@ get_next_char ()
 {
 	previous_char = current_char;
 
-	if (current_char == EOF)
-		return EOF;
-
 	slci_source_position* file = top_file_stack ();
 
 	if (file == 0)
@@ -173,6 +170,19 @@ get_next_char ()
 		file->position = 0;
 	}
 
+	if (current_char == EOF)
+	{
+		slci_source_position* file;
+		if (file_stack_depth == 0)
+			return EOF;
+
+		file = pop_file_stack ();
+		if (file != 0)
+			destroy_source_position (file);
+
+		return get_next_char ();
+	}
+	
 	return current_char;
 }
 
@@ -202,8 +212,21 @@ get_previous_char ()
 bool
 set_nested_file (char* file)
 {
+	size_t original_depth = file_stack_depth;
+	
+	/* Add first file */
+	push_file_stack (
+		initialize_source_position_with_file (
+			initialize_source_file (file),
+			0,
+			0
+			)
+		);
 
-	return false;
+	if (original_depth + 1 == file_stack_depth)
+		return true;
+	else
+		return false;
 }
 
 /*

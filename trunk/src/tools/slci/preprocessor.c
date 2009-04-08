@@ -30,10 +30,12 @@
 /* Standard C headers */
 #include <stdbool.h>
 #include <stddef.h>
+#include <string.h>
 
 /* Snow Leopard headers */
 #include "sl/slci/error_codes.h"
 #include "sl/slci/error_handling.h"
+#include "sl/slci/misc.h"
 #include "sl/slci/preprocessor_symtab.h"
 #include "sl/slci/preprocessor.h"
 #include "sl/slci/reader.h"
@@ -88,7 +90,23 @@ destroy_preprocessor ()
 bool
 check_preprocessor_command (const slci_string* s, const char* command)
 {
-	return false;
+	size_t i;
+	size_t offset;
+	size_t size = s->size;
+	
+	/* Start over # and whitespace */
+	for (i = 0; i != size; ++i)
+		if (get_char_from_string (s, i) != '#'
+		    && !is_whitespace (get_char_from_string (s, i)))
+			break;
+
+	offset = i;
+	size = strlen (command);
+	for (i = 0; i != size; ++i)
+		if (get_char_from_string (s, i + offset) != command[i])
+			return false;
+	
+	return true;
 }
 
 /*

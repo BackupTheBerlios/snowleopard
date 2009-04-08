@@ -228,14 +228,14 @@ get_c_string_between (const slci_string* s, char d_begin, char d_end)
 		if (bpos == 0 && s->value[epos] == d_begin)
 			bpos = epos + 1;
 		else if (bpos != 0 && s->value[epos] == d_end)
+		{
 			break;
+		}
 	}
 
-	if (bpos != 0 || epos != s->size)
+	if (bpos == 0 || epos == s->size)
 		return 0;
-
-	epos--;
-
+	
 	char* cstr = malloc (sizeof (char[epos - bpos + 1]));
 
 	strncpy (cstr, s->value + bpos, epos - bpos);

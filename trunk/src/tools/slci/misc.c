@@ -87,7 +87,7 @@ file_exists(const char * file)
 {
 	FILE* f;
 
-	if (f = fopen(file, "r"))
+	if ((f = fopen(file, "r")) != 0)
 	{
 		fclose(f);
 		return true;
