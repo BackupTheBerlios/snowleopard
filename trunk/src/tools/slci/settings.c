@@ -50,7 +50,7 @@ slci_settings* settings;
  */
 slci_settings*
 initialize_settings ()
-{	
+{
 	char* current_include = ".";
 	char* current_source = ".";
 
@@ -70,7 +70,7 @@ initialize_settings ()
 	settings->include_paths = malloc (sizeof (char* [1]));
 	settings->include_paths[0] = current_include;
 	settings->size_include_paths = 1;
-	
+
 	return settings;
 }
 
@@ -81,11 +81,11 @@ void
 destroy_settings ()
 {
 	size_t i;
-	
+
 	if (settings == 0)
 		/* There is nothing to do */
 		return;
-	
+
 	/* Free memory for source_file */
 	if (settings->source_file != 0)
 		free (settings->source_file);
@@ -97,7 +97,7 @@ destroy_settings ()
 			free (settings->source_paths[i - 1]);
 		free (settings->source_paths);
 	}
-	
+
 	/* Free include_paths */
 	if (settings->size_include_paths > 1)
 	{
@@ -105,7 +105,7 @@ destroy_settings ()
 			free (settings->include_paths[i - 1]);
 		free (settings->include_paths);
 	}
-	
+
 	/* Free object */
 	free (settings);
 }
@@ -116,7 +116,7 @@ destroy_settings ()
 void
 add_include_path (const char* path)
 {
-	settings->size_include_paths = 
+	settings->size_include_paths =
 	    add_path (
 		    &settings->include_paths,
 		    settings->size_include_paths,
@@ -143,14 +143,20 @@ size_t
 add_path (char*** array, const size_t size, const char* path)
 {
 	size_t i;
-	
-	/* Copy new path */
-	char* new_path = malloc (strlen (path) + 1);
+	size_t path_size = strlen(path);
+
+	/* Copy new path (add ending / if neccessary) */
+	char* new_path = malloc (path_size + 2);
 	strcpy (new_path, path);
+	if (new_path[path_size] != '/')
+	{
+		new_path[path_size + 1] = '/';
+		new_path[path_size + 2] = '\0';
+	}
 
 	/* Copy old array */
 	char** old = *array;
-	
+
 	/* Create new array */
 	char** new = malloc (sizeof (char* [size + 1]));
 	for (i = 0; i != size; ++i)

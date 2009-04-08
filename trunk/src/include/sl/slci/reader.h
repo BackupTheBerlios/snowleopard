@@ -54,11 +54,21 @@ char get_previous_char ();
 bool put_back_char (char);
 
 /*
+ * Nested files funtions.
+ */
+bool set_nested_file (char*);
+
+/*
  * Source position functions.
  */
 slci_source_file* get_current_source_file ();
 slci_source_position get_current_source_position ();
 slci_source_string* get_current_source_string ();
+
+/*
+ * Include/Source path functions.
+ */
+char* get_full_path_for_file (char*);
 
 #endif /* !_SL_SLCI_READER_H_ */
 

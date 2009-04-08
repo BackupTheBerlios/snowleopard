@@ -53,10 +53,10 @@ initialize_string ()
 
 	s.size = 0;
 	s.reserved = InitialStringSize;
-	
+
 	s.value = malloc (sizeof (char[InitialStringSize]));
 	s.value[0] = '\0';
-	
+
 	return s;
 }
 
@@ -87,10 +87,10 @@ initialize_wstring ()
 
 	s.size = 0;
 	s.reserved = InitialStringSize;
-	
+
 	s.value = malloc (sizeof (wchar_t[InitialStringSize]));
 	s.value[0] = '\0';
-	
+
 	return s;
 }
 
@@ -122,20 +122,8 @@ first_none_whitespace (const slci_string* s, size_t after_pos)
 	for (/* No initializer needed */ ; after_pos != s->size; ++after_pos)
 		if (!is_whitespace (s->value[after_pos]))
 			return after_pos;
-	
+
 	return MaxSizeT;
-}
-
-/*
- * get_char_from_string function. Get the character at position from the string.
- */
-char
-get_char_from_string (const slci_string* s, size_t pos)
-{
-	if (pos > s->size)
-		return '\0';
-
-	return s->value[pos];
 }
 
 /*
@@ -156,7 +144,7 @@ append_string (slci_string* s, char c)
 				strcpy (s->value, old);
 			else
 				s->value[0] = '\0';
-			
+
 			free (old);
 		}
 		else
@@ -187,7 +175,7 @@ append_wstring (slci_wstring* s, wchar_t c)
 				wcscpy (s->value, old);
 			else
 				s->value[0] = '\0';
-			
+
 			free (old);
 		}
 		else
@@ -201,14 +189,56 @@ append_wstring (slci_wstring* s, wchar_t c)
 }
 
 /*
+ * get_char_from_string function. Get the character at position from the string.
+ */
+char
+get_char_from_string (const slci_string* s, size_t pos)
+{
+	if (pos > s->size)
+		return '\0';
+
+	return s->value[pos];
+}
+
+/*
  * get_c_string function. Returns a copy of the string as C string.
  */
 char*
-get_c_string (const slci_string* str)
+get_c_string (const slci_string* s)
 {
-	char* cstr = malloc (sizeof (char[str->size + 1]));
+	char* cstr = malloc (sizeof (char[s->size + 1]));
 
-	strcpy (cstr, str->value);
+	strcpy (cstr, s->value);
+
+	return cstr;
+}
+
+/*
+ * get_c_string_between function. Returns a copy of the part of the string
+ * between the two delimiters as C string.
+ */
+char*
+get_c_string_between (const slci_string* s, char d_begin, char d_end)
+{
+	size_t bpos;
+	size_t epos;
+
+	for (bpos = epos = 0; epos != s->size; ++epos)
+	{
+		if (bpos == 0 && s->value[epos] == d_begin)
+			bpos = epos + 1;
+		else if (bpos != 0 && s->value[epos] == d_end)
+			break;
+	}
+
+	if (bpos != 0 || epos != s->size)
+		return 0;
+
+	epos--;
+
+	char* cstr = malloc (sizeof (char[epos - bpos + 1]));
+
+	strncpy (cstr, s->value + bpos, epos - bpos);
 
 	return cstr;
 }
@@ -217,11 +247,11 @@ get_c_string (const slci_string* str)
  * get_wc_string function. Returns a copy of the wstring as wide character string.
  */
 wchar_t*
-get_wc_string (const slci_wstring* str)
+get_wc_string (const slci_wstring* s)
 {
-	wchar_t* wcstr = malloc (sizeof (wchar_t[str->size + 1]));
+	wchar_t* wcstr = malloc (sizeof (wchar_t[s->size + 1]));
 
-	wcscpy (wcstr, str->value);
+	wcscpy (wcstr, s->value);
 
 	return wcstr;
 }

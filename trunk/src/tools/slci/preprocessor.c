@@ -49,6 +49,7 @@ slci_error_code last_error;
 /*
  * Private functions.
  */
+static bool check_preprocessor_command (const slci_string*, const char*);
 static bool process_define (const slci_string*);
 static bool process_error (const slci_string*);
 static bool process_include (const slci_string*);
@@ -78,6 +79,16 @@ void
 destroy_preprocessor ()
 {
 	destroy_preprocessor_symtab ();
+}
+
+/*
+ * check_preprocessor_command function. Check if the input string is the
+ * preprocessor command given.
+ */
+bool
+check_preprocessor_command (const slci_string* s, const char* command)
+{
+	return false;
 }
 
 /*
@@ -156,7 +167,27 @@ bool process_error (const slci_string* s)
  */
 bool process_include (const slci_string* s)
 {
-	return false;
+	char* file;
+	
+	/* Is this an #include line */
+	if (!check_preprocessor_command (s, "include"))
+		return false;
+
+	/* Get file name */
+	if ((file = get_c_string_between (s, '\"', '\"')) == 0)
+		if ((file = get_c_string_between (s, '<', '>')) == 0)
+			return false;
+
+	/* Get full path to file */
+        file = get_full_path_for_file (file);
+	if (file == 0)
+		return false;
+
+	/* Set file to be read for next token */
+	if (!set_nested_file (file))
+		return false;
+	
+	return true;
 }
 
 /*

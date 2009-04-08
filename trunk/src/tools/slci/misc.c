@@ -57,7 +57,7 @@ create_string_3 (const char* first, const char* second, const char* third)
 	char* buffer = malloc (sizeof (char[
 			strlen (first) + strlen (second) + strlen (third) + 3
 			]));
-	
+
 	sprintf (buffer, "%s %s %s", first, second, third);
 
 	return buffer;
@@ -73,10 +73,27 @@ create_string_from_format_1 (const char* fmt, const char* param1)
 	char* buffer = malloc (sizeof (char[
 			strlen (fmt) + strlen (param1) + 1
 			]));
-	
+
 	sprintf (buffer, fmt, param1);
 
 	return buffer;
+}
+
+/*
+ * file_exists function. Check if a file exists.
+ */
+bool
+file_exists(const char * file)
+{
+	FILE* f;
+
+	if (f = fopen(file, "r"))
+	{
+		fclose(f);
+		return true;
+	}
+
+	return false;
 }
 
 /*
@@ -91,7 +108,7 @@ get_hex_value (char c)
 	case '0':
 		return 0;
 		break;
-		
+
 	case '1':
 		return 1;
 		break;
@@ -243,7 +260,7 @@ is_hexadecimal (char c)
 	case 'f':
 		return true;
 		break;
-		
+
 	default:
 		return false;
 		break;
@@ -265,7 +282,7 @@ is_whitespace (char c)
 	case '\t':
 		return true;
 		break;
-		
+
 	default:
 		return false;
 		break;

@@ -32,9 +32,12 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /* Snow Leopard headers */
+#include "sl/slci/misc.h"
 #include "sl/slci/reader.h"
+#include "sl/slci/settings.h"
 #include "sl/slci/source_file.h"
 #include "sl/slci/source_position.h"
 #include "sl/slci/source_string.h"
@@ -44,6 +47,7 @@
  */
 const size_t InitialStackSize = 10;
 const size_t InitialStackDepth = (size_t)-1;
+const size_t MaxPathStringSize = 65536;
 
 /*
  * Private function prototypes.
@@ -105,7 +109,10 @@ initialize_reader_with_string (char* original_source, char* preprocessed_source)
 	/* Add first file */
 	push_file_stack (
 		initialize_source_position_with_string (
-			initialize_source_string (original_source, preprocessed_source),
+			initialize_source_string (
+				original_source,
+				preprocessed_source
+				),
 			0,
 			0
 			)
@@ -152,7 +159,9 @@ get_next_char ()
 	if (file->source_type == ST_SOURCE_FILE)
 		current_char = fgetc (file->file->stream);
 	else
-		current_char = file->string->preprocessed_source[file->string->current_pos++];
+		current_char = file->string->preprocessed_source[
+			file->string->current_pos++
+			];
 
 	current_position = copy_source_position (file);
 
@@ -186,6 +195,18 @@ get_previous_char ()
 }
 
 /*
+ * set_nested_file function. Sets up a nested file (include or source) to be read
+ * by the reader. It leaves it so the next get_next_char will read the first
+ * character of this file.
+ */
+bool
+set_nested_file (char* file)
+{
+
+	return false;
+}
+
+/*
  * get_current_source_file function. Returns the currently read file.
  */
 slci_source_file*
@@ -210,6 +231,62 @@ slci_source_string*
 get_current_source_string ()
 {
 	return current_position.string;
+}
+
+/*
+ * get_full_path_for_file function. Returns the full path for the file name
+ * given.
+ *
+ * Search is performed as follows:
+ * 1) Search in include paths given at the command line.
+ * 2) Search in current directory.
+ * 3) Search in /usr/include /usr/local/include
+ */
+char*
+get_full_path_for_file (char* file)
+{
+	size_t i;
+	char* path = malloc (sizeof (char[MaxPathStringSize]));
+
+	/* Try each of the include paths given at the command line */
+	for (i = 0; i != settings->size_include_paths; ++i)
+	{
+		size_t size = strlen (settings->include_paths[i]);
+		strcpy (path, settings->include_paths[i]);
+		strcpy (path + size, file);
+		if (file_exists (path))
+			return path;
+	}
+
+	/* Try each of the source paths given at the command line */
+	for (i = 0; i != settings->size_source_paths; ++i)
+	{
+		size_t size = strlen (settings->source_paths[i]);
+		strcpy (path, settings->source_paths[i]);
+		strcpy (path + size, file);
+		if (file_exists (path))
+			return path;
+	}
+
+	/* Try the current directory */
+	strcpy (path, file);
+	if (file_exists (path))
+		return path;
+
+	/* Try /usr/include */
+	strcpy (path, "/usr/include/");
+	strcpy (path + 13, file);
+	if (file_exists (path))
+		return path;
+
+	/* Try /usr/local/include */
+	strcpy (path, "/usr/local/include/");
+	strcpy (path + 19, file);
+	if (file_exists (path))
+		return path;
+
+	free (path);
+	return 0;
 }
 
 /*
