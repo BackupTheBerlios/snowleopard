@@ -45,16 +45,16 @@
 /*
  * Private global variables
  */
+bool skipping_code;
 size_t current_nesting;
 slci_error_code last_error;
 
 /*
  * Private functions.
  */
+static bool check_condition (const slci_string*);
 static bool check_preprocessor_command (const slci_string*, const char*);
-static slci_string* skip_to_elif_endif ();
-static slci_string* skip_to_endif ();
-static slci_string* skip_to_else_elif_endif ();
+static char* get_define (const slci_string*);
 static bool process_define (const slci_string*);
 static bool process_error (const slci_string*);
 static bool process_include (const slci_string*);
@@ -62,6 +62,9 @@ static bool process_if (const slci_string*);
 static bool process_pragma (const slci_string*);
 static bool process_undef (const slci_string*);
 static bool process_warning (const slci_string*);
+static slci_string* skip_to_elif_endif ();
+static slci_string* skip_to_endif ();
+static slci_string* skip_to_else_elif_endif ();
 
 /*
  * initialize_preprocessor function. Initializes the preprocessor.
@@ -74,6 +77,10 @@ initialize_preprocessor ()
 		/* TODO - Display error */
 		return false;
 	}
+
+	skipping_code = false;
+	current_nesting = 0;
+	
 	return true;
 }
 
@@ -84,6 +91,17 @@ void
 destroy_preprocessor ()
 {
 	destroy_preprocessor_symtab ();
+}
+
+/*
+ * check_condition function. Checks the condition in an #IF or #ELIF
+ * statement.
+ */
+bool
+check_condition (const slci_string* s)
+{
+
+	return false;
 }
 
 /*
@@ -113,30 +131,13 @@ check_preprocessor_command (const slci_string* s, const char* command)
 }
 
 /*
- * skip_to_elif_endif function. Skip to next #ELIF or #ENDIF token at same nesting level.
+ * get_define function. Get definition used in #IFNDEF or #IFDEF.
  */
-slci_string*
-skip_to_elif_endif ()
+char*
+get_define (const slci_string* s)
 {
 
-}
-
-/*
- * skip_to_endif function. Skip to next #ENDIF token at same nesting level.
- */
-slci_string*
-skip_to_endif ()
-{
-
-}
-
-/*
- * skip_to_else_elif_endif function. Skip to next #ELSE, #ELIF and #ENDIF token at same nesting level.
- */
-slci_string*
-skip_to_else_elif_endif ()
-{
-
+	return 0;
 }
 
 /*
@@ -205,7 +206,8 @@ process_define (const slci_string* s)
 /*
  * process_error function. Processes an #error preprocessor line.
  */
-bool process_error (const slci_string* s)
+bool
+process_error (const slci_string* s)
 {
 	return false;
 }
@@ -213,7 +215,8 @@ bool process_error (const slci_string* s)
 /*
  * process_include function. Processes an #include preprocessor line.
  */
-bool process_include (const slci_string* s)
+bool
+process_include (const slci_string* s)
 {
 	char* file;
 
@@ -241,15 +244,53 @@ bool process_include (const slci_string* s)
 /*
  * process_if function. Processes an #if preprocessor line.
  */
-bool process_if (const slci_string* s)
+bool
+process_if (const slci_string* s)
 {
-	return false;
+	if (check_preprocessor_command (s, "ifndef")
+	    || check_preprocessor_command (s, "if ! defined")
+	    || (skipping_code && check_preprocessor_command (s, "elif ! defined")))
+	{
+		if (is_in_symtab (&preprocessor_symtab, get_define (s)))
+			skip_to_else_elif_endif ();
+		else
+		    skipping_code = false;
+	}
+	else if (check_preprocessor_command (s, "ifndef")
+	         || check_preprocessor_command (s, "if ! defined")
+	         || (skipping_code && check_preprocessor_command (s, "elif ! defined")))
+	{
+		if (!is_in_symtab (&preprocessor_symtab, get_define (s)))
+			skip_to_else_elif_endif ();
+		else
+			skipping_code = false;
+	}
+	else if (check_preprocessor_command (s, "if")
+	         || (skipping_code && check_preprocessor_command (s, "elif")))
+	{
+		if (check_condition (s))
+			skip_to_else_elif_endif ();
+		else
+			skipping_code = false;
+	}
+	else if (check_preprocessor_command (s, "else"))
+	{
+		if (skipping_code)
+			skipping_code = false;
+		else
+			skip_to_endif ();
+	}
+	else
+		return false;
+
+	return true;
 }
 
 /*
  * process_pragma function. Processes an #pragma preprocessor line.
  */
-bool process_pragma (const slci_string* s)
+bool
+process_pragma (const slci_string* s)
 {
 	return false;
 }
@@ -257,7 +298,8 @@ bool process_pragma (const slci_string* s)
 /*
  * process_undef function. Processes an #undef preprocessor line.
  */
-bool process_undef (const slci_string* s)
+bool
+process_undef (const slci_string* s)
 {
 	return false;
 }
@@ -265,9 +307,37 @@ bool process_undef (const slci_string* s)
 /*
  * process_warning function. Processes an #warning preprocessor line.
  */
-bool process_warning (const slci_string* s)
+bool
+process_warning (const slci_string* s)
 {
 	return false;
+}
+
+/*
+ * skip_to_elif_endif function. Skip to next #ELIF or #ENDIF token at same nesting level.
+ */
+slci_string*
+skip_to_elif_endif ()
+{
+	skipping_code = true;
+}
+
+/*
+ * skip_to_endif function. Skip to next #ENDIF token at same nesting level.
+ */
+slci_string*
+skip_to_endif ()
+{
+	skipping_code = true;
+}
+
+/*
+ * skip_to_else_elif_endif function. Skip to next #ELSE, #ELIF and #ENDIF token at same nesting level.
+ */
+slci_string*
+skip_to_else_elif_endif ()
+{
+	skipping_code = true;
 }
 
 /*>- EOF -<*/
