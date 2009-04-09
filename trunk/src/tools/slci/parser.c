@@ -95,9 +95,12 @@ parse ()
 		    && token.type != TT_LITERAL && token.type != TT_IDENTIFIER)
 			return false;
 
-		print_token (i, token);
-		++i;
-
+		if (token.type != TT_COMMENT)
+		{
+			print_token (i, token);
+			++i;
+		}
+		
 		token = get_next_token ();
 	}
 

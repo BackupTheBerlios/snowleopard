@@ -180,6 +180,8 @@ get_next_char ()
 		if (file != 0)
 			destroy_source_position (file);
 
+		current_char = '\n';
+
 		return get_next_char ();
 	}
 	
