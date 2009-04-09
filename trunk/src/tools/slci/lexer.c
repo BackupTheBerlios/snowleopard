@@ -35,7 +35,6 @@
 
 /* Snow Leopard headers */
 #include "sl/slci/binary_search.h"
-#include "sl/slci/cpp_symtab.h"
 #include "sl/slci/error_handling.h"
 #include "sl/slci/lexer.h"
 #include "sl/slci/lexer_functions.h"
@@ -44,9 +43,7 @@
 #include "sl/slci/preprocessor_symtab.h"
 #include "sl/slci/reader.h"
 #include "sl/slci/string.h"
-#include "sl/slci/symbol_table.h"
 #include "sl/slci/token.h"
-#include "sl/slci/types.h"
 
 /*
  * Private function prototypes.
@@ -61,7 +58,6 @@ static slci_token lex_punctuation ();
 static slci_token lex_string ();
 static slci_token preprocess_token (slci_string*);
 static size_t punctuation_position (const slci_string*);
-static slci_token store_identifier (const slci_string*);
 
 /*
  * Global variables.
@@ -86,7 +82,7 @@ initialize_lexer (char* file)
 		destroy_reader ();
 		return false;
 	}
-	
+
 	return true;
 }
 
@@ -113,7 +109,7 @@ get_next_token ()
 	/* Skip over whitespace */
 	while (is_whitespace (c))
 		c = lex_get_next_char (true, true);
-	
+
 	if (c == '\0')
 		return empty_token (get_current_source_position ());
 
@@ -124,7 +120,7 @@ get_next_token ()
 	begin_source_position = get_current_source_position ();
 
 	/* Lex next token */
-        if (c >= '0' && c <= '9')
+	if (c >= '0' && c <= '9')
 		current_token = lex_number ();
 	else if (c == '\'')
 		current_token = lex_character ();
@@ -136,7 +132,7 @@ get_next_token ()
 		current_token = lex_macro ();
 	else
 		current_token = lex_other ();
-	
+
 	return current_token;
 }
 
@@ -171,7 +167,7 @@ keyword_position (const slci_string* token)
 	return binary_search (
 		keyword_list,
 		keyword_list_length,
-	        token
+		        token
 		);
 }
 
@@ -190,7 +186,7 @@ lex_character ()
 
 		/* Lex character */
 		c = lex_wide_character ();
-	
+
 		/* Get ending quote */
 		d = lex_get_next_char (false, true);
 
@@ -204,7 +200,7 @@ lex_character ()
 				get_c_string (get_current_token_string ())
 				);
 		}
-		
+
 		return wcharacter_token (c, get_current_source_position ());
 	}
 	else
@@ -214,7 +210,7 @@ lex_character ()
 
 		/* Lex character */
 		c = lex_narrow_character ();
-	
+
 		/* Get ending quote */
 		d = lex_get_next_char (false, true);
 
@@ -228,14 +224,14 @@ lex_character ()
 				get_c_string (get_current_token_string ())
 				);
 		}
-		
+
 		return character_token (c, get_current_source_position ());
 	}
 }
 
 /*
  * lex_comment function. This function lexes both single and multi-line
- * comments. 
+ * comments.
  */
 slci_token
 lex_comment ()
@@ -261,10 +257,10 @@ lex_comment ()
 		get_current_token_string (),
 		get_current_source_position ()
 		);
-	
+
 	/* Read the next character */
 	c = lex_get_next_char (true, true);
-	
+
 	return token;
 }
 
@@ -275,7 +271,7 @@ slci_token
 lex_macro ()
 {
 	char c;
-	
+
 	for (;;)
 	{
 		c = lex_get_next_char (false, true);
@@ -316,7 +312,7 @@ lex_other ()
 
 		while (is_other_char_of_identifier (
 			    lex_get_next_char (false, true)))
-			append_string (&lexeme, get_current_char ());	
+			append_string (&lexeme, get_current_char ());
 
 		macro_pos = get_macro_position (&lexeme);
 		if (macro_pos != MaxSizeT)
@@ -324,13 +320,19 @@ lex_other ()
 		else {
 			pos = keyword_position (&lexeme);
 			if (pos != MaxSizeT)
-				token = keyword_token (pos, begin_source_position);
+				token = keyword_token (
+					pos,
+					begin_source_position
+					);
 			else
-				token = store_identifier (&lexeme);
+				token = identifier_token (
+					&lexeme,
+					begin_source_position
+					);
 		}
-		
+
 		destroy_string (&lexeme);
-		
+
 		return token;
 	}
 	else
@@ -350,16 +352,16 @@ lex_punctuation ()
 	append_string (&lexeme, get_current_char ());
 
 	while (is_punctuation_char (lex_get_next_char (false, true)))
-		append_string (&lexeme, get_current_char ());	
+		append_string (&lexeme, get_current_char ());
 
 	pos = punctuation_position (&lexeme);
 	if (pos != MaxSizeT)
 		token = punctuation_token (pos, begin_source_position);
 	else
 		/* TODO - Report error */ ;
-	
+
 	destroy_string (&lexeme);
-		
+
 	return token;
 }
 
@@ -375,7 +377,7 @@ lex_string ()
 		wchar_t c;
 		wchar_t prev_c = '"';
 		slci_wstring s = initialize_wstring ();
-	
+
 		/* Get second token delimiter */
 		c = lex_wide_character ();
 		for (;;)
@@ -386,7 +388,7 @@ lex_string ()
 				append_wstring (&s, c);
 			c = lex_wide_character ();
 		}
-		
+
 		return wstring_token (&s, get_current_source_position ());
 	}
 	else
@@ -395,7 +397,7 @@ lex_string ()
 		char c;
 		char prev_c = '"';
 		slci_string s = initialize_string ();
-	
+
 		/* Get second token delimiter */
 		c = lex_narrow_character ();
 		for (;;)
@@ -406,7 +408,7 @@ lex_string ()
 				append_string (&s, c);
 			c = lex_narrow_character ();
 		}
-		
+
 		return string_token (&s, get_current_source_position ());
 	}
 }
@@ -433,33 +435,8 @@ punctuation_position (const slci_string* token)
 	return binary_search (
 		punctuation_list,
 		punctuation_list_length,
-	        token
+		        token
 		);
-}
-
-/*
- * store_identifier function. Function stores an identifier in the symbol table.
- */
-slci_token
-store_identifier (const slci_string* identifier)
-{
-	symtab_key_t hash_key = generate_cpp_hash_key (get_c_string (identifier));
-	
-	slci_token token = identifier_token (
-		hash_key,
-		begin_source_position
-		);
-
-	if (!set_symtab_entry (
-		    &cpp_symtab,
-		    get_c_string (identifier),
-		    token,
-		    begin_source_position,
-		    0
-		    ))
-		/* TODO - Report error */ ;
-
-	return token;
 }
 
 /*>- EOF -<*/

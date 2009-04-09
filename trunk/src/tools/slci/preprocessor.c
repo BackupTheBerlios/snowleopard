@@ -45,13 +45,16 @@
 /*
  * Private global variables
  */
-size_t current_depth;
+size_t current_nesting;
 slci_error_code last_error;
 
 /*
  * Private functions.
  */
 static bool check_preprocessor_command (const slci_string*, const char*);
+static slci_string* skip_to_elif_endif ();
+static slci_string* skip_to_endif ();
+static slci_string* skip_to_else_elif_endif ();
 static bool process_define (const slci_string*);
 static bool process_error (const slci_string*);
 static bool process_include (const slci_string*);
@@ -93,7 +96,7 @@ check_preprocessor_command (const slci_string* s, const char* command)
 	size_t i;
 	size_t offset;
 	size_t size = s->size;
-	
+
 	/* Start over # and whitespace */
 	for (i = 0; i != size; ++i)
 		if (get_char_from_string (s, i) != '#'
@@ -105,8 +108,35 @@ check_preprocessor_command (const slci_string* s, const char* command)
 	for (i = 0; i != size; ++i)
 		if (get_char_from_string (s, i + offset) != command[i])
 			return false;
-	
+
 	return true;
+}
+
+/*
+ * skip_to_elif_endif function. Skip to next #ELIF or #ENDIF token at same nesting level.
+ */
+slci_string*
+skip_to_elif_endif ()
+{
+
+}
+
+/*
+ * skip_to_endif function. Skip to next #ENDIF token at same nesting level.
+ */
+slci_string*
+skip_to_endif ()
+{
+
+}
+
+/*
+ * skip_to_else_elif_endif function. Skip to next #ELSE, #ELIF and #ENDIF token at same nesting level.
+ */
+slci_string*
+skip_to_else_elif_endif ()
+{
+
 }
 
 /*
@@ -118,45 +148,45 @@ preprocess_macro_definition (const slci_string* s)
 	bool ok = false;
 	size_t pos = first_none_whitespace (s, 1);
 	char c = get_char_from_string (s, pos);
-	
+
 	switch (c)
 	{
 	case 'd':
 		ok = process_define (s);
 		break;
-		
+
 	case 'e':
 		ok = process_error (s);
 		break;
 
 	case 'i':
-	        if (get_char_from_string(s, pos + 1) == 'f')
+		if (get_char_from_string(s, pos + 1) == 'f')
 			ok = process_if (s);
 		else
 			ok = process_include (s);
 		break;
-		
+
 	case 'p':
 		ok = process_pragma (s);
 		break;
-		
+
 	case 'u':
 		ok = process_undef (s);
 		break;
-		
+
 	case 'w':
 		ok = process_warning (s);
 		break;
 
 	default:
-	        last_error = ERR_INVALID_PREPROCESSOR_LINE;
+		last_error = ERR_INVALID_PREPROCESSOR_LINE;
 		break;
-		
+
 	}
 
 	if (!ok)
 		/* TODO - Report last error */ ;
-	
+
 	return preprocessor_token (
 		s,
 		get_current_source_position ()
@@ -186,7 +216,7 @@ bool process_error (const slci_string* s)
 bool process_include (const slci_string* s)
 {
 	char* file;
-	
+
 	/* Is this an #include line */
 	if (!check_preprocessor_command (s, "include"))
 		return false;
@@ -197,14 +227,14 @@ bool process_include (const slci_string* s)
 			return false;
 
 	/* Get full path to file */
-        file = get_full_path_for_file (file);
+	file = get_full_path_for_file (file);
 	if (file == 0)
 		return false;
 
 	/* Set file to be read for next token */
 	if (!set_nested_file (file))
 		return false;
-	
+
 	return true;
 }
 

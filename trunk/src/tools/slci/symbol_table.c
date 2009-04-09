@@ -65,7 +65,7 @@ initialize_symtab (hash_function_ptr hash_function, size_t size)
 		symtab.data[i].key = 0;
 		symtab.data[i].value = 0;
 	}
-	
+
 	return symtab;
 }
 
@@ -111,10 +111,10 @@ destroy_symtab_entry (slci_symtab_entry* entry)
 		if (entry->value != 0)
 			free (entry->value);
 	}
-	
+
 	entry->key = 0;
 	entry->value = 0;
-	    
+
 	destroy_type_info (&entry->type_info);
 }
 
@@ -125,11 +125,14 @@ destroy_symtab_entry (slci_symtab_entry* entry)
 slci_symtab_entry*
 get_symtab_entry_by_lexeme (const slci_symtab* symtab, const char* lexeme)
 {
-	symtab_key_t hash_key = generate_cpp_hash_key (lexeme);
+	symtab_key_t hash_key = generate_hash_key (
+		symtab->hash_function,
+		lexeme
+		);
 
 	if (strcmp (symtab->data[hash_key].key, lexeme))
 		return &symtab->data[hash_key];
-	
+
 	return 0;
 }
 
@@ -137,9 +140,23 @@ get_symtab_entry_by_lexeme (const slci_symtab* symtab, const char* lexeme)
  * get_symtab_entry_by_key function. Returns the symtab entry for the key.
  */
 slci_symtab_entry*
-get_symtab_entry_by_key (const slci_symtab* symtab, const symtab_key_t key)
+get_symtab_entry_by_key (const slci_symtab* symtab, const symtab_key_t hash_key)
 {
-	return &symtab->data[key];
+	return &symtab->data[hash_key];
+}
+
+/*
+ * is_in_symtab function. Returns true if token is in the symbol table.
+ */
+bool
+is_in_symtab (const slci_symtab* symtab, const char* key)
+{
+	symtab_key_t hash_key = generate_hash_key (
+		symtab->hash_function,
+		key
+		);
+
+	return symtab->data[hash_key].key == 0;
 }
 
 /*
@@ -154,7 +171,10 @@ set_symtab_entry (
 	char* value
 	)
 {
-	symtab_key_t hash_key = generate_cpp_hash_key (key);
+	symtab_key_t hash_key = generate_hash_key (
+		symtab->hash_function,
+		key
+		);
 
 	/* Set entry key if it doesn't exist yet */
 	if (symtab->data[hash_key].key == 0)
@@ -175,12 +195,12 @@ set_symtab_entry (
 			return false;
 		}
 	}
-	    
+
 	/* Replace the symbol table entry with new data */
 	symtab->data[hash_key].token = token;
 	symtab->data[hash_key].position = pos;
 	symtab->data[hash_key].value = value;
-	
+
 	return true;
 }
 

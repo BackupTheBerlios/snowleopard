@@ -54,7 +54,6 @@ generate_cpp_hash_key (const char* key_value)
 {
 	return generate_hash_key (
 		&get_cpp_char_hash_value,
-		MaxCppHashTableEntries,
 		key_value
 		);
 }
@@ -68,7 +67,6 @@ generate_pre_hash_key (const char* key_value)
 {
 	return generate_hash_key (
 		&get_pre_char_hash_value,
-		MaxCppHashTableEntries,
 		key_value
 		);
 }
@@ -87,10 +85,16 @@ generate_pre_hash_key (const char* key_value)
 symtab_key_t
 generate_hash_key (
 	hash_function_ptr hash_function,
-	symtab_key_t hash_table_size,
 	const char* key_value
 	)
 {
+	symtab_key_t hash_table_size;
+	
+	if (hash_function == &get_cpp_char_hash_value)
+		hash_table_size = MaxCppHashTableEntries;
+	else
+		hash_table_size = MaxPreHashTableEntries;
+	
 	symtab_key_t key = 0;
 	symtab_key_t pos = 0;
 

@@ -57,7 +57,7 @@ symtab_key_t generate_pre_hash_key (const char*);
 /*
  * General hash function.
  */
-symtab_key_t generate_hash_key (hash_function_ptr, const symtab_key_t, const char*);
+symtab_key_t generate_hash_key (hash_function_ptr, const char*);
 
 /*
  * Char to hash_key functions.

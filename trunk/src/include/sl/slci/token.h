@@ -245,7 +245,7 @@ struct slci_token
 	union {
 		char* built_in;
 		char* comment;
-		symtab_key_t identifier_position;
+		char* identifier;
 		slci_keyword keyword;
 		slci_literal literal;
 		char* preprocessor;
@@ -263,7 +263,7 @@ slci_token character_token (char, slci_source_position);
 slci_token comment_token (const slci_string*, slci_source_position);
 slci_token empty_token (slci_source_position);
 slci_token eof_token ();
-slci_token identifier_token (symtab_key_t, slci_source_position);
+slci_token identifier_token (const slci_string*, slci_source_position);
 slci_token keyword_token (slci_keyword, slci_source_position);
 slci_token preprocessor_token (const slci_string*, slci_source_position);
 slci_token preprocessor_built_in_token (char*, slci_source_position);

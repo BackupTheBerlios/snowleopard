@@ -35,7 +35,9 @@
 #include "sl/slci/lexer.h"
 #include "sl/slci/parse_tree.h"
 #include "sl/slci/parser.h"
+#include "sl/slci/string.h"
 #include "sl/slci/token.h"
+#include "sl/slci/types.h"
 
 /*
  * Private function prototypes.
@@ -46,6 +48,7 @@ static void parse_function ();
 static void parse_statement ();
 static void parse_template ();
 static void parse_translation_unit ();
+static symtab_key_t store_identifier (char*, slci_token);
 
 /*
  * initialize_parser function. It initializes the lexer using the file.
@@ -61,7 +64,7 @@ initialize_parser (char* file)
 		destroy_lexer ();
 		return false;
 	}
-	
+
 	return true;
 }
 
@@ -83,7 +86,7 @@ parse ()
 {
 	slci_token token = get_next_token ();
 	size_t i = 0;
-	
+
 	while (token.type != TT_EOF)
 	{
 		if (token.type != TT_EOF && token.type != TT_EMPTY
@@ -97,7 +100,7 @@ parse ()
 
 		token = get_next_token ();
 	}
-	
+
 	return true;
 }
 
@@ -153,6 +156,26 @@ void
 parse_translation_unit ()
 {
 
+}
+
+/*
+ * store_identifier function. Function stores an identifier in the symbol table.
+ */
+symtab_key_t
+store_identifier (char* identifier, slci_token token)
+{
+	symtab_key_t hash_key = generate_cpp_hash_key (identifier);
+
+	if (!set_symtab_entry (
+		    &cpp_symtab,
+		    identifier,
+		    token,
+		    token.pos,
+		    0
+		    ))
+		/* TODO - Report error */ ;
+
+	return hash_key;
 }
 
 /*>- EOF -<*/

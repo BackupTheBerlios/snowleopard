@@ -286,7 +286,7 @@ eof_token ()
  * identifier_token function. This function returns an identifier token.
  */
 slci_token
-identifier_token (symtab_key_t hash_key, slci_source_position pos)
+identifier_token (const slci_string* s, slci_source_position pos)
 {
 	slci_token token;
 
@@ -294,7 +294,7 @@ identifier_token (symtab_key_t hash_key, slci_source_position pos)
 
 	token.pos = pos;
 
-	token.identifier_position = hash_key;
+	token.identifier = get_c_string (s);
 
 	return token;
 }
@@ -464,6 +464,7 @@ print_token (size_t i, slci_token token)
 			"%i: LITERAL <type: %i;lexeme: %s>\n",
 			i,
 			-1, 
+
 			"TODO"
 			);
 		break;
@@ -472,7 +473,7 @@ print_token (size_t i, slci_token token)
 		printf (
 			"%i: IDENTIFIER <%s>\n",
 			i,
-			get_symtab_entry_by_key (&cpp_symtab, token.keyword)->key
+			token.identifier
 			);
 		break;
 		

@@ -79,6 +79,7 @@ void destroy_symtab (slci_symtab*);
  */
 slci_symtab_entry* get_symtab_entry_by_lexeme (const slci_symtab*, const char*);
 slci_symtab_entry* get_symtab_entry_by_key (const slci_symtab*, const symtab_key_t);
+bool is_in_symtab (const slci_symtab*, const char*);
 
 /*
  * Set symbol table entry.
