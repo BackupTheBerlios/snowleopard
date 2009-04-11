@@ -54,7 +54,7 @@ void destroy_lexer ();
 /*
  * Lexer functions.
  */
-slci_token get_next_token ();
+slci_token get_next_token (bool);
 slci_token get_prev_token ();
 bool put_back_token ();
 

@@ -101,14 +101,29 @@ destroy_lexer ()
  * get_next_token function. Function gets the next token from the stream.
  */
 slci_token
-get_next_token ()
+get_next_token (bool macro_skip)
 {
 	char c = get_current_char ();
 	previous_token = current_token;
 
-	/* Skip over whitespace */
-	while (is_whitespace (c))
+	/* Skip over whitespace
+	 *
+	 * Skip over any token that is not a comment or macro when in macro_skip
+	 * mode.
+	 */
+	for (;;)
+	{
+		if (!is_whitespace (c))
+		{
+			if (!macro_skip)
+				break;
+
+			if (c == '/'
+			    || (c == '#' && get_previous_char () == '\n'))
+				break;
+		}
 		c = lex_get_next_char (true, true);
+	}
 
 	if (c == '\0')
 		return empty_token (get_current_source_position ());
@@ -167,7 +182,7 @@ keyword_position (const slci_string* token)
 	return binary_search (
 		keyword_list,
 		keyword_list_length,
-		        token
+		token
 		);
 }
 
@@ -435,7 +450,7 @@ punctuation_position (const slci_string* token)
 	return binary_search (
 		punctuation_list,
 		punctuation_list_length,
-		        token
+		token
 		);
 }
 

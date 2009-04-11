@@ -46,8 +46,8 @@ enum slci_token_type
 	{
 		TT_BUILT_IN,              /* Built in type token */
 		TT_COMMENT,               /* Comment token */
-	        TT_EMPTY,                 /* Empty token */
-		TT_EOF,                   /* EOF token */         
+		TT_EMPTY,                 /* Empty token */
+		TT_EOF,                   /* EOF token */
 		TT_IDENTIFIER,            /* Identifier token */
 		TT_KEYWORD,               /* Keyword token */
 		TT_LITERAL,               /* Literal token */
@@ -132,7 +132,7 @@ enum slci_keyword
 		KW_TYPEID,           /* typeid */
 		KW_TYPENAME,         /* typename */
 		KW_UNION,            /* union */
-	        KW_UNSIGNED,         /* unsigned */
+		KW_UNSIGNED,         /* unsigned */
 		KW_USING,            /* using */
 		KW_VIRTUAL,          /* virtual */
 		KW_VOID,             /* void */
@@ -176,7 +176,7 @@ enum slci_punctuation
 		PU_COMMA,                 /* , */
 		PU_MINUS,                 /* - */
 		PU_MINUS_MINUS,           /* -- */
-	        PU_MINUS_EQ,              /* -= */
+		PU_MINUS_EQ,              /* -= */
 		PU_INDIRECT,              /* -> */
 		PU_INDIRECT_PTR,          /* ->* */
 		PU_PERIOD,                /* . */
@@ -221,7 +221,7 @@ enum slci_punctuation
 		PU_CURLY_BRACE_OPEN,      /* { */
 		PU_BITOR,                 /* | */
 		PU_OR_EQ,                 /* |= */
-		PU_OR,                    /* || */			
+		PU_OR,                    /* || */
 		PU_CURLY_BRACE_CLOSE,     /* } */
 		PU_COMPL                  /* ~ */
 	};
@@ -241,7 +241,7 @@ struct slci_token
 {
 	slci_token_type type;
 	slci_source_position pos;
-	
+
 	union {
 		char* built_in;
 		char* comment;
@@ -256,7 +256,12 @@ struct slci_token
 typedef struct slci_token slci_token;
 
 /*
- * Function prototypes
+ * Destroy token prototype
+ */
+void destroy_token (slci_token*);
+
+/*
+ * Initialize function prototypes
  */
 slci_token built_in_token (char*, slci_source_position);
 slci_token character_token (char, slci_source_position);
@@ -271,6 +276,10 @@ slci_token punctuation_token (slci_punctuation, slci_source_position);
 slci_token string_token (const slci_string*, slci_source_position);
 slci_token wcharacter_token (wchar_t, slci_source_position);
 slci_token wstring_token (const slci_wstring*, slci_source_position);
+
+/*
+ * Function prototypes
+ */
 void print_token (size_t, slci_token);
 
 #endif /* !_SL_SLCI_TOKEN_H_ */

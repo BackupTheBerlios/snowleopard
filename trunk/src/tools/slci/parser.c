@@ -28,6 +28,7 @@
  */
 
 /* Standard C headers */
+#include <stdbool.h>
 #include <stddef.h>
 
 /* Snow Leopard headers */
@@ -84,14 +85,14 @@ destroy_parser ()
 bool
 parse ()
 {
-	slci_token token = get_next_token ();
+	slci_token token = get_next_token (false);
 	size_t i = 0;
 
 	while (token.type != TT_EOF)
 	{
 		if (token.type != TT_EOF && token.type != TT_EMPTY
-		    && token.type != TT_COMMENT && token.type != TT_PREPROCESSOR
-		    && token.type != TT_KEYWORD && token.type != TT_PUNCTUATION
+		        && token.type != TT_COMMENT && token.type != TT_PREPROCESSOR
+		        && token.type != TT_KEYWORD && token.type != TT_PUNCTUATION
 		    && token.type != TT_LITERAL && token.type != TT_IDENTIFIER)
 			return false;
 
@@ -100,8 +101,8 @@ parse ()
 			print_token (i, token);
 			++i;
 		}
-		
-		token = get_next_token ();
+
+		token = get_next_token (true);
 	}
 
 	return true;
@@ -174,7 +175,7 @@ store_identifier (char* identifier, slci_token token)
 		    identifier,
 		    token,
 		    token.pos,
-		    0
+		        0
 		    ))
 		/* TODO - Report error */ ;
 

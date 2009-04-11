@@ -30,11 +30,13 @@
 /* Standard C headers */
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdlib.h>
 #include <string.h>
 
 /* Snow Leopard headers */
 #include "sl/slci/error_codes.h"
 #include "sl/slci/error_handling.h"
+#include "sl/slci/lexer.h"
 #include "sl/slci/misc.h"
 #include "sl/slci/preprocessor_symtab.h"
 #include "sl/slci/preprocessor.h"
@@ -50,21 +52,42 @@ size_t current_nesting;
 slci_error_code last_error;
 
 /*
+ * Preprocessor command strings.
+ */
+const char* MacroDEFINED = "defined";
+const char* MacroELIF = "elif";
+const char* MacroELIFDEFINED = "elifdefined";
+const char* MacroELIFNOTDEFINED = "elif!defined";
+const char* MacroELSE = "else";
+const char* MacroENDIF = "endif";
+const char* MacroERROR = "error";
+const char* MacroIF = "if";
+const char* MacroIFDEF = "ifdef";
+const char* MacroIFDEFINED = "ifdefined";
+const char* MacroIFNDEF = "ifndef";
+const char* MacroIFNOTDEFINED = "if!defined";
+const char* MacroINCLUDE = "include";
+const char* MacroPRAGMA = "pragma";
+const char* MacroUNDEF = "undef";
+const char* MacroWARNING = "warning";
+
+/*
  * Private functions.
  */
 static bool check_condition (const slci_string*);
-static bool check_preprocessor_command (const slci_string*, const char*);
+static bool check_preprocessor_command (const char*, const char*);
+static bool check_preprocessor_command_in_string (const slci_string*, const char*);
 static char* get_define (const slci_string*);
 static bool process_define (const slci_string*);
+static bool process_endif (const slci_string*);
 static bool process_error (const slci_string*);
 static bool process_include (const slci_string*);
 static bool process_if (const slci_string*);
 static bool process_pragma (const slci_string*);
 static bool process_undef (const slci_string*);
 static bool process_warning (const slci_string*);
-static slci_string* skip_to_elif_endif ();
-static slci_string* skip_to_endif ();
-static slci_string* skip_to_else_elif_endif ();
+static void skip_to_endif ();
+static void skip_to_else_elif_endif ();
 
 /*
  * initialize_preprocessor function. Initializes the preprocessor.
@@ -80,7 +103,7 @@ initialize_preprocessor ()
 
 	skipping_code = false;
 	current_nesting = 0;
-	
+
 	return true;
 }
 
@@ -105,39 +128,62 @@ check_condition (const slci_string* s)
 }
 
 /*
- * check_preprocessor_command function. Check if the input string is the
+ * check_preprocessor_command function. Checks if the input string is the
  * preprocessor command given.
  */
 bool
-check_preprocessor_command (const slci_string* s, const char* command)
+check_preprocessor_command (const char* s, const char* command)
 {
 	size_t i;
+	size_t j;
 	size_t offset;
-	size_t size = s->size;
+	size_t size = strlen (s);
 
 	/* Start over # and whitespace */
 	for (i = 0; i != size; ++i)
-		if (get_char_from_string (s, i) != '#'
-		    && !is_whitespace (get_char_from_string (s, i)))
+		if (s[i] != '#'
+		    && !is_whitespace (s[i]))
 			break;
 
 	offset = i;
 	size = strlen (command);
-	for (i = 0; i != size; ++i)
-		if (get_char_from_string (s, i + offset) != command[i])
+	for (i = j = 0; i != size; ++i, ++j)
+	{
+		char c = s[i + offset];
+
+		/* If c is whitespace, skip */
+		if (c != '\n' && is_whitespace (c))
+			i++;
+		/* Does c match character in valid command */
+		else if (c != command[j])
 			return false;
+	}
 
 	return true;
 }
 
 /*
- * get_define function. Get definition used in #IFNDEF or #IFDEF.
+ * check_preprocessor_comamnd_in_string function. Check if the input string is the
+ * preprocessor command given.
+ */
+bool
+check_preprocessor_command_in_string (const slci_string* s, const char* command)
+{
+	char* string = get_c_string (s);
+	bool r = check_preprocessor_command (string, command);
+
+	free (string);
+	return r;
+}
+
+/*
+ * get_define function. Get definition used in #IFNDEF or #IFDEF. This is the last
+ * word in the token string.
  */
 char*
 get_define (const slci_string* s)
 {
-
-	return 0;
+	return get_last_word_in_string (s);
 }
 
 /*
@@ -146,47 +192,55 @@ get_define (const slci_string* s)
 slci_token
 preprocess_macro_definition (const slci_string* s)
 {
-	bool ok = false;
-	size_t pos = first_none_whitespace (s, 1);
-	char c = get_char_from_string (s, pos);
-
-	switch (c)
+	/* If in skip mode, do not process tokens */
+	if (!skipping_code)
 	{
-	case 'd':
-		ok = process_define (s);
-		break;
+		bool ok = false;
+		size_t pos = first_none_whitespace (s, 1);
+		char c = get_char_from_string (s, pos);
 
-	case 'e':
-		ok = process_error (s);
-		break;
+		switch (c)
+		{
+		case 'd': /* #define */
+			ok = process_define (s);
+			break;
 
-	case 'i':
-		if (get_char_from_string(s, pos + 1) == 'f')
-			ok = process_if (s);
-		else
-			ok = process_include (s);
-		break;
+		case 'e': /* #endif or #error */
+			if (get_char_from_string (s, pos + 1) == 'n')
+				ok = process_endif (s);
+			else
+				ok = process_error (s);
+			break;
 
-	case 'p':
-		ok = process_pragma (s);
-		break;
+		case 'i': /* #if (and variants) or #include */
+			if (get_char_from_string (s, pos + 1) == 'f')
+				ok = process_if (s);
+			else
+				ok = process_include (s);
+			break;
 
-	case 'u':
-		ok = process_undef (s);
-		break;
+		case 'p': /* #pragma */
+			ok = process_pragma (s);
+			break;
 
-	case 'w':
-		ok = process_warning (s);
-		break;
+		case 'u': /* #undef */
+			ok = process_undef (s);
+			break;
 
-	default:
-		last_error = ERR_INVALID_PREPROCESSOR_LINE;
-		break;
+		case 'w': /* #warning */
+			ok = process_warning (s);
+			break;
+
+		default:
+			last_error = ERR_INVALID_PREPROCESSOR_LINE;
+			break;
+
+		}
+
+		if (!ok)
+			/* TODO - Report last error */ ;
 
 	}
-
-	if (!ok)
-		/* TODO - Report last error */ ;
 
 	return preprocessor_token (
 		s,
@@ -201,6 +255,19 @@ bool
 process_define (const slci_string* s)
 {
 	return false;
+}
+
+/*
+ * process_endif function. Processes an #endif preprocessor line.
+ */
+bool
+process_endif (const slci_string* s)
+{
+	/* Is this an #endif line */
+	if (!check_preprocessor_command_in_string (s, MacroENDIF))
+		return false;
+
+	return true;
 }
 
 /*
@@ -221,7 +288,7 @@ process_include (const slci_string* s)
 	char* file;
 
 	/* Is this an #include line */
-	if (!check_preprocessor_command (s, "include"))
+	if (!check_preprocessor_command_in_string (s, MacroINCLUDE))
 		return false;
 
 	/* Get file name */
@@ -247,39 +314,38 @@ process_include (const slci_string* s)
 bool
 process_if (const slci_string* s)
 {
-	if (check_preprocessor_command (s, "ifndef")
-	    || check_preprocessor_command (s, "if ! defined")
-	    || (skipping_code && check_preprocessor_command (s, "elif ! defined")))
+	/* Handle #ifndef, #if !defined, #elif !defined macros */
+	if (check_preprocessor_command_in_string (s, MacroIFNDEF)
+	    || check_preprocessor_command_in_string (s, MacroIFNOTDEFINED)
+	    || (skipping_code
+		&& check_preprocessor_command_in_string (s, MacroELIFNOTDEFINED)))
 	{
 		if (is_in_symtab (&preprocessor_symtab, get_define (s)))
 			skip_to_else_elif_endif ();
-		else
-		    skipping_code = false;
 	}
-	else if (check_preprocessor_command (s, "ifndef")
-	         || check_preprocessor_command (s, "if ! defined")
-	         || (skipping_code && check_preprocessor_command (s, "elif ! defined")))
+	/* Handle #ifdef, #if defined, #elif defined macros */
+	else if (check_preprocessor_command_in_string (s, MacroIFDEF)
+	    || check_preprocessor_command_in_string (s, MacroIFDEFINED)
+	    || (skipping_code
+		&& check_preprocessor_command_in_string (s, MacroELIFDEFINED)))
 	{
 		if (!is_in_symtab (&preprocessor_symtab, get_define (s)))
 			skip_to_else_elif_endif ();
-		else
-			skipping_code = false;
 	}
-	else if (check_preprocessor_command (s, "if")
-	         || (skipping_code && check_preprocessor_command (s, "elif")))
+	/* Handle #if <condition>, #elif <condition> macros */
+	else if (check_preprocessor_command_in_string (s, MacroIF)
+	    || (skipping_code
+		&& check_preprocessor_command_in_string (s, MacroELIF)))
 	{
 		if (check_condition (s))
 			skip_to_else_elif_endif ();
-		else
-			skipping_code = false;
 	}
-	else if (check_preprocessor_command (s, "else"))
+	/* Handle #else macros */
+	else if (check_preprocessor_command_in_string (s, MacroELSE))
 	{
-		if (skipping_code)
-			skipping_code = false;
-		else
-			skip_to_endif ();
+		skip_to_endif ();
 	}
+	/* Invalid #if variant */
 	else
 		return false;
 
@@ -314,30 +380,105 @@ process_warning (const slci_string* s)
 }
 
 /*
- * skip_to_elif_endif function. Skip to next #ELIF or #ENDIF token at same nesting level.
- */
-slci_string*
-skip_to_elif_endif ()
-{
-	skipping_code = true;
-}
-
-/*
  * skip_to_endif function. Skip to next #ENDIF token at same nesting level.
  */
-slci_string*
+void
 skip_to_endif ()
 {
+	slci_string s;
+	slci_token token;
+
 	skipping_code = true;
+
+	for (;;)
+	{
+		token = get_next_token (true);
+		
+		if (token.type == TT_PREPROCESSOR)
+		{
+			if (check_preprocessor_command (
+				    token.preprocessor,
+				    MacroIF
+				    )
+				)
+			        current_nesting++;
+			else if (check_preprocessor_command (
+				    token.preprocessor,
+				    MacroENDIF
+				    )
+				)
+			{
+				if (current_nesting == 0)
+					break;
+				else
+					current_nesting--;
+			}
+		}
+	}
+
+	/* Process the encountered preprocessor token */
+	skipping_code = false;
+	s = initialize_string_with_data (token.preprocessor);
+	preprocess_macro_definition (&s);
+	destroy_token (&token);
+
 }
 
 /*
- * skip_to_else_elif_endif function. Skip to next #ELSE, #ELIF and #ENDIF token at same nesting level.
+ * skip_to_else_elif_endif function. Skip to next #ELSE, #ELIF and #ENDIF token at
+ * same nesting level.
  */
-slci_string*
+void
 skip_to_else_elif_endif ()
 {
+	slci_string s;
+	slci_token token;
+
 	skipping_code = true;
+
+	for (;;)
+	{
+		token = get_next_token (true);
+
+		if (token.type == TT_PREPROCESSOR)
+		{
+			if (check_preprocessor_command (
+				    token.preprocessor,
+				    MacroIF
+				    )
+				)
+			        current_nesting++;
+			else if (check_preprocessor_command (
+				    token.preprocessor,
+				    MacroELIF
+				    )
+			    && current_nesting == 0)
+			        break;
+			else if (check_preprocessor_command (
+				    token.preprocessor,
+				    MacroELSE
+				    )
+			    && current_nesting == 0)
+			        break;
+			else if (check_preprocessor_command (
+				    token.preprocessor,
+				    MacroENDIF
+				    )
+				)
+			{
+				if (current_nesting == 0)
+					break;
+				else
+					current_nesting--;
+			}
+		}
+	}
+
+	/* Process the encountered preprocessor token */
+	skipping_code = false;
+	s = initialize_string_with_data (token.preprocessor);
+	preprocess_macro_definition (&s);
+	destroy_token (&token);
 }
 
 /*>- EOF -<*/

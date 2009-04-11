@@ -148,6 +148,11 @@ struct slci_literal
 
 typedef struct slci_literal slci_literal;
 
+/*
+ * Initialize function prototypes.
+ */
+void destroy_literal (slci_literal*);
+
 #endif /* !_SL_SLCI_LITERAL_H_ */
 
 /*>- EOF -<*/

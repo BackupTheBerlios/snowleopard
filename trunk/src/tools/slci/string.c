@@ -245,13 +245,47 @@ get_c_string_between (const slci_string* s, char d_begin, char d_end)
 }
 
 /*
+ * get_last_word_in_string function. Returns the last part of the input string that
+ * doesn't contain whitespace characters.
+ */
+char*
+get_last_word_in_string (const slci_string* s)
+{
+	size_t i;
+	size_t size;
+	char* w;
+
+	/* Search last position that is not a whitespace */
+	for (i = s->size; i != 0; --i)
+		if (!is_whitespace (s->value[i]))
+			break;
+	
+	/* If only whitespace, return empty string */
+	if (i == 0)
+		return "";
+	
+	/* Search first position of the string */
+	for (i = i, size = 0; i != 0; --i, ++size)
+		if (is_whitespace (s->value[i]))
+			break;
+	
+	i++;
+	
+	w = malloc (sizeof (char[size + 1]));
+       
+	strncpy (w, s->value + i, size);
+	w[size] = '\0';
+
+	return w;
+}
+
+/*
  * get_wc_string function. Returns a copy of the wstring as wide character string.
  */
 wchar_t*
 get_wc_string (const slci_wstring* s)
 {
 	wchar_t* wcstr = malloc (sizeof (wchar_t[s->size + 1]));
-
 	wcscpy (wcstr, s->value);
 
 	return wcstr;

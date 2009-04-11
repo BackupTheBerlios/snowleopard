@@ -156,7 +156,7 @@ is_in_symtab (const slci_symtab* symtab, const char* key)
 		key
 		);
 
-	return symtab->data[hash_key].key == 0;
+	return symtab->data[hash_key].key != 0;
 }
 
 /*

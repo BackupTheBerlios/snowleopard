@@ -50,8 +50,8 @@ SL_INCLUDE = ../../include
 #
 ALL_OBJECTS = \
 	binary_search.o cpp_symtab.o cpp_symtab_built_in.o driver.o error_codes.o \
-	error_handling.o hash_function.o info.o lexer.o lexer_functions.o main.o \
-	misc.o parser.o parse_objects.o parse_tree.o preprocessor.o \
+	error_handling.o hash_function.o info.o lexer.o lexer_functions.o literal.o \
+	main.o misc.o parser.o parse_objects.o parse_tree.o preprocessor.o \
 	preprocessor_symtab.o preprocessor_symtab_built_in.o reader.o settings.o \
 	source_file.o source_position.o source_string.o string.o symbol_table.o \
 	token.o type_info.o types.o version.o
@@ -114,6 +114,9 @@ LEXER_FUNCTIONS_DEPENDS = \
 	$(SLCI_INCLUDE)/lexer_functions.h $(SLCI_INCLUDE)/misc.h \
 	$(SLCI_INCLUDE)/reader.h $(SLCI_INCLUDE)/source_file.h \
 	$(SLCI_INCLUDE)/source_position.h $(SLCI_INCLUDE)/string.h
+
+LITERAL_DEPENDS = \
+	$(SLCI_INCLUDE)/literal.h
 
 MAIN_DEPENDS = \
 	$(SLCI_INCLUDE)/driver.h $(SLCI_INCLUDE)/error_codes.h \
@@ -248,6 +251,9 @@ lexer.o: lexer.c $(LEXER_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 lexer_functions.o: lexer_functions.c $(LEXER_FUNCTIONS_DEPENDS)
+	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
+
+literal.o: literal.c $(LITERAL_DEPENDS)
 	$(CC) -c $(CFLAGS) -I$(SL_INCLUDE) -o $@ $<
 
 main.o: main.c $(MAIN_DEPENDS)

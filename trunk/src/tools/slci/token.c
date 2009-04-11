@@ -34,6 +34,7 @@
 
 /* Snow Leopard headers */
 #include "sl/slci/cpp_symtab.h"
+#include "sl/slci/literal.h"
 #include "sl/slci/source_position.h"
 #include "sl/slci/string.h"
 #include "sl/slci/symbol_table.h"
@@ -208,6 +209,42 @@ char* punctuation_list[] = {
 const size_t punctuation_list_length = 69;
 
 /*
+ * destroy_token function. This function destroys a token.
+ */
+void
+destroy_token (slci_token* token)
+{
+	destroy_source_position (&token->pos);
+
+	switch (token->type)
+	{
+	case TT_BUILT_IN:
+		free (token->built_in);
+		break;
+
+	case TT_COMMENT:
+		free (token->comment);
+		break;
+
+	case TT_IDENTIFIER:
+		free (token->identifier);
+		break;
+
+	case TT_LITERAL:
+		destroy_literal (&token->literal);
+		break;
+
+	case TT_PREPROCESSOR:
+		free (token->preprocessor);
+		break;
+
+	default:
+		/* Other token types need no special handling */
+		break;
+	}
+}
+
+/*
  * built_in_token function. This function returns a token for a built-in.
  */
 slci_token
@@ -265,7 +302,7 @@ empty_token (slci_source_position pos)
 
 	token.type = TT_EMPTY;
 	token.pos = pos;
-	
+
 	return token;
 }
 
@@ -328,7 +365,7 @@ preprocessor_token (const slci_string* s, slci_source_position pos)
 	token.pos = pos;
 
 	token.preprocessor = get_c_string (s);
-	
+
 	/* Cut last character from string (it's \n) */
 	token.preprocessor[strlen (token.preprocessor) - 1] = '\0';
 
@@ -434,15 +471,15 @@ print_token (size_t i, slci_token token)
 	case TT_EMPTY:
 		printf ("%i: EMPTY token", i);
 		break;
-		
+
 	case TT_COMMENT:
 		printf ("%i: COMMENT <%s>\n", i, token.comment);
 		break;
-		
+
 	case TT_PREPROCESSOR:
 		printf ("%i: PREPROCESSOR <%s>\n", i, token.preprocessor);
 		break;
-		
+
 	case TT_KEYWORD:
 		printf (
 			"%i: KEYWORD <%s>\n",
@@ -450,7 +487,7 @@ print_token (size_t i, slci_token token)
 			keyword_list[token.keyword]
 			);
 		break;
-		
+
 	case TT_PUNCTUATION:
 		printf (
 			"%i: PUNCTUATION <%s>\n",
@@ -458,17 +495,17 @@ print_token (size_t i, slci_token token)
 			punctuation_list[token.punctuation]
 			);
 		break;
-		
+
 	case TT_LITERAL:
 		printf (
 			"%i: LITERAL <type: %i;lexeme: %s>\n",
 			i,
-			-1, 
+			-1,
 
 			"TODO"
 			);
 		break;
-		
+
 	case TT_IDENTIFIER:
 		printf (
 			"%i: IDENTIFIER <%s>\n",
@@ -476,7 +513,7 @@ print_token (size_t i, slci_token token)
 			token.identifier
 			);
 		break;
-		
+
 	default:
 		printf ("%i: UNKNOWN TOKEN\n", i);
 		break;

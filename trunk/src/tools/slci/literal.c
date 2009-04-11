@@ -27,60 +27,40 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SL_SLCI_STRING_H_
-#define _SL_SLCI_STRING_H_
-
 /* Standard C headers */
-#include <stdbool.h>
-#include <stddef.h>
+#include <stdlib.h>
+
+/* Snow Leopard headers */
+#include "sl/slci/literal.h"
 
 /*
- * slci_string structure. Contains a dynamic string implementation.
+ * destroy_literal function. Function destroys a literal object.
  */
-struct slci_string
+void
+destroy_literal (slci_literal* literal)
 {
-	size_t size;
-	size_t reserved;
-	char* value;
-};
+	switch (literal->type)
+	{
+	case LT_STRING:
+		free (literal->string.value);
+		break;
 
-typedef struct slci_string slci_string;
+	case LT_STRING16_T:
+		free (literal->char16_string.value);
+		break;
 
-/*
- * slci_wstring structure. Contains a dynamic wstring implementation.
- */
-struct slci_wstring
-{
-	size_t size;
-	size_t reserved;
-	wchar_t* value;
-};
+	case LT_STRING32_T:
+		free (literal->char32_string.value);
+		break;
 
-typedef struct slci_wstring slci_wstring;
+	case LT_WSTRING:
+		free (literal->wstring.value);
+		break;
 
-/*
- * Function prototypes.
- */
-slci_string initialize_string ();
-slci_string initialize_string_with_data (const char*);
-slci_wstring initialize_wstring ();
-void destroy_string (slci_string*);
-void destroy_wstring (slci_wstring*);
-
-/*
- * String functions.
- */
-bool append_string (slci_string*, char);
-bool append_wstring (slci_wstring*, wchar_t);
-size_t first_none_whitespace (const slci_string*, size_t);
-char get_char_from_string (const slci_string*, size_t);
-char* get_c_string (const slci_string*);
-char* get_c_string_between (const slci_string*, char, char);
-char* get_last_word_in_string (const slci_string*);
-wchar_t* get_wc_string (const slci_wstring*);
-bool reset_string (slci_string*);
-bool reset_wstring (slci_wstring*);
-
-#endif /* !_SL_SLCI_STRING_H_ */
+	default:
+		/* Other literal types need no special handling */
+		break;
+	}
+}
 
 /*>- EOF -<*/
