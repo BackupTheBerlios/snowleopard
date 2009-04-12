@@ -28,6 +28,7 @@
  */
 
 /* Standard C++ headers */
+#include <cstdbool>
 #include <cstddef>
 #include <cstdlib>
 
@@ -39,7 +40,13 @@
 int
 main ()
 {
-	return EXIT_SUCCESS;
+	int i = EXIT_FAILURE;
+	bool ok = i == EXIT_SUCCESS;
+
+	if (ok)
+		return EXIT_SUCCESS;
+	
+	return EXIT_FAILURE;
 }
 
 /*>- EOF -<*/

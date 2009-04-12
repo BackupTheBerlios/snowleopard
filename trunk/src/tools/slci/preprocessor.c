@@ -52,8 +52,14 @@ size_t current_nesting;
 slci_error_code last_error;
 
 /*
+ * Constants.
+ */
+const char* DefaultMacroValue = "0";
+
+/*
  * Preprocessor command strings.
  */
+const char* MacroDEFINE = "define";
 const char* MacroDEFINED = "defined";
 const char* MacroELIF = "elif";
 const char* MacroELIFDEFINED = "elifdefined";
@@ -254,7 +260,31 @@ preprocess_macro_definition (const slci_string* s)
 bool
 process_define (const slci_string* s)
 {
-	return false;
+	char* define;
+	
+	if (!check_preprocessor_command_in_string (s, MacroDEFINE))
+		return false;
+
+	define = get_define (s);
+	if (strcmp (get_c_string (s), "") == 0)
+		return false;
+
+	if (!set_symtab_entry (
+		    &preprocessor_symtab,
+		    define,
+		    preprocessor_token (
+			    s,
+			    get_current_source_position ()
+			    ),
+		    get_current_source_position (),
+		    copy_string (DefaultMacroValue)
+		    ))
+	{
+		/* TODO - Report error */
+		return false;
+	}
+	
+	return true;
 }
 
 /*

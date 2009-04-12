@@ -39,7 +39,7 @@
  * copy_string function. This function copies a C string.
  */
 char*
-copy_string (char* str)
+copy_string (const char* str)
 {
 	char* new_str = malloc (strlen (str) + 1);
 

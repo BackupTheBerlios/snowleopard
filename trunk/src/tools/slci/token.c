@@ -214,7 +214,7 @@ const size_t punctuation_list_length = 69;
 void
 destroy_token (slci_token* token)
 {
-	destroy_source_position (&token->pos);
+	/* destroy_source_position (&token->pos); */
 
 	switch (token->type)
 	{

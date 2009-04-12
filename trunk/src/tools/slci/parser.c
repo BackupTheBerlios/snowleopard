@@ -102,7 +102,7 @@ parse ()
 			++i;
 		}
 
-		token = get_next_token (true);
+		token = get_next_token (false);
 	}
 
 	return true;

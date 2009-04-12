@@ -36,7 +36,7 @@
 /*
  * Misc functions.
  */
-char* copy_string (char*);
+char* copy_string (const char*);
 char* create_string_3 (const char*, const char*, const char*);
 char* create_string_from_format_1 (const char*, const char*);
 bool file_exists (const char*);
