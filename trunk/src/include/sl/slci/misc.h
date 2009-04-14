@@ -42,7 +42,9 @@ char* create_string_from_format_1 (const char*, const char*);
 bool file_exists (const char*);
 int get_hex_value (char);
 int get_oct_value (char);
+bool is_first_char_of_identifier (char);
 bool is_hexadecimal (char);
+bool is_other_char_of_identifier (char);
 bool is_whitespace (char);
 
 #endif /* !_SL_SLCI_MISC_H_ */

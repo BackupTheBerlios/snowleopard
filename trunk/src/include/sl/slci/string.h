@@ -75,6 +75,7 @@ bool append_wstring (slci_wstring*, wchar_t);
 size_t first_none_whitespace (const slci_string*, size_t);
 char get_char_from_string (const slci_string*, size_t);
 char* get_c_string (const slci_string*);
+char* get_c_string_after (const slci_string*, const char*);
 char* get_c_string_between (const slci_string*, char, char);
 char* get_last_word_in_string (const slci_string*);
 wchar_t* get_wc_string (const slci_wstring*);

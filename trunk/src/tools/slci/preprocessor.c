@@ -83,7 +83,8 @@ const char* MacroWARNING = "warning";
 static bool check_condition (const slci_string*);
 static bool check_preprocessor_command (const char*, const char*);
 static bool check_preprocessor_command_in_string (const slci_string*, const char*);
-static char* get_define (const slci_string*);
+static char* get_define (const slci_string*, const char*);
+static char* get_defined (const slci_string*);
 static bool process_define (const slci_string*);
 static bool process_endif (const slci_string*);
 static bool process_error (const slci_string*);
@@ -183,13 +184,31 @@ check_preprocessor_command_in_string (const slci_string* s, const char* command)
 }
 
 /*
- * get_define function. Get definition used in #IFNDEF or #IFDEF. This is the last
- * word in the token string.
+ * get_define function. Get definition used in #DEFINE.
  */
 char*
-get_define (const slci_string* s)
+get_define (const slci_string* s, const char* command)
 {
-	return get_last_word_in_string (s);
+	char* macro = get_c_string_after (s, command);
+
+	if (strcmp (macro, "") == 0)
+		return "";
+
+	return macro;
+}
+
+/*
+ * get_defined function. Get definition used in #IFNDEF or #IFDEF.
+ */
+char*
+get_defined (const slci_string* s)
+{
+	char* macro = get_last_word_in_string (s);
+
+	if (strcmp (macro, "") == 0)
+		return "";
+
+	return macro;
 }
 
 /*
@@ -265,7 +284,7 @@ process_define (const slci_string* s)
 	if (!check_preprocessor_command_in_string (s, MacroDEFINE))
 		return false;
 
-	define = get_define (s);
+	define = get_define (s, MacroDEFINE);
 	if (strcmp (get_c_string (s), "") == 0)
 		return false;
 
@@ -350,7 +369,7 @@ process_if (const slci_string* s)
 	    || (skipping_code
 		&& check_preprocessor_command_in_string (s, MacroELIFNOTDEFINED)))
 	{
-		if (is_in_symtab (&preprocessor_symtab, get_define (s)))
+		if (is_in_symtab (&preprocessor_symtab, get_defined (s)))
 			skip_to_else_elif_endif ();
 	}
 	/* Handle #ifdef, #if defined, #elif defined macros */
@@ -359,7 +378,7 @@ process_if (const slci_string* s)
 	    || (skipping_code
 		&& check_preprocessor_command_in_string (s, MacroELIFDEFINED)))
 	{
-		if (!is_in_symtab (&preprocessor_symtab, get_define (s)))
+		if (!is_in_symtab (&preprocessor_symtab, get_defined (s)))
 			skip_to_else_elif_endif ();
 	}
 	/* Handle #if <condition>, #elif <condition> macros */

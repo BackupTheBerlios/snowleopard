@@ -214,6 +214,54 @@ get_c_string (const slci_string* s)
 }
 
 /*
+ * get_c_string_after function. Returns the whitespace terminated string
+ * that appears after the given string.
+ */
+char*
+get_c_string_after (const slci_string* s, const char* after)
+{
+	char* cstr;
+	size_t i;
+	size_t bpos;
+	size_t epos;
+	size_t size = strlen (after);
+	
+        /* Search end of after */
+	for (bpos = 0, i = 0; bpos != s->size; ++bpos)
+	{
+		if (i == size)
+			/* String is found */
+			break;
+		if (s->value[bpos] == after[i])
+			i++;
+	}
+
+	/* Skip whitespace */
+	for (;;)
+		if (is_whitespace (s->value[bpos]))
+			bpos++;
+		else
+			break;
+
+	/* Search end of name */
+	for (epos = bpos + 1; epos != s->size; ++epos)
+		if (is_other_char_of_identifier (s->value[epos]))
+			/* epos is already incremented by loop */ ;
+		else
+			break;
+
+	if (epos == s->size)
+		return "";
+	
+	cstr = malloc (sizeof (char[epos - bpos + 1]));
+
+	strncpy (cstr, s->value + bpos, epos - bpos);
+	cstr[epos - bpos] = '\0';
+
+	return cstr;
+}
+
+/*
  * get_c_string_between function. Returns a copy of the part of the string
  * between the two delimiters as C string.
  */
