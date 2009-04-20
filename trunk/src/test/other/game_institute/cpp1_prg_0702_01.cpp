@@ -56,23 +56,34 @@ vector3::vector3 (float x, float y, float z)
 { }
 
 /*
- * equals function. Returns true if the given vector is equal to the this
- * vector, otherwise it returns false.
+ * operator== function. Returns true if the given vector is equal to the
+ * this vector, otherwise it returns false.
  */
 bool
-vector3::equals (const vector3& rhs) const
+vector3::operator== (const vector3& rhs) const
 {
-	   return x_ == rhs.x_
-	       && y_ == rhs.y_
-	       && z_ == rhs.z_;
+	return x_ == rhs.x_
+	    && y_ == rhs.y_
+	    && z_ == rhs.z_;
 }
 
 /*
- * add function. Adds to the given vector to this vector and returns a new
- * vector containing the result.
+ * operator!= function. Tests if two vectors are unequal.
+ */
+bool
+vector3::operator!= (const vector3& rhs) const
+{
+	return x_ != rhs.x_
+	    && y_ != rhs.y_
+	    && z_ != rhs.z_;
+}
+
+/*
+ * operator+ function. Adds to the given vector to this vector and returns
+ * a new vector containing the result.
  */
 vector3
-vector3::add (const vector3& rhs)
+vector3::operator+ (const vector3& rhs)
 {
 	vector3 sum;
 	sum.x_ = x_ + rhs.x_;
@@ -83,11 +94,11 @@ vector3::add (const vector3& rhs)
 }
 
 /*
- * sub function. Subtracts the given vector from this vector and returns a new
- * vector containing the result.
+ * operator- function. Subtracts the given vector from this vector and returns
+ * a new vector containing the result.
  */
 vector3
-vector3::sub (const vector3& rhs)
+vector3::operator- (const vector3& rhs)
 {
 	vector3 dif;
 	dif.x_ = x_ - rhs.x_;
@@ -98,10 +109,10 @@ vector3::sub (const vector3& rhs)
 }
 
 /*
- * mul function. Returns the product of a scalar and a vector.
+ * operator* function. Returns the product of a scalar and a vector.
  */
 vector3
-vector3::mul (float scalar)
+vector3::operator* (float scalar)
 {
 	vector3 p;
 	p.x_ = x_ * scalar;
@@ -136,49 +147,50 @@ vector3::normalize ()
 }
 
 /*
- * dot function. Returns the dot-product of two vectors.
+ * operator* function. Returns the dot-product of two vectors.
  */
 float
-vector3::dot (const vector3& rhs)
+vector3::operator* (const vector3& rhs)
 {
 	return x_ * rhs.x_ + y_ * rhs.y_ + z_ * rhs.z_;
 }
 
 /*
- * to_array function. Returns a pointer to x, so the user is able to use it as an array.
+ * operator float* function. Returns a pointer to x, so the user is able to use it
+ * as an array.
  */
-float*
-vector3::to_array ()
+vector3::operator float* ()
 {
 	return &x_;
 }
 
 /*
- * print function. Print the vector.
+ * operator<< function for vector3. Print the vector.
  */
-void
-vector3::print ()
+std::ostream&
+operator<< (std::ostream& os, vector3& v)
 {
-	using std::cout;
+	os << "<" << v.x_ << ", " << v.y_ << ",  " << v.z_ << ">";
 
-	cout << "<" << x_ << ", " << y_ << ",  " << z_ << ">\n";
+	return os;
 }
 
 /*
- * input function. Allows the user to enter a vector.
+ * operator>> function for vector3. Allows the user to enter a vector.
  */
-void
-vector3::input ()
+std::istream&
+operator>> (std::istream& is, vector3& v)
 {
-	using std::cin;
 	using std::cout;
 
 	cout << "Enter x: ";
-	cin >> x_;
+	is >> v.x_;
 	cout << "Enter y: ";
-	cin >> y_;
+	is >> v.y_;
 	cout << "Enter z: ";
-	cin >> z_;
+	is >> v.z_;
+
+	return is;
 }
 
 /*>- EOF -<*/

@@ -30,6 +30,9 @@
 #ifndef _SL_TEST_OTHER_GAME_INSTITUTE_CPP1_PRG_0702_01_HPP_
 #define _SL_TEST_OTHER_GAME_INSTITUTE_CPP1_PRG_0702_01_HPP_
 
+/* Standard C++ headers */
+#include <iostream>
+
 /*
  * Range structure.
  */
@@ -40,29 +43,37 @@ public:
 	vector3 (float[3]);
 	vector3 (float, float, float);
 
-	bool equals (const vector3&) const;
+	bool operator== (const vector3&) const;
+	bool operator!= (const vector3&) const;
 
-	vector3 add (const vector3&);
-	vector3 sub (const vector3&);
-	vector3 mul (float);
-
+	vector3 operator+ (const vector3& rhs);
+	vector3 operator- (const vector3& rhs);
+	vector3 operator* (float scalar);
+	float operator* (const vector3& rhs);
+	
 	float length ();
 
 	void normalize ();
 
-	float dot (const vector3&);
-
-	float* to_array ();
-
-	void print ();
-
-	void input ();
+	operator float* ();
 
 	float x_;
 	float y_;
 	float z_;
 
+	friend std::istream& operator>> (std::istream&, vector3&);
+	friend std::ostream& operator<< (std::ostream&, vector3&);
 };
+
+/*
+ * operator<< function for vector3. Prints vector.
+ */
+std::ostream& operator<< (std::ostream& os, vector3& v);
+
+/*
+ * operator>> function for vector3. Input vector.
+ */
+std::istream& operator>> (std::istream& is, vector3& v);
 
 #endif /* !_SL_TEST_OTHER_GAME_INSTITUTE_CPP1_PRG_0702_01_HPP_ */
 

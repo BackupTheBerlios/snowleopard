@@ -31,7 +31,7 @@
 #include <iostream>
 
 /* Snow Leopard headers */
-#include "cpp1_prg_0701_01.hpp"
+#include "cpp1_prg_0702_01.hpp"
 
 /*
  * This program uses the vector class and exercises most of its methods.
@@ -39,6 +39,7 @@
 int
 main ()
 {
+	using std::cin;
 	using std::cout;
 	using std::endl;
 	
@@ -50,34 +51,29 @@ main ()
 	vector3 w(-5.0f, 2.0f, 0.0f);
 
 	/* 2: Print the 3 vectors */
-	cout << "u = ";
-	u.print ();
-	cout << "v = ";
-	v.print ();
-	cout << "w = ";
-	w.print ();
+	cout << "u = " << u << endl;
+	cout << "v = " << v << endl;
+	cout << "w = " << w << endl;
 	cout << endl;
 	
 	/* 3: u = v + w */
-	u = v.add (w);
-	cout << "u = ";
-	u.print ();
+	u = v + w;
+	cout << "u = " << u << endl;
 	cout <<  endl;
 
 	/* 4: v = v / ||v|| */
 	v.normalize ();
-	cout << "unit v = ";
-	v.print ();
+	cout << "unit v = " << v << endl;
 	cout << "length v = " << v.length () << endl;
 	cout << endl;
 
 	/* 5: dotP = u * w */
-	float dotP = u.dot (w);
+	float dotP = u * w;
 	cout << "dot product u w = " << dotP << endl;
 	cout << endl;
 
 	/* 6: convert to array representation */
-	float* array = v.to_array ();
+	float* array = v;
 
 	/* 7: print out each element and verify with v */
 	cout << "[0] = " << array[0] << ", "
@@ -88,10 +84,27 @@ main ()
 	/* 8: create a new vector from user input */
 	cout << "Input vector..." << endl;
 	vector3 m;
-	m.input ();
-	cout << "m = ";
-	m.print ();
+	cin >> m;
+	cout << "m = " << m << endl;
 	cout << endl;
+
+	/* 9: subtract a new vector */
+	m = v - m;
+	cout << "v - m = " << m << endl;
+	cout << endl;
+
+	/* 10: multiply a new vector */
+	m = m * 0.12;
+	cout << "m * 0.12 = " << m << endl;
+	cout << endl;
+
+	/* 11: test is vectors are unequal and equal */
+	if (v != m)
+		cout << "v != m = true\n";
+
+	if (v == v)
+		cout << "v == v = true\n";
+	
 }
 
 /*>- EOF -<*/
