@@ -106,13 +106,16 @@ PROGRAMS_CPP1_L6 = cpp1_prg_0601 cpp1_prg_0602 cpp1_prg_0603 cpp1_prg_0604 \
 		   cpp1_prg_0609 cpp1_prg_0610 cpp1_prg_0611 cpp1_prg_0612 \
 		   cpp1_ex_0601 cpp1_ex_0602 cpp1_ex_0604
 
-PROGRAMS_CPP1_L7 = cpp1_prg_0701 cpp1_prg_0702
+PROGRAMS_CPP1_L7 = cpp1_prg_0701 cpp1_prg_0702 cpp1_prg_0703
 
 CPP1_PRG_0701 = cpp1_prg_0701.o cpp1_prg_0701_01.o
 CPP1_PRG_0701_HEADERS = cpp1_prg_0701_01.hpp
 
 CPP1_PRG_0702 = cpp1_prg_0702.o cpp1_prg_0702_01.o
 CPP1_PRG_0702_HEADERS = cpp1_prg_0702_01.hpp
+
+CPP1_PRG_0703 = cpp1_prg_0703.o cpp1_prg_0703_01.o
+CPP1_PRG_0703_HEADERS = cpp1_prg_0703_01.hpp
 
 ALL_PROGRAMS = $(PROGRAMS_CPP1_L1) $(PROGRAMS_CPP1_L2) $(PROGRAMS_CPP1_L3) \
 	       $(PROGRAMS_CPP1_L4) $(PROGRAMS_CPP1_L5) $(PROGRAMS_CPP1_L6) \
@@ -174,6 +177,11 @@ cpp1_prg_0702: $(CPP1_PRG_0702)
 	$(CXX) $(CFLAGS) $(CPPFLAGS) -o $@ $(CPP1_PRG_0702)
 
 $(CPP1_PRG_0702): $(CPP1_PRG_0702_HEADERS)
+
+cpp1_prg_0703: $(CPP1_PRG_0703)
+	$(CXX) $(CFLAGS) $(CPPFLAGS) -o $@ $(CPP1_PRG_0703)
+
+$(CPP1_PRG_0703): $(CPP1_PRG_0703_HEADERS)
 
 #
 # Suffix rule for compiling C++ sources
