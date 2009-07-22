@@ -1,5 +1,3 @@
-#!/bin/sh
-
 #-
 # Copyright (c) 2009 Roel Sergeant.
 # All rights reserved.
@@ -29,30 +27,14 @@
 #/
 
 #-
-# File: /configure
+# File: /src/tools/scripts/makefiles/config.mk
 #
-# Script for configuring the Snow Leopard C++ toolset.
+# Makefile configuration.
 #/
 
-#-
-# variables
-#/
-build_path=.
-compiler=pcc
-prefix_path=/usr
-
-#-
-# function process_args: Parses command line options
-#-------------------------------------------------------------------------------
-# Following options are accepted by this configuration script.
 #
-#   --prefix-path <path>     Installation directory, defaults to /usr
-#   --build-path  <path>     Build directory, defaults to .
-#   --with-cc     <compiler> Compiler used for bootstrapping, defaults to gcc.
-#/
-sub process_args ()
-{
-    return 0
-}
+# Variables
+#
+CC = pcc
 
 #>- EOF

@@ -33,6 +33,11 @@
 #/
 
 #
+# Include files.
+#
+.include <../scripts/makefiles/config.mk>
+
+#
 # Variables.
 #
 PROGRAM = slci
