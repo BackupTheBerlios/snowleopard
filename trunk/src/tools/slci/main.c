@@ -62,6 +62,9 @@ main (int argc, char** argv)
 	else if (settings->license == true)
 		/* Print license info. */
 		print_license ();
+	else if (settings->version == true)
+		/* No action, version information is already printed */
+		;
 	else if (settings->warrantee == true)
 		/* Print warrantee info. */
 		print_warrantee ();

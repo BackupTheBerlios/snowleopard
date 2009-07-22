@@ -89,11 +89,13 @@ parse_command_line (int argc, char** argv)
 	
 	for (i = 1; i != argc; ++i)
 	{
-		if (strcmp (argv[i], "-i") == 0)
-			/* Interactive [-i] */
+		if (strcmp (argv[i], "-i") == 0
+		    || strcmp (argv[i], "--interactive") == 0)
+			/* Interactive [-i][--interactive] */
 			settings->interactive = true;
-		else if (strcmp (argv[i], "-l") == 0)
-			/* License [-l] */
+		else if (strcmp (argv[i], "-l") == 0
+		    || strcmp (argv[i], "--license") == 0)
+			/* License [-l][--license] */
 			settings->license = true;
 		else if (strcmp (argv[i], "-M") == 0)
 			/* Produce make rules [-M] */
@@ -101,11 +103,16 @@ parse_command_line (int argc, char** argv)
 		else if (strcmp (argv[i], "-P") == 0)
 			/* Preprocess only [-P] */
 			settings->preprocess_only = true;
-		else if (strcmp (argv[i], "-v") == 0)
-			/* Verbose [-v] */
+		else if (strcmp (argv[i], "-v") == 0
+		    || strcmp (argv[i], "--verbose") == 0)
+			/* Verbose [-v][--verbose] */
 			settings->verbose = true;
-		else if (strcmp (argv[i], "-w") == 0)
-			/* Warrantee [-w] */
+		else if (strcmp (argv[i], "--version") == 0)
+			/* Version [--version] */
+			settings->version = true;
+		else if (strcmp (argv[i], "-w") == 0
+		    || strcmp (argv[i], "--warrantee") == 0)
+			/* Warrantee [-w][--warrantee] */
 			settings->warrantee = true;
 		else
 		{
@@ -140,6 +147,9 @@ parse_command_line (int argc, char** argv)
 		}
 	}
 
+	if (settings->license || settings->version || settings->warrantee)
+		return true;
+	
 	if (ok && settings->source_file == 0)
 	{
 		/* At least one parameter is required. */

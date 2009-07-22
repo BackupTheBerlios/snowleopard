@@ -44,6 +44,7 @@ struct slci_settings
 	bool make_rules_only;
 	bool preprocess_only;
 	bool verbose;
+	bool version;
 	bool warrantee;
 	char* source_file;
 	char** source_paths;

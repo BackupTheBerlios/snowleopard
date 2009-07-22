@@ -61,6 +61,7 @@ initialize_settings ()
 	settings->make_rules_only = false;
 	settings->preprocess_only = false;
 	settings->verbose = false;
+	settings->version = false;
 	settings->warrantee = false;
 
 	settings->source_file = 0;
