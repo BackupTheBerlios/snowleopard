@@ -27,48 +27,20 @@
 #/
 
 #-
-# File: /src/tools/Makefile
+# File: /src/tools/slbld/Makefile
 #
-# Makefile for building the Snow Leopard C++ toolset.
+# Makefile for building the Snow Leopard C++ Build Tool.
 #/
-
-#
-# All tools
-#
-ALL_TOOLS = clc cls lynx slbld slci sltst
 
 #
 # Main targets
 #
-all: $(ALL_TOOLS)
-	for dir in $(ALL_TOOLS) ; do \
-	  (cd $$dir ; ${MAKE} all);  \
-	done
-
-clc:
-	(cd clc ; ${MAKE} all);
-
-cls:
-	(cd cls ; ${MAKE} all);
-
-lynx:
-	(cd lynx ; ${MAKE} all);
-
-slbld: 
-	(cd slbld ; ${MAKE} all);
-
-slci:
-	(cd slci ; ${MAKE} all);
-
-sltst:
-	(cd sltst ; ${MAKE} all);
+all:
+	(echo Building the Snow Leopard C++ Build Tool);
 
 #
 # Clean rule
 #
-clean: $(ALL_TOOLS)
-	for dir in $(ALL_TOOLS) ; do  \
-	  (cd $$dir ; ${MAKE} clean); \
-	done
+clean:
 
 #>- EOF
