@@ -55,7 +55,7 @@ namespace slbld {
 /*
  * Version functions.
  */
-	std::string get_version_string (std::string);
+	std::string get_version_string ();
 
 } /* sl::slbld */
 

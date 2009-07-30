@@ -28,43 +28,22 @@
  */
 
 /* Standard C++ headers */
-#include <cstddef>
-#include <sstream>
-#include <string>
+#include <iostream>
 
 /* Snow Leopard headers */
 #include "sl/slbld/version.hpp"
 
 /*
- * Version numbers.
+ * Main program function.
  */
-const unsigned short sl::slbld::MajorVersion = 0;
-const unsigned short sl::slbld::MinorVersion = 0;
-const unsigned short sl::slbld::Release = 1;
-const unsigned int sl::slbld::Build = 1;
-const std::string sl::slbld::VersionLabel = "Initial Test Version";
-const std::size_t sl::slbld::MaxVersionLabelSize = 512;
-
-/*
- * Prints program usage information.
- */
-std::string
-sl::slbld::get_version_string ()
+int
+main (int argc, char** argv)
 {
-	std::string buffer;
-
-	std::stringstream s (std::stringstream::in | std::stringstream::out);
+	using sl::slbld::get_version_string;
 	
-        s << "version "
-	  << MajorVersion << '.'
-	  << MinorVersion << '.'
-	  << Release << " build "
-	  << Build << " ("
-	  << VersionLabel << ')';
+	std::cout << get_version_string() << std::endl;
 
-	s >> buffer;
-	
-	return buffer;
+	return 0;
 }
 
 /*>- EOF -<*/

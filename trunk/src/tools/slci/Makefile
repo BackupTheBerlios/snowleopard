@@ -225,7 +225,7 @@ VERSION_DEPENDS = \
 #
 all: what $(PROGRAM)
 
-$(PROGRAM) : $(ALL_OBJECTS)
+$(PROGRAM): $(ALL_OBJECTS)
 	$(CC) $(CFLAGS) -I$(SL_INCLUDE) -o slci $(ALL_OBJECTS)
 
 binary_search.o: binary_search.c $(BINARY_SEARCH_DEPENDS)
