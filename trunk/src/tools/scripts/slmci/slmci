@@ -1,0 +1,133 @@
+#!/bin/sh
+#-
+# Copyright (c) 2009 Roel Sergeant.
+# All rights reserved.
+#
+# This code is derived from software contributed to the Snow Leopard 
+# project.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND ANY 
+# EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+# DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR CONTRIBUTORS BE LIABLE FOR 
+# ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL 
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#/
+
+#-
+# File: /src/tools/scripts/slmci/slmci
+#
+# Snow Leopard Mini C Interpreter - Shell script for starting the interpreter
+#/
+
+#
+# Global variables
+#
+slmci_debug="0"
+
+echo "Snow Leopard Mini C Interpreter (slmci) version 0.0.1"
+echo "Copyright (c) 2009 Roel Sergeant"
+echo
+echo "Checking configuration"
+
+#
+# Process arguments
+#
+if [ $# -eq 1 ]
+then
+    # Debug mode, single argument, which is DEBUG
+    if [ "$1" = "DEBUG" ]
+    then
+	slmci_debug="1"
+	slmci_options="-m ../../slci/main.c"
+    else
+	echo "ERROR: At least 2 arguments are required, -f <path-to-main-function>"
+	exit 4
+    fi
+else
+    if [ $# -lt 2 ]
+    then
+	# If not debug, than at least two arguments are required
+	echo "ERROR: At least 2 arguments are required, -f <path-to-main-function>"
+	exit 4
+    else
+	# Process arguments
+    fi
+fi
+
+#
+# Search perl
+# 
+perl_executable="`whereis perl`"
+
+if [ "$perl_executable" = "" ]
+then
+    echo "ERROR: Perl not found, aborting interpreter"
+    exit 1
+fi 
+
+if [ "$slmci_debug" = "1" ]
+then
+    echo "- Found Perl at: $perl_executable"
+fi
+
+#
+# Search slmci main perl script
+#
+slmci_path="`pwd`"
+
+if [ "$slmci_debug" = "1" ]
+then
+    echo "- Path of slmci: $slmci_path"
+fi
+
+slmci_main="$slmci_path/main.pl"
+
+if [ ! -f $slmci_main ]
+then
+    echo "ERROR: file main.pl not found, aborting interpreter"
+    exit 2
+fi
+
+if [ "$slmci_debug" = "1" ]
+then
+    echo "- slmci main script: $slmci_main"
+fi
+
+#
+# Create command line for executing the interpreter
+#
+slmci_cmd_line="$perl_executable $slmci_main $slmci_options"
+
+if [ "$slmci_debug" = "1" ]
+then
+    echo "- slmci command line: $slmci_cmd_line"
+fi
+
+#
+# Start interpreter
+#
+echo "Executing program"
+
+slmci_result=`$slmci_cmd_line`
+
+if [ ! "$?" = 0 ]
+then 
+    echo "ERROR: An error occured during the execution of the program, see detail above"
+    exit 3
+fi
+
+#>- EOF
