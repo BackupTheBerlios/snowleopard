@@ -35,7 +35,7 @@
 #
 # Include files.
 #
-.include <../scripts/makefiles/config.mk>
+include ../scripts/makefiles/config.mk
 
 #
 # Variables.

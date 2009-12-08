@@ -35,6 +35,6 @@
 #
 # Variables
 #
-CC = pcc
+CC = gcc
 
 #>- EOF
