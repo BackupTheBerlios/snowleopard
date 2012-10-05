@@ -1,7 +1,7 @@
 /*==============================================================================
   Snow Leopard Standard C Library
   
-  Copyright (C) 2008-2012 Roel Sergeant
+  Copyright (C) 2008, 2009, 2010, 2011, 2012 Roel Sergeant
   
   This program is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -27,6 +27,6 @@
 //                   No inclusion guards on assert.h                          //
 //////////////////////////////////////////////////////////////////////////////// 
 
-#include <sl/stdc/assert.h>
+#include <stdc/assert.h>
 
 //-<EOF>
