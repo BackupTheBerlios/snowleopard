@@ -23,11 +23,11 @@
 // Private linked list for storing memory page information
 //------------------------------------------------------------------------------
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
-#include <sl/stdc/private/ll_mm_pages.h>
+#include <stdc/private/ll_mm_pages.h>
 
-#include <sl/stdc/private/mm_types.h>
+#include <stdc/private/mm_types.h>
 
 //------------------------------------------------------------------------------
 // Define open files linked list
@@ -37,7 +37,7 @@
 #define SL_LL_IS_PRIVATE
 #define SL_LL_NO_FIND
 
-#include <sl/stdc/private/linked_list.c.h>
+#include <stdc/private/linked_list.c.h>
 
 #undef SL_LL_TYPE
 #undef SL_LL_NODE_TYPE

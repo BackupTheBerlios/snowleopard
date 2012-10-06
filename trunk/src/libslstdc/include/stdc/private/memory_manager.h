@@ -30,7 +30,7 @@
 #ifndef __SL_STDC_PRIVATE_MEMORY_MANAGER_H__
 #define __SL_STDC_PRIVATE_MEMORY_MANAGER_H__
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
 #include <stdc/private/ll_mm_blocks.h>
 #include <stdc/private/ll_mm_pages.h>

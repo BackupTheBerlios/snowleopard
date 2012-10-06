@@ -26,7 +26,7 @@
 #ifndef __SL_STDC_PRIVATE_LL_OPEN_FILES_H__
 #define __SL_STDC_PRIVATE_LL_OPEN_FILES_H__
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
 #include <stdc/stdio_types.h>
 

@@ -26,7 +26,7 @@
 #include <signal.h>
 #include <stdlib.h>
 
-#include <sl/config/os_fixinclude.h>
+#include <config/os_fixinclude.h>
 
 #include sl_os_fixinclude(sys/types.h)
 #include <unistd.h>

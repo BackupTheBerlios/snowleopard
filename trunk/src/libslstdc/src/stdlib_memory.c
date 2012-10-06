@@ -23,12 +23,12 @@
 // Standard stdlib memory management implementation
 //------------------------------------------------------------------------------
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
 #include <stddef.h>
 #include <stdlib.h>
 
-#include <sl/config/os_fixinclude.h>
+#include <config/os_fixinclude.h>
 
 //-------------------------------------------------------------------------------
 // aligned_alloc function

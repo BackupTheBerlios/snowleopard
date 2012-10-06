@@ -26,7 +26,7 @@
 #ifndef __SL_STDC_PRIVATE_GLOBALS_H__
 #define __SL_STDC_PRIVATE_GLOBALS_H__
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
 #include <stdc/private/ll_open_files.h>
 

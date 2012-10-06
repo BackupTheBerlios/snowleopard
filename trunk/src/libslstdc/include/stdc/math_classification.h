@@ -26,8 +26,8 @@
 #ifndef __SL_STDC_IMPL_MATH_CLASSIFICATION_H__
 #define __SL_STDC_IMPL_MATH_CLASSIFICATION_H__
 
-#include <sl/config/config.h>
-#include <sl/config/typed_call_macros.h>
+#include <config/config.h>
+#include <config/typed_call_macros.h>
 
 //------------------------------------------------------------------------------
 // Number classification macros

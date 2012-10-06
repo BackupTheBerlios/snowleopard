@@ -23,13 +23,13 @@
 // Standard stdlib implementation
 //------------------------------------------------------------------------------
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
 #include <signal.h>
 #include <stddef.h>
 #include <stdlib.h>
 
-#include <sl/config/os_fixinclude.h>
+#include <config/os_fixinclude.h>
 
 #include sl_os_fixinclude(sys/types.h)
 #include sl_os_fixinclude(unistd.h)

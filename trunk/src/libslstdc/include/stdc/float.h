@@ -26,7 +26,8 @@
 #ifndef _SL_STDC_IMPL_FLOAT_H_
 #define _SL_STDC_IMPL_FLOAT_H_
 
-#include <sl/config/config.h>
+#include <config/k
+config.h>
 
 //------------------------------------------------------------------------------
 // FLT_ROUNDS

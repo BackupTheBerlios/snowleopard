@@ -30,13 +30,13 @@
 //            setvbuf
 //------------------------------------------------------------------------------
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
-#include <sl/config/os_fixinclude.h>
+#include <config/os_fixinclude.h>
 
-#include <sl/stdc/private/ll_open_files.h>
-#include <sl/stdc/private/program_globals.h>
-#include <sl/stdc/private/stdio_private.h>
+#include <stdc/private/ll_open_files.h>
+#include <stdc/private/program_globals.h>
+#include <stdc/private/stdio_private.h>
 
 #include <errno.h>
 #include <stdio.h>

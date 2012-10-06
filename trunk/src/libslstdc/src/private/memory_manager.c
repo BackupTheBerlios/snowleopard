@@ -27,10 +27,10 @@
 // the C++ library.
 //------------------------------------------------------------------------------
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
-#include <sl/stdc/private/ll_mm_blocks.h>
-#include <sl/stdc/private/ll_mm_pages.h>
+#include <stdc/private/ll_mm_blocks.h>
+#include <stdc/private/ll_mm_pages.h>
 
 //------------------------------------------------------------------------------
 // Global variables

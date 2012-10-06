@@ -23,13 +23,13 @@
 // Standard error handling implementation
 //------------------------------------------------------------------------------
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
-#include <sl/stdc/private/ll_open_files.h>
-#include <sl/stdc/private/program_globals.h>
-#include <sl/stdc/private/stdio_private.h>
+#include <stdc/private/ll_open_files.h>
+#include <stdc/private/program_globals.h>
+#include <stdc/private/stdio_private.h>
 
-#include <sl/stdc/program_startup.h>
+#include <stdc/program_startup.h>
 
 #include <stddef.h>
 #include <stdio.h>

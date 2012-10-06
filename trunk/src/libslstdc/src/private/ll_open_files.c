@@ -23,11 +23,11 @@
 // Private linked list for storing open files.
 //------------------------------------------------------------------------------
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
-#include <sl/stdc/private/ll_open_files.h>
+#include <stdc/private/ll_open_files.h>
 
-#include <sl/stdc/stdio_types.h>
+#include <stdc/stdio_types.h>
 
 //------------------------------------------------------------------------------
 // Define open files linked list
@@ -36,7 +36,7 @@
 #define SL_LL_FUNCTION_SUFFIX of
 #define SL_LL_IS_PRIVATE
 
-#include <sl/stdc/private/linked_list.c.h>
+#include <stdc/private/linked_list.c.h>
 
 //------------------------------------------------------------------------------
 // sl_ll_nodes_equal function

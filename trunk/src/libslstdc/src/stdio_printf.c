@@ -32,7 +32,7 @@
 //            vsprintf
 //------------------------------------------------------------------------------
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
 #include <stdio.h>
 

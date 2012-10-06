@@ -26,7 +26,7 @@
 #ifndef __SL_STDC_PRIVATE_LL_MM_PAGES_H__
 #define __SL_STDC_PRIVATE_LL_MM_PAGES_H__
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
 #include <stdc/private/mm_types.h>
 

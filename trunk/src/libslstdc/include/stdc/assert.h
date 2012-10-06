@@ -35,7 +35,7 @@
 
 #define __SL_STDC_IMPL_ASSERT_H__
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
 #include <stddef.h>
 

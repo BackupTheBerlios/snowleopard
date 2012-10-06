@@ -23,9 +23,9 @@
 // Global variables (Private)
 //------------------------------------------------------------------------------
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
-#include <sl/stdc/private/ll_open_files.h>
+#include <stdc/private/ll_open_files.h>
 
 //------------------------------------------------------------------------------
 // Global variables

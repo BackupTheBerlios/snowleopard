@@ -34,14 +34,14 @@
 //            ungetc
 //------------------------------------------------------------------------------
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
-#include <sl/stdc/private/program_globals.h>
+#include <stdc/private/program_globals.h>
 
 #include <errno.h>
 #include <stdio.h>
 
-#include <sl/config/os_fixinclude.h>
+#include <config/os_fixinclude.h>
 
 #include sl_os_fixinclude(fcntl.h)
 #include sl_os_fixinclude(unistd.h)

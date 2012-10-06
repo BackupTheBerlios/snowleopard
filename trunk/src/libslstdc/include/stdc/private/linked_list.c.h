@@ -52,9 +52,9 @@
 #else /* !SL_LL_FUNCTION_SUFFIX */
 //==============================================================================
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
-#include <sl/config/macros.h>
+#include <config/macros.h>
 
 #include <stddef.h>
 #include <stdlib.h>
