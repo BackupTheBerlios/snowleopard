@@ -26,7 +26,7 @@
 #ifndef __SL_STDC_IMPL_STDDEF_H__
 #define __SL_STDC_IMPL_STDDEF_H__
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
 //------------------------------------------------------------------------------
 // NULL macro

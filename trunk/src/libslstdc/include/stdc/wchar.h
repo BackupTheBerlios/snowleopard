@@ -26,7 +26,7 @@
 #ifndef _SL_STDC_IMPL_WCHAR_H_
 #define _SL_STDC_IMPL_WCHAR_H_
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
 #include <stdarg.h>
 #include <stddef.h>

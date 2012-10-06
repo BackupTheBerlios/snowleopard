@@ -26,7 +26,7 @@
 #ifndef _SL_STDC_IMPL_STDINT_H_
 #define _SL_STDC_IMPL_STDINT_H_
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
 //------------------------------------------------------------------------------
 // Exact width integer types

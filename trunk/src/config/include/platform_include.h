@@ -23,9 +23,9 @@
 // Macros for including platform specific headers.
 //------------------------------------------------------------------------------
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
-#include <sl/config/macros.h>
+#include <config/macros.h>
 
 #ifndef __SL_CONFIG_PLATFORM_INCLUDE_H__
 #define __SL_CONFIG_PLATFORM_INCLUDE_H__

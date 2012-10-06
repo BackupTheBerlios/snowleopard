@@ -26,7 +26,7 @@
 #ifndef __SL_STDC_IMPL_STDARG_H__
 #define __SL_STDC_IMPL_STDARG_H__
 
-#include <sl/config/config.h>
+#include <config/config.h>
 
 //------------------------------------------------------------------------------
 // va_list type

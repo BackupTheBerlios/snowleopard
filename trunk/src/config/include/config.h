@@ -29,7 +29,7 @@
 //------------------------------------------------------------------------------
 // Include macros, if using Snow Leopard standard libraries
 #ifndef __SL_NO_SL_STDLIB
-# include <sl/config/macros.h>
+# include <config/macros.h>
 #endif
 //------------------------------------------------------------------------------
 

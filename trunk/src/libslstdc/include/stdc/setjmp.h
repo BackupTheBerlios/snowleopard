@@ -26,8 +26,8 @@
 #ifndef _SL_STDC_IMPL_SETJMP_H_
 #define _SL_STDC_IMPL_SETJMP_H_
 
-#include <sl/config/config.h>
-#include <sl/config/platform_include.h>
+#include <config/config.h>
+#include <config/platform_include.h>
 
 //------------------------------------------------------------------------------
 // jmp_buf structure
