@@ -52,7 +52,7 @@
 #                          Only for subproject
 #-------------------------------------------------------------------------------
 
-. ./common/common.sh
+. ./../../common/scripts/common.sh
 
 #-------------------------------------------------------------------------------
 # create_default_version_config function
@@ -441,11 +441,11 @@ subproject="all"
 
 #- Check if the config file exists.
 echo "1] Checking version.config file."
-if [ -e ../config/version.config ]
+if [ -e version.config ]
 then
-    echo "  <sl-root>/config/versions.config found.\n"
+    echo "  <sl-root>/src/config/scripts/versions.config found.\n"
 else
-    echo "  <sl-root>/config/versions.config doesn't exist, creating a default one.\n"
+    echo "  <sl-root>/src/config/scripts/versions.config doesn't exist, creating a default one.\n"
     create_default_version_config
 fi
 
