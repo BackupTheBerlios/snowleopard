@@ -1,7 +1,7 @@
 /*==============================================================================
   Snow Leopard Standard C Library
   
-  Copyright (C) 2008-2012 Roel Sergeant
+  Copyright (C) 2008, 2009, 2010, 2011, 2012 Roel Sergeant
   
   This program is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -256,7 +256,7 @@ errno_t wcstombs_s(
 //==============================================================================
 // Non standard features
 #ifdef __SL_ENABLE_NON_STANDARD_FEATURES
-# include <sl/stdc/stdlib_no_stdc.h>
+# include <stdc/stdlib_no_stdc.h>
 #endif /* __SL_ENABLE_NON_STANDARD_FEATURES */
 //==============================================================================
 

@@ -1,7 +1,7 @@
 /*==============================================================================
   Snow Leopard Standard C Library
   
-  Copyright (C) 2008-2012 Roel Sergeant
+  Copyright (C) 2008, 2009, 2010, 2011, 2012 Roel Sergeant
   
   This program is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -28,7 +28,7 @@
 
 #include <sl/config/config.h>
 
-#include <sl/stdc/private/mm_types.h>
+#include <stdc/private/mm_types.h>
 
 //------------------------------------------------------------------------------
 // Define memory blocks linked list
@@ -38,7 +38,7 @@
 #define SL_LL_IS_PRIVATE
 #define SL_LL_NO_FIND
 
-#include <sl/stdc/private/linked_list.h>
+#include <stdc/private/linked_list.h>
 
 #undef SL_LL_TYPE
 #undef SL_LL_NODE_TYPE

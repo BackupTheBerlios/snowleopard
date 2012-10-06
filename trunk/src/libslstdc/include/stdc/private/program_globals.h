@@ -1,7 +1,7 @@
 /*==============================================================================
   Snow Leopard Standard C Library
   
-  Copyright (C) 2008-2012 Roel Sergeant
+  Copyright (C) 2008, 2009, 2010, 2011, 2012 Roel Sergeant
   
   This program is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -28,9 +28,9 @@
 
 #include <sl/config/config.h>
 
-#include <sl/stdc/private/ll_open_files.h>
+#include <stdc/private/ll_open_files.h>
 
-#include <sl/stdc/stdio_types.h>
+#include <stdc/stdio_types.h>
 
 //------------------------------------------------------------------------------
 // Global variables

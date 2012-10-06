@@ -1,7 +1,7 @@
 /*==============================================================================
   Snow Leopard Compiler Project
   
-  Copyright (C) 2008-2012 Roel Sergeant
+  Copyright (C) 2008, 2009, 2010, 2011, 2012 Roel Sergeant
   
   This program is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -26,7 +26,7 @@
 #ifndef _SL_STDC_WCHAR_H_
 #define _SL_STDC_WCHAR_H_
 
-#include <sl/stdc/wchar.h>
+#include <stdc/wchar.h>
 
 #endif /* !_SL_STDC_WCHAR_H_ */
 

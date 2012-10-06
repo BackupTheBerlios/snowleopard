@@ -1,7 +1,7 @@
 /*==============================================================================
   Snow Leopard Standard C Library
   
-  Copyright (C) 2008-2012 Roel Sergeant
+  Copyright (C) 2008, 2009, 2010, 2011, 2012 Roel Sergeant
   
   This program is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -110,12 +110,12 @@ extern const int math_errhandling;
 
 //------------------------------------------------------------------------------
 // Classification macros
-#include <sl/stdc/math_classification.h>
+#include <stdc/math_classification.h>
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // Functions
-#include <sl/stdc/math_functions.h>
+#include <stdc/math_functions.h>
 //------------------------------------------------------------------------------
 
 #endif /* !__SL_STDC_IMPL_MATH_H__ */
