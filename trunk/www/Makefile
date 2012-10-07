@@ -1,9 +1,7 @@
-#!/bin/sh
-
 #===============================================================================
-# Snow Leopard Project Website
+# Snow Leopard Compiler Project
 #
-# Copyright (C) 2012 Roel Sergeant
+# Copyright (C) 2011, 2012 Roel Sergeant
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -20,15 +18,9 @@
 #===============================================================================
 
 #-------------------------------------------------------------------------------
-# publish_site
+# Makefile
 #-------------------------------------------------------------------------------
-# This script copies the website from the source control tree to its publish
-# location.
-#-------------------------------------------------------------------------------
-# Script arguments
-#   --path <path> Root location of the websites publish location. If not
-#                 specified it defaults to ~/public_html.
-#   --reset Reset values stored in datafiles to their default values.
+# Makefile for copying the Snow Leopard Project's website.
 #-------------------------------------------------------------------------------
 
 #-<EOF>
