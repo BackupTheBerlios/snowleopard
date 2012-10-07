@@ -1,0 +1,15 @@
+\input texinfo  @c -*-texinfo-*-
+@c------------------------------------------------------------------------------
+@c Copyright (C) 2009-2012 Roel Sergeant.
+@c This is part of the Snow Leopard manuals.
+@c For copying conditions, see the file sl.texi.
+@c------------------------------------------------------------------------------
+
+@c %**start of header
+@setfilename libslstdc.info
+
+@include ../common/sl_common.texi
+
+@settitle The Snow Leopard Standard C Library: Reference Manual (LIBSLSTDC)
+
+@bye
