@@ -20,12 +20,24 @@
 #===============================================================================
 
 #-------------------------------------------------------------------------------
-# roff
+# lynxc
 #-------------------------------------------------------------------------------
-# This script is a wrapper for the lynx typesetting program that makes it usable
-# as replacement for the Unix roff command.
+# This script executes the Lynx checker on the provided set of files to verify
+# the syntax and semantics of the files provided.
+#
+# It is executed during build of the Lynx system to check that the macro files
+# are correct.
 #-------------------------------------------------------------------------------
 # Script arguments
+#   <files>       - Files to run through the checker.
+#   <+->leqn      - Force/use eqn syntax.
+#   <+->lmetafont - Force/use MetaFont syntax.
+#   <+->lpic      - Force/use pic syntax.
+#   <+->lrefer    - Force/use refer syntax.
+#   <+->lroff     - Force/use roff syntax.
+#   <+->lsoelim   - Force/use soelim syntax.
+#   <+->ltex      - Force/use TeX syntax.
+#   <+->ltbl      - Force/use ltbl syntax. 
 #-------------------------------------------------------------------------------
 
 #-<EOF>
