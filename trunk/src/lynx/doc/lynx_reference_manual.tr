@@ -1,26 +1,75 @@
-./"============================================================================"
-./" Lynx Typesetting System                                                    "
-./"									       "
-./" Copyright (C) 2010, 2011, 2012 Roel Sergeant			       "
-./"                                                                            "
-./" This program is free software: you can redistribute it and/or modify it    "
-./" under the terms of the GNU General Public License as published by the Free "
-./" Software Foundation, either version 3 of the License, or (at your option)  "
-./" any later version                                                          "
-./"                                                                            "
-./" This program is distributed in the hope that it will be useful, but WITHOUT"
-./" ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or      "
-./" FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for   "
-./" more details.                                                              "
-./"                                                                            "
-./" You should have received a copy of the GNU General Public License along    "
-./" with this program. If not, see <http://www.gnu.org/licenses/>              "
-./"============================================================================"
+.\"=============================================================================
+.\" Lynx Typesetting System
+.\"
+.\" Copyright (C) 2010, 2011, 2012 Roel Sergeant
+.\"
+.\" This program is free software: you can redistribute it and/or modify it
+.\" under the terms of the GNU General Public License as published by the Free
+.\" Software Foundation, either version 3 of the License, or (at your option)
+.\" any later version
+.\"
+.\" This program is distributed in the hope that it will be useful, but WITHOUT
+.\" ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+.\" FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+.\" more details.
+.\"
+.\" You should have received a copy of the GNU General Public License along
+.\" with this program. If not, see <http://www.gnu.org/licenses/>
+.\"=============================================================================
 
-./"----------------------------------------------------------------------------"
-./" lynx_reference_manual.tr                                                   "
-./"----------------------------------------------------------------------------"
-./" Reference manual for the Lynx typesetting system.                          "
-./"----------------------------------------------------------------------------"
+.\"-----------------------------------------------------------------------------
+.\" lynx_reference_manual.tr
+.\"-----------------------------------------------------------------------------
+.\" Reference manual for the Lynx typesetting system.
+.\"-----------------------------------------------------------------------------
 
-./"<EOF>"
+.\"=============================================================================
+.\" Document header
+.TL
+Lynx Typesetting System - Reference Manual
+
+.AU
+Roel Sergeant (rsergeant@panix.com)
+
+.AB
+This reference contains a description of all languages understood by the Lynx Typesetting System. At the lowest level this is the troff language, upon which the TeX language is build. 
+
+Standard macro packages (for example ms, mm and man) are also documented in this manual. 
+
+The last part of the manual documents the internals of the Lynx Typesetting System and pointer to porting the system to other platforms.
+.AE
+
+.\"=============================================================================
+.\" troff language specification
+.NH 1
+troff language
+.PP
+The native language of the Lynx Typesetting System is the 
+.I troff
+language. This language is described in this part of the document.
+
+.\"=============================================================================
+.\" TeX language
+.NH 1
+TeX language
+.PP
+The 
+.I TeX
+language is also translated by the Lynx Typesetting System, however, before compiling documents it is translated to the 
+.I troff
+language. This part of the document describes the TeX language and how it is translated into the troff language.
+
+.\"-----------------------------------------------------------------------------
+.\" TeX language specification
+.NH 2
+TeX language specification
+.PP
+
+.\"-----------------------------------------------------------------------------
+.\" TeX to troff translation
+.NH 2
+TeX to troff translation
+.PP
+
+.\"-----------------------------------------------------------------------------
+.\"<EOF>
