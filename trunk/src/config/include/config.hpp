@@ -26,9 +26,7 @@
 #ifndef __SL_CONFIG_CONFIG_HPP__
 #define __SL_CONFIG_CONFIG_HPP__
 
-#ifndef __SL_NO_SL_STDLIB
-# include <sl/config/macros.hpp>
-#endif /* !__SL_NO_SL_STDLIB */
+#include <macros.hpp>
 
 #include sl_include_config(config.h)
 

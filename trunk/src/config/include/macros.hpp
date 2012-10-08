@@ -26,11 +26,7 @@
 #ifndef __SL_CONFIG_MACROS_HPP__
 #define __SL_CONFIG_MACROS_HPP__
 
-#ifdef __SL_NO_SL_STDLIB
-# include <config/macros.h>
-#else /* __SL_NO_SL_STDLIB */
-# include <sl/config/macros.h>
-#endif /* __SL_NO_SL_STDLIB */
+#include <macros.h>
 
 //------------------------------------------------------------------------------
 // sl_use_type_if_exists

@@ -35,15 +35,15 @@
 // OS family specific include
 #if __SL_OS_FAMILY == __SL_FAMILY_BSD
 # ifdef __SL_NO_SL_STDLIB
-#  define sl_os_fixinclude(os_include) sl_os_str(config/os/bsd/os_include)
+#  define sl_os_fixinclude(os_include) sl_os_str(os/bsd/os_include)
 # else /* __SL_NO_SL_STDLIB */
-#  define sl_os_fixinclude(os_include) sl_os_str(sl/config/os/bsd/os_include)
+#  define sl_os_fixinclude(os_include) sl_os_str(os/bsd/os_include)
 # endif /* __SL_NO_SL_STDLIB */
 #elif __SL_OS_FAMILY == __SL_FAMILY_Linux
 # ifdef __SL_NO_SL_STDLIB
-#  define sl_os_fixinclude(os_include) sl_os_str(config/os/linix/os_include)
+#  define sl_os_fixinclude(os_include) sl_os_str(os/linix/os_include)
 # else /* __SL_NO_SL_STDLIB */
-#  define sl_os_fixinclude(os_include) sl_os_str(sl/config/os/linux/os_include)
+#  define sl_os_fixinclude(os_include) sl_os_str(os/linux/os_include)
 # endif /* __SL_NO_SL_STDLIB */
 #else
 # error "Unknown OS family, please rerun the configuration."

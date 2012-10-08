@@ -26,12 +26,7 @@
 #ifndef __SL_CONFIG_CONFIG_H__
 #define __SL_CONFIG_CONFIG_H__
 
-//------------------------------------------------------------------------------
-// Include macros, if using Snow Leopard standard libraries
-#ifndef __SL_NO_SL_STDLIB
-# include <config/macros.h>
-#endif
-//------------------------------------------------------------------------------
+#include <macros.h>
 
 //==============================================================================
 // Include correct config file depending on the language compiled.

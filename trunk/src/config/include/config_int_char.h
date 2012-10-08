@@ -21,7 +21,9 @@
 // config_int_char.h
 //------------------------------------------------------------------------------
 // Configuration applicable to all integer/character C code.
-//    - slci
+//    - lynx
+//    - slcc
+//    - slsh
 //    - libslstdc
 //------------------------------------------------------------------------------
 

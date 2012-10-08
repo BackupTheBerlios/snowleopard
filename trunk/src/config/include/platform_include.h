@@ -23,9 +23,9 @@
 // Macros for including platform specific headers.
 //------------------------------------------------------------------------------
 
-#include <config/config.h>
+#include <config.h>
 
-#include <config/macros.h>
+#include <macros.h>
 
 #ifndef __SL_CONFIG_PLATFORM_INCLUDE_H__
 #define __SL_CONFIG_PLATFORM_INCLUDE_H__
@@ -38,9 +38,9 @@
 //------------------------------------------------------------------------------
 // Include platform specific headers
 #if __SL_PLATFORM == __SL_PLATFORM_x86_64
-# define sl_os_fixinclude(platform_include) sl_os_str(sl/config/platform/x86_64/platform_include)
+# define sl_os_fixinclude(platform_include) sl_os_str(platform/x86_64/platform_include)
 #elif __SL_PLATFORM == __SL_PLATFORM_POWER
-# define sl_os_fixinclude(platform_include) sl_os_str(sl/config/platform/power/platform_include)
+# define sl_os_fixinclude(platform_include) sl_os_str(platform/power/platform_include)
 #else
 # error "Platform is undefined, please rerun the configuration."
 #endif /* __SL_PLATFORM == __SL_PLATFORM_x86_64 */

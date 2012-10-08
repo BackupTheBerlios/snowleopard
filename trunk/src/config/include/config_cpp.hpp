@@ -21,7 +21,6 @@
 // config_cpp.hpp
 //------------------------------------------------------------------------------
 // Configuration applicable to all C++ code.
-//    - slcc
 //    - sltst
 //    - slbld
 //    - libsltst
