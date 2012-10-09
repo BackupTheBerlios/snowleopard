@@ -21,6 +21,18 @@
 # Makefile
 #-------------------------------------------------------------------------------
 # Makefile for copying all include files in the correct place upon installation.
+#
+# The right locations are the following:
+#   - config      -> PREFIX/include/sl/config
+#   - libslstdc   -> Multiple locations
+#       - /    -> PREFIX/include
+#       - stdc -> PREFIX/include/sl/stdc
+#   - libslstdcpp -> Multiple locations
+#       - /      -> PREFIX/include
+#       - stdcpp -> PREFIX/include/sl/stdcpp
+#
+# This Makefile also patches the file PREFIX/include/sl/compiler_includes.h/.hpp
+# so the compilers include path correctly picks up the relevant header files.
 #-------------------------------------------------------------------------------
 
 #-<EOF>

@@ -20,7 +20,44 @@
 #-------------------------------------------------------------------------------
 # Makefile
 #-------------------------------------------------------------------------------
-# Makefile for building all components in the Snow Leopard project.
+# Makefile for building and installing all components in the Snow Leopard 
+# project.
 #-------------------------------------------------------------------------------
 
+#-------------------------------------------------------------------------------
+# Variables
+#
+DIRS = bin include lib src share
+
+#-------------------------------------------------------------------------------
+# Rules
+#
+all: src
+
+install: bin include share src
+
+bin: src lib
+	(cd bin ; ${MAKE} all);	 
+
+include: src lib
+	(cd include ; ${MAKE} all);	 
+
+lib: src
+	(cd lib ; ${MAKE} all);	 
+
+share: src
+	(cd share ; ${MAKE} all);
+
+src:
+	(cd src ; ${MAKE} all);	 
+
+www: src
+	(cd www ; ${MAKE} all);
+
+clean:
+	for dir in $(DIRS); do     		\
+		(cd $$dir ; ${MAKE} clean); 	\
+	done
+
+#-------------------------------------------------------------------------------
 #-<EOF>

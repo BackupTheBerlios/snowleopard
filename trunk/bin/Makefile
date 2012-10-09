@@ -21,6 +21,14 @@
 # Makefile
 #-------------------------------------------------------------------------------
 # Makefile for copying all executables to the correct location.
+#
+# Locations are:
+#   - slsh -> PREFIX/bin
+#   - slcc -> PREFIX/bin
+#   - lynx -> PREFIX/bin
+#
+# Scripts for SUSv4 compliant features are also installed. Permissions are also 
+# set for new files.
 #-------------------------------------------------------------------------------
 
 #-<EOF>

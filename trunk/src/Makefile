@@ -23,4 +23,33 @@
 # Makefile for building all components in the Snow Leopard project.
 #-------------------------------------------------------------------------------
 
+#-------------------------------------------------------------------------------
+# Variables
+#
+MODULES = libslstdc libslstdcpp lynx slcc slsh	 
+
+#-------------------------------------------------------------------------------
+# Rules
+#
+libslstdc:
+	(cd libslstdc ; ${MAKE} all);	 
+
+libslstdcpp:
+	(cd libslstdcpp ; ${MAKE} all);	 
+
+lynx:
+	(cd lynx ; ${MAKE} all);	 
+
+slcc:
+	(cd slcc ; ${MAKE} all);	 
+
+slsh:
+	(cd slsh ; ${MAKE} all);
+
+clean:
+	for dir in $(MODULES); do     		\
+		(cd $$dir ; ${MAKE} clean); 	\
+	done
+
+#-------------------------------------------------------------------------------
 #-<EOF>

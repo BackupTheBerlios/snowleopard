@@ -23,4 +23,21 @@
 # Makefile for building the Lynx typesetting system.
 #-------------------------------------------------------------------------------
 
+#-------------------------------------------------------------------------------
+# Variables
+#
+LYNX=lynx
+
+LDFORMAT=ldformat
+LEQN=leqn
+LGM=lgm
+LGRAP=lgrap
+LIDEAL=lideal
+LPIC=lpic
+LREFER=lrefer
+LROFF=lroff
+LSOELIM=soelim
+LTBL=ltbl
+#-------------------------------------------------------------------------------
+
 #-<EOF>

@@ -24,7 +24,13 @@
 #   - doc (pdf/html format)
 #   - info (info format)
 #   - scripts (shared script libraries)
+#       - libsh     -> common shell library
+#       - libcurses -> curses library
 #   - man (man format)
+#   - lynx libraries
+#       - .tex/.latex/.cls -> TeX/LaTeX files
+#       - .??              -> MetaFont files
+#       - .tr              -> troff files
 #-------------------------------------------------------------------------------
 
 #-<EOF>

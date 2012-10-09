@@ -21,6 +21,17 @@
 # Makefile
 #-------------------------------------------------------------------------------
 # Makefile for copying all libraries to the correct location.
+#
+# The correct locations are:
+#   - libslstdc   -> PREFIX/lib/sl/stdc
+#   - libslstdcpp -> Multiple locations
+#       - .a / .so -> PREFIX/lib/sl/stdcpp
+#       - .ecppl   -> PREFIX/lib/sl/ecppl  (ecppl are exported C++ libraries)
+#
+# This Makefile also fixes symbolic links in PREFIX/lib so the compiler and
+# other tools can find them.
+#
+# Registration of libraries is also done where required.
 #-------------------------------------------------------------------------------
 
 #-<EOF>
