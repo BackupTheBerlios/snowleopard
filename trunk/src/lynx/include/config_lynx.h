@@ -18,13 +18,13 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// config.h
+// config_lynx.h
 //------------------------------------------------------------------------------
 // Configuration information for the Lynx typesetting system.
 //------------------------------------------------------------------------------
 
-#ifndef __LYNX_CONFIG_H__
-#define __LYNX_CONFIG_H__
+#ifndef __LYNX_CONFIG_LYNX_H__
+#define __LYNX_CONFIG_LYNX_H__
 
 #ifdef __LYNX_NO_SL_STDLIB
 #define __SL_NO_SL_STDLIB
@@ -32,12 +32,12 @@
 
 #ifdef __SL_INSTALLED
 # include "sl/config/macros.h"
-#else 
+#else /* __SL_INSTALLED */
 # include "macros.h"
 #endif /* __SL_INSTALLED */
 
 #include sl_include_config(config.h)
 
-#endif /* !__LYNX_CONFIG_H__ */
+#endif /* !__LYNX_CONFIG_LYNX_H__ */
 
 //-<EOF>

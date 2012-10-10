@@ -18,18 +18,18 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// version.h
+// version_lynx.h
 //------------------------------------------------------------------------------
 // Version information for the Lynx typesetting system.
 //------------------------------------------------------------------------------
 
-#ifndef __LYNX_VERSION_H__
-#define __LYNX_VERSION_H__
+#ifndef __LYNX_VERSION_LYNX_H__
+#define __LYNX_VERSION_LYNX_H__
 
-#include "config.h"
+#include "config_lynx.h"
 
 #include sl_include_config(version.h)
 
-#endif /* !__LYNX_VERSION_H__ */
+#endif /* !__LYNX_VERSION_LYNX_H__ */
 
 //-<EOF>
