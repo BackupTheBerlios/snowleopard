@@ -18,13 +18,13 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// version.h
+// version_slsh.h
 //------------------------------------------------------------------------------
 // Version information for the shell.
 //------------------------------------------------------------------------------
 
-#ifndef __SL_SLSH_VERSION_H__
-#define __SL_SLSH_VERSION_H__
+#ifndef __SL_SLSH_VERSION_SLSH_H__
+#define __SL_SLSH_VERSION_SLSH_H__
 
 #include "config_slsh.h"
 
@@ -32,6 +32,6 @@
 
 #include sl_include_config(version.h)
 
-#endif /* !__SL_SLSH_VERSION_H__ */
+#endif /* !__SL_SLSH_VERSION_SLSH_H__ */
 
 //-<EOF>

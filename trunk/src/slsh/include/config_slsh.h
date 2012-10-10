@@ -18,13 +18,13 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// config.h
+// config_slsh.h
 //------------------------------------------------------------------------------
 // Configuration information for the shell.
 //------------------------------------------------------------------------------
 
-#ifndef __SL_SLSH_CONFIG_H__
-#define __SL_SLSH_CONFIG_H__
+#ifndef __SL_SLSH_CONFIG_SLSH_H__
+#define __SL_SLSH_CONFIG_SLSH_H__
 
 #ifdef __SL_SLSH_NO_SL_STDLIB
 #define __SL_NO_SL_STDLIB
@@ -39,6 +39,6 @@
 #include sl_include_config(config.h)
 #include sl_include_config(os_fixinclude.h)
 
-#endif /* !__SL_SLSH_CONFIG_H__ */
+#endif /* !__SL_SLSH_CONFIG_SLSH_H__ */
 
 //-<EOF>
