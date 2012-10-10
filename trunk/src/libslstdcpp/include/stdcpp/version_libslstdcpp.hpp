@@ -23,4 +23,9 @@
 // Version information for the standard C++ library.
 //------------------------------------------------------------------------------
 
+#ifndef __SL_STDCPP_IMPL_VERSION_LIBSLSTDCPP_HPP__
+#define __SL_STDCPP_IMPL_VERSION_LIBSLSTDCPP_HPP__
+
+#endif /* __SL_STDCPP_IMPL_VERSION_LIBSLSTDCPP_HPP__ */
+
 //-<EOF>
