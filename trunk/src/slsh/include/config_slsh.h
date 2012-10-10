@@ -30,7 +30,11 @@
 #define __SL_NO_SL_STDLIB
 #endif /* __SL_SLSH_NO_SL_STDLIB */
 
-#include "config/macros.h"
+#ifdef __SL_INSTALLED
+# include "sl/config/macros.h"
+#else /* __SL_INSTALLED */
+# include "macros.h"
+#endif /* __SL_INSTALLED */
 
 #include sl_include_config(config.h)
 #include sl_include_config(os_fixinclude.h)

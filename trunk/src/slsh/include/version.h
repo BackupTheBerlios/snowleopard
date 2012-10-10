@@ -26,7 +26,7 @@
 #ifndef __SL_SLSH_VERSION_H__
 #define __SL_SLSH_VERSION_H__
 
-#include "slsh/config.h"
+#include "config_slsh.h"
 
 #include <stddef.h>
 

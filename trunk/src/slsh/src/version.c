@@ -23,14 +23,14 @@
 // Version information for the shell.
 //------------------------------------------------------------------------------
 
+#include "config_slsh.h"
+
 #include <stdio.h>
 
-#include "slsh/version.h"
+#include "version.h"
 
 //------------------------------------------------------------------------------
 // Include global version numbers
-#include "slsh/config.h"
-
 #include sl_include_config(version.c.h)
 //------------------------------------------------------------------------------
 
