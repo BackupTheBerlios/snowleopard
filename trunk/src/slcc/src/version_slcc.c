@@ -27,7 +27,7 @@
 
 #include <stdio.h>
 
-#include "version.h"
+#include "version_slcc.h"
 
 //------------------------------------------------------------------------------
 // Include global version numbers
