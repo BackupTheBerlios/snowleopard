@@ -26,7 +26,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-#include "slci/settings.h"
+#include "settings.h"
 
 //------------------------------------------------------------------------------
 // add_include_path function

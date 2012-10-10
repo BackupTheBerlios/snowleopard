@@ -23,18 +23,18 @@
 // Driver for the front end.
 //------------------------------------------------------------------------------
 
-#ifndef __SL_SLC_SETTINGS_H__
-#define __SL_SLC_SETTINGS_H__
+#ifndef __SL_SLCC_SETTINGS_H__
+#define __SL_SLCC_SETTINGS_H__
 
 #include <stdbool.h>
 #include <stddef.h>
 
 //------------------------------------------------------------------------------
-// slc_settings structure
+// slcc_settings structure
 //
 // Structure for storing the user/system settings applicable to the front end.
 //
-struct slc_settings 
+struct slcc_settings 
 {
   size_t n_include_paths;
   char** include_paths;
@@ -44,7 +44,7 @@ struct slc_settings
   char** source_paths;
 };
 
-typedef struct slc_settings slc_settings;
+typedef struct slcc_settings slcc_settings;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -54,6 +54,6 @@ bool add_library_path (char* path);
 bool add_source_path (char* path);
 //------------------------------------------------------------------------------
 
-#endif /* !__SL_SLC_SETTINGS_H__ */
+#endif /* !__SL_SLCC_SETTINGS_H__ */
 
 //-<EOF>

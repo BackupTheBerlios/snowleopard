@@ -18,27 +18,25 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// types.h
+// version_slcc.c
 //------------------------------------------------------------------------------
-// Types for the front end.
-//------------------------------------------------------------------------------
-
-#ifndef __SL_SLCC_TYPES_H__
-#define __SL_SLCC_TYPES_H__
-
-#include <stddef.h>
-
-//------------------------------------------------------------------------------
-// Key type (used for hashing and referencing symbol table nodes)
-typedef size_t symtab_key_t;
+// Version information for the compiler front end.
 //------------------------------------------------------------------------------
 
+#include "config_slcc.h"
+
+#include <stdio.h>
+
+#include "version.h"
+
 //------------------------------------------------------------------------------
-// Global variables
-extern const size_t MaxSizeT;
-extern const symtab_key_t MaxSymtabKeyT;
+// Include global version numbers
+#include sl_include_config(version.c.h)
 //------------------------------------------------------------------------------
 
-#endif /* !__SL_SLCC_TYPES_H__ */
+//------------------------------------------------------------------------------
+// Build number.
+const unsigned int Build = 1;
+//------------------------------------------------------------------------------
 
 //-<EOF>

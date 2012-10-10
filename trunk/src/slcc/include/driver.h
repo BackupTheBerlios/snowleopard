@@ -23,16 +23,16 @@
 // Driver for the front end.
 //------------------------------------------------------------------------------
 
-#ifndef __SL_SLC_DRIVER_H__
-#define __SL_SLC_DRIVER_H__
+#ifndef __SL_SLCC_DRIVER_H__
+#define __SL_SLCC_DRIVER_H__
 
 #include <stdbool.h>
 
-#include "slc/settings.h"
+#include "settings.h"
 
 //------------------------------------------------------------------------------
 // Global variables.
-extern slc_settings settings_;
+extern slcc_settings settings_;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -41,6 +41,6 @@ bool drv_parse_command_line (int argc, char** argv);
 bool drv_start ();
 //------------------------------------------------------------------------------
 
-#endif /* !__SL_SLC_DRIVER_H__ */
+#endif /* !__SL_SLCC_DRIVER_H__ */
 
 //-<EOF>
