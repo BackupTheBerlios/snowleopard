@@ -18,19 +18,17 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// version.h
+// version_libslstdc.h
 //------------------------------------------------------------------------------
 // Version information for the standard C library.
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_IMPL_VERSION_H_
-#define _SL_STDC_IMPL_VERSION_H_
+#ifndef _SL_STDC_IMPL_VERSION_LIBSLSTDC_H_
+#define _SL_STDC_IMPL_VERSION_LIBSLSTDC_H_
 
-#include "sl/config/version.h"
+#include "version.h"
 
-#endif /* !_SL_STDC_IMPL_VERSION_H_ */
-
-//------------------------------------------------------------------------------
+#endif /* !_SL_STDC_IMPL_VERSION_LIBSLSTDC_H_ */
 
 //-<EOF>
 
