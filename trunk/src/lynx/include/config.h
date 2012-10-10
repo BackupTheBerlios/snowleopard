@@ -1,7 +1,7 @@
 /*==============================================================================
   Lynx Typesetting System
   
-  Copyright (C) 2009, 2010, 2011, 2012 Roel Sergeant
+  Copyright (C) 2010, 2011, 2012 Roel Sergeant
   
   This program is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -18,33 +18,26 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// driver.hpp
+// config.h
 //------------------------------------------------------------------------------
-// Driver class for the Lynx typesetting system.
+// Configuration information for the Lynx typesetting system.
 //------------------------------------------------------------------------------
 
-#ifndef __LYNX_DRIVER_HPP__
-#define __LYNX_DRIVER_HPP__
+#ifndef __LYNX_CONFIG_H__
+#define __LYNX_CONFIG_H__
 
-//==============================================================================
-namespace lynx {
+#ifdef __LYNX_NO_SL_STDLIB
+#define __SL_NO_SL_STDLIB
+#endif /* __LYNX_NO_SL_STDLIB */
 
-  //-----------------------------------------------------------------------------
-  // driver class
-  class driver {
-  public:
-    driver(int argc, char** argv);
+#ifdef __SL_INSTALLED
+# include "sl/config/macros.h"
+#else 
+# include "macros.h"
+#endif /* __SL_INSTALLED */
 
-    bool start();
+#include sl_include_config(config.h)
 
-  private:
-    bool parse_command_line(int argc, char** argv);
-  };
-  //----------------------------------------------------------------------------
-
-} /* lynx */
-//==============================================================================
-
-#endif /* !__LYNX_DRIVER_HPP__ */
+#endif /* !__LYNX_CONFIG_H__ */
 
 //-<EOF>

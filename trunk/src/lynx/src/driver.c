@@ -1,7 +1,7 @@
 /*==============================================================================
   Lynx Typesetting System
   
-  Copyright (C) 2010-2012 Roel Sergeant
+  Copyright (C) 2009, 2010, 2011, 2012 Roel Sergeant
   
   This program is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -18,28 +18,42 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// ltbl_main.cpp
+// driver.c
 //------------------------------------------------------------------------------
-// main function of the ltbl program of the Lynx typesetting system.
+// Driver functions for the Lynx typesetting system.
 //------------------------------------------------------------------------------
 
-#include <cstdlib>
+#include <string.h>
 
-#include "driver.hpp"
+#include "driver.h"
 
 //------------------------------------------------------------------------------
-// main function
+// start function
+// 
+// Start the typesetting process.
 //
-// This program is the main driver for the Lynx typesetting system. This program
-// first checks the input files and parameters and call the appropriate programs
-// to typeset a TROFF document.
-int main (int argc, char** argv)
+bool start ()
 {
-  using lynx::driver;
+  return true;
+}
+//------------------------------------------------------------------------------
 
-  driver d_ (argc, argv);
+//------------------------------------------------------------------------------
+// parse_command_line function
+//
+// Parses the command line arguments and stores the settings.
+//
+bool parse_command_line (int argc, char** argv) 
+{
+  for(int i = 1; i < argc; i++)
+    {
+      if(strcmp(argv[i], "--help") == 0 || strcmp(argv[i], "-h") == 0)
+	{
+	  /* Display help */
+	}
+    }
 
-  return EXIT_SUCCESS;
+  return true;
 }
 //------------------------------------------------------------------------------
 

@@ -18,14 +18,14 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// lynx_main.cpp
+// ltbl_main.c
 //------------------------------------------------------------------------------
-// main function of the lynx program of the Lynx typesetting system.
+// main function of the ltbl program of the Lynx typesetting system.
 //------------------------------------------------------------------------------
 
-#include <cstdlib>
+#include <stdlib.h>
 
-#include "driver.hpp"
+#include "driver.h"
 
 //------------------------------------------------------------------------------
 // main function
@@ -33,11 +33,9 @@
 // This program is the main driver for the Lynx typesetting system. This program
 // first checks the input files and parameters and call the appropriate programs
 // to typeset a TROFF document.
+//
 int main (int argc, char** argv)
 {
-  using lynx::driver;
-
-  driver d_ (argc, argv);
 
   return EXIT_SUCCESS;
 }

@@ -1,7 +1,7 @@
 /*==============================================================================
   Lynx Typesetting System
   
-  Copyright (C) 2010, 2011, 2012 Roel Sergeant
+  Copyright (C) 2012 Roel Sergeant
   
   This program is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -18,22 +18,27 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// config.hpp
+// lideal_main.c
 //------------------------------------------------------------------------------
-// Configuration information for the Lynx typesetting system.
+// main function of the lideal program of the Lynx typesetting system.
 //------------------------------------------------------------------------------
 
-#ifndef __LYNX_CONFIG_H__
-#define __LYNX_CONFIG_H__
+#include <stdlib.h>
 
-#ifdef __LYNX_NO_SL_STDLIB
-#define __SL_NO_SL_STDLIB
-#endif /* __LYNX_NO_SL_STDLIB */
+#include "driver.h"
 
-#include "config/macros.hpp"
+//------------------------------------------------------------------------------
+// main function
+//
+// This program is the main driver for the Lynx typesetting system. This program
+// first checks the input files and parameters and call the appropriate programs
+// to typeset a TROFF document.
+//
+int main (int argc, char** argv)
+{
 
-#include sl_include_config(config.hpp)
-
-#endif /* !__LYNX_CONFIG_H__ */
+  return EXIT_SUCCESS;
+}
+//------------------------------------------------------------------------------
 
 //-<EOF>

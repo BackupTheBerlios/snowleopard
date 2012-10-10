@@ -1,7 +1,7 @@
 /*==============================================================================
   Lynx Typesetting System
   
-  Copyright (C) 2010-2012 Roel Sergeant
+  Copyright (C) 2010, 2011, 2012 Roel Sergeant
   
   This program is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -18,29 +18,18 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// leqn_main.cpp
+// version.h
 //------------------------------------------------------------------------------
-// main function of the leqn program of the Lynx typesetting system.
+// Version information for the Lynx typesetting system.
 //------------------------------------------------------------------------------
 
-#include <cstdlib>
+#ifndef __LYNX_VERSION_H__
+#define __LYNX_VERSION_H__
 
-#include "driver.hpp"
+#include "config.h"
 
-//------------------------------------------------------------------------------
-// main function
-//
-// This program is the main driver for the Lynx typesetting system. This program
-// first checks the input files and parameters and call the appropriate programs
-// to typeset a TROFF document.
-int main (int argc, char** argv)
-{
-  using lynx::driver;
+#include sl_include_config(version.h)
 
-  driver d_ (argc, argv);
-
-  return EXIT_SUCCESS;
-}
-//------------------------------------------------------------------------------
+#endif /* !__LYNX_VERSION_H__ */
 
 //-<EOF>

@@ -1,7 +1,7 @@
 /*==============================================================================
   Lynx Typesetting System
   
-  Copyright (C) 2010-2012 Roel Sergeant
+  Copyright (C) 2010, 2011, 2012 Roel Sergeant
   
   This program is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -18,54 +18,65 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// driver.cpp
+// info.c
 //------------------------------------------------------------------------------
-// Driver class for the Lynx typesetting system.
+// Information functions for the Lynx typesetting system.
 //------------------------------------------------------------------------------
 
-#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-#include "driver.hpp"
+#include "info.h"
 
 //------------------------------------------------------------------------------
-// driver constructor
+// copyright function
 //
-// Accepts the command line arguments and initializes the typesetting process.
-lynx::driver::driver (int argc, char** argv)
+// Print copyright information.
+//
+void copyright ()
 {
-  if(!parse_command_line(argc, argv))
-    {
-      /* Display usage information and exit */
-    }
+
 }
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// start function
-// 
-// Start the typesetting process.
-bool lynx::driver::start ()
+// license function
+//
+// Print licensing information and exit. Exit as failed to avoid that dependent
+// programs continue.
+//
+void license ()
 {
-  return true;
+  
+  exit (EXIT_FAILURE);
 }
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// parse_command_line function
+// usage function
 //
-// Parses the command line arguments and stores the settings.
-bool lynx::driver::parse_command_line (int argc, char** argv) 
+// Print usage information and exit. Exit as failed to avoid that dependent
+// programs will continue.
+//
+void usage ()
 {
-  for(int i = 1; i < argc; i++)
-    {
-      if(strcmp(argv[i], "--help") == 0 || strcmp(argv[i], "-h") == 0)
-	{
-	  /* Display help */
-	}
-    }
+  
+  exit (EXIT_FAILURE);
+}
+//------------------------------------------------------------------------------
 
-  return true;
+//------------------------------------------------------------------------------
+// warrantee function
+//
+// Print warrantee information and exit. Exit as failed to avoid that dependent 
+// programs continue.
+//
+void warrantee ()
+{
+  
+  exit (EXIT_FAILURE);
 }
 //------------------------------------------------------------------------------
 
 //-<EOF>
+

@@ -1,7 +1,7 @@
 /*==============================================================================
   Lynx Typesetting System
   
-  Copyright (C) 2010-2012 Roel Sergeant
+  Copyright (C) 2010, 2011, 2012 Roel Sergeant
   
   This program is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -18,14 +18,14 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// lsoelim_main.cpp
+// lynx_main.c
 //------------------------------------------------------------------------------
-// main function of the lsoelim program of the Lynx typesetting system.
+// main function of the lynx program of the Lynx typesetting system.
 //------------------------------------------------------------------------------
 
-#include <cstdlib>
+#include <stdlib.h>
 
-#include "driver.hpp"
+#include "driver.h"
 
 //------------------------------------------------------------------------------
 // main function
@@ -33,11 +33,9 @@
 // This program is the main driver for the Lynx typesetting system. This program
 // first checks the input files and parameters and call the appropriate programs
 // to typeset a TROFF document.
+//
 int main (int argc, char** argv)
 {
-  using lynx::driver;
-
-  driver d_ (argc, argv);
 
   return EXIT_SUCCESS;
 }

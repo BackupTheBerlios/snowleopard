@@ -1,7 +1,7 @@
 /*==============================================================================
   Lynx Typesetting System
   
-  Copyright (C) 2010-2012 Roel Sergeant
+  Copyright (C) 2010, 2011, 2012 Roel Sergeant
   
   This program is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -18,23 +18,25 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// version.cpp
+// version.c
 //------------------------------------------------------------------------------
 // Version information for the Lynx typesetting system.
 //------------------------------------------------------------------------------
 
-#include <cstdio>
+#include <stdio.h>
 
-#include "version.hpp"
+#include "config.h"
+
+#include "version.h"
 
 //------------------------------------------------------------------------------
 // Include global version numbers
-#include "config/version.cpp.hpp"
+#include sl_include_config(version.c.h)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // Build number.
-const unsigned int sl::config::Build = 1;
+static unsigned int Build = 1;
 //------------------------------------------------------------------------------
 
 //-<EOF>
