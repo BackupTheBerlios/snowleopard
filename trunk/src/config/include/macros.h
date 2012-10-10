@@ -54,13 +54,12 @@
 //------------------------------------------------------------------------------
 // sl_include_config macro
 #ifdef __SL_NO_SL_STDLIB
-# define sl_include_config(config_header) sl_str(config/config_header)
+# define sl_include_config(config_header) sl_str(config_header)
 #else		    
-# define sl_include_config(config_header) sl_str(sl/config/config_header)   
+# define sl_include_config(config_header) sl_str(config_header)   
 #endif
 //------------------------------------------------------------------------------
 
 #endif /* !__SL_CONFIG_MACROS_H__ */
 
 //-<EOF>
-

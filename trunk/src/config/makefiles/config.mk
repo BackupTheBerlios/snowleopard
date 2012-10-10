@@ -24,67 +24,45 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# SLCI specific config
-SLCI_CC = pcc
+# Configuration include files
+#
+CONFIG_INCLUDE		= ../config/include
 
-SLCI_CFLAGS = -std=gnu99 -D__SL_SLCI_NO_SL_STDLIB -Wall -Wextra -Werror -Wno-unused-function -Wno-unused-parameter
-SLCI_DEBUG = -D__SLCI_DEBUG -D__SLCI_NO_DEBUG_SETTINGS -D__SLCI_DEBUG_SYMBOL_TABLES -g
-#-------------------------------------------------------------------------------
+VERSION_C_INCLUDES	= \
+	$(CONFIG_INCLUDE)/version.c.h					\
+	$(CONFIG_INCLUDE)/version.h
 
-#-------------------------------------------------------------------------------
-# SLSH specific config
-SLSH_CC = gcc
+VERSION_CPP_INCLUDES	= \
+	$(CONFIG_INCLUDE)/version.cpp.hpp				\
+	$(CONFIG_INCLUDE)/version.hpp
 
-SLSH_CFLAGS = -std=gnu99 -D__SL_SLSH_NO_SL_STDLIB -Wall -Wextra -Werror -Wno-unused-function -Wno-unused-parameter
-SLSH_DEBUG = -D__SLSH_DEBUG -D__SLSH_NO_DEBUG_SETTINGS -D__SLSH_DEBUG_SYMBOL_TABLES -g
-#-------------------------------------------------------------------------------
+CONFIG_C_INCLUDES	= \
+	$(CONFIG_INCLUDE)/config.h 					\
+	$(CONFIG_INCLUDE)/config_c.h 					\
+	$(CONFIG_INCLUDE)/config_complex.h 				\
+	$(CONFIG_INCLUDE)/config_float.h				\
+	$(CONFIG_INCLUDE)/config_int_char.h				\
+	$(CONFIG_INCLUDE)/config_io.h					\
+	$(CONFIG_INCLUDE)/macros.h					\
+	$(CONFIG_INCLUDE)/os_fixinclude.h				\
+	$(CONFIG_INCLUDE)/platform_include.h				\
+	$(CONFIG_INCLUDE)/typed_call_macros.h
 
-#-------------------------------------------------------------------------------
-# LYNX specific config
-LYNX_CXX = /home/rsergeant/root/bin/g++
-
-LYNX_CXXFLAGS = -std=c++11 -D__LYNX_NO_SL_STDLIB -Wall -Wextra -Werror -Wno-unused-function -Wno-unknown-pragmas
-LYNX_DEBUG = -D__LYNX_DEBUG -gdwarf-2
-#-------------------------------------------------------------------------------
-
-#-------------------------------------------------------------------------------
-# C config
-CC = /home/rsergeant/root/bin/gcc
-
-CFLAGS = -std=gnu11 -fno-builtin -D __STDC_WANT_LIB_EXT1__=1 -Wall -Werror -Wno-unused-function -Wno-unknown-pragmas -m64
-
-CFLAGS_STATIC_LIB = 
-CFLAGS_SHARED_LIB = -fPIC
-SHARED_LIB_FVERSION = 0.0.1
-SHARED_LIB_MVERSION = 0
-AR_FLAGS =
-
-DEBUG_CFLAGS = -g
-
-CONFIG_C_HEADERS = sl/config/config.h
-#-------------------------------------------------------------------------------
+CONFIG_CPP_INCLUDES	= \
+	$(CONFIG_INCLUDE)/config.hpp					\
+	$(CONFIG_INCLUDE)/config_cpp.hpp				\
+	$(CONFIG_INCLUDE)/macros.hpp
 
 #-------------------------------------------------------------------------------
-# C++ config
-CXX = /home/rsergeant/root/bin/g++
-
-CXXFLAGS = -std=c++11 -fno-builtin -D __STDC_WANT_LIB_EXT1__=1 -Wall -Werror -Wno-unused-function -Wno-unknown-pragmas -m64
-
-CXXFLAGS_STATIC_LIB = 
-CXXFLAGS_SHARED_LIB = -fPIC
-SHARED_LIB_FVERSION = 0.0.1
-SHARED_LIB_MVERSION = 0
-AR_FLAGS =
-
-DEBUG_CFLAGS = -g
-
-CONFIG_CXX_HEADERS = sl/config/config.hpp
-#-------------------------------------------------------------------------------
+# Build path 
+#
+BUILD_PATH		= /home/rsergeant/projects/build/snowleopard
 
 #-------------------------------------------------------------------------------
-# <NetBSD>
-BUILD_ROOT_DIR = /home/rsergeant/projects/build/snowleopard
-#-------------------------------------------------------------------------------
+# Compiler options
+#
+COMPILE_FLAGS		= -std=c99
+DEBUG_FLAGS		= -g
 
+#-------------------------------------------------------------------------------
 #-<EOF>
-
