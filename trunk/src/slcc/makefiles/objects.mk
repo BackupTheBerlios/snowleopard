@@ -24,11 +24,11 @@
 #-------------------------------------------------------------------------------
 
 OBJS 		= \
-	driver.o 							\
-	main.o 								\
-	settings.o 							\
-	types.o 							\
-	version_slcc.o
+	$(PRG_BUILD_PATH)/driver.o 					\
+	$(PRG_BUILD_PATH)/main.o 					\
+	$(PRG_BUILD_PATH)/settings.o 					\
+	$(PRG_BUILD_PATH)/types.o 					\
+	$(PRG_BUILD_PATH)/version_slcc.o
 
 #-------------------------------------------------------------------------------
 #<EOF>

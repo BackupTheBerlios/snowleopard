@@ -31,13 +31,14 @@
 #-------------------------------------------------------------------------------
 # Variables
 #
-PROGRAM 	= slcc
+PRG_BUILD_PATH	= $(BUILD_PATH)/slcc
+
+PROGRAM 	= $(PRG_BUILD_PATH)/slcc
 
 PRG_INCLUDE	= include
-
 INCLUDE_PATHS 	= -I$(PRG_INCLUDE) -I$(CONFIG_INCLUDE)
 
-COMPILER_OPTS	= $(INCLUDE_PATHS)
+COMPILER_OPTS	= $(INCLUDE_PATHS) $(COMPILE_FLAGS) $(DEBUG_FLAGS)
 
 .include "makefiles/objects.mk"
 .include "makefiles/includes.mk"
@@ -48,15 +49,21 @@ COMPILER_OPTS	= $(INCLUDE_PATHS)
 $(PROGRAM) 	: $(OBJS)
 	cc $(.ALLSRC) -o $(.TARGET)
 
-$(OBJS)    	: $(INCLUDES) $(CONFIG_C_INCLUDES)
+$(OBJS)    	: build_path $(INCLUDES) $(CONFIG_C_INCLUDES) $(VERSION_C_INCLUDES)
 
 .include "makefiles/object_rules.mk"
 
 #-------------------------------------------------------------------------------
 # Special rules
-clean:
+build_path	:
+	mkdir -p $(PRG_BUILD_PATH)
+
+clean		:
 	rm -rf $(OBJS) 		\
 	rm -rf $(PROGRAM)
+
+distclean	: clean
+	rmdir $(PRG_BUILD_PATH)
 
 #-------------------------------------------------------------------------------
 #-<EOF>

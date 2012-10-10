@@ -18,29 +18,29 @@
 #===============================================================================
 
 #-------------------------------------------------------------------------------
-# sources.mk
+# object_rules.mk
 #-------------------------------------------------------------------------------
-# Generated file containing the source file rules used for the compiler front 
+# Generated file containing the object file rules used for the compiler front 
 # end.
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
 # Rules
 #
-driver.o  	: src/driver.c
-	cc -c $(COMPILER_OPTS) src/driver.c
+$(PRG_BUILD_PATH)/driver.o  		: src/driver.c
+	$(CC) -c $(COMPILER_OPTS) src/driver.c -o $(.TARGET)
 
-main.o		: src/main.c
-	cc -c $(COMPILER_OPTS) src/main.c
+$(PRG_BUILD_PATH)/main.o		: src/main.c
+	$(CC) -c $(COMPILER_OPTS) src/main.c -o $(.TARGET)
 
-settings.o	: src/settings.c
-	cc -c $(COMPILER_OPTS) src/settings.c
+$(PRG_BUILD_PATH)/settings.o		: src/settings.c
+	$(CC) -c $(COMPILER_OPTS) src/settings.c -o $(.TARGET)
 
-types.o		: src/types.c
-	cc -c $(COMPILER_OPTS) src/types.c
+$(PRG_BUILD_PATH)/types.o		: src/types.c
+	$(CC) -c $(COMPILER_OPTS) src/types.c -o $(.TARGET)
 
-version_slcc.o	: src/version_slcc.c
-	cc -c $(COMPILER_OPTS) src/version_slcc.c
+$(PRG_BUILD_PATH)/version_slcc.o	: src/version_slcc.c
+	$(CC) -c $(COMPILER_OPTS) src/version_slcc.c -o $(.TARGET)
 
 #-------------------------------------------------------------------------------
 #<EOF>
