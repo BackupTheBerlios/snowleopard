@@ -1,0 +1,43 @@
+#!/bin/sh
+
+#===============================================================================
+# Snow Leopard Compiler Project
+#
+# Copyright (C) 2012 Roel Sergeant
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation, either version 3 of the License, or (at your option) any
+# later version
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more 
+# details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <http://www.gnu.org/licenses/>
+#===============================================================================
+
+#-------------------------------------------------------------------------------
+# create_makefiles
+#-------------------------------------------------------------------------------
+# When executed on a program directory it find out the following:
+#   - All source files in the src directory.
+#   - Includes from the include directory used in all source files.
+#   - Includes from other include directories used in all source files.
+
+# With this information it creates/modifies the following files:
+#   - makefiles/includes.mk - a list of all includes used in the programs source
+#                             files.
+#   - makefiles/objects.mk - a list of all required object files (one for each
+#                            source file).
+#   - makefiles/object_rules.mk - a build rule for each of the object files.
+#
+# The developer needs to run this script whenever a new source file is added or
+# a new dependency is added.
+#-------------------------------------------------------------------------------
+# Script arguments
+#-------------------------------------------------------------------------------
+
+. ./../../common/scripts/common.sh
