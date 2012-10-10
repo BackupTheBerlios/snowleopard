@@ -18,45 +18,21 @@
 #===============================================================================
 
 #-------------------------------------------------------------------------------
-# Makefile
+# includes.mk
 #-------------------------------------------------------------------------------
-# Makefile for building the Snow Leopard C++ Compiler Front End
+# Generated file containing a list of all includes files that are specific to
+# the compiler front end.
 #-------------------------------------------------------------------------------
-
-#-------------------------------------------------------------------------------
-# Include makefiles
-#
-.include "../config/makefiles/config.mk"
 
 #-------------------------------------------------------------------------------
 # Variables
 #
-PROGRAM 	= slcc
-
-PRG_INCLUDE	= include
-
-INCLUDE_PATHS 	= -I$(PRG_INCLUDE) -I$(CONFIG_INCLUDE)
-
-COMPILER_OPTS	= $(INCLUDE_PATHS)
-
-.include "makefiles/objects.mk"
-.include "makefiles/includes.mk"
+INCLUDES 	= \
+	include/config_slcc.h 						\
+	include/driver.h 						\
+	include/settings.h 						\
+	include/types.h 						\
+	include/version_slcc.h
 
 #-------------------------------------------------------------------------------
-# Rules
-#
-$(PROGRAM) 	: $(OBJS)
-	cc $(.ALLSRC) -o $(.TARGET)
-
-$(OBJS)    	: $(INCLUDES) $(CONFIG_C_INCLUDES)
-
-.include "makefiles/object_rules.mk"
-
-#-------------------------------------------------------------------------------
-# Special rules
-clean:
-	rm -rf $(OBJS) 		\
-	rm -rf $(PROGRAM)
-
-#-------------------------------------------------------------------------------
-#-<EOF>
+#<EOF>

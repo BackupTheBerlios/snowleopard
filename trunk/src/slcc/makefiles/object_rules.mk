@@ -18,45 +18,29 @@
 #===============================================================================
 
 #-------------------------------------------------------------------------------
-# Makefile
+# sources.mk
 #-------------------------------------------------------------------------------
-# Makefile for building the Snow Leopard C++ Compiler Front End
+# Generated file containing the source file rules used for the compiler front 
+# end.
 #-------------------------------------------------------------------------------
-
-#-------------------------------------------------------------------------------
-# Include makefiles
-#
-.include "../config/makefiles/config.mk"
-
-#-------------------------------------------------------------------------------
-# Variables
-#
-PROGRAM 	= slcc
-
-PRG_INCLUDE	= include
-
-INCLUDE_PATHS 	= -I$(PRG_INCLUDE) -I$(CONFIG_INCLUDE)
-
-COMPILER_OPTS	= $(INCLUDE_PATHS)
-
-.include "makefiles/objects.mk"
-.include "makefiles/includes.mk"
 
 #-------------------------------------------------------------------------------
 # Rules
 #
-$(PROGRAM) 	: $(OBJS)
-	cc $(.ALLSRC) -o $(.TARGET)
+driver.o  	: src/driver.c
+	cc -c $(COMPILER_OPTS) src/driver.c
 
-$(OBJS)    	: $(INCLUDES) $(CONFIG_C_INCLUDES)
+main.o		: src/main.c
+	cc -c $(COMPILER_OPTS) src/main.c
 
-.include "makefiles/object_rules.mk"
+settings.o	: src/settings.c
+	cc -c $(COMPILER_OPTS) src/settings.c
+
+types.o		: src/types.c
+	cc -c $(COMPILER_OPTS) src/types.c
+
+version_slcc.o	: src/version_slcc.c
+	cc -c $(COMPILER_OPTS) src/version_slcc.c
 
 #-------------------------------------------------------------------------------
-# Special rules
-clean:
-	rm -rf $(OBJS) 		\
-	rm -rf $(PROGRAM)
-
-#-------------------------------------------------------------------------------
-#-<EOF>
+#<EOF>
