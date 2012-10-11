@@ -61,7 +61,7 @@ BUILD_PATH		= /home/rsergeant/projects/build/snowleopard
 #-------------------------------------------------------------------------------
 # Compiler options
 #
-COMPILE_FLAGS		= -std=c99
+COMPILE_FLAGS		= -std=c99 -Wall -Wextra
 DEBUG_FLAGS		= -g
 
 #-------------------------------------------------------------------------------
