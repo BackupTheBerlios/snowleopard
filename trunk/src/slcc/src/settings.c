@@ -70,4 +70,50 @@ bool add_include_path (char* path)
 }
 //------------------------------------------------------------------------------
 
+//------------------------------------------------------------------------------
+// add_library_path function
+//
+// Add an library path to the list of paths to search. Priority is given as 
+// follows (paths are build up in this order):
+//   1) Path given at command line.
+//   2) Path given in environment variable SLC_LIBRARY_PATH.
+//   3) Path given in configuration file.
+//   4) System/Compiler defined path.
+//
+bool add_library_path (char* path)
+{
+
+  return false;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// add_source_path function
+//
+// Add an source path to the list of paths to search. Priority is given as 
+// follows (paths are build up in this order):
+//   1) Path given at command line.
+//   2) Path given in environment variable SLC_SOURCE_PATH.
+//   3) Path given in configuration file.
+//   4) System/Compiler defined path.
+//
+bool add_source_path (char* path)
+{
+
+  return false;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// set_outfile function
+//
+//
+//
+bool set_outfile (char* file)
+{
+
+  return false;
+}
+//------------------------------------------------------------------------------
+
 //-<EOF>
