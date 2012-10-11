@@ -38,7 +38,7 @@ PROGRAM 	= $(PRG_BUILD_PATH)/slcc
 PRG_INCLUDE	= include
 INCLUDE_PATHS 	= -I$(PRG_INCLUDE) -I$(CONFIG_INCLUDE)
 
-COMPILER_OPTS	= $(INCLUDE_PATHS) $(COMPILE_FLAGS) $(DEBUG_FLAGS)
+CFLAGS		= $(INCLUDE_PATHS) $(COMPILE_FLAGS) $(DEBUG_FLAGS)
 
 .include "makefiles/objects.mk"
 .include "makefiles/includes.mk"

@@ -28,19 +28,22 @@
 # Rules
 #
 $(PRG_BUILD_PATH)/driver.o  		: src/driver.c
-	$(CC) -c $(COMPILER_OPTS) src/driver.c -o $(.TARGET)
+	$(CC) -c $(CFLAGS) src/driver.c -o $(.TARGET)
+
+$(PRG_BUILD_PATH)/error_codes.o		: src/error_codes.c
+	$(CC) -c $(CFLAGS) src/error_codes.c -o $(.TARGET)
 
 $(PRG_BUILD_PATH)/main.o		: src/main.c
-	$(CC) -c $(COMPILER_OPTS) src/main.c -o $(.TARGET)
+	$(CC) -c $(CFLAGS) src/main.c -o $(.TARGET)
 
 $(PRG_BUILD_PATH)/settings.o		: src/settings.c
-	$(CC) -c $(COMPILER_OPTS) src/settings.c -o $(.TARGET)
+	$(CC) -c $(CFLAGS) src/settings.c -o $(.TARGET)
 
 $(PRG_BUILD_PATH)/types.o		: src/types.c
-	$(CC) -c $(COMPILER_OPTS) src/types.c -o $(.TARGET)
+	$(CC) -c $(CFLAGS) src/types.c -o $(.TARGET)
 
 $(PRG_BUILD_PATH)/version_slcc.o	: src/version_slcc.c
-	$(CC) -c $(COMPILER_OPTS) src/version_slcc.c -o $(.TARGET)
+	$(CC) -c $(CFLAGS) src/version_slcc.c -o $(.TARGET)
 
 #-------------------------------------------------------------------------------
 #<EOF>

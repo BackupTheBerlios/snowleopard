@@ -28,6 +28,7 @@
 
 #include <stdbool.h>
 
+#include "error_codes.h"
 #include "settings.h"
 
 //------------------------------------------------------------------------------
@@ -39,6 +40,7 @@ extern slcc_settings settings_;
 // Driver functions.
 bool drv_parse_command_line (int argc, char** argv);
 bool drv_start ();
+slcc_error_code drv_get_first_error ();
 //------------------------------------------------------------------------------
 
 #endif /* !__SL_SLCC_DRIVER_H__ */

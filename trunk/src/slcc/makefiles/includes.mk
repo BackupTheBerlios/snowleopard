@@ -30,6 +30,7 @@
 INCLUDES 	= \
 	$(PRG_INCLUDE)/config_slcc.h 					\
 	$(PRG_INCLUDE)/driver.h 					\
+	$(PRG_INCLUDE)/error_codes.h					\
 	$(PRG_INCLUDE)/settings.h 					\
 	$(PRG_INCLUDE)/types.h 						\
 	$(PRG_INCLUDE)/version_slcc.h

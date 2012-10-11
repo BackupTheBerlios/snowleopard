@@ -18,56 +18,45 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// driver.c
+// error_codes.c
 //------------------------------------------------------------------------------
-// Driver functions for the front end.
+// Error codes for the compiler front end.
 //------------------------------------------------------------------------------
-
-#include <stdbool.h>
 
 #include "error_codes.h"
-#include "settings.h"
 
 //------------------------------------------------------------------------------
-// Global variables
-//
-slcc_settings settings_;
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// drv_parse_command_line function
-//
-// Parses the command line, checks arguments supplied and applies settings to
-// the compiler.
-//
-bool drv_parse_command_line (int argc, char** argv)
-{
-
-  return false;
-}
+// Error type description list.
+char* error_type_list_[] = {
+  "No error occured",
+  "FATAL ERROR",
+  "INTERNAL COMPILER ERROR", 
+  "Unimplemented Feature",
+  "Preprocessor Error",
+  "Source Error",
+  "Code Generation Error", 
+  "Runtime Error"
+};
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// drv_start function
-//
-// Starts the compilation process.
-//
-bool drv_start ()
-{
+// Error descriptions list.
+slcc_error_description error_description_list_[] = {
 
-  return false;
-}
-//------------------------------------------------------------------------------
+  /* No error occured */
+  {"No error occured", 0, ET_NO_ERROR},
 
-//------------------------------------------------------------------------------
-// drv_get_first_error function
-//
-// Get the first error produced.
-//
-slcc_error_code drv_get_first_error ()
-{
+  /* Compiler runtime error */		
+  {"Invalid arguments provided", 0, ET_FATAL}
 
-  return EC_NO_ERROR;
+  /* Preprocessor errors */
+  
+  /* Compile errors */
+  
+  /* Code generation errors */
+  
+  /* Executor runtime errors */
+
 };
 //------------------------------------------------------------------------------
 

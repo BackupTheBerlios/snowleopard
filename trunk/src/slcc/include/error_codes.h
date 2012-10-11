@@ -18,57 +18,93 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// driver.c
+// error_codes.h
 //------------------------------------------------------------------------------
-// Driver functions for the front end.
+// Error codes for the compiler front end.
 //------------------------------------------------------------------------------
 
-#include <stdbool.h>
+#ifndef __SL_SLCC_ERROR_CODES_H__
+#define __SL_SLCC_ERROR_CODES_H__
 
-#include "error_codes.h"
-#include "settings.h"
+#include <stddef.h>
 
 //------------------------------------------------------------------------------
-// Global variables
+// slcc_error_type enum
 //
-slcc_settings settings_;
+enum slcc_error_type
+  {
+    ET_NO_ERROR = 0,  /* No error occured */
+
+    /* Internal errors */
+    ET_FATAL,         /* Fatal errors */
+    ET_INTERNAL,      /* Internal compiler error */
+
+    /* Compile errors */
+    ET_UNIMPLEMENTED, /* Unimplemented feature */
+    ET_PREPROCESS,    /* Preprocessor error */
+    ET_COMPILE,       /* Compilation/Source analysis error */
+    ET_CODEGEN,       /* Code generation error */
+    ET_RUNTIME        /* Runtime error */      
+  };
+
+typedef enum slcc_error_type slcc_error_type;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// drv_parse_command_line function
+// error_type_list array
 //
-// Parses the command line, checks arguments supplied and applies settings to
-// the compiler.
+// Error type descritpion list (Sorted in the order of the slci_error_type 
+// enum)
 //
-bool drv_parse_command_line (int argc, char** argv)
+extern char* error_type_list_[];
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// slci_error_code enumeration
+//
+enum slcc_error_code 
+  {
+
+    /* No error occured */
+    EC_NO_ERROR = 0,
+
+    /* Compiler runtime errors */
+    EC_RUN_INVALID_ARG /* Invalid argument supplied */
+
+    /* Preprocessor errors */
+    
+    /* Compile errors */
+
+    /* Code generation errors */
+    
+    /* Executor runtime errors */
+
+  };
+
+typedef enum slcc_error_code slcc_error_code;
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// slcc_error_description struct
+//
+struct slcc_error_description
 {
-
-  return false;
-}
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// drv_start function
-//
-// Starts the compilation process.
-//
-bool drv_start ()
-{
-
-  return false;
-}
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// drv_get_first_error function
-//
-// Get the first error produced.
-//
-slcc_error_code drv_get_first_error ()
-{
-
-  return EC_NO_ERROR;
+  char* description;
+  size_t nr_of_arguments;
+  slcc_error_type type;
 };
+
+typedef struct slcc_error_description slcc_error_description;
 //------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// error_description_list array
+// 
+// Error description list (Sorted in the order of the slci_error_code enum)
+//
+extern slcc_error_description error_description_list_[];
+//------------------------------------------------------------------------------
+
+#endif /* !__SL_SLCC_ERROR_CODES_H__ */
 
 //-<EOF>
