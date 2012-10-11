@@ -23,12 +23,27 @@
 // Error handling for the compiler front end.
 //------------------------------------------------------------------------------
 
+#include <stdlib.h>
+
 #include "error_handling.h"
 #include "vector.h"
 
 //------------------------------------------------------------------------------
 // Error list array
 lslc_vector error_list_;
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// err_report_and_exit_0 function
+//
+//
+//
+void err_report_and_exit_0 (slcc_error_code code)
+{
+  /* <TODO: Implement error reporting> */
+
+  exit (code);
+}
 //------------------------------------------------------------------------------
 
 //-<EOF>

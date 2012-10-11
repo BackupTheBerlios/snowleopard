@@ -74,6 +74,11 @@ struct slcc_settings
   bool usage_only;
   bool warrantee_only;
 
+  /* compile options */
+  bool compile_only;
+  bool preprocess_only;
+  char* out_file;
+
   /* language options */
   slcc_language language;
   slcc_language_standard standard;
@@ -95,10 +100,16 @@ typedef struct slcc_settings slcc_settings;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
+// Global variables.
+extern slcc_settings settings_;
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 // Settings functions.
 bool add_include_path (char* path);
 bool add_library_path (char* path);
 bool add_source_path (char* path);
+bool set_outfile (char* file);
 //------------------------------------------------------------------------------
 
 #endif /* !__SL_SLCC_SETTINGS_H__ */

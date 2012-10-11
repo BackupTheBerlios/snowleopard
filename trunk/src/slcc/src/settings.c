@@ -29,6 +29,31 @@
 #include "settings.h"
 
 //------------------------------------------------------------------------------
+// Global variables
+//
+slcc_settings settings_ = {
+  false,   /* quiet */
+  false,   /* verbose */
+  false,   /* copyright_only */
+  false,   /* usage_only */
+  false,   /* warrantee_only */
+  false,   /* compile_only */
+  false,   /* preprocess_only */
+  "a.out", /* out_file */
+  L_C,     /* language */
+  LS_C11,  /* standard */
+  true,    /* use_stdlib */
+  0,       /* n_include_paths */
+  NULL,    /* include_paths */
+  0,       /* n_library_paths */
+  NULL,    /* library_paths */
+  0,       /* n_source_paths */
+  NULL,    /* source_paths */
+  false    /* use_export */
+};
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 // add_include_path function
 //
 // Add an include path to the list of paths to search. Priority is given as 
