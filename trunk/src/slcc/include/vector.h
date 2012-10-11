@@ -1,5 +1,5 @@
 /*==============================================================================
-  Snow Leopard C++ Compiler Front End
+  Snow Leopard C Source Component Library
   
   Copyright (C) 2012 Roel Sergeant
   
@@ -18,49 +18,36 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// error_handling.h
+// vector.h
 //------------------------------------------------------------------------------
-// Error handling for the compiler front end.
-//------------------------------------------------------------------------------
-
-#ifndef __SL_SLCC_ERROR_HANDLING_H__
-#define __SL_SLCC_ERROR_HANDLING_H__
-
-#include "error_codes.h"
-#include "vector.h"
-
-//------------------------------------------------------------------------------
-// slcc_error structure
+// Vector for the compiler front end.
 //
-// Structure for storing a single error, not used for fatal errors, as those 
-// result in immediate abortion.
+// <TODO: Make vector strongly typed>
+//------------------------------------------------------------------------------
+
+#ifndef __SL_LSLC_VECTOR_H__
+#define __SL_LSLC_VECTOR_H__
+
+#include <stddef.h>
+
+//------------------------------------------------------------------------------
+// Global constant
+extern size_t LSLCVectorInitialSize;
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// lslc_vector structure
 //
-struct slcc_error
+struct lslc_vector
 {
-  slcc_error_code code;
-  char* arg1;
-  char* arg2;
+  size_t reserved;
+  size_t used;
+  void** data;
 };
 
-typedef struct slcc_error slcc_error;
+typedef struct lslc_vector lslc_vector;
 //------------------------------------------------------------------------------
 
-//------------------------------------------------------------------------------
-// error_list array
-//
-// Error list for storing all errors occured during the compilation process.
-//
-extern lslc_vector error_list_;
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// Error handling functions.
-slcc_error* err_report_0 (slcc_error_code code);
-slcc_error* err_report_1 (slcc_error_code code, char* arg1);
-void err_report_and_exit_0 (slcc_error_code code);
-void err_report_and_exit_1 (slcc_error_code code, char* arg1);
-//------------------------------------------------------------------------------
-
-#endif /* !__SL_SLCC_ERROR_HANDING_H__ */
+#endif /* !__SL_LSLC_VECTOR_H__ */
 
 //-<EOF>

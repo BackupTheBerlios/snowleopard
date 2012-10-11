@@ -1,7 +1,7 @@
 /*==============================================================================
-  Snow Leopard C++ Compiler Front End
+  Snow Leopard C Source Component Library
   
-  Copyright (C) 2012 Roel Sergeant
+  Copyright (C) 2011, 2012 Roel Sergeant
   
   This program is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -18,17 +18,29 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// error_handling.c
+// config_lslc.h
 //------------------------------------------------------------------------------
-// Error handling for the compiler front end.
+// Configuration information for the C source component library.
+//
+// <TODO: Seperate as source code library>
 //------------------------------------------------------------------------------
 
-#include "error_handling.h"
-#include "vector.h"
+#ifndef __SL_LSLC_CONFIG_LSLC_H__
+#define __SL_LSLC_CONFIG_LSLC_H__
 
-//------------------------------------------------------------------------------
-// Error list array
-lslc_vector error_list_;
-//------------------------------------------------------------------------------
+#ifdef __SL_LSLC_NO_SL_STDLIB
+#define __SL_NO_SL_STDLIB
+#endif /* __SL_LSLC_NO_SL_STDLIB */
+
+#ifdef __SL_INSTALLED
+# include "sl/config/macros.h"
+#else /* __SL_INSTALLED */
+# include "macros.h"
+#endif /* __SL_INSTALLED */
+
+#include sl_include_config(config.h)
+#include sl_include_config(os_fixinclude.h)
+
+#endif /* !__SL_LSLC_CONFIG_LSLC_H__ */
 
 //-<EOF>

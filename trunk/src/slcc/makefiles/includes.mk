@@ -36,5 +36,10 @@ INCLUDES 	= \
 	$(PRG_INCLUDE)/types.h 						\
 	$(PRG_INCLUDE)/version_slcc.h
 
+LSLC_INCLUDES	= \
+	$(PRG_INCLUDE)/tree.c.h						\
+	$(PRG_INCLUDE)/tree.h						\
+	$(PRG_INCLUDE)/vector.h
+
 #-------------------------------------------------------------------------------
 #<EOF>

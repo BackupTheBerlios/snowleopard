@@ -49,7 +49,8 @@ CFLAGS		= $(INCLUDE_PATHS) $(COMPILE_FLAGS) $(DEBUG_FLAGS)
 $(PROGRAM) 	: $(OBJS)
 	cc $(.ALLSRC) -o $(.TARGET)
 
-$(OBJS)    	: build_path $(INCLUDES) $(CONFIG_C_INCLUDES) $(VERSION_C_INCLUDES)
+$(OBJS)    	: build_path $(INCLUDES) $(LSLC_INCLUDES) $(CONFIG_C_INCLUDES) \
+		  $(VERSION_C_INCLUDES)
 
 .include "makefiles/object_rules.mk"
 
