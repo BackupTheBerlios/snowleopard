@@ -69,7 +69,9 @@ enum slcc_error_code
     EC_NO_ERROR = 0,
 
     /* Compiler runtime errors */
-    EC_RUN_INVALID_ARG /* Invalid argument supplied */
+    EC_INCOMPLETE_ARG,   /* Incomplete argument supplied */
+    EC_INVALID_ARG,      /* Invalid argument supplied */
+    EC_NO_SOURCE_FILE    /* No source file provided */
 
     /* Preprocessor errors */
     

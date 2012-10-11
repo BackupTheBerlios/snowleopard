@@ -18,75 +18,48 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// settings.h
+// error_handling.h
 //------------------------------------------------------------------------------
-// Driver for the front end.
+// Error handling for the compiler front end.
 //------------------------------------------------------------------------------
 
-#ifndef __SL_SLCC_SETTINGS_H__
-#define __SL_SLCC_SETTINGS_H__
+#ifndef __SL_SLCC_ERROR_HANDLING_H__
+#define __SL_SLCC_ERROR_HANDLING_H__
 
-#include <stdbool.h>
-#include <stddef.h>
+#include "error_codes.h"
 
 //------------------------------------------------------------------------------
-// slcc_language enumeration
+// slcc_error structure
 //
-// Languages handled by the compiler.
+// Structure for storing a single error, not used for fatal errors, as those 
+// result in immediate abortion.
 //
-enum slcc_language
-  {
-    L_C,  /* C - Default */
-    L_CXX /* C++ */
-  };
-
-typedef enum slcc_language slcc_language;
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// slcc_language_standard enumeration
-//
-// Language standards supported by the compiler
-//
-enum slcc_language_standard
-  {
-    LS_C89,   /* C 89 */
-    LS_C99,   /* C 99 */
-    LS_C11,   /* C 11 - Default for C */
-    LS_CXX98, /* C++ 98 */
-    LS_CXX11  /* C++ 11 - Default for C++ */
-  };
-
-typedef enum slcc_language_standard slcc_language_standard;
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// slcc_settings structure
-//
-// Structure for storing the user/system settings applicable to the front end.
-//
-struct slcc_settings 
+struct slcc_error
 {
-  slcc_language language;
-  slcc_language_standard standard;
-  size_t n_include_paths;
-  char** include_paths;
-  size_t n_library_paths;
-  char** library_paths;
-  size_t n_source_paths;
-  char** source_paths;
+  slcc_error_code code;
+  char* arg1;
+  char* arg2;
 };
 
-typedef struct slcc_settings slcc_settings;
+typedef struct slcc_error slcc_error;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// Settings functions.
-bool add_include_path (char* path);
-bool add_library_path (char* path);
-bool add_source_path (char* path);
+// error_list array
+//
+// Error list for storing all errors occured during the compilation process.
+//
+extern slcc_error** error_list_;
 //------------------------------------------------------------------------------
 
-#endif /* !__SL_SLCC_SETTINGS_H__ */
+//------------------------------------------------------------------------------
+// Error handling functions.
+slcc_error* err_report_0 (slcc_error_code code);
+slcc_error* err_report_1 (slcc_error_code code, char* arg1);
+void err_report_and_exit_0 (slcc_error_code code);
+void err_report_and_exit_1 (slcc_error_code code, char* arg1);
+//------------------------------------------------------------------------------
+
+#endif /* !__SL_SLCC_ERROR_HANDING_H__ */
 
 //-<EOF>

@@ -29,6 +29,14 @@
 #include "settings.h"
 
 //------------------------------------------------------------------------------
+// Private functions
+//
+bool drv_check_arguments (); 
+bool drv_process_argument (char* argument, int* position);
+bool drv_process_file_argument (char* file);
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 // Global variables
 //
 slcc_settings settings_;
@@ -42,8 +50,23 @@ slcc_settings settings_;
 //
 bool drv_parse_command_line (int argc, char** argv)
 {
+  bool ok = true;
+  char* s;
+  int i = 0;
 
-  return false;
+  while (i < argc)
+    {
+      s = argv[i++];
+      
+      if (s[0] != '-')
+	ok = drv_process_file_argument (s);
+      else
+	ok = drv_process_argument (s, &i);
+    }
+
+  ok = drv_check_arguments ();
+
+  return ok;
 }
 //------------------------------------------------------------------------------
 
@@ -70,5 +93,53 @@ slcc_error_code drv_get_first_error ()
   return EC_NO_ERROR;
 };
 //------------------------------------------------------------------------------
+
+//==============================================================================
+// Private functions
+
+//------------------------------------------------------------------------------
+// drv_check_arguments function
+//
+// Check the following:
+//   - Was a source file provided.
+//   - Is the language standard given compatibel with the language provided.
+//
+bool drv_check_arguments ()
+{
+
+  return false;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// drv_process_argument function
+//
+// Process the argument given. If the argument is not a single argument, it
+// will pick up the next arguments.
+//
+bool drv_process_argument (char* argument, int* position)
+{
+
+  return false;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// drv_process_file_argument function
+//
+// Process the file given as parameter. This function checks the following:
+//   - Does the file exist.
+//   - Is it a recognized extension?
+//         c/h                     - C source file
+//         cpp/cxx/hpp/hxx/C/H/ipp - C++ source file
+//
+bool drv_process_file_argument (char* file)
+{
+
+  return false;
+}
+//------------------------------------------------------------------------------
+
+//==============================================================================
 
 //-<EOF>

@@ -18,48 +18,16 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// error_codes.c
+// error_handling.c
 //------------------------------------------------------------------------------
-// Error codes for the compiler front end.
-//------------------------------------------------------------------------------
-
-#include "error_codes.h"
-
-//------------------------------------------------------------------------------
-// Error type description list.
-char* error_type_list_[] = {
-  "No error occured",
-  "FATAL ERROR",
-  "INTERNAL COMPILER ERROR", 
-  "Unimplemented Feature",
-  "Preprocessor Error",
-  "Source Error",
-  "Code Generation Error", 
-  "Runtime Error"
-};
+// Error handling for the compiler front end.
 //------------------------------------------------------------------------------
 
+#include "error_handling.h"
+
 //------------------------------------------------------------------------------
-// Error descriptions list.
-slcc_error_description error_description_list_[] = {
-
-  /* No error occured */
-  {"No error occured", 0, ET_NO_ERROR},
-
-  /* Compiler runtime error */		
-  {"Incomplete argument provided", 0, ET_FATAL},
-  {"Invalid argument provided", 0, ET_FATAL},
-  {"No source file provided", 0, ET_FATAL}
-
-  /* Preprocessor errors */
-  
-  /* Compile errors */
-  
-  /* Code generation errors */
-  
-  /* Executor runtime errors */
-
-};
+// Error list array
+slcc_error** error_list_;
 //------------------------------------------------------------------------------
 
 //-<EOF>
