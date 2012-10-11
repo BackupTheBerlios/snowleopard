@@ -32,6 +32,7 @@ INCLUDES 	= \
 	$(PRG_INCLUDE)/driver.h 					\
 	$(PRG_INCLUDE)/error_codes.h					\
 	$(PRG_INCLUDE)/error_handling.h					\
+	$(PRG_INCLUDE)/info.h						\
 	$(PRG_INCLUDE)/settings.h 					\
 	$(PRG_INCLUDE)/types.h 						\
 	$(PRG_INCLUDE)/version_slcc.h

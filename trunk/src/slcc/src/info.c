@@ -18,51 +18,71 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// error_handling.h
+// info.c
 //------------------------------------------------------------------------------
-// Error handling for the compiler front end.
+// Information functions for the compiler front end.
 //------------------------------------------------------------------------------
 
-#ifndef __SL_SLCC_ERROR_HANDLING_H__
-#define __SL_SLCC_ERROR_HANDLING_H__
-
-#include "error_codes.h"
-#include "vector.h"
+#include "driver.h"
+#include "info.h"
+#include "settings.h"
 
 //------------------------------------------------------------------------------
-// slcc_error structure
+// inf_display_copyright function
 //
-// Structure for storing a single error, not used for fatal errors, as those 
-// result in immediate abortion.
+// Displays the copyright information.
 //
-struct slcc_error
+void inf_display_copyright ()
 {
-  slcc_error_code code;
-  char* arg1;
-  char* arg2;
-};
 
-typedef struct slcc_error slcc_error;
+}
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// error_list array
+// inf_display_program_info function
 //
-// Error list for storing all errors occured during the compilation process.
+// Display program information.
 //
-extern lslc_vector error_list_;
+void inf_display_program_info ()
+{
+  /* If quiet operation, do not display anything. */
+  if (settings_.quiet)
+    return;
+
+}
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// Error handling functions.
-slcc_error* err_report_0 (slcc_error_code code);
-slcc_error* err_report_1 (slcc_error_code code, char* arg1);
-slcc_error* err_report_2 (slcc_error_code code, char* arg1, char* arg2);
-void err_report_and_exit_0 (slcc_error_code code);
-void err_report_and_exit_1 (slcc_error_code code, char* arg1);
-void err_report_and_exit_2 (slcc_error_code code, char* arg1, char* arg2);
+// inf_display_reporting_bugs function
+//
+// Display how to report bugs.
+//
+void inf_display_reporting_bugs ()
+{
+
+}
 //------------------------------------------------------------------------------
 
-#endif /* !__SL_SLCC_ERROR_HANDING_H__ */
+//------------------------------------------------------------------------------
+// inf_display_usage function
+//
+// Display usage information.
+//
+void inf_display_usage ()
+{
+
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// inf_display_warrantee function
+//
+// Display warrantee information.
+//
+void inf_display_warrantee ()
+{
+
+}
+//------------------------------------------------------------------------------
 
 //-<EOF>

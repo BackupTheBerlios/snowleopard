@@ -18,57 +18,23 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// main.c
+// info.h
 //------------------------------------------------------------------------------
-// Main routine for the front end.
+// Information functions for the compiler front end.
 //------------------------------------------------------------------------------
 
-#include <stdlib.h>
-
-#include "driver.h"
-#include "info.h"
+#ifndef __SL_SLCC_INFO_H__
+#define __SL_SLCC_INFO_H__
 
 //------------------------------------------------------------------------------
-// main function
-//
-int main (int argc, char** argv)
-{
-  int exit_status = EXIT_SUCCESS;
-
-  /* 
-   * Parsing the command line arguments will not return if an invalid
-   * argument is given, as compilation will be aborted.
-   */
-  drv_parse_command_line (argc, argv);
-
-  inf_display_program_info ();
-
-  /* Information only */
-  if (settings_.copyright_only)
-    exit_status = EXIT_FAILURE;
-  else if (settings_.usage_only)
-    {
-      inf_display_usage ();
-      exit_status = EXIT_FAILURE;
-    }
-  else if (settings_.warrantee_only)
-    {
-      inf_display_warrantee ();
-      exit_status = EXIT_FAILURE;
-    }
-
-  /* Start compilation */
-  else if (drv_start ())
-    {
-      /* Cleanup after compilation */
-      if (!drv_cleanup ())
-	exit_status = EXIT_FAILURE;
-    }
-  else 
-    exit_status = EXIT_FAILURE;
-
-  return exit_status;
-}
+// Information functions
+void inf_display_copyright ();
+void inf_display_program_info ();
+void inf_display_reporting_bugs ();
+void inf_display_usage ();
+void inf_display_warrantee ();
 //------------------------------------------------------------------------------
+
+#endif /* !__SL_SLCC_INFO_H__ */
 
 //-<EOF>

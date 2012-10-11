@@ -43,6 +43,30 @@ slcc_settings settings_;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
+// drv_cleanup function
+//
+// Cleans up all components when the compilation process has finished.
+//
+bool drv_cleanup ()
+{
+
+  return false;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// drv_start function
+//
+// Starts the compilation process.
+//
+bool drv_start ()
+{
+
+  return false;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 // drv_parse_command_line function
 //
 // Parses the command line, checks arguments supplied and applies settings to
@@ -67,18 +91,6 @@ bool drv_parse_command_line (int argc, char** argv)
   ok = drv_check_arguments ();
 
   return ok;
-}
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// drv_start function
-//
-// Starts the compilation process.
-//
-bool drv_start ()
-{
-
-  return false;
 }
 //------------------------------------------------------------------------------
 

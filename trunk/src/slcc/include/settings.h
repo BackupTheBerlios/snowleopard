@@ -67,14 +67,28 @@ typedef enum slcc_language_standard slcc_language_standard;
 //
 struct slcc_settings 
 {
+  /* switches */
+  bool quiet;
+  bool verbose;
+  bool copyright_only;
+  bool usage_only;
+  bool warrantee_only;
+
+  /* language options */
   slcc_language language;
   slcc_language_standard standard;
+
+  /* general C/C++ options */
+  bool use_stdlib;
   size_t n_include_paths;
   char** include_paths;
   size_t n_library_paths;
   char** library_paths;
   size_t n_source_paths;
   char** source_paths;
+
+  /* C++ options */
+  bool use_export;
 };
 
 typedef struct slcc_settings slcc_settings;

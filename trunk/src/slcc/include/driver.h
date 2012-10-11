@@ -39,8 +39,9 @@ extern slcc_settings settings_;
 
 //------------------------------------------------------------------------------
 // Driver functions.
-bool drv_parse_command_line (int argc, char** argv);
+bool drv_cleanup ();
 bool drv_start ();
+bool drv_parse_command_line (int argc, char** argv);
 slcc_error_code drv_get_first_error ();
 //------------------------------------------------------------------------------
 
