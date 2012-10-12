@@ -1,5 +1,5 @@
 /*==============================================================================
-  Snow Leopard C++ Compiler Front End
+  Snow Leopard C Source Component Library
   
   Copyright (C) 2012 Roel Sergeant
   
@@ -18,36 +18,34 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// error_handling.h
+// string_array.c
 //------------------------------------------------------------------------------
-// Error handling for the compiler front end.
+// String array for the compiler front end.
 //------------------------------------------------------------------------------
 
-#ifndef __SL_SLCC_ERROR_HANDLING_H__
-#define __SL_SLCC_ERROR_HANDLING_H__
-
-#include "error.h"
-#include "error_codes.h"
-#include "error_array.h"
+#include "string_array.h"
 
 //------------------------------------------------------------------------------
-// error_list array
+// Define array structure
 //
-// Error list for storing all errors occured during the compilation process.
+#define TC_ARRAY_TYPE_NAME slcc_string_array
+#define TC_ARRAY_ELEMENT_TYPE char*
+#define TC_ARRAY_FUNCTION_SUFFIX sa
+#define TC_ARRAY_INITIAL_SIZE 10
+#define TC_ARRAY_NO_FIND
+//------------------------------------------------------------------------------
+
+#include "array.c.h"
+
+//------------------------------------------------------------------------------
+// Undef array structure
 //
-extern slcc_error_array* error_list_;
+#undef TC_ARRAY_TYPE_NAME
+#undef TC_ARRAY_ELEMENT_TYPE
+#undef TC_ARRAY_FUNCTION_SUFFIX
+#undef TC_ARRAY_INITIAL_SIZE
+#undef TC_ARRAY_NO_FIND
+#undef TC_ARRAY_TYPE
 //------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// Error handling functions.
-slcc_error* err_report_0 (slcc_error_code code);
-slcc_error* err_report_1 (slcc_error_code code, char* arg1);
-slcc_error* err_report_2 (slcc_error_code code, char* arg1, char* arg2);
-void err_report_and_exit_0 (slcc_error_code code);
-void err_report_and_exit_1 (slcc_error_code code, char* arg1);
-void err_report_and_exit_2 (slcc_error_code code, char* arg1, char* arg2);
-//------------------------------------------------------------------------------
-
-#endif /* !__SL_SLCC_ERROR_HANDING_H__ */
 
 //-<EOF>

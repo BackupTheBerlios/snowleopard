@@ -30,12 +30,14 @@
 INCLUDES 	= \
 	$(PRG_INCLUDE)/config_slcc.h 					\
 	$(PRG_INCLUDE)/driver.h 					\
+	$(PRG_INCLUDE)/error.h						\
+	$(PRG_INCLUDE)/error_array.h					\
 	$(PRG_INCLUDE)/error_codes.h					\
 	$(PRG_INCLUDE)/error_handling.h					\
 	$(PRG_INCLUDE)/info.h						\
 	$(PRG_INCLUDE)/settings.h 					\
+	$(PRG_INCLUDE)/string_array.h					\
 	$(PRG_INCLUDE)/types.h 						\
-	$(PRG_INCLUDE)/vector.h						\
 	$(PRG_INCLUDE)/version_slcc.h
 
 .include "../../libsltc/makefiles/includes.mk"

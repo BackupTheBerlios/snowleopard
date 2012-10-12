@@ -18,36 +18,32 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// error_handling.h
+// error.h
 //------------------------------------------------------------------------------
-// Error handling for the compiler front end.
+// Error structure for the compiler front end.
 //------------------------------------------------------------------------------
 
-#ifndef __SL_SLCC_ERROR_HANDLING_H__
-#define __SL_SLCC_ERROR_HANDLING_H__
+#ifndef __SL_SLCC_ERROR_H__
+#define __SL_SLCC_ERROR_H__
 
-#include "error.h"
 #include "error_codes.h"
-#include "error_array.h"
 
 //------------------------------------------------------------------------------
-// error_list array
+// slcc_error structure
 //
-// Error list for storing all errors occured during the compilation process.
+// Structure for storing a single error, not used for fatal errors, as those 
+// result in immediate abortion.
 //
-extern slcc_error_array* error_list_;
+struct slcc_error
+{
+  slcc_error_code code;
+  char* arg1;
+  char* arg2;
+};
+
+typedef struct slcc_error slcc_error;
 //------------------------------------------------------------------------------
 
-//------------------------------------------------------------------------------
-// Error handling functions.
-slcc_error* err_report_0 (slcc_error_code code);
-slcc_error* err_report_1 (slcc_error_code code, char* arg1);
-slcc_error* err_report_2 (slcc_error_code code, char* arg1, char* arg2);
-void err_report_and_exit_0 (slcc_error_code code);
-void err_report_and_exit_1 (slcc_error_code code, char* arg1);
-void err_report_and_exit_2 (slcc_error_code code, char* arg1, char* arg2);
-//------------------------------------------------------------------------------
-
-#endif /* !__SL_SLCC_ERROR_HANDING_H__ */
+#endif /* !__SL_SLCC_ERROR_H__ */
 
 //-<EOF>
