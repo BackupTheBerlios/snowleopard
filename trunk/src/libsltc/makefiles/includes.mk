@@ -28,6 +28,8 @@
 # Variables
 #
 TC_INCLUDES 	= \
+	$(TC_INCLUDE)/array.c.h						\
+	$(TC_INCLUDE)/array.h						\
 	$(TC_INCLUDE)/config_tc.h 					\
 	$(TC_INCLUDE)/linked_list.c.h					\
 	$(TC_INCLUDE)/linked_list.h					\
