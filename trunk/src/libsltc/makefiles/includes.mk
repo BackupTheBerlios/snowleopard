@@ -29,6 +29,8 @@
 #
 TC_INCLUDES 	= \
 	$(TC_INCLUDE)/config_tc.h 					\
+	$(TC_INCLUDE)/linked_list.c.h					\
+	$(TC_INCLUDE)/linked_list.h					\
 	$(TC_INCLUDE)/tree.c.h 						\
 	$(TC_INCLUDE)/tree.h						\
 	$(TC_INCLUDE)/version_tc.h
