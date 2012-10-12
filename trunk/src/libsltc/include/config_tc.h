@@ -1,5 +1,5 @@
 /*==============================================================================
-  Snow Leopard C Source Component Library
+  Snow Leopard Typed Component Library
   
   Copyright (C) 2011, 2012 Roel Sergeant
   
@@ -18,19 +18,17 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// config_lslc.h
+// config_tc.h
 //------------------------------------------------------------------------------
-// Configuration information for the C source component library.
-//
-// <TODO: Seperate as source code library>
+// Configuration information for the typed component library.
 //------------------------------------------------------------------------------
 
-#ifndef __SL_LSLC_CONFIG_LSLC_H__
-#define __SL_LSLC_CONFIG_LSLC_H__
+#ifndef __SL_TC_CONFIG_TC_H__
+#define __SL_TC_CONFIG_TC_H__
 
-#ifdef __SL_LSLC_NO_SL_STDLIB
+#ifdef __SL_TC_NO_SL_STDLIB
 #define __SL_NO_SL_STDLIB
-#endif /* __SL_LSLC_NO_SL_STDLIB */
+#endif /* __SL_TC_NO_SL_STDLIB */
 
 #ifdef __SL_INSTALLED
 # include "sl/config/macros.h"
@@ -41,6 +39,6 @@
 #include sl_include_config(config.h)
 #include sl_include_config(os_fixinclude.h)
 
-#endif /* !__SL_LSLC_CONFIG_LSLC_H__ */
+#endif /* !__SL_TC_CONFIG_TC_H__ */
 
 //-<EOF>

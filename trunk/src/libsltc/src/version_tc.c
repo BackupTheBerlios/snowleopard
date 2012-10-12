@@ -1,6 +1,6 @@
 /*==============================================================================
   Snow Leopard Typed Component Library
-  
+
   Copyright (C) 2011, 2012 Roel Sergeant
   
   This program is free software: you can redistribute it and/or modify it under
@@ -18,20 +18,25 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// version_tc.h
+// version_tc.c
 //------------------------------------------------------------------------------
 // Version information for the typed component library.
 //------------------------------------------------------------------------------
 
-#ifndef __SL_TC_VERSION_TC_H__
-#define __SL_TC_VERSION_TC_H__
-
 #include "config_tc.h"
 
-#include <stddef.h>
+#include <stdio.h>
 
-#include sl_include_config(version.h)
+#include "version_tc.h"
 
-#endif /* !__SL_TC_VERSION_TC_H__ */
+//------------------------------------------------------------------------------
+// Include global version numbers
+#include sl_include_config(version.c.h)
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// Build number.
+const unsigned int Build = 1;
+//------------------------------------------------------------------------------
 
 //-<EOF>

@@ -18,58 +18,20 @@
 #===============================================================================
 
 #-------------------------------------------------------------------------------
-# Makefile
+# includes.mk
 #-------------------------------------------------------------------------------
-# Makefile for building the Snow Leopard Typed Component Library
-#-------------------------------------------------------------------------------
-
-#-------------------------------------------------------------------------------
-# Include files.
-include "../config/makefiles/config.mk"
-
+# Generated file containing a list of all includes files that are specific to
+# the typed component library.
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
 # Variables
 #
-LIB_BUILD_PATH	= $(BUILD_PATH)/libsltc
-
-STATIC_LIBRARY	= $(LIB_BUILD_PATH)/libsltc.a
-DYNAMIC_LIBRARY = $(LIB_BUILD_PATH)/libsltc.so
-
-LIB_INCLUDE	= include
-INCLUDE_PATHS   = -I$(LIB_INCLUDE) -I$(CONFIG_INCLUDE)
-
-.include "makefiles/objects.mk"
-.include "makefiles/includes.mk"
+TC_INCLUDES 	= \
+	$(TC_INCLUDE)/config_tc.h 					\
+	$(TC_INCLUDE)/tree.c.h 						\
+	$(TC_INCLUDE)/tree.h						\
+	$(TC_INCLUDE)/version_tc.h
 
 #-------------------------------------------------------------------------------
-# Rules
-#
-all			: $(STATIC_LIBRARY) $(DYNAMIC_LIBRARY)
-
-$(STATIC_LIBRARY)	: $(OBJS)
-
-$(DYNAMIC_LIBRARY)	: $(OBJS)
-
-$(OBJS)			: build_path $(INCLUDES) $(CONFIG_C_INCLUDES) \
-			  $(VERSION_C_INCLUDES)
-
-.include "makesfiles/object_rules.mk"
-
-#-------------------------------------------------------------------------------
-# Special rules
-#
-build_path		:
-	mkdir -p $(LIB_BUILD_PATH)
-
-clean			:
-	rm -rf $(OBJS)			\
-	rm -rf $(STATIC_LIBRARY)	\
-	rm -rf $(DYNAMIC_LIBRARY)
-
-distclean		: clean
-	rmdir $(LIB_BUILD_PATH)
-
-#-------------------------------------------------------------------------------
-#-<EOF>
+#<EOF>

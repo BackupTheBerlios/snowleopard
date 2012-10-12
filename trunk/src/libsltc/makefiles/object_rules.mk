@@ -1,7 +1,7 @@
 #===============================================================================
 # Snow Leopard Typed Component Library
 #
-# Copyright (C) 2011, 2012 Roel Sergeant
+# Copyright (C) 2012 Roel Sergeant
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -18,58 +18,17 @@
 #===============================================================================
 
 #-------------------------------------------------------------------------------
-# Makefile
+# object_rules.mk
 #-------------------------------------------------------------------------------
-# Makefile for building the Snow Leopard Typed Component Library
+# Generated file containing the object file rules used for the typed component  
+# library.
 #-------------------------------------------------------------------------------
-
-#-------------------------------------------------------------------------------
-# Include files.
-include "../config/makefiles/config.mk"
-
-#-------------------------------------------------------------------------------
-
-#-------------------------------------------------------------------------------
-# Variables
-#
-LIB_BUILD_PATH	= $(BUILD_PATH)/libsltc
-
-STATIC_LIBRARY	= $(LIB_BUILD_PATH)/libsltc.a
-DYNAMIC_LIBRARY = $(LIB_BUILD_PATH)/libsltc.so
-
-LIB_INCLUDE	= include
-INCLUDE_PATHS   = -I$(LIB_INCLUDE) -I$(CONFIG_INCLUDE)
-
-.include "makefiles/objects.mk"
-.include "makefiles/includes.mk"
 
 #-------------------------------------------------------------------------------
 # Rules
 #
-all			: $(STATIC_LIBRARY) $(DYNAMIC_LIBRARY)
-
-$(STATIC_LIBRARY)	: $(OBJS)
-
-$(DYNAMIC_LIBRARY)	: $(OBJS)
-
-$(OBJS)			: build_path $(INCLUDES) $(CONFIG_C_INCLUDES) \
-			  $(VERSION_C_INCLUDES)
-
-.include "makesfiles/object_rules.mk"
+$(PRG_BUILD_PATH)/version_tc.o		: src/version_tc.c
+	$(CC) -c $(CFLAGS) src/version_tc.c -o $(.TARGET)
 
 #-------------------------------------------------------------------------------
-# Special rules
-#
-build_path		:
-	mkdir -p $(LIB_BUILD_PATH)
-
-clean			:
-	rm -rf $(OBJS)			\
-	rm -rf $(STATIC_LIBRARY)	\
-	rm -rf $(DYNAMIC_LIBRARY)
-
-distclean		: clean
-	rmdir $(LIB_BUILD_PATH)
-
-#-------------------------------------------------------------------------------
-#-<EOF>
+#<EOF>
