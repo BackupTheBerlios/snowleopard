@@ -29,11 +29,16 @@ UT_RUN_1_OBJS 		= \
 	$(TST_UT_PATH)/run_1_private_linked_list_1.o		\
 	$(TST_UT_PATH)/run_1_private_linked_list_1_main.o
 
+UT_RUN_2_PROGRAM	= $(TST_UT_PATH)/run_2_private_array
+UT_RUN_2_OBJS 		= \
+	$(TST_UT_PATH)/run_2_private_array_1.o			\
+	$(TST_UT_PATH)/run_2_private_array_1_main.o
+
 UT_PROGRAMS		= \
-	$(UT_RUN_1_PROGRAM)
+	$(UT_RUN_1_PROGRAM) $(UT_RUN_2_PROGRAM)
 
 UT_OBJS 		= \
-	$(UT_RUN_1_OBJS)
+	$(UT_RUN_1_OBJS) $(UT_RUN_2_OBJS)
 
 #-------------------------------------------------------------------------------
 #<EOF>

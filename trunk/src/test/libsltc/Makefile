@@ -41,22 +41,20 @@ INCLUDE_PATHS   	= -I$(TST_TC_INCLUDE) -I$(TST_CONFIG_INCLUDE)
 CFLAGS			= $(INCLUDE_PATHS) $(TST_COMPILE_FLAGS) $(DEBUG_FLAGS)
 
 #-------------------------------------------------------------------------------
-# Regression test rules
+# Regression tests
 #
 
 #-------------------------------------------------------------------------------
-# Technical test rules
+# Technical tests
 #
 
 #-------------------------------------------------------------------------------
-# Unit test rules
+# Unit tests
 #
 .include "unit_test/makefiles/objects.mk"
 .include "unit_test/makefiles/includes.mk"
 
 all			: $(UT_PROGRAMS)
-
-$(UT_PROGRAMS)		: $(UT_OBJS)
 
 $(UT_OBJS)		: build_path $(UT_INCLUDES) $(TST_CONFIG_C_INCLUDES) \
 			  $(TST_VERSION_C_INCLUDES)
@@ -72,10 +70,9 @@ build_path		:
 	mkdir -p $(TST_UT_PATH)
 
 clean			:
-	rm -rf $(OBJS)		;		\
 	rm -rf $(TST_RT_PATH)/*	;		\
 	rm -rf $(TST_TT_PATH)/*	;		\
-	rm -rf $(TST_UT_PATH)/*
+	rm -rf $(UT_OBJS) $(UT_PROGRAMS)
 
 distclean		: clean
 	rmdir $(TST_RT_PATH)	;		\

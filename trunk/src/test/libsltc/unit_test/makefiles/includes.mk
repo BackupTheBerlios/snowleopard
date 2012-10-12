@@ -31,6 +31,10 @@ UT_RUN_1_INCLUDE	= unit_test/run_1
 UT_RUN_1_INCLUDES 	= \
 	$(UT_RUN_1_INCLUDE)/run_1_private_linked_list_1.h
 
+UT_RUN_2_INCLUDE	= unit_test/run_2
+UT_RUN_2_INCLUDES	= \
+	$(UT_RUN_2_INCLUDE)/run_2_private_array_1.h
+
 .include "../../libsltc/makefiles/includes.mk"
 
 #-------------------------------------------------------------------------------
