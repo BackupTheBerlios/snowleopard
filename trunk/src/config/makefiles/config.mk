@@ -54,6 +54,11 @@ CONFIG_CPP_INCLUDES	= \
 	$(CONFIG_INCLUDE)/macros.hpp
 
 #-------------------------------------------------------------------------------
+# Library include files
+#
+TC_INCLUDE		= ../libsltc/include
+
+#-------------------------------------------------------------------------------
 # Build path 
 #
 BUILD_PATH		= /home/rsergeant/projects/build/snowleopard
@@ -62,6 +67,7 @@ BUILD_PATH		= /home/rsergeant/projects/build/snowleopard
 # Compiler options
 #
 COMPILE_FLAGS		= -std=c99 -Wall -Wextra
+LIBRARY_FLAGS		= -fPIC
 DEBUG_FLAGS		= -g
 
 #-------------------------------------------------------------------------------
