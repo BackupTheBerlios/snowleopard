@@ -1,7 +1,7 @@
 #===============================================================================
 # Snow Leopard Compiler Project
 #
-# Copyright (C) 2008, 2009, 2010, 2011, 2012 Roel Sergeant
+# Copyright (C) 2011, 2012 Roel Sergeant
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -18,40 +18,40 @@
 #===============================================================================
 
 #-------------------------------------------------------------------------------
-# tst_config.mk
+# testsuite.mk
 #-------------------------------------------------------------------------------
-# Configuration include for all testing Makefiles
+# Configuration include for the testsuite Makefiles
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
 # Configuration include files
 #
-TST_CONFIG_INCLUDE		= ../config/include
+TST_CONFIG_INCLUDE		= ../../config/include
 
 TST_VERSION_C_INCLUDES		= \
-	$(CONFIG_INCLUDE)/version.c.h					\
-	$(CONFIG_INCLUDE)/version.h
+	$(TST_CONFIG_INCLUDE)/version.c.h				\
+	$(TST_CONFIG_INCLUDE)/version.h
 
 TST_VERSION_CXX_INCLUDES	= \
-	$(CONFIG_INCLUDE)/version.cpp.hpp				\
-	$(CONFIG_INCLUDE)/version.hpp
+	$(TST_CONFIG_INCLUDE)/version.cpp.hpp				\
+	$(TST_CONFIG_INCLUDE)/version.hpp
 
 TST_CONFIG_C_INCLUDES		= \
-	$(CONFIG_INCLUDE)/config.h 					\
-	$(CONFIG_INCLUDE)/config_c.h 					\
-	$(CONFIG_INCLUDE)/config_complex.h 				\
-	$(CONFIG_INCLUDE)/config_float.h				\
-	$(CONFIG_INCLUDE)/config_int_char.h				\
-	$(CONFIG_INCLUDE)/config_io.h					\
-	$(CONFIG_INCLUDE)/macros.h					\
-	$(CONFIG_INCLUDE)/os_fixinclude.h				\
-	$(CONFIG_INCLUDE)/platform_include.h				\
-	$(CONFIG_INCLUDE)/typed_call_macros.h
+	$(TST_CONFIG_INCLUDE)/config.h 					\
+	$(TST_CONFIG_INCLUDE)/config_c.h 				\
+	$(TST_CONFIG_INCLUDE)/config_complex.h 				\
+	$(TST_CONFIG_INCLUDE)/config_float.h				\
+	$(TST_CONFIG_INCLUDE)/config_int_char.h				\
+	$(TST_CONFIG_INCLUDE)/config_io.h				\
+	$(TST_CONFIG_INCLUDE)/macros.h					\
+	$(TST_CONFIG_INCLUDE)/os_fixinclude.h				\
+	$(TST_CONFIG_INCLUDE)/platform_include.h			\
+	$(TST_CONFIG_INCLUDE)/typed_call_macros.h
 
 TST_CONFIG_CPP_INCLUDES		= \
-	$(CONFIG_INCLUDE)/config.hpp					\
-	$(CONFIG_INCLUDE)/config_cpp.hpp				\
-	$(CONFIG_INCLUDE)/macros.hpp
+	$(TST_CONFIG_INCLUDE)/config.hpp				\
+	$(TST_CONFIG_INCLUDE)/config_cpp.hpp				\
+	$(TST_CONFIG_INCLUDE)/macros.hpp
 
 #-------------------------------------------------------------------------------
 # Library include files
@@ -61,7 +61,7 @@ TST_TC_INCLUDE			= ../../libsltc/include
 #-------------------------------------------------------------------------------
 # Build path 
 #
-TST_BUILD_PATH			= /home/rsergeant/projects/build/snowleopard/test
+TST_BUILD_PATH			= ../../../../../build/snowleopard/test
 
 #-------------------------------------------------------------------------------
 # Compiler options
