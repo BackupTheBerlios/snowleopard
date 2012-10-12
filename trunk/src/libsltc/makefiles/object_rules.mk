@@ -27,7 +27,7 @@
 #-------------------------------------------------------------------------------
 # Rules
 #
-$(PRG_BUILD_PATH)/version_tc.o		: src/version_tc.c
+$(LIB_BUILD_PATH)/version_tc.o		: src/version_tc.c
 	$(CC) -c $(CFLAGS) src/version_tc.c -o $(.TARGET)
 
 #-------------------------------------------------------------------------------
