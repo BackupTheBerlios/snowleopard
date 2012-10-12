@@ -26,29 +26,45 @@
 #-------------------------------------------------------------------------------
 # Variables
 #
-MODULES = libslstdc libslstdcpp lynx slcc slsh	 
+MODULES = libslstdc libslstdcpp libsltc lynx slcc slsh	 
 
 #-------------------------------------------------------------------------------
 # Rules
 #
-libslstdc:
+libslstdc	:
 	(cd libslstdc ; ${MAKE} all);	 
 
-libslstdcpp:
+libslstdcpp	:
 	(cd libslstdcpp ; ${MAKE} all);	 
 
-lynx:
+libsltc		:
+	(cd libsltc ; ${MAKE} all);
+
+lynx		:
 	(cd lynx ; ${MAKE} all);	 
 
-slcc:
+slcc		:
 	(cd slcc ; ${MAKE} all);	 
 
-slsh:
+slsh		:
 	(cd slsh ; ${MAKE} all);
 
-clean:
+#-------------------------------------------------------------------------------
+# Special rules
+#
+clean		:
 	for dir in $(MODULES); do     		\
 		(cd $$dir ; ${MAKE} clean); 	\
+	done
+
+distclean	:
+	for dir in $(MODULES); do		\
+		(cd $$dir ; ${MAKE} distclean); \
+	done
+
+test		:
+	for dir in $(MODULES); do		\
+		(cd $$dir ; ${MAKE} test);	\
 	done
 
 #-------------------------------------------------------------------------------

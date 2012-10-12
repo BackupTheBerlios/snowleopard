@@ -31,14 +31,17 @@
 #-------------------------------------------------------------------------------
 # Variables
 #
-PRG_BUILD_PATH	= $(BUILD_PATH)/slcc
+PRG		= slcc
 
-PROGRAM 	= $(PRG_BUILD_PATH)/slcc
+PRG_BUILD_PATH	= $(BUILD_PATH)/$(PRG)
+PROGRAM 	= $(PRG_BUILD_PATH)/$(PRG)
 
 PRG_INCLUDE	= include
 INCLUDE_PATHS 	= -I$(PRG_INCLUDE) -I$(TC_INCLUDE) -I$(CONFIG_INCLUDE)
 
 CFLAGS		= $(INCLUDE_PATHS) $(COMPILE_FLAGS) $(DEBUG_FLAGS)
+
+PRG_TST_PATH	= $(TST_PATH)/$(PRG)
 
 .include "makefiles/objects.mk"
 .include "makefiles/includes.mk"
@@ -65,6 +68,10 @@ clean		:
 
 distclean	: clean
 	rmdir $(PRG_BUILD_PATH)
+
+test		: $(PROGRAM)
+	cd $(PRG_TST_PATH) ;	\
+	${MAKE}
 
 #-------------------------------------------------------------------------------
 #-<EOF>

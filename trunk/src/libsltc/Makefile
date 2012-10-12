@@ -34,18 +34,20 @@
 #-------------------------------------------------------------------------------
 # Variables
 #
-LIB_BUILD_PATH	= $(BUILD_PATH)/libsltc
+LIB		= libsltc
 
-STATIC_LIBRARY	= $(LIB_BUILD_PATH)/libsltc.a
-
-SHARED_LIBRARY 	= $(LIB_BUILD_PATH)/libsltc.so.$(SHARED_LIB_VERSION)
-SHARED_SO_NAME	= libsltc.so.$(SHARED_SO_VERSION)
+LIB_BUILD_PATH	= $(BUILD_PATH)/$(LIB)
+STATIC_LIBRARY	= $(LIB_BUILD_PATH)/$(LIB).a
+SHARED_LIBRARY 	= $(LIB_BUILD_PATH)/$(LIB).so.$(SHARED_LIB_VERSION)
+SHARED_SO_NAME	= $(LIB).so.$(SHARED_SO_VERSION)
 
 LIB_INCLUDE	= include
 INCLUDE_PATHS   = -I$(LIB_INCLUDE) -I$(CONFIG_INCLUDE)
 
 CFLAGS		= $(INCLUDE_PATHS) $(COMPILE_FLAGS) $(LIBRARY_FLAGS) 	\
 		  $(DEBUG_FLAGS)
+
+LIB_TST_PATH	= $(TST_PATH)/$(LIB)
 
 .include "makefiles/objects.mk"
 .include "makefiles/includes.mk"
@@ -79,6 +81,10 @@ clean			:
 
 distclean		: clean
 	rmdir $(LIB_BUILD_PATH)
+
+test			: $(STATIC_LIBRARY) $(SHARED_LIBRARY)
+	cd $(LIB_TST_PATH) ;		\
+	${MAKE}
 
 #-------------------------------------------------------------------------------
 #-<EOF>
