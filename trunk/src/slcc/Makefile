@@ -47,7 +47,7 @@ CFLAGS		= $(INCLUDE_PATHS) $(COMPILE_FLAGS) $(DEBUG_FLAGS)
 # Rules
 #
 $(PROGRAM) 	: $(OBJS)
-	cc $(.ALLSRC) -o $(.TARGET)
+	$(CC) $(.ALLSRC) -o $(.TARGET)
 
 $(OBJS)    	: build_path $(INCLUDES) $(TC_INCLUDES) $(CONFIG_C_INCLUDES) \
 		  $(VERSION_C_INCLUDES)
