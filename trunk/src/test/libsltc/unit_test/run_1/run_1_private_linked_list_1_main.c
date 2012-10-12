@@ -25,7 +25,7 @@
 
 #include <stdlib.h>
 
-#include "linked_list.h"
+#include "run_1_private_linked_list_1.h"
 
 //------------------------------------------------------------------------------
 // main function

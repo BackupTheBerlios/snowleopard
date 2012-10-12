@@ -20,65 +20,68 @@
 #-------------------------------------------------------------------------------
 # Makefile
 #-------------------------------------------------------------------------------
-# Makefile for the typed component library testing.
+# Makefile for the typed component library testsuite
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
 # Include files.
-.include "../config/makefiles/config.mk"
-
-.include "makefiles/version.mk"
+.include "../../config/makefiles/testsuite.mk"
 
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
 # Variables
 #
-LIB_BUILD_PATH	= $(BUILD_PATH)/libsltc
+TST_RT_PATH		= $(TST_BUILD_PATH)/libsltc/rt
+TST_TT_PATH		= $(TST_BUILD_PATH)/libsltc/tt
+TST_UT_PATH		= $(TST_BUILD_PATH)/libsltc/ut
 
-STATIC_LIBRARY	= $(LIB_BUILD_PATH)/libsltc.a
+INCLUDE_PATHS   	= -I$(TST_TC_INCLUDE) -I$(TST_CONFIG_INCLUDE)
 
-SHARED_LIBRARY 	= $(LIB_BUILD_PATH)/libsltc.so.$(SHARED_LIB_VERSION)
-SHARED_SO_NAME	= libsltc.so.$(SHARED_SO_VERSION)
-
-LIB_INCLUDE	= include
-INCLUDE_PATHS   = -I$(LIB_INCLUDE) -I$(CONFIG_INCLUDE)
-
-CFLAGS		= $(INCLUDE_PATHS) $(COMPILE_FLAGS) $(LIBRARY_FLAGS) 	\
-		  $(DEBUG_FLAGS)
-
-.include "makefiles/objects.mk"
-.include "makefiles/includes.mk"
+CFLAGS			= $(INCLUDE_PATHS) $(TST_COMPILE_FLAGS) $(DEBUG_FLAGS)
 
 #-------------------------------------------------------------------------------
-# Rules
+# Regression test rules
 #
-all			: $(STATIC_LIBRARY) $(SHARED_LIBRARY)
 
-$(STATIC_LIBRARY)	: $(OBJS)
-	$(AR) rcs $(STATIC_LIBRARY) $(OBJS)
+#-------------------------------------------------------------------------------
+# Technical test rules
+#
 
-$(SHARED_LIBRARY)	: $(OBJS)
-	$(CC) -shared -Wl,-soname,$(SHARED_SO_NAME) -o $(SHARED_LIBRARY) $(OBJS)
+#-------------------------------------------------------------------------------
+# Unit test rules
+#
+.include "unit_test/makefiles/objects.mk"
+.include "unit_test/makefiles/includes.mk"
 
-$(OBJS)			: build_path $(INCLUDES) $(CONFIG_C_INCLUDES) \
-			  $(VERSION_C_INCLUDES)
+all			: $(UT_PROGRAMS)
 
-.include "makefiles/object_rules.mk"
+$(UT_PROGRAMS)		: $(UT_OBJS)
+
+$(UT_OBJS)		: build_path $(UT_INCLUDES) $(TST_CONFIG_C_INCLUDES) \
+			  $(TST_VERSION_C_INCLUDES)
+
+.include "unit_test/makefiles/object_rules.mk"
 
 #-------------------------------------------------------------------------------
 # Special rules
 #
 build_path		:
-	mkdir -p $(LIB_BUILD_PATH)
+	mkdir -p $(TST_RT_PATH) ;			\
+	mkdir -p $(TST_TT_PATH) ;			\
+	mkdir -p $(TST_UT_PATH)
 
 clean			:
-	rm -rf $(OBJS)			\
-	rm -rf $(STATIC_LIBRARY)	\
-	rm -rf $(SHARED_LIBRARY)
+	rm -rf $(OBJS)		;		\
+	rm -rf $(TST_RT_PATH)/*	;		\
+	rm -rf $(TST_TT_PATH)/*	;		\
+	rm -rf $(TST_UT_PATH)/*
 
 distclean		: clean
-	rmdir $(LIB_BUILD_PATH)
+	rmdir $(TST_RT_PATH)	;		\
+	rmdir $(TST_TT_PATH)	;		\
+	rmdir $(TST_UT_PATH)    ;		\
+	rmdir $(TST_BUILD_PATH)/libsltc
 
 #-------------------------------------------------------------------------------
 #-<EOF>
