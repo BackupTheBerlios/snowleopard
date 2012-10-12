@@ -77,6 +77,7 @@
 
 //------------------------------------------------------------------------------
 // tc_ll_new function
+//
 TC_LL_HEAD* TC_LL_HIDE 
 sl_concat_3(tc_ll_new,_,TC_LL_FUNCTION_SUFFIX) () 
 {
@@ -92,6 +93,7 @@ sl_concat_3(tc_ll_new,_,TC_LL_FUNCTION_SUFFIX) ()
 
 //------------------------------------------------------------------------------
 // tc_ll_delete function
+//
 void TC_LL_HIDE 
 sl_concat_3(tc_ll_delete,_,TC_LL_FUNCTION_SUFFIX) (TC_LL_HEAD* list) 
 {
@@ -105,6 +107,7 @@ sl_concat_3(tc_ll_delete,_,TC_LL_FUNCTION_SUFFIX) (TC_LL_HEAD* list)
 
 //------------------------------------------------------------------------------
 // tc_ll_add function
+//
 int TC_LL_HIDE 
 sl_concat_3(tc_ll_add,_,TC_LL_FUNCTION_SUFFIX) (
 						TC_LL_HEAD* list, 
@@ -136,6 +139,7 @@ sl_concat_3(tc_ll_add,_,TC_LL_FUNCTION_SUFFIX) (
 
 //------------------------------------------------------------------------------
 // tc_ll_remove function
+//
 int TC_LL_HIDE 
 sl_concat_3(tc_ll_remove,_,TC_LL_FUNCTION_SUFFIX) (
 						   TC_LL_HEAD* list, 
@@ -161,6 +165,7 @@ sl_concat_3(tc_ll_remove,_,TC_LL_FUNCTION_SUFFIX) (
 
 //------------------------------------------------------------------------------
 // tc_ll_replace function
+//
 TC_LL_NODE_TYPE TC_LL_HIDE 
 sl_concat_3(tc_ll_replace,_,TC_LL_FUNCTION_SUFFIX) (
 						    TC_LL_HEAD* list, 
@@ -180,6 +185,7 @@ sl_concat_3(tc_ll_replace,_,TC_LL_FUNCTION_SUFFIX) (
 // tc_ll_find function
 //
 // If the macro TC_LL_NO_FIND is defined, this function is excluded.
+//
 #ifndef TC_LL_NO_FIND
 
 TC_LL_NODE* TC_LL_HIDE 
