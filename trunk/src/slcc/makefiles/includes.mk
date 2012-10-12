@@ -35,12 +35,10 @@ INCLUDES 	= \
 	$(PRG_INCLUDE)/info.h						\
 	$(PRG_INCLUDE)/settings.h 					\
 	$(PRG_INCLUDE)/types.h 						\
+	$(PRG_INCLUDE)/vector.h						\
 	$(PRG_INCLUDE)/version_slcc.h
 
-LSLC_INCLUDES	= \
-	$(PRG_INCLUDE)/tree.c.h						\
-	$(PRG_INCLUDE)/tree.h						\
-	$(PRG_INCLUDE)/vector.h
+.include "../../libsltc/makefiles/includes.mk"
 
 #-------------------------------------------------------------------------------
 #<EOF>
