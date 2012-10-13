@@ -27,6 +27,7 @@
 
 #include "driver.h"
 #include "info.h"
+#include "settings.h"
 
 //------------------------------------------------------------------------------
 // main function

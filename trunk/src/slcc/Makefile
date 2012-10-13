@@ -52,8 +52,7 @@ PRG_TST_PATH	= $(TST_PATH)/$(PRG)
 $(PROGRAM) 	: $(OBJS)
 	$(CC) $(.ALLSRC) -o $(.TARGET)
 
-$(OBJS)    	: build_path $(INCLUDES) $(TC_INCLUDES) $(CONFIG_C_INCLUDES) \
-		  $(VERSION_C_INCLUDES)
+$(OBJS)		: build_path
 
 .include "makefiles/object_rules.mk"
 

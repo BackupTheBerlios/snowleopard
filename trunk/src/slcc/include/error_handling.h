@@ -29,8 +29,8 @@
 #include <stdbool.h>
 
 #include "error.h"
-#include "error_codes.h"
 #include "error_array.h"
+#include "error_codes.h"
 
 //------------------------------------------------------------------------------
 // error_list array

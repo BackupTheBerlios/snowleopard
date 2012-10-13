@@ -27,7 +27,7 @@
 #-------------------------------------------------------------------------------
 # Variables
 #
-INCLUDES 	= \
+INCLUDES 		= \
 	$(PRG_INCLUDE)/config_slcc.h 					\
 	$(PRG_INCLUDE)/driver.h 					\
 	$(PRG_INCLUDE)/error.h						\
@@ -43,6 +43,103 @@ INCLUDES 	= \
 	$(PRG_INCLUDE)/version_slcc.h
 
 .include "../../libsltc/makefiles/includes.mk"
+
+#-------------------------------------------------------------------------------
+# Header file dependencies
+#
+CONFIG_SLCC_H_DEPS	= \
+	$(CONFIG_C_INCLUDES)
+
+DRIVER_H_DEPS		= \
+	$(PRG_INCLUDE)/error_codes.h
+
+ERROR_H_DEPS		= \
+	$(PRG_INCLUDE)/error_codes.h
+
+ERROR_ARRAY_H_DEPS	= \
+	$(PRG_INCLUDE)/error.h						\
+	$(TC_INCLUDES)
+
+ERROR_CODES_H_DEPS	= \
+	$(PRG_INCLUDE)/error.h						\
+	$(PRG_INCLUDE)/error_array.h					\
+	$(PRG_INCLUDE)/error_codes.h
+
+FILE_FUNCTIONS_H_DEPS	= 
+
+INFO_H_DEPS		=
+
+SETTINGS_H_DEPS		= \
+	$(PRG_INCLUDE)/string_array.h
+
+STRING_ARRAY_H_DEPS	= \
+	$(TC_INCLUDES)
+
+STRING_FUNCTIONS_H_DEPS =
+
+TYPES_H_DEPS		=
+
+VERSION_SLCC_H_DEPS	= \
+	$(PRG_INCLUDE)/config_slcc.h					\
+	$(CONFIG_C_INCLUDES)
+
+#-------------------------------------------------------------------------------
+# Source file dependencies
+#
+DRIVER_DEPS		= \
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS) 			\
+	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
+	$(PRG_INCLUDE)/error_handling.h	$(ERROR_HANDLING_H_DEPS)	\
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)			
+
+ERROR_ARRAY_DEPS	= \
+	$(PRG_INCLUDE)/error.h	$(ERROR_H_DEPS)				\
+	$(PRG_INCLUDE)/error_array.h $(ERROR_ARRY_H_DEPS)		\
+	$(TC_INCLUDES)
+
+ERROR_CODES_DEPS	= \
+	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)
+
+ERROR_HANDLING_DEPS	= \
+	$(PRG_INCLUDE)/error.h $(ERROR_H_DEPS)				\
+	$(PRG_INCLUDE)/error_array.h $(ERROR_ARRAY_H_DEPS)		\
+	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
+	$(PRG_INCLUDE)/string_functions.h $(STRING_FUNCTIONS_H_DEPS)
+
+FILE_FUNCTIONS_DEPS	= \
+	$(PRG_INCLUDE)/file_functions.h $(FILE_FUNCTIONS_H_DEPS)
+
+INFO_DEPS		= \
+	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)				\
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)			\
+	$(PRG_INCLUDE)/version_slcc.h $(VERSION_SLCC_H_DEPS)
+
+MAIN_DEPS		= \
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
+	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)				\
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
+
+SETTINGS_DEPS		= \
+	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
+	$(PRG_INCLUDE)/error_handling.h $(ERROR_HANDLING_H_DEPS)	\
+	$(PRG_INCLUDE)/file_functions.h $(FILE_FUNCTIONS_H_DEPS)	\
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)			\
+	$(PRG_INCLUDE)/string_array.h $(STRING_ARRAY_H_DEPS)		
+
+STRING_ARRAY_DEPS	= \
+	$(PRG_INCLUDE)/string_array.h $(STRING_ARRAY_H_DEPS)		\
+	$(TC_INCLUDES)
+
+STRING_FUNCTIONS_DEPS	= \
+	$(PRG_INCLUDE)/string_functions.h $(STRING_FUNCTIONS_H_DEPS)
+
+TYPES_DEPS		= \
+	$(PRG_INCLUDE)/types.h $(TYPES_H_DEPS)
+
+VERSION_SLCC_DEPS	= \
+	$(PRG_INCLUDE)/config_slcc.h $(CONFIG_SLCC_H_DEPS)		\
+	$(PRG_INCLUDE)/version_slcc.h $(VERSION_SLCC_H_DEPS)		\
+	$(CONFIG_C_INCLUDES)
 
 #-------------------------------------------------------------------------------
 #<EOF>

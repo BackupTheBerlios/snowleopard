@@ -27,40 +27,52 @@
 #-------------------------------------------------------------------------------
 # Rules
 #
-$(PRG_BUILD_PATH)/driver.o  		: src/driver.c
+$(PRG_BUILD_PATH)/driver.o  		: \
+		src/driver.c $(DRIVER_DEPS)
 	$(CC) -c $(CFLAGS) src/driver.c -o $(.TARGET)
 
-$(PRG_BUILD_PATH)/error_array.o		: src/error_array.c
+$(PRG_BUILD_PATH)/error_array.o		: \
+		src/error_array.c $(ERROR_ARRAY_DEPS)
 	$(CC) -c $(CFLAGS) src/error_array.c -o $(.TARGET)
 
-$(PRG_BUILD_PATH)/error_codes.o		: src/error_codes.c
+$(PRG_BUILD_PATH)/error_codes.o		: \
+		src/error_codes.c $(ERROR_CODES_DEPS)
 	$(CC) -c $(CFLAGS) src/error_codes.c -o $(.TARGET)
 
-$(PRG_BUILD_PATH)/error_handling.o	: src/error_handling.c
+$(PRG_BUILD_PATH)/error_handling.o	: \
+		src/error_handling.c $(ERROR_HANDLING_DEPS)
 	$(CC) -c $(CFLAGS) src/error_handling.c -o $(.TARGET)
 
-$(PRG_BUILD_PATH)/file_functions.o	: src/file_functions.c
+$(PRG_BUILD_PATH)/file_functions.o	: \
+		src/file_functions.c $(FILE_FUNCTION_DEPS)
 	$(CC) -c $(CFLAGS) src/file_functions.c -o $(.TARGET)
 
-$(PRG_BUILD_PATH)/info.o		: src/info.c
+$(PRG_BUILD_PATH)/info.o		: \
+		src/info.c $(INFO_DEPS)
 	$(CC) -c $(CFLAGS) src/info.c -o $(.TARGET)
 
-$(PRG_BUILD_PATH)/main.o		: src/main.c
+$(PRG_BUILD_PATH)/main.o		: \
+		src/main.c $(MAIN_DEPS)
 	$(CC) -c $(CFLAGS) src/main.c -o $(.TARGET)
 
-$(PRG_BUILD_PATH)/settings.o		: src/settings.c
+$(PRG_BUILD_PATH)/settings.o		: \
+		src/settings.c $(SETTINGS_DEPS)
 	$(CC) -c $(CFLAGS) src/settings.c -o $(.TARGET)
 
-$(PRG_BUILD_PATH)/string_array.o	: src/string_array.c
+$(PRG_BUILD_PATH)/string_array.o	: \
+		src/string_array.c $(STRING_ARRAY_DEPS)
 	$(CC) -c $(CFLAGS) src/string_array.c -o $(.TARGET)
 
-$(PRG_BUILD_PATH)/string_functions.o	: src/string_functions.c
+$(PRG_BUILD_PATH)/string_functions.o	: \
+		src/string_functions.c $(STRING_FUNCTIONS_DEPS)
 	$(CC) -c $(CFLAGS) src/string_functions.c -o $(.TARGET)
 
-$(PRG_BUILD_PATH)/types.o		: src/types.c
+$(PRG_BUILD_PATH)/types.o		: \
+		src/types.c $(TYPES_DEPS)
 	$(CC) -c $(CFLAGS) src/types.c -o $(.TARGET)
 
-$(PRG_BUILD_PATH)/version_slcc.o	: src/version_slcc.c
+$(PRG_BUILD_PATH)/version_slcc.o	: \
+		src/version_slcc.c $(VERSION_SLCC_DEPS)
 	$(CC) -c $(CFLAGS) src/version_slcc.c -o $(.TARGET)
 
 #-------------------------------------------------------------------------------

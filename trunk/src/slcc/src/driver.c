@@ -26,6 +26,7 @@
 #include <stdbool.h>
 #include <string.h>
 
+#include "driver.h"
 #include "error_codes.h"
 #include "error_handling.h"
 #include "settings.h"

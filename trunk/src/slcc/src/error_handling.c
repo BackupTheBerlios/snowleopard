@@ -27,8 +27,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "error_handling.h"
 #include "error_array.h"
+#include "error_codes.h"
+#include "error_handling.h"
 #include "string_functions.h"
 
 //------------------------------------------------------------------------------
