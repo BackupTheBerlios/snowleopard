@@ -29,23 +29,23 @@
 #include "info.h"
 
 //------------------------------------------------------------------------------
-// copyright function
+// inf_display_copyright function
 //
 // Print copyright information.
 //
-void copyright ()
+void inf_display_copyright ()
 {
 
 }
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// license function
+// inf_display_license function
 //
 // Print licensing information and exit. Exit as failed to avoid that dependent
 // programs continue.
 //
-void license ()
+void inf_display_license ()
 {
   
   exit (EXIT_FAILURE);
@@ -53,12 +53,34 @@ void license ()
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// usage function
+// inf_display_program_info function
+//
+// Print program information.
+//
+void inf_display_program_info ()
+{
+
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// inf_display_reporting_bugs function
+//
+// Print information on reporting bugs.
+//
+void inf_display_reporting_bugs ()
+{
+
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// inf_display_usage function
 //
 // Print usage information and exit. Exit as failed to avoid that dependent
 // programs will continue.
 //
-void usage ()
+void inf_display_usage ()
 {
   
   exit (EXIT_FAILURE);
@@ -66,12 +88,12 @@ void usage ()
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// warrantee function
+// inf_display_warrantee function
 //
 // Print warrantee information and exit. Exit as failed to avoid that dependent 
 // programs continue.
 //
-void warrantee ()
+void inf_display_warrantee ()
 {
   
   exit (EXIT_FAILURE);

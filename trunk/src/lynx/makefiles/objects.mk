@@ -90,5 +90,10 @@ LYNX_OBJS 		= \
 	$(PRG_BUILD_PATH)/lynx_main.o					\
 	$(PRG_BUILD_PATH)/version_lynx.o
 
+OBJS			= \
+	$(LDFORMAT_OBJS) $(LEQN_OBJS) $(LGM_OBJS) $(LGRAP_OBJS)		\
+	$(LIDEAL_OBJS) $(LPIC_OBJS) $(LREFER_OBJS) $(LROFF_OBJS)	\
+	$(LSOELIM_OBJS) $(LTBL_OBJS) $(LYNX_OBJS)
+
 #-------------------------------------------------------------------------------
 #<EOF>

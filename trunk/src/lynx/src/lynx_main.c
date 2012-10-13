@@ -26,6 +26,7 @@
 #include <stdlib.h>
 
 #include "driver.h"
+#include "info.h"
 
 //------------------------------------------------------------------------------
 // main function
@@ -36,6 +37,7 @@
 //
 int main (int argc, char** argv)
 {
+  inf_display_program_info ();
 
   return EXIT_SUCCESS;
 }

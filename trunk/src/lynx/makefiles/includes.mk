@@ -59,40 +59,52 @@ INFO_DEPS		= \
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
 LDFORMAT_DEPS		= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
+	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
 LDFORMAT_DEPS		= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
+	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
 LEQN_DEPS		= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
+	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
 LGM_DEPS		= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
+	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
 LGRAP_DEPS		= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
+	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
 LIDEAL_DEPS		= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
+	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
 LPIC_DEPS		= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
+	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
 LREFER_DEPS		= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
+	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
 LROFF_DEPS		= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
+	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
 LSOELIM_DEPS		= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
+	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
 LTBL_DEPS		= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
+	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
 LYNX_DEPS		= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
+	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
 VERSION_LYNX_DEPS	= \
 	$(PRG_INCLUDE)/config_lynx.h $(CONFIG_LYNX_H_DEPS)		\

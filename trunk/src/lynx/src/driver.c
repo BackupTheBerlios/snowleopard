@@ -32,7 +32,7 @@
 // 
 // Start the typesetting process.
 //
-bool start ()
+bool drv_start ()
 {
   return true;
 }
@@ -43,7 +43,7 @@ bool start ()
 //
 // Parses the command line arguments and stores the settings.
 //
-bool parse_command_line (int argc, char** argv) 
+bool drv_parse_command_line (int argc, char** argv) 
 {
   for(int i = 1; i < argc; i++)
     {

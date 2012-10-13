@@ -39,6 +39,46 @@ $(PRG_BUILD_PATH)/ldformat_main.o	: \
 		src/ldformat_main.c $(LDFORMAT_MAIN_DEPS)
 	$(CC) -c $(CFLAGS) src/ldformat_main.c -o $(.TARGET)
 
+$(PRG_BUILD_PATH)/leqn_main.o		: \
+		src/leqn_main.c $(LEQN_MAIN_DEPS)
+	$(CC) -c $(CFLAGS) src/leqn_main.c -o $(.TARGET)
+
+$(PRG_BUILD_PATH)/lgm_main.o		: \
+		src/lgm_main.c $(LGM_MAIN_DEPS)
+	$(CC) -c $(CFLAGS) src/lgm_main.c -o $(.TARGET)
+
+$(PRG_BUILD_PATH)/lgrap_main.o		: \
+		src/lgrap_main.c $(LGRAP_MAIN_DEPS)
+	$(CC) -c $(CFLAGS) src/lgrap_main.c -o $(.TARGET)
+
+$(PRG_BUILD_PATH)/lideal_main.o		: \
+		src/lideal_main.c $(LIDEAL_MAIN_DEPS)
+	$(CC) -c $(CFLAGS) src/lideal_main.c -o $(.TARGET)
+
+$(PRG_BUILD_PATH)/lpic_main.o		: \
+		src/lpic_main.c $(LPIC_MAIN_DEPS)
+	$(CC) -c $(CFLAGS) src/lpic_main.c -o $(.TARGET)
+
+$(PRG_BUILD_PATH)/lrefer_main.o		: \
+		src/lrefer_main.c $(LREFER_MAIN_DEPS)
+	$(CC) -c $(CFLAGS) src/lrefer_main.c -o $(.TARGET)
+
+$(PRG_BUILD_PATH)/lroff_main.o		: \
+		src/lroff_main.c $(LROFF_MAIN_DEPS)
+	$(CC) -c $(CFLAGS) src/lroff_main.c -o $(.TARGET)
+
+$(PRG_BUILD_PATH)/lsoelim_main.o	: \
+		src/lsoelim_main.c $(LSOELIM_MAIN_DEPS)
+	$(CC) -c $(CFLAGS) src/lsoelim_main.c -o $(.TARGET)
+
+$(PRG_BUILD_PATH)/ltbl_main.o		: \
+		src/ltbl_main.c $(LTBL_MAIN_DEPS)
+	$(CC) -c $(CFLAGS) src/ltbl_main.c -o $(.TARGET)
+
+$(PRG_BUILD_PATH)/lynx_main.o		: \
+		src/lynx_main.c $(LYNX_MAIN_DEPS)
+	$(CC) -c $(CFLAGS) src/lynx_main.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/version_lynx.o	: \
 		src/version_lynx.c $(VERSION_LYNX_DEPS)
 	$(CC) -c $(CFLAGS) src/version_lynx.c -o $(.TARGET)

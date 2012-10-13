@@ -29,10 +29,12 @@
 //-------------------------------------------------------------------------------
 // Information functions
 //
-static void copyright();
-static void license();
-static void usage();
-static void warrantee();
+void inf_display_copyright ();
+void inf_display_license ();
+void inf_display_program_info ();
+void inf_display_reporting_bugs ();
+void inf_display_usage ();
+void inf_display_warrantee ();
 //------------------------------------------------------------------------------
 
 #endif /* !__LYNX_INFO_H__ */
