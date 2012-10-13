@@ -33,18 +33,21 @@
 //
 enum slcc_error_type
   {
-    ET_NO_ERROR = 0,  /* No error occured */
+    ET_NO_ERROR = 0,    /* No error occured */
 
     /* Internal errors */
-    ET_FATAL,         /* Fatal errors */
-    ET_INTERNAL,      /* Internal compiler error */
+    ET_FATAL,           /* Fatal errors */
+    ET_INTERNAL,        /* Internal compiler error */
+    ET_WARNING,         /* Warnings */
 
     /* Compile errors */
-    ET_UNIMPLEMENTED, /* Unimplemented feature */
-    ET_PREPROCESS,    /* Preprocessor error */
-    ET_COMPILE,       /* Compilation/Source analysis error */
-    ET_CODEGEN,       /* Code generation error */
-    ET_RUNTIME        /* Runtime error */      
+    ET_UNIMPLEMENTED,   /* Unimplemented feature */
+    ET_PREPROCESS,      /* Preprocessor error */
+    ET_PREPROCESS_WARN, /* Preprocessor warning */
+    ET_COMPILE,         /* Compilation/Source analysis error */
+    ET_COMPILE_WARN,    /* Compilation/Source analysis warning */
+    ET_CODEGEN,         /* Code generation error */
+    ET_RUNTIME          /* Runtime error */
   };
 
 typedef enum slcc_error_type slcc_error_type;
@@ -69,9 +72,10 @@ enum slcc_error_code
     EC_NO_ERROR = 0,
 
     /* Compiler runtime errors */
-    EC_INCOMPLETE_ARG,   /* Incomplete argument supplied */
-    EC_INVALID_ARG,      /* Invalid argument supplied */
-    EC_NO_SOURCE_FILE    /* No source file provided */
+    EC_INCOMPLETE_ARG,              /* Incomplete argument supplied */
+    EC_INVALID_ARG,                 /* Invalid argument supplied */
+    EC_NO_SOURCE_FILE,              /* No source file provided */
+    EC_MULTIPLE_OUT_FILES_SPECIFIED /* Multiple output files specified */  
 
     /* Preprocessor errors */
     
@@ -91,8 +95,8 @@ typedef enum slcc_error_code slcc_error_code;
 //
 struct slcc_error_description
 {
-  char* description;
-  size_t nr_of_arguments;
+  char* desc;
+  size_t n_args;
   slcc_error_type type;
 };
 

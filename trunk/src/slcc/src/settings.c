@@ -26,6 +26,8 @@
 #include <stdbool.h>
 #include <stddef.h>
 
+#include "error_codes.h"
+#include "error_handling.h"
 #include "settings.h"
 
 //------------------------------------------------------------------------------
@@ -43,11 +45,8 @@ slcc_settings settings_ = {
   L_C,     /* language */
   LS_C11,  /* standard */
   true,    /* use_stdlib */
-  0,       /* n_include_paths */
   NULL,    /* include_paths */
-  0,       /* n_library_paths */
   NULL,    /* library_paths */
-  0,       /* n_source_paths */
   NULL,    /* source_paths */
   false    /* use_export */
 };
@@ -107,11 +106,17 @@ bool add_source_path (char* path)
 //------------------------------------------------------------------------------
 // set_outfile function
 //
+// If there is already an outfile specified, report and ignore this new file.
 //
-//
-bool set_outfile (char* file)
+bool set_out_file (char* file)
 {
+  if (settings_.out_file == NULL)
+    {
+      settings_.out_file = file;
+      return true;
+    }
 
+  err_report_2 (EC_MULTIPLE_OUT_FILES_SPECIFIED, settings_.out_file, file);
   return false;
 }
 //------------------------------------------------------------------------------

@@ -39,6 +39,7 @@ struct slcc_error
   slcc_error_code code;
   char* arg1;
   char* arg2;
+  char* arg3;
 };
 
 typedef struct slcc_error slcc_error;

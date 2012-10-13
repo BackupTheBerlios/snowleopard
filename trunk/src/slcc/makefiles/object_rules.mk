@@ -51,6 +51,9 @@ $(PRG_BUILD_PATH)/settings.o		: src/settings.c
 $(PRG_BUILD_PATH)/string_array.o	: src/string_array.c
 	$(CC) -c $(CFLAGS) src/string_array.c -o $(.TARGET)
 
+$(PRG_BUILD_PATH)/string_functions.o	: src/string_functions.c
+	$(CC) -c $(CFLAGS) src/string_functions.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/types.o		: src/types.c
 	$(CC) -c $(CFLAGS) src/types.c -o $(.TARGET)
 

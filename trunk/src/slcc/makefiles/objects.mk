@@ -32,6 +32,7 @@ OBJS 		= \
 	$(PRG_BUILD_PATH)/main.o 					\
 	$(PRG_BUILD_PATH)/settings.o 					\
 	$(PRG_BUILD_PATH)/string_array.o				\
+	$(PRG_BUILD_PATH)/string_functions.o				\
 	$(PRG_BUILD_PATH)/types.o 					\
 	$(PRG_BUILD_PATH)/version_slcc.o
 

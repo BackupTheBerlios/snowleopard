@@ -18,52 +18,29 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// error_codes.c
+// string_functions.c
 //------------------------------------------------------------------------------
-// Error codes for the compiler front end.
-//------------------------------------------------------------------------------
-
-#include "error_codes.h"
-
-//------------------------------------------------------------------------------
-// Error type description list.
-char* error_type_list_[] = {
-  "No error occured",
-  "FATAL ERROR",
-  "INTERNAL COMPILER ERROR", 
-  "Warning",
-  "Unimplemented Feature",
-  "Preprocessor Error",
-  "Preprocessor Warning", 
-  "Source Error",
-  "Source Warning", 
-  "Code Generation Error", 
-  "Runtime Error"
-};
+// String functions for the compiler front end.
 //------------------------------------------------------------------------------
 
+#include <stdlib.h>
+#include <string.h>
+
+#include "string_functions.h"
+
 //------------------------------------------------------------------------------
-// Error descriptions list.
-slcc_error_description error_description_list_[] = {
+// copy_string function
+//
+// Creates and returns the copy of the string given.
+//
+char* copy_string (char* str)
+{
+  char* n_str = malloc (strlen (str) + 1);
 
-  /* No error occured */
-  {"No error occured", 0, ET_NO_ERROR},
+  strcpy (n_str, str);
 
-  /* Compiler runtime error */		
-  {"Incomplete argument provided", 0, ET_FATAL},
-  {"Invalid argument provided", 0, ET_FATAL},
-  {"No source file provided", 0, ET_FATAL},
-  {"Multiple output files: %s is used, %s is ignored", 2, ET_WARNING}
-
-  /* Preprocessor errors */
-  
-  /* Compile errors */
-  
-  /* Code generation errors */
-  
-  /* Executor runtime errors */
-
-};
+  return n_str;
+}
 //------------------------------------------------------------------------------
 
 //-<EOF>

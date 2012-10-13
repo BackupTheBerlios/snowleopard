@@ -37,6 +37,7 @@ INCLUDES 	= \
 	$(PRG_INCLUDE)/info.h						\
 	$(PRG_INCLUDE)/settings.h 					\
 	$(PRG_INCLUDE)/string_array.h					\
+	$(PRG_INCLUDE)/string_functions.h				\
 	$(PRG_INCLUDE)/types.h 						\
 	$(PRG_INCLUDE)/version_slcc.h
 

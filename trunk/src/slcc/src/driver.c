@@ -401,7 +401,7 @@ bool drv_process_outfile (char* arg)
   if (&arg == '\0')
     return false;
   else
-    return set_outfile (arg);
+    return set_out_file (arg);
 }
 //------------------------------------------------------------------------------
 

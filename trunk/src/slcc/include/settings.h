@@ -29,6 +29,8 @@
 #include <stdbool.h>
 #include <stddef.h>
 
+#include "string_array.h"
+
 //------------------------------------------------------------------------------
 // slcc_language enumeration
 //
@@ -85,12 +87,9 @@ struct slcc_settings
 
   /* general C/C++ options */
   bool use_stdlib;
-  size_t n_include_paths;
-  char** include_paths;
-  size_t n_library_paths;
-  char** library_paths;
-  size_t n_source_paths;
-  char** source_paths;
+  slcc_string_array* include_paths;
+  slcc_string_array* library_paths;
+  slcc_string_array* source_paths;
 
   /* C++ options */
   bool use_export;
@@ -109,7 +108,7 @@ extern slcc_settings settings_;
 bool add_include_path (char* path);
 bool add_library_path (char* path);
 bool add_source_path (char* path);
-bool set_outfile (char* file);
+bool set_out_file (char* file);
 //------------------------------------------------------------------------------
 
 #endif /* !__SL_SLCC_SETTINGS_H__ */
