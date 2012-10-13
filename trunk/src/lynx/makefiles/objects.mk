@@ -25,67 +25,67 @@
 #-------------------------------------------------------------------------------
 
 LDFORMAT_OBJS 		= \
-	$(PRG_BUILD_PATH)/driver.o 					\
+	$(PRG_BUILD_PATH)/ldformat_driver.o 				\
 	$(PRG_BUILD_PATH)/info.o					\
 	$(PRG_BUILD_PATH)/ldformat_main.o				\
 	$(PRG_BUILD_PATH)/version_lynx.o
 
 LEQN_OBJS 		= \
-	$(PRG_BUILD_PATH)/driver.o 					\
+	$(PRG_BUILD_PATH)/leqn_driver.o 				\
 	$(PRG_BUILD_PATH)/info.o					\
 	$(PRG_BUILD_PATH)/leqn_main.o					\
 	$(PRG_BUILD_PATH)/version_lynx.o
 
 LGM_OBJS 		= \
-	$(PRG_BUILD_PATH)/driver.o 					\
+	$(PRG_BUILD_PATH)/lgm_driver.o 					\
 	$(PRG_BUILD_PATH)/info.o					\
 	$(PRG_BUILD_PATH)/lgm_main.o					\
 	$(PRG_BUILD_PATH)/version_lynx.o
 
 LGRAP_OBJS 		= \
-	$(PRG_BUILD_PATH)/driver.o 					\
+	$(PRG_BUILD_PATH)/lgrap_driver.o 				\
 	$(PRG_BUILD_PATH)/info.o					\
 	$(PRG_BUILD_PATH)/lgrap_main.o					\
 	$(PRG_BUILD_PATH)/version_lynx.o
 
 LIDEAL_OBJS 		= \
-	$(PRG_BUILD_PATH)/driver.o 					\
+	$(PRG_BUILD_PATH)/lideal_driver.o 				\
 	$(PRG_BUILD_PATH)/info.o					\
 	$(PRG_BUILD_PATH)/lideal_main.o					\
 	$(PRG_BUILD_PATH)/version_lynx.o
 
 LPIC_OBJS 		= \
-	$(PRG_BUILD_PATH)/driver.o 					\
+	$(PRG_BUILD_PATH)/lpic_driver.o 				\
 	$(PRG_BUILD_PATH)/info.o					\
 	$(PRG_BUILD_PATH)/lpic_main.o					\
 	$(PRG_BUILD_PATH)/version_lynx.o
 
 LREFER_OBJS 		= \
-	$(PRG_BUILD_PATH)/driver.o 					\
+	$(PRG_BUILD_PATH)/lrefer_driver.o 				\
 	$(PRG_BUILD_PATH)/info.o					\
 	$(PRG_BUILD_PATH)/lrefer_main.o					\
 	$(PRG_BUILD_PATH)/version_lynx.o
 
 LROFF_OBJS 		= \
-	$(PRG_BUILD_PATH)/driver.o 					\
+	$(PRG_BUILD_PATH)/lroff_driver.o 				\
 	$(PRG_BUILD_PATH)/info.o					\
 	$(PRG_BUILD_PATH)/lroff_main.o					\
 	$(PRG_BUILD_PATH)/version_lynx.o
 
 LSOELIM_OBJS 		= \
-	$(PRG_BUILD_PATH)/driver.o 					\
+	$(PRG_BUILD_PATH)/lsoelim_driver.o 				\
 	$(PRG_BUILD_PATH)/info.o					\
 	$(PRG_BUILD_PATH)/lsoelim_main.o				\
 	$(PRG_BUILD_PATH)/version_lynx.o
 
 LTBL_OBJS 		= \
-	$(PRG_BUILD_PATH)/driver.o 					\
+	$(PRG_BUILD_PATH)/ltbl_driver.o 				\
 	$(PRG_BUILD_PATH)/info.o					\
 	$(PRG_BUILD_PATH)/ltbl_main.o					\
 	$(PRG_BUILD_PATH)/version_lynx.o
 
 LYNX_OBJS 		= \
-	$(PRG_BUILD_PATH)/driver.o 					\
+	$(PRG_BUILD_PATH)/lynx_driver.o 				\
 	$(PRG_BUILD_PATH)/info.o					\
 	$(PRG_BUILD_PATH)/lynx_main.o					\
 	$(PRG_BUILD_PATH)/version_lynx.o

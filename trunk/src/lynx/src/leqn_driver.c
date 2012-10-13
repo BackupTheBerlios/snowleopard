@@ -1,7 +1,7 @@
 /*==============================================================================
   Lynx Typesetting System
   
-  Copyright (C) 2009, 2010, 2011, 2012 Roel Sergeant
+  Copyright (C) 2012 Roel Sergeant
   
   This program is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -18,7 +18,7 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// driver.c
+// leqn_driver.c
 //------------------------------------------------------------------------------
 // Driver functions for the Lynx typesetting system.
 //------------------------------------------------------------------------------

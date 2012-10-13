@@ -52,57 +52,83 @@ VERSION_LYNX_H_DEPS	= \
 #-------------------------------------------------------------------------------
 # Source file dependencies
 #
-DRIVER_DEPS		= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
-
 INFO_DEPS		= \
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
-LDFORMAT_DEPS		= \
+LFORMAT_DRIVER_DEPS	= \
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+
+LDFORMAT_MAIN_DEPS	= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
-LDFORMAT_DEPS		= \
+LEQN_DRIVER_DEPS	= \
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+
+LEQN_MAIN_DEPS		= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
-LEQN_DEPS		= \
+LGM_DRIVER_DEPS		= \
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+
+LGM_MAIN_DEPS		= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
-LGM_DEPS		= \
+LGRAP_DRIVER_DEPS	= \
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+
+LGRAP_MAIN_DEPS		= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
-LGRAP_DEPS		= \
+LIDEAL_DRIVER_DEPS	= \
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+
+LIDEAL_MAIN_DEPS	= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
-LIDEAL_DEPS		= \
+LPIC_DRIVER_DEPS	= \
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+
+LPIC_MAIN_DEPS		= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
-LPIC_DEPS		= \
+LREFER_DRIVER_DEPS	= \
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+
+LREFER_MAIN_DEPS	= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
-LREFER_DEPS		= \
+LROFF_DRIVER_DEPS	= \
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+
+LROFF_MAIN_DEPS		= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
-LROFF_DEPS		= \
+LSOELIM_DRIVER_DEPS	= \
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+
+LSOELIM_MAIN_DEPS	= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
-LSOELIM_DEPS		= \
+LTBL_DRIVER_DEPS	= \
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+
+LTBL_MAIN_DEPS		= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
-LTBL_DEPS		= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
-	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
+LYNX_DRIVER_DEPS	= \
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
 
-LYNX_DEPS		= \
+LYNX_MAIN_DEPS		= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
