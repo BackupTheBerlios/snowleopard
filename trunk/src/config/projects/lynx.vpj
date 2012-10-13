@@ -194,19 +194,29 @@
         <Folder
             Name="Source Files"
             Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm">
-            <F N="../../lynx/src/driver.c"/>
             <F N="../../lynx/src/info.c"/>
+            <F N="../../lynx/src/ldformat_driver.c"/>
             <F N="../../lynx/src/ldformat_main.c"/>
+            <F N="../../lynx/src/leqn_driver.c"/>
             <F N="../../lynx/src/leqn_main.c"/>
+            <F N="../../lynx/src/lgm_driver.c"/>
             <F N="../../lynx/src/lgm_main.c"/>
+            <F N="../../lynx/src/lgrap_driver.c"/>
             <F N="../../lynx/src/lgrap_main.c"/>
+            <F N="../../lynx/src/lideal_driver.c"/>
             <F N="../../lynx/src/lideal_main.c"/>
+            <F N="../../lynx/src/lpic_driver.c"/>
             <F N="../../lynx/src/lpic_main.c"/>
+            <F N="../../lynx/src/lrefer_driver.c"/>
             <F N="../../lynx/src/lrefer_main.c"/>
+            <F N="../../lynx/src/lroff_driver.c"/>
             <F N="../../lynx/src/lroff_main.c"/>
+            <F N="../../lynx/src/lsoelim_driver.c"/>
             <F N="../../lynx/src/lsoelim_main.c"/>
+            <F N="../../lynx/src/ltbl_driver.c"/>
             <F N="../../lynx/src/ltbl_main.c"/>
             <F N="lynx.c"/>
+            <F N="../../lynx/src/lynx_driver.c"/>
             <F N="../../lynx/src/lynx_main.c"/>
             <F N="../../lynx/src/version_lynx.c"/>
         </Folder>
@@ -239,7 +249,16 @@
             Name="Build Files"
             Filters="">
             <F
+                N="../../lynx/makefiles/includes.mk"
+                Type="Makefile"/>
+            <F
                 N="../../lynx/Makefile"
+                Type="Makefile"/>
+            <F
+                N="../../lynx/makefiles/object_rules.mk"
+                Type="Makefile"/>
+            <F
+                N="../../lynx/makefiles/objects.mk"
                 Type="Makefile"/>
         </Folder>
         <Folder

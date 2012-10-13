@@ -1,0 +1,87 @@
+<!DOCTYPE Project SYSTEM "http://www.slickedit.com/dtd/vse/10.0/vpj.dtd">
+<Project
+    Version="10.0"
+    VendorName="SlickEdit"
+    TemplateName="(Other)"
+    WorkingDir=".">
+    <Config
+        Name="Release"
+        OutputFile=""
+        CompilerConfigName="">
+        <Menu>
+            <Target
+                Name="Compile"
+                MenuCaption="&amp;Compile"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveCurrent"
+                RunFromDir="%rw">
+                <Exec/>
+            </Target>
+            <Target
+                Name="Build"
+                MenuCaption="&amp;Build"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec/>
+            </Target>
+            <Target
+                Name="Rebuild"
+                MenuCaption="&amp;Rebuild"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec/>
+            </Target>
+            <Target
+                Name="Debug"
+                MenuCaption="&amp;Debug"
+                SaveOption="SaveNone"
+                RunFromDir="%rw">
+                <Exec/>
+            </Target>
+            <Target
+                Name="Execute"
+                MenuCaption="E&amp;xecute"
+                SaveOption="SaveNone"
+                RunFromDir="%rw">
+                <Exec CmdLine='".exe"'/>
+            </Target>
+        </Menu>
+    </Config>
+    <Files>
+        <Folder
+            Name="libsltc Unit Tests"
+            Filters=""/>
+        <Folder
+            Name="libsltc Regression Tests"
+            Filters=""/>
+        <Folder
+            Name="libsltc Technical Tests"
+            Filters=""/>
+        <Folder
+            Name="libsltc Build Files"
+            Filters=""/>
+        <Folder
+            Name="libsltst Unit Tests"
+            Filters=""/>
+        <Folder
+            Name="libsltst Regression Tests"
+            Filters=""/>
+        <Folder
+            Name="libsltst Technical Tests"
+            Filters=""/>
+        <Folder
+            Name="libsltst Build Files"
+            Filters=""/>
+        <Folder
+            Name="slcc Unit Tests"
+            Filters=""/>
+        <Folder
+            Name="slcc Regression Tests"
+            Filters=""/>
+        <Folder
+            Name="slcc Technical Tests"
+            Filters=""/>
+    </Files>
+</Project>
