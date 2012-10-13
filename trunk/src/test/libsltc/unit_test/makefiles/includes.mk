@@ -1,5 +1,5 @@
 #===============================================================================
-# Snow Leopard C++ Compiler Front End
+# Snow Leopard Test Suite
 #
 # Copyright (C) 2012 Roel Sergeant
 #

@@ -1,5 +1,5 @@
 #===============================================================================
-# Snow Leopard Typed Component Library
+# Snow Leopard Test Suite
 #
 # Copyright (C) 2011, 2012 Roel Sergeant
 #
