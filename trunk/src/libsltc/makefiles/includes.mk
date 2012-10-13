@@ -38,4 +38,38 @@ TC_INCLUDES 	= \
 	$(TC_INCLUDE)/version_tc.h
 
 #-------------------------------------------------------------------------------
+# Header file dependencies
+#
+ARRAY_C_H_DEPS		= \
+	$(TC_INCLUDE)/config_tc.h
+
+ARRAY_H_DEPS		= \
+	$(TC_INCLUDE)/config_tc.h
+
+CONFIG_TC_H_DEPS	= \
+	$(CONFIG_C_INCLUDES)
+
+LINKED_LIST_C_H_DEPS	= \
+	$(TC_INCLUDE)/config_tc.h
+
+LINKED_LIST_H_DEPS	= \
+	$(TC_INCLUDE)/config_tc.h
+
+TREE_C_H_DEPS		= \
+	$(TC_INCLUDE)/config_tc.h
+
+TREE_H_DEPS		= \
+	$(TC_INCLUDE)/config_tc.h
+
+VERSION_TC_H_DEPS	= \
+	$(CONFIG_C_INCLUDES)						\
+	$(VERSION_C_INCLUDES)
+
+#-------------------------------------------------------------------------------
+# Source file dependencies
+#
+VERSION_TC_DEPS		= \
+	$(TC_INCLUDE)/version_tc.h $(VERSION_TC_H_DEPS)
+
+#-------------------------------------------------------------------------------
 #<EOF>

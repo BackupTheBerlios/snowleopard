@@ -55,16 +55,13 @@ LIB_TST_PATH	= $(TST_PATH)/$(LIB)
 #-------------------------------------------------------------------------------
 # Rules
 #
-all			: $(STATIC_LIBRARY) $(SHARED_LIBRARY)
+all			: build_path $(STATIC_LIBRARY) $(SHARED_LIBRARY)
 
 $(STATIC_LIBRARY)	: $(OBJS)
 	$(AR) rcs $(STATIC_LIBRARY) $(OBJS)
 
 $(SHARED_LIBRARY)	: $(OBJS)
 	$(CC) -shared -Wl,-soname,$(SHARED_SO_NAME) -o $(SHARED_LIBRARY) $(OBJS)
-
-$(OBJS)			: build_path $(INCLUDES) $(CONFIG_C_INCLUDES) \
-			  $(VERSION_C_INCLUDES)
 
 .include "makefiles/object_rules.mk"
 

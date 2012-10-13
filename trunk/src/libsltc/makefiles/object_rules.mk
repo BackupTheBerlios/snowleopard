@@ -27,7 +27,7 @@
 #-------------------------------------------------------------------------------
 # Rules
 #
-$(LIB_BUILD_PATH)/version_tc.o		: src/version_tc.c
+$(LIB_BUILD_PATH)/version_tc.o		: src/version_tc.c $(VERSION_TC_DEPS)
 	$(CC) -c $(CFLAGS) src/version_tc.c -o $(.TARGET)
 
 #-------------------------------------------------------------------------------
