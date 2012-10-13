@@ -27,7 +27,7 @@
 #-------------------------------------------------------------------------------
 # Variables
 #
-TST_INCLUDES 	= \
+TST_INCLUDES 		= \
 	$(TST_INCLUDE)/config_tst.h 					\
 	$(TST_INCLUDE)/version_tst.h
 
