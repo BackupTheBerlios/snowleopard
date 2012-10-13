@@ -57,6 +57,7 @@ TST_CONFIG_CPP_INCLUDES		= \
 # Library include files
 #
 TST_TC_INCLUDE			= ../../libsltc/include
+TST_TST_INCLUDE			= ../../libsltst/include
 
 #-------------------------------------------------------------------------------
 # Build path 

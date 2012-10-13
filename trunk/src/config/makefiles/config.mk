@@ -57,6 +57,7 @@ CONFIG_CPP_INCLUDES	= \
 # Library include files
 #
 TC_INCLUDE		= ../libsltc/include
+TST_INCLUDE		= ../libsltst/include
 
 #-------------------------------------------------------------------------------
 # Build path 
