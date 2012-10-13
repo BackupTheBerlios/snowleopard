@@ -25,6 +25,7 @@
 
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "error_codes.h"
@@ -53,6 +54,46 @@ slcc_settings settings_ = {
   NULL,    /* source_paths */
   false    /* use_export */
 };
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// settings_initialize function
+//
+// Initialize settings object.
+//
+bool settings_initialize ()
+{
+  settings_.include_paths = tc_array_new_sa ();
+  settings_.library_paths = tc_array_new_sa ();
+  settings_.source_paths = tc_array_new_sa ();
+
+  if (settings_.include_paths == 0 
+      || settings_.library_paths == 0
+      || settings_.source_paths == 0)
+    return false;
+
+  return true;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// settings_cleanup function
+//
+// Cleans up arrays and pointers used in the settings object.
+//
+void settings_cleanup ()
+{
+  free (settings_.out_file);
+  
+  if (settings_.include_paths != 0)
+    tc_array_delete_sa (settings_.include_paths);
+
+  if (settings_.library_paths != 0)
+    tc_array_delete_sa (settings_.library_paths);
+
+  if (settings_.source_paths != 0)
+    tc_array_delete_sa (settings_.source_paths);
+}
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------

@@ -49,12 +49,13 @@ slcc_error_description error_description_list_[] = {
   /* No error occured */
   {"No error occured", 0, ET_NO_ERROR},
 
-  /* Compiler runtime error */		
+  /* Compiler runtime error */
+  {"Driver initialization failed", 0, ET_FATAL},
   {"Incomplete argument provided", 0, ET_FATAL},
   {"Invalid argument provided", 0, ET_FATAL},
   {"No source file provided", 0, ET_FATAL},
-  {"Multiple output files: %s is used, %s is ignored", 2, ET_WARNING},
   {"Path %s doesn't exists or is not accessible", 1, ET_FATAL},
+  {"Multiple output files: %s is used, %s is ignored", 2, ET_WARNING},
   {"The include path %s is used twice, this one is ignored", 1, ET_WARNING}
 
   /* Preprocessor errors */

@@ -36,6 +36,12 @@ int main (int argc, char** argv)
 {
   int exit_status = EXIT_SUCCESS;
 
+  if (!drv_initialize ())
+    {
+      drv_cleanup ();
+      return EXIT_FAILURE;
+    }
+
   /* 
    * Parsing the command line arguments will not return if an invalid
    * argument is given, as compilation will be aborted.
@@ -62,8 +68,7 @@ int main (int argc, char** argv)
   else if (drv_start ())
     {
       /* Cleanup after compilation */
-      if (!drv_cleanup ())
-	exit_status = EXIT_FAILURE;
+      drv_cleanup ();
     }
   else 
     exit_status = EXIT_FAILURE;

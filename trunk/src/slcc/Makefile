@@ -49,10 +49,10 @@ PRG_TST_PATH	= $(TST_PATH)/$(PRG)
 #-------------------------------------------------------------------------------
 # Rules
 #
+all		: build_path $(PROGRAM)
+
 $(PROGRAM) 	: $(OBJS)
 	$(CC) $(.ALLSRC) -o $(.TARGET)
-
-$(OBJS)		: build_path
 
 .include "makefiles/object_rules.mk"
 

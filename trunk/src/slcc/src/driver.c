@@ -53,14 +53,30 @@ bool drv_process_path (slcc_path_type type, char* argument, bool attached);
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
+// drv_initialize function
+//
+// Initialize all components before the compilation starts.
+//
+bool drv_initialize ()
+{
+  if (!settings_initialize ())
+    {
+      err_report_0 (EC_DRIVER_INITIALIZATION_FAILED);
+      return false;
+    }
+
+  return true;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 // drv_cleanup function
 //
 // Cleans up all components when the compilation process has finished.
 //
-bool drv_cleanup ()
+void drv_cleanup ()
 {
-
-  return false;
+  settings_cleanup ();
 }
 //------------------------------------------------------------------------------
 

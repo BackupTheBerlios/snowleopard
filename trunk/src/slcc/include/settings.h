@@ -120,6 +120,8 @@ extern slcc_settings settings_;
 
 //------------------------------------------------------------------------------
 // Settings functions.
+bool settings_initialize ();
+void settings_cleanup ();
 bool add_path (slcc_path_type type, char* path);
 bool set_out_file (char* file);
 //------------------------------------------------------------------------------
