@@ -9,7 +9,7 @@
         Type="gnuc"
         DebugCallbackName="gdb"
         Version="1"
-        OutputFile="%bdslcc"
+        OutputFile="%bdlynx"
         CompilerConfigName="Latest Version">
         <Menu>
             <Target
@@ -102,7 +102,7 @@
         Type="gnuc"
         DebugCallbackName="gdb"
         Version="1"
-        OutputFile="%bdslcc"
+        OutputFile="%bdlynx"
         CompilerConfigName="Latest Version">
         <Menu>
             <Target
@@ -194,60 +194,85 @@
         <Folder
             Name="Source Files"
             Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm">
-            <F N="../../slcc/src/driver.c"/>
-            <F N="../../slcc/src/error_array.c"/>
-            <F N="../../slcc/src/error_codes.c"/>
-            <F N="../../slcc/src/error_handling.c"/>
-            <F N="../../slcc/src/file_functions.c"/>
-            <F N="../../slcc/src/info.c"/>
-            <F N="../../slcc/src/main.c"/>
-            <F N="../../slcc/src/settings.c"/>
-            <F N="../../slcc/src/string_array.c"/>
-            <F N="../../slcc/src/string_functions.c"/>
-            <F N="../../slcc/src/types.c"/>
-            <F N="../../slcc/src/version_slcc.c"/>
+            <F N="../../lynx/src/driver.c"/>
+            <F N="../../lynx/src/info.c"/>
+            <F N="../../lynx/src/ldformat_main.c"/>
+            <F N="../../lynx/src/leqn_main.c"/>
+            <F N="../../lynx/src/lgm_main.c"/>
+            <F N="../../lynx/src/lgrap_main.c"/>
+            <F N="../../lynx/src/lideal_main.c"/>
+            <F N="../../lynx/src/lpic_main.c"/>
+            <F N="../../lynx/src/lrefer_main.c"/>
+            <F N="../../lynx/src/lroff_main.c"/>
+            <F N="../../lynx/src/lsoelim_main.c"/>
+            <F N="../../lynx/src/ltbl_main.c"/>
+            <F N="lynx.c"/>
+            <F N="../../lynx/src/lynx_main.c"/>
+            <F N="../../lynx/src/version_lynx.c"/>
         </Folder>
         <Folder
             Name="Header Files"
             Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.inc;*.sh;*.cpy;*.if">
-            <F N="../../slcc/include/config_slcc.h"/>
-            <F N="../../slcc/include/driver.h"/>
-            <F N="../../slcc/include/error.h"/>
-            <F N="../../slcc/include/error_array.h"/>
-            <F N="../../slcc/include/error_codes.h"/>
-            <F N="../../slcc/include/error_handling.h"/>
-            <F N="../../slcc/include/file_functions.h"/>
-            <F N="../../slcc/include/info.h"/>
-            <F N="../../slcc/include/settings.h"/>
-            <F N="../../slcc/include/string_array.h"/>
-            <F N="../../slcc/include/string_functions.h"/>
-            <F N="../../slcc/include/types.h"/>
-            <F N="../../slcc/include/version_slcc.h"/>
+            <F N="../../lynx/include/config_lynx.h"/>
+            <F N="../../lynx/include/driver.h"/>
+            <F N="../../lynx/include/info.h"/>
+            <F N="../../lynx/include/version_lynx.h"/>
         </Folder>
         <Folder
             Name="Script Files"
             Filters="">
-            <F N="../../slcc/scripts/cc"/>
+            <F N="../../lynx/scripts/dformat"/>
+            <F N="../../lynx/scripts/eqn"/>
+            <F N="../../lynx/scripts/gm"/>
+            <F N="../../lynx/scripts/grap"/>
+            <F N="../../lynx/scripts/ideal"/>
+            <F N="../../lynx/scripts/lynxc"/>
+            <F N="../../lynx/scripts/pic"/>
+            <F N="../../lynx/scripts/refer"/>
+            <F N="../../lynx/scripts/roff"/>
+            <F N="../../lynx/scripts/soelim"/>
+            <F N="../../lynx/scripts/tbl"/>
+            <F N="../../lynx/scripts/tex"/>
+            <F N="../../lynx/scripts/troff"/>
         </Folder>
         <Folder
             Name="Build Files"
             Filters="">
             <F
-                N="../../slcc/makefiles/includes.mk"
-                Type="Makefile"/>
-            <F
-                N="../../slcc/Makefile"
-                Type="Makefile"/>
-            <F
-                N="../../slcc/makefiles/object_rules.mk"
-                Type="Makefile"/>
-            <F
-                N="../../slcc/makefiles/objects.mk"
+                N="../../lynx/Makefile"
                 Type="Makefile"/>
         </Folder>
         <Folder
             Name="Documentation Files"
             Filters="">
+            <F N="../../lynx/doc/refman.tr"/>
+            <F N="../../lynx/doc/tut.tr"/>
+            <F N="../../lynx/doc/userman.tr"/>
+        </Folder>
+        <Folder
+            Name="Library Files"
+            Filters="">
+            <Folder
+                Name="roff"
+                Filters="">
+                <Folder
+                    Name="tmac"
+                    Filters="">
+                    <F N="../../lynx/lib/roff/tmac/man.tmac"/>
+                    <F N="../../lynx/lib/roff/tmac/mm.tmac"/>
+                    <F N="../../lynx/lib/roff/tmac/ms.tmac"/>
+                </Folder>
+            </Folder>
+            <Folder
+                Name="TeX"
+                Filters="">
+                <F N="../../lynx/lib/TeX/TeX/plain.tex"/>
+            </Folder>
+            <Folder
+                Name="LaTeX"
+                Filters="">
+                <F N="../../lynx/lib/TeX/LaTeX/latex.tex"/>
+            </Folder>
         </Folder>
     </Files>
 </Project>

@@ -9,7 +9,7 @@
         Type="gnuc"
         DebugCallbackName="gdb"
         Version="1"
-        OutputFile="%bdslcc"
+        OutputFile="%bdlibsltc.dylib"
         CompilerConfigName="Latest Version">
         <Menu>
             <Target
@@ -32,7 +32,7 @@
                 Deletable="0"
                 SaveOption="SaveCurrent"
                 RunFromDir="%rw">
-                <Exec CmdLine='gcc -ansi %xup -g -o "%o" %f %libs'/>
+                <Exec CmdLine='gcc -ansi %xup -g -o "%o" %f %libs -shared -fPIC'/>
             </Target>
             <Target
                 Name="Build"
@@ -61,7 +61,7 @@
                 Deletable="0"
                 SaveOption="SaveNone"
                 RunFromDir="%rw">
-                <Exec CmdLine='vsdebugio -prog "%o"'/>
+                <Exec CmdLine=""/>
             </Target>
             <Target
                 Name="Execute"
@@ -72,7 +72,7 @@
                 Deletable="0"
                 SaveOption="SaveWorkspaceFiles"
                 RunFromDir="%rw">
-                <Exec CmdLine='"%o"'/>
+                <Exec CmdLine=""/>
             </Target>
             <Target
                 Name="dash"
@@ -94,7 +94,7 @@
         <List Name="GNUC Options">
             <Item
                 Name="LinkerOutputType"
-                Value="Executable"/>
+                Value="SharedLibrary"/>
         </List>
     </Config>
     <Config
@@ -102,7 +102,7 @@
         Type="gnuc"
         DebugCallbackName="gdb"
         Version="1"
-        OutputFile="%bdslcc"
+        OutputFile="%bdlibsltc.dylib"
         CompilerConfigName="Latest Version">
         <Menu>
             <Target
@@ -125,7 +125,7 @@
                 Deletable="0"
                 SaveOption="SaveCurrent"
                 RunFromDir="%rw">
-                <Exec CmdLine='gcc -ansi %xup -o "%o" %f %libs'/>
+                <Exec CmdLine='gcc -ansi %xup -o "%o" %f %libs -shared -fPIC'/>
             </Target>
             <Target
                 Name="Build"
@@ -154,7 +154,7 @@
                 Deletable="0"
                 SaveOption="SaveNone"
                 RunFromDir="%rw">
-                <Exec CmdLine='vsdebugio -prog "%o"'/>
+                <Exec CmdLine=""/>
             </Target>
             <Target
                 Name="Execute"
@@ -165,7 +165,7 @@
                 Deletable="0"
                 SaveOption="SaveWorkspaceFiles"
                 RunFromDir="%rw">
-                <Exec CmdLine='"%o"'/>
+                <Exec CmdLine=""/>
             </Target>
             <Target
                 Name="dash"
@@ -187,67 +187,48 @@
         <List Name="GNUC Options">
             <Item
                 Name="LinkerOutputType"
-                Value="Executable"/>
+                Value="SharedLibrary"/>
         </List>
     </Config>
     <Files>
         <Folder
             Name="Source Files"
             Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm">
-            <F N="../../slcc/src/driver.c"/>
-            <F N="../../slcc/src/error_array.c"/>
-            <F N="../../slcc/src/error_codes.c"/>
-            <F N="../../slcc/src/error_handling.c"/>
-            <F N="../../slcc/src/file_functions.c"/>
-            <F N="../../slcc/src/info.c"/>
-            <F N="../../slcc/src/main.c"/>
-            <F N="../../slcc/src/settings.c"/>
-            <F N="../../slcc/src/string_array.c"/>
-            <F N="../../slcc/src/string_functions.c"/>
-            <F N="../../slcc/src/types.c"/>
-            <F N="../../slcc/src/version_slcc.c"/>
+            <F N="../../libsltc/src/version_tc.c"/>
         </Folder>
         <Folder
             Name="Header Files"
             Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.inc;*.sh;*.cpy;*.if">
-            <F N="../../slcc/include/config_slcc.h"/>
-            <F N="../../slcc/include/driver.h"/>
-            <F N="../../slcc/include/error.h"/>
-            <F N="../../slcc/include/error_array.h"/>
-            <F N="../../slcc/include/error_codes.h"/>
-            <F N="../../slcc/include/error_handling.h"/>
-            <F N="../../slcc/include/file_functions.h"/>
-            <F N="../../slcc/include/info.h"/>
-            <F N="../../slcc/include/settings.h"/>
-            <F N="../../slcc/include/string_array.h"/>
-            <F N="../../slcc/include/string_functions.h"/>
-            <F N="../../slcc/include/types.h"/>
-            <F N="../../slcc/include/version_slcc.h"/>
-        </Folder>
-        <Folder
-            Name="Script Files"
-            Filters="">
-            <F N="../../slcc/scripts/cc"/>
+            <F N="../../libsltc/include/array.c.h"/>
+            <F N="../../libsltc/include/array.h"/>
+            <F N="../../libsltc/include/config_tc.h"/>
+            <F N="../../libsltc/include/linked_list.c.h"/>
+            <F N="../../libsltc/include/linked_list.h"/>
+            <F N="../../libsltc/include/tree.c.h"/>
+            <F N="../../libsltc/include/tree.h"/>
+            <F N="../../libsltc/include/version_tc.h"/>
         </Folder>
         <Folder
             Name="Build Files"
             Filters="">
             <F
-                N="../../slcc/makefiles/includes.mk"
+                N="../../libsltc/makefiles/includes.mk"
                 Type="Makefile"/>
             <F
-                N="../../slcc/Makefile"
+                N="../../libsltc/Makefile"
                 Type="Makefile"/>
             <F
-                N="../../slcc/makefiles/object_rules.mk"
+                N="../../libsltc/makefiles/object_rules.mk"
                 Type="Makefile"/>
             <F
-                N="../../slcc/makefiles/objects.mk"
+                N="../../libsltc/makefiles/objects.mk"
+                Type="Makefile"/>
+            <F
+                N="../../libsltc/makefiles/version.mk"
                 Type="Makefile"/>
         </Folder>
         <Folder
             Name="Documentation Files"
-            Filters="">
-        </Folder>
+            Filters=""/>
     </Files>
 </Project>
