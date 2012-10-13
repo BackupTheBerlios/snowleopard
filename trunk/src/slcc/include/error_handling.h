@@ -26,6 +26,8 @@
 #ifndef __SL_SLCC_ERROR_HANDLING_H__
 #define __SL_SLCC_ERROR_HANDLING_H__
 
+#include <stdbool.h>
+
 #include "error.h"
 #include "error_codes.h"
 #include "error_array.h"
@@ -39,13 +41,51 @@ extern slcc_error_array* error_list_;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
+// err_# macros
+//
+// Report error with # arguments and store it if it is not a warning.
+//
+#define err_report_0(code)			\
+  err_report (code, NULL, NULL, NULL, true)
+#define err_report_1(code,arg1)			\
+  err_report (code, arg1, NULL, NULL, true)
+#define err_report_2(code,arg1,arg2)		\
+  err_report (code, arg1, arg2, NULL, true)
+#define err_report_3(code,arg1,arg2,arg3)	\
+  err_report (code, arg1, arg2, arg3, true)
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// err_report_and_exit_# macros
+//
+// Report error with # arguments and exit.
+//
+#define err_report_and_exit_0(code)			\
+  err_report_and_exit (code, NULL, NULL, NULL)
+#define err_report_and_exit_1(code,arg1)		\
+  err_report_and_exit (code, arg1, NULL, NULL)
+#define err_report_and_exit_2(code,arg1,arg2)		\
+  err_report_and_exit (code, arg1, arg2, NULL)
+#define err_report_and_exit_3(code,arg1,arg2,arg3)	\
+  err_report_and_exit (code, arg1, arg2, arg3)
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 // Error handling functions.
-slcc_error* err_report_0 (slcc_error_code code);
-slcc_error* err_report_1 (slcc_error_code code, char* arg1);
-slcc_error* err_report_2 (slcc_error_code code, char* arg1, char* arg2);
-void err_report_and_exit_0 (slcc_error_code code);
-void err_report_and_exit_1 (slcc_error_code code, char* arg1);
-void err_report_and_exit_2 (slcc_error_code code, char* arg1, char* arg2);
+//
+slcc_error* err_report (
+			slcc_error_code code, 
+			char* arg1, 
+			char* arg2, 
+			char* arg3, 
+			bool store
+			);
+void err_report_and_exit (
+			  slcc_error_code code, 
+			  char* arg1,
+			  char* arg2,
+			  char* arg3
+			  );
 //------------------------------------------------------------------------------
 
 #endif /* !__SL_SLCC_ERROR_HANDING_H__ */

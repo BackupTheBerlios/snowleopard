@@ -18,54 +18,64 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// error_codes.c
+// file_functions.c
 //------------------------------------------------------------------------------
-// Error codes for the compiler front end.
-//------------------------------------------------------------------------------
-
-#include "error_codes.h"
-
-//------------------------------------------------------------------------------
-// Error type description list.
-char* error_type_list_[] = {
-  "No error occured",
-  "FATAL ERROR",
-  "INTERNAL COMPILER ERROR", 
-  "Warning",
-  "Unimplemented Feature",
-  "Preprocessor Error",
-  "Preprocessor Warning", 
-  "Source Error",
-  "Source Warning", 
-  "Code Generation Error", 
-  "Runtime Error"
-};
+// String functions for the compiler front end.
 //------------------------------------------------------------------------------
 
+#include <stdbool.h>
+#include <stdio.h>
+#include <sys/stat.h>
+
+#include "file_functions.h"
+
 //------------------------------------------------------------------------------
-// Error descriptions list.
-slcc_error_description error_description_list_[] = {
+// file_exists function
+//
+// Check if the file exists, it is a file and it is readable.
+//
+bool file_exists (char* filename)
+{
+  struct stat buffer;
 
-  /* No error occured */
-  {"No error occured", 0, ET_NO_ERROR},
+  /* File does not exist */
+  if (stat (filename, &buffer) == 0)
+    return false;
 
-  /* Compiler runtime error */		
-  {"Incomplete argument provided", 0, ET_FATAL},
-  {"Invalid argument provided", 0, ET_FATAL},
-  {"No source file provided", 0, ET_FATAL},
-  {"Multiple output files: %s is used, %s is ignored", 2, ET_WARNING},
-  {"Path %s doesn't exists or is not accessible", 1, ET_FATAL},
-  {"The include path %s is used twice, this one is ignored", 1, ET_WARNING}
+  /* File is not a file */
+  if (!S_ISREG (buffer.st_mode))
+    return false;
 
-  /* Preprocessor errors */
-  
-  /* Compile errors */
-  
-  /* Code generation errors */
-  
-  /* Executor runtime errors */
+  /* File is readable */
+  FILE* file = fopen (filename, "r");
+  if (file == NULL)
+    return false;
+  else 
+    fclose (file);
 
-};
+  return true;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// path_exists function
+//
+// Check if the path exists and that it is a path.
+//
+bool path_exists (char* path)
+{
+  struct stat buffer;
+
+  /* Path does not exist */
+  if (stat (path, &buffer) == 0)
+    return false;
+
+  /* Path is not a directory */
+  if (!S_ISDIR (buffer.st_mode))
+    return false;
+
+  return true;
+}
 //------------------------------------------------------------------------------
 
 //-<EOF>

@@ -36,11 +36,9 @@
 bool drv_check_arguments (); 
 bool drv_process_argument (char** argv, int* pos);
 bool drv_process_file_argument (char* file);
-bool drv_process_include_path (char* argument, bool attached);
-bool drv_process_library_path (char* argument, bool attached);
 bool drv_process_language_standard (char* argument);
-bool drv_process_outfile (char* argument);
-bool drv_process_source_path (char* argument, bool attached);
+bool drv_process_out_file (char* argument);
+bool drv_process_path (slcc_path_type type, char* argument, bool attached);
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -174,12 +172,12 @@ bool drv_process_argument (char** argv, int* pos)
       /* Argument --include_path <path> */
       drv_check_arg(arg,						\
 		    "--include_path",					\
-		    return drv_process_include_path (argv[*pos++], false));
+		    return drv_process_path (PT_INCLUDE, argv[*pos++], false));
 
       /* Argument --library_path <path> */
       drv_check_arg(arg,						\
 		    "--library_path",					\
-		    return drv_process_library_path (argv[*pos++], false));
+		    return drv_process_path (PT_LIBRARY, argv[*pos++], false));
 
       /* Argument --no_stdlib */
       drv_check_arg(arg,					\
@@ -189,7 +187,7 @@ bool drv_process_argument (char** argv, int* pos)
       /* Argument --outfile <path> */
       drv_check_arg(arg,					\
 		    "--outfile",				\
-		    return drv_process_outfile (argv[*pos++]));
+		    return drv_process_out_file (argv[*pos++]));
 
       /* Argument --preprocess */
       drv_check_arg(arg,					\
@@ -199,7 +197,7 @@ bool drv_process_argument (char** argv, int* pos)
       /* Argument --source_path <path> */
       drv_check_arg(arg,						\
 		    "--source_path",					\
-		    return drv_process_source_path (argv[*pos++], false));
+		    return drv_process_path (PT_SOURCE, argv[*pos++], false));
 
       /* Argument --usage */
       drv_check_arg(arg,				\
@@ -227,7 +225,7 @@ bool drv_process_argument (char** argv, int* pos)
       /* Argument -I<path> [include_path <path>] */
       drv_check_arg(arg,						\
 		    "-I",                                               \
-		    return drv_process_include_path (argv[*pos++], true));
+		    return drv_process_path (PT_INCLUDE, argv[*pos++], true));
     }
     break;
 
@@ -236,7 +234,7 @@ bool drv_process_argument (char** argv, int* pos)
       /* Argument -L<path> [library_path <path>] */
       drv_check_arg(arg,						\
 		    "-L",						\
-		    return drv_process_library_path (argv[*pos++], true));
+		    return drv_process_path (PT_LIBRARY, argv[*pos++], true));
     }
     break;
 
@@ -245,7 +243,7 @@ bool drv_process_argument (char** argv, int* pos)
       /* Argument -S<path> [source_path <path>] */
       drv_check_arg(arg,						\
 		    "-S",						\
-		    return drv_process_source_path (argv[*pos++], true));
+		    return drv_process_path (PT_SOURCE, argv[*pos++], true));
     }
     break;
 
@@ -274,7 +272,7 @@ bool drv_process_argument (char** argv, int* pos)
       /* Argument -o <file> [outfile <path>] */
       drv_check_arg(arg,					\
 		    "-o",					\
-		    return drv_process_outfile (argv[*pos++]));
+		    return drv_process_out_file (argv[*pos++]));
     }
     break;
 
@@ -319,36 +317,19 @@ bool drv_process_file_argument (char* file)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// drv_process_include_path function
+// drv_process_path function
 //
 // Set include path.
 //
-bool drv_process_include_path (char* arg, bool attached)
+bool drv_process_path (slcc_path_type type, char* arg, bool attached)
 {
   if (attached)
     if (&arg == '\0')
       return false;
     else
-      return add_include_path (arg);
+      return add_path (type, arg);
   else
-    return add_include_path (arg+2);
-}
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// drv_process_library_path function
-//
-// Set library path.
-//
-bool drv_process_library_path (char* arg, bool attached)
-{
-  if (attached)
-    if (&arg == '\0')
-      return false;
-    else
-      return add_library_path (arg);
-  else
-    return add_library_path (arg+2);
+    return add_path (type, arg+2);
 }
 //------------------------------------------------------------------------------
 
@@ -392,33 +373,16 @@ bool drv_process_language_standard (char* arg)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// drv_process_outfile function
+// drv_process_out_file function
 //
-// Set outfile.
+// Set out_file.
 //
-bool drv_process_outfile (char* arg)
+bool drv_process_out_file (char* arg)
 {
   if (&arg == '\0')
     return false;
   else
     return set_out_file (arg);
-}
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// drv_process_source_path function
-//
-// Set source path.
-//
-bool drv_process_source_path (char* arg, bool attached)
-{
-  if (attached)
-    if (&arg == '\0')
-      return false;
-    else
-      return add_source_path (arg);
-  else
-    return add_source_path (arg+2);
 }
 //------------------------------------------------------------------------------
 

@@ -18,54 +18,23 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// error_codes.c
+// file_functions.h
 //------------------------------------------------------------------------------
-// Error codes for the compiler front end.
-//------------------------------------------------------------------------------
-
-#include "error_codes.h"
-
-//------------------------------------------------------------------------------
-// Error type description list.
-char* error_type_list_[] = {
-  "No error occured",
-  "FATAL ERROR",
-  "INTERNAL COMPILER ERROR", 
-  "Warning",
-  "Unimplemented Feature",
-  "Preprocessor Error",
-  "Preprocessor Warning", 
-  "Source Error",
-  "Source Warning", 
-  "Code Generation Error", 
-  "Runtime Error"
-};
+// File functions for the compiler front end.
 //------------------------------------------------------------------------------
 
+#ifndef __SL_SLCC_FILE_FUNCTIONS_H__
+#define __SL_SLCC_FILE_FUNCTIONS_H__
+
+#include <stdbool.h>
+
 //------------------------------------------------------------------------------
-// Error descriptions list.
-slcc_error_description error_description_list_[] = {
-
-  /* No error occured */
-  {"No error occured", 0, ET_NO_ERROR},
-
-  /* Compiler runtime error */		
-  {"Incomplete argument provided", 0, ET_FATAL},
-  {"Invalid argument provided", 0, ET_FATAL},
-  {"No source file provided", 0, ET_FATAL},
-  {"Multiple output files: %s is used, %s is ignored", 2, ET_WARNING},
-  {"Path %s doesn't exists or is not accessible", 1, ET_FATAL},
-  {"The include path %s is used twice, this one is ignored", 1, ET_WARNING}
-
-  /* Preprocessor errors */
-  
-  /* Compile errors */
-  
-  /* Code generation errors */
-  
-  /* Executor runtime errors */
-
-};
+// String functions
+//
+bool file_exists (char* file);
+bool path_exists (char* path);
 //------------------------------------------------------------------------------
+
+#endif /* !__SL_SLCC_FILE_FUNCTIONS_H__ */
 
 //-<EOF>

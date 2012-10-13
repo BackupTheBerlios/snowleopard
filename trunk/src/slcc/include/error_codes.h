@@ -72,10 +72,14 @@ enum slcc_error_code
     EC_NO_ERROR = 0,
 
     /* Compiler runtime errors */
-    EC_INCOMPLETE_ARG,              /* Incomplete argument supplied */
-    EC_INVALID_ARG,                 /* Invalid argument supplied */
-    EC_NO_SOURCE_FILE,              /* No source file provided */
-    EC_MULTIPLE_OUT_FILES_SPECIFIED /* Multiple output files specified */  
+    EC_INCOMPLETE_ARG,                 /* Incomplete argument supplied */
+    EC_INVALID_ARG,                    /* Invalid argument supplied */
+    EC_NO_SOURCE_FILE,                 /* No source file provided */
+    EC_W_MULTIPLE_OUT_FILES_SPECIFIED, /* Multiple output files specified */  
+    EC_PATH_NOT_FOUND,                 /* The path does not exist or is not 
+					  accessible */
+    EC_W_DUPLICATE_INCLUDE_PATH        /* The include path is specified 
+					  twice */
 
     /* Preprocessor errors */
     

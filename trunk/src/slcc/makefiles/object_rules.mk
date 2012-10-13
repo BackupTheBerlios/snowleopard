@@ -39,6 +39,9 @@ $(PRG_BUILD_PATH)/error_codes.o		: src/error_codes.c
 $(PRG_BUILD_PATH)/error_handling.o	: src/error_handling.c
 	$(CC) -c $(CFLAGS) src/error_handling.c -o $(.TARGET)
 
+$(PRG_BUILD_PATH)/file_functions.o	: src/file_functions.c
+	$(CC) -c $(CFLAGS) src/file_functions.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/info.o		: src/info.c
 	$(CC) -c $(CFLAGS) src/info.c -o $(.TARGET)
 

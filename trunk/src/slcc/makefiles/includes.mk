@@ -34,6 +34,7 @@ INCLUDES 	= \
 	$(PRG_INCLUDE)/error_array.h					\
 	$(PRG_INCLUDE)/error_codes.h					\
 	$(PRG_INCLUDE)/error_handling.h					\
+	$(PRG_INCLUDE)/file_functions.h					\
 	$(PRG_INCLUDE)/info.h						\
 	$(PRG_INCLUDE)/settings.h 					\
 	$(PRG_INCLUDE)/string_array.h					\

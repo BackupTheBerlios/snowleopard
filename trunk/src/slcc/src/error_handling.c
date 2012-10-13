@@ -23,6 +23,7 @@
 // Error handling for the compiler front end.
 //------------------------------------------------------------------------------
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -43,36 +44,57 @@ slcc_error* err_store (
 slcc_error_array* error_list_;
 //------------------------------------------------------------------------------
 
-//------------------------------------------------------------------------------
-// err_report_and_exit_0 function
-//
-// Report error with 0 arguments and exit.
-//
-void err_report_and_exit_0 (slcc_error_code code)
-{
-  /* <TODO: Implement error reporting> */
-
-  exit (code);
-}
-//------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// err_report_2 function
+// err_report function
 //
-// Report error with 2 arguments. If the error is not internal, also store it.
+// Report error with up to 3 arguments. If the error is not internal, also store 
+// it.
 //
-slcc_error* err_report_2 (slcc_error_code code, char* arg1, char* arg2)
+slcc_error* err_report (
+			slcc_error_code code, 
+			char* arg1, 
+			char* arg2, 
+			char* arg3, 
+			bool store
+			)
 {
   slcc_error* error = NULL;
 
   if (error_description_list_[code].type != ET_WARNING 
       && error_description_list_[code].type != ET_INTERNAL
-      && error_description_list_[code].type != ET_WARNING)
-    error = err_store (code, arg1, arg2, NULL);
+      && error_description_list_[code].type != ET_FATAL
+      && store == false)
+    error = err_store (code, arg1, arg2, arg3);
 
-  fprintf (stderr, error_description_list_[code].desc, arg1, arg2);
+  if (arg1 == NULL)
+    fprintf (stderr, error_description_list_[code].desc);
+  else if (arg2 == NULL)
+    fprintf (stderr, error_description_list_[code].desc, arg1);
+  else if (arg3 == NULL)
+    fprintf (stderr, error_description_list_[code].desc, arg1, arg2);
+  else
+    fprintf (stderr, error_description_list_[code].desc, arg1, arg2, arg3);
 
   return error;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// err_report_and_exit function
+//
+// Report error with up to 3 arguments and exit.
+//
+void err_report_and_exit (
+			  slcc_error_code code, 
+			  char* arg1, 
+			  char* arg2, 
+			  char* arg3
+			  )
+{
+  err_report (code, arg1, arg2, arg3, false);
+
+  exit (code);
 }
 //------------------------------------------------------------------------------
 

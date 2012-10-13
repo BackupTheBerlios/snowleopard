@@ -48,7 +48,7 @@ typedef enum slcc_language slcc_language;
 //------------------------------------------------------------------------------
 // slcc_language_standard enumeration
 //
-// Language standards supported by the compiler
+// Language standards supported by the compiler.
 //
 enum slcc_language_standard
   {
@@ -60,6 +60,21 @@ enum slcc_language_standard
   };
 
 typedef enum slcc_language_standard slcc_language_standard;
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// slcc_path_type enum
+//
+// Path types used in the compiler settings.
+//
+enum slcc_path_type
+  {
+    PT_INCLUDE, /* Include path */
+    PT_LIBRARY, /* Library path */
+    PT_SOURCE  /* Source path */
+  };
+
+typedef enum slcc_path_type slcc_path_type;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -105,9 +120,7 @@ extern slcc_settings settings_;
 
 //------------------------------------------------------------------------------
 // Settings functions.
-bool add_include_path (char* path);
-bool add_library_path (char* path);
-bool add_source_path (char* path);
+bool add_path (slcc_path_type type, char* path);
 bool set_out_file (char* file);
 //------------------------------------------------------------------------------
 

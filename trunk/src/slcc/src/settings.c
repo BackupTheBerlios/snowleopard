@@ -25,10 +25,13 @@
 
 #include <stdbool.h>
 #include <stddef.h>
+#include <string.h>
 
 #include "error_codes.h"
 #include "error_handling.h"
+#include "file_functions.h"
 #include "settings.h"
+#include "string_array.h"
 
 //------------------------------------------------------------------------------
 // Global variables
@@ -53,53 +56,54 @@ slcc_settings settings_ = {
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// add_include_path function
+// add_path function
 //
-// Add an include path to the list of paths to search. Priority is given as 
-// follows (paths are build up in this order):
+// Add a path to the list of paths to search. Priority is given as follows 
+// (paths are build up in this order):
 //   1) Path given at command line.
-//   2) Path given in environment variable SLC_INCLUDE_PATH.
+//   2) Path given in environment variable SLCC_<object>_PATH.
 //   3) Path given in configuration file.
 //   4) System/Compiler defined path.
 //
-bool add_include_path (char* path)
+bool add_path (slcc_path_type type, char* path)
 {
+  if (!path_exists (path))
+    {
+      err_report_and_exit_1 (EC_PATH_NOT_FOUND, path);
+      return false;
+    }
 
-  return false;
-}
-//------------------------------------------------------------------------------
+  slcc_string_array* array;
 
-//------------------------------------------------------------------------------
-// add_library_path function
-//
-// Add an library path to the list of paths to search. Priority is given as 
-// follows (paths are build up in this order):
-//   1) Path given at command line.
-//   2) Path given in environment variable SLC_LIBRARY_PATH.
-//   3) Path given in configuration file.
-//   4) System/Compiler defined path.
-//
-bool add_library_path (char* path)
-{
+  switch (type) {
+  case PT_INCLUDE :
+    array = settings_.include_paths;
+    break;
 
-  return false;
-}
-//------------------------------------------------------------------------------
+  case PT_LIBRARY :
+    array = settings_.library_paths;
+    break;
 
-//------------------------------------------------------------------------------
-// add_source_path function
-//
-// Add an source path to the list of paths to search. Priority is given as 
-// follows (paths are build up in this order):
-//   1) Path given at command line.
-//   2) Path given in environment variable SLC_SOURCE_PATH.
-//   3) Path given in configuration file.
-//   4) System/Compiler defined path.
-//
-bool add_source_path (char* path)
-{
+  case PT_SOURCE :
+    array = settings_.source_paths;
+    break;
 
-  return false;
+  default:
+    return false;
+  }
+
+  for (size_t i = 0; i < array->used_; i++)
+    if (strcmp (array->data_[i], path))
+      {
+	err_report_1 (
+		      EC_W_DUPLICATE_INCLUDE_PATH,
+		      path
+		      );
+	return false;
+      }
+
+  tc_array_add_sa (array, path);
+  return true;
 }
 //------------------------------------------------------------------------------
 
@@ -116,7 +120,7 @@ bool set_out_file (char* file)
       return true;
     }
 
-  err_report_2 (EC_MULTIPLE_OUT_FILES_SPECIFIED, settings_.out_file, file);
+  err_report_2 (EC_W_MULTIPLE_OUT_FILES_SPECIFIED, settings_.out_file, file);
   return false;
 }
 //------------------------------------------------------------------------------
