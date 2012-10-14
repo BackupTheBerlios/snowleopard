@@ -25,6 +25,7 @@
 
 #include <stdlib.h>
 
+#include "file_functions.h"
 #include "settings.h"
 #include "string_array.h"
 
@@ -64,8 +65,14 @@ void settings_cleanup ()
 //
 bool settings_add_path (lynx_string_array* array, char* path)
 {
+  if (!path_exists (path))
+    {
+      /* TODO: Error reporting */
+      return false;
+    }
 
-  return false;
+  tc_array_add_l (array, path);
+  return true;
 }
 //------------------------------------------------------------------------------
 

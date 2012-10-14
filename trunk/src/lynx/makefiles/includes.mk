@@ -31,6 +31,7 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/config_lynx.h 					\
 	$(PRG_INCLUDE)/driver.h 					\
 	$(PRG_INCLUDE)/info.h						\
+	$(PRG_INCLUDE)/file_functions.h					\
 	$(PRG_INCLUDE)/settings.h					\
 	$(PRG_INCLUDE)/string_array.h					\
 	$(PRG_INCLUDE)/version_lynx.h
@@ -47,6 +48,8 @@ DRIVER_H_DEPS		=
 
 INFO_H_DEPS		= \
 	$(PRG_INCLUDE)/version_lynx.h
+
+FILE_FUNCTIONS_H_DEPS	= 
 
 SETTINGS_H_DEPS		= \
 	$(PRG_INCLUDE)/string_array.h
@@ -67,6 +70,9 @@ DRIVER_DEPS		= \
 
 INFO_DEPS		= \
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
+
+FILE_FUNCTIONS_DEPS	= \
+	$(PRG_INCLUDE)/file_functions.h $(FILE_FUNCTIONS_H_DEPS)
 
 LFORMAT_DRIVER_DEPS	= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\

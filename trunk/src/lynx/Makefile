@@ -109,6 +109,7 @@ clean		:
 	rm -rf $(PROGRAMS)
 
 distclean	: clean
+	rm -rf $(PRG_BUILD_PATH)/*
 	rmdir $(PRG_BUILD_PATH)
 
 test		: $(PROGRAMS)

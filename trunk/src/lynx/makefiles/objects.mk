@@ -27,6 +27,7 @@
 LDFORMAT_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
+	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/ldformat_driver.o 				\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
@@ -36,6 +37,7 @@ LDFORMAT_OBJS 		= \
 LEQN_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
+	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/leqn_driver.o 				\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
@@ -45,6 +47,7 @@ LEQN_OBJS 		= \
 LGM_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
+	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/lgm_driver.o 					\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
@@ -54,6 +57,7 @@ LGM_OBJS 		= \
 LGRAP_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
+	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/lgrap_driver.o 				\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
@@ -63,6 +67,7 @@ LGRAP_OBJS 		= \
 LIDEAL_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
+	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/lideal_driver.o 				\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
@@ -72,6 +77,7 @@ LIDEAL_OBJS 		= \
 LPIC_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
+	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/lpic_driver.o 				\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
@@ -81,6 +87,7 @@ LPIC_OBJS 		= \
 LREFER_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
+	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/lrefer_driver.o 				\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
@@ -90,6 +97,7 @@ LREFER_OBJS 		= \
 LROFF_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
+	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/lroff_driver.o 				\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
@@ -99,6 +107,7 @@ LROFF_OBJS 		= \
 LSOELIM_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
+	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/lsoelim_driver.o 				\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
@@ -108,6 +117,7 @@ LSOELIM_OBJS 		= \
 LTBL_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
+	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/ltbl_driver.o 				\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
@@ -117,6 +127,7 @@ LTBL_OBJS 		= \
 LYNX_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
+	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/lynx_driver.o 				\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
