@@ -23,9 +23,32 @@
 // Driver functions for the Lynx typesetting system.
 //------------------------------------------------------------------------------
 
+#include <stdbool.h>
 #include <string.h>
 
 #include "driver.h"
+
+//------------------------------------------------------------------------------
+// drv_initialize_tool_specific_settings function
+//
+// Initialize tool specific settings.
+//
+bool drv_initialize_tool_specific_settings ()
+{
+  return true;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// drv_cleanup_tool_specific_settings function
+//
+// Clean up tool specific settings.
+//
+void drv_cleanup_tool_specific_settings ()
+{
+
+}
+//------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // drv_parse_tool_specific_argument function

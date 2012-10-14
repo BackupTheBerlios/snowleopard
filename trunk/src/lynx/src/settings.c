@@ -42,6 +42,12 @@ lynx_settings settings_;
 //
 bool settings_initialize ()
 {
+  settings_.quiet = false;
+  settings_.verbose = false;
+  settings_.copyright_only = false;
+  settings_.usage_only = false;
+  settings_.version_only = false;
+  settings_.warrantee_only = false;
 
   return false;
 }

@@ -108,7 +108,8 @@ LROFF_DRIVER_DEPS	= \
 
 LSOELIM_DRIVER_DEPS	= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
-	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)			\
+	$(PRG_INCLUDE)/string_array.h $(STRING_ARRAY_H_DEPS)
 
 LTBL_DRIVER_DEPS	= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\

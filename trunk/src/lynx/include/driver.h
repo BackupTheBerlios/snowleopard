@@ -32,7 +32,9 @@
 // driver functions
 //
 bool drv_initialize ();
+bool drv_initialize_tool_specific_settings ();
 void drv_cleanup ();
+void drv_cleanup_tool_specific_settings ();
 bool drv_start ();
 bool drv_parse_command_line (int argc, char** argv);
 bool drv_parse_tool_specific_argument (int* pos, char** argv);

@@ -18,9 +18,9 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// lsoelim_driver.c
+// driver.c
 //------------------------------------------------------------------------------
-// Driver functions for the lsoelim.
+// General driver functions.
 //------------------------------------------------------------------------------
 
 #include <stdbool.h>
@@ -36,7 +36,16 @@
 //
 bool drv_initialize ()
 {
-  return settings_initialize ();
+  if (!settings_initialize ())
+    return false;
+
+  if (!drv_initialize_tool_specific_settings ())
+    {
+      settings_cleanup ();
+      return false;
+    }
+
+  return true;
 }
 //------------------------------------------------------------------------------
 
@@ -48,6 +57,8 @@ bool drv_initialize ()
 void drv_cleanup ()
 {
   settings_cleanup ();
+
+  drv_cleanup_tool_specific_settings ();
 }
 //------------------------------------------------------------------------------
 

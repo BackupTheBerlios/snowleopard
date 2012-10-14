@@ -28,11 +28,46 @@
 
 #include "driver.h"
 #include "settings.h"
+#include "string_array.h"
 
 //------------------------------------------------------------------------------
 // Private functions
 //
 bool drv_process_include_path (char* path, bool attached);
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// drv_initialize_tool_specific_settings function
+//
+// This function initializes the tool specific settings.
+//
+bool drv_initialize_tool_specific_settings ()
+{
+  lynx_string_array* array = tc_array_new_l ();
+
+  settings_.tool_specific.lsoelim.include_paths 
+    = array;
+
+  if (array == NULL)
+    {
+      /* <TODO: Error reporting */
+      return false;
+    }
+
+  return true;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// drv_cleanup_tool_specific_settings function
+//
+// Clean up tool specific settings.
+//
+void drv_cleanup_tool_specific_settings ()
+{
+  if (settings_.tool_specific.lsoelim.include_paths != NULL)
+    tc_array_delete_l (settings_.tool_specific.lsoelim.include_paths);
+}
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
