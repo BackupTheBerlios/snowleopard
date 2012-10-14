@@ -69,7 +69,9 @@ DRIVER_DEPS		= \
 	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
 
 INFO_DEPS		= \
-	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
+	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)				\
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)			\
+	$(PRG_INCLUDE)/version_lynx.h $(VERSION_LYNX_H_DEPS)
 
 FILE_FUNCTIONS_DEPS	= \
 	$(PRG_INCLUDE)/file_functions.h $(FILE_FUNCTIONS_H_DEPS)
@@ -124,6 +126,7 @@ MAIN_DEPS		= \
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
 SETTINGS_DEPS		=\
+	$(PRG_INCLUDE)/file_functions.h $(FILE_FUNCTIONS_H_DEPS)	\
 	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)			\
 	$(PRG_INCLUDE)/string_array.h $(SETTINGS_H_DEPS)
 
