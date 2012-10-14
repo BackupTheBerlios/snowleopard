@@ -28,17 +28,6 @@
 #include "driver.h"
 
 //------------------------------------------------------------------------------
-// start function
-// 
-// Start the typesetting process.
-//
-bool drv_start ()
-{
-  return true;
-}
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
 // parse_command_line function
 //
 // Parses the command line arguments and stores the settings.

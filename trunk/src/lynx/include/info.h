@@ -26,6 +26,8 @@
 #ifndef __LYNX_INFO_H__
 #define __LYNX_INFO_H__
 
+#include "version_lynx.h"
+
 //-------------------------------------------------------------------------------
 // Information functions
 //

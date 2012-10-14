@@ -31,6 +31,8 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/config_lynx.h 					\
 	$(PRG_INCLUDE)/driver.h 					\
 	$(PRG_INCLUDE)/info.h						\
+	$(PRG_INCLUDE)/settings.h					\
+	$(PRG_INCLUDE)/string_array.h					\
 	$(PRG_INCLUDE)/version_lynx.h
 
 .include "../../libsltc/makefiles/includes.mk"
@@ -43,7 +45,14 @@ CONFIG_LYNX_H_DEPS	= \
 
 DRIVER_H_DEPS		= 
 
-INFO_H_DEPS		=
+INFO_H_DEPS		= \
+	$(PRG_INCLUDE)/version_lynx.h
+
+SETTINGS_H_DEPS		= \
+	$(PRG_INCLUDE)/string_array.h
+
+STRING_ARRAY_H_DEPS	= \
+	$(TC_INCLUDES)
 
 VERSION_LYNX_H_DEPS	= \
 	$(PRG_INCLUDE)/config_lynx.h					\
@@ -52,85 +61,68 @@ VERSION_LYNX_H_DEPS	= \
 #-------------------------------------------------------------------------------
 # Source file dependencies
 #
+DRIVER_DEPS		= \
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
+
 INFO_DEPS		= \
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
 
 LFORMAT_DRIVER_DEPS	= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
-
-LDFORMAT_MAIN_DEPS	= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
-	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
 
 LEQN_DRIVER_DEPS	= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
-
-LEQN_MAIN_DEPS		= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
-	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
 
 LGM_DRIVER_DEPS		= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
-
-LGM_MAIN_DEPS		= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
-	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
 
 LGRAP_DRIVER_DEPS	= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
-
-LGRAP_MAIN_DEPS		= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
-	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
 
 LIDEAL_DRIVER_DEPS	= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
-
-LIDEAL_MAIN_DEPS	= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
-	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
 
 LPIC_DRIVER_DEPS	= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
-
-LPIC_MAIN_DEPS		= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
-	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
 
 LREFER_DRIVER_DEPS	= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
-
-LREFER_MAIN_DEPS	= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
-	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
 
 LROFF_DRIVER_DEPS	= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
-
-LROFF_MAIN_DEPS		= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
-	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
 
 LSOELIM_DRIVER_DEPS	= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
-
-LSOELIM_MAIN_DEPS	= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
-	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
 
 LTBL_DRIVER_DEPS	= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
-
-LTBL_MAIN_DEPS		= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
-	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
 
 LYNX_DRIVER_DEPS	= \
-	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
 
-LYNX_MAIN_DEPS		= \
+MAIN_DEPS		= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)
+
+SETTINGS_DEPS		=\
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)			\
+	$(PRG_INCLUDE)/string_array.h $(SETTINGS_H_DEPS)
+
+STRING_ARRAY_DEPS	=\
+	$(PRG_INCLUDE)/string_array.h $(STRING_ARRAY_H_DEPS)		\
+	$(TC_INCLUDES)
 
 VERSION_LYNX_DEPS	= \
 	$(PRG_INCLUDE)/config_lynx.h $(CONFIG_LYNX_H_DEPS)		\

@@ -20,22 +20,19 @@
 //------------------------------------------------------------------------------
 // lsoelim_driver.c
 //------------------------------------------------------------------------------
-// Driver functions for the Lynx typesetting system.
+// Driver functions for the lsoelim.
 //------------------------------------------------------------------------------
 
+#include <stdbool.h>
 #include <string.h>
 
 #include "driver.h"
+#include "settings.h"
 
 //------------------------------------------------------------------------------
-// start function
-// 
-// Start the typesetting process.
+// Private functions
 //
-bool drv_start ()
-{
-  return true;
-}
+bool drv_process_include_path (char* path, bool attached);
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -47,14 +44,75 @@ bool drv_parse_command_line (int argc, char** argv)
 {
   for(int i = 1; i < argc; i++)
     {
-      if(strcmp(argv[i], "--help") == 0 || strcmp(argv[i], "-h") == 0)
+      /* Argument -I<path> */
+      if (argv[i][1] == 'I')
+	drv_process_include_path (argv[i], true);
+
+      /* Argument --copyright */
+      else if (strcmp (argv[i], "--copyright") == 0)
+	settings_.copyright_only = true;
+
+      /* 
+       * Argument --help
+       *          -h
+       *	  --usage
+       */
+      else if (strcmp (argv[i], "--help") == 0 
+	  || strcmp (argv[i], "-h") == 0 
+	  || strcmp (argv[i], "--usage") == 0)
+	settings_.usage_only = true;
+
+      /* Argument --include_path <path> */
+      if (strcmp (argv[i], "--include_path") == 0)
 	{
-	  /* Display help */
+	  i++;
+	  drv_process_include_path (argv[i], false);
 	}
+
+      /*
+       * Argument -q 
+       *          --quiet
+       */
+      else if (strcmp (argv[i], "-q") == 0
+	       || strcmp (argv[i], "--quiet") == 0)
+	settings_.quiet = true;
+
+      /*
+       * Argument -v
+       *          --verbose
+       */
+      else if (strcmp (argv[i], "-v") == 0
+	       || strcmp (argv[i], "--verbose") == 0)
+	settings_.verbose = true;
+
+      /* Argument --version */
+      else if (strcmp (argv[i], "--version") == 0)
+	settings_.version_only = true;
+
+      /* Argument --warrantee */
+      else if (strcmp (argv[i], "--warrantee") == 0)
+	settings_.warrantee_only = true;
+
     }
 
   return true;
 }
 //------------------------------------------------------------------------------
+
+//==============================================================================
+// Private functions
+
+//------------------------------------------------------------------------------
+// drv_process_include_path function
+//
+// Process an include path parameter and stores the value.
+//
+bool drv_process_include_path (char* path, bool attached)
+{
+
+}
+//------------------------------------------------------------------------------
+
+//==============================================================================
 
 //-<EOF>
