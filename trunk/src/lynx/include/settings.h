@@ -31,11 +31,37 @@
 #include "string_array.h"
 
 //------------------------------------------------------------------------------
+// lsoelim_settings struct
+//
+// Specific lsoelim settings.
+//
+struct lsoelim_settings
+{
+  lynx_string_array* include_paths;
+};
+
+typedef struct lsoelim_settings lsoelim_settings;
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// ltbl_settings struct
+//
+// Specific ltbl_settings.
+//
+struct ltbl_settings
+{
+  bool compatibility_mode;
+};
+
+typedef struct ltbl_settings ltbl_settings;
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 // settings struct
 //
 // Stores settings for all applications.
 //
-struct settings 
+struct lynx_settings 
 {
   /* switches */
   bool quiet;
@@ -45,16 +71,19 @@ struct settings
   bool version_only;
   bool warrantee_only;
 
-  /* paths */
-  lynx_string_array* include_paths;
+  union
+  {
+    lsoelim_settings lsoelim;
+    ltbl_settings ltbl;
+  } tool_specific;
 };
 
-typedef struct settings settings;
+typedef struct lynx_settings lynx_settings;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // Global variable
-extern settings settings_;
+extern lynx_settings settings_;
 //------------------------------------------------------------------------------
 
 //-------------------------------------------------------------------------------
@@ -62,8 +91,9 @@ extern settings settings_;
 //
 bool settings_initialize ();
 void settings_cleanup ();
+bool settings_add_path (lynx_string_array* array, char* path);
 //------------------------------------------------------------------------------
 
-#endif /* !__LYNX_INFO_H__ */
+#endif /* !__LYNX_SETTINGS_H__ */
 
 //-<EOF>

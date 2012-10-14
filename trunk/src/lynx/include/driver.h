@@ -33,8 +33,9 @@
 //
 bool drv_initialize ();
 void drv_cleanup ();
-bool drv_start();
-bool drv_parse_command_line(int argc, char** argv);
+bool drv_start ();
+bool drv_parse_command_line (int argc, char** argv);
+bool drv_parse_tool_specific_argument (int* pos, char** argv);
 //------------------------------------------------------------------------------
 
 #endif /* !__LYNX_DRIVER_H__ */

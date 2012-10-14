@@ -36,66 +36,26 @@ bool drv_process_include_path (char* path, bool attached);
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// parse_command_line function
+// drv_parse_tool_specific_argument function
 //
-// Parses the command line arguments and stores the settings.
+// Parses tool specific arguments. Returns false if this function didn't pick 
+// the argument.
 //
-bool drv_parse_command_line (int argc, char** argv) 
+bool drv_parse_tool_specific_argument (int* i, char** argv)
 {
-  for(int i = 1; i < argc; i++)
+  /* Argument -I<path> */
+  if (argv[*i][1] == 'I')
+    return drv_process_include_path (argv[*i], true);
+
+  /* Argument --include_path <path> */
+  else if (strcmp (argv[*i], "--include_path") == 0)
     {
-      /* Argument -I<path> */
-      if (argv[i][1] == 'I')
-	drv_process_include_path (argv[i], true);
-
-      /* Argument --copyright */
-      else if (strcmp (argv[i], "--copyright") == 0)
-	settings_.copyright_only = true;
-
-      /* 
-       * Argument --help
-       *          -h
-       *	  --usage
-       */
-      else if (strcmp (argv[i], "--help") == 0 
-	  || strcmp (argv[i], "-h") == 0 
-	  || strcmp (argv[i], "--usage") == 0)
-	settings_.usage_only = true;
-
-      /* Argument --include_path <path> */
-      if (strcmp (argv[i], "--include_path") == 0)
-	{
-	  i++;
-	  drv_process_include_path (argv[i], false);
-	}
-
-      /*
-       * Argument -q 
-       *          --quiet
-       */
-      else if (strcmp (argv[i], "-q") == 0
-	       || strcmp (argv[i], "--quiet") == 0)
-	settings_.quiet = true;
-
-      /*
-       * Argument -v
-       *          --verbose
-       */
-      else if (strcmp (argv[i], "-v") == 0
-	       || strcmp (argv[i], "--verbose") == 0)
-	settings_.verbose = true;
-
-      /* Argument --version */
-      else if (strcmp (argv[i], "--version") == 0)
-	settings_.version_only = true;
-
-      /* Argument --warrantee */
-      else if (strcmp (argv[i], "--warrantee") == 0)
-	settings_.warrantee_only = true;
-
+      (*i)++;
+      return drv_process_include_path (argv[*i], false);
     }
 
-  return true;
+  else
+    return false;
 }
 //------------------------------------------------------------------------------
 
@@ -109,7 +69,22 @@ bool drv_parse_command_line (int argc, char** argv)
 //
 bool drv_process_include_path (char* path, bool attached)
 {
+  if (attached)
+    if (&path == '\0')
+      return false;
+    else
+      return settings_add_path (
+				settings_.tool_specific.lsoelim.include_paths, 
+				path
+				);
 
+  else
+    return settings_add_path (
+			      settings_.tool_specific.lsoelim.include_paths, 
+			      path+2
+			      );
+
+  return false;
 }
 //------------------------------------------------------------------------------
 

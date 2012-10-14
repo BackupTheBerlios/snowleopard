@@ -28,21 +28,14 @@
 #include "driver.h"
 
 //------------------------------------------------------------------------------
-// parse_command_line function
+// drv_parse_tool_specific_argument function
 //
 // Parses the command line arguments and stores the settings.
 //
-bool drv_parse_command_line (int argc, char** argv) 
+bool drv_parse_tool_specific_argument (int* i, char** argv) 
 {
-  for(int i = 1; i < argc; i++)
-    {
-      if(strcmp(argv[i], "--help") == 0 || strcmp(argv[i], "-h") == 0)
-	{
-	  /* Display help */
-	}
-    }
 
-  return true;
+  return false;
 }
 //------------------------------------------------------------------------------
 
