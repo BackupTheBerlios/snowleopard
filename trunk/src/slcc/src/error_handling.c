@@ -117,9 +117,9 @@ slcc_error* err_store (
   slcc_error* error = malloc (sizeof (slcc_error));
 
   error->code = code;
-  error->arg1 = arg1 == NULL ? NULL : copy_string (arg1);
-  error->arg2 = arg2 == NULL ? NULL : copy_string (arg2);
-  error->arg3 = arg3 == NULL ? NULL : copy_string (arg3);
+  error->arg1 = arg1 == NULL ? NULL : tc_copy_string (arg1);
+  error->arg2 = arg2 == NULL ? NULL : tc_copy_string (arg2);
+  error->arg3 = arg3 == NULL ? NULL : tc_copy_string (arg3);
 
   return error;
 }

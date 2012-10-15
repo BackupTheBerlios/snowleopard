@@ -59,10 +59,6 @@ $(PRG_BUILD_PATH)/string_array.o	: \
 		src/string_array.c $(STRING_ARRAY_DEPS)
 	$(CC) -c $(CFLAGS) src/string_array.c -o $(.TARGET)
 
-$(PRG_BUILD_PATH)/string_functions.o	: \
-		src/string_functions.c $(STRING_FUNCTIONS_DEPS)
-	$(CC) -c $(CFLAGS) src/string_functions.c -o $(.TARGET)
-
 $(PRG_BUILD_PATH)/types.o		: \
 		src/types.c $(TYPES_DEPS)
 	$(CC) -c $(CFLAGS) src/types.c -o $(.TARGET)

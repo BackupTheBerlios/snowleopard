@@ -37,7 +37,6 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/info.h						\
 	$(PRG_INCLUDE)/settings.h 					\
 	$(PRG_INCLUDE)/string_array.h					\
-	$(PRG_INCLUDE)/string_functions.h				\
 	$(PRG_INCLUDE)/types.h 						\
 	$(PRG_INCLUDE)/version_slcc.h
 
@@ -72,8 +71,6 @@ SETTINGS_H_DEPS		= \
 STRING_ARRAY_H_DEPS	= \
 	$(TC_INCLUDES)
 
-STRING_FUNCTIONS_H_DEPS =
-
 TYPES_H_DEPS		=
 
 VERSION_SLCC_H_DEPS	= \
@@ -101,7 +98,7 @@ ERROR_HANDLING_DEPS	= \
 	$(PRG_INCLUDE)/error.h $(ERROR_H_DEPS)				\
 	$(PRG_INCLUDE)/error_array.h $(ERROR_ARRAY_H_DEPS)		\
 	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
-	$(PRG_INCLUDE)/string_functions.h $(STRING_FUNCTIONS_H_DEPS)
+	$(TC_INCLUDES)
 
 INFO_DEPS		= \
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)				\
@@ -123,9 +120,6 @@ SETTINGS_DEPS		= \
 STRING_ARRAY_DEPS	= \
 	$(PRG_INCLUDE)/string_array.h $(STRING_ARRAY_H_DEPS)		\
 	$(TC_INCLUDES)
-
-STRING_FUNCTIONS_DEPS	= \
-	$(PRG_INCLUDE)/string_functions.h $(STRING_FUNCTIONS_H_DEPS)
 
 TYPES_DEPS		= \
 	$(PRG_INCLUDE)/types.h $(TYPES_H_DEPS)
