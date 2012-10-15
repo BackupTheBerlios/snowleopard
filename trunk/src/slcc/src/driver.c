@@ -31,6 +31,9 @@
 #include "error_handling.h"
 #include "settings.h"
 
+#include "file_functions.h"
+#include "string_functions.h"
+
 //------------------------------------------------------------------------------
 // Private functions
 //
@@ -323,13 +326,93 @@ bool drv_process_argument (char** argv, int* pos)
 // Process the file given as parameter. This function checks the following:
 //   - Does the file exist.
 //   - Is it a recognized extension?
-//         c/h                     - C source file
+//         c/h/c.h                 - C source file
+//         s/S/asm/o/out/a         - Treated as C source file
 //         cpp/cxx/hpp/hxx/C/H/ipp - C++ source file
+//   - Deduce the source file type as it dictates what the compiler should do
+//     with the file.
 //
 bool drv_process_file_argument (char* file)
 {
+  if (!tc_file_exists (file))
+    {
+      /* <TODO: Report error and exit */
+      return false;
+    }
 
-  return false;
+  char* ext1 = tc_get_str_after_nth_last (file, '.', 1);
+  char* ext2 = tc_get_str_after_nth_last (file, '.', 2);
+  slcc_language lang = L_C;
+  
+  /* C source file */
+  if (strcmp (ext1, "c") == 0)
+    settings_.source_type = SFT_SOURCE;
+
+  /* C header file / C implementation file */
+  else if (strcmp (ext1, "h") == 0)
+    if (strcmp (ext2, "c.h") == 0)
+      settings_.source_type = SFT_IMPLEMENTATION;
+    else
+      settings_.source_type = SFT_HEADER;
+
+  /* Assembler file */
+  else if (strcmp (ext1, "s") == 0
+	   || strcmp (ext1, "S") == 0
+	   || strcmp (ext1, "asm") == 0)
+    settings_.source_type = SFT_ASSEMBLER;
+
+  /* Object file */
+  else if (strcmp (ext1, "o") == 0
+	   || strcmp (ext1, "out") == 0
+	   || strcmp (ext1, "a") == 0)
+    settings_.source_type = SFT_OBJECT;
+
+  /* C++ source file */
+  else if (strcmp (ext1, "cpp") == 0
+	   || strcmp (ext1, "cxx") == 0
+	   || strcmp (ext1, "C") == 0)
+    {
+      lang = L_CXX;
+      settings_.source_type = SFT_SOURCE;
+    }
+
+  /* C++ header file */
+  else if (strcmp (ext1, "hpp") == 0
+	   || strcmp (ext1, "hxx") == 0
+	   || strcmp (ext1, "H") == 0)
+    {
+      lang = L_CXX;
+      settings_.source_type = SFT_HEADER;
+    }
+
+  /* C++ implementation file */
+  else if (strcmp (ext1, "ipp") == 0)
+    {
+      lang = L_CXX;
+      settings_.source_type = SFT_IMPLEMENTATION;
+    }
+
+  /* No valid file extension */
+  else
+    {
+      if (ext1 != NULL)
+	free (ext1);
+      if (ext2 != NULL)
+	free (ext2);
+      /* <TODO: Report error and exit> */
+      return false;
+    }
+
+  /* Cleanup temporary objects */
+  if (ext1 != NULL)
+    free (ext1);
+  if (ext2 != NULL)
+    free (ext2);
+
+  /* Check language setting */
+  settings_.language = (settings_.language == L_CXX ? L_CXX : lang);
+
+  return true;
 }
 //------------------------------------------------------------------------------
 

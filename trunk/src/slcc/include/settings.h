@@ -38,8 +38,9 @@
 //
 enum slcc_language
   {
-    L_C,  /* C - Default */
-    L_CXX /* C++ */
+    L_NONE, /* Not specified */
+    L_C,    /* C - Default */
+    L_CXX   /* C++ */
   };
 
 typedef enum slcc_language slcc_language;
@@ -52,6 +53,7 @@ typedef enum slcc_language slcc_language;
 //
 enum slcc_language_standard
   {
+    LS_NONE,  /* Not specified */
     LS_C89,   /* C 89 */
     LS_C99,   /* C 99 */
     LS_C11,   /* C 11 - Default for C */
@@ -78,6 +80,24 @@ typedef enum slcc_path_type slcc_path_type;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
+// slcc_source_file_type enum
+//
+// Source file types used in the compiler settings.
+//
+enum slcc_source_file_type
+  {
+    SFT_NONE,           /* Not specified */
+    SFT_ASSEMBLER,      /* Assembler file (.s/.S/.asm ) */
+    SFT_HEADER,         /* Header file (.h/.hpp/.hxx/.H) */
+    SFT_IMPLEMENTATION, /* Implementation file (.c.h/.ipp) */
+    SFT_OBJECT,         /* Object type (.o/.out/.a) */
+    SFT_SOURCE          /* Source file (.c/.cpp/.cxx/.C) */
+  };
+
+typedef enum slcc_source_file_type slcc_source_file_type;
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 // slcc_settings structure
 //
 // Structure for storing the user/system settings applicable to the front end.
@@ -95,6 +115,8 @@ struct slcc_settings
   bool compile_only;
   bool preprocess_only;
   char* out_file;
+  char* source_file;
+  slcc_source_file_type source_type;
 
   /* language options */
   slcc_language language;
