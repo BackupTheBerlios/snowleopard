@@ -47,6 +47,10 @@ $(PRG_BUILD_PATH)/error_handling.o	: \
 		src/error_handling.c $(ERROR_HANDLING_DEPS)
 	$(CC) -c $(CFLAGS) src/error_handling.c -o $(.TARGET)
 
+$(PRG_BUILD_PATH)/hash_function.o	: \
+		src/hash_function.c $(HASH_FUNCTION_DEPS)
+	$(CC) -c $(CFLAGS) src/hash_function.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/info.o		: \
 		src/info.c $(INFO_DEPS)
 	$(CC) -c $(CFLAGS) src/info.c -o $(.TARGET)
@@ -55,7 +59,7 @@ $(PRG_BUILD_PATH)/main.o		: \
 		src/main.c $(MAIN_DEPS)
 	$(CC) -c $(CFLAGS) src/main.c -o $(.TARGET)
 
-$(PRG_BUILD_PATH)/parse_tree.o  		: \
+$(PRG_BUILD_PATH)/parse_tree.o  	: \
 		src/parse_tree.c $(PARSE_TREE_DEPS)
 	$(CC) -c $(CFLAGS) src/parse_tree.c -o $(.TARGET)
 

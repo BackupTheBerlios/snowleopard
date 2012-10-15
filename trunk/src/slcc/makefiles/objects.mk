@@ -29,6 +29,7 @@ OBJS 		= \
 	$(PRG_BUILD_PATH)/error_array.o					\
 	$(PRG_BUILD_PATH)/error_codes.o					\
 	$(PRG_BUILD_PATH)/error_handling.o				\
+	$(PRG_BUILD_PATH)/hash_function.o				\
 	$(PRG_BUILD_PATH)/info.o					\
 	$(PRG_BUILD_PATH)/main.o 					\
 	$(PRG_BUILD_PATH)/parse_tree.o					\

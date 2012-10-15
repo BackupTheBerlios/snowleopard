@@ -1,7 +1,7 @@
 /*==============================================================================
   Snow Leopard C++ Compiler Front End
   
-  Copyright (C) 2012 Roel Sergeant
+  Copyright (C) 2008, 2009, 2010, 2011, 2012 Roel Sergeant
   
   This program is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -18,53 +18,40 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// parser.c
+// hash_function.h
 //------------------------------------------------------------------------------
-// Parser for the compiler front end.
+// Hash function for the compiler front end.
 //------------------------------------------------------------------------------
 
-#include <stdbool.h>
+#ifndef __SL_SLCC_HASH_FUNCTION_H__
+#define __SL_SLCC_HASH_FUNCTION_H__
 
-#include "parse_tree.h"
-#include "parser.h"
+#include <stddef.h>
+
+#include "types.h"
 
 //------------------------------------------------------------------------------
-// parser_initialize function
+// Maxinum number of values in hash tables
+extern const symtab_key_t MaxCppHashTableEntries;
+extern const size_t MaxCppHashCharacterValue;
+extern const symtab_key_t MaxPreHashTableEntries;
+extern const size_t MaxPreHashCharacterValue;
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// Typdef for hash functions
 //
-// Initializes the code generator.
-//
-bool parser_initialize ()
-{
-  parse_tree_ = tc_tree_new_pt ();
-
-  if (parse_tree_ == NULL)
-    return false;
-
-  return true;
-}
+typedef symtab_key_t (*hash_function_ptr) (char);
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// parser_cleanup function
+// Hash function for C++ identifiers, used for hashing the keys for the
+// compiler front end's symbol table
 //
-// Cleans up all pointers and arrays used by the code generator.
-//
-void parser_cleanup ()
-{
-  tc_tree_delete_pt (parse_tree_);
-}
+symtab_key_t hash_generate_cpp_key (const char*);
+symtab_key_t hash_generate_pre_key (const char*);
 //------------------------------------------------------------------------------
 
-//------------------------------------------------------------------------------
-// parser_start function
-//
-// Starts the code generation process based on the parsed source.
-//
-bool parser_start ()
-{
-
-  return false;
-}
-//------------------------------------------------------------------------------
+#endif /* !__SL_SLCC_HASH_FUNCTION_H__ */
 
 //-<EOF>

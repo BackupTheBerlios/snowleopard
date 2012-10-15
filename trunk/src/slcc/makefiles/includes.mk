@@ -35,6 +35,7 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/error_array.h					\
 	$(PRG_INCLUDE)/error_codes.h					\
 	$(PRG_INCLUDE)/error_handling.h					\
+	$(PRG_INCLUDE)/hash_function.h					\
 	$(PRG_INCLUDE)/info.h						\
 	$(PRG_INCLUDE)/parse_tree.h					\
 	$(PRG_INCLUDE)/parser.h						\
@@ -71,6 +72,9 @@ ERROR_HANDLING_H_DEPS	= \
 	$(PRG_INCLUDE)/error.h						\
 	$(PRG_INCLUDE)/error_array.h					\
 	$(PRG_INCLUDE)/error_codes.h
+
+HASH_FUNCTION_H_DEPS	= \
+	$(PRG_INCLUDE)/types.h
 
 INFO_H_DEPS		=
 
@@ -124,6 +128,10 @@ ERROR_HANDLING_DEPS	= \
 	$(PRG_INCLUDE)/error_handling.h $(ERROR_HANDLING_H_DEPS)	\
 	$(TC_INCLUDES)
 
+HASH_FUNCTION_DEPS	= \
+	$(PRG_INCLUDE)/hash_function.h $(HASH_FUNCTIONS_H_DEPS)		\
+	$(PRG_INCLUDE)/types.h $(TYPES_H_DEPS)
+
 INFO_DEPS		= \
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)				\
 	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)			\
@@ -141,6 +149,7 @@ PARSE_TREE_DEPS		= \
 	$(TC_INCLUDES)
 
 PARSER_DEPS		= \
+	$(PRG_INCLUDE)/parse_tree.h $(PARSE_TREE_H_DEPS)		\
 	$(PRG_INCLUDE)/parser.h $(PARSER_H_DEPS)
 
 SETTINGS_DEPS		= \

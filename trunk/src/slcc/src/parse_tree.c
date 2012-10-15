@@ -30,8 +30,8 @@
 // Define parse tree
 #define TC_TREE_PREFIX slcc_parse
 #define TC_TREE_NODE_TYPE slcc_source_object*
-#define TC_TREE_FUNCTION_PREFIX pt
-#define TC_TREE_FUNCTION_SUFFIX
+#define TC_TREE_FUNCTION_PREFIX 
+#define TC_TREE_FUNCTION_SUFFIX pt
 
 #include "tree.c.h"
 
