@@ -40,6 +40,10 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/parse_tree.h					\
 	$(PRG_INCLUDE)/parser.h						\
 	$(PRG_INCLUDE)/settings.h 					\
+	$(PRG_INCLUDE)/source_file.h					\
+	$(PRG_INCLUDE)/source_object.h					\
+	$(PRG_INCLUDE)/source_position.h				\
+	$(PRG_INCLUDE)/source_string.h					\
 	$(PRG_INCLUDE)/string_array.h					\
 	$(PRG_INCLUDE)/strings.h					\
 	$(PRG_INCLUDE)/token.h						\
@@ -93,8 +97,16 @@ PARSER_H_DEPS		=
 SETTINGS_H_DEPS		= \
 	$(PRG_INCLUDE)/string_array.h
 
+SOURCE_FILE_H_DEPS	=
+
+SORUCE_POSITION_H_DEPS	= \
+	$(PRG_INCLUDE)/source_file.h					\
+	$(PRG_INCLUDE)/source_string.h
+
 SOURCE_OBJECTS_H_DEPS	= \
 	$(PRG_INCLUDE)/types.h
+
+SOURCE_STRING_H_DEPS	=
 
 STRING_ARRAY_H_DEPS	= \
 	$(TC_INCLUDES)
@@ -178,6 +190,17 @@ SETTINGS_DEPS		= \
 	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)			\
 	$(PRG_INCLUDE)/string_array.h $(STRING_ARRAY_H_DEPS)		\
 	$(TC_INCLUDES)
+
+SOURCE_FILE_DEPS	= \
+	$(PRG_INCLUDE)/source_file.h $(SOURCE_FILE_H_DEPS)
+
+SOURCE_POSITION_DEPS	= \
+	$(PRG_INCLUDE)/source_file.h $(SOURCE_FILE_H_DEPS)		\
+	$(PRG_INCLUDE)/source_position.h $(SOURCE_POSITION_H_DEPS)	\
+	$(PRG_INCLUDE)/source_string.h $(SOURCE_STRING_H_DEPS)
+
+SOURCE_STRING_DEPS	= \
+	$(PRG_INCLUDE)/source_string.h $(SOURCE_STRING_H_DEPS)
 
 STRING_ARRAY_DEPS	= \
 	$(PRG_INCLUDE)/string_array.h $(STRING_ARRAY_H_DEPS)		\

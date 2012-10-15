@@ -170,7 +170,7 @@ typedef struct slcc_literal slcc_literal;
 
 //------------------------------------------------------------------------------
 // Initialize function prototypes
-void literal_delete (slcc_literal*);
+void literal_delete (slcc_literal* literal);
 //------------------------------------------------------------------------------
 
 #endif /* !__SL_SLCC_LITERAL_H__ */

@@ -36,6 +36,9 @@ OBJS 		= \
 	$(PRG_BUILD_PATH)/parse_tree.o					\
 	$(PRG_BUILD_PATH)/parser.o					\
 	$(PRG_BUILD_PATH)/settings.o 					\
+	$(PRG_BUILD_PATH)/source_file.o					\
+	$(PRG_BUILD_PATH)/source_position.o				\
+	$(PRG_BUILD_PATH)/source_string.o				\
 	$(PRG_BUILD_PATH)/string_array.o				\
 	$(PRG_BUILD_PATH)/strings.o					\
 	$(PRG_BUILD_PATH)/token.o					\

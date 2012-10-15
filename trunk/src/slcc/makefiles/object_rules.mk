@@ -75,6 +75,18 @@ $(PRG_BUILD_PATH)/settings.o		: \
 		src/settings.c $(SETTINGS_DEPS)
 	$(CC) -c $(CFLAGS) src/settings.c -o $(.TARGET)
 
+$(PRG_BUILD_PATH)/source_file.o		: \
+		src/source_file.c $(SOURCE_FILE_DEPS)
+	$(CC) -c $(CFLAGS) src/source_file.c -o $(.TARGET)
+
+$(PRG_BUILD_PATH)/source_position.o	: \
+		src/source_position.c $(SOURCE_POSITION_DEPS)
+	$(CC) -c $(CFLAGS) src/source_position.c -o $(.TARGET)
+
+$(PRG_BUILD_PATH)/source_string.o		: \
+		src/source_string.c $(SOURCE_STRING_DEPS)
+	$(CC) -c $(CFLAGS) src/source_string.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/string_array.o	: \
 		src/string_array.c $(STRING_ARRAY_DEPS)
 	$(CC) -c $(CFLAGS) src/string_array.c -o $(.TARGET)
