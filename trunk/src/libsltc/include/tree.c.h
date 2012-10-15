@@ -81,12 +81,12 @@
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// initialize_TC_TREE_FUNCTION_PREFIX_tree function
+// tc_tree_new function
 //
-// Creates and initializes the tree node.
+// Creates and initializes the tree.
 //
 TC_TREE_ROOT* TC_TREE_HIDE 
-sl_concat_3(initialize_,TC_TREE_FUNCTION_PREFIX,_tree) ()
+sl_concat_3(tc_tree_new,_,TC_TREE_FUNCTION_SUFFIX) ()
 {
   TC_TREE_ROOT* t = malloc (sizeof (TC_TREE_ROOT));
 
@@ -98,12 +98,12 @@ sl_concat_3(initialize_,TC_TREE_FUNCTION_PREFIX,_tree) ()
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// initialize_TC_TREE_FUNCTION_PREFIX_tree_node function
+// tc_tree_node_new function
 //
 // Creates and returns tree node.
 //
-TC_TREE_NODE* TC_TREE_HIDE						
-sl_concat_3(initialize_,TC_TREE_FUNCTION_PREFIX,_tree_node) 
+TC_TREE_NODE* TC_TREE_HIDE								
+sl_concat_3(tc_tree_node_new,_,TC_TREE_FUNCTION_SUFFIX) 
 (
  TC_TREE_ROOT* root,
  TC_TREE_NODE_TYPE object
@@ -125,37 +125,34 @@ sl_concat_3(initialize_,TC_TREE_FUNCTION_PREFIX,_tree_node)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// destroy_TC_TREE_FUNCTION_PREFIX_tree function
+// tc_tree_delete function
 //
-// Destroys the tree after first descending and deleting each node.
+// Deletes the tree after first descending and deleting each node.
 //
 void TC_TREE_HIDE						     
-sl_concat_3(destroy_,TC_TREE_FUNCTION_PREFIX,_tree) (TC_TREE_ROOT* root)
+sl_concat_3(tc_tree_delete,_,TC_TREE_FUNCTION_SUFFIX) (TC_TREE_ROOT* root)
 {
-  sl_concat_3(destroy_,TC_TREE_FUNCTION_PREFIX,_tree_node) (root->top);
+  sl_concat_3(tc_tree_node_delete,_,TC_TREE_FUNCTION_SUFFIX) (root->top);
 
   free (root);
 }
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// destroy_TC_TREE_FUNCTION_PREFIX_tree_node function
+// tc_tree_node_delete function
 //
-// Destroys a tree node and recursively all it's descendents.
+// Deletes a tree node and recursively all it's descendents.
 //
 void TC_TREE_HIDE
-sl_concat_3(destroy_,TC_TREE_FUNCTION_PREFIX,_tree_node) 
-(
- TC_TREE_NODE* node
- )
+sl_concat_3(tc_tree_node_delete,_,TC_TREE_FUNCTION_SUFFIX) (TC_TREE_NODE* node)
 {
   while (node->first_child != NULL)
-    sl_concat_3(destroy_,TC_TREE_FUNCTION_PREFIX,_tree_node) 
+    sl_concat_3(tc_tree_node_delete,_,TC_TREE_FUNCTION_SUFFIX)  
       (
        node->last_child
        );
 
-  sl_concat_3(delete_,TC_TREE_FUNCTION_PREFIX,_tree_node) (node);
+  sl_concat_3(tc_tree_node_delete,_,TC_TREE_FUNCTION_SUFFIX) (node);
 
   free (node);
 }

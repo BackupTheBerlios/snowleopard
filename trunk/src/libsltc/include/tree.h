@@ -112,17 +112,17 @@ struct TC_TREE_NODE
 //------------------------------------------------------------------------------
 // Initializer functions
 TC_TREE_ROOT* TC_TREE_HIDE 
-sl_concat_3(initialize_,TC_TREE_FUNCTION_PREFIX,_tree) ();
+sl_concat_3(tc_tree_new,_,TC_TREE_FUNCTION_SUFFIX) ();
 TC_TREE_NODE* TC_TREE_HIDE								
-sl_concat_3(initialize_,TC_TREE_FUNCTION_PREFIX,_tree_node) 
+sl_concat_3(tc_tree_node_new,_,TC_TREE_FUNCTION_SUFFIX) 
 (
  TC_TREE_ROOT*,
  TC_TREE_NODE_TYPE
  );
 void TC_TREE_HIDE						     
-sl_concat_3(destroy_,TC_TREE_FUNCTION_PREFIX,_tree) (TC_TREE_ROOT*);
+sl_concat_3(tc_tree_delete,_,TC_TREE_FUNCTION_SUFFIX) (TC_TREE_ROOT*);
 void TC_TREE_HIDE
-sl_concat_3(destroy_,TC_TREE_FUNCTION_PREFIX,_tree_node) (TC_TREE_NODE*);
+sl_concat_3(tc_tree_node_delete,_,TC_TREE_FUNCTION_SUFFIX) (TC_TREE_NODE*);
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
