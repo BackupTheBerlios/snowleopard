@@ -27,6 +27,10 @@
 #-------------------------------------------------------------------------------
 # Rules
 #
+$(LIB_BUILD_PATH)/char_functions.o	: \
+		src/char_functions.c $(CHAR_FUNCTIONS_DEPS)
+	$(CC) -c $(CFLAGS) src/char_functions.c -o $(.TARGET)
+
 $(LIB_BUILD_PATH)/file_functions.o	: \
 		src/file_functions.c $(FILE_FUNCTIONS_DEPS)
 	$(CC) -c $(CFLAGS) src/file_functions.c -o $(.TARGET)

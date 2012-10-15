@@ -30,6 +30,7 @@
 TC_INCLUDES 	= \
 	$(TC_INCLUDE)/array.c.h						\
 	$(TC_INCLUDE)/array.h						\
+	$(TC_INCLUDE)/char_functions.h					\
 	$(TC_INCLUDE)/config_tc.h 					\
 	$(TC_INCLUDE)/file_functions.h					\
 	$(TC_INCLUDE)/linked_list.c.h					\
@@ -47,6 +48,8 @@ ARRAY_C_H_DEPS		= \
 
 ARRAY_H_DEPS		= \
 	$(TC_INCLUDE)/config_tc.h
+
+CHAR_FUNCTIONS_H_DEPS   =
 
 CONFIG_TC_H_DEPS	= \
 	$(CONFIG_C_INCLUDES)
@@ -75,6 +78,9 @@ VERSION_TC_H_DEPS	= \
 #-------------------------------------------------------------------------------
 # Source file dependencies
 #
+CHAR_FUNCTIONS_DEPS	= \
+	$(TC_INCLUDE)/char_functions.h $(CHAR_FUNCTIONS_H_DEPS)
+
 FILE_FUNCTIONS_DEPS	= \
 	$(TC_INCLUDE)/file_functions.h $(FILE_FUNCTIONS_H_DEPS)
 
@@ -82,7 +88,10 @@ STRING_FUNCTIONS_DEPS	= \
 	$(TC_INCLUDE)/string_functions.h $(STRING_FUNCTIONS_H_DEPS)
 
 VERSION_TC_DEPS		= \
-	$(TC_INCLUDE)/version_tc.h $(VERSION_TC_H_DEPS)
+	$(TC_INCLUDE)/config_tc.h $(CONFIG_TC_H_DEPS)			\
+	$(TC_INCLUDE)/version_tc.h $(VERSION_TC_H_DEPS)			\
+	$(CONFIG_C_INCLUDES)						\
+	$(VERSION_C_INCLUDES)
 
 #-------------------------------------------------------------------------------
 #<EOF>
