@@ -31,11 +31,13 @@ OBJS 		= \
 	$(PRG_BUILD_PATH)/error_handling.o				\
 	$(PRG_BUILD_PATH)/hash_function.o				\
 	$(PRG_BUILD_PATH)/info.o					\
+	$(PRG_BUILD_PATH)/literal.o					\
 	$(PRG_BUILD_PATH)/main.o 					\
 	$(PRG_BUILD_PATH)/parse_tree.o					\
 	$(PRG_BUILD_PATH)/parser.o					\
 	$(PRG_BUILD_PATH)/settings.o 					\
 	$(PRG_BUILD_PATH)/string_array.o				\
+	$(PRG_BUILD_PATH)/token.o					\
 	$(PRG_BUILD_PATH)/types.o 					\
 	$(PRG_BUILD_PATH)/version_slcc.o				\
 	$(TC_BUILD_PATH)/libsltc.a

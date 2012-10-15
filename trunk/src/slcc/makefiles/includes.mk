@@ -41,6 +41,7 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/parser.h						\
 	$(PRG_INCLUDE)/settings.h 					\
 	$(PRG_INCLUDE)/string_array.h					\
+	$(PRG_INCLUDE)/token.h						\
 	$(PRG_INCLUDE)/types.h 						\
 	$(PRG_INCLUDE)/version_slcc.h
 
@@ -78,6 +79,10 @@ HASH_FUNCTION_H_DEPS	= \
 
 INFO_H_DEPS		=
 
+LITERAL_H_DEPS		= \
+	$(PRG_INCLUDE)/config_slcc.h $(CONFIG_SLCC_H_DEPS)		\
+	$(CONFIG_C_INCLUDES)
+
 PARSE_TREE_H_DEPS	= \
 	$(PRG_INCLUDE)/source_object.h					\
 	$(TC_INCLUDES)
@@ -92,6 +97,13 @@ SOURCE_OBJECTS_H_DEPS	= \
 
 STRING_ARRAY_H_DEPS	= \
 	$(TC_INCLUDES)
+
+TOKEN_H_DEPS		= \
+	$(PRG_INCLUDE)/literal.h					\
+	$(PRG_INCLUDE)/source_position.h				\
+	$(PRG_INCLUDE)/strings.h					\
+	$(PRG_INCLUDE)/types.h						\
+	$(CONFIG_C_INCLUDES)
 
 TYPES_H_DEPS		=
 
@@ -137,6 +149,9 @@ INFO_DEPS		= \
 	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)			\
 	$(PRG_INCLUDE)/version_slcc.h $(VERSION_SLCC_H_DEPS)
 
+LITERAL_DEPS		= \
+	$(PRG_INCLUDE)/literal.h $(LITERAL_H_DEPS)
+
 MAIN_DEPS		= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
 	$(PRG_INCLUDE)/error_handling.h $(ERROR_HANDLING_H_DEPS)	\
@@ -162,6 +177,9 @@ SETTINGS_DEPS		= \
 STRING_ARRAY_DEPS	= \
 	$(PRG_INCLUDE)/string_array.h $(STRING_ARRAY_H_DEPS)		\
 	$(TC_INCLUDES)
+
+TOKEN_DEPS		= \
+	$(PRG_INCLUDE)/token.h $(TOKEN_H_DEPS)
 
 TYPES_DEPS		= \
 	$(PRG_INCLUDE)/types.h $(TYPES_H_DEPS)

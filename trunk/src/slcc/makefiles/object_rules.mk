@@ -55,6 +55,10 @@ $(PRG_BUILD_PATH)/info.o		: \
 		src/info.c $(INFO_DEPS)
 	$(CC) -c $(CFLAGS) src/info.c -o $(.TARGET)
 
+$(PRG_BUILD_PATH)/literal.o		: \
+		src/literal.c $(LITERAL_DEPS)
+	$(CC) -c $(CFLAGS) src/literal.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/main.o		: \
 		src/main.c $(MAIN_DEPS)
 	$(CC) -c $(CFLAGS) src/main.c -o $(.TARGET)
@@ -74,6 +78,10 @@ $(PRG_BUILD_PATH)/settings.o		: \
 $(PRG_BUILD_PATH)/string_array.o	: \
 		src/string_array.c $(STRING_ARRAY_DEPS)
 	$(CC) -c $(CFLAGS) src/string_array.c -o $(.TARGET)
+
+$(PRG_BUILD_PATH)/token.o		: \
+		src/token.c $(TOKEN_DEPS)
+	$(CC) -c $(CFLAGS) src/token.c -o $(.TARGET)
 
 $(PRG_BUILD_PATH)/types.o		: \
 		src/types.c $(TYPES_DEPS)
