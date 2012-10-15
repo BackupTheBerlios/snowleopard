@@ -34,6 +34,7 @@ TC_INCLUDES 	= \
 	$(TC_INCLUDE)/file_functions.h					\
 	$(TC_INCLUDE)/linked_list.c.h					\
 	$(TC_INCLUDE)/linked_list.h					\
+	$(TC_INCLUDE)/string_functions.h				\
 	$(TC_INCLUDE)/tree.c.h 						\
 	$(TC_INCLUDE)/tree.h						\
 	$(TC_INCLUDE)/version_tc.h
@@ -61,6 +62,9 @@ LINKED_LIST_H_DEPS	= \
 TREE_C_H_DEPS		= \
 	$(TC_INCLUDE)/config_tc.h
 
+STRING_FUNCTIONS_H_DEPS	= \
+	$(TC_INCLUDE)/string_functions.h
+
 TREE_H_DEPS		= \
 	$(TC_INCLUDE)/config_tc.h
 
@@ -73,6 +77,9 @@ VERSION_TC_H_DEPS	= \
 #
 FILE_FUNCTIONS_DEPS	= \
 	$(TC_INCLUDE)/file_functions.h $(FILE_FUNCTIONS_H_DEPS)
+
+STRING_FUNCTIONS_DEPS	= \
+	$(TC_INCLUDE)/string_functions.h $(STRING_FUNCTIONS_H_DEPS)
 
 VERSION_TC_DEPS		= \
 	$(TC_INCLUDE)/version_tc.h $(VERSION_TC_H_DEPS)
