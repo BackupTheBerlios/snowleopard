@@ -70,7 +70,7 @@ TST_BUILD_PATH		= $(BUILD_PATH)/libsltst
 #-------------------------------------------------------------------------------
 # Compiler options
 #
-COMPILE_FLAGS		= -std=c99 -Wall -Wextra
+COMPILE_FLAGS		= -std=c99 -Wall -Wextra -Werror
 LIBRARY_FLAGS		= -fPIC
 DEBUG_FLAGS		= -g
 
