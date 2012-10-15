@@ -35,6 +35,7 @@ OBJS 		= \
 	$(PRG_BUILD_PATH)/main.o 					\
 	$(PRG_BUILD_PATH)/parse_tree.o					\
 	$(PRG_BUILD_PATH)/parser.o					\
+	$(PRG_BUILD_PATH)/reader.o					\
 	$(PRG_BUILD_PATH)/settings.o 					\
 	$(PRG_BUILD_PATH)/source_file.o					\
 	$(PRG_BUILD_PATH)/source_position.o				\

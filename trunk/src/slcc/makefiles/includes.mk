@@ -39,6 +39,7 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/info.h						\
 	$(PRG_INCLUDE)/parse_tree.h					\
 	$(PRG_INCLUDE)/parser.h						\
+	$(PRG_INCLUDE)/reader.h						\
 	$(PRG_INCLUDE)/settings.h 					\
 	$(PRG_INCLUDE)/source_file.h					\
 	$(PRG_INCLUDE)/source_object.h					\
@@ -93,6 +94,11 @@ PARSE_TREE_H_DEPS	= \
 	$(TC_INCLUDES)
 
 PARSER_H_DEPS		=
+
+READER_H_DEPS		= \
+	$(PRG_INCLUDE)/source_file.h					\
+	$(PRG_INCLUDE)/source_position.h				\
+	$(PRG_INCLUDE)/source_string.h
 
 SETTINGS_H_DEPS		= \
 	$(PRG_INCLUDE)/string_array.h
@@ -183,6 +189,12 @@ PARSE_TREE_DEPS		= \
 PARSER_DEPS		= \
 	$(PRG_INCLUDE)/parse_tree.h $(PARSE_TREE_H_DEPS)		\
 	$(PRG_INCLUDE)/parser.h $(PARSER_H_DEPS)
+
+READER_DEPS		= \
+	$(PRG_INCLUDE)/reader.h $(READER_H_DEPS)			\
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)			\
+	$(PRG_INCLUDE)/source_position.h $(SOURCE_POSITION_H_DEPS)	\
+	$(TC_INCLUDES)
 
 SETTINGS_DEPS		= \
 	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\

@@ -71,6 +71,10 @@ $(PRG_BUILD_PATH)/parser.o  		: \
 		src/parser.c $(PARSER_DEPS)
 	$(CC) -c $(CFLAGS) src/parser.c -o $(.TARGET)
 
+$(PRG_BUILD_PATH)/reader.o  		: \
+		src/reader.c $(READER_DEPS)
+	$(CC) -c $(CFLAGS) src/reader.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/settings.o		: \
 		src/settings.c $(SETTINGS_DEPS)
 	$(CC) -c $(CFLAGS) src/settings.c -o $(.TARGET)
