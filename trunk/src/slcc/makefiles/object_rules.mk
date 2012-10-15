@@ -79,6 +79,10 @@ $(PRG_BUILD_PATH)/string_array.o	: \
 		src/string_array.c $(STRING_ARRAY_DEPS)
 	$(CC) -c $(CFLAGS) src/string_array.c -o $(.TARGET)
 
+$(PRG_BUILD_PATH)/strings.o		: \
+		src/strings.c $(STRINGS_DEPS)
+	$(CC) -c $(CFLAGS) src/strings.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/token.o		: \
 		src/token.c $(TOKEN_DEPS)
 	$(CC) -c $(CFLAGS) src/token.c -o $(.TARGET)

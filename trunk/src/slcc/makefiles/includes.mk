@@ -41,6 +41,7 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/parser.h						\
 	$(PRG_INCLUDE)/settings.h 					\
 	$(PRG_INCLUDE)/string_array.h					\
+	$(PRG_INCLUDE)/strings.h					\
 	$(PRG_INCLUDE)/token.h						\
 	$(PRG_INCLUDE)/types.h 						\
 	$(PRG_INCLUDE)/version_slcc.h
@@ -80,7 +81,7 @@ HASH_FUNCTION_H_DEPS	= \
 INFO_H_DEPS		=
 
 LITERAL_H_DEPS		= \
-	$(PRG_INCLUDE)/config_slcc.h $(CONFIG_SLCC_H_DEPS)		\
+	$(PRG_INCLUDE)/config_slcc.h					\
 	$(CONFIG_C_INCLUDES)
 
 PARSE_TREE_H_DEPS	= \
@@ -97,6 +98,10 @@ SOURCE_OBJECTS_H_DEPS	= \
 
 STRING_ARRAY_H_DEPS	= \
 	$(TC_INCLUDES)
+
+STRINGS_H_DEPS		= \
+	$(PRG_INCLUDE)/config_slcc.h					\
+	$(CONFIG_C_INCLUDES)
 
 TOKEN_H_DEPS		= \
 	$(PRG_INCLUDE)/literal.h					\
