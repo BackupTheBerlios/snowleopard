@@ -24,12 +24,15 @@
 #-------------------------------------------------------------------------------
 
 OBJS 		= \
+	$(PRG_BUILD_PATH)/codegen.o					\
 	$(PRG_BUILD_PATH)/driver.o 					\
 	$(PRG_BUILD_PATH)/error_array.o					\
 	$(PRG_BUILD_PATH)/error_codes.o					\
 	$(PRG_BUILD_PATH)/error_handling.o				\
 	$(PRG_BUILD_PATH)/info.o					\
 	$(PRG_BUILD_PATH)/main.o 					\
+	$(PRG_BUILD_PATH)/parse_tree.o					\
+	$(PRG_BUILD_PATH)/parser.o					\
 	$(PRG_BUILD_PATH)/settings.o 					\
 	$(PRG_BUILD_PATH)/string_array.o				\
 	$(PRG_BUILD_PATH)/types.o 					\

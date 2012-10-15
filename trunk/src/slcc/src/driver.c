@@ -26,10 +26,12 @@
 #include <stdbool.h>
 #include <string.h>
 
+#include "codegen.h"
 #include "driver.h"
 #include "error.h"
 #include "error_codes.h"
 #include "error_handling.h"
+#include "parser.h"
 #include "settings.h"
 
 #include "file_functions.h"
@@ -69,6 +71,18 @@ bool drv_initialize ()
       return false;
     }
 
+  if (!parser_initialize ())
+    {
+      err_report_0 (EC_PARSER_INITIALIZATION_FAILED);
+      return false;
+    }
+
+  if (!codegen_initialize ())
+    {
+      err_report_0 (EC_CODEGEN_INITIALIZATION_FAILED);
+      return false;
+    }
+
   return true;
 }
 //------------------------------------------------------------------------------
@@ -81,6 +95,8 @@ bool drv_initialize ()
 void drv_cleanup ()
 {
   settings_cleanup ();
+  parser_cleanup ();
+  codegen_cleanup ();
 }
 //------------------------------------------------------------------------------
 
@@ -91,8 +107,13 @@ void drv_cleanup ()
 //
 bool drv_start ()
 {
+  if (!parser_start ())
+    return false;
 
-  return false;
+  if (!codegen_start ())
+      return false;
+
+  return true;
 }
 //------------------------------------------------------------------------------
 

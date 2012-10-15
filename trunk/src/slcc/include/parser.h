@@ -18,19 +18,23 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// types.c
+// parser.h
 //------------------------------------------------------------------------------
-// Types and type definitions for the compiler front end.
+// Parser for the compiler front end.
 //------------------------------------------------------------------------------
 
-#include <stddef.h>
+#ifndef __SL_SLCC_PARSER_H__
+#define __SL_SLCC_PARSER_H__
 
-#include "types.h"
+#include <stdbool.h>
 
 //------------------------------------------------------------------------------
-// Global variables
-const size_t MaxSizeT = (size_t)-1;
-const symtab_key_t MaxSymtabKeyT = (size_t)-1;
+// Parser functions.
+bool parser_initialize ();
+void parser_cleanup ();
+bool parser_start ();
 //------------------------------------------------------------------------------
+
+#endif /* !__SL_SLCC_PARSER_H__ */
 
 //-<EOF>

@@ -18,19 +18,23 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// types.c
+// codegen.h
 //------------------------------------------------------------------------------
-// Types and type definitions for the compiler front end.
+// Code generator for the compiler front end.
 //------------------------------------------------------------------------------
 
-#include <stddef.h>
+#ifndef __SL_SLCC_CODEGEN_H__
+#define __SL_SLCC_CODEGEN_H__
 
-#include "types.h"
+#include <stdbool.h>
 
 //------------------------------------------------------------------------------
-// Global variables
-const size_t MaxSizeT = (size_t)-1;
-const symtab_key_t MaxSymtabKeyT = (size_t)-1;
+// Code generator functions.
+bool codegen_initialize ();
+void codegen_cleanup ();
+bool codegen_start ();
 //------------------------------------------------------------------------------
+
+#endif /* !__SL_SLCC_CODEGEN_H__ */
 
 //-<EOF>

@@ -18,19 +18,34 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// types.c
+// parse_tree.h
 //------------------------------------------------------------------------------
-// Types and type definitions for the compiler front end.
+// Parse tree for the compiler front end.
 //------------------------------------------------------------------------------
 
-#include <stddef.h>
-
-#include "types.h"
+#include "parse_tree.h"
+#include "source_object.h"
 
 //------------------------------------------------------------------------------
-// Global variables
-const size_t MaxSizeT = (size_t)-1;
-const symtab_key_t MaxSymtabKeyT = (size_t)-1;
+// Define parse tree
+#define TC_TREE_PREFIX slcc_parse
+#define TC_TREE_NODE_TYPE slcc_source_object*
+#define TC_TREE_FUNCTION_PREFIX pt
+#define TC_TREE_FUNCTION_SUFFIX
+
+#include "tree.c.h"
+
+#undef TC_TREE_PREFIX
+#undef TC_TREE_NODE_TYPE
+#undef TC_TREE_FUNCTION_PREFIX
+#undef TC_TREE_FUNCTION_SUFFIX
+#undef TC_TREE_ROOT
+#undef TC_TREE_NODE
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// Global parse tree
+slcc_parse_tree* parse_tree_;
 //------------------------------------------------------------------------------
 
 //-<EOF>

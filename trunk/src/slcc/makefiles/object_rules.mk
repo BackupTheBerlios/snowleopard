@@ -27,6 +27,10 @@
 #-------------------------------------------------------------------------------
 # Rules
 #
+$(PRG_BUILD_PATH)/codegen.o  		: \
+		src/codegen.c $(CODEGEN_DEPS)
+	$(CC) -c $(CFLAGS) src/codegen.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/driver.o  		: \
 		src/driver.c $(DRIVER_DEPS)
 	$(CC) -c $(CFLAGS) src/driver.c -o $(.TARGET)
@@ -50,6 +54,14 @@ $(PRG_BUILD_PATH)/info.o		: \
 $(PRG_BUILD_PATH)/main.o		: \
 		src/main.c $(MAIN_DEPS)
 	$(CC) -c $(CFLAGS) src/main.c -o $(.TARGET)
+
+$(PRG_BUILD_PATH)/parse_tree.o  		: \
+		src/parse_tree.c $(PARSE_TREE_DEPS)
+	$(CC) -c $(CFLAGS) src/parse_tree.c -o $(.TARGET)
+
+$(PRG_BUILD_PATH)/parser.o  		: \
+		src/parser.c $(PARSER_DEPS)
+	$(CC) -c $(CFLAGS) src/parser.c -o $(.TARGET)
 
 $(PRG_BUILD_PATH)/settings.o		: \
 		src/settings.c $(SETTINGS_DEPS)

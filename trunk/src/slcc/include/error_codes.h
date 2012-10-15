@@ -72,7 +72,10 @@ enum slcc_error_code
     EC_NO_ERROR = 0,
 
     /* Compiler runtime errors */
+    EC_CODEGEN_INITIALIZATION_FAILED,  /* Code generator initialization 
+					  failed */
     EC_DRIVER_INITIALIZATION_FAILED,   /* Driver initialization failed */
+    EC_PARSER_INITIALIZATION_FAILED,   /* Parser initialization failed */
     EC_INCOMPLETE_ARG,                 /* Incomplete argument */
     EC_INVALID_ARG,                    /* Invalid argument */
     EC_INVALID_SOURCE_FILE_TYPE,       /* Invalid source file type */

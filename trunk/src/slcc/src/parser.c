@@ -18,59 +18,48 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// error_codes.c
+// parser.c
 //------------------------------------------------------------------------------
-// Error codes for the compiler front end.
+// Parser for the compiler front end.
 //------------------------------------------------------------------------------
 
-#include "error_codes.h"
+#include <stdbool.h>
+
+#include "parser.h"
 
 //------------------------------------------------------------------------------
-// Error type description list.
-char* error_type_list_[] = {
-  "No error occured",
-  "FATAL ERROR",
-  "INTERNAL COMPILER ERROR", 
-  "Warning",
-  "Unimplemented Feature",
-  "Preprocessor Error",
-  "Preprocessor Warning", 
-  "Source Error",
-  "Source Warning", 
-  "Code Generation Error", 
-  "Runtime Error"
-};
+// parser_initialize function
+//
+// Initializes the code generator.
+//
+bool parser_initialize ()
+{
+
+  return false;
+}
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// Error descriptions list.
-slcc_error_description error_description_list_[] = {
+// parser_cleanup function
+//
+// Cleans up all pointers and arrays used by the code generator.
+//
+void parser_cleanup ()
+{
 
-  /* No error occured */
-  {"No error occured", 0, ET_NO_ERROR},
+}
+//------------------------------------------------------------------------------
 
-  /* Compiler runtime error */
-  {"Code generator initialization failed", 0, ET_FATAL},
-  {"Driver initialization failed", 0, ET_FATAL},
-  {"Parser initialization failed", 0, ET_FATAL},
-  {"Incomplete argument provided", 0, ET_FATAL},
-  {"Invalid argument provided", 0, ET_FATAL},
-  {"Source file %s has no valid extension", 1, ET_FATAL}, 
-  {"No source file provided", 0, ET_FATAL},
-  {"Path %s doesn't exist or is not accessible", 1, ET_FATAL},
-  {"Source file %s doesn't exist or is not accessible", 1, ET_FATAL}, 
-  {"The include path %s is used twice, this one is ignored", 1, ET_WARNING},
-  {"Multiple output files: %s is used, %s is ignored", 2, ET_WARNING}
+//------------------------------------------------------------------------------
+// parser_start function
+//
+// Starts the code generation process based on the parsed source.
+//
+bool parser_start ()
+{
 
-  /* Preprocessor errors */
-  
-  /* Compile errors */
-  
-  /* Code generation errors */
-  
-  /* Executor runtime errors */
-
-};
+  return false;
+}
 //------------------------------------------------------------------------------
 
 //-<EOF>

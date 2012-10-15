@@ -18,19 +18,29 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// types.c
+// source_object.h
 //------------------------------------------------------------------------------
-// Types and type definitions for the compiler front end.
+// Source object for the compiler front end.
 //------------------------------------------------------------------------------
 
-#include <stddef.h>
+#ifndef __SL_SLCC_SOURCE_OBJECT_H__
+#define __SL_SLCC_SOURCE_OBJECT_H__
 
-#include "types.h"
+#include <types.h>
 
 //------------------------------------------------------------------------------
-// Global variables
-const size_t MaxSizeT = (size_t)-1;
-const symtab_key_t MaxSymtabKeyT = (size_t)-1;
+// slcc_source_oject struct
+//
+// Stores one source object and all it's dependents.
+//
+struct slcc_source_object
+{
+  symtab_key_t key;
+};
+
+typedef struct slcc_source_object slcc_source_object;
 //------------------------------------------------------------------------------
+
+#endif /* !__SL_SLCC_SOURCE_OBJECT_H__ */
 
 //-<EOF>

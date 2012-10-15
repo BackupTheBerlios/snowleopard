@@ -28,6 +28,7 @@
 # Variables
 #
 INCLUDES 		= \
+	$(PRG_INCLUDE)/codegen.h					\
 	$(PRG_INCLUDE)/config_slcc.h 					\
 	$(PRG_INCLUDE)/driver.h 					\
 	$(PRG_INCLUDE)/error.h						\
@@ -35,6 +36,8 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/error_codes.h					\
 	$(PRG_INCLUDE)/error_handling.h					\
 	$(PRG_INCLUDE)/info.h						\
+	$(PRG_INCLUDE)/parse_tree.h					\
+	$(PRG_INCLUDE)/parser.h						\
 	$(PRG_INCLUDE)/settings.h 					\
 	$(PRG_INCLUDE)/string_array.h					\
 	$(PRG_INCLUDE)/types.h 						\
@@ -45,6 +48,8 @@ INCLUDES 		= \
 #-------------------------------------------------------------------------------
 # Header file dependencies
 #
+CODEGEN_H_DEPS		= 
+
 CONFIG_SLCC_H_DEPS	= \
 	$(CONFIG_C_INCLUDES)
 
@@ -69,8 +74,17 @@ ERROR_HANDLING_H_DEPS	= \
 
 INFO_H_DEPS		=
 
+PARSE_TREE_H_DEPS	= \
+	$(PRG_INCLUDE)/source_object.h					\
+	$(TC_INCLUDES)
+
+PARSER_H_DEPS		=
+
 SETTINGS_H_DEPS		= \
 	$(PRG_INCLUDE)/string_array.h
+
+SOURCE_OBJECTS_H_DEPS	= \
+	$(PRG_INCLUDE)/types.h
 
 STRING_ARRAY_H_DEPS	= \
 	$(TC_INCLUDES)
@@ -84,6 +98,9 @@ VERSION_SLCC_H_DEPS	= \
 #-------------------------------------------------------------------------------
 # Source file dependencies
 #
+CODEGEN_DEPS		= \
+	$(PRG_INCLUDE)/codegen.h $(CODEGEN_H_DEPS)
+
 DRIVER_DEPS		= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS) 			\
 	$(PRG_INCLUDE)/error.h $(ERROR_H_DEPS)				\
@@ -117,6 +134,14 @@ MAIN_DEPS		= \
 	$(PRG_INCLUDE)/error_handling.h $(ERROR_HANDLING_H_DEPS)	\
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)				\
 	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
+
+PARSE_TREE_DEPS		= \
+	$(PRG_INCLUDE)/parse_tree.h $(PARSE_TREE_H_DEPS)		\
+	$(PRG_INCLUDE)/source_object.h $(SOURCE_OBJECT_H_DEPS)		\
+	$(TC_INCLUDES)
+
+PARSER_DEPS		= \
+	$(PRG_INCLUDE)/parser.h $(PARSER_H_DEPS)
 
 SETTINGS_DEPS		= \
 	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
