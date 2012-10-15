@@ -23,6 +23,8 @@
 // String functions for the typed component library.
 //------------------------------------------------------------------------------
 
+#include <stdbool.h>
+#include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -40,6 +42,39 @@ char* tc_copy_string (char* str)
   strcpy (n_str, str);
 
   return n_str;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// tc_get_str_after_nth_last function
+//
+// Returns the string after the last count occurrence of the delim character.
+// If no count last is found, NULL is returned.
+//
+char* tc_get_str_after_nth_last (char* str, char delim, int count)
+{
+  size_t i = strlen (str);
+
+  /* Search position of the count-last occurence of delim. */
+  while (true)
+    {
+      /* Lower count if delim is found. */
+      if (str[i] == delim)
+	count--;
+
+      /* The target delim is found. */
+      if (count == 0)
+	break;
+
+      /* The end of the string is reached. */
+      if (i == 0)
+	return NULL;
+
+      i--;
+    }
+
+  /* Return copy of string excluding the first delim */
+  return tc_copy_string (str+i+1);
 }
 //------------------------------------------------------------------------------
 

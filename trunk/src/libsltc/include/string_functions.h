@@ -30,6 +30,7 @@
 // String functions
 //
 char* tc_copy_string (char* str);
+char* tc_get_str_after_nth_last (char* str, char delim, int count);
 //------------------------------------------------------------------------------
 
 #endif /* !__SL_TC_STRING_FUNCTIONS_H__ */
