@@ -73,6 +73,8 @@ extern slcc_error_array* error_list_;
 //------------------------------------------------------------------------------
 // Error handling functions.
 //
+bool err_initialize ();
+void err_cleanup ();
 slcc_error* err_report (
 			slcc_error_code code, 
 			char* arg1, 
@@ -86,6 +88,8 @@ void err_report_and_exit (
 			  char* arg2,
 			  char* arg3
 			  );
+slcc_error_code err_get_code_of_first_fatal_error ();
+slcc_error* err_get_first_error_of_type (slcc_error_type type);
 //------------------------------------------------------------------------------
 
 #endif /* !__SL_SLCC_ERROR_HANDING_H__ */

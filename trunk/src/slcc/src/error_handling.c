@@ -27,9 +27,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "error.h"
 #include "error_array.h"
 #include "error_codes.h"
 #include "error_handling.h"
+
 #include "string_functions.h"
 
 //------------------------------------------------------------------------------
@@ -41,10 +43,38 @@ slcc_error* err_store (
 		       char* arg3
 		       );
 //------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 // Error list array
 slcc_error_array* error_list_;
 //------------------------------------------------------------------------------
 
+//------------------------------------------------------------------------------
+// err_initialize function
+//
+// Initializes the error handler.
+//
+bool err_initialize ()
+{
+  if ((error_list_ = tc_array_new_ea ()) == NULL)
+    return false;
+
+  err_store (EC_NO_ERROR, NULL, NULL, NULL);
+
+  return true;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// err_cleanup function
+//
+// Cleanup the error handler.
+//
+void err_cleanup ()
+{
+  tc_array_delete_ea (error_list_);
+}
+//------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // err_report function
@@ -99,6 +129,37 @@ void err_report_and_exit (
 }
 //------------------------------------------------------------------------------
 
+//------------------------------------------------------------------------------
+// err_get_fatal_first_error function
+//
+// Get the error code for the first error that caused the compilation to be 
+// aborted.
+//
+slcc_error_code err_get_code_of_first_fatal_error ()
+{
+  slcc_error* error = err_get_first_error_of_type (ET_FATAL);
+  if (error->code == EC_NO_ERROR)
+    error = err_get_first_error_of_type (ET_INTERNAL);
+
+  return error->code;
+};
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// err_get_first_error_of_type function
+//
+// Returns the error object of the first error of the type given.
+//
+slcc_error* err_get_first_error_of_type (slcc_error_type type)
+{
+  for (size_t i = 0; i < error_list_->used_; i++)
+    if (error_description_list_[error_list_->data_[i]->code].type == type)
+      return error_list_->data_[i];
+
+  return error_list_->data_[0];
+}
+//------------------------------------------------------------------------------
+
 //==============================================================================
 // Private functions
 
@@ -121,8 +182,12 @@ slcc_error* err_store (
   error->arg2 = arg2 == NULL ? NULL : tc_copy_string (arg2);
   error->arg3 = arg3 == NULL ? NULL : tc_copy_string (arg3);
 
+  tc_array_add_ea (error_list_, error);
+
   return error;
 }
 //------------------------------------------------------------------------------
+
+//==============================================================================
 
 //-<EOF>

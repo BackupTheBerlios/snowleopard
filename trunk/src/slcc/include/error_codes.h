@@ -35,7 +35,7 @@ enum slcc_error_type
   {
     ET_NO_ERROR = 0,    /* No error occured */
 
-    /* Internal errors */
+    /* Internal errors / Fatal errors */
     ET_FATAL,           /* Fatal errors */
     ET_INTERNAL,        /* Internal compiler error */
     ET_WARNING,         /* Warnings */

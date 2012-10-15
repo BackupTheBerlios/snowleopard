@@ -27,6 +27,7 @@
 #include <string.h>
 
 #include "driver.h"
+#include "error.h"
 #include "error_codes.h"
 #include "error_handling.h"
 #include "settings.h"
@@ -130,18 +131,6 @@ bool drv_parse_command_line (int argc, char** argv)
 
   return ok;
 }
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// drv_get_first_error function
-//
-// Get the first error produced.
-//
-slcc_error_code drv_get_first_error ()
-{
-
-  return EC_NO_ERROR;
-};
 //------------------------------------------------------------------------------
 
 //==============================================================================

@@ -30,7 +30,7 @@
 // Define array structure
 //
 #define TC_ARRAY_TYPE_NAME slcc_error_array
-#define TC_ARRAY_ELEMENT_TYPE slcc_error
+#define TC_ARRAY_ELEMENT_TYPE slcc_error*
 #define TC_ARRAY_FUNCTION_SUFFIX ea
 #define TC_ARRAY_INITIAL_SIZE 256
 #define TC_ARRAY_NO_FIND

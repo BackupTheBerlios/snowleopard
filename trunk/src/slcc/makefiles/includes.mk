@@ -60,6 +60,10 @@ ERROR_ARRAY_H_DEPS	= \
 
 ERROR_CODES_H_DEPS	= \
 	$(PRG_INCLUDE)/error.h						\
+	$(PRG_INCLUDE)/error_array.h
+
+ERROR_HANDLING_H_DEPS	= \
+	$(PRG_INCLUDE)/error.h						\
 	$(PRG_INCLUDE)/error_array.h					\
 	$(PRG_INCLUDE)/error_codes.h
 
@@ -82,6 +86,7 @@ VERSION_SLCC_H_DEPS	= \
 #
 DRIVER_DEPS		= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS) 			\
+	$(PRG_INCLUDE)/error.h $(ERROR_H_DEPS)				\
 	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
 	$(PRG_INCLUDE)/error_handling.h	$(ERROR_HANDLING_H_DEPS)	\
 	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)			\
@@ -99,6 +104,7 @@ ERROR_HANDLING_DEPS	= \
 	$(PRG_INCLUDE)/error.h $(ERROR_H_DEPS)				\
 	$(PRG_INCLUDE)/error_array.h $(ERROR_ARRAY_H_DEPS)		\
 	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
+	$(PRG_INCLUDE)/error_handling.h $(ERROR_HANDLING_H_DEPS)	\
 	$(TC_INCLUDES)
 
 INFO_DEPS		= \
@@ -108,6 +114,7 @@ INFO_DEPS		= \
 
 MAIN_DEPS		= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
+	$(PRG_INCLUDE)/error_handling.h $(ERROR_HANDLING_H_DEPS)	\
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)				\
 	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
 

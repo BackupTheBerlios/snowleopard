@@ -26,6 +26,7 @@
 #include <stdlib.h>
 
 #include "driver.h"
+#include "error_handling.h"
 #include "info.h"
 #include "settings.h"
 
@@ -36,9 +37,18 @@ int main (int argc, char** argv)
 {
   int exit_status = EXIT_SUCCESS;
 
+  /* Initialize error handler */
+  if (!err_initialize ())
+    {
+      err_cleanup ();
+      return EXIT_FAILURE;
+    }
+
+  /* Initialize driver */
   if (!drv_initialize ())
     {
       drv_cleanup ();
+      err_cleanup ();
       return EXIT_FAILURE;
     }
 
@@ -71,7 +81,10 @@ int main (int argc, char** argv)
       drv_cleanup ();
     }
   else 
-    exit_status = EXIT_FAILURE;
+    exit_status = err_get_code_of_first_fatal_error ();
+
+  /* Cleanup error handler */
+  err_cleanup ();
 
   return exit_status;
 }
