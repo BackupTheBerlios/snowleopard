@@ -108,7 +108,7 @@ void settings_cleanup ()
 //
 bool add_path (slcc_path_type type, char* path)
 {
-  if (!path_exists (path))
+  if (!tc_path_exists (path))
     {
       err_report_and_exit_1 (EC_PATH_NOT_FOUND, path);
       return false;

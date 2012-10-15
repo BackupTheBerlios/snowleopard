@@ -34,7 +34,6 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/error_array.h					\
 	$(PRG_INCLUDE)/error_codes.h					\
 	$(PRG_INCLUDE)/error_handling.h					\
-	$(PRG_INCLUDE)/file_functions.h					\
 	$(PRG_INCLUDE)/info.h						\
 	$(PRG_INCLUDE)/settings.h 					\
 	$(PRG_INCLUDE)/string_array.h					\
@@ -64,8 +63,6 @@ ERROR_CODES_H_DEPS	= \
 	$(PRG_INCLUDE)/error.h						\
 	$(PRG_INCLUDE)/error_array.h					\
 	$(PRG_INCLUDE)/error_codes.h
-
-FILE_FUNCTIONS_H_DEPS	= 
 
 INFO_H_DEPS		=
 
@@ -106,9 +103,6 @@ ERROR_HANDLING_DEPS	= \
 	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
 	$(PRG_INCLUDE)/string_functions.h $(STRING_FUNCTIONS_H_DEPS)
 
-FILE_FUNCTIONS_DEPS	= \
-	$(PRG_INCLUDE)/file_functions.h $(FILE_FUNCTIONS_H_DEPS)
-
 INFO_DEPS		= \
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)				\
 	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)			\
@@ -122,9 +116,9 @@ MAIN_DEPS		= \
 SETTINGS_DEPS		= \
 	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
 	$(PRG_INCLUDE)/error_handling.h $(ERROR_HANDLING_H_DEPS)	\
-	$(PRG_INCLUDE)/file_functions.h $(FILE_FUNCTIONS_H_DEPS)	\
 	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)			\
-	$(PRG_INCLUDE)/string_array.h $(STRING_ARRAY_H_DEPS)		
+	$(PRG_INCLUDE)/string_array.h $(STRING_ARRAY_H_DEPS)		\
+	$(TC_INCLUDES)
 
 STRING_ARRAY_DEPS	= \
 	$(PRG_INCLUDE)/string_array.h $(STRING_ARRAY_H_DEPS)		\

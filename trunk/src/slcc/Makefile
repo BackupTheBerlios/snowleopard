@@ -49,7 +49,7 @@ PRG_TST_PATH	= $(TST_PATH)/$(PRG)
 #-------------------------------------------------------------------------------
 # Rules
 #
-all		: build_path $(PROGRAM)
+all		: build_path build_libsltc_a $(PROGRAM)
 
 $(PROGRAM) 	: $(OBJS)
 	$(CC) $(.ALLSRC) -o $(.TARGET)
@@ -61,15 +61,22 @@ $(PROGRAM) 	: $(OBJS)
 build_path	:
 	mkdir -p $(PRG_BUILD_PATH)
 
+build_libsltc_a :
+	cd ../libsltc ;			\
+	${MAKE} static_library
+
 clean		:
-	rm -rf $(OBJS) 		\
+	rm -rf $(OBJS) 			\
 	rm -rf $(PROGRAM)
 
 distclean	: clean
-	rmdir $(PRG_BUILD_PATH)
+	rm -rf $(PRG_BUILD_PATH)/* ;	\
+	rmdir $(PRG_BUILD_PATH) ;	\
+	cd ../libsltc ;			\
+	${MAKE} distclean
 
 test		: $(PROGRAM)
-	cd $(PRG_TST_PATH) ;	\
+	cd $(PRG_TST_PATH) ;		\
 	${MAKE}
 
 #-------------------------------------------------------------------------------

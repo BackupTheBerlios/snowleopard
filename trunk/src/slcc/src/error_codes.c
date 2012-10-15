@@ -55,8 +55,8 @@ slcc_error_description error_description_list_[] = {
   {"Invalid argument provided", 0, ET_FATAL},
   {"No source file provided", 0, ET_FATAL},
   {"Path %s doesn't exists or is not accessible", 1, ET_FATAL},
-  {"The include path %s is used twice, this one is ignored", 1, ET_WARNING}
-  {"Multiple output files: %s is used, %s is ignored", 2, ET_WARNING},
+  {"The include path %s is used twice, this one is ignored", 1, ET_WARNING},
+  {"Multiple output files: %s is used, %s is ignored", 2, ET_WARNING}
 
   /* Preprocessor errors */
   

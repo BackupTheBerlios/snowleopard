@@ -43,10 +43,6 @@ $(PRG_BUILD_PATH)/error_handling.o	: \
 		src/error_handling.c $(ERROR_HANDLING_DEPS)
 	$(CC) -c $(CFLAGS) src/error_handling.c -o $(.TARGET)
 
-$(PRG_BUILD_PATH)/file_functions.o	: \
-		src/file_functions.c $(FILE_FUNCTION_DEPS)
-	$(CC) -c $(CFLAGS) src/file_functions.c -o $(.TARGET)
-
 $(PRG_BUILD_PATH)/info.o		: \
 		src/info.c $(INFO_DEPS)
 	$(CC) -c $(CFLAGS) src/info.c -o $(.TARGET)
