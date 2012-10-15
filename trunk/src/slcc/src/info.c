@@ -51,9 +51,8 @@ void inf_display_copyright ()
 //
 void inf_display_license ()
 {
-  fprintf 
+  printf 
     (
-     stdout,
      "This program is free software: you can redistribute it and/or modify it under\n"
      "the terms of the GNU General Public License as published by the Free\n"
      "Software Foundation, either version 3 of the License, or (at your option) any\n"
@@ -103,9 +102,8 @@ void inf_display_program_info ()
 //
 void inf_display_reporting_bugs ()
 {
-  fprintf 
+  printf 
     (
-     stdout,
      "Please report the problem encountered to the developers. "
      "For more information, please check the file REPORTING_BUGS "
      "which was included in your distribution.\n"
@@ -120,10 +118,10 @@ void inf_display_reporting_bugs ()
 //
 void inf_display_usage ()
 {
-  fprintf
+  printf
     (
-     stderr,
-     "usage: %s [-ivlw] [-Ipath] [-Spath] [-std=<std>] [--language=<language>] source-file\n",
+     "usage: %s [-ivlw] [-Ipath] [-Spath] [-std=<std>] [--language=<language>] "
+     "source-file\n",
      getprogname ()
      );
 }
@@ -136,9 +134,8 @@ void inf_display_usage ()
 //
 void inf_display_warrantee ()
 {
-  fprintf
+  printf
     (
-     stdout,
      "THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND ANY\n"
      "EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\n"
      "WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\n"

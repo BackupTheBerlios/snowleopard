@@ -57,6 +57,10 @@ LIB_TST_PATH	= $(TST_PATH)/$(LIB)
 #
 all			: build_path $(STATIC_LIBRARY) $(SHARED_LIBRARY)
 
+static_library		: build_path $(STATIC_LIBRARY)
+
+dynamic_library		: build_path $(DYNAMIC_LIBRARY)
+
 $(STATIC_LIBRARY)	: $(OBJS)
 	$(AR) rcs $(STATIC_LIBRARY) $(OBJS)
 

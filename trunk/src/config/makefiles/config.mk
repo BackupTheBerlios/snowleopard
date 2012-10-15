@@ -64,6 +64,9 @@ TST_INCLUDE		= ../libsltst/include
 #
 BUILD_PATH		= /home/rsergeant/projects/build/snowleopard
 
+TC_BUILD_PATH		= $(BUILD_PATH)/libsltc
+TST_BUILD_PATH		= $(BUILD_PATH)/libsltst
+
 #-------------------------------------------------------------------------------
 # Compiler options
 #

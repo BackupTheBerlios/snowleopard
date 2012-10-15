@@ -27,112 +27,112 @@
 LDFORMAT_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
-	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/ldformat_driver.o 				\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
 	$(PRG_BUILD_PATH)/string_array.o				\
-	$(PRG_BUILD_PATH)/version_lynx.o
+	$(PRG_BUILD_PATH)/version_lynx.o				\
+	$(TC_BUILD_PATH)/libsltc.a
 
 LEQN_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
-	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/leqn_driver.o 				\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
 	$(PRG_BUILD_PATH)/string_array.o				\
-	$(PRG_BUILD_PATH)/version_lynx.o
+	$(PRG_BUILD_PATH)/version_lynx.o				\
+	$(TC_BUILD_PATH)/libsltc.a
 
 LGM_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
-	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/lgm_driver.o 					\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
 	$(PRG_BUILD_PATH)/string_array.o				\
-	$(PRG_BUILD_PATH)/version_lynx.o
+	$(PRG_BUILD_PATH)/version_lynx.o				\
+	$(TC_BUILD_PATH)/libsltc.a
 
 LGRAP_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
-	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/lgrap_driver.o 				\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
 	$(PRG_BUILD_PATH)/string_array.o				\
-	$(PRG_BUILD_PATH)/version_lynx.o
+	$(PRG_BUILD_PATH)/version_lynx.o				\
+	$(TC_BUILD_PATH)/libsltc.a
 
 LIDEAL_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
-	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/lideal_driver.o 				\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
 	$(PRG_BUILD_PATH)/string_array.o				\
-	$(PRG_BUILD_PATH)/version_lynx.o
+	$(PRG_BUILD_PATH)/version_lynx.o				\
+	$(TC_BUILD_PATH)/libsltc.a
 
 LPIC_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
-	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/lpic_driver.o 				\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
 	$(PRG_BUILD_PATH)/string_array.o				\
-	$(PRG_BUILD_PATH)/version_lynx.o
+	$(PRG_BUILD_PATH)/version_lynx.o				\
+	$(TC_BUILD_PATH)/libsltc.a
 
 LREFER_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
-	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/lrefer_driver.o 				\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
 	$(PRG_BUILD_PATH)/string_array.o				\
-	$(PRG_BUILD_PATH)/version_lynx.o
+	$(PRG_BUILD_PATH)/version_lynx.o				\
+	$(TC_BUILD_PATH)/libsltc.a
 
 LROFF_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
-	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/lroff_driver.o 				\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
 	$(PRG_BUILD_PATH)/string_array.o				\
-	$(PRG_BUILD_PATH)/version_lynx.o
+	$(PRG_BUILD_PATH)/version_lynx.o				\
+	$(TC_BUILD_PATH)/libsltc.a
 
 LSOELIM_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
-	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/lsoelim_driver.o 				\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
 	$(PRG_BUILD_PATH)/string_array.o				\
-	$(PRG_BUILD_PATH)/version_lynx.o
+	$(PRG_BUILD_PATH)/version_lynx.o				\
+	$(TC_BUILD_PATH)/libsltc.a
 
 LTBL_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
-	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/ltbl_driver.o 				\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
 	$(PRG_BUILD_PATH)/string_array.o				\
-	$(PRG_BUILD_PATH)/version_lynx.o
+	$(PRG_BUILD_PATH)/version_lynx.o				\
+	$(TC_BUILD_PATH)/libsltc.a
 
 LYNX_OBJS 		= \
 	$(PRG_BUILD_PATH)/driver.o					\
 	$(PRG_BUILD_PATH)/info.o					\
-	$(PRG_BUILD_PATH)/file_functions.o				\
 	$(PRG_BUILD_PATH)/lynx_driver.o 				\
 	$(PRG_BUILD_PATH)/main.o					\
 	$(PRG_BUILD_PATH)/settings.o					\
 	$(PRG_BUILD_PATH)/string_array.o				\
-	$(PRG_BUILD_PATH)/version_lynx.o
+	$(PRG_BUILD_PATH)/version_lynx.o				\
+	$(TC_BUILD_PATH)/libsltc.a
 
 OBJS			= \
 	$(LDFORMAT_OBJS) $(LEQN_OBJS) $(LGM_OBJS) $(LGRAP_OBJS)		\

@@ -27,7 +27,12 @@
 #-------------------------------------------------------------------------------
 # Rules
 #
-$(LIB_BUILD_PATH)/version_tc.o		: src/version_tc.c $(VERSION_TC_DEPS)
+$(LIB_BUILD_PATH)/file_functions.o	: \
+		src/file_functions.c $(FILE_FUNCTIONS_DEPS)
+	$(CC) -c $(CFLAGS) src/file_functions.c -o $(.TARGET)
+
+$(LIB_BUILD_PATH)/version_tc.o		: \
+		src/version_tc.c $(VERSION_TC_DEPS)
 	$(CC) -c $(CFLAGS) src/version_tc.c -o $(.TARGET)
 
 #-------------------------------------------------------------------------------

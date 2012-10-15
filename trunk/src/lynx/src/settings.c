@@ -71,7 +71,7 @@ void settings_cleanup ()
 //
 bool settings_add_path (lynx_string_array* array, char* path)
 {
-  if (!path_exists (path))
+  if (!tc_path_exists (path))
     {
       /* TODO: Error reporting */
       return false;

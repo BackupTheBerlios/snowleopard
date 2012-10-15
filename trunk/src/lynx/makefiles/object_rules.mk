@@ -35,10 +35,6 @@ $(PRG_BUILD_PATH)/info.o		: \
 		src/info.c $(INFO_DEPS)
 	$(CC) -c $(CFLAGS) src/info.c -o $(.TARGET)
 
-$(PRG_BUILD_PATH)/file_functions.o	: \
-		src/file_functions.c $(FILE_FUNCTIONS_DEPS)
-	$(CC) -c $(CFLAGS) src/file_functions.c -o $(.TARGET)
-
 $(PRG_BUILD_PATH)/ldformat_driver.o  	: \
 		src/ldformat_driver.c $(LDFORMAT_DRIVER_DEPS)
 	$(CC) -c $(CFLAGS) src/ldformat_driver.c -o $(.TARGET)

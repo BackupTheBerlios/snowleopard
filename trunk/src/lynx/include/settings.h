@@ -27,8 +27,35 @@
 #define __LYNX_SETTINGS_H__
 
 #include <stdbool.h>
+#include <stddef.h>
 
 #include "string_array.h"
+
+//------------------------------------------------------------------------------
+// leqn_settings struct
+//
+// Specific leqn settings.
+//
+struct leqn_settings
+{
+  bool compatibility_mode;
+  char* eqnrc_path;
+  char* output_device;
+  char* font;
+
+  bool disallow_newlines;
+
+  bool single_size_reduction_only;
+  size_t min_point_size;
+  size_t size;
+  size_t point_smaller_than_normal;
+
+  char* left_delimiter;
+  char* right_delimiter;  
+};
+
+typedef struct leqn_settings leqn_settings;
+//------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // lsoelim_settings struct
@@ -73,6 +100,7 @@ struct lynx_settings
 
   union
   {
+    leqn_settings leqn;
     lsoelim_settings lsoelim;
     ltbl_settings ltbl;
   } tool_specific;
