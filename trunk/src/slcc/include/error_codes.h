@@ -73,11 +73,14 @@ enum slcc_error_code
 
     /* Compiler runtime errors */
     EC_DRIVER_INITIALIZATION_FAILED,   /* Driver initialization failed */
-    EC_INCOMPLETE_ARG,                 /* Incomplete argument supplied */
-    EC_INVALID_ARG,                    /* Invalid argument supplied */
+    EC_INCOMPLETE_ARG,                 /* Incomplete argument */
+    EC_INVALID_ARG,                    /* Invalid argument */
+    EC_INVALID_SOURCE_FILE_TYPE,       /* Invalid source file type */
     EC_NO_SOURCE_FILE,                 /* No source file provided */
     EC_PATH_NOT_FOUND,                 /* The path does not exist or is not 
 					  accessible */
+    EC_SOURCE_FILE_NOT_FOUND,          /* The source file does not exist or
+					  is not accessible*/
     EC_W_DUPLICATE_INCLUDE_PATH,       /* The include path is specified 
 					  twice */
     EC_W_MULTIPLE_OUT_FILES_SPECIFIED  /* Multiple output files specified */  

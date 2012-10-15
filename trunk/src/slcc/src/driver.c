@@ -336,7 +336,7 @@ bool drv_process_file_argument (char* file)
 {
   if (!tc_file_exists (file))
     {
-      /* <TODO: Report error and exit */
+      err_report_and_exit_1 (EC_SOURCE_FILE_NOT_FOUND, file);
       return false;
     }
 
@@ -399,7 +399,7 @@ bool drv_process_file_argument (char* file)
 	free (ext1);
       if (ext2 != NULL)
 	free (ext2);
-      /* <TODO: Report error and exit> */
+      err_report_and_exit_1 (EC_INVALID_SOURCE_FILE_TYPE, file);
       return false;
     }
 
