@@ -91,6 +91,10 @@ $(PRG_BUILD_PATH)/source_string.o		: \
 		src/source_string.c $(SOURCE_STRING_DEPS)
 	$(CC) -c $(CFLAGS) src/source_string.c -o $(.TARGET)
 
+$(PRG_BUILD_PATH)/specifiers.o		: \
+		src/specifiers.c $(SPECIFIERS_DEPS)
+	$(CC) -c $(CFLAGS) src/specifiers.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/string_array.o	: \
 		src/string_array.c $(STRING_ARRAY_DEPS)
 	$(CC) -c $(CFLAGS) src/string_array.c -o $(.TARGET)

@@ -46,6 +46,7 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/source_object.h					\
 	$(PRG_INCLUDE)/source_position.h				\
 	$(PRG_INCLUDE)/source_string.h					\
+	$(PRG_INCLUDE)/specifiers.h					\
 	$(PRG_INCLUDE)/string_array.h					\
 	$(PRG_INCLUDE)/strings.h					\
 	$(PRG_INCLUDE)/token.h						\
@@ -116,6 +117,9 @@ SOURCE_OBJECTS_H_DEPS	= \
 	$(PRG_INCLUDE)/types.h
 
 SOURCE_STRING_H_DEPS	=
+
+SPECIFIERS_H_DEPS	= \
+	$(PRG_INCLUDE)/types.h
 
 STRING_ARRAY_H_DEPS	= \
 	$(TC_INCLUDES)
@@ -220,6 +224,10 @@ SOURCE_STRING_DEPS	= \
 STRING_ARRAY_DEPS	= \
 	$(PRG_INCLUDE)/string_array.h $(STRING_ARRAY_H_DEPS)		\
 	$(TC_INCLUDES)
+
+SPECIFIERS_DEPS		= \
+	$(PRG_INCLUDE)/specifiers.h $(SPECIFIERS_H_DEPS)		\
+	$(PRG_INCLUDE)/types.h $(TYPES_H_DEPS)
 
 TOKEN_DEPS		= \
 	$(PRG_INCLUDE)/token.h $(TOKEN_H_DEPS)
