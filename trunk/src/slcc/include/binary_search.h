@@ -1,7 +1,7 @@
 /*==============================================================================
   Snow Leopard C++ Compiler Front End
   
-  Copyright (C) 2012 Roel Sergeant
+  Copyright (C) 2008, 2009, 2010, 2011, 2012 Roel Sergeant
   
   This program is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -18,27 +18,24 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// types.h
+// binary_search.h
 //------------------------------------------------------------------------------
-// Types for the compiler front end.
+// Binary search for the compiler front end.
 //------------------------------------------------------------------------------
 
-#ifndef __SL_SLCC_TYPES_H__
-#define __SL_SLCC_TYPES_H__
+#ifndef __SL_SLCC_BINARY_SEARCH_H__
+#define __SL_SLCC_BINARY_SEARCH_H__
 
 #include <stddef.h>
 
-//------------------------------------------------------------------------------
-// Key type (used for hashing and referencing symbol table nodes)
-typedef size_t symtab_key_t;
-//------------------------------------------------------------------------------
+#include "strings.h"
 
 //------------------------------------------------------------------------------
-// Global variables
-extern const size_t MaxSizeT;
-extern const symtab_key_t MaxSymtabKeyT;
+// binary_search function
+//
+size_t binary_search (char**, size_t, const slcc_string*); 
 //------------------------------------------------------------------------------
 
-#endif /* !__SL_SLCC_TYPES_H__ */
+#endif /* !__SL_SLCI_BINARY_SEARCH_H__ */
 
 //-<EOF>

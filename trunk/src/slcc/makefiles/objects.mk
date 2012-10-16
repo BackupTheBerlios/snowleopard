@@ -24,6 +24,7 @@
 #-------------------------------------------------------------------------------
 
 OBJS 		= \
+	$(PRG_BUILD_PATH)/binary_search.o				\
 	$(PRG_BUILD_PATH)/cpp_symtab.o					\
 	$(PRG_BUILD_PATH)/cpp_symtab_built_in.o				\
 	$(PRG_BUILD_PATH)/codegen.o					\

@@ -28,6 +28,7 @@
 # Variables
 #
 INCLUDES 		= \
+	$(PRG_INCLUDE)/binary_search.h					\
 	$(PRG_INCLUDE)/built_in_identifiers.h				\
 	$(PRG_INCLUDE)/built_in_types.h					\
 	$(PRG_INCLUDE)/codegen.h					\

@@ -27,6 +27,10 @@
 #-------------------------------------------------------------------------------
 # Rules
 #
+$(PRG_BUILD_PATH)/binary_search.o  	: \
+		src/binary_search.c $(BINARY_SEARCH_DEPS)
+	$(CC) -c $(CFLAGS) src/binary_search.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/cpp_symtab.o  	: \
 		src/cpp_symtab.c $(CPP_SYMTAB_DEPS)
 	$(CC) -c $(CFLAGS) src/cpp_symtab.c -o $(.TARGET)

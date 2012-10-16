@@ -27,6 +27,9 @@
 #-------------------------------------------------------------------------------
 # Header file dependencies
 #
+BINARY_SEARCH_H_DEPS		= \
+	$(PRG_INCLUDE)/strings.h
+
 BUILT_IN_IDENTIFIERS_H_DEPS	=
 
 BUILT_IN_TYPES_H_DEPS		=
@@ -145,6 +148,11 @@ VERSION_SLCC_H_DEPS		= \
 #-------------------------------------------------------------------------------
 # Source file dependencies
 #
+BINARY_SEARCH_DEPS		= \
+	$(PRG_INCLUDE)/binary_search.h $(BINARY_SEARCH_H_DEPS)		\
+	$(PRG_INCLUDE)/strings.h $(STRINGS_H_DEPS)			\
+	$(PRG_INCLUDE)/types.h $(TYPES_H_DEPS)
+
 CPP_SYMTAB_DEPS			= \
 	$(PRG_INCLUDE)/cpp_symtab.h $(CPP_SYMTAB_H_DEPS)		\
 	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
