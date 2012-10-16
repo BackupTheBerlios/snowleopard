@@ -292,7 +292,7 @@ extern const slcc_token empty_token_;
 
 //------------------------------------------------------------------------------
 // Token function prototypes
-slcc_token token_new_built_in (char*, slcc_source_position);
+slcc_token token_new_built_in (char* s, slcc_source_position pos);
 slcc_token token_new_char (char, slcc_source_position);
 slcc_token token_new_char16 (char16_t, slcc_source_position);
 slcc_token token_new_char32 (char32_t, slcc_source_position);
@@ -305,7 +305,10 @@ slcc_token token_new_float (
 			    bool,
 			    bool
 			    );
-slcc_token token_new_identifier (const slcc_string*, slcc_source_position);
+slcc_token token_new_identifier (
+				 const slcc_string* s, 
+				 slcc_source_position pos
+				 );
 slcc_token token_new_int (
 			  slcc_string*, 
 			  slcc_source_position, 
@@ -315,10 +318,16 @@ slcc_token token_new_int (
 			  bool,
 			  bool
 			  );
-slcc_token token_new_keyword (slcc_keyword, slcc_source_position);
-slcc_token token_new_preprocessor (const slcc_string*, slcc_source_position);
-slcc_token token_new_preprocessor_built_in (char*, slcc_source_position);
-slcc_token token_new_punctuation (slcc_punctuation, slcc_source_position);
+slcc_token token_new_keyword (slcc_keyword keyword, slcc_source_position pos);
+slcc_token token_new_preprocessor (
+				   const slcc_string* s, 
+				   slcc_source_position pos
+				   );
+slcc_token token_new_preprocessor_built_in (char* s, slcc_source_position pos);
+slcc_token token_new_punctuation (
+				  slcc_punctuation punctuation, 
+				  slcc_source_position pos
+				  );
 slcc_token token_new_raw_string (char*, slcc_source_position);
 slcc_token token_new_string (slcc_string*, slcc_source_position);
 slcc_token token_new_string16 (slcc_string16*, slcc_source_position);

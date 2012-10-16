@@ -123,6 +123,10 @@ $(PRG_BUILD_PATH)/token.o		: \
 		src/token.c $(TOKEN_DEPS)
 	$(CC) -c $(CFLAGS) src/token.c -o $(.TARGET)
 
+$(PRG_BUILD_PATH)/token_functions.o		: \
+		src/token_functions.c $(TOKEN_FUNCTIONS_DEPS)
+	$(CC) -c $(CFLAGS) src/token_functions.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/types.o		: \
 		src/types.c $(TYPES_DEPS)
 	$(CC) -c $(CFLAGS) src/types.c -o $(.TARGET)

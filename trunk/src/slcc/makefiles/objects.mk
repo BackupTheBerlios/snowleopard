@@ -48,6 +48,7 @@ OBJS 		= \
 	$(PRG_BUILD_PATH)/strings.o					\
 	$(PRG_BUILD_PATH)/symbol_table.o				\
 	$(PRG_BUILD_PATH)/token.o					\
+	$(PRG_BUILD_PATH)/token_functions.o				\
 	$(PRG_BUILD_PATH)/types.o 					\
 	$(PRG_BUILD_PATH)/version_slcc.o				\
 	$(TC_BUILD_PATH)/libsltc.a
