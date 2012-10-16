@@ -24,6 +24,8 @@
 #-------------------------------------------------------------------------------
 
 OBJS 		= \
+	$(PRG_BUILD_PATH)/cpp_symtab.o					\
+	$(PRG_BUILD_PATH)/cpp_symtab_built_in.o				\
 	$(PRG_BUILD_PATH)/codegen.o					\
 	$(PRG_BUILD_PATH)/definitions.o					\
 	$(PRG_BUILD_PATH)/driver.o 					\

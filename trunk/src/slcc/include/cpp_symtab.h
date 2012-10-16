@@ -1,7 +1,7 @@
 /*==============================================================================
   Snow Leopard C++ Compiler Front End
   
-  Copyright (C) 2008, 2009, 2010, 2011, 2012 Roel Sergeant
+  Copyright (C) 2009, 2010, 2011, 2012 Roel Sergeant
   
   This program is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -18,53 +18,49 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// hash_function.h
+// cpp_symtab.hpp
 //------------------------------------------------------------------------------
-// Hash function for the compiler front end.
-//------------------------------------------------------------------------------
-
-#ifndef __SL_SLCC_HASH_FUNCTION_H__
-#define __SL_SLCC_HASH_FUNCTION_H__
-
-#include <stddef.h>
-
-#include "types.h"
-
-//------------------------------------------------------------------------------
-// Maxinum number of values in hash tables
-extern const symtab_key_t MaxCppHashTableEntries;
-extern const size_t MaxCppHashCharacterValue;
-extern const symtab_key_t MaxPreHashTableEntries;
-extern const size_t MaxPreHashCharacterValue;
+// C++ symbol table for the compiler front end.
 //------------------------------------------------------------------------------
 
+#ifndef __SL_SLCC_CPP_SYMBOL_TABLE_H__
+#define __SL_SLCC_CPP_SYMBOL_TABLE_H__
+
+#include <stdbool.h>
+
+#include "symbol_table.h"
+
 //------------------------------------------------------------------------------
-// Typdef for hash functions
+// Global variables
 //
-typedef symtab_key_t (*hash_function_ptr) (char);
+extern slcc_symtab cpp_symtab;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// Hash function for C++ identifiers, used for hashing the keys for the
-// compiler front end's symbol table
+// Initializer functions
 //
-symtab_key_t hash_generate_cpp_key (const char*);
-symtab_key_t hash_generate_pre_key (const char*);
+bool cpp_symtab_new ();
+void cpp_symtab_delete ();
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// General hashing function.
+// Load built in types
 //
-symtab_key_t hash_generate_key (hash_function_ptr, const char*);
+bool load_cpp_built_in_types ();
 //------------------------------------------------------------------------------
 
-//------------------------------------------------------------------------------
-// Functions that generate the hash value of a single character.
+//------------------------------------------------------------------------------ 
+// Load built in identifiers
 //
-symtab_key_t hash_get_cpp_char_hash_value (char);
-symtab_key_t hash_get_pre_char_hash_value (char);
+bool load_cpp_built_in_identifiers ();
 //------------------------------------------------------------------------------
 
-#endif /* !__SL_SLCC_HASH_FUNCTION_H__ */
+//------------------------------------------------------------------------------
+// Load built in namespaces
+//
+bool load_cpp_built_in_namespaces ();
+//------------------------------------------------------------------------------
+
+#endif /* !__SL_SLCC_CPP_SYMBOL_TABLE_H__ */
 
 //-<EOF>

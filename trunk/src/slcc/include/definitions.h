@@ -152,7 +152,8 @@ slcc_definition* def_new_built_in_type (slcc_cpp_built_in_type type);
 slcc_definition* def_new_namespace (
 				    slcc_definition* outer_namespace,
 				    symtab_key_t key, 
-				    bool is_anonymous);
+				    bool is_anonymous
+				    );
 void def_delete (slcc_definition* definition);
 //------------------------------------------------------------------------------
 

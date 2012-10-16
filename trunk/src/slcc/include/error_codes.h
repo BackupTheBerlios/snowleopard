@@ -85,6 +85,8 @@ enum slcc_error_code
     EC_SOURCE_FILE_NOT_FOUND,          /* The source file does not exist or
 					  is not accessible*/
     EC_SYMTAB_DUPLICATE,               /* Duplicate symbol table entry */
+    EC_SYMTAB_LOAD_BUILT_IN_FAILED,    /* Load of built-ins to symbol table
+					  failed */
     EC_W_DUPLICATE_INCLUDE_PATH,       /* The include path is specified 
 					  twice */
     EC_W_MULTIPLE_OUT_FILES_SPECIFIED  /* Multiple output files specified */  

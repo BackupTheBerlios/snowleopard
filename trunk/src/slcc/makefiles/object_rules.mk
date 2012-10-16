@@ -27,6 +27,14 @@
 #-------------------------------------------------------------------------------
 # Rules
 #
+$(PRG_BUILD_PATH)/cpp_symtab.o  	: \
+		src/cpp_symtab.c $(CPP_SYMTAB_DEPS)
+	$(CC) -c $(CFLAGS) src/cpp_symtab.c -o $(.TARGET)
+
+$(PRG_BUILD_PATH)/cpp_symtab_built_in.o  	: \
+		src/cpp_symtab_built_in.c $(CPP_SYMTAB_BUILT_IN_DEPS)
+	$(CC) -c $(CFLAGS) src/cpp_symtab_built_in.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/codegen.o  		: \
 		src/codegen.c $(CODEGEN_DEPS)
 	$(CC) -c $(CFLAGS) src/codegen.c -o $(.TARGET)
