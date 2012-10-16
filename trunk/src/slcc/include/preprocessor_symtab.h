@@ -37,20 +37,20 @@ slcc_symtab preprocessor_symtab;
 //------------------------------------------------------------------------------
 // Initialization functions
 //
-bool preprocessor_symtab_new ();
-void preprocessor_symtab_delete ();
+bool pp_symtab_new ();
+void pp_symtab_delete ();
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // Get functions
 //
-symtab_key_t pre_symtab_get_macro_position (const slcc_string* token);
+symtab_key_t pp_symtab_get_macro_position (const slcc_string* token);
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // Load built in macros
 //
-bool load_preprocessor_built_in_macros ();
+bool pp_symtab_load_built_in_macros ();
 //------------------------------------------------------------------------------
 
 #endif /* !__SL_SLCC_PREPROCESSOR_SYMBOL_TABLE_H__ */
