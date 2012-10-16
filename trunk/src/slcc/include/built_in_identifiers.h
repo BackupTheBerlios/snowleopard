@@ -35,13 +35,6 @@ enum slcc_cpp_built_in_identifier
   {
     BI_CURRENT_FUNCTION,              /* Identifier for the current function 
 					 name */
-    BI_GLOBAL_NAMESPACE,              /* Identifier for the global namespace */
-    BI_SL_NAMESPACE,                  /* Identifier for the Snow Leopard 
-					 namespace */
-    BI_SL_BUILT_IN_NAMESPACE,         /* Idenfifier for the Snow Leopard
-					 built-in namespace */
-    BI_SL_BUILT_IN_FUNCTION_NAMESPACE /* Identifier for the Snow Leopard 
-					 built-in function namespace */
   };
 
 typedef enum slcc_cpp_built_in_identifier slcc_cpp_built_in_identifier;

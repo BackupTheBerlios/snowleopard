@@ -178,6 +178,7 @@ CPP_SYMTAB_BUILT_IN_DEPS	= \
 	$(PRG_INCLUDE)/built_in_types.h $(BUILT_IN_TYPES_H_DEPS)	\
 	$(PRG_INCLUDE)/cpp_symtab.h $(CPP_SYMTAB_H_DEPS)		\
 	$(PRG_INCLUDE)/source_position.h $(SOURCE_POSITION_H_DEPS)	\
+	$(PRG_INCLUDE)/strings.h $(STRINGS_H_DEPS)			\
 	$(PRG_INCLUDE)/symbol_table.h $(SYMBOL_TABLE_H_DEPS)		\
 	$(PRG_INCLUDE)/token.h $(TOKEN_H_DEPS)
 

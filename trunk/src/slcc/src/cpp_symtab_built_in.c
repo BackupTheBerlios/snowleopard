@@ -29,6 +29,7 @@
 #include "built_in_types.h"
 #include "cpp_symtab.h"
 #include "source_position.h"
+#include "strings.h"
 #include "symbol_table.h"
 #include "token.h"
 
@@ -40,10 +41,10 @@ bool cpp_symtab_new_bi_entry (
 			      slcc_cpp_built_in_identifier identifier, 
 			      char* token
 			      );
-bool cpp_symtab_new_ns_entry (
-			      slcc_cpp_built_in_identifier identifier, 
-			      char* token
-			      );
+slcc_definition* cpp_symtab_new_ns_entry (
+					  char* token,
+					  slcc_definition* namespace
+					  );
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -106,14 +107,19 @@ bool load_cpp_built_in_identifiers ()
 bool load_cpp_built_in_namespaces ()
 {
   bool ok = true;
+  slcc_definition* ns = NULL;
 
-  ok = cpp_symtab_new_ns_entry (BI_GLOBAL_NAMESPACE, "::");
-  ok = cpp_symtab_new_ns_entry (BI_SL_NAMESPACE, "sl");
-  ok = cpp_symtab_new_ns_entry (BI_SL_BUILT_IN_NAMESPACE, "sl::built_in");
-  ok = cpp_symtab_new_ns_entry (
-				BI_SL_BUILT_IN_FUNCTION_NAMESPACE, 
-				"sl::built_in::functions"
-				);
+  ns = cpp_symtab_new_ns_entry ("::", ns);
+  ok = ns == NULL ? false : true;
+
+  ns = cpp_symtab_new_ns_entry ("::sl", ns);
+  ok = ns == NULL ? false : true;
+
+  ns = cpp_symtab_new_ns_entry ("::sl::built_in", ns);
+  ok = ns == NULL ? false : true;
+
+  ns = cpp_symtab_new_ns_entry ("::sl::built_in::functions",ns);
+  ok = ns == NULL ? false : true;
 
   return ok;
 }
@@ -135,10 +141,10 @@ bool cpp_symtab_new_bt_entry (slcc_cpp_built_in_type type, char* token)
 			  token,
 			  token_new_built_in (token, NoSourcePosition),
 			  NoSourcePosition,
-			  0
+			  NULL
 			  );
 
-  if (!key)
+  if (key == MaxSymtabKeyT)
     return false;
   
   if (!symtab_set_definition (
@@ -167,12 +173,15 @@ bool cpp_symtab_new_bi_entry (
   key = symtab_set_entry (
 			  &cpp_symtab,
 			  token,
-			  token_new_built_in (token, NoSourcePosition),
+			  token_new_identifier (
+						str_new (token), 
+						NoSourcePosition
+						),
 			  NoSourcePosition,
-			  0
+			  NULL
 			  );
 
-  if (!key)
+  if (key == MaxSymtabKeyT)
     return false;
   
   if (!symtab_set_definition (
@@ -193,33 +202,39 @@ bool cpp_symtab_new_bi_entry (
 //
 // Creates a symtab entry for namespace identifiers.
 //
-bool cpp_symtab_new_ns_entry (
-			      slcc_cpp_built_in_identifier identifier, 
-			      char* token
-			      )
+slcc_definition* cpp_symtab_new_ns_entry (
+					  char* token, 
+					  slcc_definition* outer_namespace
+					  )
 {
   symtab_key_t key;
   key = symtab_set_entry (
 			  &cpp_symtab,
 			  token,
-			  token_new_built_in (token, NoSourcePosition),
+			  token_new_identifier (
+						str_new (token), 
+						NoSourcePosition
+						),
 			  NoSourcePosition,
-			  0
+			  NULL
 			  );
 
-  if (!key)
-    return false;
+  if (key == MaxSymtabKeyT)
+    return NULL;
   
-  if (!symtab_set_definition (
-			      &cpp_symtab,
-			      key,
-			      /* <TODO: replace by identifier built-in> */
-			      def_new_built_in_type (identifier)
-			      )
-      )
-    return false;
+  slcc_definition* ns = def_new_namespace (
+					   outer_namespace,
+					   key, 
+					   false
+					   );
 
-  return true;
+  if (ns == NULL)
+    return NULL;
+
+  if (!symtab_set_definition (&cpp_symtab, key, ns))
+    return NULL;
+
+  return ns;
 }
 //------------------------------------------------------------------------------
 
