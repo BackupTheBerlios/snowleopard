@@ -26,6 +26,7 @@
 
 OBJS 		= \
 	$(LIB_BUILD_PATH)/char_functions.o				\
+	$(LIB_BUILD_PATH)/date_functions.o				\
 	$(LIB_BUILD_PATH)/file_functions.o				\
 	$(LIB_BUILD_PATH)/integer_functions.o				\
 	$(LIB_BUILD_PATH)/string_functions.o				\

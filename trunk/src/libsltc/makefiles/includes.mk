@@ -32,6 +32,7 @@ TC_INCLUDES 	= \
 	$(TC_INCLUDE)/array.h						\
 	$(TC_INCLUDE)/char_functions.h					\
 	$(TC_INCLUDE)/config_tc.h 					\
+	$(TC_INCLUDE)/date_functions.h					\
 	$(TC_INCLUDE)/file_functions.h					\
 	$(TC_INCLUDE)/integer_functions.h				\
 	$(TC_INCLUDE)/linked_list.c.h					\
@@ -54,6 +55,8 @@ CHAR_FUNCTIONS_H_DEPS   	=
 
 CONFIG_TC_H_DEPS		= \
 	$(CONFIG_C_INCLUDES)
+
+DATE_FUNCTIONS_H_DEPS		=
 
 FILE_FUNCTIONS_H_DEPS		= 
 
@@ -83,6 +86,9 @@ VERSION_TC_H_DEPS		= \
 #
 CHAR_FUNCTIONS_DEPS		= \
 	$(TC_INCLUDE)/char_functions.h $(CHAR_FUNCTIONS_H_DEPS)
+
+DATE_FUNCTIONS_DEPS		= \
+	$(TC_INCLUDE)/date_functions.h $(DATE_FUNCTIONS_H_DEPS)
 
 FILE_FUNCTIONS_DEPS		= \
 	$(TC_INCLUDE)/file_functions.h $(FILE_FUNCTIONS_H_DEPS)
