@@ -21,6 +21,7 @@
 // error_handling.c
 //------------------------------------------------------------------------------
 // Error handling for the compiler front end.
+// <TODO: Add error severity to output>
 //------------------------------------------------------------------------------
 
 #include <stdbool.h>
@@ -31,6 +32,7 @@
 #include "error_array.h"
 #include "error_codes.h"
 #include "error_handling.h"
+#include "source_position.h"
 
 #include "string_functions.h"
 
@@ -38,6 +40,7 @@
 // Private functions
 slcc_error* err_store (
 		       slcc_error_code code, 
+		       slcc_source_position pos, 
 		       char* arg1, 
 		       char* arg2, 
 		       char* arg3
@@ -59,7 +62,7 @@ bool err_initialize ()
   if ((error_list_ = tc_array_new_ea ()) == NULL)
     return false;
 
-  err_store (EC_NO_ERROR, NULL, NULL, NULL);
+  err_store (EC_NO_ERROR, NoSourcePosition, NULL, NULL, NULL);
 
   return true;
 }
@@ -95,8 +98,9 @@ slcc_error* err_report (
   if (error_description_list_[code].type != ET_WARNING 
       && error_description_list_[code].type != ET_INTERNAL
       && error_description_list_[code].type != ET_FATAL
+      && error_description_list_[code].type != ET_UNIMPLEMENTED
       && store == false)
-    error = err_store (code, arg1, arg2, arg3);
+    error = err_store (code, NoSourcePosition, arg1, arg2, arg3);
 
   if (arg1 == NULL)
     fprintf (stderr, error_description_list_[code].desc);
@@ -160,6 +164,40 @@ slcc_error* err_get_first_error_of_type (slcc_error_type type)
 }
 //------------------------------------------------------------------------------
 
+//------------------------------------------------------------------------------
+// src_err_report function
+//
+// Reports a source code error and includes a source position.
+//
+slcc_error* src_err_report (
+			    slcc_error_code code,
+			    slcc_source_position pos,
+			    char* arg1,
+			    char* arg2,
+			    char* arg3
+			    )
+{
+  slcc_error* error = NULL;
+
+  if (error_description_list_[code].type != ET_WARNING 
+      && error_description_list_[code].type != ET_INTERNAL
+      && error_description_list_[code].type != ET_FATAL)
+    error = err_store (code, pos, arg1, arg2, arg3);
+
+  /* <TODO: Report position + relevant source code> */
+  if (arg1 == NULL)
+    fprintf (stderr, error_description_list_[code].desc);
+  else if (arg2 == NULL)
+    fprintf (stderr, error_description_list_[code].desc, arg1);
+  else if (arg3 == NULL)
+    fprintf (stderr, error_description_list_[code].desc, arg1, arg2);
+  else
+    fprintf (stderr, error_description_list_[code].desc, arg1, arg2, arg3);
+
+  return error;  
+}
+//------------------------------------------------------------------------------
+
 //==============================================================================
 // Private functions
 
@@ -170,6 +208,7 @@ slcc_error* err_get_first_error_of_type (slcc_error_type type)
 //
 slcc_error* err_store (
 		       slcc_error_code code,
+		       slcc_source_position pos,
 		       char* arg1,
 		       char* arg2,
 		       char* arg3
@@ -177,7 +216,14 @@ slcc_error* err_store (
 {
   slcc_error* error = malloc (sizeof (slcc_error));
 
+  if (error == NULL)
+    {
+      err_report_and_exit_0 (EC_ERROR_HANDLING_ERROR);
+      return NULL;
+    };
+
   error->code = code;
+  error->pos = pos;
   error->arg1 = arg1 == NULL ? NULL : tc_copy_string (arg1);
   error->arg2 = arg2 == NULL ? NULL : tc_copy_string (arg2);
   error->arg3 = arg3 == NULL ? NULL : tc_copy_string (arg3);

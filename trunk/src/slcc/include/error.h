@@ -27,6 +27,7 @@
 #define __SL_SLCC_ERROR_H__
 
 #include "error_codes.h"
+#include "source_position.h"
 
 //------------------------------------------------------------------------------
 // slcc_error structure
@@ -37,6 +38,7 @@
 struct slcc_error
 {
   slcc_error_code code;
+  slcc_source_position pos;
   char* arg1;
   char* arg2;
   char* arg3;

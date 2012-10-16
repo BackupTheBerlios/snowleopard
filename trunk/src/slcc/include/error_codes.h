@@ -75,6 +75,7 @@ enum slcc_error_code
     EC_CODEGEN_INITIALIZATION_FAILED,  /* Code generator initialization 
 					  failed */
     EC_DRIVER_INITIALIZATION_FAILED,   /* Driver initialization failed */
+    EC_ERROR_HANDLING_ERROR,           /* Error handling error */
     EC_PARSER_INITIALIZATION_FAILED,   /* Parser initialization failed */
     EC_INCOMPLETE_ARG,                 /* Incomplete argument */
     EC_INVALID_ARG,                    /* Invalid argument */
@@ -92,9 +93,16 @@ enum slcc_error_code
     EC_W_MULTIPLE_OUT_FILES_SPECIFIED, /* Multiple output files specified */  
 
     /* Preprocessor errors */
-    EC_PP_INVALID_DIRECTIVE             /* Invalid preprocessor directive */
+    EC_PP_INVALID_DIRECTIVE,             /* Invalid preprocessor directive */
 
     /* Compile errors */
+    EC_C_INVALID_CHAR_IN_CHAR_LITERAL,   /* Invalid char in char literal */
+    EC_C_INVALID_HEX_CHAR_LITERAL,       /* Invalid hexadecimal character
+					    literal */
+    EC_C_INVALID_OCTAL_CHAR_LITERAL,     /* Invalid octal character literal */
+    EC_U_CHAR16_T_HANDLING,              /* Unimplemneted char16_t handling */
+    EC_U_CHAR32_T_HANDLING,              /* Unimplemented char32_t handling */
+    EC_U_WCHAR_T_HANDLING                /* Unimplemented wchar_t handling */
 
     /* Code generation errors */
     

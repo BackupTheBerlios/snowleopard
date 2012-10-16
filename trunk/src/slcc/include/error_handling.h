@@ -31,6 +31,7 @@
 #include "error.h"
 #include "error_array.h"
 #include "error_codes.h"
+#include "source_position.h"
 
 //------------------------------------------------------------------------------
 // error_list array
@@ -41,7 +42,7 @@ extern slcc_error_array* error_list_;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// err_# macros
+// err_report_# macros
 //
 // Report error with # arguments and store it if it is not a warning.
 //
@@ -71,6 +72,21 @@ extern slcc_error_array* error_list_;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
+// src_err_report_# macros
+// 
+// Report source code errors with # arguments.
+//
+#define src_err_report_0(code,pos)		        \
+  src_err_report (code, pos, NULL, NULL, NULL)
+#define src_err_report_1(code,pos,arg1)                 \
+  src_err_report (code, pos, arg1, NULL, NULL)
+#define src_err_report_2(code,pos,arg1,arg2)		\
+  src_err_report (code, pos, arg1, arg2, NULL)
+#define src_err_report_3(code,pos,arg1,arg2,arg3)       \
+  src_err_report (code, pos, arg1, arg2, arg3)
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 // Error handling functions.
 //
 bool err_initialize ();
@@ -88,6 +104,13 @@ void err_report_and_exit (
 			  char* arg2,
 			  char* arg3
 			  );
+slcc_error* src_err_report (
+			    slcc_error_code code,
+			    slcc_source_position pos,
+			    char* arg1,
+			    char* arg2,
+			    char* arg3
+			    );
 slcc_error_code err_get_code_of_first_fatal_error ();
 slcc_error* err_get_first_error_of_type (slcc_error_type type);
 //------------------------------------------------------------------------------

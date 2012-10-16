@@ -51,7 +51,8 @@ DRIVER_H_DEPS			= \
 	$(PRG_INCLUDE)/error_codes.h
 
 ERROR_H_DEPS			= \
-	$(PRG_INCLUDE)/error_codes.h
+	$(PRG_INCLUDE)/error_codes.h					\
+	$(PRG_INCLUDE)/source_position.h				
 
 ERROR_ARRAY_H_DEPS		= \
 	$(PRG_INCLUDE)/error.h						\
@@ -64,7 +65,8 @@ ERROR_CODES_H_DEPS		= \
 ERROR_HANDLING_H_DEPS		= \
 	$(PRG_INCLUDE)/error.h						\
 	$(PRG_INCLUDE)/error_array.h					\
-	$(PRG_INCLUDE)/error_codes.h
+	$(PRG_INCLUDE)/error_codes.h					\
+	$(PRG_INCLUDE)/source_position.h
 
 HASH_FUNCTION_H_DEPS		= \
 	$(PRG_INCLUDE)/types.h
@@ -199,6 +201,7 @@ ERROR_HANDLING_DEPS		= \
 	$(PRG_INCLUDE)/error_array.h $(ERROR_ARRAY_H_DEPS)		\
 	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
 	$(PRG_INCLUDE)/error_handling.h $(ERROR_HANDLING_H_DEPS)	\
+	$(PRG_INCLUDE)/source_position.h $(SOURCE_POSITION_H_DEPS)	\
 	$(TC_INCLUDES)
 
 HASH_FUNCTION_DEPS		= \
@@ -209,6 +212,32 @@ INFO_DEPS			= \
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)				\
 	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)			\
 	$(PRG_INCLUDE)/version_slcc.h $(VERSION_SLCC_H_DEPS)
+
+LEXER_DEPS			= \
+	$(PRG_INCLUDE)/binary_search.h $(BINARY_SEARCH_H_DEPS)		\
+	$(PRG_INCLUDE)/config_slcc.h $(CONFIG_SLCC_H_DEPS)		\
+	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
+	$(PRG_INCLUDE)/error_handling.h $(ERROR_HANDLING_H_DEPS)	\
+	$(PRG_INCLUDE)/lexer.h $(LEXER_H_DEPS)				\
+	$(PRG_INCLUDE)/lexer_functions.h $(LEXER_FUNCTIONS_H_DEPS)	\
+	$(PRG_INCLUDE)/literal.h $(LITERAL_H_DEPS)			\
+	$(PRG_INCLUDE)/preprocessor.h $(PREPROCESSOR_H_DEPS)		\
+	$(PRG_INCLUDE)/preprocessor_symtab.h 				\
+		$(PREPROCESSOR_SYMTAB_H_DEPS)				\
+	$(PRG_INCLUDE)/reader.h $(READER_H_DEPS)			\
+	$(PRG_INCLUDE)/source_position.h $(SOURCE_POSITION_H_DEPS)	\
+	$(PRG_INCLUDE)/strings.h $(STRINGS_H_DEPS)			\
+	$(PRG_INCLUDE)/token.h $(TOKEN_H_DEPS)				\
+	$(CONFIG_C_INCLUDES)						\
+	$(TC_INCLUDES)
+
+LEXER_FUNCTIONS_DEPS		= \
+	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
+	$(PRG_INCLUDE)/error_handling.h $(ERROR_HANDLING_H_DEPS)	\
+	$(PRG_INCLUDE)/lexer_functions.h $(LEXER_FUNCTIONS_H_DEPS)	\
+	$(PRG_INCLUDE)/reader.h $(READER_H_DEPS)			\
+	$(PRG_INCLUDE)/strings.h $(STRINGS_H_DEPS)			\
+	$(TC_INCLUDES)
 
 LITERAL_DEPS			= \
 	$(PRG_INCLUDE)/literal.h $(LITERAL_H_DEPS)

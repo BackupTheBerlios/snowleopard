@@ -71,6 +71,14 @@ $(PRG_BUILD_PATH)/info.o		: \
 		src/info.c $(INFO_DEPS)
 	$(CC) -c $(CFLAGS) src/info.c -o $(.TARGET)
 
+$(PRG_BUILD_PATH)/lexer.o		: \
+		src/lexer.c $(LEXER_DEPS)
+	$(CC) -c $(CFLAGS) src/lexer.c -o $(.TARGET)
+
+$(PRG_BUILD_PATH)/lexer_functions.o	: \
+		src/lexer_functions.c $(LEXER_FUNCTIONS_DEPS)
+	$(CC) -c $(CFLAGS) src/lexer_functions.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/literal.o		: \
 		src/literal.c $(LITERAL_DEPS)
 	$(CC) -c $(CFLAGS) src/literal.c -o $(.TARGET)

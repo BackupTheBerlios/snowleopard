@@ -35,6 +35,8 @@ OBJS 		= \
 	$(PRG_BUILD_PATH)/error_handling.o				\
 	$(PRG_BUILD_PATH)/hash_function.o				\
 	$(PRG_BUILD_PATH)/info.o					\
+	$(PRG_BUILD_PATH)/lexer.o					\
+	$(PRG_BUILD_PATH)/lexer_functions.o				\
 	$(PRG_BUILD_PATH)/literal.o					\
 	$(PRG_BUILD_PATH)/main.o 					\
 	$(PRG_BUILD_PATH)/parse_tree.o					\
