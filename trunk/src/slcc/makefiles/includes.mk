@@ -28,6 +28,7 @@
 # Variables
 #
 INCLUDES 		= \
+	$(PRG_INCLUDE)/built_in_types.h					\
 	$(PRG_INCLUDE)/codegen.h					\
 	$(PRG_INCLUDE)/config_slcc.h 					\
 	$(PRG_INCLUDE)/driver.h 					\
@@ -56,6 +57,8 @@ INCLUDES 		= \
 #-------------------------------------------------------------------------------
 # Header file dependencies
 #
+BUILT_IN_TYPES_H_DEPS	=
+
 CODEGEN_H_DEPS		= 
 
 CONFIG_SLCC_H_DEPS	= \
