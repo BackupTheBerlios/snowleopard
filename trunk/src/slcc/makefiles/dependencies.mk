@@ -78,6 +78,9 @@ PARSE_TREE_H_DEPS		= \
 
 PARSER_H_DEPS			=
 
+PREPROCESSOR_SYMTAB_H_DEPS	= \
+	$(PRG_INCLUDE)/symbol_table.h
+
 READER_H_DEPS			= \
 	$(PRG_INCLUDE)/source_file.h					\
 	$(PRG_INCLUDE)/source_position.h				\
@@ -204,6 +207,24 @@ PARSE_TREE_DEPS			= \
 PARSER_DEPS			= \
 	$(PRG_INCLUDE)/parse_tree.h $(PARSE_TREE_H_DEPS)		\
 	$(PRG_INCLUDE)/parser.h $(PARSER_H_DEPS)
+
+PREPROCESSOR_SYMTAB_DEPS	= \
+	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
+	$(PRG_INCLUDE)/error_handling.h $(ERROR_HANDLING_H_DEPS)	\
+	$(PRG_INCLUDE)/preprocessor_symtab.h 				\
+		$(PREPROCESSOR_SYMTAB_H_DEPS)				\
+	$(PRG_INCLUDE)/symbol_table.h $(SYMBOL_TABLE_H_DEPS)
+
+PREPROCESSOR_SYMTAB_BUILT_IN_DEPS	=\
+	$(PRG_INCLUDE)/config_slcc.h $(CONFIG_SLCC_H_DEPS)		\
+	$(PRG_INCLUDE)/preprocessor_symtab.h 				\
+		$(PREPROCESSOR_SYMTAB_H_DEPS)				\
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)			\
+	$(PRG_INCLUDE)/source_position.h $(SOURCE_POSITION_H_DEPS)	\
+	$(PRG_INCLUDE)/symbol_table.h $(SYMBOL_TABLE_H_DEPS)		\
+	$(PRG_INCLUDE)/version_slcc.h $(VERSION_SLCC_H_DEPS)		\
+	$(CONFIG_C_INCLUDES)						\
+	$(TC_INCLUDES)
 
 READER_DEPS			= \
 	$(PRG_INCLUDE)/reader.h $(READER_H_DEPS)			\

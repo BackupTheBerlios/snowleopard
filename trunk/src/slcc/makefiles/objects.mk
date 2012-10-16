@@ -38,6 +38,8 @@ OBJS 		= \
 	$(PRG_BUILD_PATH)/main.o 					\
 	$(PRG_BUILD_PATH)/parse_tree.o					\
 	$(PRG_BUILD_PATH)/parser.o					\
+	$(PRG_BUILD_PATH)/preprocessor_symtab.o				\
+	$(PRG_BUILD_PATH)/preprocessor_symtab_built_in.o		\
 	$(PRG_BUILD_PATH)/reader.o					\
 	$(PRG_BUILD_PATH)/settings.o 					\
 	$(PRG_BUILD_PATH)/source_file.o					\

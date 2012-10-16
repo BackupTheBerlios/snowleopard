@@ -50,11 +50,13 @@ slcc_settings settings_ = {
   SFT_NONE, /* source_file_type */
   L_NONE,   /* language */
   LS_NONE,  /* standard */
+  false,    /* use_deprecated */
   true,     /* use_stdlib */
   NULL,     /* include_paths */
   NULL,     /* library_paths */
   NULL,     /* source_paths */
-  false     /* use_export */
+  false,    /* use_export */
+  false     /* use_concepts */
 };
 //------------------------------------------------------------------------------
 

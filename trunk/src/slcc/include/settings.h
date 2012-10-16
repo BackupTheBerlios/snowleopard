@@ -121,6 +121,7 @@ struct slcc_settings
   /* language options */
   slcc_language language;
   slcc_language_standard standard;
+  bool use_deprecated;
 
   /* general C/C++ options */
   bool use_stdlib;
@@ -130,6 +131,7 @@ struct slcc_settings
 
   /* C++ options */
   bool use_export;
+  bool use_concepts;
 };
 
 typedef struct slcc_settings slcc_settings;

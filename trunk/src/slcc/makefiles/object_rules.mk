@@ -83,6 +83,15 @@ $(PRG_BUILD_PATH)/parser.o  		: \
 		src/parser.c $(PARSER_DEPS)
 	$(CC) -c $(CFLAGS) src/parser.c -o $(.TARGET)
 
+$(PRG_BUILD_PATH)/preprocessor_symtab.o  : \
+		src/preprocessor_symtab.c $(PREPROCESSOR_SYMTAB_DEPS)
+	$(CC) -c $(CFLAGS) src/preprocessor_symtab.c -o $(.TARGET)
+
+$(PRG_BUILD_PATH)/preprocessor_symtab_built_in.o : \
+		src/preprocessor_symtab_built_in.c 			\
+			$(PREPROCESSOR_SYMTAB_BUILT_IN_DEPS)
+	$(CC) -c $(CFLAGS) src/preprocessor_symtab_built_in.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/reader.o  		: \
 		src/reader.c $(READER_DEPS)
 	$(CC) -c $(CFLAGS) src/reader.c -o $(.TARGET)
