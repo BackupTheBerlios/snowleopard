@@ -83,6 +83,10 @@ $(PRG_BUILD_PATH)/parser.o  		: \
 		src/parser.c $(PARSER_DEPS)
 	$(CC) -c $(CFLAGS) src/parser.c -o $(.TARGET)
 
+$(PRG_BUILD_PATH)/preprocessor.o  		: \
+		src/preprocessor.c $(PREPROCESSOR_DEPS)
+	$(CC) -c $(CFLAGS) -Wno-unused-parameter src/preprocessor.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/preprocessor_symtab.o  : \
 		src/preprocessor_symtab.c $(PREPROCESSOR_SYMTAB_DEPS)
 	$(CC) -c $(CFLAGS) src/preprocessor_symtab.c -o $(.TARGET)

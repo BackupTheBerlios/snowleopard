@@ -62,10 +62,10 @@ slcc_error_description error_description_list_[] = {
   {"Duplicate symbol table entry: \"%s\" != \"%s\"", 2, ET_INTERNAL},
   {"Load of symbol table built-ins failed", 0, ET_INTERNAL},
   {"The include path %s is used twice, this one is ignored", 1, ET_WARNING},
-  {"Multiple output files: %s is used, %s is ignored", 2, ET_WARNING}
+  {"Multiple output files: %s is used, %s is ignored", 2, ET_WARNING},
 
   /* Preprocessor errors */
-  
+  {"Invalid preprocessor directive in \"%s\"", 1, ET_PREPROCESS}
   /* Compile errors */
   
   /* Code generation errors */

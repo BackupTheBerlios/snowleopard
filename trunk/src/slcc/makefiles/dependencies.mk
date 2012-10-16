@@ -220,6 +220,17 @@ PARSER_DEPS			= \
 	$(PRG_INCLUDE)/parse_tree.h $(PARSE_TREE_H_DEPS)		\
 	$(PRG_INCLUDE)/parser.h $(PARSER_H_DEPS)
 
+PREPROCESSOR_DEPS		= \
+	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
+	$(PRG_INCLUDE)/error_handling.h $(ERROR_HANDLING_H_DEPS)	\
+	$(PRG_INCLUDE)/lexer.h $(LEXER_H_DEPS)				\
+	$(PRG_INCLUDE)/preprocessor_symtab.h				\
+		 $(PREPROCESSOR_SYMTAB_H_DEPS)				\
+	$(PRG_INCLUDE)/preprocessor.h $(PREPROCESS_H_DEPS)		\
+	$(PRG_INCLUDE)/reader.h $(READER_H_DEPS)			\
+	$(PRG_INCLUDE)/strings.h $(STRINGS_H_DEPS)			\
+	$(TC_INCLUDES)
+
 PREPROCESSOR_SYMTAB_DEPS	= \
 	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
 	$(PRG_INCLUDE)/error_handling.h $(ERROR_HANDLING_H_DEPS)	\

@@ -89,10 +89,11 @@ enum slcc_error_code
 					  failed */
     EC_W_DUPLICATE_INCLUDE_PATH,       /* The include path is specified 
 					  twice */
-    EC_W_MULTIPLE_OUT_FILES_SPECIFIED  /* Multiple output files specified */  
+    EC_W_MULTIPLE_OUT_FILES_SPECIFIED, /* Multiple output files specified */  
 
     /* Preprocessor errors */
-    
+    EC_PP_INVALID_DIRECTIVE             /* Invalid preprocessor directive */
+
     /* Compile errors */
 
     /* Code generation errors */

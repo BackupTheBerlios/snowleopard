@@ -39,11 +39,11 @@ void pp_cleanup ();
 //------------------------------------------------------------------------------
 // Preprocessor functions
 bool pp_is_skipping_code ();
-bool pp_is_function (const slcc_string*);
-bool pp_is_symbol (const slcc_string*);
-bool pp_process_directive (const slcc_string*);
-void pp_process_function (const slcc_string*);
-void pp_process_string (const slcc_string*);
+bool pp_is_function (const slcc_string* identifier);
+bool pp_is_symbol (const slcc_string* identifier);
+bool pp_process_directive (const slcc_string* s);
+void pp_process_function (const slcc_string* s);
+void pp_process_string (const slcc_string* s);
 //------------------------------------------------------------------------------
 
 #endif /* !__SL_SLCC_PREPROCESSOR_H__ */
