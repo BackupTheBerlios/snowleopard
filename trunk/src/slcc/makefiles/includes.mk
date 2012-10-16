@@ -41,8 +41,11 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/error_handling.h					\
 	$(PRG_INCLUDE)/hash_function.h					\
 	$(PRG_INCLUDE)/info.h						\
+	$(PRG_INCLUDE)/lexer.h						\
+	$(PRG_INCLUDE)/lexer_functions.h				\
 	$(PRG_INCLUDE)/parse_tree.h					\
 	$(PRG_INCLUDE)/parser.h						\
+	$(PRG_INCLUDE)/preprocessor.h					\
 	$(PRG_INCLUDE)/preprocessor_symtab.h				\
 	$(PRG_INCLUDE)/reader.h						\
 	$(PRG_INCLUDE)/settings.h 					\

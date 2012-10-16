@@ -68,6 +68,15 @@ HASH_FUNCTION_H_DEPS		= \
 
 INFO_H_DEPS			=
 
+LEXER_H_DEPS			= \
+	$(PRG_INCLUDE)/source_position.h				\
+	$(PRG_INCLUDE)/token.h
+
+LEXER_FUNCTIONS_H_DEPS		= \
+	$(PRG_INCLUDE)/config_slcc.h					\
+	$(PRG_INCLUDE)/strings.h					\
+	$(CONFIG_C_INCLUDES)
+
 LITERAL_H_DEPS			= \
 	$(PRG_INCLUDE)/config_slcc.h					\
 	$(CONFIG_C_INCLUDES)
@@ -77,6 +86,9 @@ PARSE_TREE_H_DEPS		= \
 	$(TC_INCLUDES)
 
 PARSER_H_DEPS			=
+
+PREPROCESSOR_H_DEPS		= \
+	$(PRG_INCLUDE)/preprocessor.h
 
 PREPROCESSOR_SYMTAB_H_DEPS	= \
 	$(PRG_INCLUDE)/symbol_table.h
