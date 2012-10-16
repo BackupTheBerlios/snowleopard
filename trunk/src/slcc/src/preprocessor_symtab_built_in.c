@@ -41,15 +41,15 @@
 
 //------------------------------------------------------------------------------
 // Private functions
-bool preprocessor_symtab_new_bi_entry (char*, char*);
+bool pp_symtab_new_bi_entry (char*, char*);
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// load_preprocessor_built_in_macros function
+// pp_symtab_load_built_in_macros function
 //
 // Loads the built in macros into the symbol table.
 //
-bool load_preprocessor_built_in_macros () 
+bool pp_symtab_load_built_in_macros () 
 {
   bool ok = true;
   char* buffer;
@@ -57,28 +57,28 @@ bool load_preprocessor_built_in_macros ()
   /* Snow Leopard macros */
   buffer = malloc (sizeof (char[MaxVersionLabelSize]));
   buffer = get_version_string (buffer);
-  ok = preprocessor_symtab_new_bi_entry ("__SLCC__", buffer);
+  ok = pp_symtab_new_bi_entry ("__SLCC__", buffer);
 
   /* Standard compiler macros */
-  ok = preprocessor_symtab_new_bi_entry 
+  ok = pp_symtab_new_bi_entry 
     (
      "__DATE__", 
      tc_get_datetime (11, "%Y-%m-%d")
      );
-  ok = preprocessor_symtab_new_bi_entry 
+  ok = pp_symtab_new_bi_entry 
     (
      "__FILE__", 
      tc_copy_string (settings_.source_file)
      );
-  ok = preprocessor_symtab_new_bi_entry ("__LINE__", "0");
-  ok = preprocessor_symtab_new_bi_entry 
+  ok = pp_symtab_new_bi_entry ("__LINE__", "0");
+  ok = pp_symtab_new_bi_entry 
     (
      "__TIME__", 
      tc_get_datetime (9, "%H:%M:%S")
      );
 
   if (!settings_.use_deprecated)
-    ok = preprocessor_symtab_new_bi_entry 
+    ok = pp_symtab_new_bi_entry 
       (
        "__SL_NO_DEPRECATED_FEATURES__", 
        ""
@@ -87,43 +87,43 @@ bool load_preprocessor_built_in_macros ()
   if (settings_.language == L_C) 
     {
       /* Standard C macros */
-      ok = preprocessor_symtab_new_bi_entry ("__STDC__", sl_str(__SL_STDC__));
-      ok = preprocessor_symtab_new_bi_entry 
+      ok = pp_symtab_new_bi_entry ("__STDC__", sl_str(__SL_STDC__));
+      ok = pp_symtab_new_bi_entry 
 	(
 	 "__STDC_HOSTED__",
 	 sl_str(__SL_STDC_HOSTED__)
 	 );
-      ok = preprocessor_symtab_new_bi_entry 
+      ok = pp_symtab_new_bi_entry 
 	(
 	 "__STDC_ISO_10646__",
 	 sl_str(__SL_STDC_ISO_10646__)
 	 );
-      ok = preprocessor_symtab_new_bi_entry 
+      ok = pp_symtab_new_bi_entry 
 	(
 	 "__STDC_MB_MIGHT_NEQ_WC__",
 	 sl_str(__SL_STDC_MB_MIGHT_NEQ_WC__)
 	 );
-      ok = preprocessor_symtab_new_bi_entry 
+      ok = pp_symtab_new_bi_entry 
 	(
 	 "__STDC_UTF_16__", 
 	 sl_str(__SL_STDC_UTF_16__)
 	 );
-      ok = preprocessor_symtab_new_bi_entry 
+      ok = pp_symtab_new_bi_entry 
 	(
 	 "__STDC_UTF_32__", 
 	 sl_str(__SL_STDC_UTF_32__)
 	 );
-      ok = preprocessor_symtab_new_bi_entry 
+      ok = pp_symtab_new_bi_entry 
 	(
 	 "__STDC_IEC_559__",
 	 sl_str(__SL_STDC_IEC_559__)
 	 );
-      ok = preprocessor_symtab_new_bi_entry 
+      ok = pp_symtab_new_bi_entry 
 	(
 	 "__STDC_IEC_559_COMPLEX__",
 	 sl_str(__SL_STDC_IEC_559_COMPLEX__)
 	 );
-      ok = preprocessor_symtab_new_bi_entry 
+      ok = pp_symtab_new_bi_entry 
 	(
 	 "__STDC_NO_VLA__", 
 	 sl_str(__SL_STDC_NO_VLA__)
@@ -132,7 +132,7 @@ bool load_preprocessor_built_in_macros ()
       if (settings_.standard == LS_C99) 
 	{
 	  /* Standard C99 macros */
-	  ok = preprocessor_symtab_new_bi_entry 
+	  ok = pp_symtab_new_bi_entry 
 	    (
 	     "__STDC_VERSION__",
 	     sl_str(__SL_C99_STDC_VERSION__)
@@ -141,27 +141,27 @@ bool load_preprocessor_built_in_macros ()
       else if (settings_.standard == LS_C11) 
 	{
 	  /* Standard C11 macros */
-	  ok = preprocessor_symtab_new_bi_entry 
+	  ok = pp_symtab_new_bi_entry 
 	    (
 	     "__STDC_VERSION__",
 	     sl_str(__SL_C11_STDC_VERSION__)
 	     );
-	  ok = preprocessor_symtab_new_bi_entry 
+	  ok = pp_symtab_new_bi_entry 
 	    (
 	     "__STDC_ANALYZABLE__",
 	     sl_str(__SL_C11_STDC_ANALYZABLE__)
 	     );
-	  ok = preprocessor_symtab_new_bi_entry 
+	  ok = pp_symtab_new_bi_entry 
 	    (
 	     "__STDC_LIB_EXT1__",
 	     sl_str(__SL_C11_STDC_LIB_EXT1__)
 	     );
-	  ok = preprocessor_symtab_new_bi_entry 
+	  ok = pp_symtab_new_bi_entry 
 	    (
 	     "__STDC_NO_ATOMICS__",
 	     sl_str(__SL_C11_STDC_NO_ATOMICS__)
 	     );
-	  ok = preprocessor_symtab_new_bi_entry 
+	  ok = pp_symtab_new_bi_entry 
 	    (
 	     "__STDC_NO_THREADS__",
 	     sl_str(__SL_C11_STDC_NO_THREADS__)
@@ -172,26 +172,26 @@ bool load_preprocessor_built_in_macros ()
     {
       /* Standard C++ macros */
       if (settings_.standard == LS_CXX98)
-	ok = preprocessor_symtab_new_bi_entry 
+	ok = pp_symtab_new_bi_entry 
 	  (
 	   "__cplusplus",
 	   sl_str(__SL_CPP03_cplusplus__)
 	   );
       else if (settings_.standard == LS_CXX11)
-	ok = preprocessor_symtab_new_bi_entry 
+	ok = pp_symtab_new_bi_entry 
 	  (
 	   "__cplusplus",
 	   sl_str(__SL_CPP11_cplusplus__)
 	   );
 
       if (settings_.use_export)
-	ok = preprocessor_symtab_new_bi_entry 
+	ok = pp_symtab_new_bi_entry 
 	  (
 	   "__SL_COMPILER_USE_EXPORT__", 
 	   ""
 	   );
       if (settings_.use_concepts)
-	ok = preprocessor_symtab_new_bi_entry 
+	ok = pp_symtab_new_bi_entry 
 	  (
 	   "__SL_COMPILER_USE_CONCEPTS__", 
 	   ""
@@ -203,11 +203,11 @@ bool load_preprocessor_built_in_macros ()
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// preprocessor_symtab_new_bi_entry function
+// pp_symtab_new_bi_entry function
 //
 // Create a built-in type symbol table entry.
 //
-bool preprocessor_symtab_new_bi_entry (char* token, char* value) 
+bool pp_symtab_new_bi_entry (char* token, char* value) 
 {
   if (!symtab_set_entry (
 			 &preprocessor_symtab,

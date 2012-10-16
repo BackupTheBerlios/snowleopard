@@ -34,25 +34,25 @@
 //------------------------------------------------------------------------------
 // Global variables
 //
-slcc_symtab preprocessor_symtab;
+slcc_symtab pp_symtab;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// preprocessor_symtab_new function
+// pp_symtab_new function
 //
 // Initializes the preprocessor symbol table.
 //
-bool preprocessor_symtab_new () 
+bool pp_symtab_new () 
 {
-  preprocessor_symtab = symtab_new (
+  pp_symtab = symtab_new (
 				    &hash_get_pre_char_hash_value,
 				    MaxPreHashTableEntries
 				    );
 
-  if (preprocessor_symtab.size == 0)
+  if (pp_symtab.size == 0)
     return false;
 
-  if (!load_preprocessor_built_in_macros ()) 
+  if (!pp_symtab_load_built_in_macros ()) 
     {
       err_report_and_exit_0 (EC_SYMTAB_LOAD_BUILT_IN_FAILED);
       return false;
@@ -63,13 +63,13 @@ bool preprocessor_symtab_new ()
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// preprocessor_symtab_delete function
+// pp_symtab_delete function
 //
 // Destroys the preprocessor symbol table.
 //
-void preprocessor_symtab_delete () 
+void pp_symtab_delete () 
 {
-  symtab_delete (&preprocessor_symtab);
+  symtab_delete (&pp_symtab);
 }
 //------------------------------------------------------------------------------
 
@@ -78,11 +78,11 @@ void preprocessor_symtab_delete ()
 //
 // This function returns the position of a macro in the symbol table.
 //
-symtab_key_t pre_symtab_get_macro_position (const slcc_string* token) 
+symtab_key_t pp_symtab_get_macro_position (const slcc_string* token) 
 {
   symtab_key_t macro = hash_generate_pre_key (str_get_c_string (token));
 
-  if (preprocessor_symtab.data[macro].key == 0)
+  if (pp_symtab.data[macro].key == 0)
     return MaxSymtabKeyT;
 
   return macro;
