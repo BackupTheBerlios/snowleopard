@@ -25,6 +25,7 @@
 
 OBJS 		= \
 	$(PRG_BUILD_PATH)/codegen.o					\
+	$(PRG_BUILD_PATH)/definitions.o					\
 	$(PRG_BUILD_PATH)/driver.o 					\
 	$(PRG_BUILD_PATH)/error_array.o					\
 	$(PRG_BUILD_PATH)/error_codes.o					\

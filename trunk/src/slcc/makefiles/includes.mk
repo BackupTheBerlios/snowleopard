@@ -31,6 +31,7 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/built_in_types.h					\
 	$(PRG_INCLUDE)/codegen.h					\
 	$(PRG_INCLUDE)/config_slcc.h 					\
+	$(PRG_INCLUDE)/definitions.h					\
 	$(PRG_INCLUDE)/driver.h 					\
 	$(PRG_INCLUDE)/error.h						\
 	$(PRG_INCLUDE)/error_array.h					\
@@ -64,6 +65,11 @@ CODEGEN_H_DEPS		=
 
 CONFIG_SLCC_H_DEPS	= \
 	$(CONFIG_C_INCLUDES)
+
+DEFINITIONS_H_DEPS	= \
+	$(PRG_INCLUDE)/built_in_types.h					\
+	$(PRG_INCLUDE)/specifiers.h					\
+	$(PRG_INCLUDE)/types.h
 
 DRIVER_H_DEPS		= \
 	$(PRG_INCLUDE)/error_codes.h
@@ -146,6 +152,11 @@ VERSION_SLCC_H_DEPS	= \
 #
 CODEGEN_DEPS		= \
 	$(PRG_INCLUDE)/codegen.h $(CODEGEN_H_DEPS)
+
+DEFINITIONS_DEPS	= \
+	$(PRG_INCLUDE)/built_in_types.h $(BUILT_IN_TYPES_H_DEPS)	\
+	$(PRG_INCLUDE)/definitions.h $(DEFINITIONS_H_DEPS)		\
+	$(PRG_INCLUDE)/types.h $(TYPES_H_DEPS)
 
 DRIVER_DEPS		= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS) 			\
