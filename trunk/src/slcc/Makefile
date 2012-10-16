@@ -43,8 +43,9 @@ CFLAGS		= $(INCLUDE_PATHS) $(COMPILE_FLAGS) $(DEBUG_FLAGS)
 
 PRG_TST_PATH	= $(TST_PATH)/$(PRG)
 
-.include "makefiles/objects.mk"
 .include "makefiles/includes.mk"
+.include "makefiles/dependencies.mk"
+.include "makefiles/objects.mk"
 
 #-------------------------------------------------------------------------------
 # Rules
