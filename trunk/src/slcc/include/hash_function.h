@@ -52,6 +52,12 @@ symtab_key_t hash_generate_cpp_key (const char*);
 symtab_key_t hash_generate_pre_key (const char*);
 //------------------------------------------------------------------------------
 
+//------------------------------------------------------------------------------
+// General hashing function.
+//
+symtab_key_t hash_generate_key (hash_function_ptr, const char*);
+//------------------------------------------------------------------------------
+
 #endif /* !__SL_SLCC_HASH_FUNCTION_H__ */
 
 //-<EOF>

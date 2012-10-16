@@ -50,6 +50,7 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/specifiers.h					\
 	$(PRG_INCLUDE)/string_array.h					\
 	$(PRG_INCLUDE)/strings.h					\
+	$(PRG_INCLUDE)/symbol_table.h					\
 	$(PRG_INCLUDE)/token.h						\
 	$(PRG_INCLUDE)/types.h 						\
 	$(PRG_INCLUDE)/version_slcc.h
@@ -133,6 +134,13 @@ STRING_ARRAY_H_DEPS	= \
 STRINGS_H_DEPS		= \
 	$(PRG_INCLUDE)/config_slcc.h					\
 	$(CONFIG_C_INCLUDES)
+
+SYMBOL_TABLE_H_DEPS	= \
+	$(PRG_INCLUDE)/definitions.h					\
+	$(PRG_INCLUDE)/hash_function.h					\
+	$(PRG_INCLUDE)/source_position.h				\
+	$(PRG_INCLUDE)/token.h						\
+	$(PRG_INCLUDE)/types.h
 
 TOKEN_H_DEPS		= \
 	$(PRG_INCLUDE)/literal.h					\
@@ -232,12 +240,25 @@ SOURCE_POSITION_DEPS	= \
 SOURCE_STRING_DEPS	= \
 	$(PRG_INCLUDE)/source_string.h $(SOURCE_STRING_H_DEPS)
 
+SPECIFIERS_DEPS		= \
+	$(PRG_INCLUDE)/specifiers.h $(SPECIFIERS_H_DEPS)		\
+	$(PRG_INCLUDE)/types.h $(TYPES_H_DEPS)
+
 STRING_ARRAY_DEPS	= \
 	$(PRG_INCLUDE)/string_array.h $(STRING_ARRAY_H_DEPS)		\
 	$(TC_INCLUDES)
 
-SPECIFIERS_DEPS		= \
-	$(PRG_INCLUDE)/specifiers.h $(SPECIFIERS_H_DEPS)		\
+STRINGS_DEPS		= \
+	$(PRG_INCLUDE)/strings.h $(STRINGS_H_DEPS)			\
+	$(PRG_INCLUDE)/types.h $(TYPES_H_DEPS)				\
+	$(TC_INCLUDES)
+
+SYMBOL_TABLE_DEPS	= \
+	$(PRG_INCLUDE)/definitions.h $(DEFINITIONS_H_DEPS)		\
+	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
+	$(PRG_INCLUDE)/error_handling.h $(ERROR_HANDLING_H_DEPS)	\
+	$(PRG_INCLUDE)/hash_function.h $(HASH_FUNCTION_H_DEPS)		\
+	$(PRG_INCLUDE)/symbol_table.h $(SYMBOL_TABLE_H_DEPS)		\
 	$(PRG_INCLUDE)/types.h $(TYPES_H_DEPS)
 
 TOKEN_DEPS		= \

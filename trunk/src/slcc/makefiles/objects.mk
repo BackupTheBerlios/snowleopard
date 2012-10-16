@@ -44,6 +44,7 @@ OBJS 		= \
 	$(PRG_BUILD_PATH)/specifiers.o					\
 	$(PRG_BUILD_PATH)/string_array.o				\
 	$(PRG_BUILD_PATH)/strings.o					\
+	$(PRG_BUILD_PATH)/symbol_table.o				\
 	$(PRG_BUILD_PATH)/token.o					\
 	$(PRG_BUILD_PATH)/types.o 					\
 	$(PRG_BUILD_PATH)/version_slcc.o				\

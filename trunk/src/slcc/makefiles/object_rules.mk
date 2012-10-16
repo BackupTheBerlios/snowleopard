@@ -31,7 +31,7 @@ $(PRG_BUILD_PATH)/codegen.o  		: \
 		src/codegen.c $(CODEGEN_DEPS)
 	$(CC) -c $(CFLAGS) src/codegen.c -o $(.TARGET)
 
-$(PRG_BUILD_PATH)/definitions.o  		: \
+$(PRG_BUILD_PATH)/definitions.o  	: \
 		src/definitions.c $(DEFINITIONS_DEPS)
 	$(CC) -c $(CFLAGS) src/definitions.c -o $(.TARGET)
 
@@ -91,7 +91,7 @@ $(PRG_BUILD_PATH)/source_position.o	: \
 		src/source_position.c $(SOURCE_POSITION_DEPS)
 	$(CC) -c $(CFLAGS) src/source_position.c -o $(.TARGET)
 
-$(PRG_BUILD_PATH)/source_string.o		: \
+$(PRG_BUILD_PATH)/source_string.o	: \
 		src/source_string.c $(SOURCE_STRING_DEPS)
 	$(CC) -c $(CFLAGS) src/source_string.c -o $(.TARGET)
 
@@ -106,6 +106,10 @@ $(PRG_BUILD_PATH)/string_array.o	: \
 $(PRG_BUILD_PATH)/strings.o		: \
 		src/strings.c $(STRINGS_DEPS)
 	$(CC) -c $(CFLAGS) src/strings.c -o $(.TARGET)
+
+$(PRG_BUILD_PATH)/symbol_table.o	: \
+		src/symbol_table.c $(SYMBOL_TABLE_DEPS)
+	$(CC) -c $(CFLAGS) src/symbol_table.c -o $(.TARGET)
 
 $(PRG_BUILD_PATH)/token.o		: \
 		src/token.c $(TOKEN_DEPS)
