@@ -42,6 +42,10 @@ CONFIG_SLCC_H_DEPS		= \
 CPP_SYMTAB_H_DEPS		= \
 	$(PRG_INCLUDE)/symbol_table.h
 
+DEBUG_H_DEPS			=
+
+DEBUG_FUNCTIONS_H_DEPS		=
+
 DEFINITIONS_H_DEPS		= \
 	$(PRG_INCLUDE)/built_in_types.h					\
 	$(PRG_INCLUDE)/specifiers.h					\

@@ -34,6 +34,8 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/codegen.h					\
 	$(PRG_INCLUDE)/config_slcc.h 					\
 	$(PRG_INCLUDE)/cpp_symtab.h					\
+	$(PRG_INCLUDE)/debug.h						\
+	$(PRG_INCLUDE)/debug_functions.h				\
 	$(PRG_INCLUDE)/definitions.h					\
 	$(PRG_INCLUDE)/driver.h 					\
 	$(PRG_INCLUDE)/error.h						\

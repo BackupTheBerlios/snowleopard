@@ -43,6 +43,10 @@ $(PRG_BUILD_PATH)/codegen.o  		: \
 		src/codegen.c $(CODEGEN_DEPS)
 	$(CC) -c $(CFLAGS) src/codegen.c -o $(.TARGET)
 
+$(PRG_BUILD_PATH)/debug_functions.o  		: \
+		src/debug_functions.c $(DEBUG_FUNCTIONS_DEPS)
+	$(CC) -c $(CFLAGS) src/debug_functions.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/definitions.o  	: \
 		src/definitions.c $(DEFINITIONS_DEPS)
 	$(CC) -c $(CFLAGS) src/definitions.c -o $(.TARGET)
