@@ -36,70 +36,86 @@
 
 //------------------------------------------------------------------------------
 // Private debug functions
-void debug_print_title (const char*);
-void debug_print_bool (const char*, bool);
-void debug_print_language (const char*, slcc_language);
-void debug_print_language_version (const char*, slcc_language_version);
-void debug_print_size (const char*, size_t);
-void debug_print_string (const char*, const char*);
-void debug_print_string_array (const char*, char**, size_t n);
-void debug_print_symbol_table (slcc_symtab);
+void debug_print_title (const char* s);
+void debug_print_bool (const char* s, bool b);
+void debug_print_language (const char* s, slcc_language l);
+void debug_print_language_standard (const char* s, slcc_language_standard l);
+void debug_print_size (const char* s, size_t n);
+void debug_print_source_file_type (const char* s, slcc_source_file_type t);
+void debug_print_string (const char* s, const char* v);
+void debug_print_string_array (const char* s, char** a, size_t n);
+void debug_print_symbol_table (slcc_symtab symtab);
 //------------------------------------------------------------------------------
 
-#if __SLCC_DEBUG_SETTINGS
+#ifdef __SLCC_DEBUG_SETTINGS
 //------------------------------------------------------------------------------
 // debug_print_settings function
 //
 // Print settings object.
 //
-wvoid debug_print_settings () 
+void debug_print_settings () 
 {
   debug_print_title ("SLCC Settings");
 
-  debug_print_bool ("interactive", settings->interactive);
-  debug_print_bool ("license", settings->license);
-  debug_print_bool ("make rules only", settings->make_rules_only);
-  debug_print_bool ("preprocess only", settings->preprocess_only);
-  debug_print_bool ("verbose", settings->verbose);
-  debug_print_bool ("version", settings->version);
-  debug_print_bool ("warrantee", settings->warrantee);
+  debug_print_bool ("quiet", settings_.quiet);
+  debug_print_bool ("verbose", settings_.verbose);
 
-  debug_print_bool ("debug", settings->debug);
-  debug_print_language ("language", settings->language);
-  debug_print_language_version (
-				"language version", 
-				settings->language_version
-				);
-  debug_print_bool ("use deprecated", settings->use_deprecated);
+  debug_print_bool ("copyright", settings_.copyright_only);
+  debug_print_bool ("license", settings_.license_only);
+  debug_print_bool ("usage", settings_.usage_only);
+  debug_print_bool ("warrantee", settings_.warrantee_only);
 
-  debug_print_bool ("use concepts", settings->use_concepts);
-  debug_print_bool ("use export", settings->use_export);
+  debug_print_bool ("compile only", settings_.compile_only);
+  debug_print_bool ("dependencies only", settings_.dependencies_only);
+  debug_print_bool ("preprocess only", settings_.preprocess_only);
 
-  debug_print_string ("call", settings->call);
-  debug_print_size ("number of arguments", settings->n_arguments);
-  if (settings->n_arguments > 0)
+  debug_print_string ("out file", settings_.out_file);
+  debug_print_string ("source file", settings_.source_file);
+  debug_print_source_file_type ("source file type", settings_.source_type);
+  debug_print_size ("number of object files", settings_.object_files->used_);
+  if (settings_.object_files->used_ > 0)
     debug_print_string_array (
-			      "arguments", 
-			      settings->arguments, 
-			      settings->n_arguments
+			      "object files", 
+			      settings_.object_files->data_, 
+			      settings_.object_files->used_
+			      );
+  debug_print_size ("number of library files", settings_.object_files->used_);
+  if (settings_.library_files->used_ > 0)
+    debug_print_string_array (
+			      "library files", 
+			      settings_.library_files->data_, 
+			      settings_.library_files->used_
 			      );
 
-  debug_print_string ("source file", settings->source_file);
-  debug_print_size ("number of source paths", settings->n_source_paths);
-  if (settings->n_source_paths > 0)
-    debug_print_string_array (
-			      "source paths", 
-			      settings->source_paths, 
-			      settings->n_source_paths
-			      );
+  debug_print_language ("language", settings_.language);
+  debug_print_language_standard ("standard", settings_.standard);
+  debug_print_bool ("use deprecated", settings_.use_deprecated);
 
-  debug_print_size ("number of include paths", settings->n_include_paths);
-  if (settings->n_include_paths > 0)
+  debug_print_bool ("use standard library", settings_.use_stdlib);
+  debug_print_size ("number of include paths", settings_.include_paths->used_);
+  if (settings_.include_paths->used_ > 0)
     debug_print_string_array (
 			      "include paths", 
-			      settings->include_paths, 
-			      settings->n_include_paths
+			      settings_.include_paths->data_, 
+			      settings_.include_paths->used_
 			      );
+  debug_print_size ("number of library paths", settings_.library_paths->used_);
+  if (settings_.library_paths->used_ > 0)
+    debug_print_string_array (
+			      "library paths", 
+			      settings_.library_paths->data_, 
+			      settings_.library_paths->used_
+			      );
+  debug_print_size ("number of source paths", settings_.source_paths->used_);
+  if (settings_.source_paths->used_ > 0)
+    debug_print_string_array (
+			      "source paths", 
+			      settings_.source_paths->data_, 
+			      settings_.source_paths->used_
+			      );
+
+  debug_print_bool ("use concepts", settings_.use_concepts);
+  debug_print_bool ("use export", settings_.use_export);
 
   fprintf (stderr, "\n");
 }
@@ -170,28 +186,40 @@ void debug_print_language (const char* s, slcc_language l)
 	   stderr, 
 	   "   %s = %s\n", 
 	   s, 
-	   l == LAN_NONE ? "none selected" : l == LAN_C ? "C" : "C++"
+	   l == L_NONE ? "none selected" : l == L_C ? "C" : "C++"
 	   );
 }
 
-void debug_print_language_version (const char* s, slcc_language_version l) 
+void debug_print_language_standard (const char* s, slcc_language_standard l) 
 {
   fprintf (
 	   stderr,
 	   "   %s = %s\n",
 	   s,
-	   l == LAN_V_NONE ? "none selected" 
-	   : l == LAN_V_C99 ? "C99"
-	   : l == LAN_V_C11 ? "C11"
-	   : l == LAN_V_CPP03 ? "C++03"
-	   : l == LAN_V_CPP11 ? "C++11"
-	   : "C++11 with extensions"
+	   l == LS_NONE ? "none selected" 
+	   : l == LS_C99 ? "C99"
+	   : l == LS_C11 ? "C11"
+	   : "C++11"
 	   );
 }
 
 void debug_print_size (const char* s, size_t n) 
 {
   fprintf (stderr, "   %s = %llu\n", s, (unsigned long long)n);
+}
+
+void debug_print_source_file_type (const char* s, slcc_source_file_type t)
+{
+  fprintf (
+	   stderr, 
+	   "   %s = %s\n",
+	   s,
+	   t == SFT_NONE ? "none selected"
+	   : t == SFT_ASSEMBLER ? "assembler"
+	   : t == SFT_HEADER ? "header"
+	   : t == SFT_IMPLEMENTATION ? "implementation"
+	   : "source"
+	   );
 }
 
 void debug_print_string (const char* s, const char* v) 

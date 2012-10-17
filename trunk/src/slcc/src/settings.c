@@ -42,6 +42,7 @@ slcc_settings settings_ = {
   false,    /* quiet */
   false,    /* verbose */
   false,    /* copyright_only */
+  false,    /* license_only */
   false,    /* usage_only */
   false,    /* warrantee_only */
   false,    /* compile_only */
@@ -59,8 +60,8 @@ slcc_settings settings_ = {
   NULL,     /* include_paths */
   NULL,     /* library_paths */
   NULL,     /* source_paths */
-  false,    /* use_export */
-  false     /* use_concepts */
+  false,    /* use_concepts */
+  false     /* use_export */
 };
 //------------------------------------------------------------------------------
 

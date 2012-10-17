@@ -109,6 +109,7 @@ struct slcc_settings
   bool quiet;
   bool verbose;
   bool copyright_only;
+  bool license_only;
   bool usage_only;
   bool warrantee_only;
 
@@ -134,8 +135,8 @@ struct slcc_settings
   slcc_string_array* source_paths;
 
   /* C++ options */
-  bool use_export;
   bool use_concepts;
+  bool use_export;
 };
 
 typedef struct slcc_settings slcc_settings;
