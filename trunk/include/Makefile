@@ -1,5 +1,5 @@
 #===============================================================================
-# Snow Leopard Compiler Project
+# Snow Leopard Project
 #
 # Copyright (C) 2008, 2009, 2010, 2011, 2012 Roel Sergeant
 #

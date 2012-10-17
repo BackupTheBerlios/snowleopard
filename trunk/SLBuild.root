@@ -1,7 +1,7 @@
 #===============================================================================
 # Snow Leopard Project
 #
-# Copyright (C) 2011, 2012 Roel Sergeant
+# Copyright (C) 2012 Roel Sergeant
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -18,20 +18,32 @@
 #===============================================================================
 
 #-------------------------------------------------------------------------------
-# Makefile
+# SLBuild.root
 #-------------------------------------------------------------------------------
-# Makefile for copying all libraries to the correct location.
-#
-# The correct locations are:
-#   - libslstdc   -> PREFIX/lib/sl/stdc
-#   - libslstdcpp -> Multiple locations
-#       - .a / .so -> PREFIX/lib/sl/stdcpp
-#       - .ecppl   -> PREFIX/lib/sl/ecppl  (ecppl are exported C++ libraries)
-#
-# This Makefile also fixes symbolic links in PREFIX/lib so the compiler and
-# other tools can find them.
-#
-# Registration of libraries is also done where required.
+# slbld configuration file for the project.
 #-------------------------------------------------------------------------------
 
+#------------------------------------------------------------------------------
+# slbld variables
+#
+SLBLD_DIRS	= [standard_project]
+
+SLBLD_MODULES	=  \
+	config		= [no-build][source]
+	libsh		= [lib]:[source]
+	libslstdc  	= [lib]:[static][shared]
+	libslstdcpp	= [lib]:[source][static][shared]
+	libsltc		= [lib]:[source][static][shared]
+	libsltst	= [lib]:[source][static]
+	lynx		= [program];[script];[lib]:[source]
+	slbld		= [program][script]
+	slcc		= [program][script]
+	slsh		= [program][script]
+	sltst		= [script]
+	test		= [test]
+	www		= [website]
+
+SLBLD_GENERATE	= [makefile][build-script]
+
+#------------------------------------------------------------------------------
 #-<EOF>

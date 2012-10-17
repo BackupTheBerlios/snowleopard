@@ -26,7 +26,8 @@
 #-------------------------------------------------------------------------------
 # Variables
 #
-MODULES = libsh libslstdc libslstdcpp libsltc libsltst lynx slcc slsh sltst	 
+MODULES = \
+	libsh libslstdc libslstdcpp libsltc libsltst lynx slbld slcc slsh sltst	 
 
 #-------------------------------------------------------------------------------
 # Rules
@@ -50,6 +51,9 @@ libsltst	:
 
 lynx		:
 	(cd lynx ; ${MAKE} all);	 
+
+slbld		:
+	(cd slbld ; ${MAKE} all);
 
 slcc		:
 	(cd slcc ; ${MAKE} all);	 
