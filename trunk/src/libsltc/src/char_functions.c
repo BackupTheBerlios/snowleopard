@@ -28,6 +28,20 @@
 #include "char_functions.h"
 
 //------------------------------------------------------------------------------
+// tc_get_char_from_universal_char function
+//
+// Converts single and double hex-quad universal character names to char. 
+//
+char tc_get_char_from_universal_char (unsigned long universal_char)
+{
+  /* <TODO: Implement universal char name lookup> */
+  char c = (char)universal_char;
+
+  return c;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 // tc_is_alpha_or_underscore function
 //
 // Return true if the char is a valid first character for an identifier.

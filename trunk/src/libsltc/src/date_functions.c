@@ -37,8 +37,8 @@
 char* tc_get_datetime(size_t length, char* format)
 {
   char* ts = malloc (sizeof (char[length]));
-  time_t t = time(0);
-  struct tm* t_s = localtime(&t);
+  time_t t = time (0);
+  struct tm* t_s = localtime (&t);
 
   if (t_s == 0)
     {

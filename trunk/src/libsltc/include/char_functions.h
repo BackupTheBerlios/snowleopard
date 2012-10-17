@@ -31,6 +31,7 @@
 //------------------------------------------------------------------------------
 // Char functions
 //
+char tc_get_char_from_universal_char (unsigned long);
 bool tc_is_alpha_or_underscore (char);
 bool tc_is_decimal_digit (char);
 bool tc_is_hexadecimal_digit (char);
