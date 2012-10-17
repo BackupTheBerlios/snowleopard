@@ -293,30 +293,30 @@ extern const slcc_token empty_token_;
 //------------------------------------------------------------------------------
 // Token function prototypes
 slcc_token token_new_built_in (char* s, slcc_source_position pos);
-slcc_token token_new_char (char, slcc_source_position);
-slcc_token token_new_char16 (char16_t, slcc_source_position);
-slcc_token token_new_char32 (char32_t, slcc_source_position);
-slcc_token token_new_comment (const slcc_string*, slcc_source_position);
-slcc_token token_new_empty (slcc_source_position);
+slcc_token token_new_char (char c, slcc_source_position pos);
+slcc_token token_new_char16 (char16_t c, slcc_source_position pos);
+slcc_token token_new_char32 (char32_t c, slcc_source_position pos);
+slcc_token token_new_comment (const slcc_string* s, slcc_source_position pos);
+slcc_token token_new_empty (slcc_source_position pos);
 slcc_token token_new_eof ();
 slcc_token token_new_float (
-			    slcc_string*, 
-			    slcc_source_position, 
-			    bool,
-			    bool
+			    slcc_string* s, 
+			    slcc_source_position pos, 
+			    bool type_float,
+			    bool type_long_double
 			    );
 slcc_token token_new_identifier (
 				 const slcc_string* s, 
 				 slcc_source_position pos
 				 );
 slcc_token token_new_int (
-			  slcc_string*, 
-			  slcc_source_position, 
-			  bool,
-			  bool, 
-			  bool,
-			  bool,
-			  bool
+			  slcc_string* s, 
+			  slcc_source_position pos, 
+			  bool is_octal,
+			  bool is_hexadecimal, 
+			  bool is_unsigned,
+			  bool type_long,
+			  bool type_long_long
 			  );
 slcc_token token_new_keyword (slcc_keyword keyword, slcc_source_position pos);
 slcc_token token_new_preprocessor (
@@ -328,13 +328,13 @@ slcc_token token_new_punctuation (
 				  slcc_punctuation punctuation, 
 				  slcc_source_position pos
 				  );
-slcc_token token_new_raw_string (char*, slcc_source_position);
-slcc_token token_new_string (slcc_string*, slcc_source_position);
-slcc_token token_new_string16 (slcc_string16*, slcc_source_position);
-slcc_token token_new_string32 (slcc_string32*, slcc_source_position);
-slcc_token token_new_wchar (wchar_t, slcc_source_position);
-slcc_token token_new_wstring (slcc_wstring*, slcc_source_position);
-void token_delete (slcc_token*);
+slcc_token token_new_raw_string (char* s, slcc_source_position pos);
+slcc_token token_new_string (slcc_string* s, slcc_source_position pos);
+slcc_token token_new_string16 (slcc_string16* s, slcc_source_position pos);
+slcc_token token_new_string32 (slcc_string32* s, slcc_source_position pos);
+slcc_token token_new_wchar (wchar_t c, slcc_source_position pos);
+slcc_token token_new_wstring (slcc_wstring* s, slcc_source_position pos);
+void token_delete (slcc_token* token);
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------

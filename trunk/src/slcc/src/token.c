@@ -269,7 +269,7 @@ void token_delete (slcc_token* token)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// print_token function
+// token_print function
 //
 // This function prints a token.
 //

@@ -228,67 +228,6 @@ slcc_token token_new_identifier (const slcc_string* s, slcc_source_position pos)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// token_new_keyword function
-//
-// This function returns a keyword token.
-//
-slcc_token token_new_keyword (slcc_keyword keyword, slcc_source_position pos) 
-{
-  slcc_token token;
-
-  token.type = TT_KEYWORD;
-
-  token.pos = pos;
-
-  token.value.keyword = keyword;
-
-  return token;
-}
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// token_new_preprocessor function
-//
-// This function returns a preprocessor token.
-//
-slcc_token token_new_preprocessor (
-				   const slcc_string* s, 
-				   slcc_source_position pos
-				   ) 
-{
-  slcc_token token;
-
-  token.type = TT_PREPROCESSOR;
-  token.pos = pos;
-
-  token.value.preprocessor = str_get_c_string (s);
-
-  /* Cut last character from string (it's \n) */
-  token.value.preprocessor[strlen (token.value.preprocessor) - 1] = '\0';
-
-  return token;
-}
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// token_preprocessor_built_in function
-//
-// This function returns a preprocessor built in token.
-//
-slcc_token token_new_preprocessor_built_in (char* s, slcc_source_position pos) 
-{
-  slcc_token token;
-
-  token.type = TT_PREPROCESSOR_BUILT_IN;
-  token.pos = pos;
-
-  token.value.preprocessor = s;
-
-  return token;
-}
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
 // token_new_int function
 //
 // This function returns a numeric token. The parameters are defined as follows:
@@ -403,6 +342,67 @@ slcc_token token_new_int (
   token.value.literal.lexeme = str_get_c_string(s);
 
   str_delete (s);
+
+  return token;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// token_new_keyword function
+//
+// This function returns a keyword token.
+//
+slcc_token token_new_keyword (slcc_keyword keyword, slcc_source_position pos) 
+{
+  slcc_token token;
+
+  token.type = TT_KEYWORD;
+
+  token.pos = pos;
+
+  token.value.keyword = keyword;
+
+  return token;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// token_new_preprocessor function
+//
+// This function returns a preprocessor token.
+//
+slcc_token token_new_preprocessor (
+				   const slcc_string* s, 
+				   slcc_source_position pos
+				   ) 
+{
+  slcc_token token;
+
+  token.type = TT_PREPROCESSOR;
+  token.pos = pos;
+
+  token.value.preprocessor = str_get_c_string (s);
+
+  /* Cut last character from string (it's \n) */
+  token.value.preprocessor[strlen (token.value.preprocessor) - 1] = '\0';
+
+  return token;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// token_preprocessor_built_in function
+//
+// This function returns a preprocessor built in token.
+//
+slcc_token token_new_preprocessor_built_in (char* s, slcc_source_position pos) 
+{
+  slcc_token token;
+
+  token.type = TT_PREPROCESSOR_BUILT_IN;
+  token.pos = pos;
+
+  token.value.preprocessor = s;
 
   return token;
 }
