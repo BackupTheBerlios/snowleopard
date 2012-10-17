@@ -44,6 +44,7 @@ slcc_settings settings_ = {
   false,    /* usage_only */
   false,    /* warrantee_only */
   false,    /* compile_only */
+  false,    /* dependencies_only */
   false,    /* preprocess_only */
   NULL,     /* out_file */
   NULL,     /* source_file */

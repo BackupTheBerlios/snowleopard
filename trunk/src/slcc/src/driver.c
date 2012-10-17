@@ -185,140 +185,167 @@ bool drv_process_argument (char** argv, int* pos)
   case '-' :
     {
       /* Argument --compile */
-      drv_check_arg(arg,					\
-		    "--compile",				\
-		    return settings_.compile_only = true);
+      drv_check_arg (arg,				
+		     "--compile",			
+		     return settings_.compile_only = true);
 
       /* Argument --copyright */
-      drv_check_arg(arg,					\
-		    "--copyright",				\
-		    return settings_.copyright_only = true);
+      drv_check_arg (arg,				
+		     "--copyright",			
+		     return settings_.copyright_only = true);
+
+      /* Argument --make_dependencies */
+      drv_check_arg (arg,
+		     "--make_dependencies",
+		     return settings_.dependencies_only = true);
 
       /* Argument --help */
-      drv_check_arg(arg,				\
-		    "--help",				\
-		    return settings_.usage_only = true);
+      drv_check_arg (arg,			
+		     "--help",			
+		     return settings_.usage_only = true);
 
       /* Argument --include_path <path> */
-      drv_check_arg(arg,						\
-		    "--include_path",					\
-		    return drv_process_path (PT_INCLUDE, argv[*pos++], false));
+      drv_check_arg (arg,					
+		     "--include_path",				
+		     return drv_process_path (PT_INCLUDE, argv[*pos++], false));
 
       /* Argument --library_path <path> */
-      drv_check_arg(arg,						\
-		    "--library_path",					\
-		    return drv_process_path (PT_LIBRARY, argv[*pos++], false));
+      drv_check_arg (arg,					
+		     "--library_path",				
+		     return drv_process_path (PT_LIBRARY, argv[*pos++], false));
 
       /* Argument --no_stdlib */
-      drv_check_arg(arg,					\
-		    "--no_stdlib",				\
-		    return !(settings_.use_stdlib = false));
+      drv_check_arg (arg,				
+		     "--no_stdlib",			
+		     return !(settings_.use_stdlib = false));
 
       /* Argument --outfile <path> */
-      drv_check_arg(arg,					\
-		    "--outfile",				\
-		    return drv_process_out_file (argv[*pos++]));
+      drv_check_arg (arg,				
+		     "--outfile",			
+		     return drv_process_out_file (argv[*pos++]));
 
       /* Argument --preprocess */
-      drv_check_arg(arg,					\
-		    "--preprocess",				\
-		    return settings_.preprocess_only = true);
+      drv_check_arg (arg,				
+		     "--preprocess",			
+		     return settings_.preprocess_only = true);
 
       /* Argument --source_path <path> */
-      drv_check_arg(arg,						\
-		    "--source_path",					\
-		    return drv_process_path (PT_SOURCE, argv[*pos++], false));
+      drv_check_arg (arg,					
+		     "--source_path",				
+		     return drv_process_path (PT_SOURCE, argv[*pos++], false));
 
       /* Argument --usage */
-      drv_check_arg(arg,				\
-		    "--usage",				\
-		    return settings_.usage_only = true);
+      drv_check_arg (arg,			
+		     "--usage",			
+		     return settings_.usage_only = true);
+
+      /* Argument --use_concepts */
+      drv_check_arg (arg,
+		     "--use_concepts",
+		     return settings_.use_concepts = true);
+
+      /* Argument --use_deprecated */
+      drv_check_arg (arg,
+		     "--use_deprecated",
+		     return settings_.use_deprecated = true);
+
+      /* Argument --use_export */
+      drv_check_arg (arg,
+		     "--use_export",
+		     return settings_.use_export = true);
 
       /* Argument --warrantee */
-      drv_check_arg(arg,					\
-		    "--warrantee",				\
-		    return settings_.warrantee_only = true);
+      drv_check_arg (arg,				
+		     "--warrantee",			
+		     return settings_.warrantee_only = true);
     }
     break;
 
   case 'E' :
     {
       /* Argument -E [preprocess] */
-      drv_check_arg(arg,					\
-		    "-E",					\
-		    return settings_.preprocess_only = true);
+      drv_check_arg (arg,				
+		     "-E",				
+		     return settings_.preprocess_only = true);
     }
     break;
 
   case 'I' :
     {
       /* Argument -I<path> [include_path <path>] */
-      drv_check_arg(arg,						\
-		    "-I",                                               \
-		    return drv_process_path (PT_INCLUDE, argv[*pos++], true));
+      drv_check_arg (arg,					
+		     "-I",
+		     return drv_process_path (PT_INCLUDE, argv[*pos++], true));
     }
     break;
 
   case 'L' :
     {
       /* Argument -L<path> [library_path <path>] */
-      drv_check_arg(arg,						\
-		    "-L",						\
-		    return drv_process_path (PT_LIBRARY, argv[*pos++], true));
+      drv_check_arg (arg,					
+		     "-L",					
+		     return drv_process_path (PT_LIBRARY, argv[*pos++], true));
+    }
+    break;
+
+  case 'M' :
+    {
+      /* Argument -M [make_dependencies] */
+      drv_check_arg (arg, "-M", return settings_.dependencies_only = true);
     }
     break;
 
   case 'S' :
     {
       /* Argument -S<path> [source_path <path>] */
-      drv_check_arg(arg,						\
-		    "-S",						\
-		    return drv_process_path (PT_SOURCE, argv[*pos++], true));
+      drv_check_arg (arg,					
+		     "-S",					
+		     return drv_process_path (PT_SOURCE, argv[*pos++], true));
     }
     break;
 
   case 'c' :
     {
-      drv_check_arg(arg,"-c",return settings_.compile_only = true);
+      drv_check_arg (arg,"-c",return settings_.compile_only = true);
     }
     break;
 
   case 'h' :
     {
       /* Argument -h [help] */
-      drv_check_arg(arg,"-h",return settings_.usage_only = true);
+      drv_check_arg (arg,"-h",return settings_.usage_only = true);
     }
     break;
 
   case 'q' :
     {
       /* Argument -q [quiet] */
-      drv_check_arg(arg,"-q",return settings_.quiet = true);
+      drv_check_arg (arg,"-q",return settings_.quiet = true);
     }
     break;
 
   case 'o' :
     {
       /* Argument -o <file> [outfile <path>] */
-      drv_check_arg(arg,					\
-		    "-o",					\
-		    return drv_process_out_file (argv[*pos++]));
+      drv_check_arg (arg,				
+		     "-o",				
+		     return drv_process_out_file (argv[*pos++]));
     }
     break;
 
   case 's' :
     {
       /* Argument -std=<c89|c99|c11|cpp98|cpp11> */
-      drv_check_arg(arg,						\
-		    "-std=",						\
-		    return drv_process_language_standard (arg+4));
+      drv_check_arg (arg,					
+		     "-std=",					
+		     return drv_process_language_standard (arg+4));
     }
     break;
 
   case 'v' :
     {
       /* Argument -v [verbose] */
-      drv_check_arg(arg,"-v",return settings_.verbose = true);
+      drv_check_arg (arg,"-v",return settings_.verbose = true);
     }
     break;
 	

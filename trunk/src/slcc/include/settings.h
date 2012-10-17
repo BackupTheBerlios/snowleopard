@@ -113,6 +113,7 @@ struct slcc_settings
 
   /* compile options */
   bool compile_only;
+  bool dependencies_only;
   bool preprocess_only;
   char* out_file;
   char* source_file;
