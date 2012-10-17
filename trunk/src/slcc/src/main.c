@@ -25,6 +25,7 @@
 
 #include <stdlib.h>
 
+#include "debug.h"
 #include "driver.h"
 #include "error_handling.h"
 #include "info.h"
@@ -57,6 +58,8 @@ int main (int argc, char** argv)
    * argument is given, as compilation will be aborted.
    */
   drv_parse_command_line (argc, argv);
+
+  __SLCC_DEBUG_PRINT_0(__SLCC_DEBUG_SETTINGS,debug_print_settings);
 
   inf_display_program_info ();
 

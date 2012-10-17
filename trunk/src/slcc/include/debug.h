@@ -28,14 +28,16 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // Debug
+//
 #ifdef __SLCC_DEBUG
 
 //------------------------------------------------------------------------------
 // Debug macros
-# define __SLCC_DEBUG_PRINT_0(DEBUG_TYPE,func)	\
+//
+# define __SLCC_DEBUG_PRINT_0(DEBUG_TYPE,func)	        \
   DEBUG_TYPE##_0(func)
 
-# define __SLCC_DEBUG_PRINT_1(DEBUG_TYPE,arg0)	\
+# define __SLCC_DEBUG_PRINT_1(DEBUG_TYPE,func,arg0)	\
   DEBUG_TYPE##_1(func,arg0)
 //------------------------------------------------------------------------------
 
@@ -43,6 +45,7 @@
 
 //==============================================================================
 // Debug settings
+//
 #ifdef __SLCC_DEBUG_SETTINGS
 # define __SLCC_DEBUG_SETTINGS_0(func)		\
   func ();
@@ -53,6 +56,7 @@
 
 //==============================================================================
 // Debug symbol tables
+//
 #ifdef __SLCC_DEBUG_SYMBOL_TABLES
 # define __SLCC_DEBUG_SYMBOL_TABLES_0(func)	\
   func ();
@@ -65,11 +69,12 @@
 
 //------------------------------------------------------------------------------
 // If no debug, undefine all debug macros
+//
 # undef __SLCC_DEBUG_SETTINGS
 # undef __SLCC_DEBUG_SYMBOL_TABLES
 
-# define __SLCC_DEBUG_PRINT_0(func)
-# define __SLCC_DEBUG_PRINT_1(func,arg0)
+# define __SLCC_DEBUG_PRINT_0(DEBUG_TYPE,func)
+# define __SLCC_DEBUG_PRINT_1(DEBUG_TYPE,func,arg0)
 //------------------------------------------------------------------------------
 
 #endif /* __SLCC_DEBUG */
