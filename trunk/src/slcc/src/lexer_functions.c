@@ -208,10 +208,10 @@ char lex_char ()
 
 	  /* Get second hex_quad */
 	  if (double_hex_quad)
-	      for (int i = 0; i < 4; i++)
-		universal_char
-		  = universal_char * 16
-		  + tc_get_hex_value (lex_store_and_get_char (false));
+	    for (int i = 0; i < 4; i++)
+	      universal_char
+		= universal_char * 16
+		+ tc_get_hex_value (lex_store_and_get_char (false));
 	  
 	  c = tc_get_char_from_universal_char (universal_char);
 	}

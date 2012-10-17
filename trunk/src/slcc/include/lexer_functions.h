@@ -43,7 +43,7 @@ char32_t lex_char32_t ();
 char lex_get_char ();
 bool lex_store_char (bool start);
 char lex_store_and_get_char (bool start);
-void lex_skip_to_char (char);
+void lex_skip_to_char (char to_c);
 wchar_t lex_wchar_t ();
 //------------------------------------------------------------------------------
 

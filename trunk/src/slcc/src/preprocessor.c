@@ -265,7 +265,7 @@ void pp_process_string (const slcc_string* s)
 //------------------------------------------------------------------------------
 // pp_check_condition function
 //
-// Checks the condition in an #IF or #ELIF statement.
+// Checks the condition in an #if or #elif statement.
 //
 bool pp_check_condition (const slcc_string* s) 
 {
@@ -329,7 +329,7 @@ bool pp_check_preprocessor_cmd_in_string(
 //------------------------------------------------------------------------------
 // pp_get_define function
 //
-// Get definition used in #DEFINE.
+// Get definition used in #define.
 //
 bool pp_get_define (
 		    const slcc_string* s, 
@@ -351,7 +351,7 @@ bool pp_get_define (
 //------------------------------------------------------------------------------
 // pp_get_defined function
 //
-// Get definition used in #IFNDEF or #IFDEF.
+// Get definition used in #ifndef or #ifdef.
 //
 char* pp_get_defined (const slcc_string* s) 
 {
@@ -557,7 +557,7 @@ bool pp_process_warning (const slcc_string* s)
 //------------------------------------------------------------------------------
 // pp_skip_to_endif function
 //
-// Skip to next #ENDIF token at same nesting level.
+// Skip to next #endif token at same nesting level.
 //
 void pp_skip_to_endif () 
 {
@@ -603,7 +603,7 @@ void pp_skip_to_endif ()
 //------------------------------------------------------------------------------
 // pp_skip_to_else_elif_endif function
 //
-// Skip to next #ELSE, #ELIF and #ENDIF token at same nesting level.
+// Skip to next #else, #elif and #endif token at same nesting level.
 //
 void pp_skip_to_else_elif_endif () 
 {
