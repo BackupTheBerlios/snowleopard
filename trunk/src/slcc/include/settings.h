@@ -67,13 +67,15 @@ typedef enum slcc_language_standard slcc_language_standard;
 //------------------------------------------------------------------------------
 // slcc_path_type enum
 //
-// Path types used in the compiler settings.
+// Path types and object types used in the compiler settings.
 //
 enum slcc_path_type
   {
-    PT_INCLUDE, /* Include path */
-    PT_LIBRARY, /* Library path */
-    PT_SOURCE  /* Source path */
+    PT_INCLUDE,      /* Include path */
+    PT_LIBRARY,      /* Library path */
+    PT_LIBRARY_FILE, /* Library file */
+    PT_OBJECT_FILE,  /* Object file */
+    PT_SOURCE        /* Source path */
   };
 
 typedef enum slcc_path_type slcc_path_type;
@@ -90,7 +92,6 @@ enum slcc_source_file_type
     SFT_ASSEMBLER,      /* Assembler file (.s/.S/.asm ) */
     SFT_HEADER,         /* Header file (.h/.hpp/.hxx/.H) */
     SFT_IMPLEMENTATION, /* Implementation file (.c.h/.ipp) */
-    SFT_OBJECT,         /* Object type (.o/.out/.a) */
     SFT_SOURCE          /* Source file (.c/.cpp/.cxx/.C) */
   };
 
@@ -118,6 +119,8 @@ struct slcc_settings
   char* out_file;
   char* source_file;
   slcc_source_file_type source_type;
+  slcc_string_array* object_files;
+  slcc_string_array* library_files;
 
   /* language options */
   slcc_language language;
@@ -145,9 +148,9 @@ extern slcc_settings settings_;
 
 //------------------------------------------------------------------------------
 // Settings functions.
-bool settings_initialize ();
-void settings_cleanup ();
-bool add_path (slcc_path_type type, char* path);
+bool settings_new ();
+void settings_delete ();
+bool add_file_or_path (slcc_path_type type, char* file);
 bool set_out_file (char* file);
 //------------------------------------------------------------------------------
 

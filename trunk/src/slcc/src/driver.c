@@ -65,7 +65,7 @@ bool drv_process_path (slcc_path_type type, char* argument, bool attached);
 //
 bool drv_initialize ()
 {
-  if (!settings_initialize ())
+  if (!settings_new ())
     {
       err_report_0 (EC_DRIVER_INITIALIZATION_FAILED);
       return false;
@@ -94,7 +94,7 @@ bool drv_initialize ()
 //
 void drv_cleanup ()
 {
-  settings_cleanup ();
+  settings_delete ();
   parser_cleanup ();
   codegen_cleanup ();
 }
@@ -166,7 +166,7 @@ bool drv_parse_command_line (int argc, char** argv)
 //
 bool drv_check_arguments ()
 {
-  
+  /* <TODO: Check if arguments are correct> */
   return false;
 }
 //------------------------------------------------------------------------------
@@ -364,8 +364,10 @@ bool drv_process_argument (char** argv, int* pos)
 //   - Does the file exist.
 //   - Is it a recognized extension?
 //         c/h/c.h                 - C source file
-//         s/S/asm/o/out/a         - Treated as C source file
+//         s/S/asm/                - Treated as C source file
 //         cpp/cxx/hpp/hxx/C/H/ipp - C++ source file
+//         o/obj/out               - Object file
+//         a/lib                   - Library file
 //   - Deduce the source file type as it dictates what the compiler should do
 //     with the file.
 //
@@ -400,9 +402,14 @@ bool drv_process_file_argument (char* file)
 
   /* Object file */
   else if (strcmp (ext1, "o") == 0
-	   || strcmp (ext1, "out") == 0
-	   || strcmp (ext1, "a") == 0)
-    settings_.source_type = SFT_OBJECT;
+	   || strcmp (ext1, "obj") == 0
+	   || strcmp (ext1, "out") == 0)
+    add_file_or_path (PT_OBJECT_FILE, file);
+
+  /* Library file */
+  else if (strcmp (ext1, "a") == 0
+	   || strcmp (ext1, "lib") == 0)
+    add_file_or_path (PT_LIBRARY_FILE, file);
 
   /* C++ source file */
   else if (strcmp (ext1, "cpp") == 0
@@ -464,9 +471,9 @@ bool drv_process_path (slcc_path_type type, char* arg, bool attached)
     if (&arg == '\0')
       return false;
     else
-      return add_path (type, arg);
+      return add_file_or_path (type, arg);
   else
-    return add_path (type, arg+2);
+    return add_file_or_path (type, arg+2);
 }
 //------------------------------------------------------------------------------
 

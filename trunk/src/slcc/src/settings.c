@@ -30,9 +30,10 @@
 
 #include "error_codes.h"
 #include "error_handling.h"
-#include "file_functions.h"
 #include "settings.h"
 #include "string_array.h"
+
+#include "file_functions.h"
 
 //------------------------------------------------------------------------------
 // Global variables
@@ -49,6 +50,8 @@ slcc_settings settings_ = {
   NULL,     /* out_file */
   NULL,     /* source_file */
   SFT_NONE, /* source_file_type */
+  NULL,     /* object_files */
+  NULL,     /* library_files */
   L_NONE,   /* language */
   LS_NONE,  /* standard */
   false,    /* use_deprecated */
@@ -62,17 +65,21 @@ slcc_settings settings_ = {
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// settings_initialize function
+// settings_new function
 //
 // Initialize settings object.
 //
-bool settings_initialize ()
+bool settings_new ()
 {
+  settings_.object_files = tc_array_new_sa ();
+  settings_.library_files = tc_array_new_sa ();
   settings_.include_paths = tc_array_new_sa ();
   settings_.library_paths = tc_array_new_sa ();
   settings_.source_paths = tc_array_new_sa ();
 
-  if (settings_.include_paths == 0 
+  if (settings_.object_files == 0
+      || settings_.library_files == 0
+      || settings_.include_paths == 0 
       || settings_.library_paths == 0
       || settings_.source_paths == 0)
     return false;
@@ -82,41 +89,64 @@ bool settings_initialize ()
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// settings_cleanup function
+// settings_delete function
 //
 // Cleans up arrays and pointers used in the settings object.
 //
-void settings_cleanup ()
+void settings_delete ()
 {
   free (settings_.out_file);
   
-  if (settings_.include_paths != 0)
+  if (settings_.object_files != NULL)
+    tc_array_delete_sa (settings_.object_files);
+
+  if (settings_.library_files != NULL)
+    tc_array_delete_sa (settings_.library_files);
+
+  if (settings_.include_paths != NULL)
     tc_array_delete_sa (settings_.include_paths);
 
-  if (settings_.library_paths != 0)
+  if (settings_.library_paths != NULL)
     tc_array_delete_sa (settings_.library_paths);
 
-  if (settings_.source_paths != 0)
+  if (settings_.source_paths != NULL)
     tc_array_delete_sa (settings_.source_paths);
 }
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// add_path function
+// add_file_or_path function
 //
-// Add a path to the list of paths to search. Priority is given as follows 
-// (paths are build up in this order):
-//   1) Path given at command line.
-//   2) Path given in environment variable SLCC_<object>_PATH.
-//   3) Path given in configuration file.
-//   4) System/Compiler defined path.
+// This functions has 2 goals:
 //
-bool add_path (slcc_path_type type, char* path)
+// 1) Add an object or library file to the files to use for linking.
+//
+// 2) Add a path to the list of paths to search. Priority is given as follows 
+//    (paths are build up in this order):
+//      1) Path given at command line.
+//      2) Path given in environment variable SLCC_<object>_PATH.
+//      3) Path given in configuration file.
+//      4) System/Compiler defined path.
+//
+bool add_file_or_path (slcc_path_type type, char* file)
 {
-  if (!tc_path_exists (path))
+  if (type == PT_INCLUDE
+      || type == PT_LIBRARY
+      || type == PT_SOURCE)
     {
-      err_report_and_exit_1 (EC_PATH_NOT_FOUND, path);
-      return false;
+      if (!tc_path_exists (file))
+	{
+	  err_report_and_exit_1 (EC_PATH_NOT_FOUND, file);
+	  return false;
+	}
+    }
+  else
+    {
+      if (!tc_file_exists (file))
+	{
+	  err_report_and_exit_1 (EC_FILE_NOT_FOUND, file);
+	  return false;
+	}
     }
 
   slcc_string_array* array;
@@ -130,6 +160,14 @@ bool add_path (slcc_path_type type, char* path)
     array = settings_.library_paths;
     break;
 
+  case PT_LIBRARY_FILE :
+    array = settings_.library_files;
+    break;
+
+  case PT_OBJECT_FILE :
+    array = settings_.object_files;
+    break;
+
   case PT_SOURCE :
     array = settings_.source_paths;
     break;
@@ -139,16 +177,16 @@ bool add_path (slcc_path_type type, char* path)
   }
 
   for (size_t i = 0; i < array->used_; i++)
-    if (strcmp (array->data_[i], path))
+    if (strcmp (array->data_[i], file))
       {
 	err_report_1 (
 		      EC_W_DUPLICATE_INCLUDE_PATH,
-		      path
+		      file
 		      );
 	return false;
       }
 
-  tc_array_add_sa (array, path);
+  tc_array_add_sa (array, file);
   return true;
 }
 //------------------------------------------------------------------------------

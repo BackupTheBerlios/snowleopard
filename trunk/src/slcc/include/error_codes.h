@@ -76,13 +76,15 @@ enum slcc_error_code
 					  failed */
     EC_DRIVER_INITIALIZATION_FAILED,   /* Driver initialization failed */
     EC_ERROR_HANDLING_ERROR,           /* Error handling error */
-    EC_PARSER_INITIALIZATION_FAILED,   /* Parser initialization failed */
+    EC_FILE_NOT_FOUND,                 /* The file does not exist or is not
+					  accessible */
     EC_INCOMPLETE_ARG,                 /* Incomplete argument */
     EC_INVALID_ARG,                    /* Invalid argument */
     EC_INVALID_SOURCE_FILE_TYPE,       /* Invalid source file type */
     EC_NO_SOURCE_FILE,                 /* No source file provided */
     EC_PATH_NOT_FOUND,                 /* The path does not exist or is not 
 					  accessible */
+    EC_PARSER_INITIALIZATION_FAILED,   /* Parser initialization failed */
     EC_SOURCE_FILE_NOT_FOUND,          /* The source file does not exist or
 					  is not accessible*/
     EC_SYMTAB_DUPLICATE,               /* Duplicate symbol table entry */
