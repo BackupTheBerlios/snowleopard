@@ -45,7 +45,7 @@ slcc_symtab pp_symtab;
 bool pp_symtab_new () 
 {
   pp_symtab = symtab_new (
-				    &hash_get_pre_char_hash_value,
+				    HT_PREPROCESSOR,
 				    MaxPreHashTableEntries
 				    );
 
@@ -80,7 +80,7 @@ void pp_symtab_delete ()
 //
 symtab_key_t pp_symtab_get_macro_position (const slcc_string* token) 
 {
-  symtab_key_t macro = hash_generate_pre_key (str_get_c_string (token));
+  symtab_key_t macro = hash_generate_pp_key (str_get_c_string (token));
 
   if (pp_symtab.data[macro].key == 0)
     return MaxSymtabKeyT;

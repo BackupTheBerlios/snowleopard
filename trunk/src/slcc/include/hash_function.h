@@ -45,24 +45,25 @@ typedef symtab_key_t (*hash_function_ptr) (char);
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
+// slcc_hash_type enum
+//
+// Hash types used in the compiler front end.
+//
+enum slcc_hash_type
+  {
+    HT_CXX,         /* Hashing C++ identifiers */
+    HT_PREPROCESSOR /* Hashing preprocessor identifiers */
+  };
+
+typedef enum slcc_hash_type slcc_hash_type;
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 // Hash function for C++ identifiers, used for hashing the keys for the
 // compiler front end's symbol table
 //
-symtab_key_t hash_generate_cpp_key (const char*);
-symtab_key_t hash_generate_pre_key (const char*);
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// General hashing function.
-//
-symtab_key_t hash_generate_key (hash_function_ptr, const char*);
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// Functions that generate the hash value of a single character.
-//
-symtab_key_t hash_get_cpp_char_hash_value (char);
-symtab_key_t hash_get_pre_char_hash_value (char);
+symtab_key_t hash_generate_cxx_key (const char*);
+symtab_key_t hash_generate_pp_key (const char*);
 //------------------------------------------------------------------------------
 
 #endif /* !__SL_SLCC_HASH_FUNCTION_H__ */

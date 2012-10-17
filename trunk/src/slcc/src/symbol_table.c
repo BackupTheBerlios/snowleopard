@@ -42,16 +42,27 @@ void symtab_delete_entry (slcc_symtab_entry* entry);
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
+// symtab_generate_key macro
+//
+// Macro picks the correct hash key generation function based on the hash_type
+// variable set in the symbol table.
+//
+#define symtab_generate_hash_key(key)				\
+  symtab->hash_type == HT_CXX ? hash_generate_cxx_key (key)	\
+                              : hash_generate_pp_key (key)
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 // symtab_new function
 //
 // This function initializes a symbol table.
 //
-slcc_symtab symtab_new (hash_function_ptr hash_function, size_t size) 
+slcc_symtab symtab_new (slcc_hash_type hash_type, size_t size) 
 {
   size_t i;
   slcc_symtab symtab;
 
-  symtab.hash_function = hash_function;
+  symtab.hash_type = hash_type;
   symtab.data = malloc (sizeof (slcc_symtab_entry[size]));
   symtab.size = size;
 
@@ -108,10 +119,7 @@ slcc_symtab_entry* symtab_get_entry_by_lexeme (
 					       const char* lexeme
 					       ) 
 {
-  symtab_key_t hash_key = hash_generate_key (
-					     symtab->hash_function,
-					     lexeme
-					     );
+  symtab_key_t hash_key = symtab_generate_hash_key (lexeme);
 
   if (strcmp (symtab->data[hash_key].key, lexeme))
     return &symtab->data[hash_key];
@@ -145,10 +153,7 @@ symtab_key_t symtab_get_key_by_lexeme (
 				       const char* lexeme
 				       ) 
 {
-  symtab_key_t hash_key = hash_generate_key (
-					     symtab->hash_function,
-					     lexeme
-					     );
+  symtab_key_t hash_key = symtab_generate_hash_key (lexeme);
 
   if (strcmp (symtab->data[hash_key].key, lexeme))
     return hash_key;
@@ -164,10 +169,7 @@ symtab_key_t symtab_get_key_by_lexeme (
 //
 bool symtab_is_in (const slcc_symtab* symtab, const char* key) 
 {
-  symtab_key_t hash_key = hash_generate_key (
-					     symtab->hash_function,
-					     key
-					     );
+  symtab_key_t hash_key = symtab_generate_hash_key (key);
 
   return symtab->data[hash_key].key != NULL;
 }
@@ -186,10 +188,7 @@ symtab_key_t symtab_set_entry (
 			       char* value
 			       ) 
 {
-  symtab_key_t hash_key = hash_generate_key (
-					     symtab->hash_function,
-					     key
-					     );
+  symtab_key_t hash_key = symtab_generate_hash_key (key);
 
   /* Set entry key if it doesn't exist yet */
   if (symtab->data[hash_key].key == NULL)

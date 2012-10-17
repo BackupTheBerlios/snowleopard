@@ -45,7 +45,7 @@ slcc_symtab cpp_symtab;
 bool cpp_symtab_new () 
 {
   cpp_symtab = symtab_new (
-			   &hash_get_cpp_char_hash_value, 
+			   HT_CXX, 
 			   MaxCppHashTableEntries
 			   );
 

@@ -60,7 +60,7 @@ typedef struct slcc_symtab_entry slcc_symtab_entry;
 //
 struct slcc_symtab
 {
-  hash_function_ptr hash_function;
+  slcc_hash_type hash_type;
   slcc_symtab_entry* data;
   size_t size;
 };
@@ -71,7 +71,7 @@ typedef struct slcc_symtab slcc_symtab;
 //------------------------------------------------------------------------------
 // Initialize functions
 //
-slcc_symtab symtab_new (hash_function_ptr hash_function, size_t size);
+slcc_symtab symtab_new (slcc_hash_type hash_type, size_t size);
 void symtab_clear (slcc_symtab* symtab);
 void symtab_delete (slcc_symtab* symtab);
 //------------------------------------------------------------------------------

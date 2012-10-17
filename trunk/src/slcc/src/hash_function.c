@@ -30,6 +30,14 @@
 #include "types.h"
 
 //------------------------------------------------------------------------------
+// Private functions
+//
+symtab_key_t hash_generate_key (slcc_hash_type type, const char* key_value);
+symtab_key_t hash_get_cxx_char_hash_value (char c);
+symtab_key_t hash_get_pp_char_hash_value (char c);
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 // MaxCppHashTableEntries constant
 //
 // Contains the maxinum number of entries allowed in the C++ hash table.
@@ -49,32 +57,35 @@ const size_t MaxPreHashCharacterValue = 83;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// hash_generate_cpp_key function
+// hash_generate_cxx_key function
 //
 // Generates a hash key for a C++ identifier.
 //
-symtab_key_t hash_generate_cpp_key (const char* key_value) 
+symtab_key_t hash_generate_cxx_key (const char* key_value) 
 {
   return hash_generate_key (
-			    &hash_get_cpp_char_hash_value,
+			    HT_CXX,
 			    key_value
 			    );
 }
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// hash_generate_key function
+// hash_generate_pp_key function
 //
 // Generates a hash key for a preprocessor macro.
 //
-symtab_key_t hash_generate_pre_key (const char* key_value) 
+symtab_key_t hash_generate_pp_key (const char* key_value) 
 {
   return hash_generate_key (
-			    &hash_get_pre_char_hash_value,
+			    HT_PREPROCESSOR,
 			    key_value
                             );
 }
 //------------------------------------------------------------------------------
+
+//==============================================================================
+// Private functions
 
 //------------------------------------------------------------------------------
 // hash_generate_key function
@@ -83,27 +94,29 @@ symtab_key_t hash_generate_pre_key (const char* key_value)
 // parameters given.
 //
 // Hashing is done as follows:
-//    1) For each character a number is generated using the supplied function pointer.
-//    2) This value for each character is multiplied by the position in the string.
+//    1) For each character a number is generated using the supplied function 
+//       pointer.
+//    2) This value for each character is multiplied by the position in the 
+//       string.
 //    3) The obtained values are summed. If this sum overflows we ignore it.
-//    4) The remainder of the sum divided by the hash_table_size parameter is the
-//       hash_key.
+//    4) The remainder of the sum divided by the hash_table_size parameter is 
+//       the hash_key.
 //
-symtab_key_t hash_generate_key (
-				hash_function_ptr hash_function,
-				const char* key_value
-				) 
+symtab_key_t hash_generate_key (slcc_hash_type type, const char* key_value) 
 {
+  hash_function_ptr hash_function;
   symtab_key_t hash_table_size;
   size_t max_char_value;
 
-  if (hash_function == &hash_get_cpp_char_hash_value) 
+  if (type == HT_CXX) 
     {
+      hash_function = &hash_get_cxx_char_hash_value;
       hash_table_size = MaxCppHashTableEntries;
       max_char_value = MaxCppHashCharacterValue;
     }
   else 
     {
+      hash_function = &hash_get_pp_char_hash_value;
       hash_table_size = MaxPreHashTableEntries;
       max_char_value = MaxPreHashCharacterValue;
     }
@@ -123,7 +136,7 @@ symtab_key_t hash_generate_key (
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// hash_get_cpp_char_hash_value function
+// hash_get_cxx_char_hash_value function
 //
 // This function calculates the character value for a valid C++ character to
 // hash.
@@ -141,7 +154,7 @@ symtab_key_t hash_generate_key (
 //   _     = 83
 //   :     = 84
 //
-symtab_key_t hash_get_cpp_char_hash_value (char c) 
+symtab_key_t hash_get_cxx_char_hash_value (char c) 
 {
   if (c == ' ')
     return 0;
@@ -171,7 +184,7 @@ symtab_key_t hash_get_cpp_char_hash_value (char c)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// hash_get_pre_char_hash_value function
+// hash_get_pp_char_hash_value function
 //
 // This function calculates the character value for a valid C++ character to
 // hash.
@@ -183,7 +196,7 @@ symtab_key_t hash_get_cpp_char_hash_value (char c)
 //   A-Z   = 45 + c - 'A'
 //   _     = 83
 //
-symtab_key_t hash_get_pre_char_hash_value (char c) 
+symtab_key_t hash_get_pp_char_hash_value (char c) 
 {
   if (c == ' ')
     return 0;
@@ -199,5 +212,7 @@ symtab_key_t hash_get_pre_char_hash_value (char c)
     return MaxPreHashTableEntries;
 }
 //------------------------------------------------------------------------------
+
+//==============================================================================
 
 //-<EOF>
