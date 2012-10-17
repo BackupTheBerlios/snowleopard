@@ -25,6 +25,7 @@
 
 #include <stdbool.h>
 
+#include "lexer.h"
 #include "parse_tree.h"
 #include "parser.h"
 
@@ -40,6 +41,9 @@ bool parser_initialize ()
   if (parse_tree_ == NULL)
     return false;
 
+  if (!lexer_initialize ())
+    return false;
+
   return true;
 }
 //------------------------------------------------------------------------------
@@ -51,6 +55,7 @@ bool parser_initialize ()
 //
 void parser_cleanup ()
 {
+  lexer_cleanup ();
   tc_tree_delete_pt (parse_tree_);
 }
 //------------------------------------------------------------------------------

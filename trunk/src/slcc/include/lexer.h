@@ -41,7 +41,7 @@ extern slcc_token previous_token_;
 //------------------------------------------------------------------------------
 // Initialize functions
 //
-bool lexer_initialize (char* file);
+bool lexer_initialize ();
 void lexer_cleanup ();
 //------------------------------------------------------------------------------
 
