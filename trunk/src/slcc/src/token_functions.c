@@ -54,11 +54,11 @@ slcc_token token_new_built_in (char* s, slcc_source_position pos)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// character_token function
+// token_new_char function
 //
 // This function returns a character token.
 //
-slcc_token character_token (char c, slcc_source_position pos) 
+slcc_token token_new_char (char c, slcc_source_position pos) 
 {
   slcc_token token;
 
@@ -111,11 +111,11 @@ slcc_token char32_token (char32_t c, slcc_source_position pos)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// comment_token function
+// token_new_comment function
 //
 // This function returns a comment token.
 //
-slcc_token comment_token (const slcc_string* s, slcc_source_position pos) 
+slcc_token token_new_comment (const slcc_string* s, slcc_source_position pos) 
 {
   slcc_token token;
 
@@ -128,11 +128,11 @@ slcc_token comment_token (const slcc_string* s, slcc_source_position pos)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// empty_token function
+// token_new_empty function
 //
 // This function returns an empty token.
 //
-slcc_token empty_token (slcc_source_position pos) 
+slcc_token token_new_empty (slcc_source_position pos) 
 {
   slcc_token token;
 
@@ -144,11 +144,11 @@ slcc_token empty_token (slcc_source_position pos)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// eof_token function
+// token_new_eof function
 //
 // This function return an eof token.
 //
-slcc_token eof_token () 
+slcc_token token_new_eof () 
 {
   slcc_token token;
 
@@ -159,17 +159,17 @@ slcc_token eof_token ()
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// floatingpoint_token function
+// token_new_float function
 //
 // This function returns a floating point token. All literals are returned as 
 // double, unless the type is specified.
 //
-slcc_token floatingpoint_token(
-			       slcc_string* s, 
-			       slcc_source_position pos, 
-			       bool type_float,
-			       bool type_long_double
-			       ) 
+slcc_token token_new_float(
+			   slcc_string* s, 
+			   slcc_source_position pos, 
+			   bool type_float,
+			   bool type_long_double
+			   ) 
 {
   slcc_token token;
 
@@ -289,7 +289,7 @@ slcc_token token_new_preprocessor_built_in (char* s, slcc_source_position pos)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// integer_token function
+// token_new_int function
 //
 // This function returns a numeric token. The parameters are defined as follows:
 //   - force_signed: Value is forced to be signed (for example by adding 'U' to 
@@ -297,7 +297,7 @@ slcc_token token_new_preprocessor_built_in (char* s, slcc_source_position pos)
 //   - type_long: Value is type long, due to l/L suffix.
 //   - type_long_long: Value is type long long, due to ll/LL suffix.
 //
-slcc_token integer_token (
+slcc_token token_new_int (
 			  slcc_string* s, 
 			  slcc_source_position pos,
 			  bool is_octal,
@@ -431,11 +431,11 @@ slcc_token token_new_punctuation (
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// raw_string_token function
+// token_new_raw_string function
 //
 // This function returns a raw string token.
 //
-slcc_token raw_string_token (char* s, slcc_source_position pos) 
+slcc_token token_new_raw_string (char* s, slcc_source_position pos) 
 {
   slcc_token token;
 
@@ -452,11 +452,11 @@ slcc_token raw_string_token (char* s, slcc_source_position pos)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// string_token function
+// token_new_string function
 //
 // This function returns a string token.
 //
-slcc_token string_token (slcc_string* s, slcc_source_position pos) 
+slcc_token token_new_string (slcc_string* s, slcc_source_position pos) 
 {
   slcc_token token;
 
@@ -475,11 +475,11 @@ slcc_token string_token (slcc_string* s, slcc_source_position pos)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// string16_token function
+// token_new_string16 function
 //
 // This function returns a string16 token.
 //
-slcc_token string16_token (slcc_string16* s, slcc_source_position pos) 
+slcc_token token_new_string16 (slcc_string16* s, slcc_source_position pos) 
 {
   slcc_token token;
 
@@ -498,11 +498,11 @@ slcc_token string16_token (slcc_string16* s, slcc_source_position pos)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// string32_token function
+// token_new_string32 function
 //
 // This function returns a string32 token.
 //
-slcc_token string32_token (slcc_string32* s, slcc_source_position pos) 
+slcc_token token_new_string32 (slcc_string32* s, slcc_source_position pos) 
 {
   slcc_token token;
 
@@ -521,11 +521,11 @@ slcc_token string32_token (slcc_string32* s, slcc_source_position pos)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// wcharacter_token function
+// token_new_wchar function
 //
 // This function returns a wcharacter token.
 //
-slcc_token wcharacter_token (wchar_t c, slcc_source_position pos) 
+slcc_token token_new_wchar (wchar_t c, slcc_source_position pos) 
 {
   slcc_token token;
 
@@ -540,11 +540,11 @@ slcc_token wcharacter_token (wchar_t c, slcc_source_position pos)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// wstring_token function.
+// token_new_wstring function.
 //
 // This function returns a wstring token.
 //
-slcc_token wstring_token (slcc_wstring* s, slcc_source_position pos) 
+slcc_token token_new_wstring (slcc_wstring* s, slcc_source_position pos) 
 {
   slcc_token token;
 

@@ -63,11 +63,11 @@ slcc_source_position current_position;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// rdr_new_with_file function
+// rdr_initialize_with_file function
 //
 // Initialize reader with file.
 //
-bool rdr_new_with_file (char* file) 
+bool rdr_initialize_with_file (char* file) 
 {
   /* Initialize file stack */
   file_stack_reserved = InitialStackSize;
@@ -86,11 +86,11 @@ bool rdr_new_with_file (char* file)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// rdr_new_with_string function
+// rdr_initialize_with_string function
 //
 // Initialize reader with file.
 //
-bool rdr_new_with_string (char* orig_src, char* preprocessed_src) 
+bool rdr_initialize_with_string (char* orig_src, char* preprocessed_src) 
 {
   /* Initialize file stack */
   file_stack_reserved = InitialStackSize;
@@ -116,11 +116,11 @@ bool rdr_new_with_string (char* orig_src, char* preprocessed_src)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// rdr_delete function
+// rdr_cleanup function
 //
 // Destroy reader.
 //
-void rdr_delete () 
+void rdr_cleanup () 
 {
   size_t i;
 

@@ -34,22 +34,21 @@
 //------------------------------------------------------------------------------
 // Global variables
 //
-extern slcc_token current_token;
-extern slcc_token previous_token;
-extern slcc_source_position* current_source_position;
+extern slcc_token current_token_;
+extern slcc_token previous_token_;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // Initialize functions
 //
-bool lexer_initialize (char*);
+bool lexer_initialize (char* file);
 void lexer_cleanup ();
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // Lexer functions
 //
-slcc_token lex_get_next_token (bool);
+slcc_token lex_get_next_token (bool macro_skip);
 slcc_token lex_get_previous_token ();
 //------------------------------------------------------------------------------
 

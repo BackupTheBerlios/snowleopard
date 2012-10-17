@@ -35,9 +35,9 @@
 //------------------------------------------------------------------------------
 // Initialize functions
 //
-bool rdr_new_with_file (char* file);
-bool rdr_new_with_string (char* orig_src, char* preprocessed_src);
-void rdr_delete ();
+bool rdr_initialize_with_file (char* file);
+bool rdr_initialize_with_string (char* orig_src, char* preprocessed_src);
+void rdr_cleanup ();
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------

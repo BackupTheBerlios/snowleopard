@@ -129,7 +129,7 @@ char* keyword_list_[] = {
 //
 // Keyword list length.
 //
-const size_t keyword_list_length = 97;
+const size_t keyword_list_length_ = 97;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -216,7 +216,7 @@ char* punctuation_list_[] = {
 //
 // Punctuation list length.
 //
-const size_t punctuation_list_length = 69;
+const size_t punctuation_list_length_ = 69;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -276,15 +276,15 @@ void token_delete (slcc_token* token)
 void token_print (size_t u, slcc_token token) 
 {
   switch (token.type) {
-  case TT_EMPTY:
+  case TT_EMPTY :
     printf ("%llu: EMPTY token", (unsigned long long)u);
     break;
     
-  case TT_COMMENT:
+  case TT_COMMENT :
     printf ("%llu: COMMENT <%s>\n", (unsigned long long)u, token.value.comment);
     break;
     
-  case TT_PREPROCESSOR:
+  case TT_PREPROCESSOR :
     printf (
 	    "%llu: PREPROCESSOR <%s>\n", 
 	    (unsigned long long)u, 
@@ -292,7 +292,7 @@ void token_print (size_t u, slcc_token token)
 	    );
     break;
     
-  case TT_KEYWORD:
+  case TT_KEYWORD :
     printf (
 	    "%llu: KEYWORD <%s>\n",
 	    (unsigned long long)u,
@@ -300,7 +300,7 @@ void token_print (size_t u, slcc_token token)
 	    );
     break;
     
-  case TT_PUNCTUATION:
+  case TT_PUNCTUATION :
     printf (
 	    "%llu: PUNCTUATION <%s>\n",
 	    (unsigned long long)u,
@@ -308,9 +308,9 @@ void token_print (size_t u, slcc_token token)
 	    );
     break;
     
-  case TT_LITERAL: 
+  case TT_LITERAL : 
     switch(token.value.literal.type) {
-    case LT_BOOL:
+    case LT_BOOL :
       printf(
 	     "%llu: LITERAL <type: LT_BOOL; lexeme: %s; value: %s>\n", 
 	     (unsigned long long)u,
@@ -319,7 +319,7 @@ void token_print (size_t u, slcc_token token)
 	     );
       break;
       
-    case LT_UNSIGNED_CHAR:
+    case LT_UNSIGNED_CHAR :
       printf(
 	     "%llu: LITERAL <type: LT_UNSIGNED_CHAR; lexeme: %s; value: %i>\n", 
 	     (unsigned long long)u,
@@ -328,7 +328,7 @@ void token_print (size_t u, slcc_token token)
 	     );
       break;
       
-    case LT_SIGNED_CHAR:
+    case LT_SIGNED_CHAR :
       printf(
 	     "%llu: LITERAL <type: LT_SIGNED_CHAR; lexeme: %s; value: %i>\n", 
 	     (unsigned long long)u,
@@ -337,7 +337,7 @@ void token_print (size_t u, slcc_token token)
 	     );
       break;
 
-    case LT_SIGNED_INT:
+    case LT_SIGNED_INT :
       printf(
 	     "%llu: LITERAL <type: LT_SIGNED_INT; lexeme: %s; value: %i>\n",
 	     (unsigned long long)u,
@@ -346,7 +346,7 @@ void token_print (size_t u, slcc_token token)
 	     );
       break;
 
-    case LT_SIGNED_LONG:
+    case LT_SIGNED_LONG :
       printf(
 	     "%llu: LITERAL <type: LT_SIGNED_LONG; lexeme: %s; value: %li>\n",
 	     (unsigned long long)u,
@@ -355,7 +355,7 @@ void token_print (size_t u, slcc_token token)
 	     );
       break;
 
-    case LT_UNSIGNED_LONG:
+    case LT_UNSIGNED_LONG :
       printf(
 	     "%llu: LITERAL <type: LT_UNSIGNED_LONG; lexeme: %s; value: %lu>\n",
 	     (unsigned long long)u,
@@ -364,7 +364,7 @@ void token_print (size_t u, slcc_token token)
 	     );
       break;
 
-    case LT_UNSIGNED_LONG_LONG:
+    case LT_UNSIGNED_LONG_LONG :
       printf(
 	     "%llu: LITERAL <type: LT_UNSIGNED_LONG_LONG; lexeme: %s; value: %llu>\n",
 	     (unsigned long long)u,
@@ -384,7 +384,7 @@ void token_print (size_t u, slcc_token token)
     }
     break;
 
-  case TT_IDENTIFIER:
+  case TT_IDENTIFIER :
     printf (
 	    "%llu: IDENTIFIER <%s>\n",
 	    (unsigned long long)u,
@@ -392,7 +392,7 @@ void token_print (size_t u, slcc_token token)
 	    );
     break;
       
-  default:
+  default :
     printf ("%llu: UNKNOWN TOKEN\n", (unsigned long long)u);
     break;
   }

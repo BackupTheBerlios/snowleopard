@@ -97,9 +97,11 @@ enum slcc_error_code
 
     /* Compile errors */
     EC_C_INVALID_CHAR_IN_CHAR_LITERAL,   /* Invalid char in char literal */
+    EC_C_INVALID_CHAR_LITERAL,           /* Invalid char literal */
     EC_C_INVALID_HEX_CHAR_LITERAL,       /* Invalid hexadecimal character
 					    literal */
     EC_C_INVALID_OCTAL_CHAR_LITERAL,     /* Invalid octal character literal */
+    EC_C_INVALID_WCHAR_LITERAL,          /* Invalid wchar literal */
     EC_U_CHAR16_T_HANDLING,              /* Unimplemneted char16_t handling */
     EC_U_CHAR32_T_HANDLING,              /* Unimplemented char32_t handling */
     EC_U_WCHAR_T_HANDLING                /* Unimplemented wchar_t handling */

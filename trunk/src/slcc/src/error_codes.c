@@ -69,9 +69,11 @@ slcc_error_description error_description_list_[] = {
   {"Invalid preprocessor directive in \"%s\"", 1, ET_PREPROCESS},
 
   /* Compile errors */
-  {"Invalid character in char literal", 1, ET_COMPILE},
-  {"The hexadecimal literal %s is not a valid char literal", 1, ET_COMPILE},
-  {"The octal literal %s is not a valid char literal", 1, ET_COMPILE}, 
+  {"Invalid character in char literal \"%s\"", 1, ET_COMPILE},
+  {"Invalid character literal \"%s\"", 1, ET_COMPILE},
+  {"The hexadecimal literal '%s' is not a valid char literal", 1, ET_COMPILE},
+  {"The octal literal '%s' is not a valid char literal", 1, ET_COMPILE}, 
+  {"Invalid wide character literal \"%s\"", 1, ET_COMPILE},
   {"char16_t handling is not implemented", 1, ET_UNIMPLEMENTED},
   {"char32_t handling is not implemented", 1, ET_UNIMPLEMENTED},
   {"wchar_t handling is not implemented", 1, ET_UNIMPLEMENTED}

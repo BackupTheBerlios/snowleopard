@@ -126,11 +126,11 @@ bool pp_initialize ()
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// pp_delete function
+// pp_cleanup function
 //
 // Destroys the preprocessor.
 //
-void pp_delete () 
+void pp_cleanup () 
 {
   pp_symtab_delete ();
 }
