@@ -18,26 +18,21 @@
 #===============================================================================
 
 #-------------------------------------------------------------------------------
-# SLBuild.slcc
+# SLBuild.cc
 #-------------------------------------------------------------------------------
-# slbld configuration file for the compiler front end.
+# slbld configuration file for the compiler front end script.
 #-------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------
 # slbld variables
 #
-SLBLD_PRG	= slcc
-
-SLBLD_OBJS	= [all]
-SLBLD_DOCS	= [all]
+SLBLD_SCRIPT	= cc
 
 SLBLD_LIBS	= \
-	config		= [source]					\
-	libsltc		= [source];[static]
-
+	libslsh		[source]
+			     
 SLBLD_FLAGS	= \
-	[all] [strict]							\
-	preprocessor.c	= [no-unused-parameter]
+	[all] =         [strict]
 
 #------------------------------------------------------------------------------
 #-<EOF>
