@@ -72,7 +72,7 @@ TST_BUILD_PATH		= $(BUILD_PATH)/libsltst
 #
 COMPILE_FLAGS		= -std=c99 -Wall -Wextra -Werror
 LIBRARY_FLAGS		= -fPIC
-DEBUG_FLAGS		= -g
+DEBUG_FLAGS		= -g $(CMD_LINE_DEBUG_FLAGS)
 
 #-------------------------------------------------------------------------------
 # Testing library
