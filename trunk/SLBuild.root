@@ -29,21 +29,21 @@
 SLBLD_DIRS	= [standard_project]
 
 SLBLD_MODULES	=  \
-	config		= [no-build][source]
+	config		= [no-build]:[source]
 	libsh		= [lib]:[source]
 	libslstdc  	= [lib]:[static][shared]
 	libslstdcpp	= [lib]:[source][static][shared]
 	libsltc		= [lib]:[source][static][shared]
 	libsltst	= [lib]:[source][static]
 	lynx		= [program];[script];[lib]:[source]
-	slbld		= [program][script]
-	slcc		= [program][script]
-	slsh		= [program][script]
+	slbld		= [program];[script]
+	slcc		= [program];[script]
+	slsh		= [program];[script]
 	sltst		= [script]
 	test		= [test]
 	www		= [website]
 
-SLBLD_GENERATE	= [makefile][build-script]
+SLBLD_GENERATE	= [makefile];[build-script]
 
 #------------------------------------------------------------------------------
 #-<EOF>

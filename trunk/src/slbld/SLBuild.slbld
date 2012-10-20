@@ -31,12 +31,12 @@ SLBLD_PRG	= slbld
 SLBLD_OBJS	= [all]
 
 SLBLD_LIBS	= \
-	config		[source]					\
-	libsltc		[source];[static]
+	config		= [source]					\
+	libsltc		= [source];[static]
 
 SLBLD_FLAGS	= \
-	[all] [strict]							\
-	main.c [no-unused-parameter]
+	[all] 		= [strict]					\
+	main.c 		= [strict];[no-unused-parameter]
 
 #------------------------------------------------------------------------------
 #-<EOF>
