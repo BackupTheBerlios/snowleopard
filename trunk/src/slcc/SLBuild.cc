@@ -29,10 +29,10 @@
 SLBLD_SCRIPT	= cc
 
 SLBLD_LIBS	= \
-	libslsh		[source]
-			     
+	libslsh		= [source]
+
 SLBLD_FLAGS	= \
-	[all] =         [strict]
+	[all]		= [strict]
 
 #------------------------------------------------------------------------------
 #-<EOF>

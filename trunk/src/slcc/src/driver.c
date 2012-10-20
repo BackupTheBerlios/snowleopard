@@ -41,6 +41,7 @@
 // Private functions
 //
 bool drv_check_arguments (); 
+bool drv_check_warning (char* arg);
 bool drv_process_argument (char** argv, int* pos);
 bool drv_process_file_argument (char* file);
 bool drv_process_language_standard (char* argument);
@@ -254,6 +255,11 @@ bool drv_process_argument (char** argv, int* pos)
 		     "--use_export",
 		     return settings_.use_export = true);
 
+      /* Argument --warning <warning flag> */
+      drv_check_arg (arg,					
+		     "--warning",				
+		     return drv_check_warning (argv[*pos++]));
+
       /* Argument --warrantee */
       drv_check_arg (arg,				
 		     "--warrantee",			
@@ -301,6 +307,15 @@ bool drv_process_argument (char** argv, int* pos)
       drv_check_arg (arg,					
 		     "-S",					
 		     return drv_process_path (PT_SOURCE, argv[*pos++], true));
+    }
+    break;
+
+  case 'W' :
+    {
+      /* Argument -W<warning flag> [warning <warning flag>] */
+      return drv_check_warning (
+				arg+2
+				);
     }
     break;
 
@@ -352,6 +367,27 @@ bool drv_process_argument (char** argv, int* pos)
   default :
     break;
   }
+
+  return false;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// drv_check_warning function
+//
+// Check a warning flag given as parameter, and if it is valid, apply it to
+// the settings.
+//
+bool drv_check_warning (char* arg)
+{
+  /* -Wall / --warning all */
+  drv_check_arg (arg,"all",set_warnings (WT_ALL); return true);
+
+  /* -Wextra / --warning extra */
+  drv_check_arg (arg,"extra",set_warnings (WT_EXTRA); return true);
+
+  /* -Weffc++ / --warning effc++ */
+  drv_check_arg (arg,"effc++",set_warnings (WT_CXX_EFFCXX); return true);
 
   return false;
 }
@@ -468,7 +504,7 @@ bool drv_process_file_argument (char* file)
 bool drv_process_path (slcc_path_type type, char* arg, bool attached)
 {
   if (attached)
-    if (&arg == '\0')
+    if (*arg == '\0')
       return false;
     else
       return add_file_or_path (type, arg);
@@ -499,6 +535,11 @@ bool drv_process_language_standard (char* arg)
       settings_.language = L_C;
       settings_.standard = LS_C11;
     }
+  else if (strncmp (arg, "c1y", 3))
+    {
+      settings_.language = L_C;
+      settings_.standard = LS_C1Y;
+    }
   else if (strncmp (arg, "cpp98", 5))
     {
       settings_.language = L_CXX;
@@ -508,6 +549,11 @@ bool drv_process_language_standard (char* arg)
     {
       settings_.language = L_CXX;
       settings_.standard = LS_CXX11;
+    }
+  else if (strncmp (arg, "cpp1y", 5))
+    {
+      settings_.language = L_CXX;
+      settings_.standard = LS_CXX1Y;
     }
   else
     return false;
@@ -523,7 +569,7 @@ bool drv_process_language_standard (char* arg)
 //
 bool drv_process_out_file (char* arg)
 {
-  if (&arg == '\0')
+  if (*arg == '\0')
     return false;
   else
     return set_out_file (arg);

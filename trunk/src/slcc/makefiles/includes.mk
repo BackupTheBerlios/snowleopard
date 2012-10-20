@@ -33,9 +33,11 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/built_in_types.h					\
 	$(PRG_INCLUDE)/codegen.h					\
 	$(PRG_INCLUDE)/config_slcc.h 					\
+	$(PRG_INCLUDE)/constructs.h					\
 	$(PRG_INCLUDE)/cpp_symtab.h					\
 	$(PRG_INCLUDE)/debug.h						\
 	$(PRG_INCLUDE)/debug_functions.h				\
+	$(PRG_INCLUDE)/declarations.h					\
 	$(PRG_INCLUDE)/definitions.h					\
 	$(PRG_INCLUDE)/driver.h 					\
 	$(PRG_INCLUDE)/error.h						\
@@ -60,6 +62,7 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/string_array.h					\
 	$(PRG_INCLUDE)/strings.h					\
 	$(PRG_INCLUDE)/symbol_table.h					\
+	$(PRG_INCLUDE)/templates.h					\
 	$(PRG_INCLUDE)/token.h						\
 	$(PRG_INCLUDE)/types.h 						\
 	$(PRG_INCLUDE)/version_slcc.h

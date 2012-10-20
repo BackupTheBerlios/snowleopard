@@ -371,8 +371,8 @@ char* pp_get_defined (const slcc_string* s)
 //
 bool pp_process_define (const slcc_string* s) 
 {
-  char* macro;
-  char* body;
+  char* macro = NULL;
+  char* body = NULL;
 
   if (!pp_check_preprocessor_cmd_in_string (s, DirectiveDEFINE))
     return false;

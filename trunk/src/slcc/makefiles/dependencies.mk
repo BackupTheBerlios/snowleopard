@@ -39,12 +39,16 @@ CODEGEN_H_DEPS			=
 CONFIG_SLCC_H_DEPS		= \
 	$(CONFIG_C_INCLUDES)
 
+CONSTRUCTS_H_DEPS		=
+
 CPP_SYMTAB_H_DEPS		= \
 	$(PRG_INCLUDE)/symbol_table.h
 
 DEBUG_H_DEPS			=
 
 DEBUG_FUNCTIONS_H_DEPS		=
+
+DECLARATIONS_H_DEPS		=
 
 DEFINITIONS_H_DEPS		= \
 	$(PRG_INCLUDE)/built_in_types.h					\
@@ -117,6 +121,10 @@ SORUCE_POSITION_H_DEPS		= \
 	$(PRG_INCLUDE)/source_string.h
 
 SOURCE_OBJECTS_H_DEPS		= \
+	$(PRG_INCLUDE)/constructs.h					\
+	$(PRG_INCLUDE)/declarations.h					\
+	$(PRG_INCLUDE)/definitions.h					\
+	$(PRG_INCLUDE)/templates.h					\
 	$(PRG_INCLUDE)/types.h
 
 SOURCE_STRING_H_DEPS		=
@@ -137,6 +145,8 @@ SYMBOL_TABLE_H_DEPS		= \
 	$(PRG_INCLUDE)/source_position.h				\
 	$(PRG_INCLUDE)/token.h						\
 	$(PRG_INCLUDE)/types.h
+
+TEMPLATES_H_DEPS		=
 
 TOKEN_H_DEPS			= \
 	$(PRG_INCLUDE)/literal.h					\

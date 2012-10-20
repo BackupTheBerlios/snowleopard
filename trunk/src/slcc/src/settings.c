@@ -61,7 +61,9 @@ slcc_settings settings_ = {
   NULL,     /* library_paths */
   NULL,     /* source_paths */
   false,    /* use_concepts */
-  false     /* use_export */
+  false,    /* use_export */
+  WT_MOST,  /* warnings */
+  false
 };
 //------------------------------------------------------------------------------
 

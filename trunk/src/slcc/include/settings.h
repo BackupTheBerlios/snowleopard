@@ -57,8 +57,10 @@ enum slcc_language_standard
     LS_C89,   /* C 89 */
     LS_C99,   /* C 99 */
     LS_C11,   /* C 11 - Default for C */
+    LS_C1Y,   /* Experimental C */
     LS_CXX98, /* C++ 98 */
-    LS_CXX11  /* C++ 11 - Default for C++ */
+    LS_CXX11, /* C++ 11 - Default for C++ */
+    LS_CXX1Y  /* Experimental C++, also includes concepts and export */
   };
 
 typedef enum slcc_language_standard slcc_language_standard;
@@ -96,6 +98,23 @@ enum slcc_source_file_type
   };
 
 typedef enum slcc_source_file_type slcc_source_file_type;
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// slcc_warning_type
+//
+// Warning flags used by the compiler.
+//
+enum slcc_warning_type
+  {
+    WT_NONE = 0,       /* No warnings, only errors are reported */
+    WT_MOST = 1,       /* Most warnings. Default setting */
+    WT_ALL = 2,        /* Use all regular warnings */ 
+    WT_EXTRA = 4,      /* Use all extra warnings */
+    WT_CXX_EFFCXX = 8, /* Effective C++ warnings (C++ only) */
+  };
+
+typedef enum slcc_warning_type slcc_warning_type;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -137,6 +156,10 @@ struct slcc_settings
   /* C++ options */
   bool use_concepts;
   bool use_export;
+
+  /* Errors/warnings */
+  unsigned long long warnings;
+  bool warnings_as_errors;
 };
 
 typedef struct slcc_settings slcc_settings;
@@ -145,6 +168,33 @@ typedef struct slcc_settings slcc_settings;
 //------------------------------------------------------------------------------
 // Global variables.
 extern slcc_settings settings_;
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// set_warnings macro
+//
+// Set warning flags.
+//
+#define set_warnings(warning_flag)			\
+  settings_.warnings = settings_.warnings | warning_flag
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// reset_warnings macro
+//
+// Reset warning flags.
+//
+#define reset_warnings(warning_flag)			\
+  settings_.warnings = settings_.warnings & warning_flag 
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// check warnings macro
+//
+// Check warning flags.
+//
+#define check_warnings(warning_flag)		\
+  settings_.warnings & warning_flag
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------

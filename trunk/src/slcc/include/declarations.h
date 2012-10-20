@@ -18,33 +18,14 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// source_object.h
+// definitions.h
 //------------------------------------------------------------------------------
-// Source object for the compiler front end.
-//------------------------------------------------------------------------------
-
-#ifndef __SL_SLCC_SOURCE_OBJECT_H__
-#define __SL_SLCC_SOURCE_OBJECT_H__
-
-#include <constructs.h>
-#include <declarations.h>
-#include <definitions.h>
-#include <templates.h>
-#include <types.h>
-
-//------------------------------------------------------------------------------
-// slcc_source_oject struct
-//
-// Stores one source object and all it's dependents.
-//
-struct slcc_source_object
-{
-  symtab_key_t key;
-};
-
-typedef struct slcc_source_object slcc_source_object;
+// Definitions for the compiler front end.
 //------------------------------------------------------------------------------
 
-#endif /* !__SL_SLCC_SOURCE_OBJECT_H__ */
+#ifndef __SL_SLCC_DEFINITIONS_H__
+#define __SL_SLCC_DEFINITIONS_H__
+
+#endif /* !__SL_SLCC_DEFINITIONS_H__ */
 
 //-<EOF>
