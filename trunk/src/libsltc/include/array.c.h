@@ -189,12 +189,12 @@ sl_concat_3(tc_array_remove,_,TC_ARRAY_FUNCTION_SUFFIX)
  size_t pos
  )
 {
-  TC_ARRAY_ELEMENT_TYPE e;
+  //  TC_ARRAY_ELEMENT_TYPE e;
 
   if (pos > array->used_)
     return false;
 
-  array->data_[pos] = e;
+  array->data_[pos] = (TC_ARRAY_ELEMENT_TYPE)0;
 
   return true;
 }
