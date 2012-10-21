@@ -1,5 +1,5 @@
 /*==============================================================================
-  Snow Leopard C Source Component Library
+  Snow Leopard C++ Compiler Front End
   
   Copyright (C) 2012 Roel Sergeant
   
