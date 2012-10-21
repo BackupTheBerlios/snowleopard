@@ -51,12 +51,14 @@ slcc_error_description error_description_list_[] = {
 
   /* Compiler runtime error */
   {"Code generator initialization failed", 0, ET_FATAL},
+  {"C++ option given on a C source file", 0, ET_FATAL},
   {"Driver initialization failed", 0, ET_FATAL},
   {"Error handling error", 0, ET_FATAL},
   {"File %s doesn't exist or is not accessible", 1, ET_FATAL},
   {"Incomplete argument provided", 0, ET_FATAL},
   {"Invalid argument provided", 0, ET_FATAL},
-  {"Source file %s has no valid extension", 1, ET_FATAL}, 
+  {"Source file %s has no valid extension", 1, ET_FATAL},
+  {"No objects or source file provided", 0, ET_FATAL}, 
   {"No source file provided", 0, ET_FATAL},
   {"Path %s doesn't exist or is not accessible", 1, ET_FATAL},
   {"Parser initialization failed", 0, ET_FATAL},

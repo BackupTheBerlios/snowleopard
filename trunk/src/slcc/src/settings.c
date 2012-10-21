@@ -80,11 +80,11 @@ bool settings_new ()
   settings_.library_paths = tc_array_new_sa ();
   settings_.source_paths = tc_array_new_sa ();
 
-  if (settings_.object_files == 0
-      || settings_.library_files == 0
-      || settings_.include_paths == 0 
-      || settings_.library_paths == 0
-      || settings_.source_paths == 0)
+  if (settings_.object_files == NULL
+      || settings_.library_files == NULL
+      || settings_.include_paths == NULL 
+      || settings_.library_paths == NULL
+      || settings_.source_paths == NULL)
     return false;
 
   return true;

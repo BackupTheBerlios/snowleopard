@@ -163,12 +163,58 @@ bool drv_parse_command_line (int argc, char** argv)
 //
 // Check the following:
 //   - Was a source file provided.
-//   - Is the language standard given compatibel with the language provided.
+//   - Are language options compatible with language provided.
 //
 bool drv_check_arguments ()
 {
-  /* <TODO: Check if arguments are correct> */
-  return false;
+  /* quiet takes priority over verbose, silently change this */
+  if (settings_.quiet && settings_.verbose)
+    settings_.verbose = false;
+
+  /* 
+   * if called for an information function, all others are irrelevant but we
+   * do reset quiet.
+   */
+  if (settings_.copyright_only 
+      || settings_.license_only 
+      || settings_.usage_only 
+      || settings_.warrantee_only)
+    {
+      settings_.quiet = false;
+      return true;
+    }
+
+  /* 
+   * if source required and not provided, report error, display usage and 
+   * exit.
+   */
+  if (settings_.source_file == NULL 
+      && (settings_.compile_only 
+	  || settings_.dependencies_only 
+	  || settings_.preprocess_only))
+    {
+      err_report_0 (EC_NO_SOURCE_FILE);
+      return false;
+    }
+
+  /* if there is no source file, report error, display usage and exit */
+  if (settings_.source_file == NULL 
+      && settings_.object_files->used_ == 0
+      && settings_.library_files->used_ == 0)
+    {
+      err_report_0 (EC_NO_OBJECT_OR_SOURCE_FILES);
+      return false;
+    }
+
+  /* Are the language options provided compatible with the language provided */
+  if (settings_.language == L_C 
+      && (settings_.use_concepts || settings_.use_export))
+    {
+      err_report_0 (EC_CPP_ONLY_OPTION_ON_C_SOURCE);
+      return false;
+    }
+
+  return true;
 }
 //------------------------------------------------------------------------------
 

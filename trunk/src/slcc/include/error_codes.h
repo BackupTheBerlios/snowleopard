@@ -74,6 +74,7 @@ enum slcc_error_code
     /* Compiler runtime errors */
     EC_CODEGEN_INITIALIZATION_FAILED,  /* Code generator initialization 
 					  failed */
+    EC_CPP_ONLY_OPTION_ON_C_SOURCE,    /* C++ options given for C source */
     EC_DRIVER_INITIALIZATION_FAILED,   /* Driver initialization failed */
     EC_ERROR_HANDLING_ERROR,           /* Error handling error */
     EC_FILE_NOT_FOUND,                 /* The file does not exist or is not
@@ -81,6 +82,7 @@ enum slcc_error_code
     EC_INCOMPLETE_ARG,                 /* Incomplete argument */
     EC_INVALID_ARG,                    /* Invalid argument */
     EC_INVALID_SOURCE_FILE_TYPE,       /* Invalid source file type */
+    EC_NO_OBJECT_OR_SOURCE_FILES,      /* No object and source files provided */
     EC_NO_SOURCE_FILE,                 /* No source file provided */
     EC_PATH_NOT_FOUND,                 /* The path does not exist or is not 
 					  accessible */
