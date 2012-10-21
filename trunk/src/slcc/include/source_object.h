@@ -29,8 +29,24 @@
 #include <constructs.h>
 #include <declarations.h>
 #include <definitions.h>
+#include <source_object_f.h>
+#include <statements.h>
 #include <templates.h>
 #include <types.h>
+
+//------------------------------------------------------------------------------
+// slcc_source_type enum
+//
+// Source type.
+//
+enum slcc_source_object_type
+  {
+    SRCT_CONSTRUCT,   /* Construct type */
+    SRCT_DECLARATION, /* Declaration type */
+    SRCT_DEFINITION,  /* Definition type */
+    SRCT_STATEMENT    /* Statement type */
+  };
+//------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // slcc_source_oject struct
@@ -39,10 +55,17 @@
 //
 struct slcc_source_object
 {
+  slcc_source_type type;
   symtab_key_t key;
-};
 
-typedef struct slcc_source_object slcc_source_object;
+  union
+  {
+    slcc_declaration* declaration;
+    slcc_definition* definition;
+    //    slcc_construct* construct;
+    slcc_statement* statement;
+  } object;
+};
 //------------------------------------------------------------------------------
 
 #endif /* !__SL_SLCC_SOURCE_OBJECT_H__ */

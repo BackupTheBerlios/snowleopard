@@ -61,7 +61,8 @@ DECLARATIONS_H_DEPS		= \
 DEFINITIONS_H_DEPS		= \
 	$(PRG_INCLUDE)/built_in_types.h					\
 	$(PRG_INCLUDE)/specifiers.h					\
-	$(PRG_INCLUDE)/statement_array.h				\
+	$(PRG_INCLUDE)/source_object_array.h				\
+	$(PRG_INCLUDE)/source_object_f.h				\
 	$(PRG_INCLUDE)/types.h
 
 DRIVER_H_DEPS			= \
@@ -132,18 +133,21 @@ SORUCE_POSITION_H_DEPS		= \
 SOURCE_OBJECT_H_DEPS		= \
 	$(PRG_INCLUDE)/constructs.h					\
 	$(PRG_INCLUDE)/declarations.h					\
-	$(PRG_INCLUDE)/definitions.h					\
+	$(PRG_INCLUDE)/source_object_f.h				\
+	$(PRG_INCLUDE)/statements.h					\
 	$(PRG_INCLUDE)/templates.h					\
 	$(PRG_INCLUDE)/types.h
+
+SOURCE_OBJECT_ARRAY_H_DEPS	= \
+	$(PRG_INCLUDE)/source_object_f.h				\
+	$(TC_INCLUDES)
+
+SOURCE_OBJECT_F_H_DEPS		= \
 
 SOURCE_STRING_H_DEPS		=
 
 SPECIFIERS_H_DEPS		= \
 	$(PRG_INCLUDE)/types.h
-
-STATEMENT_ARRAY_H_DEPS		= \
-	$(PRG_INCLUDE)/statements.h					\
-	$(TC_INCLUDES)
 
 STATEMENTS_H_DEPS		= \
 	$(PRG_INCLUDE)/arguments.h
@@ -334,6 +338,12 @@ SETTINGS_DEPS			= \
 SOURCE_FILE_DEPS		= \
 	$(PRG_INCLUDE)/source_file.h $(SOURCE_FILE_H_DEPS)
 
+SOURCE_OBJECT_ARRAY_DEPS		= \
+	$(PRG_INCLUDE)/source_object_f.h $(SOURCE_OBJECT_F_H_DEPS)	\
+	$(PRG_INCLUDE)/source_object_array.h 				\
+		$(SOURCE_OBJECT_ARRAY_H_DEPS)				\
+	$(TC_INCLUDES)
+
 SOURCE_POSITION_DEPS		= \
 	$(PRG_INCLUDE)/source_file.h $(SOURCE_FILE_H_DEPS)		\
 	$(PRG_INCLUDE)/source_position.h $(SOURCE_POSITION_H_DEPS)	\
@@ -345,11 +355,6 @@ SOURCE_STRING_DEPS		= \
 SPECIFIERS_DEPS			= \
 	$(PRG_INCLUDE)/specifiers.h $(SPECIFIERS_H_DEPS)		\
 	$(PRG_INCLUDE)/types.h $(TYPES_H_DEPS)
-
-STATEMENT_ARRAY_DEPS		= \
-	$(PRG_INCLUDE)/statement_array.h $(STATEMENT_ARRAY_H_DEPS)	\
-	$(PRG_INCLUDE)/statements.h $(STATEMENTS_H_DEPS)		\
-	$(TC_INCLUDES)
 
 STRING_ARRAY_DEPS		= \
 	$(PRG_INCLUDE)/string_array.h $(STRING_ARRAY_H_DEPS)		\

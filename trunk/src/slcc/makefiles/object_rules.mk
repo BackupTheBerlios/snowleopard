@@ -124,6 +124,10 @@ $(PRG_BUILD_PATH)/source_file.o		: \
 		src/source_file.c $(SOURCE_FILE_DEPS)
 	$(CC) -c $(CFLAGS) src/source_file.c -o $(.TARGET)
 
+$(PRG_BUILD_PATH)/source_object_array.o	: \
+		src/source_object_array.c $(SOURCE_OBJECT_ARRAY_DEPS)
+	$(CC) -c $(CFLAGS) src/source_object_array.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/source_position.o	: \
 		src/source_position.c $(SOURCE_POSITION_DEPS)
 	$(CC) -c $(CFLAGS) src/source_position.c -o $(.TARGET)
@@ -135,10 +139,6 @@ $(PRG_BUILD_PATH)/source_string.o	: \
 $(PRG_BUILD_PATH)/specifiers.o		: \
 		src/specifiers.c $(SPECIFIERS_DEPS)
 	$(CC) -c $(CFLAGS) src/specifiers.c -o $(.TARGET)
-
-$(PRG_BUILD_PATH)/statement_array.o	: \
-		src/statement_array.c $(STATEMENT_ARRAY_DEPS)
-	$(CC) -c $(CFLAGS) src/statement_array.c -o $(.TARGET)
 
 $(PRG_BUILD_PATH)/string_array.o	: \
 		src/string_array.c $(STRING_ARRAY_DEPS)

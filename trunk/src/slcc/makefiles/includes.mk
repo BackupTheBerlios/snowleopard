@@ -40,6 +40,7 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/debug_functions.h				\
 	$(PRG_INCLUDE)/declarations.h					\
 	$(PRG_INCLUDE)/definitions.h					\
+	$(PRG_INCLUDE)/definitions_f.h					\
 	$(PRG_INCLUDE)/driver.h 					\
 	$(PRG_INCLUDE)/error.h						\
 	$(PRG_INCLUDE)/error_array.h					\
@@ -57,10 +58,10 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/settings.h 					\
 	$(PRG_INCLUDE)/source_file.h					\
 	$(PRG_INCLUDE)/source_object.h					\
+	$(PRG_INCLUDE)/source_object_array.h				\
 	$(PRG_INCLUDE)/source_position.h				\
 	$(PRG_INCLUDE)/source_string.h					\
 	$(PRG_INCLUDE)/specifiers.h					\
-	$(PRG_INCLUDE)/statement_array.h				\
 	$(PRG_INCLUDE)/statements.h					\
 	$(PRG_INCLUDE)/string_array.h					\
 	$(PRG_INCLUDE)/strings.h					\

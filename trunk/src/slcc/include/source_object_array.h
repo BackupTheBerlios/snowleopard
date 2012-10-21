@@ -18,25 +18,27 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// statement_array.c
+// source_object_array.h
 //------------------------------------------------------------------------------
-// Statement array for the compiler front end.
+// Source object array for the compiler front end.
 //------------------------------------------------------------------------------
 
-#include "statements.h"
-#include "statement_array.h"
+#ifndef __SL_SLCC_SOURCE_OBJECT_ARRAY_H__
+#define __SL_SLCC_SOURCE_OBJECT_ARRAY_H__
+
+#include "source_object_f.h"
 
 //------------------------------------------------------------------------------
 // Define array structure
 //
-#define TC_ARRAY_TYPE_NAME slcc_statement_array
-#define TC_ARRAY_ELEMENT_TYPE slcc_statement*
-#define TC_ARRAY_FUNCTION_SUFFIX statements
-#define TC_ARRAY_INITIAL_SIZE 256
+#define TC_ARRAY_TYPE_NAME slcc_source_object_array
+#define TC_ARRAY_ELEMENT_TYPE slcc_source_object*
+#define TC_ARRAY_FUNCTION_SUFFIX srcobj
+#define TC_ARRAY_INITIAL_SIZE 10
 #define TC_ARRAY_NO_FIND
 //------------------------------------------------------------------------------
 
-#include "array.c.h"
+#include "array.h"
 
 //------------------------------------------------------------------------------
 // Undef array structure
@@ -48,5 +50,7 @@
 #undef TC_ARRAY_NO_FIND
 #undef TC_ARRAY_TYPE
 //------------------------------------------------------------------------------
+
+#endif /* !__SL_SLCC_SOURCE_OBJECT_ARRAY_H__ */
 
 //-<EOF>

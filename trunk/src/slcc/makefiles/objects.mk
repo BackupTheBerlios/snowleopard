@@ -48,10 +48,10 @@ OBJS 		= \
 	$(PRG_BUILD_PATH)/reader.o					\
 	$(PRG_BUILD_PATH)/settings.o 					\
 	$(PRG_BUILD_PATH)/source_file.o					\
+	$(PRG_BUILD_PATH)/source_object_array.o				\
 	$(PRG_BUILD_PATH)/source_position.o				\
 	$(PRG_BUILD_PATH)/source_string.o				\
 	$(PRG_BUILD_PATH)/specifiers.o					\
-	$(PRG_BUILD_PATH)/statement_array.o				\
 	$(PRG_BUILD_PATH)/string_array.o				\
 	$(PRG_BUILD_PATH)/strings.o					\
 	$(PRG_BUILD_PATH)/symbol_table.o				\

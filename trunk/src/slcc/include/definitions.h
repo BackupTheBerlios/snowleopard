@@ -30,24 +30,9 @@
 
 #include "built_in_types.h"
 #include "specifiers.h"
-#include "statement_array.h"
+#include "source_object_array.h"
+#include "source_object_f.h"
 #include "types.h"
-
-//------------------------------------------------------------------------------
-// Forward definitions.
-//
-struct slcc_class_type;
-struct slcc_enumeration_type;
-struct slcc_function_type;
-struct slcc_namespace;
-struct slcc_definition;
-
-typedef struct slcc_class_type slcc_class_type;
-typedef struct slcc_enumeration_type slcc_enumeration_type;
-typedef struct slcc_function_type slcc_function_type;
-typedef struct slcc_namespace slcc_namespace;
-typedef struct slcc_definition slcc_definition;
-//------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // slcc_type enumeration
@@ -111,7 +96,7 @@ struct slcc_function_type
   slcc_type_specifier return_type;
   size_t n_args;
   slcc_type_specifier* args;
-  slcc_statement_array* body;
+  slcc_source_object_array* body;
 };
 //------------------------------------------------------------------------------
 
