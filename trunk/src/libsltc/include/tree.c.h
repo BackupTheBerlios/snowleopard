@@ -146,6 +146,9 @@ sl_concat_3(tc_tree_delete,_,TC_TREE_FUNCTION_SUFFIX) (TC_TREE_ROOT* root)
 void TC_TREE_HIDE
 sl_concat_3(tc_tree_node_delete,_,TC_TREE_FUNCTION_SUFFIX) (TC_TREE_NODE* node)
 {
+  if (node == NULL)
+    return;
+
   while (node->first_child != NULL)
     sl_concat_3(tc_tree_node_delete,_,TC_TREE_FUNCTION_SUFFIX)  
       (
