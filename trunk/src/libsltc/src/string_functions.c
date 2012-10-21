@@ -31,12 +31,15 @@
 #include "string_functions.h"
 
 //------------------------------------------------------------------------------
-// copy_string function
+// tc_copy_string function
 //
 // Creates and returns the copy of the string given.
 //
 char* tc_copy_string (char* str)
 {
+  if (str == NULL)
+    return NULL;
+
   char* n_str = malloc (strlen (str) + 1);
 
   strcpy (n_str, str);
