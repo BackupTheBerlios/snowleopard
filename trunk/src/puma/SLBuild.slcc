@@ -1,0 +1,47 @@
+#===============================================================================
+# Puma Remote File Synchronizer
+#
+# Copyright (C) 2012 Roel Sergeant
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation, either version 3 of the License, or (at your option) any
+# later version
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more 
+# details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <http://www.gnu.org/licenses/>
+#===============================================================================
+
+#-------------------------------------------------------------------------------
+# SLBuild.slcc
+#-------------------------------------------------------------------------------
+# slbld configuration file for the Puma remote file synchronizer.
+#-------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------
+# slbld variables
+#
+SLBLD_PRG	= \
+	puma		= [program]					\
+	pumad		= [deamon]
+
+SLBLD_OBJS	= \
+	puma		= [all];[except:pumad_main;pumad_driver]	\
+	pumad		= [all];[except:puma_main;puma_driver]
+
+SLBLD_DOCS	= [all]
+
+SLBLD_LIBS	= \
+	config 		= [source]					\
+	libsltc 	= [source];[static]
+
+SLBLD_FLAGS	= \
+	[all] [strict]
+
+#------------------------------------------------------------------------------
+#-<EOF>

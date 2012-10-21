@@ -1,7 +1,7 @@
 #===============================================================================
-# Snow Leopard Project
+# Puma Remote File Synchronizer
 #
-# Copyright (C) 2008, 2009, 2010, 2011, 2012 Roel Sergeant
+# Copyright (C) 2012 Roel Sergeant
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -20,71 +20,65 @@
 #-------------------------------------------------------------------------------
 # Makefile
 #-------------------------------------------------------------------------------
-# Makefile for building all components in the Snow Leopard project.
+# Makefile for building the Puma Remote File Synchronizer
 #-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# Include makefiles
+#
+.include "../config/makefiles/config.mk"
 
 #-------------------------------------------------------------------------------
 # Variables
 #
-MODULES = \
-	libsh libslstdc libslstdcpp libsltc libsltst lynx puma slbld slcc slsh \
-	sltst 
+PRG		= puma
+
+PRG_BUILD_PATH	= $(BUILD_PATH)/$(PRG)
+PROGRAM 	= $(PRG_BUILD_PATH)/$(PRG)
+
+PRG_INCLUDE	= include
+INCLUDE_PATHS 	= -I$(PRG_INCLUDE) -I$(TC_INCLUDE) -I$(CONFIG_INCLUDE)
+
+CFLAGS		= $(INCLUDE_PATHS) $(COMPILE_FLAGS) $(DEBUG_FLAGS)
+
+PRG_TST_PATH	= $(TST_PATH)/$(PRG)
+
+.include "makefiles/includes.mk"
+.include "makefiles/dependencies.mk"
+.include "makefiles/objects.mk"
 
 #-------------------------------------------------------------------------------
 # Rules
 #
-all		: $(MODULES)
+all		: build_path build_libsltc_a $(PROGRAM)
 
-libsh		:
-	(cd libsh ; ${MAKE} all);
+$(PROGRAM) 	: $(OBJS)
+	$(CC) $(.ALLSRC) -o $(.TARGET)
 
-libslstdc	:
-	(cd libslstdc ; ${MAKE} all);	 
-
-libslstdcpp	:
-	(cd libslstdcpp ; ${MAKE} all);	 
-
-libsltc		:
-	(cd libsltc ; ${MAKE} all);
-
-libsltst	:
-	(cd libsltst ; ${MAKE} all);
-
-lynx		:
-	(cd lynx ; ${MAKE} all);	 
-
-puma		:
-	(cd puma ; ${MAKE} all);
-
-slbld		:
-	(cd slbld ; ${MAKE} all);
-
-slcc		:
-	(cd slcc ; ${MAKE} all);	 
-
-slsh		:
-	(cd slsh ; ${MAKE} all);
-
-sltst		:
-	(cd sltst ; ${MAKE} all);
+.include "makefiles/object_rules.mk"
 
 #-------------------------------------------------------------------------------
 # Special rules
-#
+build_path	:
+	mkdir -p $(PRG_BUILD_PATH)
+
+build_libsltc_a :
+	cd ../libsltc ;			\
+	${MAKE} static_library
+
 clean		:
-	for dir in $(MODULES); do     		\
-		(cd $$dir ; ${MAKE} clean); 	\
-	done
+	rm -rf $(OBJS) 			\
+	rm -rf $(PROGRAM)
 
-distclean	:
-	for dir in $(MODULES); do		\
-		(cd $$dir ; ${MAKE} distclean); \
-	done
+distclean	: clean
+	rm -rf $(PRG_BUILD_PATH)/* ;	\
+	rmdir $(PRG_BUILD_PATH) ;	\
+	cd ../libsltc ;			\
+	${MAKE} distclean
 
-test		:
-	for dir in $(MODULES); do		\
-		(cd $$dir ; ${MAKE} test);	\
-	done
+test		: $(PROGRAM)
+	cd $(PRG_TST_PATH) ;		\
+	${MAKE}
 
 #-------------------------------------------------------------------------------
 #-<EOF>
