@@ -74,11 +74,11 @@ slcc_settings settings_ = {
 //
 bool settings_new ()
 {
-  settings_.object_files = tc_array_new_sa ();
-  settings_.library_files = tc_array_new_sa ();
-  settings_.include_paths = tc_array_new_sa ();
-  settings_.library_paths = tc_array_new_sa ();
-  settings_.source_paths = tc_array_new_sa ();
+  settings_.object_files = tc_array_new_str ();
+  settings_.library_files = tc_array_new_str ();
+  settings_.include_paths = tc_array_new_str ();
+  settings_.library_paths = tc_array_new_str ();
+  settings_.source_paths = tc_array_new_str ();
 
   if (settings_.object_files == NULL
       || settings_.library_files == NULL
@@ -101,19 +101,19 @@ void settings_delete ()
   free (settings_.out_file);
   
   if (settings_.object_files != NULL)
-    tc_array_delete_sa (settings_.object_files);
+    tc_array_delete_str (settings_.object_files);
 
   if (settings_.library_files != NULL)
-    tc_array_delete_sa (settings_.library_files);
+    tc_array_delete_str (settings_.library_files);
 
   if (settings_.include_paths != NULL)
-    tc_array_delete_sa (settings_.include_paths);
+    tc_array_delete_str (settings_.include_paths);
 
   if (settings_.library_paths != NULL)
-    tc_array_delete_sa (settings_.library_paths);
+    tc_array_delete_str (settings_.library_paths);
 
   if (settings_.source_paths != NULL)
-    tc_array_delete_sa (settings_.source_paths);
+    tc_array_delete_str (settings_.source_paths);
 }
 //------------------------------------------------------------------------------
 
@@ -189,7 +189,7 @@ bool add_file_or_path (slcc_path_type type, char* file)
 	return false;
       }
 
-  tc_array_add_sa (array, file);
+  tc_array_add_str (array, file);
   return true;
 }
 //------------------------------------------------------------------------------

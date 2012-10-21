@@ -30,7 +30,7 @@
 //
 #define TC_ARRAY_TYPE_NAME slcc_string_array
 #define TC_ARRAY_ELEMENT_TYPE char*
-#define TC_ARRAY_FUNCTION_SUFFIX sa
+#define TC_ARRAY_FUNCTION_SUFFIX str
 #define TC_ARRAY_INITIAL_SIZE 10
 #define TC_ARRAY_NO_FIND
 //------------------------------------------------------------------------------
