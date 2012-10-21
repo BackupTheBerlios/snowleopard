@@ -26,6 +26,9 @@
 #ifndef __SL_SLCC_CONSTRUCTS_H__
 #define __SL_SLCC_CONSTRUCTS_H__
 
+#include "statements.h"
+
+
 #endif /* !__SL_SLCC_CONSTRUCTS_H__ */
 
 //-<EOF>

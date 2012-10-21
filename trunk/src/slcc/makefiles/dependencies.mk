@@ -27,6 +27,10 @@
 #-------------------------------------------------------------------------------
 # Header file dependencies
 #
+ARGUMENTS_H_DEPS		= \
+	$(PRG_INCLUDE)/token.h						\
+	$(PRG_INCLUDE)/types.h
+
 BINARY_SEARCH_H_DEPS		= \
 	$(PRG_INCLUDE)/strings.h
 
@@ -39,7 +43,8 @@ CODEGEN_H_DEPS			=
 CONFIG_SLCC_H_DEPS		= \
 	$(CONFIG_C_INCLUDES)
 
-CONSTRUCTS_H_DEPS		=
+CONSTRUCTS_H_DEPS		= \
+	$(PRG_INCLUDE)/statements.h
 
 CPP_SYMTAB_H_DEPS		= \
 	$(PRG_INCLUDE)/symbol_table.h
@@ -48,7 +53,10 @@ DEBUG_H_DEPS			=
 
 DEBUG_FUNCTIONS_H_DEPS		=
 
-DECLARATIONS_H_DEPS		=
+DECLARATIONS_H_DEPS		= \
+	$(PRG_INCLUDE)/definitions.h					\
+	$(PRG_INCLUDE)/specifiers.h					\
+	$(PRG_INCLUDE)/types.h
 
 DEFINITIONS_H_DEPS		= \
 	$(PRG_INCLUDE)/built_in_types.h					\
@@ -120,7 +128,7 @@ SORUCE_POSITION_H_DEPS		= \
 	$(PRG_INCLUDE)/source_file.h					\
 	$(PRG_INCLUDE)/source_string.h
 
-SOURCE_OBJECTS_H_DEPS		= \
+SOURCE_OBJECT_H_DEPS		= \
 	$(PRG_INCLUDE)/constructs.h					\
 	$(PRG_INCLUDE)/declarations.h					\
 	$(PRG_INCLUDE)/definitions.h					\
@@ -131,6 +139,9 @@ SOURCE_STRING_H_DEPS		=
 
 SPECIFIERS_H_DEPS		= \
 	$(PRG_INCLUDE)/types.h
+
+STATEMENTS_H_DEPS		= \
+	$(PRG_INCLUDE)/arguments.h
 
 STRING_ARRAY_H_DEPS		= \
 	$(TC_INCLUDES)
