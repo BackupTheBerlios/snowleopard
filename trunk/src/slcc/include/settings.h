@@ -67,6 +67,25 @@ typedef enum slcc_language_standard slcc_language_standard;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
+// slcc_optimize_flags enum
+//
+// All optimizer flags used by the compiler. These are summed together, so their
+// bit-pattern should not overlap.
+//
+enum slcc_optimizer_flag
+  {
+    OF_NONE = 0,         /* No optimization */
+    OF_O0 = 1,           /* Standard O0 optimizer setting */
+    OF_O1 = 2,           /* Standard O1 optimizer setting */
+    OF_O2 = 4,           /* Standard O2 optimizer setting */
+    OF_O3 = 8,           /* Standard O3 optimizer setting */
+    OF_UNROLL_LOOPS = 16 /* Unroll loops aggressively */
+  };
+
+typedef enum slcc_optimizer_flag slcc_optimizer_flag;
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 // slcc_path_type enum
 //
 // Path types and object types used in the compiler settings.
@@ -136,6 +155,7 @@ struct slcc_settings
   bool compile_only;
   bool dependencies_only;
   bool preprocess_only;
+  bool debug_info;
   char* out_file;
   char* source_file;
   slcc_source_file_type source_type;
@@ -147,7 +167,11 @@ struct slcc_settings
   slcc_language_standard standard;
   bool use_deprecated;
 
-  /* general C/C++ options */
+  /* Preprocessor options */
+  slcc_string_array* defines;
+  slcc_string_array* undefines;
+
+  /* C/C++ options */
   bool use_stdlib;
   slcc_string_array* include_paths;
   slcc_string_array* library_paths;
@@ -156,6 +180,9 @@ struct slcc_settings
   /* C++ options */
   bool use_concepts;
   bool use_export;
+
+  /* Code generation options */
+  unsigned long long optimize_flags;
 
   /* Errors/warnings */
   unsigned long long warnings;
@@ -171,6 +198,15 @@ extern slcc_settings settings_;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
+// set_optimize_flags macro
+//
+// Set optimize flags.
+//
+#define set_optimize_flags(optimize_flag)				\
+  settings_.optimize_flags = settings_.optimize_flags | optimize_flag
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 // set_warnings macro
 //
 // Set warning flags.
@@ -180,21 +216,39 @@ extern slcc_settings settings_;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
+// reset_optimize_flags macro
+//
+// Reset optimize flags.
+//
+#define reset_optimize(optimize_flag)			\
+  settings_.optimize_flags = settings_.optimize_flags 
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 // reset_warnings macro
 //
 // Reset warning flags.
 //
 #define reset_warnings(warning_flag)			\
-  settings_.warnings = settings_.warnings & warning_flag 
+  settings_.warnings = warning_flag 
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// check warnings macro
+// check_optimize_flags macro
+//
+// Check optimize flags.
+//
+#define check_optimize_flags(optimize_flag)	\
+  (settings_.optimize_flags & optimize_flag)
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// check_warnings macro
 //
 // Check warning flags.
 //
 #define check_warnings(warning_flag)		\
-  settings_.warnings & warning_flag
+  (settings_.warnings & warning_flag)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------

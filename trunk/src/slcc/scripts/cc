@@ -25,7 +25,21 @@
 # This script is executed when a standard Unix C compiler is needed. It calls 
 # slcc transforming SUSv4 compliant arguments into native slcc commands.
 #-------------------------------------------------------------------------------
-# Script arguments
+# Script arguments (POSIX)
+#   -D <name=value> [--define name=value]
+#   -E [--preprocess] 
+#   -I [--include_path]
+#   -L [--library_path]
+#   -O [--optimize <level>]
+#   -U [--undef <name>]
+#   -c [--compile]
+#   -g [--debug]
+#   -l [--library]
+#   -o [--outfile <file>]
+#   -s [--strip]
+#
+# Script arguments (GNU)
+#
 #-------------------------------------------------------------------------------
 
 #-<EOF>

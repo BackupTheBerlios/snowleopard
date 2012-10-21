@@ -48,6 +48,7 @@ slcc_settings settings_ = {
   false,    /* compile_only */
   false,    /* dependencies_only */
   false,    /* preprocess_only */
+  false,    /* debug_info */
   NULL,     /* out_file */
   NULL,     /* source_file */
   SFT_NONE, /* source_file_type */
@@ -56,12 +57,15 @@ slcc_settings settings_ = {
   L_NONE,   /* language */
   LS_NONE,  /* standard */
   false,    /* use_deprecated */
+  NULL,     /* defines */
+  NULL,     /* undefines */
   true,     /* use_stdlib */
   NULL,     /* include_paths */
   NULL,     /* library_paths */
   NULL,     /* source_paths */
   false,    /* use_concepts */
   false,    /* use_export */
+  OF_NONE,  /* optimize_flags */
   WT_MOST,  /* warnings */
   false
 };
@@ -76,12 +80,16 @@ bool settings_new ()
 {
   settings_.object_files = tc_array_new_str ();
   settings_.library_files = tc_array_new_str ();
+  settings_.defines = tc_array_new_str ();
+  settings_.undefines = tc_array_new_str ();
   settings_.include_paths = tc_array_new_str ();
   settings_.library_paths = tc_array_new_str ();
   settings_.source_paths = tc_array_new_str ();
 
   if (settings_.object_files == NULL
       || settings_.library_files == NULL
+      || settings_.defines == NULL
+      || settings_.undefines == NULL
       || settings_.include_paths == NULL 
       || settings_.library_paths == NULL
       || settings_.source_paths == NULL)
@@ -105,6 +113,12 @@ void settings_delete ()
 
   if (settings_.library_files != NULL)
     tc_array_delete_str (settings_.library_files);
+
+  if (settings_.defines != NULL)
+    tc_array_delete_str (settings_.defines);
+
+  if (settings_.undefines != NULL)
+    tc_array_delete_str (settings_.undefines);
 
   if (settings_.include_paths != NULL)
     tc_array_delete_str (settings_.include_paths);
