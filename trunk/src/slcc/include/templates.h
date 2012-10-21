@@ -26,6 +26,30 @@
 #ifndef __SL_SLCC_TEMPLATES_H__
 #define __SL_SLCC_TEMPLATES_H__
 
+//------------------------------------------------------------------------------                                                                                                     
+// slci_template_type enumeration                                                                                                                                                    
+enum slci_template_type
+  {
+    TEMPLATE_CLASS,   /* Template class */
+    TEMPLATE_FUNCTION /* Template function */
+  };
+
+typedef enum slci_template_type slci_template_type;
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// slci_template structure
+//
+// Stores a single template definition.
+//
+struct slci_template
+{
+  slci_template_type type;
+};
+
+typedef struct slci_template slci_template;
+//------------------------------------------------------------------------------
+
 #endif /* !__SL_SLCC_TEMPLATES_H__ */
 
 //-<EOF>
