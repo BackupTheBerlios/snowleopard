@@ -60,6 +60,7 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/source_position.h				\
 	$(PRG_INCLUDE)/source_string.h					\
 	$(PRG_INCLUDE)/specifiers.h					\
+	$(PRG_INCLUDE)/statement_array.h				\
 	$(PRG_INCLUDE)/statements.h					\
 	$(PRG_INCLUDE)/string_array.h					\
 	$(PRG_INCLUDE)/strings.h					\

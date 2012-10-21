@@ -30,6 +30,7 @@
 
 #include "built_in_types.h"
 #include "specifiers.h"
+#include "statement_array.h"
 #include "types.h"
 
 //------------------------------------------------------------------------------
@@ -110,6 +111,7 @@ struct slcc_function_type
   slcc_type_specifier return_type;
   size_t n_args;
   slcc_type_specifier* args;
+  slcc_statement_array* body;
 };
 //------------------------------------------------------------------------------
 

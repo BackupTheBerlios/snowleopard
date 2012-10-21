@@ -18,20 +18,20 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// error_array.c
+// statement_array.c
 //------------------------------------------------------------------------------
-// Error array for the compiler front end.
+// Statement array for the compiler front end.
 //------------------------------------------------------------------------------
 
-#include "error.h"
-#include "error_array.h"
+#include "statements.h"
+#include "statement_array.h"
 
 //------------------------------------------------------------------------------
 // Define array structure
 //
-#define TC_ARRAY_TYPE_NAME slcc_error_array
-#define TC_ARRAY_ELEMENT_TYPE slcc_error*
-#define TC_ARRAY_FUNCTION_SUFFIX ea
+#define TC_ARRAY_TYPE_NAME slcc_statement_array
+#define TC_ARRAY_ELEMENT_TYPE slcc_statement*
+#define TC_ARRAY_FUNCTION_SUFFIX statements
 #define TC_ARRAY_INITIAL_SIZE 256
 #define TC_ARRAY_NO_FIND
 //------------------------------------------------------------------------------

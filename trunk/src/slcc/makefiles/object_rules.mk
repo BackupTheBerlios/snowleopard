@@ -136,6 +136,10 @@ $(PRG_BUILD_PATH)/specifiers.o		: \
 		src/specifiers.c $(SPECIFIERS_DEPS)
 	$(CC) -c $(CFLAGS) src/specifiers.c -o $(.TARGET)
 
+$(PRG_BUILD_PATH)/statement_array.o	: \
+		src/statement_array.c $(STATEMENT_ARRAY_DEPS)
+	$(CC) -c $(CFLAGS) src/statement_array.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/string_array.o	: \
 		src/string_array.c $(STRING_ARRAY_DEPS)
 	$(CC) -c $(CFLAGS) src/string_array.c -o $(.TARGET)

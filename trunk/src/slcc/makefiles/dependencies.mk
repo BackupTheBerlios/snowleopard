@@ -61,6 +61,7 @@ DECLARATIONS_H_DEPS		= \
 DEFINITIONS_H_DEPS		= \
 	$(PRG_INCLUDE)/built_in_types.h					\
 	$(PRG_INCLUDE)/specifiers.h					\
+	$(PRG_INCLUDE)/statement_array.h				\
 	$(PRG_INCLUDE)/types.h
 
 DRIVER_H_DEPS			= \
@@ -139,6 +140,10 @@ SOURCE_STRING_H_DEPS		=
 
 SPECIFIERS_H_DEPS		= \
 	$(PRG_INCLUDE)/types.h
+
+STATEMENT_ARRAY_H_DEPS		= \
+	$(PRG_INCLUDE)/statements.h					\
+	$(TC_INCLUDES)
 
 STATEMENTS_H_DEPS		= \
 	$(PRG_INCLUDE)/arguments.h
@@ -340,6 +345,11 @@ SOURCE_STRING_DEPS		= \
 SPECIFIERS_DEPS			= \
 	$(PRG_INCLUDE)/specifiers.h $(SPECIFIERS_H_DEPS)		\
 	$(PRG_INCLUDE)/types.h $(TYPES_H_DEPS)
+
+STATEMENT_ARRAY_DEPS		= \
+	$(PRG_INCLUDE)/statement_array.h $(STATEMENT_ARRAY_H_DEPS)	\
+	$(PRG_INCLUDE)/statements.h $(STATEMENTS_H_DEPS)		\
+	$(TC_INCLUDES)
 
 STRING_ARRAY_DEPS		= \
 	$(PRG_INCLUDE)/string_array.h $(STRING_ARRAY_H_DEPS)		\
