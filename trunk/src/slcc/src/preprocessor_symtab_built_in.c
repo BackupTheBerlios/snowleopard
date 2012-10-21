@@ -210,7 +210,7 @@ bool pp_symtab_load_built_in_macros ()
 bool pp_symtab_new_bi_entry (char* token, char* value) 
 {
   if (!symtab_set_entry (
-			 &preprocessor_symtab,
+			 &pp_symtab_,
 			 token,
 			 token_new_preprocessor_built_in (
 							  token,

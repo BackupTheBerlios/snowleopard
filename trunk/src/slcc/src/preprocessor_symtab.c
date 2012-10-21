@@ -34,7 +34,7 @@
 //------------------------------------------------------------------------------
 // Global variables
 //
-slcc_symtab pp_symtab;
+slcc_symtab pp_symtab_;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -44,12 +44,12 @@ slcc_symtab pp_symtab;
 //
 bool pp_symtab_new () 
 {
-  pp_symtab = symtab_new (
-				    HT_PREPROCESSOR,
-				    MaxPreHashTableEntries
-				    );
-
-  if (pp_symtab.size == 0)
+  pp_symtab_ = symtab_new (
+			   HT_PREPROCESSOR,
+			   MaxPreHashTableEntries
+			   );
+  
+  if (pp_symtab_.size == 0)
     return false;
 
   if (!pp_symtab_load_built_in_macros ()) 
@@ -69,7 +69,7 @@ bool pp_symtab_new ()
 //
 void pp_symtab_delete () 
 {
-  symtab_delete (&pp_symtab);
+  symtab_delete (&pp_symtab_);
 }
 //------------------------------------------------------------------------------
 
@@ -82,7 +82,7 @@ symtab_key_t pp_symtab_get_macro_position (const slcc_string* token)
 {
   symtab_key_t macro = hash_generate_pp_key (str_get_c_string (token));
 
-  if (pp_symtab.data[macro].key == 0)
+  if (pp_symtab_.data[macro].key == 0)
     return MaxSymtabKeyT;
 
   return macro;

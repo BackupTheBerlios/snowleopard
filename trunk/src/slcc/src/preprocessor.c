@@ -385,7 +385,7 @@ bool pp_process_define (const slcc_string* s)
 
   if (!symtab_set_entry 
       (
-       &preprocessor_symtab,
+       &pp_symtab_,
        macro,
        token_new_preprocessor (s, rdr_get_current_source_position ()),
        rdr_get_current_source_position (),
@@ -474,7 +474,7 @@ bool pp_process_if(const slcc_string* s)
 						  DirectiveELIFNOTDEFINED
 						  ))) 
     {
-      if (symtab_is_in (&preprocessor_symtab, pp_get_defined (s)))
+      if (symtab_is_in (&pp_symtab_, pp_get_defined (s)))
 	pp_skip_to_else_elif_endif ();
     }
   /* Handle #ifdef, #if defined, #elif defined macros */
@@ -486,7 +486,7 @@ bool pp_process_if(const slcc_string* s)
 						       DirectiveELIFDEFINED
 						       ))) 
     {
-      if (!symtab_is_in (&preprocessor_symtab, pp_get_defined (s)))
+      if (!symtab_is_in (&pp_symtab_, pp_get_defined (s)))
 	pp_skip_to_else_elif_endif ();
     }
   /* Handle #if <condition>, #elif <condition> macros */

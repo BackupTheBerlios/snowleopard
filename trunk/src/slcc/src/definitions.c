@@ -74,10 +74,10 @@ slcc_definition* def_new_namespace (
 //
 void def_delete (slcc_definition* definition) 
 {
-  free (definition->scope);
+  if (definition == NULL)
+    return;
 
   switch (definition->type) {
-
   case DT_BUILT_IN :
     /* Nothing to do */
     break;
@@ -105,6 +105,8 @@ void def_delete (slcc_definition* definition)
     /* <TODO - Report error ERR_INVALID_DEFINITION> */
     break;
   }
+
+  free (definition->scope);
 
   free (definition);
 }
