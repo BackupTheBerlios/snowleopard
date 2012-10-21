@@ -34,8 +34,8 @@
 //
 bool codegen_initialize ()
 {
-
-  return false;
+  /* <TODO: Implement codegenerator> */
+  return true;
 }
 //------------------------------------------------------------------------------
 

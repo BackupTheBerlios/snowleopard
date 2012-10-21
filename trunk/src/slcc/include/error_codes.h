@@ -54,7 +54,7 @@ typedef enum slcc_error_type slcc_error_type;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// error_type_list array
+// error_type_list_ array
 //
 // Error type descritpion list (Sorted in the order of the slci_error_type 
 // enum)
@@ -82,6 +82,7 @@ enum slcc_error_code
     EC_INCOMPLETE_ARG,                 /* Incomplete argument */
     EC_INVALID_ARG,                    /* Invalid argument */
     EC_INVALID_SOURCE_FILE_TYPE,       /* Invalid source file type */
+    EC_NO_ERROR_MESSAGE,               /* No error messages available */
     EC_NO_OBJECT_OR_SOURCE_FILES,      /* No object and source files provided */
     EC_NO_SOURCE_FILE,                 /* No source file provided */
     EC_PATH_NOT_FOUND,                 /* The path does not exist or is not 
@@ -133,7 +134,7 @@ typedef struct slcc_error_description slcc_error_description;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// error_description_list array
+// error_description_list_ array
 // 
 // Error description list (Sorted in the order of the slci_error_code enum)
 //

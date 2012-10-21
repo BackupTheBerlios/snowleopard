@@ -21,7 +21,6 @@
 // error_handling.c
 //------------------------------------------------------------------------------
 // Error handling for the compiler front end.
-// <TODO: Add error severity to output>
 //------------------------------------------------------------------------------
 
 #include <stdbool.h>
@@ -33,11 +32,19 @@
 #include "error_codes.h"
 #include "error_handling.h"
 #include "source_position.h"
+#include "types.h"
 
 #include "string_functions.h"
 
 //------------------------------------------------------------------------------
 // Private functions
+//
+char* err_prepare_compiler_message (
+				    slcc_error_code code,
+				    char* arg1,
+				    char* arg2,
+				    char* arg3
+				    );
 slcc_error* err_store (
 		       slcc_error_code code, 
 		       slcc_source_position pos, 
@@ -45,10 +52,18 @@ slcc_error* err_store (
 		       char* arg2, 
 		       char* arg3
 		       );
+char* src_err_prepare_source_message (
+				      slcc_error_code code,
+				      slcc_source_position pos,
+				      char* arg1,
+				      char* arg2,
+				      char* arg3
+				      );
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // Error list array
+//
 slcc_error_array* error_list_;
 //------------------------------------------------------------------------------
 
@@ -102,14 +117,22 @@ slcc_error* err_report (
       && store == false)
     error = err_store (code, NoSourcePosition, arg1, arg2, arg3);
 
-  if (arg1 == NULL)
-    fprintf (stderr, error_description_list_[code].desc);
-  else if (arg2 == NULL)
-    fprintf (stderr, error_description_list_[code].desc, arg1);
-  else if (arg3 == NULL)
-    fprintf (stderr, error_description_list_[code].desc, arg1, arg2);
-  else
-    fprintf (stderr, error_description_list_[code].desc, arg1, arg2, arg3);
+  char* message = err_prepare_compiler_message (code, arg1, arg2, arg3);
+
+  if (message == NULL)
+    {
+      char* s_code = malloc (sizeof (char) * MaxErrorMessageSize);
+      sprintf (s_code, "%u", code);
+      message = err_prepare_compiler_message (
+					      EC_NO_ERROR_MESSAGE, 
+					      s_code, 
+					      arg2, 
+					      arg3
+					      );
+      free (s_code);
+    }
+
+  fprintf (stderr, "%s\n", message);
 
   return error;
 }
@@ -184,15 +207,22 @@ slcc_error* src_err_report (
       && error_description_list_[code].type != ET_FATAL)
     error = err_store (code, pos, arg1, arg2, arg3);
 
-  /* <TODO: Report position + relevant source code> */
-  if (arg1 == NULL)
-    fprintf (stderr, error_description_list_[code].desc);
-  else if (arg2 == NULL)
-    fprintf (stderr, error_description_list_[code].desc, arg1);
-  else if (arg3 == NULL)
-    fprintf (stderr, error_description_list_[code].desc, arg1, arg2);
-  else
-    fprintf (stderr, error_description_list_[code].desc, arg1, arg2, arg3);
+  char* message = src_err_prepare_source_message (code, pos, arg1, arg2, arg3);
+
+  if (message == NULL)
+    {
+      char* s_code = malloc (sizeof (char) * MaxErrorMessageSize);
+      sprintf (s_code, "%u", code);
+      message = err_prepare_compiler_message (
+					      EC_NO_ERROR_MESSAGE, 
+					      s_code, 
+					      arg2, 
+					      arg3
+					      );
+      free (s_code);
+    }
+
+  fprintf (stderr, "%s\n", message);
 
   return error;  
 }
@@ -200,6 +230,47 @@ slcc_error* src_err_report (
 
 //==============================================================================
 // Private functions
+
+//------------------------------------------------------------------------------
+// err_prepare_compiler_message function
+//
+// Prepares the message string for reporting a non source code error.
+//
+char* err_prepare_compiler_message (
+				    slcc_error_code code,
+				    char* arg1,
+				    char* arg2,
+				    char* arg3
+				    )
+{
+  char* format = malloc (sizeof (char) * MaxErrorMessageSize);
+  char* message = malloc (sizeof (char) * MaxErrorMessageSize);
+
+  if (format == NULL || message == NULL)
+    return NULL;
+
+  snprintf (
+	    format,
+	    MaxErrorMessageSize,
+	    "%s: %s\n", 
+	    error_type_list_[error_description_list_[code].type],
+	    error_description_list_[code].desc
+	    );
+	    
+  if (arg1 == NULL)
+    snprintf (message, MaxErrorMessageSize, format);
+  else if (arg2 == NULL)
+    snprintf (message, MaxErrorMessageSize, format, arg1);
+  else if (arg3 == NULL)
+    snprintf (message, MaxErrorMessageSize, format, arg1, arg2);
+  else
+    snprintf (message, MaxErrorMessageSize, format, arg1, arg2, arg3);
+
+  free (format);
+
+  return message;
+}
+//------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // err_store function
@@ -231,6 +302,68 @@ slcc_error* err_store (
   tc_array_add_ea (error_list_, error);
 
   return error;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// src_err_prepare_source_message function
+//
+// Prepares the message string for reporting a source code error.
+// <TODO: Report position + relevant source code>
+//
+char* src_err_prepare_source_message (
+				  slcc_error_code code,
+				  slcc_source_position pos,
+				  char* arg1,
+				  char* arg2,
+				  char* arg3
+				  )
+{
+  char* format = malloc (sizeof (char) * MaxErrorMessageSize);
+  char* message = malloc (sizeof (char) * MaxErrorMessageSize);
+
+  if (format == NULL || message == NULL)
+    return NULL;
+
+  /* Type of source */
+  if (pos.pos->type == ST_SOURCE_FILE)
+    /* Source file */
+    snprintf (
+	      format,
+	      MaxErrorMessageSize,
+	      "%s:%zu:%zu %s: %s\n",
+	      pos.pos->source.file->file,
+	      pos.line,
+	      pos.position,
+	      error_type_list_[error_description_list_[code].type],
+	      error_description_list_[code].desc
+	      );
+  else
+    /* Source string */
+    snprintf (
+	      format,
+	      MaxErrorMessageSize,
+	      "%s:%zu:%zu %s: %s\n",
+	      "STRING",
+	      pos.line,
+	      pos.position, 
+	      error_type_list_[error_description_list_[code].type],
+	      error_description_list_[code].desc
+	      );
+
+    
+  if (arg1 == NULL)
+    snprintf (message, MaxErrorMessageSize, format);
+  else if (arg2 == NULL)
+    snprintf (message, MaxErrorMessageSize, format, arg1);
+  else if (arg3 == NULL)
+    snprintf (message, MaxErrorMessageSize, format, arg1, arg2);
+  else
+    snprintf (message, MaxErrorMessageSize, format, arg1, arg2, arg3);
+
+  free (format);
+
+  return message;
 }
 //------------------------------------------------------------------------------
 

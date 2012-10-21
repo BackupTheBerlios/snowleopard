@@ -53,7 +53,7 @@ typedef enum slcc_source_type slcc_source_type;
 //
 struct slcc_position 
 {
-  slcc_source_type source_type;
+  slcc_source_type type;
 
   union 
   {

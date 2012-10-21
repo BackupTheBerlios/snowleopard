@@ -49,7 +49,7 @@ slcc_source_position sp_new_with_file (
 {
   slcc_position* n_pos = malloc (sizeof (slcc_position));
 
-  n_pos->source_type = ST_SOURCE_FILE;
+  n_pos->type = ST_SOURCE_FILE;
   n_pos->source.file = file;
   n_pos->line = line;
   n_pos->position = pos;
@@ -77,7 +77,7 @@ slcc_source_position sp_new_with_string (
 {
   slcc_position* n_pos = malloc (sizeof (slcc_position));
 
-  n_pos->source_type = ST_SOURCE_STRING;
+  n_pos->type = ST_SOURCE_STRING;
   n_pos->source.string = str;
   n_pos->line = line;
   n_pos->position = pos;
@@ -102,7 +102,7 @@ void sp_delete (slcc_source_position s_pos)
   if (s_pos.pos == NULL)
     return;
 
-  if (s_pos.pos->source_type == ST_SOURCE_FILE)
+  if (s_pos.pos->type == ST_SOURCE_FILE)
     sf_delete (s_pos.pos->source.file);
   else
     ss_delete (s_pos.pos->source.string);

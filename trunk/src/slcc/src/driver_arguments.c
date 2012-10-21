@@ -50,8 +50,8 @@ bool drv_process_path (slcc_path_type type, char* argument, bool attached);
 //------------------------------------------------------------------------------
 // Helper macros
 #define drv_check_arg(string1,string2,command)			\
-  if (strlen (string1) < strlen (string2))			\
-    if (strncmp (string1, string2, strlen (string2) -1))	\
+  if (strlen (string1) == strlen (string2))			\
+    if (strncmp (string1, string2, strlen (string2)) == 0)	\
       {								\
 	command;						\
       }

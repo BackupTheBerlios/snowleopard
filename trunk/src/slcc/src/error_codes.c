@@ -29,8 +29,8 @@
 // Error type description list.
 char* error_type_list_[] = {
   "No error occured",
-  "FATAL ERROR",
-  "INTERNAL COMPILER ERROR", 
+  "FATAL",
+  "ICE", 
   "Warning",
   "Unimplemented Feature",
   "Preprocessor Error",
@@ -58,6 +58,7 @@ slcc_error_description error_description_list_[] = {
   {"Incomplete argument provided", 0, ET_FATAL},
   {"Invalid argument provided", 0, ET_FATAL},
   {"Source file %s has no valid extension", 1, ET_FATAL},
+  {"No error message is available for code %s", 0, ET_FATAL},
   {"No objects or source file provided", 0, ET_FATAL}, 
   {"No source file provided", 0, ET_FATAL},
   {"Path %s doesn't exist or is not accessible", 1, ET_FATAL},

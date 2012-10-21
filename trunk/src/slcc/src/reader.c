@@ -146,7 +146,7 @@ char rdr_get_next_char ()
   if (file.pos == NoSourcePosition.pos) 
     return EOF;
 
-  if (file.pos->source_type == ST_SOURCE_FILE)
+  if (file.pos->type == ST_SOURCE_FILE)
     current_char = fgetc (file.pos->source.file->stream);
   else
     current_char

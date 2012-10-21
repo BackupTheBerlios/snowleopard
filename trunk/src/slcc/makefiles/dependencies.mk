@@ -245,6 +245,7 @@ ERROR_HANDLING_DEPS		= \
 	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
 	$(PRG_INCLUDE)/error_handling.h $(ERROR_HANDLING_H_DEPS)	\
 	$(PRG_INCLUDE)/source_position.h $(SOURCE_POSITION_H_DEPS)	\
+	$(PRG_INCLUDE)/types.h $(TYPES_H_DEPS)				\
 	$(TC_INCLUDES)
 
 HASH_FUNCTION_DEPS		= \

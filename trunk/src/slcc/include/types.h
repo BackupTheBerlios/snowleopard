@@ -30,11 +30,14 @@
 
 //------------------------------------------------------------------------------
 // Key type (used for hashing and referencing symbol table nodes)
+//
 typedef size_t symtab_key_t;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // Global variables
+//
+extern const size_t MaxErrorMessageSize;
 extern const size_t MaxSizeT;
 extern const symtab_key_t MaxSymtabKeyT;
 //------------------------------------------------------------------------------
