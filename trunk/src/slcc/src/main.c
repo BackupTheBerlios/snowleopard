@@ -45,12 +45,11 @@ int main (int argc, char** argv)
       return EXIT_FAILURE;
     }
 
-  /* Initialize driver */
-  if (!drv_initialize ())
+  /* Initialize settings */
+  if (!settings_new ())
     {
-      drv_cleanup ();
-      err_cleanup ();
-      return EXIT_FAILURE;
+      err_report_0 (EC_DRIVER_INITIALIZATION_FAILED);
+      return false;
     }
 
   /* 
@@ -60,6 +59,14 @@ int main (int argc, char** argv)
   drv_parse_command_line (argc, argv);
 
   __SLCC_DEBUG_PRINT_0(__SLCC_DEBUG_SETTINGS,debug_print_settings);
+
+  /* Initialize driver */
+  if (!drv_initialize ())
+    {
+      drv_cleanup ();
+      err_cleanup ();
+      return EXIT_FAILURE;
+    }
 
   inf_display_program_info ();
 

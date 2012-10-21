@@ -215,6 +215,15 @@ DEFINITIONS_DEPS		= \
 	$(PRG_INCLUDE)/types.h $(TYPES_H_DEPS)
 
 DRIVER_DEPS			= \
+	$(PRG_INCLUDE)/codegen.h $(CODEGEN_H_DEPS)			\
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS) 			\
+	$(PRG_INCLUDE)/error.h $(ERROR_H_DEPS)				\
+	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
+	$(PRG_INCLUDE)/error_handling.h	$(ERROR_HANDLING_H_DEPS)	\
+	$(PRG_INCLUDE)/parser.h $(PARSER_H_DEPS)			\
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
+
+DRIVER_ARGUMENTS_DEPS		= \
 	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS) 			\
 	$(PRG_INCLUDE)/error.h $(ERROR_H_DEPS)				\
 	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
