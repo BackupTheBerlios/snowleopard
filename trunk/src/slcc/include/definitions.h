@@ -35,6 +35,22 @@
 #include "types.h"
 
 //------------------------------------------------------------------------------
+// Forward definitions.
+//
+struct slcc_class_type;
+struct slcc_enumeration_type;
+struct slcc_function_type;
+struct slcc_namespace;
+struct slcc_definition;
+
+typedef struct slcc_class_type slcc_class_type;
+typedef struct slcc_enumeration_type slcc_enumeration_type;
+typedef struct slcc_function_type slcc_function_type;
+typedef struct slcc_namespace slcc_namespace;
+typedef struct slcc_definition slcc_definition;
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 // slcc_type enumeration
 //
 // Different types recognized by the compiler.
