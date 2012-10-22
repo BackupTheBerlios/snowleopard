@@ -72,14 +72,24 @@ typedef enum slcc_language_standard slcc_language_standard;
 // All optimizer flags used by the compiler. These are summed together, so their
 // bit-pattern should not overlap.
 //
+// Seperate flags
+//  OF_<name> = 000xxxx
+//
+// Collection flags
+//   O0 = 001xxxx
+//   O1 = 010xxxx
+//   O2 = 011xxxx
+//   O3 = 100xxxx
+//
 enum slcc_optimizer_flag
   {
-    OF_NONE = 0,         /* No optimization */
-    OF_O0 = 1,           /* Standard O0 optimizer setting */
-    OF_O1 = 2,           /* Standard O1 optimizer setting */
-    OF_O2 = 4,           /* Standard O2 optimizer setting */
-    OF_O3 = 8,           /* Standard O3 optimizer setting */
-    OF_UNROLL_LOOPS = 16 /* Unroll loops aggressively */
+    OF_NONE =         0b00000, /* No optimization */
+    OF_UNROLL_LOOPS = 0b00001, /* Unroll loops aggressively */
+    OF_REDUCE_LOOPS = 0b00010, /* Move code out of the loops */
+    OF_O0 =           0b00101, /* Standard O0 optimizer setting */
+    OF_O1 =           0b01011, /* Standard O1 optimizer setting */
+    OF_O2 =           0b01111, /* Standard O2 optimizer setting */
+    OF_O3 =           0b10011, /* Standard O3 optimizer setting */
   };
 
 typedef enum slcc_optimizer_flag slcc_optimizer_flag;
@@ -126,11 +136,15 @@ typedef enum slcc_source_file_type slcc_source_file_type;
 //
 enum slcc_warning_type
   {
-    WT_NONE = 0,       /* No warnings, only errors are reported */
-    WT_MOST = 1,       /* Most warnings. Default setting */
-    WT_ALL = 2,        /* Use all regular warnings */ 
-    WT_EXTRA = 4,      /* Use all extra warnings */
-    WT_CXX_EFFCXX = 8, /* Effective C++ warnings (C++ only) */
+    WT_NONE                  = 0b000000, /* No warnings, only errors are 
+					    reported */
+    WT_UNUSED_ARGS           = 0b000001, /* Warn on unused arguments */
+    WT_UNUSED_FUNCTIONS      = 0b000010, /* Warn about unused functions */
+    WT_NO_VIRTUAL_DESTRUCTOR = 0b000100, /* No virtual destructor */
+    WT_MOST                  = 0b001001, /* Most warnings. Default setting */
+    WT_ALL                   = 0b010111, /* Use all regular warnings */ 
+    WT_EXTRA                 = 0b011000, /* Use all extra warnings */
+    WT_CXX_EFFCXX            = 0b100000, /* Effective C++ warnings (C++) */
   };
 
 typedef enum slcc_warning_type slcc_warning_type;
