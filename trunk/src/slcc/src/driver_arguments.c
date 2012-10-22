@@ -39,12 +39,15 @@
 // Private functions
 //
 bool drv_check_arguments (); 
+bool drv_check_optimize_flag (char* flag);
 bool drv_check_warning (char* arg);
 bool drv_process_argument (char** argv, int* pos);
 bool drv_process_file_argument (char* file);
 bool drv_process_language_standard (char* argument);
 bool drv_process_out_file (char* argument);
 bool drv_process_path (slcc_path_type type, char* argument, bool attached);
+bool drv_store_define (char* define);
+bool drv_store_undefine (char* undefine);
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -180,10 +183,15 @@ bool drv_process_argument (char** argv, int* pos)
 		     "--copyright",			
 		     return settings_.copyright_only = true);
 
-      /* Argument --make_dependencies */
+      /* Argument --debug_info */
       drv_check_arg (arg,
-		     "--make_dependencies",
-		     return settings_.dependencies_only = true);
+		     "--debug_info",
+		     return settings_.debug_info = true);
+
+      /* Argument --define <name=value> */
+      drv_check_arg (arg,
+		     "--define",
+		     return drv_store_define (argv[*pos++]));
 
       /* Argument --help */
       drv_check_arg (arg,			
@@ -200,10 +208,20 @@ bool drv_process_argument (char** argv, int* pos)
 		     "--library_path",				
 		     return drv_process_path (PT_LIBRARY, argv[*pos++], false));
 
+      /* Argument --make_dependencies */
+      drv_check_arg (arg,
+		     "--make_dependencies",
+		     return settings_.dependencies_only = true);
+
       /* Argument --no_stdlib */
       drv_check_arg (arg,				
 		     "--no_stdlib",			
 		     return !(settings_.use_stdlib = false));
+
+      /* Argument --optimize <flag> */
+      drv_check_arg (arg,
+		     "--optimize",
+		     return drv_check_optimize_flag (argv[*pos++]));
 
       /* Argument --outfile <path> */
       drv_check_arg (arg,				
@@ -219,6 +237,11 @@ bool drv_process_argument (char** argv, int* pos)
       drv_check_arg (arg,					
 		     "--source_path",				
 		     return drv_process_path (PT_SOURCE, argv[*pos++], false));
+
+      /* Argument --undefine <name> */
+      drv_check_arg (arg,
+		     "--undefine",
+		     return drv_store_undefine (argv[*pos++]));
 
       /* Argument --usage */
       drv_check_arg (arg,			
@@ -252,6 +275,13 @@ bool drv_process_argument (char** argv, int* pos)
     }
     break;
 
+  case 'D' :
+    {
+      /* Argument -D<name=value> [define <name=value>] */
+      return drv_store_define (arg + 2);
+    }
+    break;
+
   case 'E' :
     {
       /* Argument -E [preprocess] */
@@ -266,7 +296,7 @@ bool drv_process_argument (char** argv, int* pos)
       /* Argument -I<path> [include_path <path>] */
       drv_check_arg (arg,					
 		     "-I",
-		     return drv_process_path (PT_INCLUDE, argv[*pos++], true));
+		     return drv_process_path (PT_INCLUDE, arg + 2, true));
     }
     break;
 
@@ -275,7 +305,7 @@ bool drv_process_argument (char** argv, int* pos)
       /* Argument -L<path> [library_path <path>] */
       drv_check_arg (arg,					
 		     "-L",					
-		     return drv_process_path (PT_LIBRARY, argv[*pos++], true));
+		     return drv_process_path (PT_LIBRARY, arg + 2, true));
     }
     break;
 
@@ -286,41 +316,61 @@ bool drv_process_argument (char** argv, int* pos)
     }
     break;
 
+  case 'O' :
+    {
+      /* Argument -O<optimize flag> [optimize <optimize flag>] */
+      drv_check_optimize_flag (arg + 2);
+    }
+    break;
+
   case 'S' :
     {
       /* Argument -S<path> [source_path <path>] */
       drv_check_arg (arg,					
 		     "-S",					
-		     return drv_process_path (PT_SOURCE, argv[*pos++], true));
+		     return drv_process_path (PT_SOURCE, arg + 2, true));
     }
     break;
 
   case 'W' :
     {
       /* Argument -W<warning flag> [warning <warning flag>] */
-      return drv_check_warning (
-				arg+2
-				);
+      return drv_check_warning (arg + 2);
+    }
+    break;
+
+  case 'U' :
+    {
+      /* Argument -U<name> [undefine <name>] */
+      return drv_store_undefine (arg + 2);
     }
     break;
 
   case 'c' :
     {
-      drv_check_arg (arg,"-c",return settings_.compile_only = true);
+      /* Argument -c [compile] */
+      drv_check_arg (arg,"-c", return settings_.compile_only = true);
+    }
+    break;
+
+  case 'g' :
+    {
+      /* Argument -g [debug_info] */
+      drv_check_arg (arg, "-g", return settings_.debug_info = true);
     }
     break;
 
   case 'h' :
     {
       /* Argument -h [help] */
-      drv_check_arg (arg,"-h",return settings_.usage_only = true);
+      drv_check_arg (arg,"-h", return settings_.usage_only = true);
     }
     break;
 
   case 'q' :
     {
       /* Argument -q [quiet] */
-      drv_check_arg (arg,"-q",return settings_.quiet = true);
+      drv_check_arg (arg,"-q", return settings_.quiet = true);
     }
     break;
 
@@ -338,20 +388,54 @@ bool drv_process_argument (char** argv, int* pos)
       /* Argument -std=<c89|c99|c11|cpp98|cpp11> */
       drv_check_arg (arg,					
 		     "-std=",					
-		     return drv_process_language_standard (arg+4));
+		     return drv_process_language_standard (arg + 5));
     }
     break;
 
   case 'v' :
     {
       /* Argument -v [verbose] */
-      drv_check_arg (arg,"-v",return settings_.verbose = true);
+      drv_check_arg (arg,"-v", return settings_.verbose = true);
     }
     break;
 	
   default :
     break;
   }
+
+  return false;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// drv_check_optimize_flag function
+//
+// Check the optimize flag given as parameter, and if it is valid, apply it to
+// the settings.
+//
+bool drv_check_optimize_flag (char* arg)
+{
+  /* -O0 / --optimize 0 */
+  drv_check_arg (arg, "0", set_optimize_flags (OF_O0); return true);
+
+  /* -O1 / --optimize 1 */
+  drv_check_arg (arg, "1", set_optimize_flags (OF_O1); return true);
+
+  /* -O2 / --optimize 2 */
+  drv_check_arg (arg, "2", set_optimize_flags (OF_O2); return true);
+
+  /* -O3 / --optimize 3 */
+  drv_check_arg (arg, "3", set_optimize_flags (OF_O3); return true);
+
+  /* -Ounroll_loops / --optimize unroll_loops */
+  drv_check_arg (arg, 
+		 "unroll_loops", 
+		 set_optimize_flags (OF_UNROLL_LOOPS); return true);
+
+  /* -Oreduce_loops / --optimize reduce_loops */
+  drv_check_arg (arg, 
+		 "reduce_loops", 
+		 set_optimize_flags (OF_REDUCE_LOOPS); return true);
 
   return false;
 }
@@ -365,14 +449,32 @@ bool drv_process_argument (char** argv, int* pos)
 //
 bool drv_check_warning (char* arg)
 {
+  /* -Wmost / --warning most */
+  drv_check_arg (arg, "most", set_warnings (WT_MOST); return true);
+
   /* -Wall / --warning all */
-  drv_check_arg (arg,"all",set_warnings (WT_ALL); return true);
+  drv_check_arg (arg,"all", set_warnings (WT_ALL); return true);
 
   /* -Wextra / --warning extra */
-  drv_check_arg (arg,"extra",set_warnings (WT_EXTRA); return true);
+  drv_check_arg (arg,"extra", set_warnings (WT_EXTRA); return true);
 
   /* -Weffc++ / --warning effc++ */
-  drv_check_arg (arg,"effc++",set_warnings (WT_CXX_EFFCXX); return true);
+  drv_check_arg (arg,"effc++", set_warnings (WT_CXX_EFFCXX); return true);
+
+  /* -Wunused_arguments / --warning unused_arguments */
+  drv_check_arg (arg, 
+		 "unused_arguments",
+		 set_warnings (WT_UNUSED_ARGS); return true);
+
+  /* -Wunused_functions / --warning unused_functions */
+  drv_check_arg (arg, 
+		 "unused_functions",
+		 set_warnings (WT_UNUSED_FUNCTIONS); return true);
+
+  /* -Wno_virtual_destructors / --warning no_virtual_destructors */
+  drv_check_arg (arg, 
+		 "no_virtual_destructors",
+		 set_warnings (WT_NO_VIRTUAL_DESTRUCTOR); return true);
 
   return false;
 }
@@ -482,23 +584,6 @@ bool drv_process_file_argument (char* file)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// drv_process_path function
-//
-// Set include path.
-//
-bool drv_process_path (slcc_path_type type, char* arg, bool attached)
-{
-  if (attached)
-    if (*arg == '\0')
-      return false;
-    else
-      return add_file_or_path (type, arg);
-  else
-    return add_file_or_path (type, arg+2);
-}
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
 // drv_process_language_standard function
 //
 // Check language standard and set settings correctly.
@@ -558,6 +643,59 @@ bool drv_process_out_file (char* arg)
     return false;
   else
     return set_out_file (arg);
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// drv_process_path function
+//
+// Set include path.
+//
+bool drv_process_path (slcc_path_type type, char* arg, bool attached)
+{
+  if (attached)
+    if (*arg == '\0')
+      return false;
+    else
+      return add_file_or_path (type, arg);
+  else
+    return add_file_or_path (type, arg + 2);
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// drv_store_define function
+//
+// Stores the argument of the define setting for later processing.
+//
+bool drv_store_define (char* define)
+{
+  if (define == NULL)
+    /* <TODO: report error and exit> */
+    return false;
+
+  if (tc_array_add_str (settings_.defines, define) > 0)
+    return true;
+
+  return false;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// drv_store_undefine function
+//
+// Stores the argument of the undefine setting for later processing.
+//
+bool drv_store_undefine (char* undefine)
+{
+  if (undefine == NULL)
+    /* <TODO: report error and exit> */
+    return false;
+
+  if (tc_array_add_str (settings_.undefines, undefine) > 0)
+    return true;
+
+  return false;
 }
 //------------------------------------------------------------------------------
 
