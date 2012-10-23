@@ -26,18 +26,20 @@
 #------------------------------------------------------------------------------
 # slbld variables
 #
-LIB	= libslstdc
+LIB			= libslstdc
 
-OBJS	= [all]
-DOCS	= [all]
+BUILD			= [static][shared]
 
-LIBS	= \
+OBJS			= [all]
+DOCS			= [all]
+
+LIBS			= \
+	[no_stdlib]							\
 	config 		= [source]					\
 	libsltc 	= [source]
 
-FLAGS	= \
+FLAGS			= \
 	[all] [strict]
-
 
 COPYRIGHT_YEARS		= 2009, 2010, 2011, 2012
 COPYRIGHT_OWNER		= Roel Sergeant
