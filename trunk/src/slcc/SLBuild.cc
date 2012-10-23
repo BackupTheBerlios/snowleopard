@@ -1,7 +1,7 @@
 #===============================================================================
 # Snow Leopard C++ Compiler Front End
 #
-# Copyright (C) 2012 Roel Sergeant
+# Copyright (C) 2008, 2009, 2010, 2011, 2012 Roel Sergeant
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -26,13 +26,23 @@
 #------------------------------------------------------------------------------
 # slbld variables
 #
-SLBLD_SCRIPT	= cc
+SCRIPT			= cc
 
-SLBLD_LIBS	= \
+SLBLD_LIBS		= \
 	libslsh		= [source]
 
-SLBLD_FLAGS	= \
+SLBLD_FLAGS		= \
 	[all]		= [strict]
+
+COPYRIGHT_YEARS		= 2008, 2009, 2010, 2011, 2012
+COPYRIGHT_OWNER		= Roel Sergeant
+LICENSE			= GPLv3+
+
+VERSION_MAJOR		= 0
+VERSION_MINOR		= 0
+VERSION_RELEASE		= 1
+VERSION_BUILD		= 1
+VERSION_NAME		= Pre-alpha
 
 #------------------------------------------------------------------------------
 #-<EOF>
