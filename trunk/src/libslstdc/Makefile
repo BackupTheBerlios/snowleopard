@@ -1,7 +1,7 @@
 #===============================================================================
 # Snow Leopard Standard C Library
 #
-# Copyright (C) 2008, 2009, 2010, 2011, 2012 Roel Sergeant
+# Copyright (C) 2009, 2010, 2011, 2012 Roel Sergeant
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -20,88 +20,72 @@
 #-------------------------------------------------------------------------------
 # Makefile
 #-------------------------------------------------------------------------------
-# Makefile for building the Snow Leopard standard C library
+# Makefile for building the Snow Leopard Standard C Library
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
 # Include files.
-include ../../../scripts/makefiles/config.mk
+.include "../config/makefiles/config.mk"
+
+.include "makefiles/version.mk"
+
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
 # Variables
-SL_INCLUDE = ../../../include
-SL_STDC_INCLUDE = ../../../include/sl
-SL_STDC_IMPL_INCLUDE = ../../../include/sl/stdc
+#
+LIB		= libslstdc
 
-SLSTDC_BUILD_DIR = $(BUILD_ROOT_DIR)/lib/libstdc
+LIB_BUILD_PATH	= $(BUILD_PATH)/$(LIB)
+STATIC_LIBRARY	= $(LIB_BUILD_PATH)/$(LIB).a
+SHARED_LIBRARY 	= $(LIB_BUILD_PATH)/$(LIB).so.$(SHARED_LIB_VERSION)
+SHARED_SO_NAME	= $(LIB).so.$(SHARED_SO_VERSION)
 
-STATIC_LIBRARY = libslstdc.a
-STATIC_OUT_LIBRARY = $(addprefix $(SLSTDC_BUILD_DIR)/,$(STATIC_LIBRARY))
+LIB_INCLUDE	= include
+INCLUDE_PATHS   = -I$(LIB_INCLUDE) -I$(CONFIG_INCLUDE)
 
-SHARED_LIBRARY = libslstdc.so.
-SHARED_OUT_LIBRARY = $(addsuffix $(SHARED_LIB_FVERSION),$(addprefix $(SLSTDC_BUILD_DIR)/,$(SHARED_LIBRARY)))
-SHARED_SO_NAME = $(addsuffix $(SHARED_LIB_MVERSION),$(SHARED_LIBRARY))
+CFLAGS		= $(INCLUDE_PATHS) $(COMPILE_FLAGS) $(LIBRARY_FLAGS) 	\
+		  $(DEBUG_FLAGS)
 
-STDC_CONFIG_HEADERS = $(addprefix $(SL_INCLUDE)/,$(CONFIG_C_HEADERS))
-#-------------------------------------------------------------------------------
+LIB_TST_PATH	= $(TST_PATH)/$(LIB)
 
-#-------------------------------------------------------------------------------
-# All objects
-ALL_SOURCES = \
-	assert.c complex.c ctype.c errno.c locale.c math.c math_error_gamma.c \
-	math_exp_log.c math_hyperbolic.c math_nearest_int.c math_pow_abs.c \
-	math_remainder.c math_trigonometric.c program_startup.c signal.c \
-	stdio_char_io.c stdio_file_access.c stdio_printf.c stdio_scanf.c \
-	stdlib_env.c stdlib_memory.c string.c threads.c time.c wchar.c \
-	private/ll_mm_blocks.c private/ll_mm_pages.c private/ll_open_files.c \
-	private/memory_manager.c private/program_globals.c \
-	private/stdio_private.c
-
-ALL_OUT_OBJECTS = $(addprefix $(SLSTDC_BUILD_DIR)/,$(ALL_SOURCES:.c=.o))
-ALL_DEPENDENCY_OBJECTS = \
-	$(addprefix $(SLSTDC_BUILD_DIR)/,$(ALL_SOURCES:.c=.d))
-#-------------------------------------------------------------------------------
+.include "makefiles/objects.mk"
+.include "makefiles/includes.mk"
 
 #-------------------------------------------------------------------------------
-# Targets
-all: $(SHARED_OUT_LIBRARY) $(STATIC_OUT_LIBRARY)
+# Rules
+#
+all			: build_path $(STATIC_LIBRARY) $(SHARED_LIBRARY)
 
-$(STATIC_OUT_LIBRARY): $(ALL_OUT_OBJECTS)
-	$(AR) rcs $(STATIC_OUT_LIBRARY) $(ALL_OUT_OBJECTS)
+static_library		: build_path $(STATIC_LIBRARY)
 
-$(SHARED_OUT_LIBRARY): $(ALL_OUT_OBJECTS)
-	$(CC) -shared -Wl,-soname,$(SHARED_SO_NAME) -o $(SHARED_OUT_LIBRARY) $(ALL_OUT_OBJECTS)
+dynamic_library		: build_path $(DYNAMIC_LIBRARY)
 
-$(SLSTDC_BUILD_DIR)/%.d: %.c | create_build_directory
-	$(CC) -M -MT $(addprefix $(SLSTDC_BUILD_DIR)/,$(<:.c=.o)) $(CFLAGS) -I$(SL_INCLUDE) $< > $@
+$(STATIC_LIBRARY)	: $(OBJS)
+	$(AR) rcs $(STATIC_LIBRARY) $(OBJS)
 
-$(SLSTDC_BUILD_DIR)/%.o: %.c | create_build_directory
-	$(CC) -c $(CFLAGS) $(CFLAGS_STATIC_LIB) $(CFLAGS_SHARED_LIB) -I$(SL_INCLUDE) $< -o $@
+$(SHARED_LIBRARY)	: $(OBJS)
+	$(CC) -shared -Wl,-soname,$(SHARED_SO_NAME) -o $(SHARED_LIBRARY) $(OBJS)
 
--include $(ALL_DEPENDENCY_OBJECTS)
-
-#-------------------------------------------------------------------------------
+.include "makefiles/object_rules.mk"
 
 #-------------------------------------------------------------------------------
-# Create Directory
-create_build_directory:
-	mkdir -p $(addsuffix /private, $(SLSTDC_BUILD_DIR)) 
-#-------------------------------------------------------------------------------
+# Special rules
+#
+build_path		:
+	mkdir -p $(LIB_BUILD_PATH)
+
+clean			:
+	rm -rf $(OBJS)			\
+	rm -rf $(STATIC_LIBRARY)	\
+	rm -rf $(SHARED_LIBRARY)
+
+distclean		: clean
+	rmdir $(LIB_BUILD_PATH)
+
+test			: $(STATIC_LIBRARY) $(SHARED_LIBRARY)
+	cd $(LIB_TST_PATH) ;		\
+	${MAKE}
 
 #-------------------------------------------------------------------------------
-# Clean depends
-clean_depends:
-	rm -f $(ALL_DEPENDENCY_OBJECTS)
-#-------------------------------------------------------------------------------
-
-#-------------------------------------------------------------------------------
-# Clean rule
-clean:
-	rm -f $(SHARED_OUT_LIBRARY) $(STATIC_OUT_LIBRARY) ;     \
-	rm -f $(ALL_OUT_OBJECTS) ;                   		\
-	rm -f $(ALL_DEPENDENCY_OBJECTS) ;			\
-	rm -f $(SLSTDC_BUILD_DIR)/*.core
-#-------------------------------------------------------------------------------
-
 #-<EOF>

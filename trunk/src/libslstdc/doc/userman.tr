@@ -1,0 +1,45 @@
+.\"=============================================================================
+.\" Snow Leopard Standard C Library                                           
+.\"									      
+.\" Copyright (C) 2010, 2011, 2012 Roel Sergeant			      
+.\"                                                                           
+.\" This program is free software: you can redistribute it and/or modify it   
+.\" under the terms of the GNU General Public License as published by the Free
+.\" Software Foundation, either version 3 of the License, or (at your option) 
+.\" any later version                                                         
+.\"                                                                           
+.\" This program is distributed in the hope that it will be useful, but WITHOUT
+.\" ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or     
+.\" FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for  
+.\" more details.                                                             
+.\"                                                                           
+.\" You should have received a copy of the GNU General Public License along   
+.\" with this program. If not, see <http://www.gnu.org/licenses/>             
+.\"=============================================================================
+
+.\"-----------------------------------------------------------------------------
+.\" libslstdc_user_manual.tr                                                  
+.\"-----------------------------------------------------------------------------
+.\" User manual for the Snow Leopard Standard C Library.                      
+.\"-----------------------------------------------------------------------------
+
+.\"*****************************************************************************
+.\" Macro package: ms
+.\" Preprocessors: tbl
+.\"*****************************************************************************
+
+.\"=============================================================================
+.\" Document header
+.TL
+Snow Leopard Standard C Library - User Manual
+
+.AU
+Roel Sergeant (rsergeant@panix.com)
+
+.AB
+This is the user manual for the Snow Leopard Standard C Library. It describes how to build, use (a tutorial focussing on how to use the library together with slcc and pcc, and some information on optimizing the use of the library) and extend the library. 
+
+In addition to that it contains information on the implementation and porting of the library.
+.AE
+
+.\"<EOF>
