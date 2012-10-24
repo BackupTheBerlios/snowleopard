@@ -52,7 +52,14 @@
     <Files>
         <Folder
             Name="libsltc Unit Tests"
-            Filters=""/>
+            Filters="">
+            <F N="../../test/libsltc/unit_test/run_1/run_1_private_linked_list_1.c"/>
+            <F N="../../test/libsltc/unit_test/run_1/run_1_private_linked_list_1.h"/>
+            <F N="../../test/libsltc/unit_test/run_1/run_1_private_linked_list_1_main.c"/>
+            <F N="../../test/libsltc/unit_test/run_2/run_2_private_array_1.c"/>
+            <F N="../../test/libsltc/unit_test/run_2/run_2_private_array_1.h"/>
+            <F N="../../test/libsltc/unit_test/run_2/run_2_private_array_1_main.c"/>
+        </Folder>
         <Folder
             Name="libsltc Regression Tests"
             Filters=""/>
@@ -61,7 +68,24 @@
             Filters=""/>
         <Folder
             Name="libsltc Build Files"
-            Filters=""/>
+            Filters="">
+            <Folder
+                Name="libsltc Unit Test Build Files"
+                Filters="">
+                <F
+                    N="../../test/libsltc/unit_test/makefiles/includes.mk"
+                    Type="Makefile"/>
+                <F
+                    N="../../test/libsltc/unit_test/makefiles/object_rules.mk"
+                    Type="Makefile"/>
+                <F
+                    N="../../test/libsltc/unit_test/makefiles/objects.mk"
+                    Type="Makefile"/>
+            </Folder>
+            <F
+                N="../../test/libsltc/Makefile"
+                Type="Makefile"/>
+        </Folder>
         <Folder
             Name="libsltst Unit Tests"
             Filters=""/>
@@ -82,6 +106,9 @@
             Filters=""/>
         <Folder
             Name="slcc Technical Tests"
+            Filters=""/>
+        <Folder
+            Name="slcc Build Files"
             Filters=""/>
     </Files>
 </Project>

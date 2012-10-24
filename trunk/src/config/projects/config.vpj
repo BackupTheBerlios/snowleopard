@@ -1,0 +1,124 @@
+<!DOCTYPE Project SYSTEM "http://www.slickedit.com/dtd/vse/10.0/vpj.dtd">
+<Project
+    Version="10.0"
+    VendorName="SlickEdit"
+    TemplateName="(Other)"
+    WorkingDir=".">
+    <Config
+        Name="Release"
+        OutputFile=""
+        CompilerConfigName="">
+        <Menu>
+            <Target
+                Name="Compile"
+                MenuCaption="&amp;Compile"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveCurrent"
+                RunFromDir="%rw">
+                <Exec/>
+            </Target>
+            <Target
+                Name="Build"
+                MenuCaption="&amp;Build"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec/>
+            </Target>
+            <Target
+                Name="Rebuild"
+                MenuCaption="&amp;Rebuild"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec/>
+            </Target>
+            <Target
+                Name="Debug"
+                MenuCaption="&amp;Debug"
+                SaveOption="SaveNone"
+                RunFromDir="%rw">
+                <Exec/>
+            </Target>
+            <Target
+                Name="Execute"
+                MenuCaption="E&amp;xecute"
+                SaveOption="SaveNone"
+                RunFromDir="%rw">
+                <Exec CmdLine='".exe"'/>
+            </Target>
+        </Menu>
+    </Config>
+    <Files>
+        <Folder
+            Name="Header Files"
+            Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.inc;*.sh;*.cpy;*.if">
+            <Folder
+                Name="os"
+                Filters="">
+                <Folder
+                    Name="bsd"
+                    Filters="">
+                    <Folder
+                        Name="sys"
+                        Filters="">
+                        <F N="../include/os/bsd/sys/types.h"/>
+                    </Folder>
+                    <F N="../include/os/bsd/fcntl.h"/>
+                    <F N="../include/os/bsd/uchar.h"/>
+                    <F N="../include/os/bsd/unistd.h"/>
+                </Folder>
+            </Folder>
+            <Folder
+                Name="platform"
+                Filters="">
+                <Folder
+                    Name="power"
+                    Filters="">
+                    <F N="../include/platform/power/jmp_buf.h"/>
+                </Folder>
+                <Folder
+                    Name="x86_64"
+                    Filters="">
+                    <F N="../include/platform/x86_64/jmp_buf.h"/>
+                </Folder>
+            </Folder>
+            <F N="../include/config.h"/>
+            <F N="../include/config.hpp"/>
+            <F N="../include/config_c.h"/>
+            <F N="../include/config_complex.h"/>
+            <F N="../include/config_cpp.hpp"/>
+            <F N="../include/config_float.h"/>
+            <F N="../include/config_int_char.h"/>
+            <F N="../include/config_io.h"/>
+            <F N="../include/macros.h"/>
+            <F N="../include/macros.hpp"/>
+            <F N="../include/os_fixinclude.h"/>
+            <F N="../include/platform_include.h"/>
+            <F N="../include/typed_call_macros.h"/>
+            <F N="../include/version.c.h"/>
+            <F N="../include/version.cpp.hpp"/>
+            <F N="../include/version.h"/>
+            <F N="../include/version.hpp"/>
+        </Folder>
+        <Folder
+            Name="Script Files"
+            Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm">
+            <F N="../scripts/create_makefiles"/>
+            <F N="../scripts/publish_site"/>
+            <F N="../scripts/set_versions"/>
+            <F N="../scripts/user_manual_to_man"/>
+            <F N="../scripts/version.config"/>
+        </Folder>
+        <Folder
+            Name="Build Files"
+            Filters="*.ico;*.cur;*.dlg">
+            <F
+                N="../makefiles/config.mk"
+                Type="Makefile"/>
+            <F
+                N="../makefiles/testsuite.mk"
+                Type="Makefile"/>
+        </Folder>
+    </Files>
+</Project>
