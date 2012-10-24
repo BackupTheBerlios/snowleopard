@@ -1,28 +1,45 @@
-./"============================================================================"
-./" Snow Leopard C++ Compiler                                                  "
-./"									       "
-./" Copyright (C) 2010, 2011, 2012 Roel Sergeant			       "
-./"                                                                            "
-./" This program is free software: you can redistribute it and/or modify it    "
-./" under the terms of the GNU General Public License as published by the Free "
-./" Software Foundation, either version 3 of the License, or (at your option)  "
-./" any later version                                                          "
-./"                                                                            "
-./" This program is distributed in the hope that it will be useful, but WITHOUT"
-./" ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or      "
-./" FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for   "
-./" more details.                                                              "
-./"                                                                            "
-./" You should have received a copy of the GNU General Public License along    "
-./" with this program. If not, see <http://www.gnu.org/licenses/>              "
-./"============================================================================"
+.\"==============================================================================
+.\" Snow Leopard C++ Compiler                                                  
+.\"									       
+.\" Copyright (C) 2010, 2011, 2012 Roel Sergeant			       
+.\"                                                                            
+.\" This program is free software: you can redistribute it and/or modify it    
+.\" under the terms of the GNU General Public License as published by the Free 
+.\" Software Foundation, either version 3 of the License, or (at your option)  
+.\" any later version                                                          
+.\"                                                                            
+.\" This program is distributed in the hope that it will be useful, but WITHOUT
+.\" ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or      
+.\" FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for   
+.\" more details.                                                              
+.\"                                                                            
+.\" You should have received a copy of the GNU General Public License along    
+.\" with this program. If not, see <http://www.gnu.org/licenses/>              
+.\"=============================================================================
 
-./"----------------------------------------------------------------------------"
-./" slcc_user_manual.tr                                                        "
-./"----------------------------------------------------------------------------"
-./" User manual for the Snow Leopard C++ Compiler.                             "
-./"----------------------------------------------------------------------------"
+.\"-----------------------------------------------------------------------------
+.\" slcc_user_manual.tr                                                        
+.\"-----------------------------------------------------------------------------
+.\" User manual for the Snow Leopard C++ Compiler.                             
+.\"-----------------------------------------------------------------------------
+
+.\"*****************************************************************************
+.\" Macro package: ms
+.\" Preprocessors: tbl
+.\"*****************************************************************************
+
+.\"=============================================================================
+.\" Document header
+.TL
+Snow Leopard C++ Compiler Front End - User Manual
+
+.AU
+Roel Sergeant (rsergeant@panix.com)
+
+.AB
+This is the user manual for the Snow Leopard C++ Compiler Front End. It contains information on how to use the compiler, but also contains technical information about how to extend, contribute and port the compiler.
+.AE
 
 
+.\"<EOF>"
 
-./"<EOF>"
