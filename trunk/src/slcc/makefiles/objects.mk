@@ -35,6 +35,7 @@ OBJS 		= \
 	$(PRG_BUILD_PATH)/error_array.o					\
 	$(PRG_BUILD_PATH)/error_codes.o					\
 	$(PRG_BUILD_PATH)/error_handling.o				\
+	$(PRG_BUILD_PATH)/features.o					\
 	$(PRG_BUILD_PATH)/hash_function.o				\
 	$(PRG_BUILD_PATH)/info.o					\
 	$(PRG_BUILD_PATH)/lexer.o					\
@@ -60,6 +61,7 @@ OBJS 		= \
 	$(PRG_BUILD_PATH)/token_functions.o				\
 	$(PRG_BUILD_PATH)/types.o 					\
 	$(PRG_BUILD_PATH)/version_slcc.o				\
+	$(PRG_BUILD_PATH)/warnings.o					\				
 	$(TC_BUILD_PATH)/libsltc.a
 
 #-------------------------------------------------------------------------------

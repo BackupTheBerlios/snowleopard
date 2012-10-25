@@ -20,7 +20,7 @@
 //------------------------------------------------------------------------------
 // settings.h
 //------------------------------------------------------------------------------
-// Driver for the front end.
+// Settings for the compiler front end.
 //------------------------------------------------------------------------------
 
 #ifndef __SL_SLCC_SETTINGS_H__
@@ -29,7 +29,9 @@
 #include <stdbool.h>
 #include <stddef.h>
 
+#include "optimize_flags.h"
 #include "string_array.h"
+#include "warnings.h"
 
 //------------------------------------------------------------------------------
 // slcc_language enumeration
@@ -67,35 +69,6 @@ typedef enum slcc_language_standard slcc_language_standard;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// slcc_optimize_flags enum
-//
-// All optimizer flags used by the compiler. These are summed together, so their
-// bit-pattern should not overlap.
-//
-// Seperate flags
-//  OF_<name> = 000xxxx
-//
-// Collection flags
-//   O0 = 001xxxx
-//   O1 = 010xxxx
-//   O2 = 011xxxx
-//   O3 = 100xxxx
-//
-enum slcc_optimizer_flag
-  {
-    OF_NONE = 0         /* 0b00000, No optimization */
-    OF_UNROLL_LOOPS = 1 /* 0b00001, Unroll loops aggressively */
-    OF_REDUCE_LOOPS = 2 /* 0b00010, Move code out of the loops */
-    OF_O0 = 5           /* 0b00101, Standard O0 optimizer setting */
-    OF_O1 = 11          /* 0b01011, Standard O1 optimizer setting */
-    OF_O2 = 15          /* 0b01111, Standard O2 optimizer setting */
-    OF_O3 = 19          /* 0b10011, Standard O3 optimizer setting */
-  };
-
-typedef enum slcc_optimizer_flag slcc_optimizer_flag;
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
 // slcc_path_type enum
 //
 // Path types and object types used in the compiler settings.
@@ -127,27 +100,6 @@ enum slcc_source_file_type
   };
 
 typedef enum slcc_source_file_type slcc_source_file_type;
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// slcc_warning_type
-//
-// Warning flags used by the compiler.
-//
-enum slcc_warning_type
-  {
-    WT_NONE = 0                  /* 0b000000, No warnings, only errors are 
-                                    reported */
-    WT_UNUSED_ARGS = 1           /* 0b000001, Warn on unused arguments */
-    WT_UNUSED_FUNCTIONS = 2      /* 0b000010, Warn about unused functions */
-    WT_NO_VIRTUAL_DESTRUCTOR = 4 /* 0b000100, No virtual destructor */
-    WT_MOST = 9                  /* 0b001001, Most warnings. Default setting */
-    WT_ALL = 23                  /* 0b010111, Use all regular warnings */ 
-    WT_EXTRA = 24                /* 0b011000, Use all extra warnings */
-    WT_CXX_EFFCXX = 32           /* 0b100000, Effective C++ warnings (C++) */
-  };
-
-typedef enum slcc_warning_type slcc_warning_type;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -212,60 +164,6 @@ extern slcc_settings settings_;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// set_optimize_flags macro
-//
-// Set optimize flags.
-//
-#define set_optimize_flags(optimize_flag)				\
-  settings_.optimize_flags = settings_.optimize_flags | optimize_flag
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// set_warnings macro
-//
-// Set warning flags.
-//
-#define set_warnings(warning_flag)			\
-  settings_.warnings = settings_.warnings | warning_flag
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// reset_optimize_flags macro
-//
-// Reset optimize flags.
-//
-#define reset_optimize(optimize_flag)			\
-  settings_.optimize_flags = settings_.optimize_flags 
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// reset_warnings macro
-//
-// Reset warning flags.
-//
-#define reset_warnings(warning_flag)			\
-  settings_.warnings = warning_flag 
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// check_optimize_flags macro
-//
-// Check optimize flags.
-//
-#define check_optimize_flags(optimize_flag)	\
-  (settings_.optimize_flags & optimize_flag)
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// check_warnings macro
-//
-// Check warning flags.
-//
-#define check_warnings(warning_flag)		\
-  (settings_.warnings & warning_flag)
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
 // Settings functions.
 bool settings_new ();
 void settings_delete ();
@@ -276,3 +174,4 @@ bool set_out_file (char* file);
 #endif /* !__SL_SLCC_SETTINGS_H__ */
 
 //-<EOF>
+

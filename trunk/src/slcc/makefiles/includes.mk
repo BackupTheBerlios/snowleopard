@@ -46,10 +46,13 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/error_array.h					\
 	$(PRG_INCLUDE)/error_codes.h					\
 	$(PRG_INCLUDE)/error_handling.h					\
+	$(PRG_INCLUDE)/features.h					\
 	$(PRG_INCLUDE)/hash_function.h					\
 	$(PRG_INCLUDE)/info.h						\
 	$(PRG_INCLUDE)/lexer.h						\
 	$(PRG_INCLUDE)/lexer_functions.h				\
+	$(PRG_INCLUDE)/macros_slcc.h					\
+	$(PRG_INCLUDE)/optimize_flags.h					\
 	$(PRG_INCLUDE)/parse_tree.h					\
 	$(PRG_INCLUDE)/parser.h						\
 	$(PRG_INCLUDE)/preprocessor.h					\
@@ -69,9 +72,11 @@ INCLUDES 		= \
 	$(PRG_INCLUDE)/templates.h					\
 	$(PRG_INCLUDE)/token.h						\
 	$(PRG_INCLUDE)/types.h 						\
-	$(PRG_INCLUDE)/version_slcc.h
+	$(PRG_INCLUDE)/version_slcc.h					\
+	$(PRG_INCLUDE)/warnings.h
 
 .include "../../libsltc/makefiles/includes.mk"
 
 #-------------------------------------------------------------------------------
 #<EOF>
+

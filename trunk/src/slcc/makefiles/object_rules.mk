@@ -71,6 +71,10 @@ $(PRG_BUILD_PATH)/error_handling.o	: \
 		src/error_handling.c $(ERROR_HANDLING_DEPS)
 	$(CC) -c $(CFLAGS) src/error_handling.c -o $(.TARGET)
 
+$(PRG_BUILD_PATH)/features.o	: \
+		src/features.c $(FEATURES_DEPS)
+	$(CC) -c $(CFLAGS) src/features.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/hash_function.o	: \
 		src/hash_function.c $(HASH_FUNCTION_DEPS)
 	$(CC) -c $(CFLAGS) src/hash_function.c -o $(.TARGET)
@@ -171,6 +175,10 @@ $(PRG_BUILD_PATH)/types.o		: \
 $(PRG_BUILD_PATH)/version_slcc.o	: \
 		src/version_slcc.c $(VERSION_SLCC_DEPS)
 	$(CC) -c $(CFLAGS) src/version_slcc.c -o $(.TARGET)
+
+$(PRG_BUILD_PATH)/warnings.o	: \
+		src/warnings.c $(WARNINGS_DEPS)
+	$(CC) -c $(CFLAGS) src/warnings.c -o $(.TARGET)
 
 #-------------------------------------------------------------------------------
 #<EOF>

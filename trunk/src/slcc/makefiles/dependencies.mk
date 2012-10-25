@@ -86,6 +86,8 @@ ERROR_HANDLING_H_DEPS		= \
 	$(PRG_INCLUDE)/error_codes.h					\
 	$(PRG_INCLUDE)/source_position.h
 
+FEATURES_H_DEPS			=
+
 HASH_FUNCTION_H_DEPS		= \
 	$(PRG_INCLUDE)/types.h
 
@@ -103,6 +105,10 @@ LEXER_FUNCTIONS_H_DEPS		= \
 LITERAL_H_DEPS			= \
 	$(PRG_INCLUDE)/config_slcc.h					\
 	$(CONFIG_C_INCLUDES)
+
+MACROS_SLCC_H_DEPS		=
+
+OPTIMIZE_FLAGS_H_DEPS		=
 
 PARSE_TREE_H_DEPS		= \
 	$(PRG_INCLUDE)/source_object.h					\
@@ -122,7 +128,10 @@ READER_H_DEPS			= \
 	$(PRG_INCLUDE)/source_string.h
 
 SETTINGS_H_DEPS			= \
-	$(PRG_INCLUDE)/string_array.h
+	$(PRG_INCLUDE)/features.h					\
+	$(PRG_INCLUDE)/optimize_flags.h					\
+	$(PRG_INCLUDE)/string_array.h					\
+	$(PRG_INCLUDE)/warnings.h
 
 SOURCE_FILE_H_DEPS		=
 
@@ -181,6 +190,8 @@ VERSION_SLCC_H_DEPS		= \
 	$(PRG_INCLUDE)/config_slcc.h					\
 	$(CONFIG_C_INCLUDES)
 
+WARNINGS_H_DEPS			=
+
 #-------------------------------------------------------------------------------
 # Source file dependencies
 #
@@ -228,7 +239,11 @@ DRIVER_ARGUMENTS_DEPS		= \
 	$(PRG_INCLUDE)/error.h $(ERROR_H_DEPS)				\
 	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
 	$(PRG_INCLUDE)/error_handling.h	$(ERROR_HANDLING_H_DEPS)	\
+	$(PRG_INCLUDE)/features.h $(FEATURES_H_DEPS)			\
+	$(PRG_INCLUDE)/macros_slcc.h $(MACROS_SLCC_H_DEPS)		\
+	$(PRG_INCLUDE)/optimize_flags.h $(OPTIMIZE_FLAGS_H_DEPS)	\
 	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)			\
+	$(PRG_INCLUDE)/warnings.h $(WARNINGS_H_DEPS)			\
 	$(TC_INCLUDES)
 
 ERROR_ARRAY_DEPS		= \
@@ -247,6 +262,10 @@ ERROR_HANDLING_DEPS		= \
 	$(PRG_INCLUDE)/source_position.h $(SOURCE_POSITION_H_DEPS)	\
 	$(PRG_INCLUDE)/types.h $(TYPES_H_DEPS)				\
 	$(TC_INCLUDES)
+
+FEATURES_DEPS			= \
+	$(PRG_INCLUDE)/features.h $(FEATURES_H_DEPS)			\
+	$(PRG_INCLUDE)/macros_slcc.h $(MACROS_SLCC_H_DEPS)
 
 HASH_FUNCTION_DEPS		= \
 	$(PRG_INCLUDE)/hash_function.h $(HASH_FUNCTIONS_H_DEPS)		\
@@ -292,6 +311,10 @@ MAIN_DEPS			= \
 	$(PRG_INCLUDE)/error_handling.h $(ERROR_HANDLING_H_DEPS)	\
 	$(PRG_INCLUDE)/info.h $(INFO_H_DEPS)				\
 	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
+
+OPTIMIZE_FLAGS_DEPS		= \
+	$(PRG_INCLUDE)/macros_slcc.h $(MACROS_SLCC_H_DEPS)		\
+	$(PRG_INCLUDE)/optimize_flags.h $(OPTIMIZE_FLAGS_H_DEPS)
 
 PARSE_TREE_DEPS			= \
 	$(PRG_INCLUDE)/parse_tree.h $(PARSE_TREE_H_DEPS)		\
@@ -400,5 +423,10 @@ VERSION_SLCC_DEPS		= \
 	$(PRG_INCLUDE)/version_slcc.h $(VERSION_SLCC_H_DEPS)		\
 	$(CONFIG_C_INCLUDES)
 
+WARNINGS_DEPS			= \
+	$(PRG_INCLUDE)/macros_slcc.h (MACROS_SLCC_H_DEPS)		\
+	$(PRG_INCLUDE)/warnings.h $(WARNINGS_H_DEPS)			
+
 #-------------------------------------------------------------------------------
 #<EOF>
+
