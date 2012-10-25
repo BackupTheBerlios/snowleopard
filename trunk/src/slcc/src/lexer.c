@@ -582,6 +582,7 @@ slcc_token lex_number() {
   bool is_long = false;
   bool is_long_long = false;
   bool is_octal = false;
+  bool is_binary = false;
   bool is_hexadecimal = false;
 
   bool has_error = false;
@@ -594,7 +595,12 @@ slcc_token lex_number() {
     
   /* Octal */
   if (prev_c == '0')
-    if (c == 'x' || c == 'X')
+    if (c == 'b' || c == 'B')
+      {
+	is_binary = true;
+	c = rdr_get_next_char ();
+      }
+    else if (c == 'x' || c == 'X')
       {
 	is_hexadecimal = true;
 	c = rdr_get_next_char ();
@@ -609,6 +615,13 @@ slcc_token lex_number() {
       /* Octal number */
       if (is_octal)
 	if (tc_is_octal_digit (c))
+	  str_append(s, c);
+	else
+	  has_error = true;
+
+      /* Binary number */
+      else if (is_binary)
+	if (c == '0' || c == '1')
 	  str_append(s, c);
 	else
 	  has_error = true;
@@ -670,7 +683,9 @@ slcc_token lex_number() {
       /* TODO report error. Literal defined as float and as long long */
     }
   else if ((has_decimal_point || has_exponent) 
-	   && (is_long_long || is_unsigned || is_octal || is_hexadecimal))
+	   && (is_long_long 
+	       || is_unsigned 
+	       || is_octal || is_hexadecimal || is_binary))
     {
       /* TODO report error. Literal can't be float and integer at the same 
        * time 
@@ -687,7 +702,8 @@ slcc_token lex_number() {
   else 
     return token_new_int (
 			  s, 
-			  rdr_get_current_source_position(), 
+			  rdr_get_current_source_position(),
+			  is_binary, 
 			  is_octal,
 			  is_hexadecimal,
 			  is_unsigned,

@@ -312,6 +312,7 @@ slcc_token token_new_identifier (
 slcc_token token_new_int (
 			  slcc_string* s, 
 			  slcc_source_position pos, 
+			  bool is_binary, 
 			  bool is_octal,
 			  bool is_hexadecimal, 
 			  bool is_unsigned,

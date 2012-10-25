@@ -239,6 +239,7 @@ slcc_token token_new_identifier (const slcc_string* s, slcc_source_position pos)
 slcc_token token_new_int (
 			  slcc_string* s, 
 			  slcc_source_position pos,
+			  bool is_binary,
 			  bool is_octal,
 			  bool is_hexadecimal,
 			  bool is_unsigned,
@@ -251,7 +252,12 @@ slcc_token token_new_int (
   token.type = TT_LITERAL;
   token.pos = pos;
 
-  if (is_octal)
+  if (is_binary)
+    {
+      token.value.literal.type = LT_UNSIGNED_LONG;
+      token.value.literal.value.ulong_value = tc_convert_bin_to_dec (s->value);
+    }
+  else if (is_octal)
     {
       token.value.literal.type = LT_UNSIGNED_LONG;
       token.value.literal.value.ulong_value = tc_convert_oct_to_dec (s->value);
