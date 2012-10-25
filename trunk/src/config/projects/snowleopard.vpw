@@ -6,6 +6,7 @@
 		<Project File="libsltst.vpj"/>
 		<Project File="lynx.vpj"/>
 		<Project File="slcc.vpj"/>
+		<Project File="slsh.vpj"/>
 		<Project File="testsuite.vpj"/>
 	</Projects>
 </Workspace>

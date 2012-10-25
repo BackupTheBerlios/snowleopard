@@ -205,12 +205,14 @@
             <F N="../../slcc/src/error_array.c"/>
             <F N="../../slcc/src/error_codes.c"/>
             <F N="../../slcc/src/error_handling.c"/>
+            <F N="../../slcc/src/features.c"/>
             <F N="../../slcc/src/hash_function.c"/>
             <F N="../../slcc/src/info.c"/>
             <F N="../../slcc/src/lexer.c"/>
             <F N="../../slcc/src/lexer_functions.c"/>
             <F N="../../slcc/src/literal.c"/>
             <F N="../../slcc/src/main.c"/>
+            <F N="../../slcc/src/optimize_flags.c"/>
             <F N="../../slcc/src/parse_tree.c"/>
             <F N="../../slcc/src/parser.c"/>
             <F N="../../slcc/src/preprocessor.c"/>
@@ -230,6 +232,7 @@
             <F N="../../slcc/src/token_functions.c"/>
             <F N="../../slcc/src/types.c"/>
             <F N="../../slcc/src/version_slcc.c"/>
+            <F N="../../slcc/src/warnings.c"/>
         </Folder>
         <Folder
             Name="Header Files"
@@ -251,11 +254,14 @@
             <F N="../../slcc/include/error_array.h"/>
             <F N="../../slcc/include/error_codes.h"/>
             <F N="../../slcc/include/error_handling.h"/>
+            <F N="../../slcc/include/features.h"/>
             <F N="../../slcc/include/hash_function.h"/>
             <F N="../../slcc/include/info.h"/>
             <F N="../../slcc/include/lexer.h"/>
             <F N="../../slcc/include/lexer_functions.h"/>
             <F N="../../slcc/include/literal.h"/>
+            <F N="../../slcc/include/macros_slcc.h"/>
+            <F N="../../slcc/include/optimize_flags.h"/>
             <F N="../../slcc/include/parse_tree.h"/>
             <F N="../../slcc/include/parser.h"/>
             <F N="../../slcc/include/preprocessor.h"/>
@@ -277,6 +283,7 @@
             <F N="../../slcc/include/token.h"/>
             <F N="../../slcc/include/types.h"/>
             <F N="../../slcc/include/version_slcc.h"/>
+            <F N="../../slcc/include/warnings.h"/>
         </Folder>
         <Folder
             Name="Script Files"
@@ -286,6 +293,9 @@
         <Folder
             Name="Build Files"
             Filters="">
+            <F
+                N="../../slcc/makefiles/dependencies.mk"
+                Type="Makefile"/>
             <F
                 N="../../slcc/makefiles/includes.mk"
                 Type="Makefile"/>
