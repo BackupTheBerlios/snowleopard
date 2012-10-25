@@ -26,6 +26,22 @@
 #include "integer_functions.h"
 
 //------------------------------------------------------------------------------
+// tc_convert_bin_to_dec_function
+//
+// Convert binary string to numeric.
+//
+unsigned long tc_convert_bin_to_dec (const char* s)
+{
+  unsigned long n = 0;
+
+  for (int i = 0; s[i] != '\0'; i++)
+    n = (n * 2) + tc_get_bin_value (s[i]);
+
+  return n; 
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 // tc_convert_hex_to_dec function 
 //
 // Convert hexadecimal string to numeric. 
@@ -54,6 +70,29 @@ unsigned long tc_convert_oct_to_dec (const char* s)
     n = (n * 8) + tc_get_oct_value (s[i]);
 
   return n;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// tc_get_bin_value function
+//
+// If character is a binary return it, otherwise return -1.
+//
+int tc_get_bin_value (char c)
+{
+  switch (c) {
+  case '0' :
+    return 0;
+    break;
+
+  case '1' :
+    return 1;
+    break;
+
+  default :
+    return -1;
+    break;
+  }
 }
 //------------------------------------------------------------------------------
 

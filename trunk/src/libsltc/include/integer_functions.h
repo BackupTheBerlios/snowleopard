@@ -29,8 +29,10 @@
 //------------------------------------------------------------------------------
 // Integer functions
 //
+unsigned long tc_convert_bin_to_dec (const char* s);
 unsigned long tc_convert_hex_to_dec (const char* s);
 unsigned long tc_convert_oct_to_dec (const char* s);
+int tc_get_bin_value (char);
 int tc_get_hex_value (char);
 int tc_get_oct_value (char);
 //------------------------------------------------------------------------------
