@@ -265,7 +265,8 @@ ERROR_HANDLING_DEPS		= \
 
 FEATURES_DEPS			= \
 	$(PRG_INCLUDE)/features.h $(FEATURES_H_DEPS)			\
-	$(PRG_INCLUDE)/macros_slcc.h $(MACROS_SLCC_H_DEPS)
+	$(PRG_INCLUDE)/macros_slcc.h $(MACROS_SLCC_H_DEPS)		\
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
 
 HASH_FUNCTION_DEPS		= \
 	$(PRG_INCLUDE)/hash_function.h $(HASH_FUNCTIONS_H_DEPS)		\
@@ -314,7 +315,8 @@ MAIN_DEPS			= \
 
 OPTIMIZE_FLAGS_DEPS		= \
 	$(PRG_INCLUDE)/macros_slcc.h $(MACROS_SLCC_H_DEPS)		\
-	$(PRG_INCLUDE)/optimize_flags.h $(OPTIMIZE_FLAGS_H_DEPS)
+	$(PRG_INCLUDE)/optimize_flags.h $(OPTIMIZE_FLAGS_H_DEPS)	\
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)
 
 PARSE_TREE_DEPS			= \
 	$(PRG_INCLUDE)/parse_tree.h $(PARSE_TREE_H_DEPS)		\
@@ -424,9 +426,9 @@ VERSION_SLCC_DEPS		= \
 	$(CONFIG_C_INCLUDES)
 
 WARNINGS_DEPS			= \
-	$(PRG_INCLUDE)/macros_slcc.h (MACROS_SLCC_H_DEPS)		\
+	$(PRG_INCLUDE)/macros_slcc.h $(MACROS_SLCC_H_DEPS)		\
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)			\
 	$(PRG_INCLUDE)/warnings.h $(WARNINGS_H_DEPS)			
 
 #-------------------------------------------------------------------------------
 #<EOF>
-

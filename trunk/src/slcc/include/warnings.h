@@ -35,15 +35,15 @@
 //
 enum slcc_warning_type
   {
-    WT_NONE = 0                  /* 0b000000, No warnings, only errors are 
-                                    reported */
-    WT_UNUSED_ARGS = 1           /* 0b000001, Warn on unused arguments */
-    WT_UNUSED_FUNCTIONS = 2      /* 0b000010, Warn about unused functions */
-    WT_NO_VIRTUAL_DESTRUCTOR = 4 /* 0b000100, No virtual destructor */
-    WT_MOST = 9                  /* 0b001001, Most warnings. Default setting */
-    WT_ALL = 23                  /* 0b010111, Use all regular warnings */ 
-    WT_EXTRA = 24                /* 0b011000, Use all extra warnings */
-    WT_CXX_EFFCXX = 32           /* 0b100000, Effective C++ warnings (C++) */
+    WT_NONE = 0,                  /* 0b000000, No warnings, only errors are 
+				     reported */
+    WT_UNUSED_ARGS = 1,           /* 0b000001, Warn on unused arguments */
+    WT_UNUSED_FUNCTIONS = 2,      /* 0b000010, Warn about unused functions */
+    WT_NO_VIRTUAL_DESTRUCTOR = 4, /* 0b000100, No virtual destructor */
+    WT_MOST = 9,                  /* 0b001001, Most warnings. Default setting */
+    WT_ALL = 23,                  /* 0b010111, Use all regular warnings */ 
+    WT_EXTRA = 24,                /* 0b011000, Use all extra warnings */
+    WT_CXX_EFFCXX = 32            /* 0b100000, Effective C++ warnings (C++) */
   };
 
 typedef enum slcc_warning_type slcc_warning_type;

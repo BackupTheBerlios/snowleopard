@@ -29,6 +29,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 
+#include "features.h"
 #include "optimize_flags.h"
 #include "string_array.h"
 #include "warnings.h"
@@ -131,6 +132,7 @@ struct slcc_settings
   /* language options */
   slcc_language language;
   slcc_language_standard standard;
+  unsigned long long features;
   bool use_deprecated;
 
   /* Preprocessor options */
@@ -174,4 +176,3 @@ bool set_out_file (char* file);
 #endif /* !__SL_SLCC_SETTINGS_H__ */
 
 //-<EOF>
-

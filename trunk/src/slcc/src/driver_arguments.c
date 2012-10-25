@@ -96,8 +96,9 @@ bool drv_parse_command_line (int argc, char** argv)
 // drv_check_arguments function
 //
 // Check the following:
-//   - Was a source file provided.
-//   - Are language options compatible with language provided.
+//   - Was a source file provided?
+//   - Are language options compatible with language provided?
+//   - Are the feature flags compatible with the language/standard selected?
 //
 bool drv_check_arguments ()
 {
@@ -147,6 +148,8 @@ bool drv_check_arguments ()
       err_report_and_exit_0 (EC_CPP_ONLY_OPTION_ON_C_SOURCE);
       return false;
     }
+  
+  /* <TODO: Are features selected compatible with language/standard selected */
 
   return true;
 }
@@ -184,6 +187,11 @@ bool drv_process_argument (char** argv, int* pos)
       if_equal_execute (arg,
 		     "--define",
 		     return drv_store_define (argv[*pos++]));
+
+      /* Argument --feature <feature flag> */
+      if_equal_execute (arg,
+			"--feature",
+			return check_feature_flag (argv[*pos++]));
 
       /* Argument --help */
       if_equal_execute (arg,			
@@ -342,6 +350,13 @@ bool drv_process_argument (char** argv, int* pos)
     {
       /* Argument -c [compile] */
       if_equal_execute (arg,"-c", return settings_.compile_only = true);
+    }
+    break;
+
+  case 'f' :
+    {
+      /* Argument -f <feature flag> [feature <feature flag>] */
+      return check_feature_flag (arg + 2);
     }
     break;
 

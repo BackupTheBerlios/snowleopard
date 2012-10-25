@@ -99,6 +99,10 @@ $(PRG_BUILD_PATH)/main.o		: \
 		src/main.c $(MAIN_DEPS)
 	$(CC) -c $(CFLAGS) src/main.c -o $(.TARGET)
 
+$(PRG_BUILD_PATH)/optimize_flags.o	: \
+		src/optimize_flags.c $(OPTIMIZE_FLAGS_DEPS)
+	$(CC) -c $(CFLAGS) src/optimize_flags.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/parse_tree.o  	: \
 		src/parse_tree.c $(PARSE_TREE_DEPS)
 	$(CC) -c $(CFLAGS) src/parse_tree.c -o $(.TARGET)
@@ -107,15 +111,17 @@ $(PRG_BUILD_PATH)/parser.o  		: \
 		src/parser.c $(PARSER_DEPS)
 	$(CC) -c $(CFLAGS) src/parser.c -o $(.TARGET)
 
-$(PRG_BUILD_PATH)/preprocessor.o  		: \
+$(PRG_BUILD_PATH)/preprocessor.o  	: \
 		src/preprocessor.c $(PREPROCESSOR_DEPS)
 	$(CC) -c $(CFLAGS) -Wno-unused-parameter src/preprocessor.c -o $(.TARGET)
 
-$(PRG_BUILD_PATH)/preprocessor_symtab.o  : \
+$(PRG_BUILD_PATH)/preprocessor_symtab.o \
+					: \
 		src/preprocessor_symtab.c $(PREPROCESSOR_SYMTAB_DEPS)
 	$(CC) -c $(CFLAGS) src/preprocessor_symtab.c -o $(.TARGET)
 
-$(PRG_BUILD_PATH)/preprocessor_symtab_built_in.o : \
+$(PRG_BUILD_PATH)/preprocessor_symtab_built_in.o \
+					: \
 		src/preprocessor_symtab_built_in.c 			\
 			$(PREPROCESSOR_SYMTAB_BUILT_IN_DEPS)
 	$(CC) -c $(CFLAGS) src/preprocessor_symtab_built_in.c -o $(.TARGET)

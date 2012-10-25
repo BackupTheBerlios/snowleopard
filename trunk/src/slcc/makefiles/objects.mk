@@ -42,6 +42,7 @@ OBJS 		= \
 	$(PRG_BUILD_PATH)/lexer_functions.o				\
 	$(PRG_BUILD_PATH)/literal.o					\
 	$(PRG_BUILD_PATH)/main.o 					\
+	$(PRG_BUILD_PATH)/optimize_flags.o				\
 	$(PRG_BUILD_PATH)/parse_tree.o					\
 	$(PRG_BUILD_PATH)/parser.o					\
 	$(PRG_BUILD_PATH)/preprocessor.o				\
@@ -61,7 +62,7 @@ OBJS 		= \
 	$(PRG_BUILD_PATH)/token_functions.o				\
 	$(PRG_BUILD_PATH)/types.o 					\
 	$(PRG_BUILD_PATH)/version_slcc.o				\
-	$(PRG_BUILD_PATH)/warnings.o					\				
+	$(PRG_BUILD_PATH)/warnings.o					\
 	$(TC_BUILD_PATH)/libsltc.a
 
 #-------------------------------------------------------------------------------

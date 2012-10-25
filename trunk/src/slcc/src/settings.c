@@ -39,35 +39,36 @@
 // Global variables
 //
 slcc_settings settings_ = {
-  false,    /* quiet */
-  false,    /* verbose */
-  false,    /* copyright_only */
-  false,    /* license_only */
-  false,    /* usage_only */
-  false,    /* warrantee_only */
-  false,    /* compile_only */
-  false,    /* dependencies_only */
-  false,    /* preprocess_only */
-  false,    /* debug_info */
-  NULL,     /* out_file */
-  NULL,     /* source_file */
-  SFT_NONE, /* source_file_type */
-  NULL,     /* object_files */
-  NULL,     /* library_files */
-  L_NONE,   /* language */
-  LS_NONE,  /* standard */
-  false,    /* use_deprecated */
-  NULL,     /* defines */
-  NULL,     /* undefines */
-  true,     /* use_stdlib */
-  NULL,     /* include_paths */
-  NULL,     /* library_paths */
-  NULL,     /* source_paths */
-  false,    /* use_concepts */
-  false,    /* use_export */
-  OF_NONE,  /* optimize_flags */
-  WT_MOST,  /* warnings */
-  false
+  false,        /* quiet */
+  false,        /* verbose */
+  false,        /* copyright_only */
+  false,        /* license_only */
+  false,        /* usage_only */
+  false,        /* warrantee_only */
+  false,        /* compile_only */
+  false,        /* dependencies_only */
+  false,        /* preprocess_only */
+  false,        /* debug_info */
+  NULL,         /* out_file */
+  NULL,         /* source_file */
+  SFT_NONE,     /* source_file_type */
+  NULL,         /* object_files */
+  NULL,         /* library_files */
+  L_NONE,       /* language */
+  LS_NONE,      /* standard */
+  FEATURE_NONE, /* features */
+  false,        /* use_deprecated */
+  NULL,         /* defines */
+  NULL,         /* undefines */
+  true,         /* use_stdlib */
+  NULL,         /* include_paths */
+  NULL,         /* library_paths */
+  NULL,         /* source_paths */
+  false,        /* use_concepts */
+  false,        /* use_export */
+  OF_NONE,      /* optimize_flags */
+  WT_MOST,      /* warnings */
+  false         /* warnings_as_errors */
 };
 //------------------------------------------------------------------------------
 

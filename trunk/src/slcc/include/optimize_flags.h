@@ -45,13 +45,13 @@
 //
 enum slcc_optimizer_flag
   {
-    OF_NONE = 0         /* 0b00000, No optimization */
-    OF_UNROLL_LOOPS = 1 /* 0b00001, Unroll loops aggressively */
-    OF_REDUCE_LOOPS = 2 /* 0b00010, Move code out of the loops */
-    OF_O0 = 5           /* 0b00101, Standard O0 optimizer setting */
-    OF_O1 = 11          /* 0b01011, Standard O1 optimizer setting */
-    OF_O2 = 15          /* 0b01111, Standard O2 optimizer setting */
-    OF_O3 = 19          /* 0b10011, Standard O3 optimizer setting */
+    OF_NONE = 0,         /* 0b00000, No optimization */
+    OF_UNROLL_LOOPS = 1, /* 0b00001, Unroll loops aggressively */
+    OF_REDUCE_LOOPS = 2, /* 0b00010, Move code out of the loops */
+    OF_O0 = 5,           /* 0b00101, Standard O0 optimizer setting */
+    OF_O1 = 11,          /* 0b01011, Standard O1 optimizer setting */
+    OF_O2 = 15,          /* 0b01111, Standard O2 optimizer setting */
+    OF_O3 = 19           /* 0b10011, Standard O3 optimizer setting */
   };
 
 typedef enum slcc_optimizer_flag slcc_optimizer_flag;
@@ -71,7 +71,7 @@ typedef enum slcc_optimizer_flag slcc_optimizer_flag;
 //
 // Reset optimize flags.
 //
-#define reset_optimize(optimize_flag)			\
+#define reset_optimize_flags(optimize_flag)		\
   settings_.optimize_flags = settings_.optimize_flags 
 //------------------------------------------------------------------------------
 
@@ -93,5 +93,3 @@ bool check_optimize_flag (char* warning_flag);
 #endif /* !__SL_SLCC_OPTIMIZE_FLAGS_H__ */
 
 //-<EOF>
-
-

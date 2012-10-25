@@ -26,6 +26,7 @@
 #include <stdbool.h>
 
 #include "macros_slcc.h"
+#include "settings.h"
 #include "warnings.h"
 
 //------------------------------------------------------------------------------
