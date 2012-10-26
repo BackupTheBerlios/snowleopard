@@ -36,7 +36,7 @@
 //    command;
 //
 #define if_equal_execute(string1,string2,command)               \
-  if (strlen (string1) == strlen (string2))                     \
+  if (strlen (string1) >= strlen (string2))                     \
     if (strncmp (string1, string2, strlen (string2)) == 0)      \
       {                                                         \
 	command;                                                \

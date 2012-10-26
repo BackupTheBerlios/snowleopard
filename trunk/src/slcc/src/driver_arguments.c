@@ -170,108 +170,115 @@ bool drv_process_argument (char** argv, int* pos)
     {
       /* Argument --compile */
       if_equal_execute (arg,				
-		     "--compile",			
-		     return settings_.compile_only = true);
+			"--compile",			
+			return settings_.compile_only = true);
 
       /* Argument --copyright */
       if_equal_execute (arg,				
-		     "--copyright",			
-		     return settings_.copyright_only = true);
+			"--copyright",			
+			return settings_.copyright_only = true);
 
       /* Argument --debug_info */
       if_equal_execute (arg,
-		     "--debug_info",
-		     return settings_.debug_info = true);
+			"--debug_info",
+			return settings_.debug_info = true);
 
       /* Argument --define <name=value> */
       if_equal_execute (arg,
-		     "--define",
-		     return drv_store_define (argv[*pos++]));
+			"--define",
+			return drv_store_define (argv[++(*pos)]));
 
       /* Argument --feature <feature flag> */
       if_equal_execute (arg,
 			"--feature",
-			return check_feature_flag (argv[*pos++]));
+			return check_feature_flag (argv[++(*pos)]));
 
       /* Argument --help */
       if_equal_execute (arg,			
-		     "--help",			
-		     return settings_.usage_only = true);
+			"--help",			
+			return settings_.usage_only = true);
 
       /* Argument --include_path <path> */
       if_equal_execute (arg,					
-		     "--include_path",				
-		     return drv_process_path (PT_INCLUDE, argv[*pos++], false));
+			"--include_path",				 
+			return drv_process_path (PT_INCLUDE, 
+						 argv[++(*pos)], 
+						 false));
 
       /* Argument --library_path <path> */
-      if_equal_execute (arg,					
-		     "--library_path",				
-		     return drv_process_path (PT_LIBRARY, argv[*pos++], false));
+      if_equal_execute (
+			arg,					
+			"--library_path",				
+			return drv_process_path (PT_LIBRARY, 
+						 argv[++(*pos)], 
+						 false));
 
       /* Argument --make_dependencies */
       if_equal_execute (arg,
-		     "--make_dependencies",
-		     return settings_.dependencies_only = true);
+			"--make_dependencies",
+			return settings_.dependencies_only = true);
 
       /* Argument --no_stdlib */
       if_equal_execute (arg,				
-		     "--no_stdlib",			
-		     return !(settings_.use_stdlib = false));
+			"--no_stdlib",			
+			return !(settings_.use_stdlib = false));
 
       /* Argument --optimize <flag> */
       if_equal_execute (arg,
-		     "--optimize",
-		     return check_optimize_flag (argv[*pos++]));
+			"--optimize",
+			return check_optimize_flag (argv[++(*pos)]));
 
       /* Argument --outfile <path> */
       if_equal_execute (arg,				
-		     "--outfile",			
-		     return drv_process_out_file (argv[*pos++]));
+			"--outfile",			
+			return drv_process_out_file (argv[++(*pos)]));
 
       /* Argument --preprocess */
       if_equal_execute (arg,				
-		     "--preprocess",			
-		     return settings_.preprocess_only = true);
+			"--preprocess",			
+			return settings_.preprocess_only = true);
 
       /* Argument --source_path <path> */
       if_equal_execute (arg,					
-		     "--source_path",				
-		     return drv_process_path (PT_SOURCE, argv[*pos++], false));
+			"--source_path",				
+			return drv_process_path (PT_SOURCE, 
+						 argv[++(*pos)], 
+						 false));
 
       /* Argument --undefine <name> */
       if_equal_execute (arg,
-		     "--undefine",
-		     return drv_store_undefine (argv[*pos++]));
+			"--undefine",
+			return drv_store_undefine (argv[++(*pos)]));
 
       /* Argument --usage */
       if_equal_execute (arg,			
-		     "--usage",			
-		     return settings_.usage_only = true);
+			"--usage",			
+			return settings_.usage_only = true);
 
       /* Argument --use_concepts */
       if_equal_execute (arg,
-		     "--use_concepts",
-		     return settings_.use_concepts = true);
+			"--use_concepts",
+			return settings_.use_concepts = true);
 
       /* Argument --use_deprecated */
       if_equal_execute (arg,
-		     "--use_deprecated",
-		     return settings_.use_deprecated = true);
+			"--use_deprecated",
+			return settings_.use_deprecated = true);
 
       /* Argument --use_export */
       if_equal_execute (arg,
-		     "--use_export",
-		     return settings_.use_export = true);
+			"--use_export",
+			return settings_.use_export = true);
 
       /* Argument --warning <warning flag> */
       if_equal_execute (arg,					
-		     "--warning",				
-		     return check_warning_flag (argv[*pos++]));
+			"--warning",				
+			return check_warning_flag (argv[++(*pos)]));
 
       /* Argument --warrantee */
       if_equal_execute (arg,				
-		     "--warrantee",			
-		     return settings_.warrantee_only = true);
+			"--warrantee",			
+			return settings_.warrantee_only = true);
     }
     break;
 
@@ -286,8 +293,8 @@ bool drv_process_argument (char** argv, int* pos)
     {
       /* Argument -E [preprocess] */
       if_equal_execute (arg,				
-		     "-E",				
-		     return settings_.preprocess_only = true);
+			"-E",				
+			return settings_.preprocess_only = true);
     }
     break;
 
@@ -295,8 +302,8 @@ bool drv_process_argument (char** argv, int* pos)
     {
       /* Argument -I<path> [include_path <path>] */
       if_equal_execute (arg,					
-		     "-I",
-		     return drv_process_path (PT_INCLUDE, arg + 2, true));
+			"-I",
+			return drv_process_path (PT_INCLUDE, arg + 2, true));
     }
     break;
 
@@ -304,8 +311,8 @@ bool drv_process_argument (char** argv, int* pos)
     {
       /* Argument -L<path> [library_path <path>] */
       if_equal_execute (arg,					
-		     "-L",					
-		     return drv_process_path (PT_LIBRARY, arg + 2, true));
+			"-L",					
+			return drv_process_path (PT_LIBRARY, arg + 2, true));
     }
     break;
 
@@ -327,8 +334,8 @@ bool drv_process_argument (char** argv, int* pos)
     {
       /* Argument -S<path> [source_path <path>] */
       if_equal_execute (arg,					
-		     "-S",					
-		     return drv_process_path (PT_SOURCE, arg + 2, true));
+			"-S",					
+			return drv_process_path (PT_SOURCE, arg + 2, true));
     }
     break;
 
@@ -385,8 +392,8 @@ bool drv_process_argument (char** argv, int* pos)
     {
       /* Argument -o <file> [outfile <path>] */
       if_equal_execute (arg,				
-		     "-o",				
-		     return drv_process_out_file (argv[*pos++]));
+			"-o",				
+			return drv_process_out_file (argv[++(*pos)]));
     }
     break;
 
@@ -394,8 +401,8 @@ bool drv_process_argument (char** argv, int* pos)
     {
       /* Argument -std=<c89|c99|c11|cpp98|cpp11> */
       if_equal_execute (arg,					
-		     "-std=",					
-		     return drv_process_language_standard (arg + 5));
+			"-std=",					
+			return drv_process_language_standard (arg + 5));
     }
     break;
 
@@ -524,37 +531,37 @@ bool drv_process_file_argument (char* file)
 //
 bool drv_process_language_standard (char* arg)
 {
-  if (strncmp (arg, "c89", 3))
+  if (strncmp (arg, "c89", 3) == 0)
     {
       settings_.language = L_C;
       settings_.standard = LS_C89;
     }
-  else if (strncmp (arg, "c99", 3))
+  else if (strncmp (arg, "c99", 3) == 0)
     {
       settings_.language = L_C;
       settings_.standard = LS_C99;
     }
-  else if (strncmp (arg, "c11", 3))
+  else if (strncmp (arg, "c11", 3) == 0)
     {
       settings_.language = L_C;
       settings_.standard = LS_C11;
     }
-  else if (strncmp (arg, "c1y", 3))
+  else if (strncmp (arg, "c1y", 3) == 0)
     {
       settings_.language = L_C;
       settings_.standard = LS_C1Y;
     }
-  else if (strncmp (arg, "cpp98", 5))
+  else if (strncmp (arg, "cpp98", 5) == 0)
     {
       settings_.language = L_CXX;
       settings_.standard = LS_CXX98;
     }
-  else if (strncmp (arg, "cpp11", 5))
+  else if (strncmp (arg, "cpp11", 5) == 0)
     {
       settings_.language = L_CXX;
       settings_.standard = LS_CXX11;
     }
-  else if (strncmp (arg, "cpp1y", 5))
+  else if (strncmp (arg, "cpp1y", 5) == 0)
     {
       settings_.language = L_CXX;
       settings_.standard = LS_CXX1Y;
