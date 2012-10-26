@@ -39,7 +39,7 @@ bool tc_file_exists (char* filename)
   struct stat buffer;
 
   /* File does not exist */
-  if (stat (filename, &buffer) == 0)
+  if (stat (filename, &buffer) == -1)
     return false;
 
   /* File is not a file */
@@ -67,7 +67,7 @@ bool tc_path_exists (char* path)
   struct stat buffer;
 
   /* Path does not exist */
-  if (stat (path, &buffer) == 0)
+  if (stat (path, &buffer) == -1)
     return false;
 
   /* Path is not a directory */

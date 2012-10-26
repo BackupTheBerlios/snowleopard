@@ -161,7 +161,8 @@ sl_concat_3(tc_array_add,_,TC_ARRAY_FUNCTION_SUFFIX)
  TC_ARRAY_ELEMENT_TYPE elem
  )
 {
-  if (array->used_ == array->reserved_)
+  /* The final reserved element has been used */
+  if ((array->used_ + 1) == array->reserved_)
     {
       TC_ARRAY_ELEMENT_TYPE* d 
 	= malloc (sizeof(TC_ARRAY_ELEMENT_TYPE) 
@@ -170,8 +171,9 @@ sl_concat_3(tc_array_add,_,TC_ARRAY_FUNCTION_SUFFIX)
       array->reserved_ += TC_ARRAY_INITIAL_SIZE;
     }
 
-  array->used_++;
+  /* Set the value and increase the used elements */
   array->data_[array->used_] = elem;
+  array->used_++;
 
   return array->used_;
 }
@@ -189,11 +191,11 @@ sl_concat_3(tc_array_remove,_,TC_ARRAY_FUNCTION_SUFFIX)
  size_t pos
  )
 {
-  //  TC_ARRAY_ELEMENT_TYPE e;
-
+  /* If element is not in use, return false */
   if (pos > array->used_)
     return false;
 
+  /* Initialize the element */
   array->data_[pos] = (TC_ARRAY_ELEMENT_TYPE)0;
 
   return true;
@@ -213,7 +215,8 @@ sl_concat_3(tc_array_set,_,TC_ARRAY_FUNCTION_SUFFIX)
  TC_ARRAY_ELEMENT_TYPE elem
  )
 {
-  if (pos > array->used_)
+  /* If the element is not in used, return NULL */
+  if (pos >= array->used_)
     return NULL;
 
   array->data_[pos] = elem;
