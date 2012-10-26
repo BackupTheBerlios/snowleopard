@@ -921,7 +921,21 @@ slcc_token lex_punctuation ()
 	lex_store_and_get_char (false);
     }
 
-  /* Token ^  or ^= */
+  /* Token [ or [[ */
+  else if (c == '[') 
+    {
+      if (lex_store_and_get_char (true) == '[') 
+        lex_store_and_get_char (false);
+    }
+
+  /* Token ] or ]] */
+  else if (c == ']') 
+    {
+      if (lex_store_and_get_char (true) == ']')
+        lex_store_and_get_char (false);
+    }
+
+  /* Token ^ or ^= */
   else if (c == '^')
     {
       if (lex_store_and_get_char (true) == '=')

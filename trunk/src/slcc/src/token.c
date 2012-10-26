@@ -34,6 +34,7 @@
 // Keyword list sorted alphabetically.
 //
 char* keyword_list_[] = {
+  "alignas", 
   "alignof",
   "asm",
   "auto",
@@ -129,7 +130,7 @@ char* keyword_list_[] = {
 //
 // Keyword list length.
 //
-const size_t keyword_list_length_ = 97;
+const size_t keyword_list_length_ = 88;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -186,7 +187,9 @@ char* punctuation_list_[] = {
   ">>=",
   "?",
   "[",
+  "[[",
   "]",
+  "]]", 
   "^",
   "^=",
   "and",
@@ -216,7 +219,7 @@ char* punctuation_list_[] = {
 //
 // Punctuation list length.
 //
-const size_t punctuation_list_length_ = 69;
+const size_t punctuation_list_length_ = 71;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------

@@ -67,6 +67,7 @@ typedef enum slcc_token_type slcc_token_type;
 //
 enum slcc_keyword 
   {
+    KW_ALIGNAS,          /* alignas */
     KW_ALIGNOF,          /* alignof */
     KW_ASM,              /* asm */
     KW_AUTO,             /* auto */
@@ -221,7 +222,9 @@ enum slcc_punctuation
     PU_SHIFT_RIGHT_EQ,        /* >>= */
     PU_CONDITION,             /* ? */
     PU_SQUARE_OPEN,           /* [ */
+    PU_DOUBLE_SQUARE_OPEN,    /* [[ */
     PU_SQUARE_CLOSE,          /* ] */
+    PU_DOUBLE_SQUARE_CLOSE,   /* ]] */
     PU_XOR,                   /* ^ */
     PU_XOR_EQ,                /* ^= */
     PU_ALT_AND,               /* and */
