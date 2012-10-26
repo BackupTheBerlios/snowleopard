@@ -812,8 +812,8 @@ slcc_token lex_punctuation ()
     return lex_character (LT_UNSIGNED_CHAR);
 
   /* Token [, ], (, ), {, }, ~, ?, , or ; */
-  else if (c == '[' || c == ']' || c == '(' || c == ')' || c == '{' 
-	   || c == '}' || c == '~' || c == '?' || c == ',' || c == ';')
+  else if (c == '(' || c == ')' || c == '{' || c == '}' || c == '~' || c == '?' 
+	   || c == ',' || c == ';')
     lex_store_and_get_char (true);
 
   /* Token : or :: */
