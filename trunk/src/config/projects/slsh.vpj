@@ -194,12 +194,14 @@
         <Folder
             Name="Source Files"
             Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm">
+            <F N="../../slsh/src/main.c"/>
             <F N="../../slsh/src/version_slsh.c"/>
         </Folder>
         <Folder
             Name="Header Files"
             Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.inc;*.sh;*.cpy;*.if">
             <F N="../../slsh/include/config_slsh.h"/>
+            <F N="../../slsh/include/main.h"/>
             <F N="../../slsh/include/version_slsh.h"/>
         </Folder>
         <Folder
@@ -211,7 +213,19 @@
             Name="Build Files"
             Filters="*.bmp">
             <F
+                N="../../slsh/makefiles/dependencies.mk"
+                Type="Makefile"/>
+            <F
+                N="../../slsh/makefiles/includes.mk"
+                Type="Makefile"/>
+            <F
                 N="../../slsh/Makefile"
+                Type="Makefile"/>
+            <F
+                N="../../slsh/makefiles/object_rules.mk"
+                Type="Makefile"/>
+            <F
+                N="../../slsh/makefiles/objects.mk"
                 Type="Makefile"/>
         </Folder>
         <Folder
