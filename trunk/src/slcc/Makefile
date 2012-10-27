@@ -59,6 +59,7 @@ $(PROGRAM) 	: $(OBJS)
 
 #-------------------------------------------------------------------------------
 # Special rules
+#
 build_path	:
 	mkdir -p $(PRG_BUILD_PATH)
 
@@ -67,7 +68,7 @@ build_libsltc_a :
 	${MAKE} static_library
 
 clean		:
-	rm -rf $(OBJS) 			\
+	rm -rf $(OBJS) ;		\
 	rm -rf $(PROGRAM)
 
 distclean	: clean
