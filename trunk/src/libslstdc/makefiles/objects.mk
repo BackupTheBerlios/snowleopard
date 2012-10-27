@@ -1,7 +1,7 @@
 #===============================================================================
 # Snow Leopard Standard C Library
 #
-# Copyright (C) 2012 Roel Sergeant
+# Copyright (C) 2008, 2009, 2010, 2011, 2012 Roel Sergeant
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -23,7 +23,9 @@
 # Generated file containing the object files used for the standard C library.
 #-------------------------------------------------------------------------------
 
-OBJS 		= 
+OBJS 		= \
+	$(LIB_BUILD_PATH)/assert.o					\
+	$(LIB_BUILD_PATH)/version_stdc.o
 
 #-------------------------------------------------------------------------------
 #<EOF>

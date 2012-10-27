@@ -26,7 +26,9 @@
 #ifndef __SL_STDC_IMPL_STDDEF_H__
 #define __SL_STDC_IMPL_STDDEF_H__
 
-#include <config/config.h>
+#include "stdc/config_stdc.h"
+
+#include "stdc/private/shared_types.h"
 
 //------------------------------------------------------------------------------
 // NULL macro
@@ -39,7 +41,9 @@
 
 //------------------------------------------------------------------------------
 // size types
-typedef __SL_ConfigNamespace  sl_size_t size_t;
+//
+// size_t is defined in private/shared_types.h
+//
 typedef __SL_ConfigNamespace  sl_diff_t diff_t;
 typedef __SL_ConfigNamespace  sl_diff_t ptrdiff_t;
 typedef __SL_ConfigNamespace  sl_size_t max_align_t;

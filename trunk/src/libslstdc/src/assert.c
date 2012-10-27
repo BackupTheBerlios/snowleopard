@@ -28,13 +28,17 @@
 #include <stdio.h>
 
 //------------------------------------------------------------------------------
-// __assert_fail function, called by the assert macro.
+// __assert_fail function
+//
+// This function outputs the assertion message.
+//
 _Noreturn void __assert_fail(
-    const char* assertion,
-    const char* file,
-    size_t line,
-    const char* function
-    ) {
+			     const char* assertion,
+			     const char* file,
+			     size_t line,
+			     const char* function
+			     ) 
+{
   /* TODO */
 }
 //------------------------------------------------------------------------------

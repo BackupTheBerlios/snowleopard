@@ -25,6 +25,7 @@
 
 //------------------------------------------------------------------------------
 // If assert was previously inserted, undefine it.
+//
 #ifdef __SL_STDC_IMPL_ASSERT_H__
 
 # undef __SL_STDC_IMPL_ASSERT_H__
@@ -35,22 +36,24 @@
 
 #define __SL_STDC_IMPL_ASSERT_H__
 
-#include <config/config.h>
+#include "stdc/config_stdc.h"
 
-#include <stddef.h>
+#include "stdc/private/shared_types.h"
 
 //------------------------------------------------------------------------------
 // __assert_fail function
+//
 void __assert_fail(
-    const char* assertion,
-    const char* file,
-    size_t line,
-    const char* function
+		   const char* assertion,
+		   const char* file,
+		   size_t line,
+		   const char* function
                    );
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // assert macro (TODO)
+//
 #ifdef NDEBUG
 # define assert(ignore) ((void)0)
 #else /* NDEBUG */
@@ -67,8 +70,8 @@ void __assert_fail(
 
 //------------------------------------------------------------------------------
 // static_assert macro
+//
 #define static_assert _Static_assert
 //------------------------------------------------------------------------------
 
 //-<EOF>
-

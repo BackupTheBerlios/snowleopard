@@ -1,7 +1,7 @@
 #===============================================================================
 # Snow Leopard Standard C Library
 #
-# Copyright (C) 2012 Roel Sergeant
+# Copyright (C) 2008, 2009, 2010, 2011, 2012 Roel Sergeant
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -27,9 +27,29 @@
 #-------------------------------------------------------------------------------
 # Variables
 #
-INCLUDES 		= 
+INCLUDES_ROOT		= \
+	$(LIB_INCLUDE)/assert.h						\
+	$(LIB_INCLUDE)/stddef.h						\
+	$(LIB_INCLUDE)/stdio.h
 
-.include "../../libsltc/makefiles/includes.mk"
+LIB_STDC_INCLUDE 	= $(LIB_INCLUDE)/stdc
+
+INCLUDES_STDC		= \
+	$(LIB_STDC_INCLUDE)/assert.h					\
+	$(LIB_STDC_INCLUDE)/config_stdc.h				\
+	$(LIB_STDC_INCLUDE)/stddef.h					\
+	$(LIB_STDC_INCLUDE)/stdio.h					\
+	$(LIB_STDC_INCLUDE)/version_stdc.h				
+
+LIB_PRIVATE_INCLUDE	= $(LIB_STDC_INCLUDE)/private
+
+INCLUDES_PRIVATE	= \
+	$(LIB_PRIVATE_INCLUDE)/shared_types.h
+
+INCLUDES 		= \
+	$(INCLUDES_ROOT)						\
+	$(INCLUDES_STDC)						\
+	$(INCLUDES_PRIVATE)
 
 #-------------------------------------------------------------------------------
 #<EOF>

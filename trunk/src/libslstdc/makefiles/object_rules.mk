@@ -27,10 +27,13 @@
 #-------------------------------------------------------------------------------
 # Rules
 #
-$(PRG_BUILD_PATH)/binary_search.o  	: \
-		src/binary_search.c $(BINARY_SEARCH_DEPS)
-	$(CC) -c $(CFLAGS) src/binary_search.c -o $(.TARGET)
+$(LIB_BUILD_PATH)/assert.o  		: \
+		src/assert.c $(ASSERT_DEPS)
+	$(CC) -c $(CFLAGS) src/assert.c -o $(.TARGET)
 
+$(LIB_BUILD_PATH)/version_stdc.o  	: \
+		src/version_stdc.c $(VERSION_STDC_DEPS)
+	$(CC) -c $(CFLAGS) src/version_stdc.c -o $(.TARGET)
 
 #-------------------------------------------------------------------------------
 #<EOF>

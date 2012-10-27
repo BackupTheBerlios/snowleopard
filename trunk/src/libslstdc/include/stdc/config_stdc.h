@@ -1,7 +1,7 @@
 /*==============================================================================
-  Snow Leopard Standard C Library
+  Snow Leopard Typed Component Library
   
-  Copyright (C) 2008, 2009, 2010, 2011, 2012 Roel Sergeant
+  Copyright (C) 2011, 2012 Roel Sergeant
   
   This program is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -18,29 +18,27 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// stdarg.h
+// config_tc.h
 //------------------------------------------------------------------------------
-// Standard argument implementation
-//------------------------------------------------------------------------------
-
-#ifndef __SL_STDC_IMPL_STDARG_H__
-#define __SL_STDC_IMPL_STDARG_H__
-
-#include <stdc/config_stdc.h>
-
-//------------------------------------------------------------------------------
-// va_list type
-typedef __SL_VA_LIST_TYPE va_list;
+// Configuration information for the typed component library.
 //------------------------------------------------------------------------------
 
-//------------------------------------------------------------------------------
-// variable argument macros
-#define va_arg(ap,type) (__SL_BuiltIn_VA_ARG(ap,type))
-#define va_copy(dest,src) (__SL_BuiltIn_VA_COPY(dest,src))
-#define va_end(ap) (__SL_BuiltIn_VA_END(ap))
-#define va_start(ap,parm_n) (__SL_BuiltIn_VA_COPY(ap,parm_n))
-//------------------------------------------------------------------------------
+#ifndef __SL_STDC_IMPL_CONFIG_STDC_H__
+#define __SL_STDC_IMPL_CONFIG_STDC_H__
 
-#endif /* !__SL_STDC_IMPL_STDARG_H__ */
+#ifdef __SL_TC_NO_SL_STDLIB
+#define __SL_NO_SL_STDLIB
+#endif /* __SL_TC_NO_SL_STDLIB */
+
+#ifdef __SL_INSTALLED
+# include "sl/config/macros.h"
+#else /* __SL_INSTALLED */
+# include "macros.h"
+#endif /* __SL_INSTALLED */
+
+#include sl_include_config(config.h)
+#include sl_include_config(os_fixinclude.h)
+
+#endif /* !__SL_STDC_IMPL_CONFIG_STDC_H__ */
 
 //-<EOF>
