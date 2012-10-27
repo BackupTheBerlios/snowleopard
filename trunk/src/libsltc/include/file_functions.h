@@ -32,6 +32,7 @@
 // String functions
 //
 bool tc_file_exists (char* file);
+char* tc_get_absolute_path (char* file);
 bool tc_path_exists (char* path);
 //------------------------------------------------------------------------------
 

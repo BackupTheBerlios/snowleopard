@@ -29,8 +29,14 @@
 //------------------------------------------------------------------------------
 // String functions
 //
-char* tc_copy_string (char* str);
-char* tc_get_str_after_nth_last (char* str, char delim, int count);
+char* tc_append_string (const char* str1, const char* str2);
+char* tc_copy_string (const char* str);
+char* tc_get_str_after_nth_last (const char* str, const char delim, int count);
+char* tc_replace_in_string (
+			    const char* str1, 
+			    const char* to_replace, 
+			    const char* replacement
+			    );
 //------------------------------------------------------------------------------
 
 #endif /* !__SL_TC_STRING_FUNCTIONS_H__ */

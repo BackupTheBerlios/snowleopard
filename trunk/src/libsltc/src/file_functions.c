@@ -23,10 +23,13 @@
 // File functions for the typed component library.
 //------------------------------------------------------------------------------
 
+#include <limits.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/stat.h>
 
+#include "string_functions.h"
 #include "file_functions.h"
 
 //------------------------------------------------------------------------------
@@ -54,6 +57,43 @@ bool tc_file_exists (char* filename)
     fclose (file);
 
   return true;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// tc_get_absolute_path function
+// 
+// Expands the given path or filename to a real absolute path. It expands both
+// HOME and relative paths. It returns NULL if an error occured.
+//
+char* tc_get_absolute_path (char* file)
+{
+  char* ptr;
+  char* abs_file = malloc (sizeof(char) * (PATH_MAX + 1));
+
+  /* Get HOME */
+  char* home = getenv ("HOME");
+
+  if (home != NULL)
+    /* Expand ~ to HOME */
+    ptr = tc_replace_in_string (file, "~", home);
+
+  if (ptr == NULL)
+    {
+      free (abs_file);
+      return NULL;
+    }
+
+  /* Get absolute path for file/path */
+  ptr = realpath(ptr, abs_file);
+
+  if (ptr == NULL)
+    {
+      free (abs_file);
+      return NULL;
+    }
+
+  return ptr;
 }
 //------------------------------------------------------------------------------
 

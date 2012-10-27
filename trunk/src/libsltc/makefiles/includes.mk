@@ -91,7 +91,8 @@ DATE_FUNCTIONS_DEPS		= \
 	$(TC_INCLUDE)/date_functions.h $(DATE_FUNCTIONS_H_DEPS)
 
 FILE_FUNCTIONS_DEPS		= \
-	$(TC_INCLUDE)/file_functions.h $(FILE_FUNCTIONS_H_DEPS)
+	$(TC_INCLUDE)/file_functions.h $(FILE_FUNCTIONS_H_DEPS)		\
+	$(TC_INCLUDE)/string_functions.h $(STRING_FUNCTIONS_H_DEPS)
 
 INTEGER_FUNCTIONS_DEPS		= \
 	$(TC_INCLUDE)/integer_functions.h $(INTEGER_FUNCTIONS_H_DEPS)
