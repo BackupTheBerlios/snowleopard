@@ -24,8 +24,8 @@
 #-------------------------------------------------------------------------------
 
 OBJS 		= \
-	$(LIB_BUILD_PATH)/assert.o					\
-	$(LIB_BUILD_PATH)/version_stdc.o
+	$(LIB_BUILD_PATH)/version_stdc.o				\
+	$(LIB_BUILD_PATH)/xassert.o
 
 #-------------------------------------------------------------------------------
 #<EOF>

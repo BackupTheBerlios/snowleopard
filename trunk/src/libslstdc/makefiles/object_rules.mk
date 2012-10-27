@@ -27,13 +27,16 @@
 #-------------------------------------------------------------------------------
 # Rules
 #
-$(LIB_BUILD_PATH)/assert.o  		: \
-		src/assert.c $(ASSERT_DEPS)
-	$(CC) -c $(CFLAGS) src/assert.c -o $(.TARGET)
-
 $(LIB_BUILD_PATH)/version_stdc.o  	: \
 		src/version_stdc.c $(VERSION_STDC_DEPS)
 	$(CC) -c $(CFLAGS) src/version_stdc.c -o $(.TARGET)
+
+#-------------------------------------------------------------------------------
+# Rules for private functions
+#
+$(LIB_BUILD_PATH)/xassert.o  		: \
+		src/xassert.c $(XASSERT_DEPS)
+	$(CC) -c $(CFLAGS) src/xassert.c -o $(.TARGET)
 
 #-------------------------------------------------------------------------------
 #<EOF>

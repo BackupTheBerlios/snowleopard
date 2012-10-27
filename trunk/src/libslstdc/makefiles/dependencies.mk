@@ -49,16 +49,16 @@ VERSION_STDC_H_DEPS	= \
 #-------------------------------------------------------------------------------
 # Source file dependencies
 #
-ASSERT_DEPS			= \
-	$(LIB_INCLUDE)/assert.h $(ASSERT_H_DEPS)			\
-	$(LIB_INCLUDE)/stddef.h	$(STDDEF_H_DEPS)			\
-	$(LIB_INCLUDE)/stdio.h $(STDIO_H_DEPS)
-
 VERSION_STDC_DEPS		= \
 	$(LIB_STDC_INCLUDE)/config_stdc.h $(CONFIG_STDC_H_DEPS)		\
 	$(LIB_STDC_INCLUDE)/version_stdc.h $(VERSION_STDC_H_DEPS)	\
 	$(CONFIG_C_INCLUDES)						\
 	$(VERSION_C_INCLUDES)
+
+XASSERT_DEPS			= \
+	$(LIB_INCLUDE)/assert.h $(ASSERT_H_DEPS)			\
+	$(LIB_INCLUDE)/stddef.h	$(STDDEF_H_DEPS)			\
+	$(LIB_INCLUDE)/stdio.h $(STDIO_H_DEPS)
 
 #-------------------------------------------------------------------------------
 #<EOF>
