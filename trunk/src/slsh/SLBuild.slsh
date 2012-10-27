@@ -1,7 +1,7 @@
 #===============================================================================
 # Snow Leopard Shell
 #
-# Copyright (C) 2012 Roel Sergeant
+# Copyright (C) 2011, 2012 Roel Sergeant
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -18,20 +18,36 @@
 #===============================================================================
 
 #-------------------------------------------------------------------------------
-# includes.mk
+# SLBuild.slsh
 #-------------------------------------------------------------------------------
-# Generated file containing a list of all includes files that are specific to
-# the shell.
+# slbld configuration file for the shell.
 #-------------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------------
-# Variables
+#------------------------------------------------------------------------------
+# slbld variables
 #
-INCLUDES 		= \
-	$(PRG_INCLUDE)/config_slsh.h					\
-	$(PRG_INCLUDE)/main.h						\
-	$(PRG_INCLUDE)/version_slsh.h
+PRG			= slsh
 
-#-------------------------------------------------------------------------------
-#<EOF>
+BUILD			= [program]
 
+OBJS			= [all]
+DOCS			= [all]
+
+LIBS			= \
+	config 		= [source]
+
+FLAGS			= \
+	[all] 		= [strict]
+
+COPYRIGHT_YEARS		= 2011, 2012
+COPYRIGHT_OWNER		= Roel Sergeant
+LICENSE			= GPLv3+
+
+VERSION_MAJOR		= 0
+VERSION_MINOR		= 0
+VERSION_RELEASE		= 1
+VERSION_BUILD		= 1
+VERSION_NAME		= Pre-alpha
+
+#------------------------------------------------------------------------------
+#-<EOF>
