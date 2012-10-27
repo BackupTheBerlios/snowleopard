@@ -147,12 +147,22 @@ void settings_delete ()
 //      4) System/Compiler defined path.
 //
 bool add_file_or_path (slcc_path_type type, char* file)
-{
+{ 
+  /* Get absolute path for file/path */
+  char* abs_file = tc_get_absolute_path (file);
+
+  /* Does the file/path exist */
   if (type == PT_INCLUDE
       || type == PT_LIBRARY
       || type == PT_SOURCE)
     {
-      if (!tc_path_exists (file))
+      if (abs_file == NULL)
+	{
+	  err_report_and_exit_1 (EC_PATH_NOT_FOUND, file);
+	  return false;
+	}
+
+      if (!tc_path_exists (abs_file))
 	{
 	  err_report_and_exit_1 (EC_PATH_NOT_FOUND, file);
 	  return false;
@@ -160,7 +170,13 @@ bool add_file_or_path (slcc_path_type type, char* file)
     }
   else
     {
-      if (!tc_file_exists (file))
+      if (abs_file == NULL)
+	{
+	  err_report_and_exit_1 (EC_FILE_NOT_FOUND, file);
+	  return false;
+	}
+
+      if (!tc_file_exists (abs_file))
 	{
 	  err_report_and_exit_1 (EC_FILE_NOT_FOUND, file);
 	  return false;
@@ -191,20 +207,22 @@ bool add_file_or_path (slcc_path_type type, char* file)
     break;
 
   default:
+    free (abs_file);
     return false;
   }
 
   for (size_t i = 0; i < array->used_; i++)
-    if (strcmp (array->data_[i], file))
+    if (strcmp (array->data_[i], abs_file) == 0)
       {
+	/* Second time this file/path is used, ignoring this one */
 	err_report_1 (
 		      EC_W_DUPLICATE_INCLUDE_PATH,
 		      file
 		      );
-	return false;
+	return true;
       }
 
-  tc_array_add_str (array, file);
+  tc_array_add_str (array, abs_file);
   return true;
 }
 //------------------------------------------------------------------------------

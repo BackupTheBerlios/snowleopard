@@ -47,7 +47,7 @@ bool drv_process_argument (char** argv, int* pos);
 bool drv_process_file_argument (char* file);
 bool drv_process_language_standard (char* argument);
 bool drv_process_out_file (char* argument);
-bool drv_process_path (slcc_path_type type, char* argument, bool attached);
+bool drv_process_path (slcc_path_type type, char* argument);
 bool drv_store_define (char* define);
 bool drv_store_undefine (char* undefine);
 //------------------------------------------------------------------------------
@@ -61,16 +61,16 @@ bool drv_store_undefine (char* undefine);
 bool drv_parse_command_line (int argc, char** argv)
 {
   bool ok = true;
-  char* s;
+  char* arg;
   int i = 1; /* First parameter is the program name */
 
   while (i < argc)
     {
-      s = argv[i];
+      arg = argv[i];
       
-      if (s[0] != '-')
+      if (arg[0] != '-')
 	/* Source file */
-	ok = drv_process_file_argument (s);
+	ok = drv_process_file_argument (arg);
       else
 	/* Other arguments */
 	ok = drv_process_argument (argv, &i);
@@ -202,16 +202,14 @@ bool drv_process_argument (char** argv, int* pos)
       if_equal_execute (arg,					
 			"--include_path",				 
 			return drv_process_path (PT_INCLUDE, 
-						 argv[++(*pos)], 
-						 false));
+						 argv[++(*pos)]));
 
       /* Argument --library_path <path> */
       if_equal_execute (
 			arg,					
 			"--library_path",				
 			return drv_process_path (PT_LIBRARY, 
-						 argv[++(*pos)], 
-						 false));
+						 argv[++(*pos)]));
 
       /* Argument --make_dependencies */
       if_equal_execute (arg,
@@ -242,8 +240,7 @@ bool drv_process_argument (char** argv, int* pos)
       if_equal_execute (arg,					
 			"--source_path",				
 			return drv_process_path (PT_SOURCE, 
-						 argv[++(*pos)], 
-						 false));
+						 argv[++(*pos)]));
 
       /* Argument --undefine <name> */
       if_equal_execute (arg,
@@ -303,7 +300,7 @@ bool drv_process_argument (char** argv, int* pos)
       /* Argument -I<path> [include_path <path>] */
       if_equal_execute (arg,					
 			"-I",
-			return drv_process_path (PT_INCLUDE, arg + 2, true));
+			return drv_process_path (PT_INCLUDE, arg + 2));
     }
     break;
 
@@ -312,7 +309,7 @@ bool drv_process_argument (char** argv, int* pos)
       /* Argument -L<path> [library_path <path>] */
       if_equal_execute (arg,					
 			"-L",					
-			return drv_process_path (PT_LIBRARY, arg + 2, true));
+			return drv_process_path (PT_LIBRARY, arg + 2));
     }
     break;
 
@@ -335,7 +332,7 @@ bool drv_process_argument (char** argv, int* pos)
       /* Argument -S<path> [source_path <path>] */
       if_equal_execute (arg,					
 			"-S",					
-			return drv_process_path (PT_SOURCE, arg + 2, true));
+			return drv_process_path (PT_SOURCE, arg + 2));
     }
     break;
 
@@ -592,15 +589,12 @@ bool drv_process_out_file (char* arg)
 //
 // Set include path.
 //
-bool drv_process_path (slcc_path_type type, char* arg, bool attached)
+bool drv_process_path (slcc_path_type type, char* arg)
 {
-  if (attached)
-    if (*arg == '\0')
-      return false;
-    else
-      return add_file_or_path (type, arg);
+  if (*arg == '\0')
+    return false;
   else
-    return add_file_or_path (type, arg + 2);
+    return add_file_or_path (type, arg);
 }
 //------------------------------------------------------------------------------
 
