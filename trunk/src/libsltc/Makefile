@@ -49,8 +49,9 @@ CFLAGS		= $(INCLUDE_PATHS) $(COMPILE_FLAGS) $(LIBRARY_FLAGS) 	\
 
 LIB_TST_PATH	= $(TST_PATH)/$(LIB)
 
-.include "makefiles/objects.mk"
 .include "makefiles/includes.mk"
+.include "makefiles/dependencies.mk"
+.include "makefiles/objects.mk"
 
 #-------------------------------------------------------------------------------
 # Rules
