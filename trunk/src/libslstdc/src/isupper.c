@@ -18,22 +18,22 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// isblank.c
+// isupper.c
 //------------------------------------------------------------------------------
-// Standard character type implementation. This file contains the isblank
+// Standard character type implementation. This file contains the isupper
 // function.
 //------------------------------------------------------------------------------
 
 #include <ctype.h>
 
 //------------------------------------------------------------------------------
-// isblank function
+// isupper function
 //
-// Test is a character is whitespace.
+// Test is a character is an uppercase character.
 //
-int (isblank) (int c)
+int (isupper) (int c)
 {
-  return (_CType[c] & (_CT_CN | _CT_SP | _CT_XS));
+  return (_CType[c] & _CT_UP);
 }
 //------------------------------------------------------------------------------
 

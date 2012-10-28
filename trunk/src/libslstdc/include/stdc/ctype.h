@@ -82,7 +82,7 @@ int toupper (int c);
 #define isalpha(c) (_CType[(int)(c)] & (_CT_LO | _CT_UP | _CT_XA))
 #define isblank(c) (_CType[(int)(c)] & (_CT_CN | _CT_SP | _CT_XS))
 #define iscntrl(c) (_CType[(int)(c)] & (_CT_BB | _CT_CN))
-#define isdigit(c) (_CType[(int)(c)] & _CT_BI)
+#define isdigit(c) (_CType[(int)(c)] & _CT_DI)
 #define isgraph(c) (_CType[(int)(c)]					\
 		    & (_CT_DI | _CT_LO | _CT_PU | _CT_UP | _CT_XA))
 #define islower(c) (_CType[(int)(c)] & _CT_LO)
@@ -91,7 +91,7 @@ int toupper (int c);
 #define ispunct(c) (_CType[(int)(c)] & _CT_PU)
 #define isspace(c) (isblank(c))
 #define isupper(c) (_CType[(int)(c)] & _CT_UP)
-#define isxdigit(c) (_CType[(int)(c)] & (_CT_XD)
+#define isxdigit(c) (_CType[(int)(c)] & _CT_XD)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------

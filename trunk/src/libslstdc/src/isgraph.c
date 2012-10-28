@@ -18,22 +18,22 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// isblank.c
+// isgraph.c
 //------------------------------------------------------------------------------
-// Standard character type implementation. This file contains the isblank
+// Standard character type implementation. This file contains the isgraph
 // function.
 //------------------------------------------------------------------------------
 
 #include <ctype.h>
 
 //------------------------------------------------------------------------------
-// isblank function
+// isgraph function
 //
-// Test is a character is whitespace.
+// Test is a character is a graphic character.
 //
-int (isblank) (int c)
+int (isgraph) (int c)
 {
-  return (_CType[c] & (_CT_CN | _CT_SP | _CT_XS));
+  return (_CType[c] & (_CT_DI | _CT_LO | _CT_PU | _CT_UP | _CT_XA));
 }
 //------------------------------------------------------------------------------
 

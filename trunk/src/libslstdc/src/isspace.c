@@ -18,22 +18,22 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// isblank.c
+// isspace.c
 //------------------------------------------------------------------------------
-// Standard character type implementation. This file contains the isblank
+// Standard character type implementation. This file contains the isspace
 // function.
 //------------------------------------------------------------------------------
 
 #include <ctype.h>
 
 //------------------------------------------------------------------------------
-// isblank function
+// isspace function
 //
-// Test is a character is whitespace.
+// Test is a character is a whitespace character.
 //
-int (isblank) (int c)
+int (isspace) (int c)
 {
-  return (_CType[c] & (_CT_CN | _CT_SP | _CT_XS));
+  return ((isblank) (c));
 }
 //------------------------------------------------------------------------------
 

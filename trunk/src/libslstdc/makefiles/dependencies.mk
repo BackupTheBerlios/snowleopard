@@ -63,6 +63,33 @@ ISALPHA_DEPS			= \
 ISBLANK_DEPS			= \
 	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)
 
+ISCNTRL_DEPS			= \
+	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)
+
+ISDIGIT_DEPS			= \
+	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)
+
+ISGRAPH_DEPS			= \
+	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)
+
+ISLOWER_DEPS			= \
+	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)
+
+ISPRINT_DEPS			= \
+	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)
+
+ISPUNCT_DEPS			= \
+	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)
+
+ISSPACE_DEPS			= \
+	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)
+
+ISUPPER_DEPS			= \
+	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)
+
+ISXDIGIT_DEPS			= \
+	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)
+
 TOLOWER_DEPS			= \
 	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)
 

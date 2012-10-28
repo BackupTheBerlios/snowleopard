@@ -18,22 +18,22 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// isblank.c
+// iscntrl.c
 //------------------------------------------------------------------------------
-// Standard character type implementation. This file contains the isblank
+// Standard character type implementation. This file contains the iscntrl
 // function.
 //------------------------------------------------------------------------------
 
 #include <ctype.h>
 
 //------------------------------------------------------------------------------
-// isblank function
+// iscntrl function
 //
-// Test is a character is whitespace.
+// Test is a character is a control character.
 //
-int (isblank) (int c)
+int (iscntrl) (int c)
 {
-  return (_CType[c] & (_CT_CN | _CT_SP | _CT_XS));
+  return (_CType[c] & (_CT_BB | _CT_CN));
 }
 //------------------------------------------------------------------------------
 

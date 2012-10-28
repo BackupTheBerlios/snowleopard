@@ -18,22 +18,22 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// isblank.c
+// isxdigit.c
 //------------------------------------------------------------------------------
-// Standard character type implementation. This file contains the isblank
+// Standard character type implementation. This file contains the isxdigit
 // function.
 //------------------------------------------------------------------------------
 
 #include <ctype.h>
 
 //------------------------------------------------------------------------------
-// isblank function
+// isxdigit function
 //
-// Test is a character is whitespace.
+// Test is a character is a hexadecimal character.
 //
-int (isblank) (int c)
+int (isxdigit) (int c)
 {
-  return (_CType[c] & (_CT_CN | _CT_SP | _CT_XS));
+  return (_CType[c] & _CT_XD);
 }
 //------------------------------------------------------------------------------
 

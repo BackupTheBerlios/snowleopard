@@ -18,22 +18,22 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// isblank.c
+// ispunct.c
 //------------------------------------------------------------------------------
-// Standard character type implementation. This file contains the isblank
+// Standard character type implementation. This file contains the ispunct
 // function.
 //------------------------------------------------------------------------------
 
 #include <ctype.h>
 
 //------------------------------------------------------------------------------
-// isblank function
+// ispunct function
 //
-// Test is a character is whitespace.
+// Test is a character is a puntuation character.
 //
-int (isblank) (int c)
+int (ispunct) (int c)
 {
-  return (_CType[c] & (_CT_CN | _CT_SP | _CT_XS));
+  return (_CType[c] & _CT_PU);
 }
 //------------------------------------------------------------------------------
 

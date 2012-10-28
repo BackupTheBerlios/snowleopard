@@ -39,6 +39,42 @@ $(LIB_BUILD_PATH)/isblank.o  	: \
 		src/isblank.c $(ISBLANK_DEPS)
 	$(CC) -c $(CFLAGS) src/isblank.c -o $(.TARGET)
 
+$(LIB_BUILD_PATH)/iscntrl.o  	: \
+		src/iscntrl.c $(ISCNTRL_DEPS)
+	$(CC) -c $(CFLAGS) src/iscntrl.c -o $(.TARGET)
+
+$(LIB_BUILD_PATH)/isdigit.o  	: \
+		src/isdigit.c $(ISDIGIT_DEPS)
+	$(CC) -c $(CFLAGS) src/isdigit.c -o $(.TARGET)
+
+$(LIB_BUILD_PATH)/isgraph.o  	: \
+		src/isgraph.c $(ISGRAPH_DEPS)
+	$(CC) -c $(CFLAGS) src/isgraph.c -o $(.TARGET)
+
+$(LIB_BUILD_PATH)/islower.o  	: \
+		src/islower.c $(ISLOWER_DEPS)
+	$(CC) -c $(CFLAGS) src/islower.c -o $(.TARGET)
+
+$(LIB_BUILD_PATH)/isprint.o  	: \
+		src/isprint.c $(ISPRINT_DEPS)
+	$(CC) -c $(CFLAGS) src/isprint.c -o $(.TARGET)
+
+$(LIB_BUILD_PATH)/ispunct.o  	: \
+		src/ispunct.c $(ISPUNCT_DEPS)
+	$(CC) -c $(CFLAGS) src/ispunct.c -o $(.TARGET)
+
+$(LIB_BUILD_PATH)/isspace.o  	: \
+		src/isspace.c $(ISSPACE_DEPS)
+	$(CC) -c $(CFLAGS) src/isspace.c -o $(.TARGET)
+
+$(LIB_BUILD_PATH)/isupper.o  	: \
+		src/isupper.c $(ISUPPER_DEPS)
+	$(CC) -c $(CFLAGS) src/isupper.c -o $(.TARGET)
+
+$(LIB_BUILD_PATH)/isxdigit.o  	: \
+		src/isxdigit.c $(ISXDIGIT_DEPS)
+	$(CC) -c $(CFLAGS) src/isxdigit.c -o $(.TARGET)
+
 $(LIB_BUILD_PATH)/tolower.o  	: \
 		src/tolower.c $(TOLOWER_DEPS)
 	$(CC) -c $(CFLAGS) src/tolower.c -o $(.TARGET)

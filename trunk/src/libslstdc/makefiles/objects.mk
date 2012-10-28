@@ -27,6 +27,15 @@ OBJS 		= \
 	$(LIB_BUILD_PATH)/isalnum.o					\
 	$(LIB_BUILD_PATH)/isalpha.o					\
 	$(LIB_BUILD_PATH)/isblank.o					\
+	$(LIB_BUILD_PATH)/iscntrl.o					\
+	$(LIB_BUILD_PATH)/isdigit.o					\
+	$(LIB_BUILD_PATH)/isgraph.o					\
+	$(LIB_BUILD_PATH)/islower.o					\
+	$(LIB_BUILD_PATH)/isprint.o					\
+	$(LIB_BUILD_PATH)/ispunct.o					\
+	$(LIB_BUILD_PATH)/isspace.o					\
+	$(LIB_BUILD_PATH)/isupper.o					\
+	$(LIB_BUILD_PATH)/isxdigit.o					\
 	$(LIB_BUILD_PATH)/tolower.o					\
 	$(LIB_BUILD_PATH)/toupper.o					\
 	$(LIB_BUILD_PATH)/version_stdc.o				\
