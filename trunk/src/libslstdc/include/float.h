@@ -23,11 +23,11 @@
 // Standard float implementation
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_FLOAT_H__
-#define _SL_STDC_FLOAT_H__
+#ifndef __SL_STDC_FLOAT_H__
+#define __SL_STDC_FLOAT_H__
 
-#include <stdc/float.h>
+#include "stdc/float.h"
 
-#endif /* !_SL_STDC_FLOAT_H_ */
+#endif /* !__SL_STDC_FLOAT_H__ */
 
 //-<EOF>

@@ -23,13 +23,14 @@
 // Standard alternate operator implementation
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_IMPL_ISO646_H_
-#define _SL_STDC_IMPL_ISO646_H_
+#ifndef __SL_STDC_IMPL_ISO646_H__
+#define __SL_STDC_IMPL_ISO646_H__
 
-#include <config/config.h>
+#include "stdc/config_stdc.h"
 
 //------------------------------------------------------------------------------
-// iso646 macros.
+// iso646 macros
+//
 #define and    &&
 #define and_eq &=
 #define bitand &
@@ -43,7 +44,7 @@
 #define xor_eq ^=
 //------------------------------------------------------------------------------
 
-#endif /* !_SL_STDC_IMPL_ISO646_H_ */
+#endif /* !__SL_STDC_IMPL_ISO646_H__ */
 
 //-<EOF>
 

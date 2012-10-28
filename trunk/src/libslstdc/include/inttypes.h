@@ -23,11 +23,11 @@
 // Standard integer types implementation
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_INTTYPES_H_
-#define _SL_STDC_INTTYPES_H_
+#ifndef __SL_STDC_INTTYPES_H__
+#define __SL_STDC_INTTYPES_H__
 
-#include <stdc/inttypes.h>
+#include "stdc/inttypes.h"
 
-#endif /* !_SL_STDC_INTTYPES_H_ */
+#endif /* !__SL_STDC_INTTYPES_H__ */
 
 //-<EOF>

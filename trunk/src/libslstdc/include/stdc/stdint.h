@@ -26,7 +26,9 @@
 #ifndef _SL_STDC_IMPL_STDINT_H_
 #define _SL_STDC_IMPL_STDINT_H_
 
-#include <config/config.h>
+#include "stdc/config_stdc.h"
+
+#include "std/private/shared_types.h"
 
 //------------------------------------------------------------------------------
 // Exact width integer types
@@ -72,7 +74,9 @@ typedef __SL_ConfigNamespace sl_size_t uintptr_t;
 
 //------------------------------------------------------------------------------
 // Greatest width integer types
-typedef __SL_ConfigNamespace sl_int64_t intmax_t;
+//
+// intmax_t is part of the shared_types header included in this file.
+//
 typedef __SL_ConfigNamespace sl_uint64_t uintmax_t;
 //------------------------------------------------------------------------------
 
