@@ -39,6 +39,14 @@ $(LIB_BUILD_PATH)/isblank.o  	: \
 		src/isblank.c $(ISBLANK_DEPS)
 	$(CC) -c $(CFLAGS) src/isblank.c -o $(.TARGET)
 
+$(LIB_BUILD_PATH)/tolower.o  	: \
+		src/tolower.c $(TOLOWER_DEPS)
+	$(CC) -c $(CFLAGS) src/tolower.c -o $(.TARGET)
+
+$(LIB_BUILD_PATH)/toupper.o  	: \
+		src/toupper.c $(TOUPPER_DEPS)
+	$(CC) -c $(CFLAGS) src/toupper.c -o $(.TARGET)
+
 $(LIB_BUILD_PATH)/version_stdc.o  	: \
 		src/version_stdc.c $(VERSION_STDC_DEPS)
 	$(CC) -c $(CFLAGS) src/version_stdc.c -o $(.TARGET)

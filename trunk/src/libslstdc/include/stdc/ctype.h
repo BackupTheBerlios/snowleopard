@@ -80,13 +80,25 @@ int toupper (int c);
 //
 #define isalnum(c) (_CType[(int)(c)] & (_CT_DI | _CT_LO | _CT_UP | _CT_XA))
 #define isalpha(c) (_CType[(int)(c)] & (_CT_LO | _CT_UP | _CT_XA))
-#define isblank(c) (_CType[(int)(c)] & (_CT_CN | _CT_SP))
+#define isblank(c) (_CType[(int)(c)] & (_CT_CN | _CT_SP | _CT_XS))
+#define iscntrl(c) (_CType[(int)(c)] & (_CT_BB | _CT_CN))
+#define isdigit(c) (_CType[(int)(c)] & _CT_BI)
+#define isgraph(c) (_CType[(int)(c)]					\
+		    & (_CT_DI | _CT_LO | _CT_PU | _CT_UP | _CT_XA))
+#define islower(c) (_CType[(int)(c)] & _CT_LO)
+#define isprint(c) (_CType[(int)(c)]					\
+		    & (_CT_DI | _CT_LO | _CT_PU | _CT_SP | _CT_UP | _CT_XA))
+#define ispunct(c) (_CType[(int)(c)] & _CT_PU)
+#define isspace(c) (isblank(c))
+#define isupper(c) (_CType[(int)(c)] & _CT_UP)
+#define isxdigit(c) (_CType[(int)(c)] & (_CT_XD)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // Character case mapping macros
 //
-
+#define tolower(c) _ToLower[(int)(c)]
+#define toupper(c) _ToUpper[(int)(c)]
 //------------------------------------------------------------------------------
 
 #endif /* !_SL_STDC_IMPL_CTYPE_H_ */

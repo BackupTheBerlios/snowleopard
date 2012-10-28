@@ -63,6 +63,12 @@ ISALPHA_DEPS			= \
 ISBLANK_DEPS			= \
 	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)
 
+TOLOWER_DEPS			= \
+	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)
+
+TOUPPER_DEPS			= \
+	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)
+
 VERSION_STDC_DEPS		= \
 	$(LIB_STDC_INCLUDE)/config_stdc.h $(CONFIG_STDC_H_DEPS)		\
 	$(LIB_STDC_INCLUDE)/version_stdc.h $(VERSION_STDC_H_DEPS)	\
