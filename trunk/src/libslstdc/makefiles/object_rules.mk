@@ -94,5 +94,17 @@ $(LIB_BUILD_PATH)/xassert.o  		: \
 		src/xassert.c $(XASSERT_DEPS)
 	$(CC) -c $(CFLAGS) src/xassert.c -o $(.TARGET)
 
+$(LIB_BUILD_PATH)/xctype.o  		: \
+		src/xctype.c $(XCTYPE_DEPS)
+	$(CC) -c $(CFLAGS) src/xctype.c -o $(.TARGET)
+
+$(LIB_BUILD_PATH)/xtolower.o  		: \
+		src/xtolower.c $(XTOLOWER_DEPS)
+	$(CC) -c $(CFLAGS) src/xtolower.c -o $(.TARGET)
+
+$(LIB_BUILD_PATH)/xtoupper.o  		: \
+		src/xtoupper.c $(XTOUPPER_DEPS)
+	$(CC) -c $(CFLAGS) src/xtoupper.c -o $(.TARGET)
+
 #-------------------------------------------------------------------------------
 #<EOF>

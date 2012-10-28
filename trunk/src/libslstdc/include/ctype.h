@@ -23,11 +23,11 @@
 // Standard character type implementation
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_CTYPE_H_
-#define _SL_STDC_CTYPE_H_
+#ifndef __SL_STDC_CTYPE_H__
+#define __SL_STDC_CTYPE_H__
 
 #include "stdc/ctype.h"
 
-#endif /* !_SL_STDC_CTYPE_H_ */
+#endif /* !__SL_STDC_CTYPE_H__ */
 
 //-<EOF>

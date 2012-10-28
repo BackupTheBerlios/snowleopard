@@ -107,5 +107,20 @@ XASSERT_DEPS			= \
 	$(LIB_INCLUDE)/stdio.h $(STDIO_H_DEPS)				\
 	$(LIB_INCLUDE)/stdlib.h $(STDLIB_H_DEPS)
 
+XCTYPE_DEPS			= \
+	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)				\
+	$(LIB_INCLUDE)/limits.h $(LIMITS_H_DEPS)			\
+	$(LIB_INCLUDE)/stdio.h $(STDIO_H_DEPS)
+
+XTOLOWER_DEPS			= \
+	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)				\
+	$(LIB_INCLUDE)/limits.h $(LIMITS_H_DEPS)			\
+	$(LIB_INCLUDE)/stdio.h $(STDIO_H_DEPS)
+
+XTOUPPER_DEPS			= \
+	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)				\
+	$(LIB_INCLUDE)/limits.h $(LIMITS_H_DEPS)			\
+	$(LIB_INCLUDE)/stdio.h $(STDIO_H_DEPS)
+
 #-------------------------------------------------------------------------------
 #<EOF>

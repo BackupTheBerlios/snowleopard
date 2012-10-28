@@ -26,7 +26,7 @@
 #ifndef _SL_STDC_IMPL_ERRNO_H_
 #define _SL_STDC_IMPL_ERRNO_H_
 
-#include <stdc/config_stdc.h>
+#include "stdc/config_stdc.h"
 
 //------------------------------------------------------------------------------
 // errno_t type

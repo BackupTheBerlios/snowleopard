@@ -26,7 +26,7 @@
 #ifndef _SL_STDC_LIMITS_H_
 #define _SL_STDC_LIMITS_H_
 
-#include <stdc/limits.h>
+#include "stdc/limits.h"
 
 #endif /* !_SL_STDC_LIMITS_H_ */
 

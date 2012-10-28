@@ -23,15 +23,15 @@
 // Version information for the standard C library.
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_IMPL_VERSION_STDC_H_
-#define _SL_STDC_IMPL_VERSION_STDC_H_
+#ifndef __SL_STDC_IMPL_VERSION_STDC_H__
+#define __SL_STDC_IMPL_VERSION_STDC_H__
 
 #include "stdc/config_stdc.h"
 
-#include <stddef.h>
+#include "stdc/private/shared_types.h"
 
 #include sl_include_config(version.h)
 
-#endif /* !_SL_STDC_IMPL_VERSION_STDC_H_ */
+#endif /* !__SL_STDC_IMPL_VERSION_STDC_H__ */
 
 //-<EOF>

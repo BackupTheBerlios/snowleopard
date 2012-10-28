@@ -26,7 +26,7 @@
 #ifndef __SL_STDC_IMPL_STDIO_H__
 #define __SL_STDC_IMPL_STDIO_H__
 
-#include <stdc/config_stdc.h>
+#include "stdc/config_stdc.h"
 
 #include <stdarg.h>
 #include <stddef.h>

@@ -26,42 +26,42 @@
 #ifndef _SL_STDC_IMPL_LIMITS_H_
 #define _SL_STDC_IMPL_LIMITS_H_
 
-#include <config/config.h>
+#include "stdc/config_stdc.h"
 
 //------------------------------------------------------------------------------
 // Character types
-#define CHAR_BIT SL_CHAR_BITS
-#define SCHAR_MIN SL_SCHAR_MIN
-#define SCHAR_MAX SL_SCHAR_MAX
-#define UCHAR_MAX SL_UCHAR_MAX
-#if SL_CHAR_IS_SIGNED == 0
+#define CHAR_BIT __SL_CHAR_BITS
+#define SCHAR_MIN __SL_SCHAR_MIN
+#define SCHAR_MAX __SL_SCHAR_MAX
+#define UCHAR_MAX __SL_UCHAR_MAX
+#if __SL_CHAR_IS_SIGNED == 0
 # define CHAR_MIN SCHAR_MIN
 # define CHAR_MAX SCHAR_MAX
-#else /* SL_CHAR_IS_SIGNED == 0 */
+#else /* __SL_CHAR_IS_SIGNED == 0 */
 # define CHAR_MIN 0
 # define CHAR_MAX UCHAR_MAX
-#endif /* SL_CHAR_IS_SIGNED == 0 */
+#endif /* __SL_CHAR_IS_SIGNED == 0 */
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // Maximum bytes in multibyte character
-#define MB_LEN_MAX SL_WCHAR_MAX_BYTES
+#define MB_LEN_MAX __SL_WCHAR_MAX_BYTES
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // Integer types
-#define SHRT_MIN SL_SHRT_MIN
-#define SHRT_MAX SL_SHRT_MAX
-#define USHRT_MAX SL_USHRT_MAX
-#define INT_MIN SL_INT_MIN
-#define INT_MAX SL_INT_MAX
-#define UINT_MAX SL_UINT_MAX
-#define LONG_MIN SL_LONG_MIN
-#define LONG_MAX SL_LONG_MAX
-#define ULONG_MAX SL_ULONG_MAX
-#define LLONG_MIN SL_LLONG_MIN
-#define LLONG_MAX SL_LLONG_MAX
-#define ULLONG_MAX SL_ULLONG_MAX
+#define SHRT_MIN __SL_SHRT_MIN
+#define SHRT_MAX __SL_SHRT_MAX
+#define USHRT_MAX __SL_USHRT_MAX
+#define INT_MIN __SL_INT_MIN
+#define INT_MAX __SL_INT_MAX
+#define UINT_MAX __SL_UINT_MAX
+#define LONG_MIN __SL_LONG_MIN
+#define LONG_MAX __SL_LONG_MAX
+#define ULONG_MAX __SL_ULONG_MAX
+#define LLONG_MIN __SL_LLONG_MIN
+#define LLONG_MAX __SL_LLONG_MAX
+#define ULLONG_MAX __SL_ULLONG_MAX
 //------------------------------------------------------------------------------
 
 #endif /* !_SL_STDC_IMPL_LIMITS_H_ */

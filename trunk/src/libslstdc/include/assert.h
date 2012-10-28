@@ -27,6 +27,6 @@
 //                   No inclusion guards on assert.h                          //
 //////////////////////////////////////////////////////////////////////////////// 
 
-#include <stdc/assert.h>
+#include "stdc/assert.h"
 
 //-<EOF>

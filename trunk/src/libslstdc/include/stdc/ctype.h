@@ -23,8 +23,8 @@
 // Standard character type implementation
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_IMPL_CTYPE_H_
-#define _SL_STDC_IMPL_CTYPE_H_
+#ifndef __SL_STDC_IMPL_CTYPE_H__
+#define __SL_STDC_IMPL_CTYPE_H__
 
 #include "stdc/config_stdc.h"
 
@@ -101,6 +101,6 @@ int toupper (int c);
 #define toupper(c) _ToUpper[(int)(c)]
 //------------------------------------------------------------------------------
 
-#endif /* !_SL_STDC_IMPL_CTYPE_H_ */
+#endif /* !__SL_STDC_IMPL_CTYPE_H__ */
 
 //-<EOF>
