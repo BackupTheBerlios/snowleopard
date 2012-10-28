@@ -32,7 +32,19 @@ ASSERT_H_DEPS			= \
 	$(LIB_STDC_INCLUDE)/assert.h					\
 	$(CONFIG_C_INCLUDES)
 
+COMPLEX_H_DEPS			= \
+	$(LIB_STDC_INCLUDE)/config_stdc.h				\
+	$(LIB_STDC_INCLUDE)/complex.h					\
+	$(CONFIG_C_INCLUDES)
+
+CONFIG_STDC_H_DEPS		= \
+	$(CONFIG_C_INCLUDES)
+
 CTYPE_H_DEPS			= \
+	$(LIB_STDC_INCLUDE)/config_stdc.h				\
+	$(CONFIG_C_INCLUDES)
+
+ERRNO_H_DEPS			= \
 	$(LIB_STDC_INCLUDE)/config_stdc.h				\
 	$(CONFIG_C_INCLUDES)
 
@@ -111,6 +123,9 @@ XCTYPE_DEPS			= \
 	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)				\
 	$(LIB_INCLUDE)/limits.h $(LIMITS_H_DEPS)			\
 	$(LIB_INCLUDE)/stdio.h $(STDIO_H_DEPS)
+
+XERRNO_DEPS			= \
+	$(LIB_INCLUDE)/errno.h $(ERRNO_H_DEPS)
 
 XTOLOWER_DEPS			= \
 	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)				\

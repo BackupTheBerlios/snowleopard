@@ -23,11 +23,11 @@
 // Standard error handling implementation
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_ERRNO_H_
-#define _SL_STDC_ERRNO_H_
+#ifndef __SL_STDC_ERRNO_H__
+#define __SL_STDC_ERRNO_H__
 
-#include <stdc/errno.h>
+#include "stdc/errno.h"
 
-#endif /* !_SL_STDC_ERRNO_H_ */
+#endif /* !__SL_STDC_ERRNO_H__ */
 
 //-<EOF>

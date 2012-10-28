@@ -98,6 +98,10 @@ $(LIB_BUILD_PATH)/xctype.o  		: \
 		src/xctype.c $(XCTYPE_DEPS)
 	$(CC) -c $(CFLAGS) src/xctype.c -o $(.TARGET)
 
+$(LIB_BUILD_PATH)/xerrno.o  		: \
+		src/xerrno.c $(XERRNO_DEPS)
+	$(CC) -c $(CFLAGS) src/xerrno.c -o $(.TARGET)
+
 $(LIB_BUILD_PATH)/xtolower.o  		: \
 		src/xtolower.c $(XTOLOWER_DEPS)
 	$(CC) -c $(CFLAGS) src/xtolower.c -o $(.TARGET)

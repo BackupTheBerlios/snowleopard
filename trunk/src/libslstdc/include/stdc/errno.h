@@ -23,18 +23,20 @@
 // Standard error handling implementation
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_IMPL_ERRNO_H_
-#define _SL_STDC_IMPL_ERRNO_H_
+#ifndef __SL_STDC_IMPL_ERRNO_H__
+#define __SL_STDC_IMPL_ERRNO_H__
 
 #include "stdc/config_stdc.h"
 
 //------------------------------------------------------------------------------
 // errno_t type
+//
 typedef __SL_ConfigNamespace sl_errno_t errno_t;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// Error macros.
+// Error macros
+//
 #define EAFNOSUPPORT    1
 #define EADDRINUSE      2
 #define EADDRNOTAVAIL   3
@@ -117,10 +119,11 @@ typedef __SL_ConfigNamespace sl_errno_t errno_t;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// errno variable.
+// errno variable
+//
 extern errno_t errno;
 //------------------------------------------------------------------------------
 
-#endif /* !_SL_STDC_IMPL_ERRNO_H_ */
+#endif /* !__SL_STDC_IMPL_ERRNO_H__ */
 
 //-<EOF>

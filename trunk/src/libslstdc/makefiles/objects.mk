@@ -41,6 +41,7 @@ OBJS 		= \
 	$(LIB_BUILD_PATH)/version_stdc.o				\
 	$(LIB_BUILD_PATH)/xassert.o					\
 	$(LIB_BUILD_PATH)/xctype.o					\
+	$(LIB_BUILD_PATH)/xerrno.o					\
 	$(LIB_BUILD_PATH)/xtolower.o					\
 	$(LIB_BUILD_PATH)/xtoupper.o
 

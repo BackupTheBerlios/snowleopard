@@ -23,11 +23,11 @@
 // Standard complex numbers implementation
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_COMPLEX_H_
-#define _SL_STDC_COMPLEX_H_
+#ifndef __SL_STDC_COMPLEX_H__
+#define __SL_STDC_COMPLEX_H__
 
-#include <stdc/complex.h>
+#include "stdc/complex.h"
 
-#endif /* !_SL_STDC_COMPLEX_H_ */
+#endif /* !__SL_STDC_COMPLEX_H__ */
 
 //-<EOF>
