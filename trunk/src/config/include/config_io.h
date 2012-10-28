@@ -59,8 +59,8 @@ typedef sl_size_t sl_file_position_t;
 // File maxima
 //
 // EOF macros
-#define __SL_EOF ((int)(-1))
-#define __SL_WEOF ((sl_wint_t)(-1))
+#define __SL_EOF (-1)
+#define __SL_WEOF (-1)
 // Open files
 #define __SL_FOPEN_MAX __SL_UINT_MAX
 #define __SL_TMP_MAX __SL_FOPEN_MAX

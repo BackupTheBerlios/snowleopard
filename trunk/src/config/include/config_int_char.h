@@ -22,6 +22,7 @@
 //------------------------------------------------------------------------------
 // Configuration applicable to all integer/character C code.
 //    - lynx
+//    - puma
 //    - slcc
 //    - slsh
 //    - libslstdc
