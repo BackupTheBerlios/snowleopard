@@ -27,6 +27,18 @@
 #-------------------------------------------------------------------------------
 # Rules
 #
+$(LIB_BUILD_PATH)/isalnum.o  	: \
+		src/isalnum.c $(ISALNUM_DEPS)
+	$(CC) -c $(CFLAGS) src/isalnum.c -o $(.TARGET)
+
+$(LIB_BUILD_PATH)/isalpha.o  	: \
+		src/isalpha.c $(ISALPHA_DEPS)
+	$(CC) -c $(CFLAGS) src/isalpha.c -o $(.TARGET)
+
+$(LIB_BUILD_PATH)/isblank.o  	: \
+		src/isblank.c $(ISBLANK_DEPS)
+	$(CC) -c $(CFLAGS) src/isblank.c -o $(.TARGET)
+
 $(LIB_BUILD_PATH)/version_stdc.o  	: \
 		src/version_stdc.c $(VERSION_STDC_DEPS)
 	$(CC) -c $(CFLAGS) src/version_stdc.c -o $(.TARGET)

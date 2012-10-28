@@ -18,16 +18,23 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// ctype.h
+// isalpha.c
 //------------------------------------------------------------------------------
-// Standard character type implementation
+// Standard character type implementation. This file contains the isalpha
+// function.
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_CTYPE_H_
-#define _SL_STDC_CTYPE_H_
+#include <ctype.h>
 
-#include "stdc/ctype.h"
-
-#endif /* !_SL_STDC_CTYPE_H_ */
+//------------------------------------------------------------------------------
+// isalpha function
+//
+// Test is a character is alphabetic.
+//
+int (isalpha) (int c)
+{
+  return (_CType[c] & (_CT_LO | _CT_UP | _CT_XA));
+}
+//------------------------------------------------------------------------------
 
 //-<EOF>

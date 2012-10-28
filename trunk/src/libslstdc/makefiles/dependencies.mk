@@ -32,6 +32,10 @@ ASSERT_H_DEPS			= \
 	$(LIB_STDC_INCLUDE)/assert.h					\
 	$(CONFIG_C_INCLUDES)
 
+CTYPE_H_DEPS			= \
+	$(LIB_STDC_INCLUDE)/config_stdc.h				\
+	$(CONFIG_C_INCLUDES)
+
 STDDEF_H_DEPS			= \
 	$(LIB_PRIVATE_INCLUDE)/shared_types.h				\
 	$(LIB_STDC_INCLUDE)/config_stdc.h				\
@@ -50,6 +54,15 @@ VERSION_STDC_H_DEPS		= \
 #-------------------------------------------------------------------------------
 # Source file dependencies
 #
+ISALNUM_DEPS			= \
+	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)
+
+ISALPHA_DEPS			= \
+	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)
+
+ISBLANK_DEPS			= \
+	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)
+
 VERSION_STDC_DEPS		= \
 	$(LIB_STDC_INCLUDE)/config_stdc.h $(CONFIG_STDC_H_DEPS)		\
 	$(LIB_STDC_INCLUDE)/version_stdc.h $(VERSION_STDC_H_DEPS)	\

@@ -18,16 +18,23 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// ctype.h
+// isalnum.c
 //------------------------------------------------------------------------------
-// Standard character type implementation
+// Standard character type implementation. This file contains the isalnum
+// function.
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_CTYPE_H_
-#define _SL_STDC_CTYPE_H_
+#include <ctype.h>
 
-#include "stdc/ctype.h"
-
-#endif /* !_SL_STDC_CTYPE_H_ */
+//------------------------------------------------------------------------------
+// isalnum function
+//
+// Test is a character is alphanumeric.
+//
+int (isalnum) (int c)
+{
+  return (_CType[c] & (_CT_DI | _CT_LO | _CT_UP | _CT_XA));
+}
+//------------------------------------------------------------------------------
 
 //-<EOF>

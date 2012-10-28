@@ -24,6 +24,9 @@
 #-------------------------------------------------------------------------------
 
 OBJS 		= \
+	$(LIB_BUILD_PATH)/isalnum.o					\
+	$(LIB_BUILD_PATH)/isalpha.o					\
+	$(LIB_BUILD_PATH)/isblank.o					\
 	$(LIB_BUILD_PATH)/version_stdc.o				\
 	$(LIB_BUILD_PATH)/xassert.o
 

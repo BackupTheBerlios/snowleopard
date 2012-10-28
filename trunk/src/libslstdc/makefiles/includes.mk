@@ -29,6 +29,7 @@
 #
 INCLUDES_ROOT		= \
 	$(LIB_INCLUDE)/assert.h						\
+	$(LIB_INCLUDE)/ctype.h						\
 	$(LIB_INCLUDE)/stddef.h						\
 	$(LIB_INCLUDE)/stdio.h						\
 	$(LIB_INCLUDE)/stdlib.h
@@ -38,6 +39,7 @@ LIB_STDC_INCLUDE 	= $(LIB_INCLUDE)/stdc
 INCLUDES_STDC		= \
 	$(LIB_STDC_INCLUDE)/assert.h					\
 	$(LIB_STDC_INCLUDE)/config_stdc.h				\
+	$(LIB_STDC_INCLUDE)/ctype.h					\
 	$(LIB_STDC_INCLUDE)/stddef.h					\
 	$(LIB_STDC_INCLUDE)/stdio.h					\
 	$(LIB_STDC_INCLUDE)/stdlib.h					\
