@@ -38,33 +38,37 @@
 
 #include "stdc/config_stdc.h"
 
-#include "stdc/private/shared_types.h"
-
 //------------------------------------------------------------------------------
-// __assert_fail function
+// Private functions
 //
-void __assert_fail(
-		   const char* assertion,
-		   const char* file,
-		   size_t line,
-		   const char* function
-                   );
+_Noreturn void _Assert (const char* msg);
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// assert macro (TODO)
+// __assert_fail macro
+//
+#define __assert_fail(assertion,file,line,function)		\
+  _Assert (file ":" sl_str(line) ":" function " " assertion)
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// assert macro
+//
+// If the assertion fails, the __assert_fail macro is used to call the private
+// assertion function _Assert.
 //
 #ifdef NDEBUG
 # define assert(ignore) ((void)0)
 #else /* NDEBUG */
 # define assert(expr)                           \
   ((void)                                       \
-   ((expr) ? 0 :                                \
-    (__assert_fail (__STRING(expr),             \
-                    __FILE__,                   \
-                    __LINE__,                   \
-                    __func__),                  \
-     0)))
+   ((expr)					\
+    ? 0						\
+    : (__assert_fail (sl_str(expr),		\
+		      __FILE__,			\
+		      __LINE__,			\
+		      __func__),		\
+       0)))
 #endif /* NDEBUG */
 //------------------------------------------------------------------------------
 

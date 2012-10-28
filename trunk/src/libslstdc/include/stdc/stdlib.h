@@ -26,9 +26,9 @@
 #ifndef __SL_STDC_IMPL_STDLIB_H__
 #define __SL_STDC_IMPL_STDLIB_H__
 
-#include <config/config.h>
+#include "stdc/config_stdc.h"
 
-#include <stddef.h>
+#include "stdc/private/shared_types.h"
 
 //------------------------------------------------------------------------------
 // div_t struct

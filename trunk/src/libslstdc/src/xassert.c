@@ -24,22 +24,19 @@
 //------------------------------------------------------------------------------
 
 #include <assert.h>
-#include <stddef.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 //------------------------------------------------------------------------------
 // __assert_fail function
 //
 // This function outputs the assertion message.
 //
-_Noreturn void __assert_fail(
-			     const char* assertion,
-			     const char* file,
-			     size_t line,
-			     const char* function
-			     ) 
+_Noreturn void _Assert(const char* msg) 
 {
-  /* TODO */
+  fputs (msg, stderr);
+  fputs (" [assertion failed]\n", stderr);
+  abort ();
 }
 //------------------------------------------------------------------------------
 
