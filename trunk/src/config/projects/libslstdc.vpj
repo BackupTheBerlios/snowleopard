@@ -1,0 +1,370 @@
+<!DOCTYPE Project SYSTEM "http://www.slickedit.com/dtd/vse/10.0/vpj.dtd">
+<Project
+    Version="10.0"
+    VendorName="SlickEdit"
+    TemplateName="GNU C/C++"
+    WorkingDir=".">
+    <Config
+        Name="Debug"
+        Type="gnuc"
+        DebugCallbackName="gdb"
+        Version="1"
+        OutputFile="%bdlibslstdc.dll"
+        CompilerConfigName="Latest Version">
+        <Menu>
+            <Target
+                Name="Compile"
+                MenuCaption="&amp;Compile"
+                Dialog="_gnuc_options_form Compile"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                OutputExts="*.o"
+                SaveOption="SaveCurrent"
+                RunFromDir="%rw">
+                <Exec CmdLine='gcc -ansi -c %xup  %defd -g -o "%bd%n%oe" %i "%f"'/>
+            </Target>
+            <Target
+                Name="Link"
+                MenuCaption="&amp;Link"
+                ShowOnMenu="Never"
+                Dialog="_gnuc_options_form Link"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                SaveOption="SaveCurrent"
+                RunFromDir="%rw">
+                <Exec CmdLine='gcc -ansi %xup -g -o "%o" %f %libs -shared -fPIC'/>
+            </Target>
+            <Target
+                Name="Build"
+                MenuCaption="&amp;Build"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec CmdLine="make"/>
+            </Target>
+            <Target
+                Name="Rebuild"
+                MenuCaption="&amp;Rebuild"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec CmdLine=""/>
+            </Target>
+            <Target
+                Name="Debug"
+                MenuCaption="&amp;Debug"
+                Dialog="_gnuc_options_form Run/Debug"
+                BuildFirst="1"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                SaveOption="SaveNone"
+                RunFromDir="%rw">
+                <Exec CmdLine=""/>
+            </Target>
+            <Target
+                Name="Execute"
+                MenuCaption="E&amp;xecute"
+                Dialog="_gnuc_options_form Run/Debug"
+                BuildFirst="1"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec CmdLine=""/>
+            </Target>
+            <Target
+                Name="dash"
+                MenuCaption="-"
+                Deletable="0">
+                <Exec/>
+            </Target>
+            <Target
+                Name="GNU C Options"
+                MenuCaption="GNU C &amp;Options..."
+                ShowOnMenu="HideIfNoCmdLine"
+                Deletable="0"
+                SaveOption="SaveNone">
+                <Exec
+                    CmdLine="gnucoptions"
+                    Type="Slick-C"/>
+            </Target>
+        </Menu>
+        <List Name="GNUC Options">
+            <Item
+                Name="LinkerOutputType"
+                Value="SharedLibrary"/>
+        </List>
+    </Config>
+    <Config
+        Name="Release"
+        Type="gnuc"
+        DebugCallbackName="gdb"
+        Version="1"
+        OutputFile="%bdlibslstdc.dll"
+        CompilerConfigName="Latest Version">
+        <Menu>
+            <Target
+                Name="Compile"
+                MenuCaption="&amp;Compile"
+                Dialog="_gnuc_options_form Compile"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                OutputExts="*.o"
+                SaveOption="SaveCurrent"
+                RunFromDir="%rw">
+                <Exec CmdLine='gcc -ansi -c %xup %defd -o "%bd%n%oe" %i "%f"'/>
+            </Target>
+            <Target
+                Name="Link"
+                MenuCaption="&amp;Link"
+                ShowOnMenu="Never"
+                Dialog="_gnuc_options_form Link"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                SaveOption="SaveCurrent"
+                RunFromDir="%rw">
+                <Exec CmdLine='gcc -ansi %xup -o "%o" %f %libs -shared -fPIC'/>
+            </Target>
+            <Target
+                Name="Build"
+                MenuCaption="&amp;Build"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec CmdLine="make"/>
+            </Target>
+            <Target
+                Name="Rebuild"
+                MenuCaption="&amp;Rebuild"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec CmdLine=""/>
+            </Target>
+            <Target
+                Name="Debug"
+                MenuCaption="&amp;Debug"
+                Dialog="_gnuc_options_form Run/Debug"
+                BuildFirst="1"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                SaveOption="SaveNone"
+                RunFromDir="%rw">
+                <Exec CmdLine=""/>
+            </Target>
+            <Target
+                Name="Execute"
+                MenuCaption="E&amp;xecute"
+                Dialog="_gnuc_options_form Run/Debug"
+                BuildFirst="1"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec CmdLine=""/>
+            </Target>
+            <Target
+                Name="dash"
+                MenuCaption="-"
+                Deletable="0">
+                <Exec/>
+            </Target>
+            <Target
+                Name="GNU C Options"
+                MenuCaption="GNU C &amp;Options..."
+                ShowOnMenu="HideIfNoCmdLine"
+                Deletable="0"
+                SaveOption="SaveNone">
+                <Exec
+                    CmdLine="gnucoptions"
+                    Type="Slick-C"/>
+            </Target>
+        </Menu>
+        <List Name="GNUC Options">
+            <Item
+                Name="LinkerOutputType"
+                Value="SharedLibrary"/>
+        </List>
+    </Config>
+    <Files>
+        <Folder
+            Name="Source Files"
+            Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm">
+            <Folder
+                Name="private sources"
+                Filters="">
+                <F N="../../libslstdc/src/private/ll_mm_blocks.c"/>
+                <F N="../../libslstdc/src/private/ll_mm_pages.c"/>
+                <F N="../../libslstdc/src/private/ll_open_files.c"/>
+                <F N="../../libslstdc/src/private/memory_manager.c"/>
+                <F N="../../libslstdc/src/private/program_globals.c"/>
+                <F N="../../libslstdc/src/private/stdio_private.c"/>
+            </Folder>
+            <F N="../../libslstdc/src/complex.c"/>
+            <F N="../../libslstdc/src/isalnum.c"/>
+            <F N="../../libslstdc/src/isalpha.c"/>
+            <F N="../../libslstdc/src/isblank.c"/>
+            <F N="../../libslstdc/src/iscntrl.c"/>
+            <F N="../../libslstdc/src/isdigit.c"/>
+            <F N="../../libslstdc/src/isgraph.c"/>
+            <F N="../../libslstdc/src/islower.c"/>
+            <F N="../../libslstdc/src/isprint.c"/>
+            <F N="../../libslstdc/src/ispunct.c"/>
+            <F N="../../libslstdc/src/isspace.c"/>
+            <F N="../../libslstdc/src/isupper.c"/>
+            <F N="../../libslstdc/src/isxdigit.c"/>
+            <F N="../../libslstdc/src/locale.c"/>
+            <F N="../../libslstdc/src/math.c"/>
+            <F N="../../libslstdc/src/math_error_gamma.c"/>
+            <F N="../../libslstdc/src/math_exp_log.c"/>
+            <F N="../../libslstdc/src/math_hyperbolic.c"/>
+            <F N="../../libslstdc/src/math_nearest_int.c"/>
+            <F N="../../libslstdc/src/math_pow_abs.c"/>
+            <F N="../../libslstdc/src/math_remainder.c"/>
+            <F N="../../libslstdc/src/math_trigonometric.c"/>
+            <F N="../../libslstdc/src/program_startup.c"/>
+            <F N="../../libslstdc/src/signal.c"/>
+            <F N="../../libslstdc/src/stdio_char_io.c"/>
+            <F N="../../libslstdc/src/stdio_file_access.c"/>
+            <F N="../../libslstdc/src/stdio_printf.c"/>
+            <F N="../../libslstdc/src/stdio_scanf.c"/>
+            <F N="../../libslstdc/src/stdlib_env.c"/>
+            <F N="../../libslstdc/src/stdlib_memory.c"/>
+            <F N="../../libslstdc/src/string.c"/>
+            <F N="../../libslstdc/src/threads.c"/>
+            <F N="../../libslstdc/src/time.c"/>
+            <F N="../../libslstdc/src/tolower.c"/>
+            <F N="../../libslstdc/src/toupper.c"/>
+            <F N="../../libslstdc/src/version_stdc.c"/>
+            <F N="../../libslstdc/src/wchar.c"/>
+            <F N="../../libslstdc/src/xassert.c"/>
+            <F N="../../libslstdc/src/xctype.c"/>
+            <F N="../../libslstdc/src/xerrno.c"/>
+            <F N="../../libslstdc/src/xtolower.c"/>
+            <F N="../../libslstdc/src/xtoupper.c"/>
+        </Folder>
+        <Folder
+            Name="Header Files"
+            Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.inc;*.sh;*.cpy;*.if">
+            <Folder
+                Name="root"
+                Filters="">
+                <F N="../../libslstdc/include/assert.h"/>
+                <F N="../../libslstdc/include/complex.h"/>
+                <F N="../../libslstdc/include/ctype.h"/>
+                <F N="../../libslstdc/include/errno.h"/>
+                <F N="../../libslstdc/include/float.h"/>
+                <F N="../../libslstdc/include/inttypes.h"/>
+                <F N="../../libslstdc/include/iso646.h"/>
+                <F N="../../libslstdc/include/limits.h"/>
+                <F N="../../libslstdc/include/locale.h"/>
+                <F N="../../libslstdc/include/math.h"/>
+                <F N="../../libslstdc/include/setjmp.h"/>
+                <F N="../../libslstdc/include/signal.h"/>
+                <F N="../../libslstdc/include/stdalign.h"/>
+                <F N="../../libslstdc/include/stdarg.h"/>
+                <F N="../../libslstdc/include/stdbool.h"/>
+                <F N="../../libslstdc/include/stddef.h"/>
+                <F N="../../libslstdc/include/stdint.h"/>
+                <F N="../../libslstdc/include/stdio.h"/>
+                <F N="../../libslstdc/include/stdlib.h"/>
+                <F N="../../libslstdc/include/stdnoreturn.h"/>
+                <F N="../../libslstdc/include/string.h"/>
+                <F N="../../libslstdc/include/threads.h"/>
+                <F N="../../libslstdc/include/time.h"/>
+                <F N="../../libslstdc/include/uchar.h"/>
+                <F N="../../libslstdc/include/wchar.h"/>
+                <F N="../../libslstdc/include/wctype.h"/>
+            </Folder>
+            <Folder
+                Name="private headers"
+                Filters="">
+                <F N="../../libslstdc/include/stdc/private/linked_list.c.h"/>
+                <F N="../../libslstdc/include/stdc/private/linked_list.h"/>
+                <F N="../../libslstdc/include/stdc/private/ll_mm_blocks.h"/>
+                <F N="../../libslstdc/include/stdc/private/ll_mm_pages.h"/>
+                <F N="../../libslstdc/include/stdc/private/ll_open_files.h"/>
+                <F N="../../libslstdc/include/stdc/private/memory_manager.h"/>
+                <F N="../../libslstdc/include/stdc/private/mm_types.h"/>
+                <F N="../../libslstdc/include/stdc/private/program_globals.h"/>
+                <F N="../../libslstdc/include/stdc/private/shared_types.h"/>
+                <F N="../../libslstdc/include/stdc/private/stdio_private.h"/>
+            </Folder>
+            <Folder
+                Name="none_library headers"
+                Filters="">
+                <F N="../../libslstdc/include/stdc/none_library/program_startup.c.h"/>
+            </Folder>
+            <F N="../../libslstdc/include/stdc/assert.h"/>
+            <F N="../../libslstdc/include/stdc/complex.h"/>
+            <F N="../../libslstdc/include/stdc/config_stdc.h"/>
+            <F N="../../libslstdc/include/stdc/ctype.h"/>
+            <F N="../../libslstdc/include/stdc/errno.h"/>
+            <F N="../../libslstdc/include/stdc/float.h"/>
+            <F N="../../libslstdc/include/stdc/inttypes.h"/>
+            <F N="../../libslstdc/include/stdc/iso646.h"/>
+            <F N="../../libslstdc/include/stdc/limits.h"/>
+            <F N="../../libslstdc/include/stdc/locale.h"/>
+            <F N="../../libslstdc/include/stdc/math.h"/>
+            <F N="../../libslstdc/include/stdc/math_classification.h"/>
+            <F N="../../libslstdc/include/stdc/math_functions.h"/>
+            <F N="../../libslstdc/include/stdc/program_startup.h"/>
+            <F N="../../libslstdc/include/stdc/setjmp.h"/>
+            <F N="../../libslstdc/include/stdc/signal.h"/>
+            <F N="../../libslstdc/include/stdc/stdalign.h"/>
+            <F N="../../libslstdc/include/stdc/stdarg.h"/>
+            <F N="../../libslstdc/include/stdc/stdbool.h"/>
+            <F N="../../libslstdc/include/stdc/stddef.h"/>
+            <F N="../../libslstdc/include/stdc/stdint.h"/>
+            <F N="../../libslstdc/include/stdc/stdint_limits.h"/>
+            <F N="../../libslstdc/include/stdc/stdio.h"/>
+            <F N="../../libslstdc/include/stdc/stdio_types.h"/>
+            <F N="../../libslstdc/include/stdc/stdlib.h"/>
+            <F N="../../libslstdc/include/stdc/stdlib_no_stdc.h"/>
+            <F N="../../libslstdc/include/stdc/stdnoreturn.h"/>
+            <F N="../../libslstdc/include/stdc/string.h"/>
+            <F N="../../libslstdc/include/stdc/threads.h"/>
+            <F N="../../libslstdc/include/stdc/time.h"/>
+            <F N="../../libslstdc/include/stdc/uchar.h"/>
+            <F N="../../libslstdc/include/stdc/version_stdc.h"/>
+            <F N="../../libslstdc/include/stdc/wchar.h"/>
+            <F N="../../libslstdc/include/stdc/wctype.h"/>
+        </Folder>
+        <Folder
+            Name="Script Files"
+            Filters=""/>
+        <Folder
+            Name="Build Files"
+            Filters="">
+            <F
+                N="../../libslstdc/makefiles/dependencies.mk"
+                Type="Makefile"/>
+            <F
+                N="../../libslstdc/makefiles/includes.mk"
+                Type="Makefile"/>
+            <F
+                N="../../libslstdc/Makefile"
+                Type="Makefile"/>
+            <F
+                N="../../libslstdc/makefiles/object_rules.mk"
+                Type="Makefile"/>
+            <F
+                N="../../libslstdc/makefiles/objects.mk"
+                Type="Makefile"/>
+            <F N="../../libslstdc/SLBuild.libslstdc"/>
+            <F
+                N="../../libslstdc/makefiles/version.mk"
+                Type="Makefile"/>
+        </Folder>
+        <Folder
+            Name="Documentation Files"
+            Filters="">
+            <F N="../../libslstdc/doc/refman.tr"/>
+            <F N="../../libslstdc/doc/userman.tr"/>
+        </Folder>
+    </Files>
+</Project>

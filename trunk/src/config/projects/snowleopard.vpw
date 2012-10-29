@@ -2,6 +2,7 @@
 <Workspace Version="10.0" VendorName="SlickEdit">
 	<Projects>
 		<Project File="config.vpj"/>
+		<Project File="libslstdc.vpj"/>
 		<Project File="libsltc.vpj"/>
 		<Project File="libsltst.vpj"/>
 		<Project File="lynx.vpj"/>
