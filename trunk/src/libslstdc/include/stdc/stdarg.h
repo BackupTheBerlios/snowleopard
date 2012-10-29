@@ -30,15 +30,17 @@
 
 //------------------------------------------------------------------------------
 // va_list type
+//
 typedef __SL_VA_LIST_TYPE va_list;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // variable argument macros
-#define va_arg(ap,type) (__SL_BuiltIn_VA_ARG(ap,type))
-#define va_copy(dest,src) (__SL_BuiltIn_VA_COPY(dest,src))
-#define va_end(ap) (__SL_BuiltIn_VA_END(ap))
-#define va_start(ap,parm_n) (__SL_BuiltIn_VA_COPY(ap,parm_n))
+//
+#define va_arg(ap,type) (__SL_VA_ARG(ap,type))
+#define va_copy(dest,src) (__SL_VA_COPY(dest,src))
+#define va_end(ap) (__SL_VA_END(ap))
+#define va_start(ap,parm_n) (__SL_VA_COPY(ap,parm_n))
 //------------------------------------------------------------------------------
 
 #endif /* !__SL_STDC_IMPL_STDARG_H__ */

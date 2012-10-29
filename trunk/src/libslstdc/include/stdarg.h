@@ -23,11 +23,11 @@
 // Standard argument implementation
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_STDARG_H_
-#define _SL_STDC_STDARG_H_
+#ifndef __SL_STDC_STDARG_H__
+#define __SL_STDC_STDARG_H__
 
-#include <stdc/stdarg.h>
+#include "stdc/stdarg.h"
 
-#endif /* !_SL_STDC_STDARG_H_ */
+#endif /* !__SL_STDC_STDARG_H__ */
 
 //-<EOF>
