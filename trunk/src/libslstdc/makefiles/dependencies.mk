@@ -81,6 +81,9 @@ VERSION_STDC_H_DEPS		= \
 #-------------------------------------------------------------------------------
 # Source file dependencies
 #
+ERRNO_DEPS			= \
+	$(LIB_INCLUDE)/errno.h $(ERRNO_H_DEPS)
+
 ISALNUM_DEPS			= \
 	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)
 
@@ -138,9 +141,6 @@ XCTYPE_DEPS			= \
 	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)				\
 	$(LIB_INCLUDE)/limits.h $(LIMITS_H_DEPS)			\
 	$(LIB_INCLUDE)/stdio.h $(STDIO_H_DEPS)
-
-XERRNO_DEPS			= \
-	$(LIB_INCLUDE)/errno.h $(ERRNO_H_DEPS)
 
 XTOLOWER_DEPS			= \
 	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)				\

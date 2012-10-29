@@ -23,11 +23,11 @@
 // Standard alternate operator implementation
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_ISO646_H_
-#define _SL_STDC_ISO646_H_
+#ifndef __SL_STDC_ISO646_H__
+#define __SL_STDC_ISO646_H__
 
-#include <stdc/iso646.h>
+#include "stdc/iso646.h"
 
-#endif /* !_SL_STDC_ISO646_H_ */
+#endif /* !__SL_STDC_ISO646_H__ */
 
 //-<EOF>

@@ -27,6 +27,10 @@
 #-------------------------------------------------------------------------------
 # Rules
 #
+$(LIB_BUILD_PATH)/errno.o  		: \
+		src/errno.c $(ERRNO_DEPS)
+	$(CC) -c $(CFLAGS) src/errno.c -o $(.TARGET)
+
 $(LIB_BUILD_PATH)/isalnum.o  	: \
 		src/isalnum.c $(ISALNUM_DEPS)
 	$(CC) -c $(CFLAGS) src/isalnum.c -o $(.TARGET)
@@ -97,10 +101,6 @@ $(LIB_BUILD_PATH)/xassert.o  		: \
 $(LIB_BUILD_PATH)/xctype.o  		: \
 		src/xctype.c $(XCTYPE_DEPS)
 	$(CC) -c $(CFLAGS) src/xctype.c -o $(.TARGET)
-
-$(LIB_BUILD_PATH)/xerrno.o  		: \
-		src/xerrno.c $(XERRNO_DEPS)
-	$(CC) -c $(CFLAGS) src/xerrno.c -o $(.TARGET)
 
 $(LIB_BUILD_PATH)/xtolower.o  		: \
 		src/xtolower.c $(XTOLOWER_DEPS)
