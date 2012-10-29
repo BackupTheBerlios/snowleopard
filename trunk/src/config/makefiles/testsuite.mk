@@ -40,6 +40,7 @@ TST_CONFIG_C_INCLUDES		= \
 	$(TST_CONFIG_INCLUDE)/config.h 					\
 	$(TST_CONFIG_INCLUDE)/config_c.h 				\
 	$(TST_CONFIG_INCLUDE)/config_complex.h 				\
+	$(TST_CONFIG_INCLUDE)/config_errno.h				\
 	$(TST_CONFIG_INCLUDE)/config_float.h				\
 	$(TST_CONFIG_INCLUDE)/config_int_char.h				\
 	$(TST_CONFIG_INCLUDE)/config_io.h				\

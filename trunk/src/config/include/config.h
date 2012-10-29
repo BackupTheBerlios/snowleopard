@@ -1,5 +1,5 @@
 /*==============================================================================
-  Snow Leopard Compiler Project
+  Snow Leopard Project
   
   Copyright (C) 2008, 2009, 2010, 2011, 2012 Roel Sergeant
   
@@ -30,19 +30,27 @@
 
 //==============================================================================
 // Include correct config file depending on the language compiled.
+//
 #ifdef __cplusplus
+
 //------------------------------------------------------------------------------
 // C++
+//
 # define __SL_ConfigNamespace sl::config::
 # include sl_include_config(config_cpp.hpp)
 //------------------------------------------------------------------------------
+
 #else /* __cplusplus */
+
 //------------------------------------------------------------------------------
 // C
+//
 # define __SL_ConfigNamespace
 # include sl_include_config(config_c.h)
 //------------------------------------------------------------------------------
+
 #endif /* __cplusplus */
+
 //==============================================================================
 
 #endif /* !__SL_CONFIG_CONFIG_H__ */

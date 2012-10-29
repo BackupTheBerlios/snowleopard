@@ -40,6 +40,7 @@ CONFIG_C_INCLUDES	= \
 	$(CONFIG_INCLUDE)/config.h 					\
 	$(CONFIG_INCLUDE)/config_c.h 					\
 	$(CONFIG_INCLUDE)/config_complex.h 				\
+	$(CONFIG_INCLUDE)/config_errno.h				\
 	$(CONFIG_INCLUDE)/config_float.h				\
 	$(CONFIG_INCLUDE)/config_int_char.h				\
 	$(CONFIG_INCLUDE)/config_io.h					\

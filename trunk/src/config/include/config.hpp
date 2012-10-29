@@ -1,5 +1,5 @@
 /*==============================================================================
-  Snow Leopard Compiler Project
+  Snow Leopard Project
   
   Copyright (C) 2008, 2009, 2010, 2011, 2012 Roel Sergeant
   
@@ -26,7 +26,7 @@
 #ifndef __SL_CONFIG_CONFIG_HPP__
 #define __SL_CONFIG_CONFIG_HPP__
 
-#include <macros.hpp>
+#include "macros.hpp"
 
 #include sl_include_config(config.h)
 
