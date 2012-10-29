@@ -22,6 +22,7 @@
 //------------------------------------------------------------------------------
 // Configuration applicable to all C code.
 //    - lynx
+//    - puma
 //    - slcc
 //    - slsh
 //    - libslstdc
@@ -135,15 +136,26 @@
 // Variable argument configuration
 //------------------------------------------------------------------------------
 // List type
+//
 #define __SL_VA_LIST_TYPE char*
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // Built in macros
-#define __SL_BuiltIn_VA_ARG(ap,type) (ap)
-#define __SL_BuiltIn_VA_COPY(dest,src) (dest)
-#define __SL_BuiltIn_VA_END(ap) (ap)
-#define __SL_BuiltIn_VA_START(ap,parm_n) (ap)
+//
+#define __SL_UP_BOUND 1
+#define __SL_DOWN_BOUND 1
+#define __SL_Bound(arg,bound)			\
+  (sizeof(arg) + (bound) & ~(bound))
+#define __SL_VA_ARG(ap,type)				\
+  (*(type *)(((ap) += _Bnd(type, __SL_UP_BOUND)) -	\
+	     _Bnd(type, __SL_DOWN_BOUND)))
+#define __SLVA_COPY(dest,src)			\
+  (dest) = (src)
+#define __SL_VA_END(ap)				\
+  (void)0
+#define __SL_VA_START(ap,parm_n)					\
+  (void)((ap) = (char *)&(parm_n) + __SL_Bound(ap, __SL_UP_BOUND))
 //------------------------------------------------------------------------------
 //==============================================================================
 

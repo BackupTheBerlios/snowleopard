@@ -22,6 +22,7 @@
 //------------------------------------------------------------------------------
 // Configuration applicable to all flaoting point C code.
 //    - lynx
+//    - puma
 //    - slcc
 //    - slsh
 //    - libslstdc
