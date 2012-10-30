@@ -26,9 +26,9 @@
 #ifndef __SL_STDC_PRIVATE_LL_OPEN_FILES_H__
 #define __SL_STDC_PRIVATE_LL_OPEN_FILES_H__
 
-#include <config/config.h>
+#include "stdc/config_stdc.h"
 
-#include <stdc/stdio_types.h>
+#include "stdc/stdio_types.h"
 
 //------------------------------------------------------------------------------
 // Define open files linked list
@@ -37,7 +37,7 @@
 #define SL_LL_FUNCTION_SUFFIX of
 #define SL_LL_IS_PRIVATE
 
-#include <stdc/private/linked_list.h>
+#include "linked_list.h"
 
 #undef SL_LL_TYPE
 #undef SL_LL_NODE_TYPE

@@ -18,26 +18,31 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// program_globals.h
+// fopen.c
 //------------------------------------------------------------------------------
-// Private global program variables
+// Standard input output implementation. This file contains the fopen function.
 //------------------------------------------------------------------------------
 
-#ifndef __SL_STDC_PRIVATE_GLOBALS_H__
-#define __SL_STDC_PRIVATE_GLOBALS_H__
+#include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-#include "stdc/config_stdc.h"
-
-#include "stdc/stdio_types.h"
-
-#include "stdc/private/ll_open_files.h"
+#include "stdc/private/program_globals.h"
+#include "stdc/private/stdio_private.h"
 
 //------------------------------------------------------------------------------
-// Global variables
+// fopen function
 //
-extern sl_ll_of_head_* _SL_Hidden __SL_OpenFiles;
-//------------------------------------------------------------------------------
+// Open a file.
+//
+FILE* (fopen) (const char* name, const char* mode)
+{
+  FILE *file = malloc (sizeof (FILE));
 
-#endif /* !__SL_STDC_PRIVATE_GLOBALS_H__ */
+  sl_ll_of_node_* node = 
+  
+  return NULL;
+}
+//------------------------------------------------------------------------------
 
 //-<EOF>

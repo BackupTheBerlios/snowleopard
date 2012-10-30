@@ -63,13 +63,18 @@ INCLUDES_STDC		= \
 LIB_PRIVATE_INCLUDE	= $(LIB_STDC_INCLUDE)/private
 
 INCLUDES_PRIVATE	= \
+	$(LIB_PRIVATE_INCLUDE)/ll_open_files.h				\
+	$(LIB_PRIVATE_INCLUDE)/program_globals.h			\
 	$(LIB_PRIVATE_INCLUDE)/shared_macros.h				\
-	$(LIB_PRIVATE_INCLUDE)/shared_types.h
+	$(LIB_PRIVATE_INCLUDE)/shared_types.h				\
+	$(LIB_PRIVATE_INCLUDE)/stdio_private.h
 
 INCLUDES 		= \
 	$(INCLUDES_ROOT)						\
 	$(INCLUDES_STDC)						\
 	$(INCLUDES_PRIVATE)
+
+.include "../../libsltc/makefiles/includes.mk"
 
 #-------------------------------------------------------------------------------
 #<EOF>

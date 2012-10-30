@@ -31,6 +31,10 @@ $(LIB_BUILD_PATH)/errno.o  		: \
 		src/errno.c $(ERRNO_DEPS)
 	$(CC) -c $(CFLAGS) src/errno.c -o $(.TARGET)
 
+$(LIB_BUILD_PATH)/fopen.o  		: \
+		src/fopen.c $(FOPEN_DEPS)
+	$(CC) -c $(CFLAGS) src/fopen.c -o $(.TARGET)
+
 $(LIB_BUILD_PATH)/isalnum.o  	: \
 		src/isalnum.c $(ISALNUM_DEPS)
 	$(CC) -c $(CFLAGS) src/isalnum.c -o $(.TARGET)

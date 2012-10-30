@@ -25,6 +25,7 @@
 
 OBJS 		= \
 	$(LIB_BUILD_PATH)/errno.o					\
+	$(LIB_BUILD_PATH)/fopen.o					\
 	$(LIB_BUILD_PATH)/isalnum.o					\
 	$(LIB_BUILD_PATH)/isalpha.o					\
 	$(LIB_BUILD_PATH)/isblank.o					\

@@ -80,6 +80,7 @@ STDDEF_H_DEPS			= \
 STDIO_H_DEPS			= \
 	$(LIB_PRIVATE_INCLUDE)/shared_macros.h				\
 	$(LIB_PRIVATE_INCLUDE)/shared_types.h				\
+	$(LIB_PRIVATE_INCLUDE)/stdio_private.h				\
 	$(LIB_STDC_INCLUDE)/config_stdc.h				\
 	$(LIB_STDC_INCLUDE)/stdio.h					\
 	$(LIB_STDC_INCLUDE)/stdio_types.h				\
@@ -93,10 +94,40 @@ VERSION_STDC_H_DEPS		= \
 	$(VERSION_C_INCLUDES)
 
 #-------------------------------------------------------------------------------
+# Private header dependencies
+#
+P_LL_OPEN_FILES_H_DEPS		= \
+	$(LIB_STDC_INCLUDE)/config_stdc.h				\
+	$(LIB_STDC_INCLUDE)/stdio_types.h				\
+	$(CONFIG_C_INCLUDES)						\
+	$(TC_INCLUDES)
+
+P_PROGRAM_GLOBALS_H_DEPS	= \
+	$(LIB_PRIVATE_INCLUDE)/ll_open_files.h				\
+	$(LIB_STDC_INCLUDE)/config_stdc.h				\
+	$(LIB_STDC_INCLUDE)/stdio_types.h
+
+P_STDIO_PRIVATE_H_DEPS		= \
+	$(LIB_PRIVATE_INCLUDE)/shared_types.h				\
+	$(LIB_STDC_INCLUDE)/config_stdc.h				\
+	$(LIB_STDC_INCLUDE)/stdio_types.h
+
+#-------------------------------------------------------------------------------
 # Source file dependencies
 #
 ERRNO_DEPS			= \
 	$(LIB_INCLUDE)/errno.h $(ERRNO_H_DEPS)
+
+FOPEN_DEPS			= \
+	$(LIB_INCLUDE)/stddef.h $(STDDEF_H_DEPS)			\
+	$(LIB_INCLUDE)/stdio.h $(STDIO_H_DEPS)				\
+	$(LIB_INCLUDE)/stdlib.h $(STDLIB_H_DEPS)			\
+	$(LIB_PRIVATE_INCLUDE)/ll_open_files.h				\
+		$(P_LL_OPEN_FILES_H_DEPS)				\
+	$(LIB_PRIVATE_INCLUDE)/program_globals.h			\
+		$(P_PROGRAM_GLOBALS_H_DEPS)				\
+	$(LIB_PRIVATE_INCLUDE)/stdio_private.h 				\
+		$(P_STDIO_PRIVATE_H_DEPS)
 
 ISALNUM_DEPS			= \
 	$(LIB_INCLUDE)/ctype.h $(CTYPE_H_DEPS)

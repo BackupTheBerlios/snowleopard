@@ -26,10 +26,10 @@
 #ifndef __SL_STDC_IMPL_STDIO_PRIVATE_H__
 #define __SL_STDC_IMPL_STDIO_PRIVATE_H__
 
-#include <config/config.h>
+#include "stdc/config_stdc.h"
 
-#include <errno.h>
-#include <stdio.h>
+#include "stdc/stdio_types.h"
+#include "stdc/private/shared_types.h"
 
 //------------------------------------------------------------------------------
 // Buffer functions
@@ -56,4 +56,3 @@ FILE* _sl_create_standard_stream(int fd, int mode, const char* name);
 #endif /* !__SL_STDC_IMPL_STDIO_PRIVATE_H__ */
 
 //-<EOF>
-
