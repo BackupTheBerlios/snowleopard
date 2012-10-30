@@ -171,7 +171,7 @@ size_t wcstombs(char* restrict s, const wchar_t* restrict pwvs, size_t n);
 //==============================================================================
 // Bounds checking functions
 #if __STDC_WANT_LIB_EXT1__ == 1
-# include <errno.h>
+
 //------------------------------------------------------------------------------
 // constraint_handler_t type
 typedef void (*constraint_handler_t) (

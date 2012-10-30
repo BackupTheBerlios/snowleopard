@@ -41,6 +41,12 @@ typedef __SL_ConfigNamespace sl_int64_t intmax_t;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
+// rsize_t type
+//
+typedef __SL_ConfigNamespace  sl_size_t rsize_t;
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 // size_t type
 //
 typedef __SL_ConfigNamespace  sl_size_t size_t;
@@ -50,6 +56,14 @@ typedef __SL_ConfigNamespace  sl_size_t size_t;
 // va_list type
 //
 typedef __SL_VA_LIST_TYPE va_list;
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// wchar_t type
+//
+#ifndef __cplusplus
+  typedef __SL_ConfigNamespace  sl_wchar_t wchar_t;
+#endif /* !__cplusplus */
 //------------------------------------------------------------------------------
 
 #endif /* !__SL_STDC_PRIVATE_SHARED_TYPES_H__ */

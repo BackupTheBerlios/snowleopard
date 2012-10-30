@@ -42,17 +42,19 @@
 // size types
 //
 // size_t is defined in private/shared_types.h
+// rsize_t is defined in private/shared_types.h
 //
 typedef __SL_ConfigNamespace  sl_diff_t diff_t;
 typedef __SL_ConfigNamespace  sl_diff_t ptrdiff_t;
 typedef __SL_ConfigNamespace  sl_size_t max_align_t;
-typedef __SL_ConfigNamespace  sl_size_t rsize_t;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // wchar_t/wint_t/char16_t/char32_t type
+//
+// wchar_t is defined in private/shared_types.h
+//
 #ifndef __cplusplus
-  typedef __SL_ConfigNamespace  sl_wchar_t wchar_t;
   typedef __SL_ConfigNamespace  sl_char16_t char16_t;
   typedef __SL_ConfigNamespace  sl_char32_t char32_t;
 #endif /* !__cplusplus */

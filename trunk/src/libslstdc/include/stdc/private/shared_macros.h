@@ -23,8 +23,8 @@
 // Types shared by standard headers. Collected here to avoid duplication.
 //------------------------------------------------------------------------------
 
-#ifndef __SL_STDC_PRIVATE_SHARED_TYPES_H__
-#define __SL_STDC_PRIVATE_SHARED_TYPES_H__
+#ifndef __SL_STDC_PRIVATE_SHARED_MACROS_H__
+#define __SL_STDC_PRIVATE_SHARED_MACROS_H__
 
 #include "stdc/config_stdc.h"
 
@@ -38,6 +38,6 @@
 #endif /* __cplusplus */
 //------------------------------------------------------------------------------
 
-#endif /* !__SL_STDC_PRIVATE_SHARED_TYPES_H__ */
+#endif /* !__SL_STDC_PRIVATE_SHARED_MACROS_H__ */
 
 //-<EOF>

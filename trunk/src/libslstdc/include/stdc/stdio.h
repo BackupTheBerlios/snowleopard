@@ -29,7 +29,7 @@
 #include "stdc/config_stdc.h"
 
 #include "stdc/private/shared_macros.h"
-#include "stdc/private/shared_types"
+#include "stdc/private/shared_types.h"
 
 //------------------------------------------------------------------------------
 // Include types
@@ -195,7 +195,7 @@ int ungetc(int c, FILE* stream);
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// Direct input output functions\
+// Direct input output functions
 //
 size_t fread(
 	     void* restrict ptr, 
