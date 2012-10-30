@@ -18,32 +18,26 @@
   ============================================================================*/
 
 //------------------------------------------------------------------------------
-// stdarg.h
+// shared_types.h
 //------------------------------------------------------------------------------
-// Standard argument implementation
+// Types shared by standard headers. Collected here to avoid duplication.
 //------------------------------------------------------------------------------
 
-#ifndef __SL_STDC_IMPL_STDARG_H__
-#define __SL_STDC_IMPL_STDARG_H__
+#ifndef __SL_STDC_PRIVATE_SHARED_TYPES_H__
+#define __SL_STDC_PRIVATE_SHARED_TYPES_H__
 
 #include "stdc/config_stdc.h"
 
 //------------------------------------------------------------------------------
-// va_list type
+// NULL macro
 //
-// va_list is defined in private/shared_types.h
-//
+#ifdef __cplusplus
+# define NULL 0
+#else /* __cplusplus */
+# define NULL ((void*) 0)
+#endif /* __cplusplus */
 //------------------------------------------------------------------------------
 
-//------------------------------------------------------------------------------
-// variable argument macros
-//
-#define va_arg(ap,type) (__SL_VA_ARG(ap,type))
-#define va_copy(dest,src) (__SL_VA_COPY(dest,src))
-#define va_end(ap) (__SL_VA_END(ap))
-#define va_start(ap,parm_n) (__SL_VA_COPY(ap,parm_n))
-//------------------------------------------------------------------------------
-
-#endif /* !__SL_STDC_IMPL_STDARG_H__ */
+#endif /* !__SL_STDC_PRIVATE_SHARED_TYPES_H__ */
 
 //-<EOF>

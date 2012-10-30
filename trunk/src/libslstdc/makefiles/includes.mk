@@ -56,12 +56,14 @@ INCLUDES_STDC		= \
 	$(LIB_STDC_INCLUDE)/stdarg.h					\
 	$(LIB_STDC_INCLUDE)/stddef.h					\
 	$(LIB_STDC_INCLUDE)/stdio.h					\
+	$(LIB_STDC_INCLUDE)/stdio_types.h				\
 	$(LIB_STDC_INCLUDE)/stdlib.h					\
 	$(LIB_STDC_INCLUDE)/version_stdc.h				
 
 LIB_PRIVATE_INCLUDE	= $(LIB_STDC_INCLUDE)/private
 
 INCLUDES_PRIVATE	= \
+	$(LIB_PRIVATE_INCLUDE)/shared_macros.h				\
 	$(LIB_PRIVATE_INCLUDE)/shared_types.h
 
 INCLUDES 		= \

@@ -23,12 +23,11 @@
 // Standard input/output implementation
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_STDIO_H_
-#define _SL_STDC_STDIO_H_
+#ifndef __SL_STDC_STDIO_H__
+#define __SL_STDC_STDIO_H__
 
 #include <stdc/stdio.h>
 
-#endif /* !_SL_STDC_STDIO_H_ */
+#endif /* !__SL_STDC_STDIO_H__ */
 
 //-<EOF>
-

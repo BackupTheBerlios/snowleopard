@@ -28,10 +28,13 @@
 
 #include "stdc/config_stdc.h"
 
+#include "stdc/private/shared_types.h"
+
 //------------------------------------------------------------------------------
 // errno_t type
 //
-typedef __SL_ConfigNamespace sl_errno_t errno_t;
+// errno_t is defined in private/shared_types.h
+//
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------

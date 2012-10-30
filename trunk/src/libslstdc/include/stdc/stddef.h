@@ -28,15 +28,14 @@
 
 #include "stdc/config_stdc.h"
 
+#include "stdc/private/shared_macros.h"
 #include "stdc/private/shared_types.h"
 
 //------------------------------------------------------------------------------
 // NULL macro
-#ifdef __cplusplus
-# define NULL 0
-#else /* __cplusplus */
-# define NULL ((void*) 0)
-#endif /* __cplusplus */
+// 
+// NULL is defined in private/shared_macros.h"
+//
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------

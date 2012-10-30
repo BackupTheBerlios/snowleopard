@@ -28,7 +28,7 @@
 
 #include "stdc/config_stdc.h"
 
-#include <stddef.h>
+#include "stdc/private/shared_types.h"
 
 //------------------------------------------------------------------------------
 // FILE struct

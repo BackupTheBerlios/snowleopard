@@ -1,7 +1,7 @@
 #===============================================================================
 # Snow Leopard Standard C Library
 #
-# Copyright (C) 2012 Roel Sergeant
+# Copyright (C) 2008, 2009, 2010, 2011, 2012 Roel Sergeant
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -45,6 +45,7 @@ CTYPE_H_DEPS			= \
 	$(CONFIG_C_INCLUDES)
 
 ERRNO_H_DEPS			= \
+	$(LIB_PRIVATE_INCLUDE)/shared_types.h				\
 	$(LIB_STDC_INCLUDE)/config_stdc.h				\
 	$(CONFIG_C_INCLUDES)
 
@@ -64,17 +65,25 @@ ISO646_H_DEPS			= \
 	$(CONFIG_C_INCLUDES)
 
 STDARG_H_DEPS			= \
+	$(LIB_PRIVATE_INCLUDE)/shared_types.h				\
 	$(LIB_STDC_INCLUDE)/config_stdc.h				\
 	$(LIB_STDC_INCLUDE)/stdarg.h					\
 	$(CONFIG_C_INCLUDES)
 
 STDDEF_H_DEPS			= \
+	$(LIB_PRIVATE_INCLUDE)/shared_macros.h				\
 	$(LIB_PRIVATE_INCLUDE)/shared_types.h				\
 	$(LIB_STDC_INCLUDE)/config_stdc.h				\
 	$(LIB_STDC_INCLUDE)/stddef.h					\
 	$(CONFIG_C_INCLUDES)
 
-STDIO_H_DEPS			= 
+STDIO_H_DEPS			= \
+	$(LIB_PRIVATE_INCLUDE)/shared_macros.h				\
+	$(LIB_PRIVATE_INCLUDE)/shared_types.h				\
+	$(LIB_STDC_INCLUDE)/config_stdc.h				\
+	$(LIB_STDC_INCLUDE)/stdio.h					\
+	$(LIB_STDC_INCLUDE)/stdio_types.h				\
+	$(CONFIG_C_INCLUDES)
 
 STDLIB_H_DEPS			=
 
