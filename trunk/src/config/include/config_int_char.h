@@ -190,7 +190,7 @@ typedef unsigned long sl_size_t;
 //------------------------------------------------------------------------------
 // clock and time types
 typedef unsigned int sl_clock_t;
-typedef int sl_time_t;
+typedef long sl_time_t;
 #define __SL_CLOCKS_PER_SEC 1000000
 #define __SL_UTC_TIME -1
 //------------------------------------------------------------------------------
