@@ -23,12 +23,11 @@
 // Standard time implementation
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_TIME_H_
-#define _SL_STDC_TIME_H_
+#ifndef __SL_STDC_TIME_H__
+#define __SL_STDC_TIME_H__
 
-#include <stdc/time.h>
+#include "stdc/time.h"
 
-#endif /* !_SL_STDC_TIME_H_ */
+#endif /* !__SL_STDC_TIME_H__ */
 
 //-<EOF>
-

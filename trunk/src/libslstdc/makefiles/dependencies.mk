@@ -70,6 +70,11 @@ STDARG_H_DEPS			= \
 	$(LIB_STDC_INCLUDE)/stdarg.h					\
 	$(CONFIG_C_INCLUDES)
 
+STDBOOL_H_DEPS			= \
+	$(LIB_STDC_INCLUDE)/config_stdc.h				\
+	$(LIB_STDC_INCLUDE)/stdbool.h					\
+	$(CONFIG_C_INCLUDES)
+
 STDDEF_H_DEPS			= \
 	$(LIB_PRIVATE_INCLUDE)/shared_macros.h				\
 	$(LIB_PRIVATE_INCLUDE)/shared_types.h				\

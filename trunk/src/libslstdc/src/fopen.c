@@ -27,21 +27,55 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "stdc/private/ll_open_files.h"
 #include "stdc/private/program_globals.h"
 #include "stdc/private/stdio_private.h"
+
+#include sl_os_fixinclude(fcntl.h)
+#include sl_os_fixinclude(unistd.h)
 
 //------------------------------------------------------------------------------
 // fopen function
 //
 // Open a file.
 //
-FILE* (fopen) (const char* name, const char* mode)
+FILE* (fopen) (const char* name, const char* smode)
 {
+  int fd;
+  int mode;
+
+  if (*smode != 'r' && *smode != 'w' && *smode != 'a')
+    return NULL;
+
+  if (*smode == 'w') 
+    {
+      mode = _IOWRITE;
+      fd = creat (name, _DEFAULT_PERMISSIONS);
+    }
+  else if(*smode == 'a') 
+    {
+      mode = _IOWRITE;
+      if ((fd = open (name, O_WRONLY, 0)) == -1)
+	fd = creat (name, _DEFAULT_PERMISSIONS);
+      lseek (fd, 0L, SEEK_END);
+    }
+  else 
+    {
+      mode = _IOREAD;
+      fd = open (name, O_RDONLY, 0);
+    }
+  
+  if (fd == -1)
+    return NULL;
+  
   FILE *file = malloc (sizeof (FILE));
 
-  sl_ll_of_node_* node = 
+  if(file == NULL)
+    return NULL;
   
-  return NULL;
+  tc_ll_add_of (__SL_OpenFiles, file, FOPEN_MAX);
+  
+  return file;
 }
 //------------------------------------------------------------------------------
 

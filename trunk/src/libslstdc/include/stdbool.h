@@ -23,12 +23,12 @@
 // Standard boolean implementation
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_STDBOOL_H_
-#define _SL_STDC_STDBOOL_H_
+#ifndef __SL_STDC_STDBOOL_H__
+#define __SL_STDC_STDBOOL_H__
 
-#include <stdc/stdbool.h>
+#include "stdc/stdbool.h"
 
-#endif /* !_SL_STDC_STDBOOL_H_ */
+#endif /* !__SL_STDC_STDBOOL_H__ */
 
 //-<EOF>
 

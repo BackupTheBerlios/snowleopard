@@ -23,22 +23,25 @@
 // Standard boolean implementation
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_IMPL_STDBOOL_H_
-#define _SL_STDC_IMPL_STDBOOL_H_
+#ifndef __SL_STDC_IMPL_STDBOOL_H__
+#define __SL_STDC_IMPL_STDBOOL_H__
 
-#include <config/config.h>
+#include "stdc/config_stdc.h"
 
 //==============================================================================
 // In C++ bool, true, false are keywords.
+//
 #ifndef __cplusplus
 
 //------------------------------------------------------------------------------
 // bool macro
+//
 typedef sl_boolean bool;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // true/false macros
+//
 #define true 1
 #define false 0
 //------------------------------------------------------------------------------
@@ -48,10 +51,10 @@ typedef sl_boolean bool;
 
 //------------------------------------------------------------------------------
 // __bool_true_false_are_defined macro
+//
 #define __bool_true_false_are_defined 1
 //------------------------------------------------------------------------------
 
-#endif /* !_SL_STDC_IMPL_STDBOOL_H_ */
+#endif /* !__SL_STDC_IMPL_STDBOOL_H__ */
 
 //-<EOF>
-

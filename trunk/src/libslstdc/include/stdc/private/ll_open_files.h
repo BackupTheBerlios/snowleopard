@@ -32,19 +32,19 @@
 
 //------------------------------------------------------------------------------
 // Define open files linked list
-#define SL_LL_TYPE sl_ll_of
-#define SL_LL_NODE_TYPE FILE*
-#define SL_LL_FUNCTION_SUFFIX of
-#define SL_LL_IS_PRIVATE
+#define TC_LL_TYPE sl_ll_of
+#define TC_LL_NODE_TYPE FILE*
+#define TC_LL_FUNCTION_SUFFIX of
+#define TC_LL_IS_PRIVATE
 
 #include "linked_list.h"
 
-#undef SL_LL_TYPE
-#undef SL_LL_NODE_TYPE
-#undef SL_LL_FUNCTION_SUFFIX
-#undef SL_LL_IS_PRIVATE
-#undef SL_LL_HEAD
-#undef SL_LL_NODE
+#undef TC_LL_TYPE
+#undef TC_LL_NODE_TYPE
+#undef TC_LL_FUNCTION_SUFFIX
+#undef TC_LL_IS_PRIVATE
+#undef TC_LL_HEAD
+#undef TC_LL_NODE
 //------------------------------------------------------------------------------
 
 #endif /* !__SL_STDC_PRIVATE_LL_OPEN_FILES_H__ */

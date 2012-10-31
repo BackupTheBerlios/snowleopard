@@ -23,33 +23,37 @@
 // Standard time implementation
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_IMPL_TIME_H_
-#define _SL_STDC_IMPL_TIME_H_
+#ifndef __SL_STDC_IMPL_TIME_H__
+#define __SL_STDC_IMPL_TIME_H__
 
-#include <config/config.h>
+#include "stdc/config_stdc.h"
 
-#include <errno.h>
-#include <stddef.h>
+#include "stdc/private/shared_types.h"
 
 //------------------------------------------------------------------------------
 // Macros
+//
 #define CLOCKS_PER_SEC SL_CLOCKS_PER_SEC
 #define UTC_TIME SL_UTC_TIME
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // clock_t type
+//
 typedef __SL_ConfigNamespace sl_clock_t clock_t;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // time_t type
+//
 typedef __SL_ConfigNamespace sl_time_t time_t;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // timespec struct
-struct timespec {
+//
+struct timespec 
+{
   time_t tv_sec;
   long tv_nsec;
 };
@@ -59,7 +63,9 @@ typedef struct timespec timespec;
 
 //------------------------------------------------------------------------------
 // tm struct
-struct tm {
+//
+struct tm 
+{
   int tm_sec;
   int tm_min;
   int tm_hour;
@@ -76,6 +82,7 @@ typedef struct tm tm;
 
 //------------------------------------------------------------------------------
 // Time manipulation functions
+//
 clock_t clock();
 double difftime(time_t time1, time_t time0);
 time_t mktime(tm* timeptr);
@@ -85,6 +92,7 @@ int timespec_get(timespec* ts, int base);
 
 //------------------------------------------------------------------------------
 // Time conversion functions
+//
 char* asctime(const tm* timeptr);
 char* ctime(const time_t* timer);
 tm* gmtime(const time_t* timer);
@@ -99,19 +107,21 @@ size_t strftime(
 
 //==============================================================================
 // Bounds checking functions
+//
 #if __STDC_WANT_LIB_EXT1__ == 1
-# include <errno.h>
+
 //------------------------------------------------------------------------------
 // Time conversion functions
+//
 errno_t asctime_s(char* s, rsize_t maxsize, const tm* timeptr);
 errno_t ctime_s(char* s, rsize_t maxsize, const time_t* timer);
 tm* gmtime_s(const time_t* restrict timer, tm* restrict result);
 tm* localtime_s(const time_t* restrict timer, tm* restrict result);
 //------------------------------------------------------------------------------
+
 #endif /* __STDC_WANT_LIB_EXT1__ == 1 */
 //==============================================================================
 
-#endif /* !_SL_STDC_IMPL_TIME_H_ */
+#endif /* !__SL_STDC_IMPL_TIME_H__ */
 
 //-<EOF>
-

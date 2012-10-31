@@ -37,6 +37,7 @@ INCLUDES_ROOT		= \
 	$(LIB_INCLUDE)/iso646.h						\
 	$(LIB_INCLUDE)/limits.h						\
 	$(LIB_INCLUDE)/stdarg.h						\
+	$(LIB_INCLUDE)/stdbool.h					\
 	$(LIB_INCLUDE)/stddef.h						\
 	$(LIB_INCLUDE)/stdio.h						\
 	$(LIB_INCLUDE)/stdlib.h
@@ -54,6 +55,7 @@ INCLUDES_STDC		= \
 	$(LIB_STDC_INCLUDE)/iso646.h					\
 	$(LIB_STDC_INCLUDE)/limits.h					\
 	$(LIB_STDC_INCLUDE)/stdarg.h					\
+	$(LIB_STDC_INCLUDE)/stdbool.h					\
 	$(LIB_STDC_INCLUDE)/stddef.h					\
 	$(LIB_STDC_INCLUDE)/stdio.h					\
 	$(LIB_STDC_INCLUDE)/stdio_types.h				\
