@@ -18,19 +18,35 @@
 #===============================================================================
 
 #-------------------------------------------------------------------------------
-# run_1_test_cal.sh
+# which.sh
 #-------------------------------------------------------------------------------
-# Test script for cal.sh. Check if cal.sh works the same way on the shell as on
-# sh.
+# cal script from De UNIX Programmeer Omgeving. This program checks where in the
+# path the program given as parameter resides.
 #-------------------------------------------------------------------------------
 
-result_file=$1
+# Save old path
+path=$PATH
+PATH=/bin:/usr/bin
 
-echo '==> Running cal.sh test script'
+# Process arguments
+case $# in
+    0) echo 'which: no parameter given' 1>&2 ; exit 2
+esac
 
-echo 'TEST_SUCCESS' > $result_file
+# Find the program
+for i in `echo $path | sed 's/^:/.:/
+                            s/::/:.:/g
+                            s/:$/:./
+                            s/:/ /g'`
+do
+    if test -f $i/$1
+    then
+	echo $i/$1
+	exit 0
+    fi
+done
 
-echo '<== Finished cal.sh test script'
+exit 1
 
 #-------------------------------------------------------------------------------
 #-<EOF>

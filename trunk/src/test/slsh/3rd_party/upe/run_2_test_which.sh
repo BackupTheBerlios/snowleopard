@@ -18,19 +18,19 @@
 #===============================================================================
 
 #-------------------------------------------------------------------------------
-# run_1_test_cal.sh
+# run_2_test_which.sh
 #-------------------------------------------------------------------------------
-# Test script for cal.sh. Check if cal.sh works the same way on the shell as on
-# sh.
+# Test script for which.sh. Check if which.sh works the same way on the shell as 
+# on sh.
 #-------------------------------------------------------------------------------
 
 result_file=$1
 
-echo '==> Running cal.sh test script'
+echo '==> Running which.sh test script'
 
 echo 'TEST_SUCCESS' > $result_file
 
-echo '<== Finished cal.sh test script'
+echo '<== Finished which.sh test script'
 
 #-------------------------------------------------------------------------------
 #-<EOF>

@@ -46,22 +46,30 @@ CFLAGS			= $(INCLUDE_PATHS) $(TST_COMPILE_FLAGS) $(DEBUG_FLAGS)
 #-------------------------------------------------------------------------------
 # General rules
 #
-test			: all_unit_tests all_regression_tests
+all			: test 3rd_party all_technical_tests
 
-all			: all all_3rd_party_tests
+test			: build_path all_unit_tests all_regression_tests
+
+3rd_party		: build_path all_3rd_party_tests
 
 #-------------------------------------------------------------------------------
 # 3rd party tests
 #
 .include "3rd_party/makefiles/scripts.mk"
 
+all_3rd_party_tests	: $(3P_TEST_SCRIPTS) $(3P_TEST_RESULTS)
+
 #-------------------------------------------------------------------------------
 # Regression tests
 #
 
+all_regression_tests	:
+
 #-------------------------------------------------------------------------------
 # Technical tests
 #
+
+all_technical_tests	:
 
 #-------------------------------------------------------------------------------
 # Unit tests
