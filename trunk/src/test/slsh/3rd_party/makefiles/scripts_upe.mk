@@ -24,16 +24,53 @@
 # the shell
 #-------------------------------------------------------------------------------
 
-.include "3rd_party/makefiles/scripts_upe.mk"
+#-------------------------------------------------------------------------------
+# De UNIX Programmeer Omgeving Variables
+#
+UPE_PATH		= 3rd_party/upe
+
+UPE_SCRIPTS		= \
+	$(UPE_PATH)/cal.sh						\
+	$(UPE_PATH)/lookout.sh						\
+	$(UPE_PATH)/lookwho.sh						\
+	$(UPE_PATH)/which.sh
+
+UPE_RUN_1_SCRIPT	= $(UPE_PATH)/run_1_test_cal.sh
+UPE_RUN_2_SCRIPT 	= $(UPE_PATH)/run_2_test_which.sh
+UPE_RUN_3_SCRIPT	= $(UPE_PATH)/run_3_test_lookout.sh
+UPE_RUN_4_SCRIPT	= $(UPE_PATH)/run_4_test_lookwho.sh
+
+UPE_TEST_SCRIPTS	= \
+	$(UPE_RUN_1_SCRIPT)						\
+	$(UPE_RUN_2_SCRIPT)						\
+	$(UPE_RUN_3_SCRIPT)						\
+	$(UPE_RUN_4_SCRIPT)
+
+UPE_RUN_1_RESULT	= $(TST_3P_PATH)/run_1.result
+UPE_RUN_2_RESULT	= $(TST_3P_PATH)/run_2.result
+UPE_RUN_3_RESULT	= $(TST_3P_PATH)/run_3.result
+UPE_RUN_4_RESULT	= $(TST_3P_PATH)/run_4.result
+
+UPE_TEST_RESULTS	= \
+	$(UPE_RUN_1_RESULT)						\
+	$(UPE_RUN_2_RESULT)						\
+	$(UPE_RUN_3_RESULT)						\
+	$(UPE_RUN_4_RESULT)
 
 #-------------------------------------------------------------------------------
-# 3rd Party Variables
+# De UNIX Programmeer Omgeving Rules
 #
-3P_TEST_SCRIPTS		= \
-	$(UPE_TEST_SCRIPTS)
+$(UPE_RUN_1_RESULT)	: 
+	$(UPE_RUN_1_SCRIPT) $(UPE_RUN_1_RESULT)
 
-3P_TEST_RESULTS		= \
-	$(UPE_TEST_RESULTS)
+$(UPE_RUN_2_RESULT)	:
+	$(UPE_RUN_2_SCRIPT) $(UPE_RUN_2_RESULT) $(TST_3P_PATH)
+
+$(UPE_RUN_3_RESULT)	:
+	$(UPE_RUN_3_SCRIPT) $(UPE_RUN_3_RESULT)
+
+$(UPE_RUN_4_RESULT)	:
+	$(UPE_RUN_4_SCRIPT) $(UPE_RUN_4_RESULT)
 
 #-------------------------------------------------------------------------------
 #<EOF>

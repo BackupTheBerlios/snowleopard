@@ -1,7 +1,7 @@
 #===============================================================================
 # Snow Leopard Test Suite
 #
-# Copyright (C) 2012 Roel Sergeant
+# Copyright (C) 2011, 2012 Roel Sergeant
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -18,22 +18,31 @@
 #===============================================================================
 
 #-------------------------------------------------------------------------------
-# scripts.mk
+# lookout.sh
 #-------------------------------------------------------------------------------
-# Generated file containing a list of all includes files that are specific to
-# the shell
+# lookout script from De UNIX Programmeer Omgeving. The script checks every 60
+# seconds if the user given as parameter is logged in.
 #-------------------------------------------------------------------------------
 
-.include "3rd_party/makefiles/scripts_upe.mk"
+# Set path
+PATH=/bin:/usr/bin
+
+# Create variables for old and new lists
+new=/tmp/lookwho1.$$
+old=/tmp/lookwho2.$$
+
+# Create the old file
+>$old
+
+# Check who is logged in
+while :
+do
+    who >$new
+    diff $old $new | awk '/>/ { $1 = "in:  " ; print}
+                          /</ { $1 = "out: " ; print}'
+    mv $new $old
+    sleep 60
+done 
 
 #-------------------------------------------------------------------------------
-# 3rd Party Variables
-#
-3P_TEST_SCRIPTS		= \
-	$(UPE_TEST_SCRIPTS)
-
-3P_TEST_RESULTS		= \
-	$(UPE_TEST_RESULTS)
-
-#-------------------------------------------------------------------------------
-#<EOF>
+#-<EOF>

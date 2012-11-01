@@ -1,7 +1,7 @@
 #===============================================================================
 # Snow Leopard Test Suite
 #
-# Copyright (C) 2012 Roel Sergeant
+# Copyright (C) 2011, 2012 Roel Sergeant
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -18,22 +18,33 @@
 #===============================================================================
 
 #-------------------------------------------------------------------------------
-# scripts.mk
+# run_4_test_lookwho.sh
 #-------------------------------------------------------------------------------
-# Generated file containing a list of all includes files that are specific to
-# the shell
+# Test script for lookwho.sh. Check if lookwho.sh works the same way on the 
+# shell as on sh.
 #-------------------------------------------------------------------------------
 
-.include "3rd_party/makefiles/scripts_upe.mk"
+result_file=$1
+
+echo '==> Running lookwho.sh test script'
 
 #-------------------------------------------------------------------------------
-# 3rd Party Variables
+# TEST 1 - Test tools are where they are supposed to be.
 #
-3P_TEST_SCRIPTS		= \
-	$(UPE_TEST_SCRIPTS)
-
-3P_TEST_RESULTS		= \
-	$(UPE_TEST_RESULTS)
 
 #-------------------------------------------------------------------------------
-#<EOF>
+# TEST 2 - Test script correctly uses the path.
+#
+
+#-------------------------------------------------------------------------------
+# If result_file doesn't exist create it as successful.
+#
+if test ! -e $result_file
+then
+    echo 'TEST_SUCCESS' > $result_file
+fi
+
+echo '<== Finished lookwho.sh test script'
+
+#-------------------------------------------------------------------------------
+#-<EOF>
