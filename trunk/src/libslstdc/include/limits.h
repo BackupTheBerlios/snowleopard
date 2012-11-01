@@ -23,11 +23,11 @@
 // Standard limits implementation
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_LIMITS_H_
-#define _SL_STDC_LIMITS_H_
+#ifndef __SL_STDC_LIMITS_H__
+#define __SL_STDC_LIMITS_H__
 
 #include "stdc/limits.h"
 
-#endif /* !_SL_STDC_LIMITS_H_ */
+#endif /* !__SL_STDC_LIMITS_H__ */
 
 //-<EOF>

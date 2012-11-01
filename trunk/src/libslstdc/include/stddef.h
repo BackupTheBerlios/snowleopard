@@ -23,12 +23,11 @@
 // Standard definition implementation
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_STDDEF_H_
-#define _SL_STDC_STDDEF_H_
+#ifndef __SL_STDC_STDDEF_H__
+#define __SL_STDC_STDDEF_H__
 
-#include <stdc/stddef.h>
+#include "stdc/stddef.h"
 
-#endif /* !_SL_STDC_STDDEF_H_ */
+#endif /* !__SL_STDC_STDDEF_H__ */
 
 //-<EOF>
-

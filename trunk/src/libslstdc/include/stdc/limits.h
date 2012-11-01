@@ -23,13 +23,14 @@
 // Standard limits implementation
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_IMPL_LIMITS_H_
-#define _SL_STDC_IMPL_LIMITS_H_
+#ifndef __SL_STDC_IMPL_LIMITS_H__
+#define __SL_STDC_IMPL_LIMITS_H__
 
 #include "stdc/config_stdc.h"
 
 //------------------------------------------------------------------------------
 // Character types
+//
 #define CHAR_BIT __SL_CHAR_BITS
 #define SCHAR_MIN __SL_SCHAR_MIN
 #define SCHAR_MAX __SL_SCHAR_MAX
@@ -45,11 +46,13 @@
 
 //------------------------------------------------------------------------------
 // Maximum bytes in multibyte character
+//
 #define MB_LEN_MAX __SL_WCHAR_MAX_BYTES
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // Integer types
+//
 #define SHRT_MIN __SL_SHRT_MIN
 #define SHRT_MAX __SL_SHRT_MAX
 #define USHRT_MAX __SL_USHRT_MAX
@@ -64,6 +67,6 @@
 #define ULLONG_MAX __SL_ULLONG_MAX
 //------------------------------------------------------------------------------
 
-#endif /* !_SL_STDC_IMPL_LIMITS_H_ */
+#endif /* !__SL_STDC_IMPL_LIMITS_H__ */
 
 //-<EOF>

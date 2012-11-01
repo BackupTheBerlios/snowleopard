@@ -64,6 +64,16 @@ ISO646_H_DEPS			= \
 	$(LIB_STDC_INCLUDE)/iso646.h					\
 	$(CONFIG_C_INCLUDES)
 
+LIMITS_H_DEPS			= \
+	$(LIB_STDC_INCLUDE)/config_stdc.h				\
+	$(LIB_STDC_INCLUDE)/limits.h					\
+	$(CONFIG_C_INCLUDES)
+
+LOCALE_H_DEPS			= \
+	$(LIB_STDC_INCLUDE)/config_stdc.h				\
+	$(LIB_STDC_INCLUDE)/locale.h					\
+	$(CONFIG_C_INCLUDES)
+
 STDARG_H_DEPS			= \
 	$(LIB_PRIVATE_INCLUDE)/shared_types.h				\
 	$(LIB_STDC_INCLUDE)/config_stdc.h				\

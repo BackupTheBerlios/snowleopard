@@ -23,17 +23,18 @@
 // Standard locale implementation
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_IMPL_LOCALE_H_
-#define _SL_STDC_IMPL_LOCALE_H_
+#ifndef __SL_STDC_IMPL_LOCALE_H__
+#define __SL_STDC_IMPL_LOCALE_H__
 
-#include <config/config.h>
+#include "stdc/config_stdc.h"
 
 //------------------------------------------------------------------------------
 // struct lconv
 //
 // Members related to numeric formatting
 //
-struct lconv {
+struct lconv 
+{
   char* decimal_point;
   char* thousands_sep;
   char* grouping;
@@ -64,7 +65,8 @@ typedef struct lconv lconv;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// Locale macros  
+// Locale macros
+//  
 #define LC_ALL      0
 #define LC_COLLATE  1
 #define LC_CTYPE    2
@@ -75,11 +77,11 @@ typedef struct lconv lconv;
 
 //------------------------------------------------------------------------------
 // Locale control functions
+//
 char* setlocale(int category, const char* locale);
 lconv* localeconv();
 //------------------------------------------------------------------------------
 
-#endif /* !_SL_STDC_IMPL_LOCALE_H_ */
+#endif /* !__SL_STDC_IMPL_LOCALE_H__ */
 
 //-<EOF>
-

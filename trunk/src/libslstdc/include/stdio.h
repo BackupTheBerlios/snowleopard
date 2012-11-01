@@ -26,7 +26,7 @@
 #ifndef __SL_STDC_STDIO_H__
 #define __SL_STDC_STDIO_H__
 
-#include <stdc/stdio.h>
+#include "stdc/stdio.h"
 
 #endif /* !__SL_STDC_STDIO_H__ */
 

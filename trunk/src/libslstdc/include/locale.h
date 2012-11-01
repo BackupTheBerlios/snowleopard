@@ -23,12 +23,11 @@
 // Standard locale implementation
 //------------------------------------------------------------------------------
 
-#ifndef _SL_STDC_LOCALE_H_
-#define _SL_STDC_LOCALE_H_
+#ifndef __SL_STDC_LOCALE_H__
+#define __SL_STDC_LOCALE_H__
 
-#include <stdc/locale.h>
+#include "stdc/locale.h"
 
-#endif /* !_SL_STDC_LOCALE_H_ */
+#endif /* !__SL_STDC_LOCALE_H__ */
 
 //-<EOF>
-
