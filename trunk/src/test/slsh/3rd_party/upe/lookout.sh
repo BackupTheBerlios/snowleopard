@@ -18,25 +18,25 @@
 #===============================================================================
 
 #-------------------------------------------------------------------------------
-# run_1_test_cal.sh
+# lookout.sh
 #-------------------------------------------------------------------------------
-# Test script for cal.sh. Check if cal.sh works the same way on the shell as on
-# sh.
+# lookout script from De UNIX Programmeer Omgeving. The script checks every 60
+# seconds if the user given as parameter is logged in.
 #-------------------------------------------------------------------------------
 
-result_file=$1
+# Set path
+PATH=/bin:/usr/bin
 
-echo '==> Running cal.sh test script'
+# Process arguments
+case $# in
+    0) echo 'lookout: username missing' 1>&2; exit 1
+esac
 
-#-------------------------------------------------------------------------------
-# If result_file doesn't exist create it as successful.
-#
-if test ! -e $result_file
-then
-    echo 'TEST_SUCCESS' > $result_file
-fi
-
-echo '<== Finished cal.sh test script'
+# Check if the user is logged in, and if not found wait 60 seconds
+until who | grep "$1"
+do
+    sleep 60
+done
 
 #-------------------------------------------------------------------------------
 #-<EOF>

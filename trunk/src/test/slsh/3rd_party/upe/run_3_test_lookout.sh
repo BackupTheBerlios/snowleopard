@@ -18,15 +18,23 @@
 #===============================================================================
 
 #-------------------------------------------------------------------------------
-# run_1_test_cal.sh
+# run_3_test_lookout.sh
 #-------------------------------------------------------------------------------
-# Test script for cal.sh. Check if cal.sh works the same way on the shell as on
-# sh.
+# Test script for lookout.sh. Check if lookout.sh works the same way on the 
+# shell as on sh.
 #-------------------------------------------------------------------------------
 
 result_file=$1
 
-echo '==> Running cal.sh test script'
+echo '==> Running lookout.sh test script'
+
+#-------------------------------------------------------------------------------
+# TEST 1 - Test tools are where they are supposed to be.
+#
+
+#-------------------------------------------------------------------------------
+# TEST 2 - Test script correctly uses the path.
+#
 
 #-------------------------------------------------------------------------------
 # If result_file doesn't exist create it as successful.
@@ -36,7 +44,7 @@ then
     echo 'TEST_SUCCESS' > $result_file
 fi
 
-echo '<== Finished cal.sh test script'
+echo '<== Finished lookout.sh test script'
 
 #-------------------------------------------------------------------------------
 #-<EOF>

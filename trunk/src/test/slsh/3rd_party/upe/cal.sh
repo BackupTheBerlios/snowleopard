@@ -24,6 +24,9 @@
 # Unix cal program.
 #-------------------------------------------------------------------------------
 
+# Set path
+PATH=/bin:/usr/bin
+
 # Process arguments
 case $# in
     0) set `date` ; m=$2 ; j=$6 ;;

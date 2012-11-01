@@ -25,10 +25,35 @@
 #-------------------------------------------------------------------------------
 
 result_file=$1
+test_path=$2
 
 echo '==> Running which.sh test script'
 
-echo 'TEST_SUCCESS' > $result_file
+#-------------------------------------------------------------------------------
+# TEST 1 - Test tools are where they are supposed to be.
+#
+
+#-------------------------------------------------------------------------------
+# TEST 2 - Test script correctly uses the path.
+#
+
+# Modify path
+PATH=$test_path:$PATH
+
+# Create test and make it executable
+echo echo mytest > $test_path/test ;
+chmod uga+x $test_path/test
+
+# Execution should not use test in the test path
+
+
+#-------------------------------------------------------------------------------
+# If result_file doesn't exist create it as successful.
+#
+if test ! -e $result_file
+then
+    echo 'TEST_SUCCESS' > $result_file
+fi
 
 echo '<== Finished which.sh test script'
 
