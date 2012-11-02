@@ -26,7 +26,7 @@
 
 # Set path
 PATH=/bin:/usr/bin
-MAIL=${MAIL=/var/spool/mail/$USER}/new
+MAIL=${MAIL=/var/spool/mail/$USER}new
 
 # Check mails and report if changed
 t=${1-60}
