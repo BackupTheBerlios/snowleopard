@@ -32,11 +32,13 @@ UPE_PATH		= 3rd_party/upe
 UPE_SCRIPTS		= \
 	$(UPE_PATH)/cal.sh						\
 	$(UPE_PATH)/checkmail.sh					\
+	$(UPE_PATH)/get.sh						\
 	$(UPE_PATH)/lookout.sh						\
 	$(UPE_PATH)/lookwho.sh						\
 	$(UPE_PATH)/news.sh						\
 	$(UPE_PATH)/overwrite.sh					\
 	$(UPE_PATH)/pick.sh						\
+	$(UPE_PATH)/put.sh						\
 	$(UPE_PATH)/which.sh						\
 	$(UPE_PATH)/zap.sh
 
@@ -49,6 +51,7 @@ UPE_RUN_6_SCRIPT	= $(UPE_PATH)/run_6_test_overwrite.sh
 UPE_RUN_7_SCRIPT	= $(UPE_PATH)/run_7_test_zap.sh
 UPE_RUN_8_SCRIPT	= $(UPE_PATH)/run_8_test_pick.sh
 UPE_RUN_9_SCRIPT	= $(UPE_PATH)/run_9_test_news.sh
+UPE_RUN_10_SCRIPT	= $(UPE_PATH)/run_10_test_get_put.sh
 
 UPE_TEST_SCRIPTS	= \
 	$(UPE_RUN_1_SCRIPT)						\
@@ -59,7 +62,8 @@ UPE_TEST_SCRIPTS	= \
 	$(UPE_RUN_6_SCRIPT)						\
 	$(UPE_RUN_7_SCRIPT)						\
 	$(UPE_RUN_8_SCRIPT)						\
-	$(UPE_RUN_9_SCRIPT)
+	$(UPE_RUN_9_SCRIPT)						\
+	$(UPE_RUN_10_SCRIPT)
 
 UPE_RUN_1_RESULT	= $(TST_3P_PATH)/run_1.result
 UPE_RUN_2_RESULT	= $(TST_3P_PATH)/run_2.result
@@ -70,6 +74,7 @@ UPE_RUN_6_RESULT	= $(TST_3P_PATH)/run_6.result
 UPE_RUN_7_RESULT	= $(TST_3P_PATH)/run_7.result
 UPE_RUN_8_RESULT	= $(TST_3P_PATH)/run_8.result
 UPE_RUN_9_RESULT	= $(TST_3P_PATH)/run_9.result
+UPE_RUN_10_RESULT	= $(TST_3P_PATH)/run_10.result
 
 UPE_TEST_RESULTS	= \
 	$(UPE_RUN_1_RESULT)						\
@@ -80,7 +85,8 @@ UPE_TEST_RESULTS	= \
 	$(UPE_RUN_6_RESULT)						\
 	$(UPE_RUN_7_RESULT)						\
 	$(UPE_RUN_8_RESULT)						\
-	$(UPE_RUN_9_RESULT)
+	$(UPE_RUN_9_RESULT)						\
+	$(UPE_RUN_10_RESULT)
 
 #-------------------------------------------------------------------------------
 # De UNIX Programmeer Omgeving Rules
@@ -111,6 +117,9 @@ $(UPE_RUN_8_RESULT)	:
 
 $(UPE_RUN_9_RESULT)	:
 	sh $(UPE_RUN_9_SCRIPT) $(UPE_RUN_9_RESULT) $(TST_3P_PATH)
+
+$(UPE_RUN_10_RESULT)	:
+	sh $(UPE_RUN_10_SCRIPT) $(UPE_RUN_10_RESULT) $(TST_3P_PATH)
 
 #-------------------------------------------------------------------------------
 #<EOF>
