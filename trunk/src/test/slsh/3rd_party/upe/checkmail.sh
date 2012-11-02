@@ -35,10 +35,10 @@ x="`ls -l $MAIL`"
 while :
 do
     y="`ls -l $MAIL`"
-    echo $x $y
+    echo $x $y | awk '$4 < $12 { print "You have mail" }'
     x="$y"
     sleep $t
-done | awk '$4 < $12 { print "You have mail" }'
+done
 
 #-------------------------------------------------------------------------------
 #-<EOF>
