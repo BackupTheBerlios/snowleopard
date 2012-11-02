@@ -18,24 +18,36 @@
 #===============================================================================
 
 #-------------------------------------------------------------------------------
-# pick.sh
+# run_9_test_news.sh
 #-------------------------------------------------------------------------------
-# pick script from De UNIX Programmeer Omgeving. Select among the parameters.
+# Test script for news.sh. Check if news.sh works the same way on the shell as 
+# on sh.
 #-------------------------------------------------------------------------------
 
-# Set path
-PATH=/bin:/usr/bin
+result_file=$1
 
-# Select argument given
-for i
-do
-    echo -n "$1? " >/dev/tty
-    read reply
-    case $reply in
-	y*) echo $i ;;
-	q*) break
-    esac
-done </dev/tty
+echo '==> Running news.sh test script'
+
+# Set news directory
+HOME=$TST_3P_PATH
+
+#-------------------------------------------------------------------------------
+# TEST 1 - Test tools are where they are supposed to be.
+#
+
+#-------------------------------------------------------------------------------
+# TEST 2 - Test script correctly uses the path.
+#
+
+#-------------------------------------------------------------------------------
+# If result_file doesn't exist create it as successful.
+#
+if test ! -e $result_file
+then
+    echo 'TEST_SUCCESS' > $result_file
+fi
+
+echo '<== Finished news.sh test script'
 
 #-------------------------------------------------------------------------------
 #-<EOF>

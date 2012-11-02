@@ -18,24 +18,34 @@
 #===============================================================================
 
 #-------------------------------------------------------------------------------
-# pick.sh
+# news.sh
 #-------------------------------------------------------------------------------
-# pick script from De UNIX Programmeer Omgeving. Select among the parameters.
+# news script from De UNIX Programmeer Omgeving. Print the news.
 #-------------------------------------------------------------------------------
 
 # Set path
 PATH=/bin:/usr/bin
+IFS='
+'
+
+# User news
+cd /usr/news
 
 # Select argument given
-for i
+for i in `ls -t * $HOME/.news_time 2>&1`
 do
-    echo -n "$1? " >/dev/tty
-    read reply
-    case $reply in
-	y*) echo $i ;;
-	q*) break
+    IFS=' '
+    case $i in
+	*' not found') ;;
+	*/.news_time)  break ;;
+	*)             set X`ls -l $i`
+	               echo "
+$i: ($3) $5 $6 $7
+"
+		       cat $i
     esac
-done </dev/tty
+done
+touch $HOME/.news_time
 
 #-------------------------------------------------------------------------------
 #-<EOF>
