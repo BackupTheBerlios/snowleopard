@@ -28,6 +28,7 @@
 #include "lexer.h"
 #include "parse_tree.h"
 #include "parser.h"
+#include "token.h"
 
 //------------------------------------------------------------------------------
 // parser_initialize function
@@ -67,8 +68,27 @@ void parser_cleanup ()
 //
 bool parser_start ()
 {
+  size_t i = 0;
+  slcc_token token = lex_get_next_token (false);
 
-  return false;
+  while (token.type != TT_EOF)
+    {
+      if (token.type != TT_EOF && token.type != TT_EMPTY
+          && token.type != TT_COMMENT && token.type != TT_PREPROCESSOR
+          && token.type != TT_KEYWORD && token.type != TT_PUNCTUATION
+          && token.type != TT_LITERAL && token.type != TT_IDENTIFIER)
+        return false;
+
+      if (token.type != TT_COMMENT)
+        {
+          token_print (i, token);
+          ++i;
+        }
+
+      token = lex_get_next_token (false);
+    }
+
+  return true;
 }
 //------------------------------------------------------------------------------
 

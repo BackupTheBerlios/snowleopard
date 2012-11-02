@@ -326,7 +326,8 @@ PARSE_TREE_DEPS			= \
 PARSER_DEPS			= \
 	$(PRG_INCLUDE)/lexer.h $(LEXER_H_DEPS)				\
 	$(PRG_INCLUDE)/parse_tree.h $(PARSE_TREE_H_DEPS)		\
-	$(PRG_INCLUDE)/parser.h $(PARSER_H_DEPS)
+	$(PRG_INCLUDE)/parser.h $(PARSER_H_DEPS)			\
+	$(PRG_INCLUDE)/token.h $(TOKEN_H_DEPS)
 
 PREPROCESSOR_DEPS		= \
 	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
