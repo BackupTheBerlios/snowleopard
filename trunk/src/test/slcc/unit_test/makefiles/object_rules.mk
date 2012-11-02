@@ -1,5 +1,5 @@
 #===============================================================================
-# Snow Leopard Test Suite
+# Snow Leopard C++ Compiler Front End
 #
 # Copyright (C) 2012 Roel Sergeant
 #
@@ -27,7 +27,7 @@
 #-------------------------------------------------------------------------------
 # Rules
 #
-$(UT_RUN_1_PROGRAM)					: 
+$(UT_RUN_1_PROGRAM)	: 
 
 ##$(TST_UT_PATH)/run_1_private_linked_list_1.o		: 		\
 ##		unit_test/run_1/run_1_private_linked_list_1.c

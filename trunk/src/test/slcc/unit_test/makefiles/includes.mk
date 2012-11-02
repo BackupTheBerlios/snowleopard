@@ -1,5 +1,5 @@
 #===============================================================================
-# Snow Leopard Test Suite
+# Snow Leopard C++ Compiler Front End
 #
 # Copyright (C) 2012 Roel Sergeant
 #
@@ -32,6 +32,18 @@ UT_RUN_1_INCLUDES 	=
 
 UT_RUN_2_INCLUDE	= 
 UT_RUN_2_INCLUDES	= 
+
+UT_RUN_3_INCLUDE	= 
+UT_RUN_3_INCLUDES	= 
+
+UT_RUN_4_INCLUDE	= 
+UT_RUN_4_INCLUDES	= 
+
+UT_RUN_5_INCLUDE	= 
+UT_RUN_5_INCLUDES	= 
+
+UT_RUN_6_INCLUDE	= 
+UT_RUN_6_INCLUDES	= 
 
 #-------------------------------------------------------------------------------
 #<EOF>
