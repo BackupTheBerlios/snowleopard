@@ -61,7 +61,7 @@ static slcc_token lex_char32_t_string ();
 static slcc_token lex_character (slcc_literal_type type);
 static slcc_token lex_comment ();
 static slcc_token lex_identifier_or_keyword ();
-static slcc_token lex_number ();
+static slcc_token lex_number (bool negative);
 static slcc_token lex_preprocessor_directive ();
 static slcc_token lex_preprocessor_substitute (const slcc_string* lexeme);
 static slcc_token lex_punctuation ();
@@ -161,7 +161,7 @@ slcc_token lex_get_next_token (bool macro_skip)
   if (tc_is_alpha_or_underscore (c))
     return lex_identifier_or_keyword ();
   else if (tc_is_decimal_digit (c))
-    return lex_number ();
+    return lex_number (false);
   else if (c == '#' && rdr_get_previous_char () == '\n')
     return lex_preprocessor_directive ();
   else if (c == '/')
@@ -191,11 +191,11 @@ slcc_token lex_get_previous_token ()
 //
 size_t lex_get_keyword_pos (const slcc_string* token) 
 {
-  return binary_search(
-		       keyword_list_,
-		       keyword_list_length_,
-		       token
-                       );
+  return binary_search (
+			keyword_list_,
+			keyword_list_length_,
+			token
+			);
 }
 //------------------------------------------------------------------------------
 
@@ -575,8 +575,11 @@ slcc_token lex_identifier_or_keyword ()
 // This function lexes a numeric literal of any of the supported numeric
 // literals.
 //
-slcc_token lex_number() {
+slcc_token lex_number (bool negative) {
   slcc_string* s = str_new ();
+  if (negative)
+    str_append (s, '-');
+
   bool has_decimal_point = false;
   bool has_exponent = false;
   bool is_unsigned = false;
@@ -590,12 +593,12 @@ slcc_token lex_number() {
   bool has_error = false;
 
   char c;
-  char prev_c = rdr_get_current_char();
+  char prev_c = rdr_get_current_char ();
 
   /* Get second character */
   c = rdr_get_next_char ();
     
-  /* Octal */
+  /* Literal constant type */
   if (prev_c == '0')
     if (c == 'b' || c == 'B')
       {
@@ -608,50 +611,44 @@ slcc_token lex_number() {
 	c = rdr_get_next_char ();
       }
     else
-      is_octal = true;
+      {
+	str_append (s, prev_c);
+	is_octal = true;
+      }
   else 
-    str_append(s, prev_c);
+    str_append (s, prev_c);
 
   for (;;) 
     {
       /* Octal number */
-      if (is_octal)
-	if (tc_is_octal_digit (c))
-	  str_append(s, c);
-	else
-	  has_error = true;
+      if (is_octal && tc_is_octal_digit (c))
+	str_append (s, c);
 
       /* Binary number */
-      else if (is_binary)
-	if (c == '0' || c == '1')
-	  str_append(s, c);
-	else
-	  has_error = true;
+      else if (is_binary && (c == '0' || c == '1'))
+	str_append (s, c);
 
       /* Hexadecimal number */
-      else if (is_hexadecimal)
-	if (tc_is_hexadecimal_digit (c))
-	  str_append(s, c);
-	else 
-	  has_error = true;
+      else if (is_hexadecimal && tc_is_hexadecimal_digit (c))
+	str_append (s, c);
 
       /* Other numbers */
       else if (tc_is_decimal_digit (c))
-	str_append(s, c);
-      else if(c == '.')
-	if(has_decimal_point)
+	str_append (s, c);
+      else if (c == '.')
+	if (has_decimal_point)
 	  has_error = true;
 	else 
 	  {
-	    str_append(s, c);
+	    str_append (s, c);
 	    has_decimal_point = true;
 	  }
-      else if(c == 'E' || c == 'e')
-	if(has_exponent) 
+      else if (c == 'E' || c == 'e')
+	if (has_exponent) 
 	  has_error = true;
 	else 
 	  {
-	    str_append(s, c);
+	    str_append (s, c);
 	    has_exponent = true;
 	  }
       else if (c == 'u' || c == 'U')
@@ -668,6 +665,7 @@ slcc_token lex_number() {
 	is_float = true;
       else
 	break;
+
       c = rdr_get_next_char ();
     }
   
@@ -704,7 +702,7 @@ slcc_token lex_number() {
   else 
     return token_new_int (
 			  s, 
-			  rdr_get_current_source_position(),
+			  rdr_get_current_source_position (),
 			  is_binary, 
 			  is_octal,
 			  is_hexadecimal,
@@ -849,7 +847,7 @@ slcc_token lex_punctuation ()
     {
       c = lex_store_and_get_char (true);
       if (tc_is_decimal_digit (c))
-	return lex_number ();
+	return lex_number (true);
       else if (c == '-' || c == '=')
 	lex_store_and_get_char (false);
       else if (c == '>')
@@ -973,6 +971,7 @@ slcc_token lex_raw_string ()
     
   /* Get second token delimiter */
   c = lex_char ();
+
   for (;;) 
     {
       if (c == '"' && prev_c != '\\')
