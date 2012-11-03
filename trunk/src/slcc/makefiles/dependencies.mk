@@ -293,6 +293,7 @@ LEXER_DEPS			= \
 	$(PRG_INCLUDE)/source_position.h $(SOURCE_POSITION_H_DEPS)	\
 	$(PRG_INCLUDE)/strings.h $(STRINGS_H_DEPS)			\
 	$(PRG_INCLUDE)/token.h $(TOKEN_H_DEPS)				\
+	$(PRG_INCLUDE)/types.h $(TYPES_H_DEPS)				\
 	$(CONFIG_C_INCLUDES)						\
 	$(TC_INCLUDES)
 

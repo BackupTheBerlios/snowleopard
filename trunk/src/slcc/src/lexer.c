@@ -45,6 +45,7 @@
 #include "source_position.h"
 #include "strings.h"
 #include "token.h"
+#include "types.h"
 
 #include "char_functions.h"
 
@@ -412,7 +413,7 @@ slcc_token lex_comment ()
       lex_get_char ();
     }
 
-  /* Token / or /= */
+  /* Token /= */
   else if (c == '=')
     {
       lex_store_and_get_char (false);
@@ -422,6 +423,7 @@ slcc_token lex_comment ()
 	 begin_source_position_
 	 );
     }
+  /* Token / */
   else
     return token_new_punctuation 
       (
@@ -745,7 +747,7 @@ slcc_token lex_preprocessor_substitute (const slcc_string* lexeme)
   if (!pp_is_symbol (lexeme))
     {
       size_t p = lex_get_keyword_pos (lex_get_current_token_string ());
-      if (p != 0)
+      if (p != MaxSizeT)
 	return token_new_keyword (p, begin_source_position_);
       else 
 	return token_new_identifier (

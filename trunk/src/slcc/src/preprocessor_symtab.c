@@ -24,6 +24,7 @@
 //------------------------------------------------------------------------------
 
 #include <stdbool.h>
+#include <stddef.h>
 
 #include "error_codes.h"
 #include "error_handling.h"
@@ -82,7 +83,7 @@ symtab_key_t pp_symtab_get_macro_position (const slcc_string* token)
 {
   symtab_key_t macro = hash_generate_pp_key (str_get_c_string (token));
 
-  if (pp_symtab_.data[macro].key == 0)
+  if (pp_symtab_.data[macro].key == NULL)
     return MaxSymtabKeyT;
 
   return macro;

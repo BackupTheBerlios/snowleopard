@@ -446,20 +446,29 @@ bool drv_process_file_argument (char* file)
   
   /* C source file */
   if (strcmp (ext1, "c") == 0)
-    settings_.source_type = SFT_SOURCE;
+    {
+      settings_.source_type = SFT_SOURCE;
+      settings_.source_file = file;
+    }
 
   /* C header file / C implementation file */
   else if (strcmp (ext1, "h") == 0)
-    if (strcmp (ext2, "c.h") == 0)
-      settings_.source_type = SFT_IMPLEMENTATION;
-    else
-      settings_.source_type = SFT_HEADER;
+    {
+      if (strcmp (ext2, "c.h") == 0)
+	settings_.source_type = SFT_IMPLEMENTATION;
+      else
+	settings_.source_type = SFT_HEADER;
+      settings_.source_file = file;
+    }
 
   /* Assembler file */
   else if (strcmp (ext1, "s") == 0
 	   || strcmp (ext1, "S") == 0
 	   || strcmp (ext1, "asm") == 0)
-    settings_.source_type = SFT_ASSEMBLER;
+    {
+      settings_.source_type = SFT_ASSEMBLER;
+      settings_.source_file = file;
+    }
 
   /* Object file */
   else if (strcmp (ext1, "o") == 0
@@ -479,6 +488,7 @@ bool drv_process_file_argument (char* file)
     {
       lang = L_CXX;
       settings_.source_type = SFT_SOURCE;
+      settings_.source_file = file;
     }
 
   /* C++ header file */
@@ -488,6 +498,7 @@ bool drv_process_file_argument (char* file)
     {
       lang = L_CXX;
       settings_.source_type = SFT_HEADER;
+      settings_.source_file = file;
     }
 
   /* C++ implementation file */
@@ -495,6 +506,7 @@ bool drv_process_file_argument (char* file)
     {
       lang = L_CXX;
       settings_.source_type = SFT_IMPLEMENTATION;
+      settings_.source_file = file;
     }
 
   /* No valid file extension */
