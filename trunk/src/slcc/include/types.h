@@ -35,9 +35,10 @@ typedef size_t symtab_key_t;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// Global variables
+// Global constants
 //
 extern const size_t MaxErrorMessageSize;
+extern const size_t MaxLineSize;
 extern const size_t MaxSizeT;
 extern const symtab_key_t MaxSymtabKeyT;
 //------------------------------------------------------------------------------

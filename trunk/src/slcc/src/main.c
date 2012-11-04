@@ -53,6 +53,11 @@ int main (int argc, char** argv)
     }
 
   /* 
+   * Parsing the specs file will not return if the specs file is invalid.
+   */
+  drv_parse_specs ();
+
+  /* 
    * Parsing the command line arguments will not return if an invalid
    * argument is given, as compilation will be aborted.
    */

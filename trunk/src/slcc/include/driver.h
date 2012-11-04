@@ -36,6 +36,7 @@ bool drv_initialize ();
 void drv_cleanup ();
 bool drv_start ();
 bool drv_parse_command_line (int argc, char** argv);
+bool drv_parse_specs ();
 //------------------------------------------------------------------------------
 
 #endif /* !__SL_SLCC_DRIVER_H__ */

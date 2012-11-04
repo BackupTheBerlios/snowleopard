@@ -59,6 +59,10 @@ $(PRG_BUILD_PATH)/driver_arguments.o  	: \
 		src/driver_arguments.c $(DRIVER_ARGUMENTS_DEPS)
 	$(CC) -c $(CFLAGS) src/driver_arguments.c -o $(.TARGET)
 
+$(PRG_BUILD_PATH)/driver_specs.o  	: \
+		src/driver_specs.c $(DRIVER_SPECS_DEPS)
+	$(CC) -c $(CFLAGS) src/driver_specs.c -o $(.TARGET)
+
 $(PRG_BUILD_PATH)/error_array.o		: \
 		src/error_array.c $(ERROR_ARRAY_DEPS)
 	$(CC) -c $(CFLAGS) src/error_array.c -o $(.TARGET)

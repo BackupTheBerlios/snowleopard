@@ -28,8 +28,9 @@
 #include "types.h"
 
 //------------------------------------------------------------------------------
-// Global variables
+// Global constants
 const size_t MaxErrorMessageSize = 1024;
+const size_t MaxLineSize = 256;
 const size_t MaxSizeT = (size_t)-1;
 const symtab_key_t MaxSymtabKeyT = (size_t)-1;
 //------------------------------------------------------------------------------

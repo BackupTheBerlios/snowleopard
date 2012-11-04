@@ -246,6 +246,15 @@ DRIVER_ARGUMENTS_DEPS		= \
 	$(PRG_INCLUDE)/warnings.h $(WARNINGS_H_DEPS)			\
 	$(TC_INCLUDES)
 
+DRIVER_SPECS			= \
+	$(PRG_INCLUDE)/driver.h $(DRIVER_H_DEPS)			\
+	$(PRG_INCLUDE)/error.h $(ERROR_H_DEPS)				\
+	$(PRG_INCLUDE)/error_codes.h $(ERROR_CODES_H_DEPS)		\
+	$(PRG_INCLUDE)/error_handling.h $(ERROR_HANDLING_H_DEPS)	\
+	$(PRG_INCLUDE)/settings.h $(SETTINGS_H_DEPS)			\
+	$(PRG_INCLUDE)/types.h $(TYPES_H_DEPS)				\
+	$(TC_INCLUDES)
+
 ERROR_ARRAY_DEPS		= \
 	$(PRG_INCLUDE)/error.h	$(ERROR_H_DEPS)				\
 	$(PRG_INCLUDE)/error_array.h $(ERROR_ARRY_H_DEPS)		\
