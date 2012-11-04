@@ -380,13 +380,55 @@ char* str_get_c_string_after (const slcc_string* s, const char* after)
     else
       break;
 
-  if (epos == s->size)
+  if (bpos == s->size)
     return "";
 	
   cstr = malloc (sizeof (char[epos - bpos + 1]));
 
   strncpy (cstr, s->value + bpos, epos - bpos);
   cstr[epos - bpos] = '\0';
+
+  return cstr;
+}
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// str_get_c_string_all_after function
+//
+// Returns the remainder of the string given that is after the search string.
+// It returns the empty string if the search string is not found.
+//
+char* str_get_c_string_all_after (const slcc_string* s, const char* after) 
+{
+  char* cstr;
+  size_t i;
+  size_t bpos;
+  size_t size = strlen (after);
+	
+  /* Search end of after */
+  for (bpos = 0, i = 0; bpos != s->size; ++bpos)
+    {
+      if (i == size)
+	/* String is found */
+	break;
+      if (s->value[bpos] == after[i])
+	i++;
+    }
+
+  /* Skip whitespace */
+  for (;;)
+    if (tc_is_whitespace (s->value[bpos]))
+      bpos++;
+    else
+      break;
+
+  if (bpos == s->size)
+    return "";
+
+  cstr = malloc (sizeof (char[s->size - bpos + 1]));
+
+  strncpy (cstr, s->value + bpos, s->size - bpos);
+  cstr[s->size - bpos] = '\0';
 
   return cstr;
 }

@@ -110,6 +110,7 @@ bool str_append_w (slcc_wstring*, wchar_t);
 char str_get_char_from_string (const slcc_string*, size_t);
 char* str_get_c_string (const slcc_string*);
 char* str_get_c_string_after (const slcc_string*, const char*);
+char* str_get_c_string_all_after (const slcc_string*, const char*);
 char* str_get_c_string_between (const slcc_string*, char, char);
 char16_t* str_get_c16_string (const slcc_string16*);
 char32_t* str_get_c32_string (const slcc_string32*);

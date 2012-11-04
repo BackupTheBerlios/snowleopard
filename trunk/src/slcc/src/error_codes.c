@@ -34,6 +34,7 @@ char* error_type_list_[] = {
   "Warning",
   "Unimplemented Feature",
   "Preprocessor Error",
+  "Preprocessor FATAL",
   "Preprocessor Warning", 
   "Source Error",
   "Source Warning", 
@@ -70,6 +71,7 @@ slcc_error_description error_description_list_[] = {
   {"Multiple output files: %s is used, %s is ignored", 2, ET_WARNING},
 
   /* Preprocessor errors */
+  {"Error directive, aborting with \"%s\"", 1, ET_PREPROCESS_FATAL},
   {"Invalid preprocessor directive in \"%s\"", 1, ET_PREPROCESS},
 
   /* Compile errors */

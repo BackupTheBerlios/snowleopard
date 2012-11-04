@@ -36,18 +36,21 @@ enum slcc_error_type
     ET_NO_ERROR = 0,    /* No error occured */
 
     /* Internal errors / Fatal errors */
-    ET_FATAL,           /* Fatal errors */
-    ET_INTERNAL,        /* Internal compiler error */
-    ET_WARNING,         /* Warnings */
+    ET_FATAL,            /* Fatal errors */
+    ET_INTERNAL,         /* Internal compiler error */
+    ET_WARNING,          /* Warnings */
 
     /* Compile errors */
-    ET_UNIMPLEMENTED,   /* Unimplemented feature */
-    ET_PREPROCESS,      /* Preprocessor error */
-    ET_PREPROCESS_WARN, /* Preprocessor warning */
-    ET_COMPILE,         /* Compilation/Source analysis error */
-    ET_COMPILE_WARN,    /* Compilation/Source analysis warning */
-    ET_CODEGEN,         /* Code generation error */
-    ET_RUNTIME          /* Runtime error */
+    ET_UNIMPLEMENTED,    /* Unimplemented feature */
+    ET_PREPROCESS,       /* Preprocessor error */
+    ET_PREPROCESS_FATAL, /* Fatal preprocessing errors */
+    ET_PREPROCESS_WARN,  /* Preprocessor warning */
+    ET_COMPILE,          /* Compilation/Source analysis error */
+    ET_COMPILE_WARN,     /* Compilation/Source analysis warning */
+    ET_CODEGEN,          /* Code generation error */
+
+    /* Runtime errors */
+    ET_RUNTIME           /* Runtime error */
   };
 
 typedef enum slcc_error_type slcc_error_type;
@@ -98,18 +101,19 @@ enum slcc_error_code
     EC_W_MULTIPLE_OUT_FILES_SPECIFIED, /* Multiple output files specified */  
 
     /* Preprocessor errors */
-    EC_PP_INVALID_DIRECTIVE,             /* Invalid preprocessor directive */
+    EC_PP_ERROR_DIRECTIVE,             /* #error directive, report and exit */ 
+    EC_PP_INVALID_DIRECTIVE,           /* Invalid preprocessor directive */
 
     /* Compile errors */
-    EC_C_INVALID_CHAR_IN_CHAR_LITERAL,   /* Invalid char in char literal */
-    EC_C_INVALID_CHAR_LITERAL,           /* Invalid char literal */
-    EC_C_INVALID_HEX_CHAR_LITERAL,       /* Invalid hexadecimal character
-					    literal */
-    EC_C_INVALID_OCTAL_CHAR_LITERAL,     /* Invalid octal character literal */
-    EC_C_INVALID_WCHAR_LITERAL,          /* Invalid wchar literal */
-    EC_U_CHAR16_T_HANDLING,              /* Unimplemneted char16_t handling */
-    EC_U_CHAR32_T_HANDLING,              /* Unimplemented char32_t handling */
-    EC_U_WCHAR_T_HANDLING                /* Unimplemented wchar_t handling */
+    EC_C_INVALID_CHAR_IN_CHAR_LITERAL, /* Invalid char in char literal */
+    EC_C_INVALID_CHAR_LITERAL,         /* Invalid char literal */
+    EC_C_INVALID_HEX_CHAR_LITERAL,     /* Invalid hexadecimal character
+					  literal */
+    EC_C_INVALID_OCTAL_CHAR_LITERAL,   /* Invalid octal character literal */
+    EC_C_INVALID_WCHAR_LITERAL,        /* Invalid wchar literal */
+    EC_U_CHAR16_T_HANDLING,            /* Unimplemneted char16_t handling */
+    EC_U_CHAR32_T_HANDLING,            /* Unimplemented char32_t handling */
+    EC_U_WCHAR_T_HANDLING              /* Unimplemented wchar_t handling */
 
     /* Code generation errors */
     

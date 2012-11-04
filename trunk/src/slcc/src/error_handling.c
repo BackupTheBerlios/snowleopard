@@ -224,6 +224,9 @@ slcc_error* src_err_report (
 
   fprintf (stderr, "%s\n", message);
 
+  if (error_description_list_[code].type == ET_PREPROCESS_FATAL)
+    exit (code);
+
   return error;  
 }
 //------------------------------------------------------------------------------

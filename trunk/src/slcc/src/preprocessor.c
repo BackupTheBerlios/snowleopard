@@ -31,6 +31,7 @@
 #include <string.h>
 
 #include "error_codes.h"
+#include "error_handling.h"
 #include "lexer.h"
 #include "preprocessor_symtab.h"
 #include "preprocessor.h"
@@ -88,8 +89,8 @@ static bool pp_check_preprocessor_cmd_in_string (
 static bool pp_get_define (
 			   const slcc_string* s, 
 			   const char* cmd, 
-			   char* macro, 
-			   char* body
+			   char** macro, 
+			   char** body
 			   );
 static char* pp_get_defined (const slcc_string* s);
 static bool pp_process_define (const slcc_string* s);
@@ -192,9 +193,11 @@ bool pp_process_directive (const slcc_string* s)
         break;
 
       case 'e' : /* #endif or #error */
-        if (str_get_char_from_string (s, pos + 1) == 'n')
-          ok = pp_process_endif (s);
-        else
+        if (str_get_char_from_string (s, pos + 1) == 'l')
+          ok = pp_process_if (s);
+        else if (str_get_char_from_string (s, pos + 1) == 'n')
+	  ok = pp_process_endif (s);
+	else
           ok = pp_process_error (s);
         break;
 
@@ -334,14 +337,14 @@ bool pp_check_preprocessor_cmd_in_string(
 bool pp_get_define (
 		    const slcc_string* s, 
 		    const char* cmd, 
-		    char* macro, 
-		    char* body
+		    char** macro, 
+		    char** body
 		    ) 
 {
-  macro = str_get_c_string_after (s, cmd);
-  body = str_get_c_string_after (s, macro);
+  *macro = str_get_c_string_after (s, cmd);
+  *body = str_get_c_string_all_after (s, *macro);
 
-  if (strcmp (macro, "") == 0)
+  if (strcmp (*macro, "") == 0)
     return false;
 
   return true;
@@ -377,10 +380,10 @@ bool pp_process_define (const slcc_string* s)
   if (!pp_check_preprocessor_cmd_in_string (s, DirectiveDEFINE))
     return false;
 
-  if (!pp_get_define (s, DirectiveDEFINE, macro, body))
+  if (!pp_get_define (s, DirectiveDEFINE, &macro, &body))
     return false;
-
-  if (strcmp (str_get_c_string(s), "") == 0)
+    
+  if (strcmp (macro, "") == 0)
     return false;
 
   if (!symtab_set_entry 
@@ -423,6 +426,14 @@ bool pp_process_endif (const slcc_string* s)
 //
 bool pp_process_error (const slcc_string* s) 
 {
+  char* msg = str_get_c_string_all_after (s, "error");
+
+  src_err_report_1 (
+		    EC_PP_ERROR_DIRECTIVE, 
+		    rdr_get_current_source_position (), 
+		    msg
+		    );
+
   return false;
 }
 //------------------------------------------------------------------------------
