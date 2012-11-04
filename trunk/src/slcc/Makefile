@@ -33,8 +33,10 @@
 #
 PRG		= slcc
 
-PRG_BUILD_PATH	= $(BUILD_PATH)/$(PRG)
+PRG_BUILD_PATH	= $(BUILD_PATH)/$(PRG)/bin
 PROGRAM 	= $(PRG_BUILD_PATH)/$(PRG)
+
+PRG_SHARED_PATH	= $(BUILD_PATH)/$(PRG)/shared 
 
 PRG_INCLUDE	= include
 INCLUDE_PATHS 	= -I$(PRG_INCLUDE) -I$(TC_INCLUDE) -I$(CONFIG_INCLUDE)
@@ -50,7 +52,7 @@ PRG_TST_PATH	= $(TST_PATH)/$(PRG)
 #-------------------------------------------------------------------------------
 # Rules
 #
-all		: build_path build_libsltc_a $(PROGRAM)
+all		: build_path build_libsltc_a copy_shared $(PROGRAM)
 
 $(PROGRAM) 	: $(OBJS)
 	$(CC) $(.ALLSRC) -o $(.TARGET)
@@ -61,7 +63,8 @@ $(PROGRAM) 	: $(OBJS)
 # Special rules
 #
 build_path	:
-	mkdir -p $(PRG_BUILD_PATH)
+	mkdir -p $(PRG_BUILD_PATH) ;	\
+	mkdir -p $(PRG_SHARED_PATH)
 
 build_libsltc_a :
 	cd ../libsltc ;			\
@@ -71,8 +74,13 @@ clean		:
 	rm -rf $(OBJS) ;		\
 	rm -rf $(PROGRAM)
 
+copy_shared	:
+	cp ./shared/*.specs $(PRG_SHARED_PATH)
+
 distclean	: clean
+	rm -rf $(PRG_SHARED_PATH)/* ;	\
 	rm -rf $(PRG_BUILD_PATH)/* ;	\
+	rmdir $(PRG_SHARED_PATH) ;	\
 	rmdir $(PRG_BUILD_PATH) ;	\
 	cd ../libsltc ;			\
 	${MAKE} distclean
