@@ -568,7 +568,15 @@ bool pp_process_undef (const slcc_string* s)
 //
 bool pp_process_warning (const slcc_string* s) 
 {
-  return false;
+  char* msg = str_get_c_string_all_after (s, "warning");
+
+  src_err_report_1 (
+		    EC_PP_WARNING_DIRECTIVE, 
+		    rdr_get_current_source_position (), 
+		    msg
+		    );
+
+  return true;
 }
 //------------------------------------------------------------------------------
 

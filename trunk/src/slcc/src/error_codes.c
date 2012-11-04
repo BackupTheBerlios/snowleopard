@@ -71,9 +71,10 @@ slcc_error_description error_description_list_[] = {
   {"Multiple output files: %s is used, %s is ignored", 2, ET_WARNING},
 
   /* Preprocessor errors */
-  {"Error directive, aborting with \"%s\"", 1, ET_PREPROCESS_FATAL},
+  {"Error: \"%s\"", 1, ET_PREPROCESS_FATAL},
   {"Invalid preprocessor directive in \"%s\"", 1, ET_PREPROCESS},
-
+  {"Warning: \"%s\"", 1, ET_PREPROCESS_WARN}, 
+ 
   /* Compile errors */
   {"Invalid character in char literal \"%s\"", 1, ET_COMPILE},
   {"Invalid character literal \"%s\"", 1, ET_COMPILE},

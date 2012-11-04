@@ -103,6 +103,7 @@ enum slcc_error_code
     /* Preprocessor errors */
     EC_PP_ERROR_DIRECTIVE,             /* #error directive, report and exit */ 
     EC_PP_INVALID_DIRECTIVE,           /* Invalid preprocessor directive */
+    EC_PP_WARNING_DIRECTIVE,           /* #warning directive, report */
 
     /* Compile errors */
     EC_C_INVALID_CHAR_IN_CHAR_LITERAL, /* Invalid char in char literal */
