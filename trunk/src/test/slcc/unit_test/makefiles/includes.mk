@@ -45,5 +45,8 @@ UT_RUN_5_INCLUDES	=
 UT_RUN_6_INCLUDE	= 
 UT_RUN_6_INCLUDES	= 
 
+UT_RUN_7_INCLUDE	=
+UT_RUN_7_INCLUDES	=
+
 #-------------------------------------------------------------------------------
 #<EOF>
