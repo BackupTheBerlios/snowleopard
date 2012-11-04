@@ -182,7 +182,9 @@ bool pp_process_directive (const slcc_string* s)
   bool ok = false;
 
   /* If in skip mode, do not process tokens */
-  if (!skipping_code) 
+  if (skipping_code) 
+    return true;
+  else
     {
       size_t pos = str_get_first_none_whitespace (s, 1);
       char c = str_get_char_from_string (s, pos);
@@ -232,10 +234,15 @@ bool pp_process_directive (const slcc_string* s)
 
       if  (!ok) 
 	{
-	  /* TODO - Report last error */;
+	  src_err_report_1 (
+			    last_error, 
+			    rdr_get_current_source_position (), 
+			    str_get_c_string (s)
+			    );
 	}
 
     }
+
   return ok;
 }
 //------------------------------------------------------------------------------
@@ -474,7 +481,7 @@ bool pp_process_include (const slcc_string* s)
 //
 // Processes an #if preprocessor line.
 //
-bool pp_process_if(const slcc_string* s) 
+bool pp_process_if (const slcc_string* s) 
 {
   /* Handle #ifndef, #if !defined, #elif !defined macros */
   if (pp_check_preprocessor_cmd_in_string (s, DirectiveIFNDEF)
