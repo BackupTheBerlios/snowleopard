@@ -194,7 +194,7 @@ bool pp_process_directive (const slcc_string* s)
         ok = pp_process_define (s);
         break;
 
-      case 'e' : /* #endif or #error */
+      case 'e' : /* #elif, #else, #endif or #error */
         if (str_get_char_from_string (s, pos + 1) == 'l')
           ok = pp_process_if (s);
         else if (str_get_char_from_string (s, pos + 1) == 'n')
