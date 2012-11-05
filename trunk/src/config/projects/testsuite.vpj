@@ -99,6 +99,12 @@
             Name="libsltst Build Files"
             Filters=""/>
         <Folder
+            Name="lynx Troff Test Files"
+            Filters="">
+            <F N="../../test/lynx/unit_test/troff/run_1_sample_1.tr"/>
+            <F N="../../test/lynx/unit_test/troff/run_2_sample_2.tr"/>
+        </Folder>
+        <Folder
             Name="slcc Unit Tests"
             Filters=""/>
         <Folder
