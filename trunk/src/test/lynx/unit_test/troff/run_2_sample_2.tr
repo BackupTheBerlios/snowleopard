@@ -1,0 +1,58 @@
+
+.\"=============================================================================
+.\" Lynx Typesetting System
+.\"
+.\" Copyright (C) 2010, 2011, 2012 Roel Sergeant
+.\"
+.\" This program is free software: you can redistribute it and/or modify it
+.\" under the terms of the GNU General Public License as published by the Free
+.\" Software Foundation, either version 3 of the License, or (at your option)
+.\" any later version
+.\"
+.\" This program is distributed in the hope that it will be useful, but WITHOUT
+.\" ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+.\" FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+.\" more details.
+.\"
+.\" You should have received a copy of the GNU General Public License along
+.\" with this program. If not, see <http://www.gnu.org/licenses/>
+.\"=============================================================================
+
+.\"-----------------------------------------------------------------------------
+.\" refman.tr
+.\"-----------------------------------------------------------------------------
+.\" Reference manual for the Lynx typesetting system.
+.\"-----------------------------------------------------------------------------
+
+.\"*****************************************************************************
+.\" Macro package: 
+.\" Preprocessors: 
+.\"*****************************************************************************
+
+.de hd                          \" define header
+.if \\n%>1 \{\
+'sp 0.5i-1                                      \" tl base at 0.5i
+.tl ''- % -''                                   \" centered page number
+.ps                                     \" restore size
+.ft                                     \" restore font
+.vs \}                                  \" restore vs
+'sp 1.0i                                        \" space to 1.0i
+.ns                                     \" turn on no-space mode
+..                              \" end define
+
+.de fo                          \" define footer
+.ps 10                                  \" set footer/header size
+.ft R                                   \" set font
+.vs 12p                                 \" set baseline spacing
+.if \\n%=1 \{\
+'sp \\n(.pu-0.5i-1                              \" tl base 0.5i up
+.tl ''- % - '' \}                               \" first page number
+'bp
+..                              \" end define
+
+.wh 0 hd
+.wh -li fo
+
+.\"-----------------------------------------------------------------------------
+.\"<EOF>
+
